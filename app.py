@@ -1,4 +1,5 @@
 import datetime
+import hashlib
 import html as htmllib
 import ipaddress
 import json
@@ -15,6 +16,8 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import lru_cache
 from functools import wraps
 
+import firebase_admin
+from firebase_admin import credentials as fb_credentials, firestore as fb_firestore
 from flask import Flask, abort, flash, g, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -467,21 +470,6 @@ def build_chat_plan(plan):
         return None
 
 
-def _course_id(db, item):
-    """커리큘럼 항목의 courses.id. 목록 밖 강의는 (없으면) 새로 저장한다."""
-    if item["slug"]:
-        url = next(c[6] for c in SEED_COURSES if c[0] == item["slug"])
-    else:
-        c = item["custom"]
-        url = c["url"]
-        db.execute(
-            "INSERT OR IGNORE INTO courses (university, title, description, level, hours, url, curated)"
-            " VALUES (?, ?, ?, ?, ?, ?, 0)",
-            (c["university"], item["title"], c["description"], c["level"], item["hours"], url),
-        )
-    return db.execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
-
-
 def get_db():
     if "db" not in g:
         g.db = sqlite3.connect(app.config["DATABASE"])
@@ -496,7 +484,252 @@ def close_db(_exc):
         db.close()
 
 
+# ============================================================================
+# 저장소: 로컬에서는 sqlite3 파일(lms.db), 배포 환경에서는(FIREBASE_CREDENTIALS_JSON
+# 이 있으면) Firebase Firestore 를 쓴다. Render 무료 플랜은 재배포할 때마다 디스크가
+# 초기화되는데, Firestore 는 서버 밖에 저장되니 재배포해도 회원 데이터가 지워지지 않는다.
+# ============================================================================
+
+class DuplicateEmailError(Exception):
+    """이미 가입된 이메일로 회원가입을 시도했을 때."""
+
+
+def using_firestore():
+    return bool(_env("FIREBASE_CREDENTIALS_JSON"))
+
+
+_fb_app = None
+
+
+def _fs():
+    """Firestore 클라이언트. Firebase 앱은 프로세스당 한 번만 초기화해야 해서 전역에 캐시한다."""
+    global _fb_app
+    if _fb_app is None:
+        cred = fb_credentials.Certificate(json.loads(_env("FIREBASE_CREDENTIALS_JSON")))
+        _fb_app = firebase_admin.initialize_app(cred)
+    return fb_firestore.client(_fb_app)
+
+
+def create_user(email, name, password_hash):
+    """새 사용자를 만든다. 이메일이 이미 있으면 DuplicateEmailError."""
+    if using_firestore():
+        db = _fs()
+        ref = db.collection("users").document(email)
+
+        @fb_firestore.transactional
+        def _txn(transaction):
+            if ref.get(transaction=transaction).exists:
+                raise DuplicateEmailError()
+            transaction.set(ref, {
+                "email": email, "name": name, "password_hash": password_hash,
+                "role": "student", "created_at": fb_firestore.SERVER_TIMESTAMP,
+            })
+
+        _txn(db.transaction())
+        return
+    try:
+        get_db().execute(
+            "INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?)", (email, name, password_hash)
+        )
+        get_db().commit()
+    except sqlite3.IntegrityError:
+        raise DuplicateEmailError()
+
+
+def get_user_by_email(email):
+    if using_firestore():
+        snap = _fs().collection("users").document(email).get()
+        if not snap.exists:
+            return None
+        return {**snap.to_dict(), "id": snap.id}
+    return get_db().execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+
+
+def get_user_by_id(uid):
+    # Firestore 에서는 이메일을 사용자 문서의 id 로 쓴다 (자동으로 유일해지고, 이메일로 바로 조회 가능).
+    return get_user_by_email(uid) if using_firestore() else get_db().execute(
+        "SELECT * FROM users WHERE id = ?", (uid,)
+    ).fetchone()
+
+
+def list_courses(university=None):
+    """curated=1 인(직접 고른) 강의 목록. university 를 주면 그 대학만."""
+    if using_firestore():
+        rows = [{**d.to_dict(), "id": d.id} for d in _fs().collection("courses").where("curated", "==", True).stream()]
+        rows.sort(key=lambda r: r.get("seed_order", 0))
+        return [r for r in rows if r["university"] == university] if university else rows
+    db = get_db()
+    if university:
+        return db.execute(
+            "SELECT * FROM courses WHERE curated = 1 AND university = ? ORDER BY id", (university,)
+        ).fetchall()
+    return db.execute("SELECT * FROM courses WHERE curated = 1 ORDER BY id").fetchall()
+
+
+def curated_course_id(slug):
+    """SEED_COURSES 의 slug 에 해당하는 courses 문서/행의 id."""
+    if using_firestore():
+        return slug
+    url = next(c[6] for c in SEED_COURSES if c[0] == slug)
+    return get_db().execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
+
+
+def resolve_course_id(item):
+    """커리큘럼 항목이 가리키는 courses 문서/행의 id. 목록 밖(AI 가 찾은) 강의는 없으면 새로 만든다."""
+    if item["slug"]:
+        return curated_course_id(item["slug"])
+
+    c = item["custom"]
+    url = c["url"]
+    if using_firestore():
+        cid = hashlib.sha1(url.encode()).hexdigest()[:16]
+        ref = _fs().collection("courses").document(cid)
+        if not ref.get().exists:
+            ref.set({"university": c["university"], "title": item["title"], "description": c["description"],
+                      "level": c["level"], "hours": item["hours"], "url": url, "curated": False})
+        return cid
+
+    db = get_db()
+    db.execute(
+        "INSERT OR IGNORE INTO courses (university, title, description, level, hours, url, curated)"
+        " VALUES (?, ?, ?, ?, ?, ?, 0)",
+        (c["university"], item["title"], c["description"], c["level"], item["hours"], url),
+    )
+    return db.execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
+
+
+def create_curriculum(user_id, title, track, level, hours_per_week, source, note, goal_text,
+                       days_per_week=0, hours_per_day=0):
+    if using_firestore():
+        ref = _fs().collection("curricula").document()
+        ref.set({
+            "user_id": user_id, "title": title, "track": track, "level": level,
+            "hours_per_week": hours_per_week, "source": source, "note": note, "goal_text": goal_text,
+            "days_per_week": days_per_week, "hours_per_day": hours_per_day,
+            "created_at": fb_firestore.SERVER_TIMESTAMP,
+        })
+        return ref.id
+    db = get_db()
+    cur = db.execute(
+        "INSERT INTO curricula (user_id, title, track, level, hours_per_week, source, note, goal_text,"
+        " days_per_week, hours_per_day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (user_id, title, track, level, hours_per_week, source, note, goal_text, days_per_week, hours_per_day),
+    )
+    db.commit()
+    return cur.lastrowid
+
+
+def add_curriculum_item(cid, course_id, position, reason, weeks=0, tips=""):
+    if using_firestore():
+        _fs().collection("curricula").document(cid).collection("items").document().set({
+            "course_id": course_id, "position": position, "reason": reason, "done": False,
+            "weeks": weeks, "tips": tips,
+        })
+        return
+    get_db().execute(
+        "INSERT INTO curriculum_items (curriculum_id, course_id, position, reason, weeks, tips)"
+        " VALUES (?, ?, ?, ?, ?, ?)",
+        (cid, course_id, position, reason, weeks, tips),
+    )
+    get_db().commit()
+
+
+def list_curricula(user_id):
+    """사용자의 커리큘럼 목록 (강의 개수·완료 개수 포함), 최신순."""
+    if using_firestore():
+        db = _fs()
+        rows = []
+        for d in db.collection("curricula").where("user_id", "==", user_id).stream():
+            data = d.to_dict()
+            items = [i.to_dict() for i in db.collection("curricula").document(d.id).collection("items").stream()]
+            rows.append({**data, "id": d.id, "total": len(items), "done": sum(1 for i in items if i.get("done"))})
+        rows.sort(key=lambda r: r.get("created_at") or datetime.datetime.min, reverse=True)
+        return rows
+    return get_db().execute(
+        """
+        SELECT c.*, COUNT(i.id) AS total, COALESCE(SUM(i.done), 0) AS done
+        FROM curricula c LEFT JOIN curriculum_items i ON i.curriculum_id = c.id
+        WHERE c.user_id = ? GROUP BY c.id ORDER BY c.id DESC
+        """,
+        (user_id,),
+    ).fetchall()
+
+
+def get_curriculum(cid, user_id):
+    """본인 소유일 때만 돌려준다."""
+    if using_firestore():
+        snap = _fs().collection("curricula").document(cid).get()
+        if not snap.exists or snap.to_dict().get("user_id") != user_id:
+            return None
+        return {**snap.to_dict(), "id": snap.id}
+    return get_db().execute(
+        "SELECT * FROM curricula WHERE id = ? AND user_id = ?", (cid, user_id)
+    ).fetchone()
+
+
+def list_curriculum_items(cid):
+    """강의 정보와 합쳐서, 순서대로."""
+    if using_firestore():
+        db = _fs()
+        items = list(db.collection("curricula").document(cid).collection("items").stream())
+        items.sort(key=lambda d: d.to_dict().get("position", 0))
+        out = []
+        for d in items:
+            it = d.to_dict()
+            course_snap = db.collection("courses").document(it["course_id"]).get()
+            course = course_snap.to_dict() if course_snap.exists else {}
+            out.append({**course, "item_id": d.id, "reason": it.get("reason", ""), "done": bool(it.get("done")),
+                        "plan_weeks": it.get("weeks") or 0, "tips": it.get("tips", "")})
+        return out
+    return get_db().execute(
+        """
+        SELECT i.id AS item_id, i.reason, i.done, i.weeks AS plan_weeks, i.tips, c.*
+        FROM curriculum_items i JOIN courses c ON c.id = i.course_id
+        WHERE i.curriculum_id = ? ORDER BY i.position
+        """,
+        (cid,),
+    ).fetchall()
+
+
+def toggle_curriculum_item(cid, item_id):
+    if using_firestore():
+        ref = _fs().collection("curricula").document(cid).collection("items").document(item_id)
+        snap = ref.get()
+        if snap.exists:
+            ref.update({"done": not snap.to_dict().get("done")})
+        return
+    db = get_db()
+    db.execute("UPDATE curriculum_items SET done = 1 - done WHERE id = ? AND curriculum_id = ?", (item_id, cid))
+    db.commit()
+
+
+def delete_curriculum(cid):
+    if using_firestore():
+        db = _fs()
+        for d in db.collection("curricula").document(cid).collection("items").stream():
+            d.reference.delete()
+        db.collection("curricula").document(cid).delete()
+        return
+    db = get_db()
+    db.execute("DELETE FROM curriculum_items WHERE curriculum_id = ?", (cid,))
+    db.execute("DELETE FROM curricula WHERE id = ?", (cid,))
+    db.commit()
+
+
 def init_db():
+    if using_firestore():
+        # Firestore 는 스키마가 없어서 테이블을 만들 필요는 없고, 강의 목록만 채워 넣으면 된다.
+        db = _fs()
+        batch = db.batch()
+        for i, c in enumerate(SEED_COURSES):
+            slug, university, title, description, level, hours, url = c
+            batch.set(db.collection("courses").document(slug), {
+                "university": university, "title": title, "description": description,
+                "level": level, "hours": hours, "url": url, "curated": True, "seed_order": i,
+            })
+        batch.commit()
+        return
+
     db = get_db()
     db.execute(
         """
@@ -600,9 +833,7 @@ def load_user():
     if request.method == "POST" and not secrets.compare_digest(sent, session.get("csrf_token", "-")):
         abort(400)  # 다른 사이트에서 몰래 보낸 요청 차단
     user_id = session.get("user_id")
-    g.user = None
-    if user_id is not None:
-        g.user = get_db().execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+    g.user = get_user_by_id(user_id) if user_id is not None else None
 
 
 # --------------------------------------------------------------- routes
@@ -632,14 +863,9 @@ def signup():
             error = "비밀번호가 일치하지 않습니다."
 
         if error is None:
-            db = get_db()
             try:
-                db.execute(
-                    "INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?)",
-                    (email, name, generate_password_hash(password, method="pbkdf2:sha256")),
-                )
-                db.commit()
-            except sqlite3.IntegrityError:
+                create_user(email, name, generate_password_hash(password, method="pbkdf2:sha256"))
+            except DuplicateEmailError:
                 error = "이미 가입된 이메일입니다."
             else:
                 flash("회원가입이 완료되었습니다. 로그인해주세요.", "success")
@@ -657,7 +883,7 @@ def login():
         email = request.form.get("email", "").strip().lower()
         password = request.form.get("password", "")
 
-        user = get_db().execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+        user = get_user_by_email(email)
         if user is None or not check_password_hash(user["password_hash"], password):
             flash("이메일 또는 비밀번호가 올바르지 않습니다.", "error")
             return render_template("login.html", email=email), 401
@@ -685,26 +911,16 @@ def dashboard():
 @login_required
 def courses():
     university = request.args.get("university", "")
-    db = get_db()
-    if university in ("Harvard", "Stanford"):
-        rows = db.execute("SELECT * FROM courses WHERE curated = 1 AND university = ? ORDER BY id", (university,)).fetchall()
-    else:
+    if university not in ("Harvard", "Stanford"):
         university = ""
-        rows = db.execute("SELECT * FROM courses WHERE curated = 1 ORDER BY id").fetchall()
+    rows = list_courses(university or None)
     return render_template("courses.html", courses=rows, university=university)
 
 
 @app.route("/curriculum")
 @login_required
 def curriculum_list():
-    rows = get_db().execute(
-        """
-        SELECT c.*, COUNT(i.id) AS total, COALESCE(SUM(i.done), 0) AS done
-        FROM curricula c LEFT JOIN curriculum_items i ON i.curriculum_id = c.id
-        WHERE c.user_id = ? GROUP BY c.id ORDER BY c.id DESC
-        """,
-        (g.user["id"],),
-    ).fetchall()
+    rows = list_curricula(g.user["id"])
     return render_template("curriculum_list.html", curricula=rows)
 
 
@@ -770,24 +986,14 @@ def curriculum_chat():
                     f"목표 기한({plan['target_weeks']}주)보다 {plan['total_weeks'] - plan['target_weeks']}주 더 필요해요.")
 
     hours_per_week = max(1, round(plan["days"] * plan["hpd"]))
-    urls = {c[0]: c[6] for c in SEED_COURSES}
     first_goal = next(m["content"] for m in history if m["role"] == "user")[:500]
-    db = get_db()
-    cur = db.execute(
-        "INSERT INTO curricula (user_id, title, track, level, hours_per_week, source, note, goal_text,"
-        " days_per_week, hours_per_day) VALUES (?, ?, 'chat', -1, ?, 'ai', ?, ?, ?, ?)",
-        (g.user["id"], plan["title"] or f"{g.user['name']}님의 맞춤 커리큘럼", hours_per_week,
-         plan["summary"], first_goal, plan["days"], plan["hpd"]),
+    cid = create_curriculum(
+        g.user["id"], plan["title"] or f"{g.user['name']}님의 맞춤 커리큘럼", "chat", -1, hours_per_week,
+        "ai", plan["summary"], first_goal, plan["days"], plan["hpd"],
     )
     for position, item in enumerate(plan["items"], start=1):
-        db.execute(
-            "INSERT INTO curriculum_items (curriculum_id, course_id, position, reason, weeks, tips)"
-            " VALUES (?, ?, ?, ?, ?, ?)",
-            (cur.lastrowid, _course_id(db, item), position, item["reason"], item["weeks"], item["tips"]),
-        )
-    db.commit()
-    return jsonify(reply=message or "커리큘럼을 만들었어요!", done=True,
-                   url=url_for("curriculum_detail", cid=cur.lastrowid))
+        add_curriculum_item(cid, resolve_course_id(item), position, item["reason"], item["weeks"], item["tips"])
+    return jsonify(reply=message or "커리큘럼을 만들었어요!", done=True, url=url_for("curriculum_detail", cid=cid))
 
 
 @app.route("/curriculum/quick", methods=["GET", "POST"])
@@ -805,7 +1011,6 @@ def curriculum_quick():
             return render_template("curriculum_new.html", tracks=TRACKS, levels=LEVELS, hours_options=HOURS_OPTIONS), 400
 
         goal_text = request.form.get("goal", "").strip()[:500]
-        urls = {c[0]: c[6] for c in SEED_COURSES}
 
         plan = ai_plan(TRACKS[track][0], LEVELS[level], hours, goal_text)
         if plan:
@@ -816,46 +1021,28 @@ def curriculum_quick():
             if _env("OPENAI_API_KEY"):
                 flash("AI 연결에 실패해서 기본 추천으로 만들었어요.", "error")
 
-        db = get_db()
-        cur = db.execute(
-            "INSERT INTO curricula (user_id, title, track, level, hours_per_week, source, note, goal_text) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            (g.user["id"], f"{g.user['name']}님의 {TRACKS[track][0]} 커리큘럼", track, level, hours,
-             source, note, goal_text),
+        cid = create_curriculum(
+            g.user["id"], f"{g.user['name']}님의 {TRACKS[track][0]} 커리큘럼", track, level, hours, source, note, goal_text
         )
         for position, (slug, reason) in enumerate(steps, start=1):
-            course = db.execute("SELECT id FROM courses WHERE url = ?", (urls[slug],)).fetchone()
-            db.execute(
-                "INSERT INTO curriculum_items (curriculum_id, course_id, position, reason) VALUES (?, ?, ?, ?)",
-                (cur.lastrowid, course["id"], position, reason),
-            )
-        db.commit()
-        return redirect(url_for("curriculum_detail", cid=cur.lastrowid))
+            add_curriculum_item(cid, curated_course_id(slug), position, reason)
+        return redirect(url_for("curriculum_detail", cid=cid))
 
     return render_template("curriculum_new.html", tracks=TRACKS, levels=LEVELS, hours_options=HOURS_OPTIONS)
 
 
 def _own_curriculum(cid):
-    cur = get_db().execute(
-        "SELECT * FROM curricula WHERE id = ? AND user_id = ?", (cid, g.user["id"])
-    ).fetchone()
+    cur = get_curriculum(cid, g.user["id"])
     if cur is None:
         abort(404)
     return cur
 
 
-@app.route("/curriculum/<int:cid>")
+@app.route("/curriculum/<cid>")
 @login_required
 def curriculum_detail(cid):
     cur = _own_curriculum(cid)
-    rows = get_db().execute(
-        """
-        SELECT i.id AS item_id, i.reason, i.done, i.weeks AS plan_weeks, i.tips, c.*
-        FROM curriculum_items i JOIN courses c ON c.id = i.course_id
-        WHERE i.curriculum_id = ? ORDER BY i.position
-        """,
-        (cid,),
-    ).fetchall()
+    rows = list_curriculum_items(cid)
     steps, week = [], 0
     for r in rows:
         weeks = r["plan_weeks"] or max(1, math.ceil(r["hours"] / cur["hours_per_week"]))
@@ -863,35 +1050,30 @@ def curriculum_detail(cid):
         steps.append({**dict(r), "weeks": weeks, "start": week + 1, "end": week + weeks, "tight": tight})
         week += weeks
     done = sum(1 for s_ in steps if s_["done"])
+    created_at = cur["created_at"]
+    if not isinstance(created_at, datetime.datetime):  # sqlite 는 문자열로, Firestore 는 datetime 으로 준다
+        created_at = datetime.datetime.strptime(created_at, "%Y-%m-%d %H:%M:%S")
     return render_template(
         "curriculum_detail.html", cur=cur, steps=steps, total_weeks=week,
         total_hours=sum(s_["hours"] for s_ in steps), done=done,
         track_name=TRACKS.get(cur["track"], ("맞춤",))[0], level_name=LEVELS.get(cur["level"], ""),
-        deadline=(datetime.datetime.strptime(cur["created_at"], "%Y-%m-%d %H:%M:%S")
-                  + datetime.timedelta(weeks=week)).date(),
+        deadline=(created_at.replace(tzinfo=None) + datetime.timedelta(weeks=week)).date(),
     )
 
 
-@app.route("/curriculum/<int:cid>/toggle/<int:item_id>", methods=["POST"])
+@app.route("/curriculum/<cid>/toggle/<item_id>", methods=["POST"])
 @login_required
 def curriculum_toggle(cid, item_id):
     _own_curriculum(cid)
-    db = get_db()
-    db.execute(
-        "UPDATE curriculum_items SET done = 1 - done WHERE id = ? AND curriculum_id = ?", (item_id, cid)
-    )
-    db.commit()
+    toggle_curriculum_item(cid, item_id)
     return redirect(url_for("curriculum_detail", cid=cid) + f"#item-{item_id}")
 
 
-@app.route("/curriculum/<int:cid>/delete", methods=["POST"])
+@app.route("/curriculum/<cid>/delete", methods=["POST"])
 @login_required
 def curriculum_delete(cid):
     _own_curriculum(cid)
-    db = get_db()
-    db.execute("DELETE FROM curriculum_items WHERE curriculum_id = ?", (cid,))
-    db.execute("DELETE FROM curricula WHERE id = ?", (cid,))
-    db.commit()
+    delete_curriculum(cid)
     flash("커리큘럼을 삭제했습니다.", "success")
     return redirect(url_for("curriculum_list"))
 

@@ -12,3 +12,5 @@ services:
         sync: false
       - key: OPENAI_MODEL
         sync: false
+      - key: FIREBASE_CREDENTIALS_JSON
+        sync: false
