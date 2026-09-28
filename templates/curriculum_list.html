@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}내 커리큘럼 · LMS{% endblock %}
+{% block content %}
+<div class="head"><h2>내 커리큘럼</h2>
+  <a class="btn" href="{{ url_for('curriculum_new') }}">✨ 커리큘럼 만들기</a></div>
+{% if curricula %}
+  <div class="courses">
+  {% for c in curricula %}
+    <a class="card course plain" href="{{ url_for('curriculum_detail', cid=c['id']) }}">
+      <h3>{{ c['title'] }}</h3>
+      <p>주 {{ c['hours_per_week'] }}시간 · 진행 {{ c['done'] }}/{{ c['total'] }}</p>
+      <div class="bar"><span style="width: {{ (c['done'] * 100 // c['total']) if c['total'] else 0 }}%"></span></div>
+    </a>
+  {% endfor %}
+  </div>
+{% else %}
+  <p class="hint">아직 만든 커리큘럼이 없어요. 위 버튼으로 첫 커리큘럼을 만들어 보세요.</p>
+{% endif %}
+{% endblock %}

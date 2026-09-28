@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}LMS{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="{{ url_for('index') }}">LMS</a>
+    <nav>
+      {% if g.user %}
+        <a href="{{ url_for('courses') }}">강의</a>
+        <a href="{{ url_for('curriculum_list') }}">내 커리큘럼</a>
+        <span class="who">{{ g.user['name'] }}님</span>
+        <form action="{{ url_for('logout') }}" method="post" class="inline">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit" class="link">로그아웃</button>
+        </form>
+      {% else %}
+        <a href="{{ url_for('login') }}">로그인</a>
+        <a href="{{ url_for('signup') }}">회원가입</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

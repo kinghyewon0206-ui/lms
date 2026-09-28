@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}커리큘럼 상담 · LMS{% endblock %}
+{% block content %}
+<div class="head"><h2>커리큘럼 상담</h2>
+  <a class="hint" href="{{ url_for('curriculum_quick') }}">채팅 없이 간단히 고르기</a></div>
+<p class="hint">분야는 상관없어요. 상황과 배우고 싶은 걸 편하게 말해 주세요. 강의, 공부 방향, 주당 공부 일수·시간, 기한까지 정해드려요.
+  대화 내용은 OpenAI로 전송되니 개인정보는 적지 마세요.</p>
+<label class="check"><input type="checkbox" id="korean" checked> 🇰🇷 한국어 강의 우선 (영어 강의는 이해하기 어려워요)</label>
+<div class="chat card">
+  <div id="log" class="log" aria-live="polite"></div>
+  <form id="form" class="chat-form">
+    <textarea id="input" rows="2" maxlength="1000" placeholder="예) 비전공 직장인인데 AI를 배워서 업무에 써보고 싶어요" required></textarea>
+    <button type="submit" class="btn" id="send">보내기</button>
+  </form>
+</div>
+<input type="hidden" id="csrf" value="{{ csrf_token() }}">
+<script>
+(function () {
+  var GREETING = "안녕하세요! 저는 학습 상담사예요 😊 어떤 분야든 좋아요! 배우고 싶은 것과 지금 상황(직업이나 경험 수준)을 편하게 알려주세요.";
+  var log = document.getElementById("log"), form = document.getElementById("form");
+  var input = document.getElementById("input"), send = document.getElementById("send");
+  var csrf = document.getElementById("csrf").value;
+  var korean = document.getElementById("korean");
+  try { if (localStorage.getItem("lms_korean") === "0") korean.checked = false; } catch (e) {}
+  korean.addEventListener("change", function () { try { localStorage.setItem("lms_korean", korean.checked ? "1" : "0"); } catch (e) {} });
+  var messages = [{ role: "assistant", content: GREETING }];
+  var busy = false;
+
+  function add(role, text) {
+    var d = document.createElement("div");
+    d.className = "msg " + role;
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+    return d;
+  }
+  add("assistant", GREETING);
+
+  input.addEventListener("keydown", function (e) {
+    // 한글 입력 중(isComposing) Enter 는 글자 확정이므로 전송하지 않는다
+    if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); }
+  });
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var text = input.value.trim();
+    if (!text || busy) return;
+    busy = true; send.disabled = true; input.value = "";
+    add("user", text);
+    messages.push({ role: "user", content: text });
+    var wait = add("assistant typing", "생각하는 중…");
+    try {
+      var res = await fetch("{{ url_for('curriculum_chat') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-CSRF-Token": csrf },
+        body: JSON.stringify({ messages: messages, korean: korean.checked })
+      });
+      var data = await res.json();
+      wait.remove();
+      if (!res.ok) { add("assistant error", data.error || "오류가 발생했어요."); messages.pop(); }
+      else {
+        add("assistant", data.reply);
+        messages.push({ role: "assistant", content: data.reply });
+        if (data.done) {
+          var a = document.createElement("a");
+          a.className = "btn"; a.href = data.url; a.textContent = "내 커리큘럼 보기 →";
+          log.appendChild(a); log.scrollTop = log.scrollHeight;
+          input.disabled = true;
+          setTimeout(function () { location.href = data.url; }, 2500);
+          return;
+        }
+      }
+    } catch (err) {
+      wait.remove(); add("assistant error", "네트워크 오류가 발생했어요. 다시 시도해주세요."); messages.pop();
+    }
+    busy = false; send.disabled = false; input.focus();
+  });
+})();
+</script>
+{% endblock %}

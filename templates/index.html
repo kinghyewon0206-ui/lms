@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>학습 관리 시스템</h1>
+  <p>로그인하고 학습을 시작하세요.</p>
+  <div class="actions">
+    <a class="btn" href="{{ url_for('login') }}">로그인</a>
+    <a class="btn secondary" href="{{ url_for('signup') }}">회원가입</a>
+  </div>
+</section>
+{% endblock %}

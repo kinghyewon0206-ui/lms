@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}대시보드 · LMS{% endblock %}
+{% block content %}
+<section class="card wide">
+  <h2>안녕하세요, {{ g.user['name'] }}님 👋</h2>
+  <p>{{ g.user['email'] }} · 역할: {{ g.user['role'] }}</p>
+  <div class="actions left">
+    <a class="btn" href="{{ url_for('curriculum_new') }}">✨ 커리큘럼 만들기</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}커리큘럼 만들기 · LMS{% endblock %}
+{% block content %}
+<form method="post" class="card">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <h2>나에게 맞는 커리큘럼 만들기</h2>
+  <p class="hint">세 가지만 답하면 하버드·스탠퍼드 무료 강의로 순서를 짜드려요.</p>
+
+  <fieldset>
+    <legend>1. 어떤 걸 배우고 싶나요?</legend>
+    {% for key, (name, desc) in tracks.items() %}
+    <label class="choice"><input type="radio" name="track" value="{{ key }}" required>
+      <span><strong>{{ name }}</strong><small>{{ desc }}</small></span></label>
+    {% endfor %}
+  </fieldset>
+
+  <fieldset>
+    <legend>2. 지금 실력은 어느 정도인가요?</legend>
+    {% for key, name in levels.items() %}
+    <label class="choice"><input type="radio" name="level" value="{{ key }}" required>
+      <span><strong>{{ name }}</strong></span></label>
+    {% endfor %}
+  </fieldset>
+
+  <fieldset>
+    <legend>3. 일주일에 몇 시간 공부할 수 있나요?</legend>
+    {% for h in hours_options %}
+    <label class="choice"><input type="radio" name="hours" value="{{ h }}" required>
+      <span><strong>주 {{ h }}시간</strong></span></label>
+    {% endfor %}
+  </fieldset>
+
+  <label>4. 목표나 상황을 자유롭게 적어주세요 (선택)
+    <textarea name="goal" maxlength="500" rows="3" placeholder="예) 비전공 직장인이고, 6개월 안에 챗봇을 만들어 보고 싶어요"></textarea>
+    <small class="hint">AI가 이 내용을 참고해서 짜요. 작성한 내용은 OpenAI로 전송되니 개인정보는 적지 마세요.</small>
+  </label>
+
+  <button type="submit" class="btn">커리큘럼 만들기</button>
+</form>
+{% endblock %}
