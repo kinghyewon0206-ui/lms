@@ -76,6 +76,14 @@ SEED_COURSES = [
     ("calc-mit", "MIT", "MIT 18.01SC: 미적분학", "극한, 미분, 적분의 기초를 풀이 중심으로 배웁니다.", "초급", 70, "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/"),
     ("linalg-mit", "MIT", "MIT 18.06SC: 선형대수학", "벡터, 행렬, 고유값 등 머신러닝의 바탕이 되는 수학.", "중급", 60, "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/"),
     ("stats-mit", "MIT", "MIT 18.05: 확률과 통계 입문", "확률의 기초부터 통계적 추론까지 폭넓게 배웁니다.", "중급", 60, "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/"),
+    ("yale-finmkt", "Yale", "Yale ECON 252: 금융 시장", "노벨상 수상자 쉴러가 금융 시장과 제도가 어떻게 움직이는지 설명합니다.", "초급", 40, "https://oyc.yale.edu/economics/econ-252"),
+    ("yale-moral", "Yale", "Yale PHIL 181: 철학과 인간 본성의 과학", "인간은 어떻게 생각하고 선택하는지를 철학과 과학으로 함께 탐구합니다.", "초급", 40, "https://oyc.yale.edu/philosophy/phil-181"),
+    ("yale-novel", "Yale", "Yale ENGL 291: 1945년 이후 미국 소설", "전후 미국 문학의 대표작을 읽으며 소설을 깊이 감상하는 법을 배웁니다.", "초급", 40, "https://oyc.yale.edu/english/engl-291"),
+    ("yale-greek", "Yale", "Yale CLCV 205: 고대 그리스사", "페르시아 전쟁과 아테네·스파르타의 흥망 등 고대 그리스의 역사를 배웁니다.", "입문", 40, "https://oyc.yale.edu/classics/clcv-205"),
+    ("yale-middle", "Yale", "Yale HIST 210: 초기 중세 (284–1000)", "로마 제국의 몰락부터 중세 유럽이 형성되는 과정을 배웁니다.", "초급", 40, "https://oyc.yale.edu/history/hist-210"),
+    ("yale-civil", "Yale", "Yale HIST 119: 남북전쟁과 재건기", "미국을 바꾼 남북전쟁과 그 이후의 재건 시대를 다룹니다.", "초급", 40, "https://oyc.yale.edu/history/hist-119"),
+    ("yale-epidemics", "Yale", "Yale HIST 234: 전염병과 서양 사회", "페스트, 콜레라 같은 전염병이 사회와 역사를 어떻게 바꿨는지 배웁니다.", "입문", 40, "https://oyc.yale.edu/history/hist-234"),
+    ("yale-astro", "Yale", "Yale ASTR 160: 천체물리학의 최전선", "블랙홀, 우주의 팽창, 외계 행성 등 현대 천문학의 핵심 논쟁을 다룹니다.", "입문", 40, "https://oyc.yale.edu/astronomy/astr-160"),
 ]
 
 # 사이트 안에서 바로 재생할 수 있는 공식 유튜브 재생목록. (slug -> playlist id)
@@ -95,6 +103,9 @@ VIDEOS = {
     "psych-mit": "PL44ABC9278E2EE706", "bio-mit": "PLF83B8D8C87426E44",
     "chem-mit": "PLUl4u3cNGP63LOmB3_O0xbgZVZibxj4rb", "calc-mit": "PL590CCC2BC5AF3BC1",
     "linalg-mit": "PL221E2BBF13BECF6C", "phys-mit": "PLUl4u3cNGP61qDex7XslwNJ-xxxEFzMNV",
+    "yale-finmkt": "PL8FB14A2200B87185", "yale-moral": "PL3F6BC200B2930084", "yale-novel": "PLE33BCD966FF96F23",
+    "yale-greek": "PL023BCE5134243987", "yale-middle": "PL77A337915A76F660", "yale-civil": "PL5DD220D6A1282057",
+    "yale-epidemics": "PL3AE7B3B6917DE8E6", "yale-astro": "PLD1515420F4E601A4",
     "yale-death": "PLEA18FAF1AD9047B0", "yale-game": "PL6EF60E1027E1A10B", "yale-polphil": "PL8D95DEA9B7DFE825",
 }
 
@@ -106,7 +117,8 @@ FIELDS = [
     ("sys", "🔐", "보안·시스템", "#f59e0b"),
     ("math", "🧮", "수학·통계", "#10b981"),
     ("econ", "📈", "경제·경영", "#ef4444"),
-    ("human", "🧠", "심리·철학", "#a855f7"),
+    ("human", "🧠", "심리·철학·문학", "#a855f7"),
+    ("history", "🌍", "역사", "#84cc16"),
     ("science", "🔬", "과학", "#06b6d4"),
 ]
 FIELD_OF = {
@@ -115,9 +127,10 @@ FIELD_OF = {
     **dict.fromkeys(["cs50web", "cs50mobile", "cs50games", "cs142", "cs193p", "cs50sql"], "webapp"),
     **dict.fromkeys(["cs107", "cs50cyber", "cs253"], "sys"),
     **dict.fromkeys(["cs109", "ee364a", "calc-mit", "linalg-mit", "stats-mit"], "math"),
-    **dict.fromkeys(["econ-micro", "finance", "yale-game", "cs50biz"], "econ"),
-    **dict.fromkeys(["psych-mit", "yale-death", "yale-polphil"], "human"),
-    **dict.fromkeys(["bio-mit", "chem-mit", "phys-mit"], "science"),
+    **dict.fromkeys(["econ-micro", "finance", "yale-game", "yale-finmkt", "cs50biz"], "econ"),
+    **dict.fromkeys(["psych-mit", "yale-moral", "yale-death", "yale-polphil", "yale-novel"], "human"),
+    **dict.fromkeys(["yale-greek", "yale-middle", "yale-civil", "yale-epidemics"], "history"),
+    **dict.fromkeys(["bio-mit", "chem-mit", "phys-mit", "yale-astro"], "science"),
 }
 SLUG_BY_URL = {c[6]: c[0] for c in SEED_COURSES}
 
@@ -141,9 +154,13 @@ TRACKS = {
     "security": ("보안·시스템", "보안과 컴퓨터 내부 동작을 이해하고 싶어요", "🔐"),
     "math": ("수학·통계", "미적분, 선형대수, 확률·통계를 탄탄히 배우고 싶어요", "🧮"),
     "econ": ("경제·경영", "경제와 금융, 전략적 사고를 배우고 싶어요", "📈"),
-    "human": ("심리·철학", "사람의 마음과 삶, 사회에 대한 생각을 배우고 싶어요", "🧠"),
-    "science": ("과학 (생물·화학·물리)", "자연과학의 기초를 처음부터 배우고 싶어요", "🔬"),
+    "human": ("심리·철학·문학", "사람의 마음과 삶, 생각하는 법을 배우고 싶어요", "🧠"),
+    "history": ("역사", "고대부터 근대까지 세계사의 흐름을 알고 싶어요", "🌍"),
+    "science": ("과학 (생물·화학·물리·천문)", "자연과학의 기초를 처음부터 배우고 싶어요", "🔬"),
 }
+TRACK_COLORS = {"cs": "#8b5cf6", "web": "#3b82f6", "app": "#0ea5e9", "ai": "#ec4899", "data": "#14b8a6",
+                "security": "#f59e0b", "math": "#10b981", "econ": "#ef4444", "human": "#a855f7",
+                "history": "#84cc16", "science": "#06b6d4"}
 PATHS = {
     "cs": [
         ("cs50x", 1, "컴퓨터 과학 전반을 훑는 가장 좋은 출발점이에요."),
@@ -191,18 +208,28 @@ PATHS = {
     "econ": [
         ("econ-micro", 0, "경제학의 기본 원리와 시장의 움직임부터 이해해요."),
         ("finance", 1, "돈의 가치와 투자의 핵심 개념을 배워요."),
+        ("yale-finmkt", 1, "금융 시장과 제도가 실제로 어떻게 돌아가는지 배워요."),
         ("yale-game", 1, "전략적으로 생각하는 법, 게임 이론을 배워요."),
         ("stats-mit", 2, "데이터로 경제를 분석하려면 확률·통계가 필요해요."),
     ],
     "human": [
         ("psych-mit", 0, "인간의 마음과 행동을 과학적으로 이해하는 심리학 입문이에요."),
+        ("yale-moral", 1, "인간이 어떻게 생각하고 선택하는지 철학과 과학으로 함께 봐요."),
         ("yale-death", 1, "죽음을 통해 삶의 의미를 철학적으로 생각해 봐요."),
         ("yale-polphil", 2, "정의와 자유 같은 사회의 근본 질문을 고전으로 읽어요."),
+        ("yale-novel", 2, "소설을 깊이 읽는 법으로 인간과 사회를 더 넓게 이해해요."),
+    ],
+    "history": [
+        ("yale-greek", 0, "서양 문명의 뿌리인 고대 그리스부터 시작해요."),
+        ("yale-middle", 1, "로마 제국 이후 중세 유럽이 만들어지는 과정을 배워요."),
+        ("yale-civil", 1, "근대 미국을 만든 남북전쟁과 재건기를 배워요."),
+        ("yale-epidemics", 2, "전염병이 역사와 사회를 어떻게 바꿨는지 살펴봐요."),
     ],
     "science": [
         ("bio-mit", 0, "생명의 기본 원리인 DNA와 세포부터 배워요."),
         ("chem-mit", 1, "물질이 어떻게 이루어지고 반응하는지 배워요."),
-        ("phys-mit", 2, "힘과 운동 등 물리학의 기초를 풀이로 익혀요."),
+        ("phys-mit", 1, "힘과 운동 등 물리학의 기초를 풀이로 익혀요."),
+        ("yale-astro", 2, "우주와 블랙홀 같은 천문학의 최전선을 만나요."),
     ],
     "app": [
         ("cs50x", 1, "앱을 만들기 전에 프로그래밍 기본기를 갖춰요."),
@@ -1111,6 +1138,18 @@ def curriculum_chat():
     return jsonify(reply=message or "커리큘럼을 만들었어요!", done=True, url=url_for("curriculum_detail", cid=cid))
 
 
+def _quick_ctx():
+    return {
+        "tracks": TRACKS, "levels": LEVELS, "hours_options": HOURS_OPTIONS,
+        "qm": {
+            "tracks": [{"key": k, "emoji": t[2], "name": t[0], "desc": t[1], "color": TRACK_COLORS.get(k, "#8b5cf6")}
+                       for k, t in TRACKS.items()],
+            "levels": [{"key": k, "name": n} for k, n in LEVELS.items()],
+            "hours": list(HOURS_OPTIONS),
+        },
+    }
+
+
 @app.route("/curriculum/quick", methods=["GET", "POST"])
 @login_required
 def curriculum_quick():
@@ -1123,7 +1162,7 @@ def curriculum_quick():
             level = hours = -1
         if track not in TRACKS or level not in LEVELS or hours not in HOURS_OPTIONS:
             flash("모든 질문에 답해주세요.", "error")
-            return render_template("curriculum_new.html", tracks=TRACKS, levels=LEVELS, hours_options=HOURS_OPTIONS), 400
+            return render_template("curriculum_new.html", **_quick_ctx()), 400
 
         goal_text = request.form.get("goal", "").strip()[:500]
 
@@ -1144,7 +1183,7 @@ def curriculum_quick():
             add_curriculum_item(cid, curated_course_id(slug), position, reason)
         return redirect(url_for("curriculum_detail", cid=cid))
 
-    return render_template("curriculum_new.html", tracks=TRACKS, levels=LEVELS, hours_options=HOURS_OPTIONS)
+    return render_template("curriculum_new.html", **_quick_ctx())
 
 
 def _own_curriculum(cid):

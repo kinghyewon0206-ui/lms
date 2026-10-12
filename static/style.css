@@ -227,3 +227,27 @@ main:has(.mm-wrap) { max-width: 1100px; }
 
 .choices-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
 main:has(.choices-grid) { max-width: 760px; }
+
+/* ---------- 커리큘럼 만들기: 마인드맵 선택 ---------- */
+main:has(.qm-wrap) { max-width: 1100px; }
+.qm-wrap { display: none; }
+.qm-fallback { display: block; display: flex; flex-direction: column; gap: 16px; }
+#qm { width: 100%; height: auto; display: block; user-select: none; }
+.qm-summary { margin: 8px 0 0; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--lilac-soft); color: var(--primary-dark); font-weight: 700; font-size: 14px; text-align: center; }
+.qm-center circle { fill: var(--primary); }
+.qm-center text { fill: #fff; font-family: var(--font-cute); font-size: 20px; }
+.qm-line { fill: none; stroke-width: 3; stroke-linecap: round; opacity: .35; }
+.qm-line.hrs, #qm g g .qm-line { stroke-dasharray: 600; stroke-dashoffset: 600; opacity: 0; transition: stroke-dashoffset .5s ease, opacity .3s; }
+.qm-line.show { stroke-dashoffset: 0; opacity: .75; }
+.qm-node { cursor: pointer; outline: none; transition: transform .45s cubic-bezier(.2,.9,.3,1.2), opacity .3s; }
+.qm-node rect { fill: color-mix(in srgb, var(--c) 12%, #fff); stroke: var(--c); stroke-width: 3; transition: fill .15s; }
+.qm-node text { font-size: 15px; font-weight: 700; fill: var(--text); pointer-events: none; }
+.qm-node:hover rect, .qm-node:focus-visible rect { fill: color-mix(in srgb, var(--c) 28%, #fff); }
+.qm-node.on rect { fill: var(--c); }
+.qm-node.on text { fill: #fff; }
+.qm-node.dim { opacity: .4; }
+.qm-node.dim:hover { opacity: 1; }
+@media (min-width: 761px) {
+  .qm-wrap { display: block; }
+  .qm-fallback { display: none; }
+}

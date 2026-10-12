@@ -1,42 +1,178 @@
 {% extends "base.html" %}
 {% block title %}커리큘럼 만들기 · LMS{% endblock %}
 {% block content %}
-<form method="post" class="card">
+<form method="post" class="card" id="quick-form">
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-  <h2>나에게 맞는 커리큘럼 만들기</h2>
-  <p class="hint">세 가지만 답하면 대학 무료 강의로 순서를 짜드려요. 컴퓨터뿐 아니라 수학·경제·심리·과학도 있어요.</p>
+  <h2>🗺️ 나에게 맞는 커리큘럼 만들기</h2>
+  <p class="hint">분야 → 실력 → 공부 시간 순서로 가지를 따라가며 골라 보세요. 대학 무료 강의로 순서를 짜드려요.
+    컴퓨터뿐 아니라 수학·경제·심리·역사·과학도 있어요.</p>
 
-  <fieldset>
-    <legend>1. 어떤 걸 배우고 싶나요?</legend>
-    <div class="choices-grid">
-    {% for key, t in tracks.items() %}
-    <label class="choice"><input type="radio" name="track" value="{{ key }}" required>
-      <span><strong>{{ t[2] }} {{ t[0] }}</strong><small>{{ t[1] }}</small></span></label>
-    {% endfor %}
-    </div>
-  </fieldset>
+  {# 넓은 화면: 마인드맵 #}
+  <div class="qm-wrap">
+    <svg id="qm" viewBox="0 0 1100 700" role="group" aria-label="분야, 실력, 공부 시간을 고르는 마인드맵"></svg>
+    <p class="qm-summary" id="qm-summary" aria-live="polite">분야를 눌러 가지를 펼쳐 보세요.</p>
+  </div>
 
-  <fieldset>
-    <legend>2. 지금 실력은 어느 정도인가요?</legend>
-    {% for key, name in levels.items() %}
-    <label class="choice"><input type="radio" name="level" value="{{ key }}" required>
-      <span><strong>{{ name }}</strong></span></label>
-    {% endfor %}
-  </fieldset>
+  {# 좁은 화면(휴대폰)이나 JS 없을 때: 기존 선택 목록. 마인드맵과 같은 입력값을 공유한다 #}
+  <div class="qm-fallback">
+    <fieldset>
+      <legend>1. 어떤 걸 배우고 싶나요?</legend>
+      <div class="choices-grid">
+      {% for key, t in tracks.items() %}
+      <label class="choice"><input type="radio" name="track" value="{{ key }}" required>
+        <span><strong>{{ t[2] }} {{ t[0] }}</strong><small>{{ t[1] }}</small></span></label>
+      {% endfor %}
+      </div>
+    </fieldset>
 
-  <fieldset>
-    <legend>3. 일주일에 몇 시간 공부할 수 있나요?</legend>
-    {% for h in hours_options %}
-    <label class="choice"><input type="radio" name="hours" value="{{ h }}" required>
-      <span><strong>주 {{ h }}시간</strong></span></label>
-    {% endfor %}
-  </fieldset>
+    <fieldset>
+      <legend>2. 지금 실력은 어느 정도인가요?</legend>
+      {% for key, name in levels.items() %}
+      <label class="choice"><input type="radio" name="level" value="{{ key }}" required>
+        <span><strong>{{ name }}</strong></span></label>
+      {% endfor %}
+    </fieldset>
+
+    <fieldset>
+      <legend>3. 일주일에 몇 시간 공부할 수 있나요?</legend>
+      {% for h in hours_options %}
+      <label class="choice"><input type="radio" name="hours" value="{{ h }}" required>
+        <span><strong>주 {{ h }}시간</strong></span></label>
+      {% endfor %}
+    </fieldset>
+  </div>
 
   <label>4. 목표나 상황을 자유롭게 적어주세요 (선택)
     <textarea name="goal" maxlength="500" rows="3" placeholder="예) 직장인이고, 6개월 안에 경제 뉴스를 이해할 정도가 되고 싶어요"></textarea>
     <small class="hint">AI가 이 내용을 참고해서 짜요. 작성한 내용은 OpenAI로 전송되니 개인정보는 적지 마세요.</small>
   </label>
 
-  <button type="submit" class="btn">커리큘럼 만들기</button>
+  <button type="submit" class="btn" id="qm-submit">커리큘럼 만들기</button>
 </form>
+<noscript><style>.qm-wrap { display: none !important; } .qm-fallback { display: block !important; }</style></noscript>
+
+<script id="qm-data" type="application/json">{{ qm|tojson }}</script>
+<script>
+(function () {
+  var data = JSON.parse(document.getElementById("qm-data").textContent);
+  var form = document.getElementById("quick-form"), submit = document.getElementById("qm-submit");
+  var svg = document.getElementById("qm"), NS = "http://www.w3.org/2000/svg";
+  var H = 700, CX = 105, CY = 350;
+  var X1 = 345, X2 = 650, X3 = 915;           // 분야 / 실력 / 시간 열의 중심 x
+  var W1 = 224, W2 = 214, W3 = 104;            // 각 열의 이름표 너비
+  var sel = { track: null, level: null, hours: null };
+
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+  function curve(x1, y1, x2, y2) {
+    var mx = (x1 + x2) / 2;
+    return "M" + x1 + " " + y1 + " C" + mx + " " + y1 + " " + mx + " " + y2 + " " + x2 + " " + y2;
+  }
+  function radio(name, value) { return form.querySelector('input[name="' + name + '"][value="' + value + '"]'); }
+  function press(node, fn) {
+    node.setAttribute("tabindex", "0"); node.setAttribute("role", "button");
+    node.addEventListener("click", fn);
+    node.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
+  }
+
+  var lines = el("g", {}, svg), nodes = el("g", {}, svg), centerG = el("g", {}, svg);
+  var childLines = el("g", {}, lines), childNodes = el("g", {}, nodes);
+
+  // 중심
+  var c = el("g", { "class": "qm-center" }, centerG);
+  el("circle", { cx: CX, cy: CY, r: 74 }, c);
+  var t1 = el("text", { x: CX, y: CY - 4, "text-anchor": "middle" }, c); t1.textContent = "나의";
+  var t2 = el("text", { x: CX, y: CY + 20, "text-anchor": "middle" }, c); t2.textContent = "커리큘럼";
+
+  function pill(parent, x, y, w, text, color, extra) {
+    var g = el("g", { "class": "qm-node" + (extra ? " " + extra : ""), style: "--c:" + color }, parent);
+    el("rect", { x: -w / 2, y: -22, width: w, height: 44, rx: 22 }, g);
+    var tx = el("text", { y: 6, "text-anchor": "middle" }, g); tx.textContent = text;
+    g.style.transform = "translate(" + x + "px," + y + "px)";
+    return g;
+  }
+  function grow(g, fromX, fromY, x, y, path) {
+    g.style.transform = "translate(" + fromX + "px," + fromY + "px) scale(.3)"; g.style.opacity = "0";
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      g.style.transform = "translate(" + x + "px," + y + "px) scale(1)"; g.style.opacity = "1";
+      if (path) path.classList.add("show");
+    }); });
+  }
+
+  // 1열: 분야 (세로로 나열, 중심에서 가지가 뻗음)
+  var n = data.tracks.length, gap = (H - 80) / (n - 1);
+  var trackNodes = data.tracks.map(function (t, i) {
+    var y = 40 + i * gap;
+    el("path", { d: curve(CX + 74, CY, X1 - W1 / 2, y), "class": "qm-line", stroke: t.color }, lines);
+    var g = pill(nodes, X1, y, W1, t.emoji + " " + t.name, t.color);
+    g.setAttribute("aria-label", t.name + ": " + t.desc);
+    var title = el("title", {}, g); title.textContent = t.desc;
+    press(g, function () { pickTrack(i); });
+    t._y = y; return g;
+  });
+
+  function pickTrack(i) {
+    var t = data.tracks[i];
+    sel.track = t; sel.level = null; sel.hours = null;
+    radio("track", t.key).checked = true;
+    ["level", "hours"].forEach(function (k) { var r = form.querySelector('input[name="' + k + '"]:checked'); if (r) r.checked = false; });
+    trackNodes.forEach(function (g, k) { g.classList.toggle("on", k === i); g.classList.toggle("dim", k !== i); });
+    childLines.textContent = ""; childNodes.textContent = "";
+    var L = data.levels, lh = 62, start = clamp(t._y - (L.length - 1) * lh / 2, 40, H - 40 - (L.length - 1) * lh);
+    L.forEach(function (lv, k) {
+      var y = start + k * lh;
+      var p = el("path", { d: curve(X1 + W1 / 2, t._y, X2 - W2 / 2, y), "class": "qm-line", stroke: t.color }, childLines);
+      var g = pill(childNodes, X2, y, W2, lv.name, t.color, "lvl");
+      press(g, function () { pickLevel(k, y); });
+      lv._y = y; lv._g = g;
+      grow(g, X1 + W1 / 2, t._y, X2, y, p);
+    });
+    update();
+  }
+
+  function pickLevel(k, ly) {
+    var t = sel.track, lv = data.levels[k];
+    sel.level = lv; sel.hours = null;
+    radio("level", lv.key).checked = true;
+    var h = form.querySelector('input[name="hours"]:checked'); if (h) h.checked = false;
+    data.levels.forEach(function (x, j) { x._g.classList.toggle("on", j === k); x._g.classList.toggle("dim", j !== k); });
+    childLines.querySelectorAll(".hrs").forEach(function (e) { e.remove(); });
+    childNodes.querySelectorAll(".hrs").forEach(function (e) { e.remove(); });
+    var HS = data.hours, hh = 56, start = clamp(ly - (HS.length - 1) * hh / 2, 36, H - 36 - (HS.length - 1) * hh);
+    HS.forEach(function (hr, j) {
+      var y = start + j * hh;
+      var p = el("path", { d: curve(X2 + W2 / 2, ly, X3 - W3 / 2, y), "class": "qm-line hrs", stroke: t.color }, childLines);
+      var g = pill(childNodes, X3, y, W3, "주 " + hr + "시간", t.color, "hrs");
+      press(g, function () { pickHours(hr, g); });
+      g.hrs = hr;
+      grow(g, X2 + W2 / 2, ly, X3, y, p);
+    });
+    update();
+  }
+
+  function pickHours(hr, g) {
+    sel.hours = hr;
+    radio("hours", hr).checked = true;
+    childNodes.querySelectorAll(".hrs").forEach(function (n) { n.classList.toggle("on", n === g); n.classList.toggle("dim", n !== g); });
+    update();
+    document.getElementById("qm-summary").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function update() {
+    var s = document.getElementById("qm-summary");
+    if (!sel.track) s.textContent = "분야를 눌러 가지를 펼쳐 보세요.";
+    else if (!sel.level) s.textContent = sel.track.emoji + " " + sel.track.name + " → 지금 실력을 골라 주세요.";
+    else if (!sel.hours) s.textContent = sel.track.emoji + " " + sel.track.name + " → " + sel.level.name + " → 일주일 공부 시간을 골라 주세요.";
+    else s.textContent = "✅ " + sel.track.emoji + " " + sel.track.name + " → " + sel.level.name + " → 주 " + sel.hours + "시간. 아래 버튼을 눌러 만들어요!";
+    submit.disabled = !form.checkValidity();
+  }
+  form.addEventListener("change", update);   // 목록(휴대폰)에서 골라도 버튼 상태가 맞게
+  update();
+})();
+</script>
 {% endblock %}
