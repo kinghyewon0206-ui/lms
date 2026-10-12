@@ -10,6 +10,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <div id="topbar" aria-hidden="true"></div>
+  <div id="busy" class="busy" hidden role="status" aria-live="polite">
+    <div class="busy-card"><span class="spinner big"></span><p id="busy-msg">잠시만 기다려 주세요</p><small id="busy-sub"></small></div>
+  </div>
   <header class="nav">
     <a class="brand" href="{{ url_for('index') }}"><span class="logo-mark">L</span>LMS</a>
     <nav>
@@ -38,5 +42,40 @@
     {% endwith %}
     {% block content %}{% endblock %}
   </main>
+<script>
+(function () {
+  var bar = document.getElementById("topbar"), busy = document.getElementById("busy");
+  function start() { bar.className = "on"; bar.style.width = "0%"; requestAnimationFrame(function () { requestAnimationFrame(function () { bar.style.width = "78%"; }); }); }
+  function reset() {
+    bar.className = ""; bar.style.width = "0%"; busy.hidden = true;
+    [].forEach.call(document.querySelectorAll(".is-loading"), function (b) { b.classList.remove("is-loading"); b.disabled = false; });
+  }
+  // 같은 사이트 안에서 다른 페이지로 이동할 때
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (a.target === "_blank" || a.hasAttribute("download")) return;
+    var u = new URL(a.href, location.href);
+    if (u.origin !== location.origin || (u.pathname === location.pathname && u.search === location.search)) return;
+    start();
+  });
+  // 폼 제출: 막대 + 버튼 스피너(중복 클릭 방지) + (오래 걸리는 작업이면) 안내 화면
+  document.addEventListener("submit", function (e) {
+    var f = e.target;
+    if (e.defaultPrevented) return;                 // 확인창에서 취소했거나 직접 처리하는 폼
+    start();
+    var b = e.submitter || f.querySelector('button[type="submit"]');
+    setTimeout(function () { if (b) { b.classList.add("is-loading"); b.disabled = true; } }, 0);
+    if (f.dataset.overlay) {
+      document.getElementById("busy-msg").textContent = f.dataset.overlay;
+      document.getElementById("busy-sub").textContent = f.dataset.overlaySub || "";
+      busy.hidden = false;
+      var steps = (f.dataset.overlaySteps || "").split("|").filter(Boolean), i = 0;
+      if (steps.length) setInterval(function () { i = Math.min(i + 1, steps.length - 1); document.getElementById("busy-sub").textContent = steps[i]; }, 7000);
+    }
+  });
+  window.addEventListener("pageshow", reset);       // 뒤로가기로 돌아왔을 때 로딩 상태 초기화
+})();
+</script>
 </body>
 </html>

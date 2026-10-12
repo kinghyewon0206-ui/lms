@@ -504,3 +504,45 @@ main:has(.hero-cx), main:has(.dash-hero), main:has(.cd-hero) { max-width: 1180px
   .hero-cx, .cd-hero, .dash-hero { padding: 22px 18px; border-radius: 16px; }
   .block { margin-top: 32px; }
 }
+
+
+/* ====================== 로딩 표시 ====================== */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes bounce { 0%, 80%, 100% { transform: scale(.55); opacity: .4; } 40% { transform: scale(1); opacity: 1; } }
+.spinner { display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid #dcd9f7; border-top-color: var(--primary); animation: spin .8s linear infinite; vertical-align: -3px; }
+.spinner.big { width: 38px; height: 38px; border-width: 3.5px; }
+
+/* 페이지 맨 위 진행 막대 */
+#topbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 100; background: linear-gradient(90deg, var(--primary), #8f84f0); opacity: 0; box-shadow: 0 0 8px rgba(91, 75, 219, .5); }
+#topbar.on { opacity: 1; transition: width 9s cubic-bezier(.08, .7, .2, 1), opacity .2s; }
+body:has(#topbar.on) { cursor: progress; }
+
+/* 버튼 */
+.btn.is-loading, button.link.is-loading { cursor: progress; opacity: .85; pointer-events: none; }
+.btn.is-loading::before { content: ""; display: inline-block; width: 14px; height: 14px; margin-right: 8px; border-radius: 50%; border: 2px solid rgba(255,255,255,.45); border-top-color: #fff; animation: spin .7s linear infinite; vertical-align: -2px; }
+.btn.secondary.is-loading::before { border-color: rgba(91,75,219,.25); border-top-color: var(--primary); }
+.btn:disabled:not(.is-loading) { opacity: .5; cursor: not-allowed; box-shadow: none; }
+
+/* 오래 걸리는 작업 안내 화면 */
+.busy { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: rgba(246, 246, 251, .86); backdrop-filter: blur(4px); }
+.busy-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 32px 36px; text-align: center; box-shadow: var(--shadow); max-width: 360px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.busy-card p { margin: 6px 0 0; font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+.busy-card small { color: var(--muted); line-height: 1.5; }
+
+/* 채팅: 생각하는 중 */
+.msg.typing { display: inline-flex; align-items: center; gap: 10px; background: #f1f1f7; color: var(--muted); }
+.dots { display: inline-flex; gap: 4px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); animation: bounce 1.2s infinite ease-in-out; }
+.dots i:nth-child(2) { animation-delay: .15s; } .dots i:nth-child(3) { animation-delay: .3s; }
+
+/* 영상 불러오는 중 */
+.player-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #cfcbf5; font-size: 14px; }
+.player-loading .spinner { border-color: rgba(255,255,255,.18); border-top-color: #fff; }
+.player iframe { z-index: 1; }
+.player.ready .player-loading { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner, .btn.is-loading::before { animation-duration: 2.4s; }
+  .dots i { animation: none; opacity: .8; }
+  #topbar.on { transition: none; width: 78%; }
+}

@@ -5,7 +5,8 @@
   <a class="hint" href="{{ back if back.startswith('/curriculum/') else url_for('courses') }}">← 돌아가기</a></div>
 <p class="hint"><span class="tag {{ university|lower }}">{{ university }}</span> {{ description }}</p>
 <div class="player">
-  <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list={{ playlist }}&hl=ko&cc_lang_pref=ko&cc_load_policy=1"
+  <div class="player-loading"><span class="spinner big"></span><span>영상을 불러오는 중이에요</span></div>
+  <iframe onload="this.parentNode.classList.add('ready')" src="https://www.youtube-nocookie.com/embed/videoseries?list={{ playlist }}&hl=ko&cc_lang_pref=ko&cc_load_policy=1"
           title="{{ title }}" loading="lazy" allowfullscreen
           allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
           referrerpolicy="strict-origin-when-cross-origin"></iframe>

@@ -45,10 +45,13 @@
     e.preventDefault();
     var text = input.value.trim();
     if (!text || busy) return;
-    busy = true; send.disabled = true; input.value = "";
+    busy = true; send.disabled = true; send.classList.add("is-loading"); input.value = "";
     add("user", text);
     messages.push({ role: "user", content: text });
-    var wait = add("assistant typing", "생각하는 중…");
+    var wait = add("assistant typing", "");
+    wait.innerHTML = '<span class="dots"><i></i><i></i><i></i></span><span class="wait-msg">생각하는 중</span>';
+    var t1 = setTimeout(function () { var m = wait.querySelector(".wait-msg"); if (m) m.textContent = "강의를 찾고 링크를 확인하는 중이에요"; }, 7000);
+    var t2 = setTimeout(function () { var m = wait.querySelector(".wait-msg"); if (m) m.textContent = "거의 다 됐어요. 조금만 더 기다려 주세요"; }, 18000);
     try {
       var res = await fetch("{{ url_for('curriculum_chat') }}", {
         method: "POST",
@@ -56,7 +59,7 @@
         body: JSON.stringify({ messages: messages, korean: korean.checked })
       });
       var data = await res.json();
-      wait.remove();
+      clearTimeout(t1); clearTimeout(t2); wait.remove();
       if (!res.ok) { add("assistant error", data.error || "오류가 발생했어요."); messages.pop(); }
       else {
         add("assistant", data.reply);
@@ -71,9 +74,9 @@
         }
       }
     } catch (err) {
-      wait.remove(); add("assistant error", "네트워크 오류가 발생했어요. 다시 시도해주세요."); messages.pop();
+      clearTimeout(t1); clearTimeout(t2); wait.remove(); add("assistant error", "네트워크 오류가 발생했어요. 다시 시도해주세요."); messages.pop();
     }
-    busy = false; send.disabled = false; input.focus();
+    busy = false; send.disabled = false; send.classList.remove("is-loading"); input.focus();
   });
 })();
 </script>
