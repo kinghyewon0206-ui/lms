@@ -49,8 +49,14 @@
 (function () {
   var fields = JSON.parse(document.getElementById("mm-data").textContent);
   var svg = document.getElementById("mm"), NS = "http://www.w3.org/2000/svg";
-  var CX = 550, CY = 380, FRX = 215, FRY = 150, CRX = 470, CRY = 322;
-  var selected = -1, courseG = null;
+  var wideMQ = window.matchMedia("(min-width: 900px)");
+  var L, selected = -1, selectedCourse = null, fieldNodes, fieldPos, lineLayer, courseLayer;
+
+  // 넓은 화면 / 좁은 화면(태블릿·작은 창) 두 가지 배치
+  var LAYOUTS = {
+    wide:    { W: 1100, H: 760, CX: 550, CY: 380, FRX: 215, FRY: 150, CRX: 470, CRY: 322, FR: 48, LAB: 14, K: 8.6, PAD: 26, PX: 70 },
+    compact: { W: 760,  H: 880, CX: 380, CY: 440, FRX: 150, FRY: 178, CRX: 318, CRY: 392, FR: 44, LAB: 11, K: 8.2, PAD: 22, PX: 70 }
+  };
 
   function el(name, attrs, parent) {
     var e = document.createElementNS(NS, name);
@@ -68,64 +74,65 @@
     node.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
   }
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+  function shortLabel(s) { return s.length <= L.LAB ? s : s.slice(0, L.LAB - 1) + "…"; }
 
-  // 가지(선)는 아래 층, 노드는 위 층
-  var lineLayer = el("g", {}, svg), courseLayer = el("g", {}, svg), fieldLayer = el("g", {}, svg), centerLayer = el("g", {}, svg);
+  function build() {
+    L = wideMQ.matches ? LAYOUTS.wide : LAYOUTS.compact;
+    svg.setAttribute("viewBox", "0 0 " + L.W + " " + L.H);
+    svg.setAttribute("class", wideMQ.matches ? "" : "compact");
+    svg.textContent = "";
+    lineLayer = el("g", {}, svg); courseLayer = el("g", {}, svg);
+    var fieldLayer = el("g", {}, svg), centerLayer = el("g", {}, svg);
 
-  var fieldPos = fields.map(function (f, i) {
-    var a = -Math.PI / 2 + i * 2 * Math.PI / fields.length;
-    return { a: a, x: CX + Math.cos(a) * FRX, y: CY + Math.sin(a) * FRY };
-  });
+    fieldPos = fields.map(function (f, i) {
+      var a = -Math.PI / 2 + i * 2 * Math.PI / fields.length;
+      return { a: a, x: L.CX + Math.cos(a) * L.FRX, y: L.CY + Math.sin(a) * L.FRY };
+    });
+    var center = el("g", { "class": "mm-center" }, centerLayer);
+    el("circle", { cx: L.CX, cy: L.CY, r: wideMQ.matches ? 62 : 54 }, center);
+    var t1 = el("text", { x: L.CX, y: L.CY - 6, "text-anchor": "middle" }, center); t1.textContent = "배우고 싶은";
+    var t2 = el("text", { x: L.CX, y: L.CY + 14, "text-anchor": "middle" }, center); t2.textContent = "분야는?";
 
-  // 중심 노드
-  var center = el("g", { "class": "mm-center" }, centerLayer);
-  el("circle", { cx: CX, cy: CY, r: 62 }, center);
-  var t1 = el("text", { x: CX, y: CY - 6, "text-anchor": "middle" }, center); t1.textContent = "배우고 싶은";
-  var t2 = el("text", { x: CX, y: CY + 14, "text-anchor": "middle" }, center); t2.textContent = "분야는?";
-
-  var fieldNodes = fields.map(function (f, i) {
-    var p = fieldPos[i];
-    el("path", { d: curve(CX, CY, p.x, p.y), "class": "mm-line", stroke: f.color }, lineLayer);
-    var g = el("g", { "class": "mm-field", transform: "translate(" + p.x + "," + p.y + ")", style: "--c:" + f.color }, fieldLayer);
-    el("circle", { r: 48 }, g);
-    var em = el("text", { y: -4, "text-anchor": "middle", "class": "fe" }, g); em.textContent = f.emoji;
-    var nm = el("text", { y: 20, "text-anchor": "middle", "class": "fn" }, g); nm.textContent = f.name;
-    var cnt = el("text", { y: 62, "text-anchor": "middle", "class": "fc" }, g); cnt.textContent = f.courses.length + "개";
-    onActivate(g, function () { select(i === selected ? -1 : i); });
-    g.setAttribute("aria-label", f.name + " 강의 " + f.courses.length + "개");
-    return g;
-  });
+    fieldNodes = fields.map(function (f, i) {
+      var p = fieldPos[i];
+      el("path", { d: curve(L.CX, L.CY, p.x, p.y), "class": "mm-line", stroke: f.color }, lineLayer);
+      var g = el("g", { "class": "mm-field", transform: "translate(" + p.x + "," + p.y + ")", style: "--c:" + f.color }, fieldLayer);
+      el("circle", { r: L.FR }, g);
+      var em = el("text", { y: -4, "text-anchor": "middle", "class": "fe" }, g); em.textContent = f.emoji;
+      var nm = el("text", { y: 20, "text-anchor": "middle", "class": "fn" }, g); nm.textContent = f.name.length > 7 ? f.name.split("·")[0] : f.name;
+      var tt = el("title", {}, g); tt.textContent = f.name + " " + f.courses.length + "개";
+      onActivate(g, function () { select(i === selected ? -1 : i); });
+      g.setAttribute("aria-label", f.name + " 강의 " + f.courses.length + "개");
+      return g;
+    });
+  }
 
   function select(i) {
-    selected = i;
+    selected = i; selectedCourse = null;
     lineLayer.querySelectorAll(".mm-branch").forEach(function (n) { n.remove(); });
-    courseLayer.innerHTML = "";
+    courseLayer.textContent = "";
     document.getElementById("mm-detail").hidden = true;
-    fieldNodes.forEach(function (g, k) {
-      g.classList.toggle("on", k === i);
-      g.classList.toggle("dim", i >= 0 && k !== i);
-    });
+    fieldNodes.forEach(function (g, k) { g.classList.toggle("on", k === i); g.classList.toggle("dim", i >= 0 && k !== i); });
     if (i < 0) return;
 
     var f = fields[i], p = fieldPos[i], n = f.courses.length;
-    var span = Math.min(Math.PI * 0.9, Math.max(0.4, n * 0.34));
+    var span = Math.min(Math.PI * 0.95, Math.max(0.4, n * 0.36));
     f.courses.forEach(function (c, k) {
       var a = p.a + (n === 1 ? 0 : -span / 2 + span * k / (n - 1));
-      var x = clamp(CX + Math.cos(a) * CRX, 70, 1030), y = clamp(CY + Math.sin(a) * CRY, 34, 726);
-      var w = Math.max(70, c.label.length * 8.6 + 26);
+      var stagger = n > 5 && k % 2 ? 0.86 : 1;           // 번갈아 안쪽/바깥쪽에 놓아 겹치지 않게
+      var x = clamp(L.CX + Math.cos(a) * L.CRX * stagger, L.PX, L.W - L.PX);
+      var y = clamp(L.CY + Math.sin(a) * L.CRY * stagger, 34, L.H - 34);
+      var label = shortLabel(c.label), w = Math.max(64, label.length * L.K + L.PAD + (c.watch ? 12 : 0));
 
       var path = el("path", { d: curve(p.x, p.y, x, y), "class": "mm-line mm-branch", stroke: f.color }, lineLayer);
       var g = el("g", { "class": "mm-course" + (c.watch ? " has-video" : ""), style: "--c:" + f.color }, courseLayer);
-      g.style.transform = "translate(" + p.x + "px," + p.y + "px) scale(.2)";
-      g.style.opacity = "0";
-      el("rect", { x: -w / 2, y: -17, width: w, height: 34, rx: 17 }, g);
-      var tx = el("text", { y: 5, "text-anchor": "middle" }, g); tx.textContent = (c.watch ? "▶ " : "") + c.label;
+      g.style.transform = "translate(" + p.x + "px," + p.y + "px) scale(.2)"; g.style.opacity = "0";
+      el("rect", { x: -w / 2, y: -16, width: w, height: 32, rx: 16 }, g);
+      var tx = el("text", { y: 5, "text-anchor": "middle" }, g); tx.textContent = (c.watch ? "▶ " : "") + label;
       g.setAttribute("aria-label", c.title);
-      onActivate(g, function () { showDetail(f, c, g); });
-      // 한 프레임 뒤에 제자리로 → CSS transition 으로 퍼져 나가는 효과
+      onActivate(g, function () { selectedCourse = k; showDetail(f, c, g); });
       requestAnimationFrame(function () { requestAnimationFrame(function () {
-        g.style.transform = "translate(" + x + "px," + y + "px) scale(1)"; g.style.opacity = "1";
-        path.classList.add("show");
+        g.style.transform = "translate(" + x + "px," + y + "px) scale(1)"; g.style.opacity = "1"; path.classList.add("show");
       }); });
     });
   }
@@ -152,6 +159,13 @@
     box.hidden = false;
     box.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
+
+  build();
+  wideMQ.addEventListener("change", function () {   // 창 크기가 바뀌면 배치를 다시 짠다 (선택은 유지)
+    var keep = selected, kc = selectedCourse;
+    build(); if (keep >= 0) { select(keep); }
+    document.getElementById("mm-detail").hidden = true;
+  });
 })();
 </script>
 {% endblock %}

@@ -219,10 +219,14 @@ main:has(.mm-wrap) { max-width: 1100px; }
 .fieldbox .courses { margin-top: 12px; }
 .tag.mit { background: #ffe1e1; color: #a61e1e; }
 .tag.yale { background: #dbeafe; color: #1e3a8a; }
-@media (max-width: 760px) {
+@media (max-width: 519px) {
   .mm-wrap, .mm-hint { display: none; }
   .mm-list { display: block; }
 }
+#mm.compact .mm-field .fn { font-size: 12px; }
+#mm.compact .mm-field .fe { font-size: 22px; }
+#mm.compact .mm-course text { font-size: 12px; }
+#mm.compact .mm-center text { font-size: 15px; }
 .mm-detail[hidden] { display: none; }
 
 .choices-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
@@ -247,7 +251,9 @@ main:has(.qm-wrap) { max-width: 1100px; }
 .qm-node.on text { fill: #fff; }
 .qm-node.dim { opacity: .4; }
 .qm-node.dim:hover { opacity: 1; }
-@media (min-width: 761px) {
+@media (min-width: 520px) {
   .qm-wrap { display: block; }
   .qm-fallback { display: none; }
 }
+#qm.compact .qm-node text { font-size: 14px; }
+#qm.compact .qm-center text { font-size: 15px; }

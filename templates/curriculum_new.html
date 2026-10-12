@@ -57,10 +57,14 @@
   var data = JSON.parse(document.getElementById("qm-data").textContent);
   var form = document.getElementById("quick-form"), submit = document.getElementById("qm-submit");
   var svg = document.getElementById("qm"), NS = "http://www.w3.org/2000/svg";
-  var H = 700, CX = 105, CY = 350;
-  var X1 = 345, X2 = 650, X3 = 915;           // 분야 / 실력 / 시간 열의 중심 x
-  var W1 = 224, W2 = 214, W3 = 104;            // 각 열의 이름표 너비
-  var sel = { track: null, level: null, hours: null };
+  var wideMQ = window.matchMedia("(min-width: 900px)");
+  var sel = { ti: -1, li: -1, hours: null };
+  var L, lines, nodes, childLines, childNodes, trackNodes;
+
+  var LAYOUTS = {
+    wide:    { W: 1100, H: 700, CX: 105, CY: 350, CR: 74, X1: 345, X2: 650, X3: 915, W1: 224, W2: 214, W3: 104, compact: false },
+    compact: { W: 640,  H: 720, CX: 58,  CY: 360, CR: 50, X1: 214, X2: 410, X3: 566, W1: 184, W2: 172, W3: 88,  compact: true }
+  };
 
   function el(name, attrs, parent) {
     var e = document.createElementNS(NS, name);
@@ -69,25 +73,15 @@
     return e;
   }
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-  function curve(x1, y1, x2, y2) {
-    var mx = (x1 + x2) / 2;
-    return "M" + x1 + " " + y1 + " C" + mx + " " + y1 + " " + mx + " " + y2 + " " + x2 + " " + y2;
-  }
+  function curve(x1, y1, x2, y2) { var mx = (x1 + x2) / 2; return "M" + x1 + " " + y1 + " C" + mx + " " + y1 + " " + mx + " " + y2 + " " + x2 + " " + y2; }
   function radio(name, value) { return form.querySelector('input[name="' + name + '"][value="' + value + '"]'); }
   function press(node, fn) {
     node.setAttribute("tabindex", "0"); node.setAttribute("role", "button");
     node.addEventListener("click", fn);
     node.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
   }
-
-  var lines = el("g", {}, svg), nodes = el("g", {}, svg), centerG = el("g", {}, svg);
-  var childLines = el("g", {}, lines), childNodes = el("g", {}, nodes);
-
-  // 중심
-  var c = el("g", { "class": "qm-center" }, centerG);
-  el("circle", { cx: CX, cy: CY, r: 74 }, c);
-  var t1 = el("text", { x: CX, y: CY - 4, "text-anchor": "middle" }, c); t1.textContent = "나의";
-  var t2 = el("text", { x: CX, y: CY + 20, "text-anchor": "middle" }, c); t2.textContent = "커리큘럼";
+  function trackText(t) { return t.emoji + " " + (L.compact ? t.name.split(" (")[0] : t.name); }
+  function levelText(lv) { return L.compact ? lv.name.replace("어느 정도 경험이 있어요", "경험이 있어요") : lv.name; }
 
   function pill(parent, x, y, w, text, color, extra) {
     var g = el("g", { "class": "qm-node" + (extra ? " " + extra : ""), style: "--c:" + color }, parent);
@@ -104,53 +98,65 @@
     }); });
   }
 
-  // 1열: 분야 (세로로 나열, 중심에서 가지가 뻗음)
-  var n = data.tracks.length, gap = (H - 80) / (n - 1);
-  var trackNodes = data.tracks.map(function (t, i) {
-    var y = 40 + i * gap;
-    el("path", { d: curve(CX + 74, CY, X1 - W1 / 2, y), "class": "qm-line", stroke: t.color }, lines);
-    var g = pill(nodes, X1, y, W1, t.emoji + " " + t.name, t.color);
-    g.setAttribute("aria-label", t.name + ": " + t.desc);
-    var title = el("title", {}, g); title.textContent = t.desc;
-    press(g, function () { pickTrack(i); });
-    t._y = y; return g;
-  });
+  function build() {
+    L = wideMQ.matches ? LAYOUTS.wide : LAYOUTS.compact;
+    svg.setAttribute("viewBox", "0 0 " + L.W + " " + L.H);
+    svg.setAttribute("class", L.compact ? "compact" : "");
+    svg.textContent = "";
+    lines = el("g", {}, svg); nodes = el("g", {}, svg);
+    var centerG = el("g", {}, svg);
+    childLines = el("g", {}, lines); childNodes = el("g", {}, nodes);
+    var c = el("g", { "class": "qm-center" }, centerG);
+    el("circle", { cx: L.CX, cy: L.CY, r: L.CR }, c);
+    var t1 = el("text", { x: L.CX, y: L.CY - 4, "text-anchor": "middle" }, c); t1.textContent = "나의";
+    var t2 = el("text", { x: L.CX, y: L.CY + 20, "text-anchor": "middle" }, c); t2.textContent = "커리큘럼";
+
+    var n = data.tracks.length, gap = (L.H - 80) / (n - 1);
+    trackNodes = data.tracks.map(function (t, i) {
+      var y = 40 + i * gap;
+      el("path", { d: curve(L.CX + L.CR, L.CY, L.X1 - L.W1 / 2, y), "class": "qm-line", stroke: t.color }, lines);
+      var g = pill(nodes, L.X1, y, L.W1, trackText(t), t.color);
+      g.setAttribute("aria-label", t.name + ": " + t.desc);
+      var title = el("title", {}, g); title.textContent = t.desc;
+      press(g, function () { pickTrack(i); });
+      t._y = y; return g;
+    });
+  }
 
   function pickTrack(i) {
     var t = data.tracks[i];
-    sel.track = t; sel.level = null; sel.hours = null;
+    sel.ti = i; sel.li = -1; sel.hours = null;
     radio("track", t.key).checked = true;
     ["level", "hours"].forEach(function (k) { var r = form.querySelector('input[name="' + k + '"]:checked'); if (r) r.checked = false; });
     trackNodes.forEach(function (g, k) { g.classList.toggle("on", k === i); g.classList.toggle("dim", k !== i); });
     childLines.textContent = ""; childNodes.textContent = "";
-    var L = data.levels, lh = 62, start = clamp(t._y - (L.length - 1) * lh / 2, 40, H - 40 - (L.length - 1) * lh);
-    L.forEach(function (lv, k) {
+    var Ls = data.levels, lh = 62, start = clamp(t._y - (Ls.length - 1) * lh / 2, 40, L.H - 40 - (Ls.length - 1) * lh);
+    Ls.forEach(function (lv, k) {
       var y = start + k * lh;
-      var p = el("path", { d: curve(X1 + W1 / 2, t._y, X2 - W2 / 2, y), "class": "qm-line", stroke: t.color }, childLines);
-      var g = pill(childNodes, X2, y, W2, lv.name, t.color, "lvl");
-      press(g, function () { pickLevel(k, y); });
+      var p = el("path", { d: curve(L.X1 + L.W1 / 2, t._y, L.X2 - L.W2 / 2, y), "class": "qm-line", stroke: t.color }, childLines);
+      var g = pill(childNodes, L.X2, y, L.W2, levelText(lv), t.color, "lvl");
+      press(g, function () { pickLevel(k); });
       lv._y = y; lv._g = g;
-      grow(g, X1 + W1 / 2, t._y, X2, y, p);
+      grow(g, L.X1 + L.W1 / 2, t._y, L.X2, y, p);
     });
     update();
   }
 
-  function pickLevel(k, ly) {
-    var t = sel.track, lv = data.levels[k];
-    sel.level = lv; sel.hours = null;
+  function pickLevel(k) {
+    var t = data.tracks[sel.ti], lv = data.levels[k], ly = lv._y;
+    sel.li = k; sel.hours = null;
     radio("level", lv.key).checked = true;
     var h = form.querySelector('input[name="hours"]:checked'); if (h) h.checked = false;
     data.levels.forEach(function (x, j) { x._g.classList.toggle("on", j === k); x._g.classList.toggle("dim", j !== k); });
     childLines.querySelectorAll(".hrs").forEach(function (e) { e.remove(); });
     childNodes.querySelectorAll(".hrs").forEach(function (e) { e.remove(); });
-    var HS = data.hours, hh = 56, start = clamp(ly - (HS.length - 1) * hh / 2, 36, H - 36 - (HS.length - 1) * hh);
+    var HS = data.hours, hh = 56, start = clamp(ly - (HS.length - 1) * hh / 2, 36, L.H - 36 - (HS.length - 1) * hh);
     HS.forEach(function (hr, j) {
       var y = start + j * hh;
-      var p = el("path", { d: curve(X2 + W2 / 2, ly, X3 - W3 / 2, y), "class": "qm-line hrs", stroke: t.color }, childLines);
-      var g = pill(childNodes, X3, y, W3, "주 " + hr + "시간", t.color, "hrs");
+      var p = el("path", { d: curve(L.X2 + L.W2 / 2, ly, L.X3 - L.W3 / 2, y), "class": "qm-line hrs", stroke: t.color }, childLines);
+      var g = pill(childNodes, L.X3, y, L.W3, "주 " + hr + "시간", t.color, "hrs");
       press(g, function () { pickHours(hr, g); });
-      g.hrs = hr;
-      grow(g, X2 + W2 / 2, ly, X3, y, p);
+      grow(g, L.X2 + L.W2 / 2, ly, L.X3, y, p);
     });
     update();
   }
@@ -164,15 +170,21 @@
   }
 
   function update() {
-    var s = document.getElementById("qm-summary");
-    if (!sel.track) s.textContent = "분야를 눌러 가지를 펼쳐 보세요.";
-    else if (!sel.level) s.textContent = sel.track.emoji + " " + sel.track.name + " → 지금 실력을 골라 주세요.";
-    else if (!sel.hours) s.textContent = sel.track.emoji + " " + sel.track.name + " → " + sel.level.name + " → 일주일 공부 시간을 골라 주세요.";
-    else s.textContent = "✅ " + sel.track.emoji + " " + sel.track.name + " → " + sel.level.name + " → 주 " + sel.hours + "시간. 아래 버튼을 눌러 만들어요!";
+    var s = document.getElementById("qm-summary"), t = data.tracks[sel.ti], lv = data.levels[sel.li];
+    if (!t) s.textContent = "분야를 눌러 가지를 펼쳐 보세요.";
+    else if (!lv) s.textContent = t.emoji + " " + t.name + " → 지금 실력을 골라 주세요.";
+    else if (!sel.hours) s.textContent = t.emoji + " " + t.name + " → " + lv.name + " → 일주일 공부 시간을 골라 주세요.";
+    else s.textContent = "✅ " + t.emoji + " " + t.name + " → " + lv.name + " → 주 " + sel.hours + "시간. 아래 버튼을 눌러 만들어요!";
     submit.disabled = !form.checkValidity();
   }
-  form.addEventListener("change", update);   // 목록(휴대폰)에서 골라도 버튼 상태가 맞게
-  update();
+  form.addEventListener("change", update);
+
+  build(); update();
+  wideMQ.addEventListener("change", function () {   // 창 크기가 바뀌면 배치를 다시 짜고, 고른 것은 그대로 이어서 보여준다
+    var ti = sel.ti, li = sel.li, hr = sel.hours;
+    build();
+    if (ti >= 0) { pickTrack(ti); if (li >= 0) { pickLevel(li); if (hr) { var g = [].filter.call(childNodes.querySelectorAll(".hrs"), function (n) { return n.textContent.indexOf("주 " + hr + "시간") === 0; })[0]; if (g) pickHours(hr, g); } } }
+  });
 })();
 </script>
 {% endblock %}
