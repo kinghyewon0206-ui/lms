@@ -63,6 +63,19 @@ SEED_COURSES = [
     ("cs25", "Stanford", "CS25: Transformers United", "트랜스포머 연구자들의 초청 강연 시리즈.", "고급", 30, "https://web.stanford.edu/class/cs25/"),
     ("cs336", "Stanford", "CS336: 언어모델을 밑바닥부터", "언어모델을 처음부터 직접 만들며 배우는 고급 강의.", "고급", 120, "https://stanford-cs336.github.io/spring2025/"),
     ("ee364a", "Stanford", "EE364a: 볼록 최적화", "머신러닝·공학 전반의 기반이 되는 최적화 이론.", "고급", 100, "https://web.stanford.edu/class/ee364a/"),
+    # ---- 컴퓨터 밖 분야 (MIT OpenCourseWare, Open Yale Courses) ----
+    ("econ-micro", "MIT", "MIT 14.01: 미시경제학 원리", "시장, 수요와 공급, 소비자와 기업의 선택 등 경제학의 기본기를 배웁니다.", "입문", 60, "https://ocw.mit.edu/courses/14-01sc-principles-of-microeconomics-fall-2011/"),
+    ("finance", "MIT", "MIT 15.401: 금융 이론 I", "화폐의 시간가치, 채권·주식 평가, 위험과 수익 등 금융의 핵심 개념.", "초급", 40, "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/"),
+    ("yale-game", "Yale", "Yale ECON 159: 게임 이론", "전략적 상황에서의 의사결정을 생활 속 사례로 배우는 인기 강의.", "초급", 50, "https://oyc.yale.edu/economics/econ-159"),
+    ("psych-mit", "MIT", "MIT 9.00SC: 심리학 입문", "지각, 학습, 기억, 사회심리 등 인간의 마음과 행동을 과학적으로 다룹니다.", "입문", 40, "https://ocw.mit.edu/courses/9-00sc-introduction-to-psychology-fall-2011/"),
+    ("yale-death", "Yale", "Yale PHIL 176: 죽음 (Death)", "죽음의 본질과 삶의 의미를 철학적으로 탐구하는 유명 강의.", "입문", 40, "https://oyc.yale.edu/philosophy/phil-176"),
+    ("yale-polphil", "Yale", "Yale PLSC 114: 정치철학 입문", "플라톤부터 현대까지 정의, 자유, 권력에 대한 고전 사상을 읽습니다.", "초급", 40, "https://oyc.yale.edu/political-science/plsc-114"),
+    ("bio-mit", "MIT", "MIT 7.01SC: 생물학의 기초", "DNA, 단백질, 세포, 유전의 원리를 처음부터 배웁니다.", "입문", 60, "https://ocw.mit.edu/courses/7-01sc-fundamentals-of-biology-fall-2011/"),
+    ("chem-mit", "MIT", "MIT 5.111: 화학의 원리", "원자 구조, 화학 결합, 열역학 등 일반화학의 기초.", "초급", 60, "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/"),
+    ("phys-mit", "MIT", "MIT 8.01SC: 고전역학 (물리 I)", "힘, 운동, 에너지, 운동량 등 물리학의 기초를 풀이 중심으로 배웁니다.", "초급", 70, "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"),
+    ("calc-mit", "MIT", "MIT 18.01SC: 미적분학", "극한, 미분, 적분의 기초를 풀이 중심으로 배웁니다.", "초급", 70, "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/"),
+    ("linalg-mit", "MIT", "MIT 18.06SC: 선형대수학", "벡터, 행렬, 고유값 등 머신러닝의 바탕이 되는 수학.", "중급", 60, "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/"),
+    ("stats-mit", "MIT", "MIT 18.05: 확률과 통계 입문", "확률의 기초부터 통계적 추론까지 폭넓게 배웁니다.", "중급", 60, "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/"),
 ]
 
 # 사이트 안에서 바로 재생할 수 있는 공식 유튜브 재생목록. (slug -> playlist id)
@@ -77,6 +90,34 @@ VIDEOS = {
     "cs231n": "PLoROMvodv4rOmsNzYBMe0gJY2XS8AQg16", "cs224n": "PLoROMvodv4rOaMFbaqxPDoLWjDaRAdP9D",
     "cs230": "PLoROMvodv4rNRRGdS0rBbXOUGA0wjdh1X", "cs336": "PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_",
     "cs25": "PLoROMvodv4rNiJRchCzutFw5ItR_Z27CM",
+    # MIT OpenCourseWare / YaleCourses 공식 채널
+    "econ-micro": "PLUl4u3cNGP62oJSoqb4Rf-vZMGUBe59G-", "finance": "PLUl4u3cNGP63B2lDhyKOsImI7FjCf6eDW",
+    "psych-mit": "PL44ABC9278E2EE706", "bio-mit": "PLF83B8D8C87426E44",
+    "chem-mit": "PLUl4u3cNGP63LOmB3_O0xbgZVZibxj4rb", "calc-mit": "PL590CCC2BC5AF3BC1",
+    "linalg-mit": "PL221E2BBF13BECF6C", "phys-mit": "PLUl4u3cNGP61qDex7XslwNJ-xxxEFzMNV",
+    "yale-death": "PLEA18FAF1AD9047B0", "yale-game": "PL6EF60E1027E1A10B", "yale-polphil": "PL8D95DEA9B7DFE825",
+}
+
+# 강의 화면(마인드맵)의 분야. (key, 이모지, 이름, 색)
+FIELDS = [
+    ("prog", "💻", "프로그래밍", "#8b5cf6"),
+    ("ai", "🤖", "AI·머신러닝", "#ec4899"),
+    ("webapp", "📱", "웹·앱·게임", "#3b82f6"),
+    ("sys", "🔐", "보안·시스템", "#f59e0b"),
+    ("math", "🧮", "수학·통계", "#10b981"),
+    ("econ", "📈", "경제·경영", "#ef4444"),
+    ("human", "🧠", "심리·철학", "#a855f7"),
+    ("science", "🔬", "과학", "#06b6d4"),
+]
+FIELD_OF = {
+    **dict.fromkeys(["cs50x", "cs50p", "cip", "cs106b", "cs106l", "cs50r", "cs50tech"], "prog"),
+    **dict.fromkeys(["cs50ai", "cs221", "cs229", "cs230", "cs231n", "cs224n", "cs224w", "cs234", "cs25", "cs336"], "ai"),
+    **dict.fromkeys(["cs50web", "cs50mobile", "cs50games", "cs142", "cs193p", "cs50sql"], "webapp"),
+    **dict.fromkeys(["cs107", "cs50cyber", "cs253"], "sys"),
+    **dict.fromkeys(["cs109", "ee364a", "calc-mit", "linalg-mit", "stats-mit"], "math"),
+    **dict.fromkeys(["econ-micro", "finance", "yale-game", "cs50biz"], "econ"),
+    **dict.fromkeys(["psych-mit", "yale-death", "yale-polphil"], "human"),
+    **dict.fromkeys(["bio-mit", "chem-mit", "phys-mit"], "science"),
 }
 SLUG_BY_URL = {c[6]: c[0] for c in SEED_COURSES}
 
@@ -235,8 +276,8 @@ CHAT_SYSTEM = """너는 친근한 학습 상담사다. 대화로 학습자의 �
 
 [plan 규칙]
 - 어떤 분야를 묻더라도(컴퓨터뿐 아니라 경제, 심리, 수학, 과학, 인문 등 무엇이든) 그에 맞는 강의를 고른다. 2~8개, 선수 지식 순서대로.
-- catalog 는 컴퓨터 과학 강의뿐이다. 학습자의 주제와 직접 관련 있는 강의만 catalog 에서 고르고, 주제와 무관한 강의를 \
-억지로 끼워 넣지 마라(예: 경제학·심리학 학습자에게 CS50 을 넣는 것 금지). 주제가 컴퓨터 과학이 아니면 전부 목록 밖 강의(custom)로 채운다.
+- catalog 에는 컴퓨터·수학·경제·심리·철학·과학 강의가 들어 있다. 학습자의 주제와 직접 관련 있는 강의만 catalog 에서 고르고, \
+주제와 무관한 강의를 억지로 끼워 넣지 마라(예: 경제학 학습자에게 CS50 을 넣는 것 금지). catalog 에 맞는 게 없는 주제는 목록 밖 강의(custom)로 채운다.
 - 목록 밖의 실제 강의를 추가하는 방법:
   하버드·스탠퍼드를 우선하고, 없으면 MIT OpenCourseWare, Yale, UC Berkeley 등 신뢰할 수 있는 대학의 무료 공개 강의.
   목록 밖 강의는 네가 실제로 존재한다고 확신하는 강의의 공식 https 링크(대학 .edu 도메인)만 쓴다. 확신이 없으면 넣지 마라. \
@@ -934,11 +975,22 @@ def dashboard():
 @app.route("/courses")
 @login_required
 def courses():
-    university = request.args.get("university", "")
-    if university not in ("Harvard", "Stanford"):
-        university = ""
-    rows = list_courses(university or None)
-    return render_template("courses.html", courses=rows, university=university)
+    by_field = {key: [] for key, *_ in FIELDS}
+    total = 0
+    for r in list_courses():
+        slug = SLUG_BY_URL.get(r["url"])
+        if FIELD_OF.get(slug) is None:
+            continue
+        label = r["title"].split(":")[0].strip()
+        by_field[FIELD_OF[slug]].append({
+            "slug": slug, "title": r["title"], "label": label if len(label) <= 14 else label[:13] + "…",
+            "description": r["description"], "level": r["level"], "hours": r["hours"],
+            "university": r["university"], "url": r["url"],
+            "watch": url_for("watch", slug=slug) if slug in VIDEOS else None,
+        })
+        total += 1
+    fields = [{"key": k, "emoji": e, "name": n, "color": c, "courses": by_field[k]} for k, e, n, c in FIELDS]
+    return render_template("courses.html", fields=fields, total=total)
 
 
 @app.route("/watch/<slug>")
