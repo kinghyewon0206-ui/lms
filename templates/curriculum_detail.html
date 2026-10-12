@@ -42,7 +42,13 @@
     </details>
     {% endif %}
     <div class="actions left">
+      {% set ws = watch_slug(s['url']) %}
+      {% if ws %}
+      <a class="btn" href="{{ url_for('watch', slug=ws, back=url_for('curriculum_detail', cid=cur['id'])) }}">▶ 여기서 바로 보기</a>
+      <a class="hint" href="{{ s['url'] }}" target="_blank" rel="noopener noreferrer">원본 페이지 ↗</a>
+      {% else %}
       <a class="btn" href="{{ s['url'] }}" target="_blank" rel="noopener noreferrer">강의 보러가기 ↗</a>
+      {% endif %}
       {% if not s['curated'] %}<span class="hint">무료 여부는 링크에서 확인하세요</span>{% endif %}
       <form method="post" action="{{ url_for('curriculum_toggle', cid=cur['id'], item_id=s['item_id']) }}" class="inline">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

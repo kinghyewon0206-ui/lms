@@ -14,9 +14,16 @@
     <div class="meta"><span class="tag {{ c['university']|lower }}">{{ c['university'] }}</span><span class="tag level">{{ c['level'] }}</span><span class="tag level">약 {{ c['hours'] }}시간</span></div>
     <h3>{{ c['title'] }}</h3>
     <p>{{ c['description'] }}</p>
-    <a class="btn" href="{{ c['url'] }}" target="_blank" rel="noopener noreferrer">강의 보러가기 ↗</a>
+    {% set ws = watch_slug(c['url']) %}
+    {% if ws %}
+    <a class="btn" href="{{ url_for('watch', slug=ws) }}">▶ 여기서 바로 보기</a>
+    <a class="hint" href="{{ c['url'] }}" target="_blank" rel="noopener noreferrer">원본 강의 페이지 ↗</a>
+    {% else %}
+    <a class="btn secondary" href="{{ c['url'] }}" target="_blank" rel="noopener noreferrer">원본 강의 페이지 ↗</a>
+    <span class="hint">공식 영상이 외부 사이트에만 있어요</span>
+    {% endif %}
   </article>
   {% endfor %}
 </div>
-<p class="hint">모든 강의는 원 대학의 공식 페이지로 연결되며, 강의는 영어로 진행됩니다.</p>
+<p class="hint">▶ 표시가 있는 강의는 대학 공식 유튜브 영상을 사이트 안에서 바로 볼 수 있어요. 나머지는 원본 페이지로 연결돼요. 강의는 영어로 진행됩니다.</p>
 {% endblock %}

@@ -65,6 +65,30 @@ SEED_COURSES = [
     ("ee364a", "Stanford", "EE364a: 볼록 최적화", "머신러닝·공학 전반의 기반이 되는 최적화 이론.", "고급", 100, "https://web.stanford.edu/class/ee364a/"),
 ]
 
+# 사이트 안에서 바로 재생할 수 있는 공식 유튜브 재생목록. (slug -> playlist id)
+# 대학 공식 채널(CS50, Stanford Online)이고 삽입(embed)이 허용된 것만 넣었다. 나머지 강의는 원본 링크로만 연결한다.
+VIDEOS = {
+    "cs50x": "PLhQjrBD2T380hlTqAU8HfvVepCcjCqTg6", "cs50p": "PLhQjrBD2T3817j24-GogXmWqO5Q5vYy0V",
+    "cs50tech": "PLhQjrBD2T382p8amnvUp1rws1p7n7gJ2p", "cs50biz": "PLhQjrBD2T381d32c80DEQZOR-IWcINyP8",
+    "cs50sql": "PLhQjrBD2T382v1MBjNOhPu9SiJ1fsD4C0", "cs50r": "PLhQjrBD2T382yfNp_-xzX244d-O9W6YmD",
+    "cs50cyber": "PLhQjrBD2T383Cqo5I1oRrbC1EKRAKGKUE", "cs50games": "PLhQjrBD2T382zb36OpsmBBYPMGvniSK1B",
+    "cs50web": "PLhQjrBD2T380xvFSUmToMMzERZ3qB5Ueu", "cs50mobile": "PLhQjrBD2T382gdfveyad09Ierl_3Jh_wR",
+    "cs50ai": "PLhQjrBD2T381PopUTYtMSstgk-hsTGkVm", "cs193p": "PLoROMvodv4rPHblRXKsJCQs8TLGpiCTrG",
+    "cs231n": "PLoROMvodv4rOmsNzYBMe0gJY2XS8AQg16", "cs224n": "PLoROMvodv4rOaMFbaqxPDoLWjDaRAdP9D",
+    "cs230": "PLoROMvodv4rNRRGdS0rBbXOUGA0wjdh1X", "cs336": "PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_",
+    "cs25": "PLoROMvodv4rNiJRchCzutFw5ItR_Z27CM",
+}
+SLUG_BY_URL = {c[6]: c[0] for c in SEED_COURSES}
+
+
+def watch_slug(url):
+    """이 강의 URL 을 사이트 안에서 재생할 수 있으면 slug, 아니면 None."""
+    slug = SLUG_BY_URL.get(url)
+    return slug if slug in VIDEOS else None
+
+
+app.jinja_env.globals["watch_slug"] = watch_slug
+
 # 분야별 학습 경로. (slug, 이 수준 이하인 사람에게 포함, 이유)
 # 수준: 0 = 프로그래밍이 처음, 1 = 기초 문법은 앎, 2 = 개발 경험 있음
 TRACKS = {
@@ -915,6 +939,18 @@ def courses():
         university = ""
     rows = list_courses(university or None)
     return render_template("courses.html", courses=rows, university=university)
+
+
+@app.route("/watch/<slug>")
+@login_required
+def watch(slug):
+    course = next((c for c in SEED_COURSES if c[0] == slug), None)
+    if course is None or slug not in VIDEOS:
+        abort(404)
+    return render_template(
+        "watch.html", title=course[2], description=course[3], university=course[1],
+        source_url=course[6], playlist=VIDEOS[slug], back=request.args.get("back", ""),
+    )
 
 
 @app.route("/curriculum")

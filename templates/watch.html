@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · LMS{% endblock %}
+{% block content %}
+<div class="head"><h2>{{ title }}</h2>
+  <a class="hint" href="{{ back if back.startswith('/curriculum/') else url_for('courses') }}">← 돌아가기</a></div>
+<p class="hint"><span class="tag {{ university|lower }}">{{ university }}</span> {{ description }}</p>
+<div class="player">
+  <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list={{ playlist }}&hl=ko&cc_lang_pref=ko&cc_load_policy=1"
+          title="{{ title }}" loading="lazy" allowfullscreen
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
+<details class="ko-help" open><summary>🇰🇷 한국어 자막으로 보는 방법</summary>
+  <ol>
+    <li>영상 오른쪽 아래 <b>⚙ 설정 → 자막 → 자동 번역 → 한국어</b>를 고르세요. (자막이 있는 영상만 가능해요)</li>
+    <li>화면 안 <b>☰ 목록</b> 버튼으로 다음 강의로 넘어갈 수 있어요.</li>
+    <li>자동 번역은 전문 용어가 어색할 수 있어요. 헷갈리면 영어 자막을 같이 켜 보세요.</li>
+  </ol>
+</details>
+<p class="hint">영상은 대학이 공식 유튜브 채널에 올린 것을 그대로 보여드려요. 재생이 안 되면
+  <a href="{{ source_url }}" target="_blank" rel="noopener noreferrer">원본 강의 페이지 ↗</a>에서 볼 수 있어요.</p>
+{% endblock %}
