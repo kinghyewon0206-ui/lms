@@ -143,15 +143,15 @@ app.jinja_env.globals["icon"] = icon
 
 # 강의 화면(마인드맵)의 분야. (key, 이모지, 이름, 색)
 FIELDS = [
-    ("prog", "프로그래밍", "#8b5cf6"),
-    ("ai", "AI·머신러닝", "#ec4899"),
-    ("webapp", "웹·앱·게임", "#3b82f6"),
-    ("sys", "보안·시스템", "#f59e0b"),
-    ("math", "수학·통계", "#10b981"),
-    ("econ", "경제·경영", "#ef4444"),
-    ("human", "심리·철학·문학", "#a855f7"),
-    ("history", "역사", "#84cc16"),
-    ("science", "과학", "#06b6d4"),
+    ("prog", "프로그래밍", "#6366f1"),
+    ("ai", "AI·머신러닝", "#db2777"),
+    ("webapp", "웹·앱·게임", "#2563eb"),
+    ("sys", "보안·시스템", "#d97706"),
+    ("math", "수학·통계", "#059669"),
+    ("econ", "경제·경영", "#dc2626"),
+    ("human", "심리·철학·문학", "#7c3aed"),
+    ("history", "역사", "#65a30d"),
+    ("science", "과학", "#0891b2"),
 ]
 FIELD_OF = {
     **dict.fromkeys(["cs50x", "cs50p", "cip", "cs106b", "cs106l", "cs50r", "cs50tech"], "prog"),
@@ -190,9 +190,9 @@ TRACKS = {
     "history": ("역사", "고대부터 근대까지 세계사의 흐름을 알고 싶어요"),
     "science": ("과학 (생물·화학·물리·천문)", "자연과학의 기초를 처음부터 배우고 싶어요"),
 }
-TRACK_COLORS = {"cs": "#8b5cf6", "web": "#3b82f6", "app": "#0ea5e9", "ai": "#ec4899", "data": "#14b8a6",
-                "security": "#f59e0b", "math": "#10b981", "econ": "#ef4444", "human": "#a855f7",
-                "history": "#84cc16", "science": "#06b6d4"}
+TRACK_COLORS = {"cs": "#6366f1", "web": "#2563eb", "app": "#0284c7", "ai": "#db2777", "data": "#0d9488",
+                "security": "#d97706", "math": "#059669", "econ": "#dc2626", "human": "#7c3aed",
+                "history": "#65a30d", "science": "#0891b2"}
 PATHS = {
     "cs": [
         ("cs50x", 1, "컴퓨터 과학 전반을 훑는 가장 좋은 출발점이에요."),
@@ -1177,7 +1177,7 @@ def _quick_ctx():
     return {
         "tracks": TRACKS, "levels": LEVELS, "hours_options": HOURS_OPTIONS, "track_icons": TRACK_ICON,
         "qm": {
-            "tracks": [{"key": k, "name": t[0], "desc": t[1], "color": TRACK_COLORS.get(k, "#8b5cf6"),
+            "tracks": [{"key": k, "name": t[0], "desc": t[1], "color": TRACK_COLORS.get(k, "#6366f1"),
                         "icon": ICON_PATHS[TRACK_ICON[k]]}
                        for k, t in TRACKS.items()],
             "levels": [{"key": k, "name": n} for k, n in LEVELS.items()],
