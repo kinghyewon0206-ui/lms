@@ -749,6 +749,25 @@ def resolve_course_id(item):
     return db.execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
 
 
+def bump_course_view(slug):
+    """강의를 본 횟수를 1 올린다. (인기 순위에 쓴다)"""
+    if using_firestore():
+        _fs().collection("course_views").document(slug).set({"views": fb_firestore.Increment(1)}, merge=True)
+        return
+    db = get_db()
+    db.execute(
+        "INSERT INTO course_views (slug, views) VALUES (?, 1) ON CONFLICT(slug) DO UPDATE SET views = views + 1", (slug,)
+    )
+    db.commit()
+
+
+def course_views():
+    """{slug: 조회수}"""
+    if using_firestore():
+        return {d.id: int((d.to_dict() or {}).get("views", 0)) for d in _fs().collection("course_views").stream()}
+    return {r["slug"]: r["views"] for r in get_db().execute("SELECT slug, views FROM course_views")}
+
+
 def create_curriculum(user_id, title, track, level, hours_per_week, source, note, goal_text,
                        days_per_week=0, hours_per_day=0):
     if using_firestore():
@@ -882,6 +901,7 @@ def init_db():
         return
 
     db = get_db()
+    db.execute("CREATE TABLE IF NOT EXISTS course_views (slug TEXT PRIMARY KEY, views INTEGER NOT NULL DEFAULT 0)")
     db.execute(
         """
         CREATE TABLE IF NOT EXISTS users (
@@ -1055,7 +1075,72 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html")
+    cat = catalog_view(course_views())
+    return render_template("dashboard.html", mine=list_curricula(g.user["id"])[:3], popular=cat[:4])
+
+
+# 처음엔 조회 기록이 없으니, 대표적인 강의를 먼저 앞에 둔다. 조회가 쌓이면 실제 조회수 순서가 우선한다.
+FEATURED = ["cs50x", "cs50p", "cs229", "cs231n", "cs224n", "cs50ai", "cs50web", "econ-micro", "psych-mit", "calc-mit",
+            "cs336", "cs50sql", "yale-game", "bio-mit", "linalg-mit", "cs193p"]
+FIELD_META = {k: {"name": n, "color": c, "icon": FIELD_ICON[k]} for k, n, c in FIELDS}
+
+
+# 한글로만 적힌 강의 설명도 영어로 검색되게 하는 별칭
+SEARCH_ALIASES = {
+    "파이썬": "python", "머신러닝": "machine learning ml", "딥러닝": "deep learning neural", "인공지능": "ai artificial intelligence",
+    "자연어": "nlp natural language", "컴퓨터 비전": "computer vision image", "강화학습": "reinforcement learning rl",
+    "언어모델": "llm language model transformer gpt", "트랜스포머": "transformer", "데이터베이스": "database sql", "웹": "web html css javascript",
+    "보안": "security cyber hacking", "알고리즘": "algorithm", "자료구조": "data structures", "게임": "game", "앱": "app mobile ios swift",
+    "미적분": "calculus", "선형대수": "linear algebra matrix", "확률": "probability", "통계": "statistics", "최적화": "optimization",
+    "경제": "economics", "금융": "finance investing", "게임 이론": "game theory", "심리": "psychology", "철학": "philosophy",
+    "역사": "history", "생물": "biology", "화학": "chemistry", "물리": "physics", "천문": "astronomy space", "소설": "novel literature",
+    "컴퓨터 과학": "computer science cs", "프로그래밍": "programming coding", "데이터": "data analytics", "정치": "politics",
+}
+
+
+def catalog_view(views=None):
+    """화면에 보여줄 강의 목록 (인기순). 별점·후기 같은 건 없고, 실제 조회수만 쓴다."""
+    views = views or {}
+    out = []
+    for i, (slug, uni, title, desc, level, hours, url) in enumerate(SEED_COURSES):
+        code, _, name = title.partition(":")
+        code, name = code.strip(), name.strip() or code.strip()
+        f = FIELD_OF[slug]
+        out.append({
+            "slug": slug, "title": title, "code": code, "name": name, "description": desc, "level": level,
+            "hours": hours, "university": uni, "url": url, "field": f, "field_name": FIELD_META[f]["name"],
+            "color": FIELD_META[f]["color"], "icon": FIELD_META[f]["icon"], "watch": slug in VIDEOS,
+            "views": views.get(slug, 0), "order": i,
+            "keywords": slug + " " + " ".join(v for k, v in SEARCH_ALIASES.items() if k in title + desc + FIELD_META[f]["name"]),
+            "rank": FEATURED.index(slug) if slug in FEATURED else 999,
+        })
+    out.sort(key=lambda c: (-c["views"], c["rank"], c["order"]))
+    return out
+
+
+def home_panels(cat):
+    """Coursera 처럼 인기/영상/입문 3개 패널."""
+    popular = cat[:4]
+    used = {c["slug"] for c in popular}
+    video = [c for c in cat if c["watch"] and c["slug"] not in used][:4]
+    used |= {c["slug"] for c in video}
+    starter = [c for c in cat if c["level"] == "입문" and c["slug"] not in used][:4]
+    return [("가장 인기 있는", popular), ("영상으로 바로 보기", video), ("처음 시작하기 좋아요", starter)]
+
+
+@app.route("/course/<slug>")
+@login_required
+def course_detail(slug):
+    cat = catalog_view(course_views())
+    course = next((c for c in cat if c["slug"] == slug), None)
+    if course is None:
+        abort(404)
+    viewed = session.get("viewed", [])
+    if slug not in viewed:                      # 새로고침으로 조회수를 부풀리지 않게 한 세션에 한 번만
+        bump_course_view(slug)
+        session["viewed"] = viewed + [slug]
+    related = [c for c in cat if c["field"] == course["field"] and c["slug"] != slug][:4]
+    return render_template("course_detail.html", c=course, related=related)
 
 
 @app.route("/courses")
@@ -1079,7 +1164,13 @@ def courses():
         total += 1
     fields = [{"key": k, "name": n, "color": c, "courses": by_field[k], "icon_name": FIELD_ICON[k],
                "icon": ICON_PATHS[FIELD_ICON[k]]} for k, n, c in FIELDS]
-    return render_template("courses.html", fields=fields, total=total)
+    cat = catalog_view(course_views())
+    stats = {"courses": len(cat), "videos": sum(1 for c in cat if c["watch"]),
+             "universities": len({c["university"] for c in cat})}
+    unis = sorted({c["university"] for c in cat}, key=lambda u: -sum(1 for c in cat if c["university"] == u))
+    return render_template("courses.html", fields=fields, total=total, cat=cat, panels=home_panels(cat), stats=stats,
+                           unis=[(u, sum(1 for c in cat if c["university"] == u)) for u in unis],
+                           levels=["입문", "초급", "중급", "고급"], q=request.args.get("q", "").strip()[:60])
 
 
 @app.route("/watch/<slug>")
@@ -1088,6 +1179,10 @@ def watch(slug):
     course = next((c for c in SEED_COURSES if c[0] == slug), None)
     if course is None or slug not in VIDEOS:
         abort(404)
+    viewed = session.get("viewed", [])
+    if slug not in viewed:
+        bump_course_view(slug)
+        session["viewed"] = viewed + [slug]
     return render_template(
         "watch.html", title=course[2], description=course[3], university=course[1],
         source_url=course[6], playlist=VIDEOS[slug], back=request.args.get("back", ""),

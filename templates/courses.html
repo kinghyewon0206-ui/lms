@@ -1,23 +1,112 @@
 {% extends "base.html" %}
-{% block title %}강의 · LMS{% endblock %}
+{% import "_cards.html" as cards %}
+{% block title %}강의 탐색 · LMS{% endblock %}
 {% block content %}
-<div class="head"><h2>강의 지도 <span class="hint">({{ total }}개)</span></h2>
-  <a class="btn" href="{{ url_for('curriculum_new') }}">커리큘럼 만들기</a></div>
-<p class="hint mm-hint">분야를 눌러보세요. 가지가 뻗어 나가요. 강의를 누르면 자세한 설명이 나와요.</p>
 
-{# 넓은 화면: 마인드맵 (JS 가 그린다) #}
-<div class="mm-wrap">
-  <svg id="mm" viewBox="0 0 1100 760" role="group" aria-label="분야별 강의 마인드맵"></svg>
-</div>
-<article id="mm-detail" class="card course mm-detail" hidden>
-  <div class="meta" id="d-meta"></div>
-  <h3 id="d-title"></h3>
-  <p id="d-desc"></p>
-  <div class="actions left" id="d-actions"></div>
-</article>
+{# ---- 상단 배너: 검색 + 핵심 수치 ---- #}
+<section class="hero-cx">
+  <div class="hero-text">
+    <span class="eyebrow">대학 무료 공개 강의</span>
+    <h1>세계 대학의 강의를<br>한 곳에서, 무료로 배워요</h1>
+    <p>하버드·스탠퍼드·MIT·예일의 공개 강의를 분야별로 모았어요. 영상은 사이트 안에서 바로 볼 수 있어요.</p>
+    <form class="search-big" onsubmit="event.preventDefault(); document.getElementById('browse').scrollIntoView({behavior:'smooth'});">
+      <input id="q" type="search" value="{{ q }}" placeholder="어떤 강의를 찾으세요? (예: 파이썬, 경제, 머신러닝)" autocomplete="off" aria-label="강의 검색">
+      <button class="btn" type="submit">검색</button>
+    </form>
+    <div class="hero-actions">
+      <a class="btn secondary" href="{{ url_for('curriculum_new') }}">나만의 커리큘럼 만들기</a>
+      <span class="hero-stats"><b>{{ stats.courses }}</b>개 강의 · <b>{{ stats.universities }}</b>개 대학 · <b>{{ stats.videos }}</b>개 영상 제공</span>
+    </div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    {% for f in fields %}<span class="art-dot d{{ loop.index }}" style="--c: {{ f.color }}">{{ icon(f.icon_name, 30) }}</span>{% endfor %}
+  </div>
+</section>
 
-{# 좁은 화면(휴대폰) 또는 JS 없을 때: 분야별 접이식 목록 #}
-<div class="mm-list">
+{# ---- 인기 패널 3개 ---- #}
+<section class="block">
+  <h2>인기 강의</h2>
+  <p class="hint">조회수가 쌓일수록 순위가 바뀌어요. 지금은 대표 강의를 먼저 보여드려요.</p>
+  <div class="panels">
+    {% for title, items in panels %}
+    <div class="panel p{{ loop.index }}">
+      <h3>{{ title }}</h3>
+      {% for c in items %}{{ cards.mini(c) }}{% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{# ---- 카테고리 ---- #}
+<section class="block">
+  <h2>카테고리 살펴보기</h2>
+  <div class="cat-row">
+    {% for f in fields %}
+    <button type="button" class="cat-tile" data-field="{{ f.key }}" style="--c: {{ f.color }}">
+      <span class="ct-ico">{{ icon(f.icon_name, 26) }}</span>
+      <strong>{{ f.name }}</strong><small>{{ f.courses|length }}개 강의</small>
+    </button>
+    {% endfor %}
+  </div>
+</section>
+
+{# ---- 전체 강의: 필터 + 카드 / 지도 ---- #}
+<section class="block" id="browse">
+  <div class="browse-head">
+    <h2>전체 강의 <span class="count" id="result-count">{{ cat|length }}개</span></h2>
+    <div class="view-toggle" role="tablist" aria-label="보기 방식">
+      <button type="button" class="on" data-view="cards" role="tab">카드로 보기</button>
+      <button type="button" data-view="map" role="tab">지도로 보기</button>
+    </div>
+  </div>
+
+  <div id="cards-view" class="browse">
+    <aside class="filters">
+      <div class="f-group"><h4>수준</h4>
+        {% for lv in levels %}<label class="f-check"><input type="checkbox" name="level" value="{{ lv }}"> {{ lv }}</label>{% endfor %}
+      </div>
+      <div class="f-group"><h4>대학</h4>
+        {% for u, n in unis %}<label class="f-check"><input type="checkbox" name="uni" value="{{ u }}"> {{ u }} <small>{{ n }}</small></label>{% endfor %}
+      </div>
+      <div class="f-group"><h4>분야</h4>
+        {% for f in fields %}<label class="f-check"><input type="checkbox" name="field" value="{{ f.key }}"> {{ f.name }} <small>{{ f.courses|length }}</small></label>{% endfor %}
+      </div>
+      <div class="f-group"><h4>기타</h4>
+        <label class="f-check"><input type="checkbox" id="f-video"> 영상으로 바로 볼 수 있는 강의만</label>
+      </div>
+      <button type="button" class="btn secondary" id="f-reset">필터 초기화</button>
+    </aside>
+    <div class="results">
+      <div class="sortbar">
+        <span class="hint" id="filter-note"></span>
+        <label class="sort">정렬
+          <select id="sort">
+            <option value="pop">인기순</option>
+            <option value="hours-asc">짧은 순</option>
+            <option value="level">쉬운 순</option>
+            <option value="name">이름순</option>
+          </select>
+        </label>
+      </div>
+      <div class="grid" id="grid">
+        {% for c in cat %}{{ cards.card(c, loop.index0) }}{% endfor %}
+      </div>
+      <p class="empty" id="empty" hidden>조건에 맞는 강의가 없어요. 필터를 줄이거나 다른 검색어를 써 보세요.</p>
+    </div>
+  </div>
+
+  <div id="map-view" hidden>
+    <p class="hint mm-hint">분야를 눌러보세요. 가지가 뻗어 나가요. 강의를 누르면 자세한 설명이 나와요.</p>
+    <div class="mm-wrap">
+      <svg id="mm" viewBox="0 0 1100 760" role="group" aria-label="분야별 강의 마인드맵"></svg>
+    </div>
+    <article id="mm-detail" class="card course mm-detail" hidden>
+      <div class="meta" id="d-meta"></div>
+      <h3 id="d-title"></h3>
+      <p id="d-desc"></p>
+      <div class="actions left" id="d-actions"></div>
+    </article>
+    <div class="mm-list">
   {% for f in fields %}
   <details class="fieldbox" style="--c: {{ f.color }}">
     <summary><span class="sum-ico">{{ icon(f.icon_name, 22) }}</span>{{ f.name }} <span class="hint">{{ f.courses|length }}개</span></summary>
@@ -40,11 +129,66 @@
   </details>
   {% endfor %}
 </div>
+
+  </div>
+</section>
 <noscript><style>.mm-list { display: block !important; } .mm-wrap, .mm-hint { display: none; }</style></noscript>
 
-<p class="hint">지도에서 테두리가 굵은 강의(목록에서는 '여기서 바로 보기' 버튼이 있는 강의)는 대학 공식 유튜브 영상을 사이트 안에서 바로 볼 수 있어요. 나머지는 원본 페이지로 연결돼요. 대부분 영어 강의예요.</p>
-
 <script id="mm-data" type="application/json">{{ fields|tojson }}</script>
+<script>
+(function () {
+  // ---------- 필터 / 정렬 / 검색 ----------
+  var grid = document.getElementById("grid"), cards = [].slice.call(grid.children);
+  var q = document.getElementById("q"), sortSel = document.getElementById("sort");
+  var LV = { "입문": 0, "초급": 1, "중급": 2, "고급": 3 };
+  function checked(name) { return [].map.call(document.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }); }
+
+  function apply() {
+    var term = q.value.trim().toLowerCase(), lv = checked("level"), un = checked("uni"), fl = checked("field");
+    var video = document.getElementById("f-video").checked, shown = 0;
+    cards.forEach(function (c) {
+      var d = c.dataset;
+      var ok = (!term || d.text.indexOf(term) >= 0) && (!lv.length || lv.indexOf(d.level) >= 0) &&
+               (!un.length || un.indexOf(d.uni) >= 0) && (!fl.length || fl.indexOf(d.field) >= 0) && (!video || d.video === "1");
+      c.hidden = !ok; if (ok) shown++;
+    });
+    var s = sortSel.value;
+    cards.slice().sort(function (a, b) {
+      var x = a.dataset, y = b.dataset;
+      if (s === "hours-asc") return (+x.hours - +y.hours) || (+x.pop - +y.pop);
+      if (s === "level") return (LV[x.level] - LV[y.level]) || (+x.pop - +y.pop);
+      if (s === "name") return x.name.localeCompare(y.name, "ko");
+      return +x.pop - +y.pop;
+    }).forEach(function (c) { grid.appendChild(c); });
+    document.getElementById("result-count").textContent = shown + "개";
+    document.getElementById("empty").hidden = shown > 0;
+    var active = lv.length + un.length + fl.length + (video ? 1 : 0) + (term ? 1 : 0);
+    document.getElementById("filter-note").textContent = active ? "필터 " + active + "개 적용 중" : "";
+    document.querySelectorAll(".cat-tile").forEach(function (t) { t.classList.toggle("on", fl.length === 1 && fl[0] === t.dataset.field); });
+  }
+  document.querySelectorAll(".filters input").forEach(function (i) { i.addEventListener("change", apply); });
+  q.addEventListener("input", apply); sortSel.addEventListener("change", apply);
+  document.getElementById("f-reset").addEventListener("click", function () {
+    document.querySelectorAll(".filters input").forEach(function (i) { i.checked = false; }); q.value = ""; sortSel.value = "pop"; apply();
+  });
+  document.querySelectorAll(".cat-tile").forEach(function (t) {   // 카테고리 타일 -> 그 분야만 보기
+    t.addEventListener("click", function () {
+      var on = t.classList.contains("on");
+      document.querySelectorAll('input[name="field"]').forEach(function (i) { i.checked = !on && i.value === t.dataset.field; });
+      showView("cards"); apply();
+      if (!on) document.getElementById("browse").scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  // ---------- 카드 / 지도 전환 ----------
+  function showView(v) {
+    document.getElementById("cards-view").hidden = v !== "cards"; document.getElementById("map-view").hidden = v !== "map";
+    document.querySelectorAll(".view-toggle button").forEach(function (b) { b.classList.toggle("on", b.dataset.view === v); });
+  }
+  document.querySelectorAll(".view-toggle button").forEach(function (b) { b.addEventListener("click", function () { showView(b.dataset.view); }); });
+  apply();
+})();
+</script>
 <script>
 (function () {
   var fields = JSON.parse(document.getElementById("mm-data").textContent);

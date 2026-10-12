@@ -1,11 +1,39 @@
 {% extends "base.html" %}
-{% block title %}대시보드 · LMS{% endblock %}
+{% import "_cards.html" as cards %}
+{% block title %}홈 · LMS{% endblock %}
 {% block content %}
-<section class="card wide">
-  <h2>안녕하세요, {{ g.user['name'] }}님</h2>
-  <p>{{ g.user['email'] }} · 역할: {{ g.user['role'] }}</p>
-  <div class="actions left">
-    <a class="btn" href="{{ url_for('curriculum_new') }}">커리큘럼 만들기</a>
+<section class="dash-hero">
+  <div>
+    <span class="eyebrow">{{ g.user['email'] }}</span>
+    <h1>안녕하세요, {{ g.user['name'] }}님</h1>
+    <p>오늘 배울 강의를 골라 보세요. 목표를 알려주시면 순서까지 짜드려요.</p>
   </div>
+  <div class="dash-actions">
+    <a class="btn" href="{{ url_for('curriculum_new') }}">커리큘럼 만들기</a>
+    <a class="btn secondary" href="{{ url_for('courses') }}">강의 탐색</a>
+  </div>
+</section>
+
+<section class="block">
+  <div class="browse-head"><h2>내 학습</h2><a class="hint" href="{{ url_for('curriculum_list') }}">전체 보기 →</a></div>
+  {% if mine %}
+  <div class="grid grid-3">
+    {% for m in mine %}
+    <a class="card plain mycur" href="{{ url_for('curriculum_detail', cid=m['id']) }}">
+      <h3>{{ m['title'] }}</h3>
+      <p class="hint">주 {{ m['hours_per_week'] }}시간 · 진행 {{ m['done'] }}/{{ m['total'] }}</p>
+      <div class="bar"><span style="width: {{ (m['done'] * 100 // m['total']) if m['total'] else 0 }}%"></span></div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="card empty-card"><p>아직 만든 커리큘럼이 없어요. 몇 가지만 답하면 나에게 맞는 학습 순서를 짜드려요.</p>
+    <a class="btn" href="{{ url_for('curriculum_new') }}">첫 커리큘럼 만들기</a></div>
+  {% endif %}
+</section>
+
+<section class="block">
+  <div class="browse-head"><h2>인기 강의</h2><a class="hint" href="{{ url_for('courses') }}">모두 보기 →</a></div>
+  <div class="grid grid-4">{% for c in popular %}{{ cards.card(c) }}{% endfor %}</div>
 </section>
 {% endblock %}

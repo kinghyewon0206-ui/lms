@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% import "_cards.html" as cards %}
+{% block title %}{{ c.name }} · LMS{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="경로"><a href="{{ url_for('courses') }}">강의 탐색</a> <span>/</span> {{ c.field_name }}</nav>
+
+<section class="cd-hero" style="--c: {{ c.color }}">
+  <div class="cd-main">
+    <span class="eyebrow">{{ c.university }} · {{ c.field_name }}</span>
+    <h1>{{ c.name }}</h1>
+    <p class="cd-code">{{ c.title }}</p>
+    <p class="cd-desc">{{ c.description }}</p>
+    <div class="cd-actions">
+      {% if c.watch %}
+      <a class="btn" href="{{ url_for('watch', slug=c.slug, back=url_for('course_detail', slug=c.slug)) }}">지금 바로 보기</a>
+      <a class="btn secondary" href="{{ c.url }}" target="_blank" rel="noopener noreferrer">원본 강의 페이지 ↗</a>
+      {% else %}
+      <a class="btn" href="{{ c.url }}" target="_blank" rel="noopener noreferrer">원본 강의 페이지로 이동 ↗</a>
+      {% endif %}
+    </div>
+    {% if not c.watch %}<p class="hint">이 강의는 대학 공식 영상이 외부 사이트에만 있어서, 원본 페이지에서 볼 수 있어요.</p>{% endif %}
+  </div>
+  <div class="cd-cover">{{ cards.cover(c, true) }}</div>
+</section>
+
+<section class="cd-facts" aria-label="강의 정보">
+  <div><span>수준</span><strong>{{ c.level }}</strong></div>
+  <div><span>예상 학습 시간</span><strong>약 {{ c.hours }}시간</strong></div>
+  <div><span>제공</span><strong>{{ c.university }}</strong></div>
+  <div><span>영상</span><strong>{{ '사이트 안에서 시청' if c.watch else '원본 사이트' }}</strong></div>
+  <div><span>언어</span><strong>{{ '한국어' if c.url.endswith('.kr/') else '영어 (자막 번역 가능)' }}</strong></div>
+</section>
+<p class="hint">예상 학습 시간은 강의 분량을 바탕으로 한 대략적인 추정이에요. 무료 공개 강의이지만, 공식 수료증은 제공되지 않을 수 있어요.</p>
+
+{% if related %}
+<section class="block">
+  <h2>{{ c.field_name }} 분야의 다른 강의</h2>
+  <div class="grid">{% for r in related %}{{ cards.card(r) }}{% endfor %}</div>
+</section>
+{% endif %}
+{% endblock %}

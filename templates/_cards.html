@@ -1,0 +1,33 @@
+{# 강의 카드 부품: 표지(cover) / 카드(card) / 작은 목록 항목(mini) #}
+{% macro cover(c, big=false) %}
+<div class="cover{{ ' big' if big }}" style="--c: {{ c.color }}">
+  <span class="cv-uni">{{ c.university }}</span>
+  <span class="cv-ico">{{ icon(c.icon, 132 if big else 92) }}</span>
+  <span class="cv-code">{{ c.code }}</span>
+  {% if c.watch %}<span class="cv-play">영상</span>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro card(c, rank=0) %}
+<a class="ccard" href="{{ url_for('course_detail', slug=c.slug) }}"
+   data-field="{{ c.field }}" data-level="{{ c.level }}" data-uni="{{ c.university }}" data-video="{{ 1 if c.watch else 0 }}"
+   data-hours="{{ c.hours }}" data-views="{{ c.views }}" data-pop="{{ rank }}"
+   data-name="{{ c.name }}"
+   data-text="{{ (c.title ~ ' ' ~ c.description ~ ' ' ~ c.university ~ ' ' ~ c.field_name ~ ' ' ~ c.level ~ ' ' ~ c.keywords)|lower }}">
+  {{ cover(c) }}
+  <div class="cc-body">
+    <span class="cc-uni">{{ c.university }} · {{ c.field_name }}</span>
+    <h3>{{ c.name }}</h3>
+    <p>{{ c.description }}</p>
+    <div class="cc-meta"><span>{{ c.level }}</span><span>약 {{ c.hours }}시간</span>{% if c.views %}<span>조회 {{ c.views }}회</span>{% endif %}</div>
+  </div>
+</a>
+{% endmacro %}
+
+{% macro mini(c) %}
+<a class="mini" href="{{ url_for('course_detail', slug=c.slug) }}" style="--c: {{ c.color }}">
+  <span class="mini-cover">{{ icon(c.icon, 22) }}</span>
+  <span class="mini-txt"><small>{{ c.university }}</small><strong>{{ c.name }}</strong>
+    <em>{{ c.level }} · 약 {{ c.hours }}시간{% if c.watch %} · 영상 제공{% endif %}</em></span>
+</a>
+{% endmacro %}

@@ -14,7 +14,10 @@
     <a class="brand" href="{{ url_for('index') }}"><span class="logo-mark">L</span>LMS</a>
     <nav>
       {% if g.user %}
-        <a href="{{ url_for('courses') }}">강의</a>
+        <form action="{{ url_for('courses') }}" method="get" class="nav-search" role="search">
+          <input type="search" name="q" placeholder="강의 검색" aria-label="강의 검색" autocomplete="off">
+        </form>
+        <a href="{{ url_for('courses') }}">강의 탐색</a>
         <a href="{{ url_for('curriculum_list') }}">내 커리큘럼</a>
         <span class="who">{{ g.user['name'] }}님</span>
         <form action="{{ url_for('logout') }}" method="post" class="inline">
