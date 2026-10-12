@@ -4,14 +4,16 @@
 <form method="post" class="card">
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
   <h2>나에게 맞는 커리큘럼 만들기</h2>
-  <p class="hint">세 가지만 답하면 하버드·스탠퍼드 무료 강의로 순서를 짜드려요.</p>
+  <p class="hint">세 가지만 답하면 대학 무료 강의로 순서를 짜드려요. 컴퓨터뿐 아니라 수학·경제·심리·과학도 있어요.</p>
 
   <fieldset>
     <legend>1. 어떤 걸 배우고 싶나요?</legend>
-    {% for key, (name, desc) in tracks.items() %}
+    <div class="choices-grid">
+    {% for key, t in tracks.items() %}
     <label class="choice"><input type="radio" name="track" value="{{ key }}" required>
-      <span><strong>{{ name }}</strong><small>{{ desc }}</small></span></label>
+      <span><strong>{{ t[2] }} {{ t[0] }}</strong><small>{{ t[1] }}</small></span></label>
     {% endfor %}
+    </div>
   </fieldset>
 
   <fieldset>
@@ -31,7 +33,7 @@
   </fieldset>
 
   <label>4. 목표나 상황을 자유롭게 적어주세요 (선택)
-    <textarea name="goal" maxlength="500" rows="3" placeholder="예) 비전공 직장인이고, 6개월 안에 챗봇을 만들어 보고 싶어요"></textarea>
+    <textarea name="goal" maxlength="500" rows="3" placeholder="예) 직장인이고, 6개월 안에 경제 뉴스를 이해할 정도가 되고 싶어요"></textarea>
     <small class="hint">AI가 이 내용을 참고해서 짜요. 작성한 내용은 OpenAI로 전송되니 개인정보는 적지 마세요.</small>
   </label>
 
