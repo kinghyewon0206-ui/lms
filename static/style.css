@@ -257,3 +257,24 @@ main:has(.qm-wrap) { max-width: 1100px; }
 }
 #qm.compact .qm-node text { font-size: 14px; }
 #qm.compact .qm-center text { font-size: 15px; }
+
+/* 이모티콘 없이: 사이트 안에서 바로 볼 수 있는 강의는 테두리를 굵게 */
+.mm-course.has-video rect { stroke-width: 5; }
+.why b, .tip b, .tight b { margin-right: 6px; }
+.mm-field .fn { font-size: 14px; }
+
+/* ---------- 아이콘 / 로고 / 강조 상자 (이모티콘 대신) ---------- */
+.ico { flex: none; vertical-align: middle; }
+.brand { display: inline-flex; align-items: center; gap: 8px; }
+.logo-mark { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 9px; background: linear-gradient(135deg, var(--primary), var(--pink)); color: #fff; font-size: 17px; line-height: 1; box-shadow: var(--shadow-sm); }
+.mm-field g.ico, .qm-node g.ico { fill: none; stroke: var(--c); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.qm-node.on g.ico { stroke: #fff; }
+.fieldbox summary { display: flex; align-items: center; gap: 10px; }
+.sum-ico { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--c); background: color-mix(in srgb, var(--c) 14%, #fff); }
+.choice-ico { display: inline-grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 10px; color: var(--primary-dark); background: var(--lilac-soft); }
+.choice:has(input:checked) .choice-ico { background: var(--primary); color: #fff; }
+.why, .tip, .tight { background: #faf7ff !important; border-left: 3px solid var(--primary); border-radius: 8px !important; color: var(--text) !important; }
+.tip { border-left-color: #10b981; background: #f3fbf7 !important; }
+.tight { border-left-color: #f59e0b; background: #fffaf0 !important; }
+.why b, .tip b, .tight b { font-size: 12px; letter-spacing: .02em; color: var(--muted); font-weight: 700; }
+.tag { letter-spacing: .01em; }

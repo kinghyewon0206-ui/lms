@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}강의 · LMS{% endblock %}
 {% block content %}
-<div class="head"><h2>🗺️ 강의 지도 <span class="hint">({{ total }}개)</span></h2>
-  <a class="btn" href="{{ url_for('curriculum_new') }}">✨ 커리큘럼 만들기</a></div>
+<div class="head"><h2>강의 지도 <span class="hint">({{ total }}개)</span></h2>
+  <a class="btn" href="{{ url_for('curriculum_new') }}">커리큘럼 만들기</a></div>
 <p class="hint mm-hint">분야를 눌러보세요. 가지가 뻗어 나가요. 강의를 누르면 자세한 설명이 나와요.</p>
 
 {# 넓은 화면: 마인드맵 (JS 가 그린다) #}
@@ -20,7 +20,7 @@
 <div class="mm-list">
   {% for f in fields %}
   <details class="fieldbox" style="--c: {{ f.color }}">
-    <summary><span class="fe">{{ f.emoji }}</span> {{ f.name }} <span class="hint">{{ f.courses|length }}개</span></summary>
+    <summary><span class="sum-ico">{{ icon(f.icon_name, 22) }}</span>{{ f.name }} <span class="hint">{{ f.courses|length }}개</span></summary>
     <div class="courses">
       {% for c in f.courses %}
       <article class="card course">
@@ -28,7 +28,7 @@
         <h3>{{ c.title }}</h3>
         <p>{{ c.description }}</p>
         {% if c.watch %}
-        <a class="btn" href="{{ c.watch }}">▶ 여기서 바로 보기</a>
+        <a class="btn" href="{{ c.watch }}">여기서 바로 보기</a>
         <a class="hint" href="{{ c.url }}" target="_blank" rel="noopener noreferrer">원본 강의 페이지 ↗</a>
         {% else %}
         <a class="btn secondary" href="{{ c.url }}" target="_blank" rel="noopener noreferrer">원본 강의 페이지 ↗</a>
@@ -42,7 +42,7 @@
 </div>
 <noscript><style>.mm-list { display: block !important; } .mm-wrap, .mm-hint { display: none; }</style></noscript>
 
-<p class="hint">▶ 표시가 있는 강의는 대학 공식 유튜브 영상을 사이트 안에서 바로 볼 수 있어요. 나머지는 원본 페이지로 연결돼요. 대부분 영어 강의예요.</p>
+<p class="hint">지도에서 테두리가 굵은 강의(목록에서는 '여기서 바로 보기' 버튼이 있는 강의)는 대학 공식 유튜브 영상을 사이트 안에서 바로 볼 수 있어요. 나머지는 원본 페이지로 연결돼요. 대부분 영어 강의예요.</p>
 
 <script id="mm-data" type="application/json">{{ fields|tojson }}</script>
 <script>
@@ -54,8 +54,8 @@
 
   // 넓은 화면 / 좁은 화면(태블릿·작은 창) 두 가지 배치
   var LAYOUTS = {
-    wide:    { W: 1100, H: 760, CX: 550, CY: 380, FRX: 215, FRY: 150, CRX: 470, CRY: 322, FR: 48, LAB: 14, K: 8.6, PAD: 26, PX: 70 },
-    compact: { W: 760,  H: 880, CX: 380, CY: 440, FRX: 150, FRY: 178, CRX: 318, CRY: 392, FR: 44, LAB: 11, K: 8.2, PAD: 22, PX: 70 }
+    wide:    { W: 1100, H: 760, CX: 550, CY: 380, FRX: 215, FRY: 150, CRX: 470, CRY: 322, FR: 50, IC: 26, LAB: 14, K: 8.6, PAD: 28, PX: 70, MAXW: 156, KO: 13.6 },
+    compact: { W: 760,  H: 880, CX: 380, CY: 440, FRX: 150, FRY: 178, CRX: 318, CRY: 392, FR: 46, IC: 22, LAB: 12, K: 8.4, PAD: 24, PX: 70, MAXW: 132, KO: 12.4 }
   };
 
   function el(name, attrs, parent) {
@@ -74,7 +74,13 @@
     node.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
   }
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-  function shortLabel(s) { return s.length <= L.LAB ? s : s.slice(0, L.LAB - 1) + "…"; }
+  // 한글은 영문/숫자보다 넓어서 글자 종류별로 폭을 계산하고, 너무 길면 줄임표로 자른다
+  function textW(s) { var w = 0; for (var i = 0; i < s.length; i++) w += /[가-힣]/.test(s[i]) ? L.KO : L.K; return w; }
+  function shortLabel(s) {
+    if (textW(s) <= L.MAXW) return s;
+    while (s.length > 2 && textW(s + "…") > L.MAXW) s = s.slice(0, -1);
+    return s + "…";
+  }
 
   function build() {
     L = wideMQ.matches ? LAYOUTS.wide : LAYOUTS.compact;
@@ -98,8 +104,15 @@
       el("path", { d: curve(L.CX, L.CY, p.x, p.y), "class": "mm-line", stroke: f.color }, lineLayer);
       var g = el("g", { "class": "mm-field", transform: "translate(" + p.x + "," + p.y + ")", style: "--c:" + f.color }, fieldLayer);
       el("circle", { r: L.FR }, g);
-      var em = el("text", { y: -4, "text-anchor": "middle", "class": "fe" }, g); em.textContent = f.emoji;
-      var nm = el("text", { y: 20, "text-anchor": "middle", "class": "fn" }, g); nm.textContent = f.name.length > 7 ? f.name.split("·")[0] : f.name;
+      var parts = f.name.split("·"), lines = [f.name];
+      if (f.name.length > 5 && parts.length > 1) { var hh = Math.ceil(parts.length / 2); lines = [parts.slice(0, hh).join("·"), parts.slice(hh).join("·")]; }
+      var lines2 = lines.length === 2;
+      var ic = el("g", { "class": "ico", transform: "translate(" + (-L.IC / 2) + "," + (-L.FR + (lines2 ? 10 : 14)) + ") scale(" + (L.IC / 24) + ")" }, g);
+      ic.innerHTML = f.icon;
+      lines.forEach(function (ln, li) {
+        var nm = el("text", { y: (lines2 ? 18 + li * 16 : 30), "text-anchor": "middle", "class": "fn" }, g);
+        nm.textContent = ln;
+      });
       var tt = el("title", {}, g); tt.textContent = f.name + " " + f.courses.length + "개";
       onActivate(g, function () { select(i === selected ? -1 : i); });
       g.setAttribute("aria-label", f.name + " 강의 " + f.courses.length + "개");
@@ -120,15 +133,15 @@
     f.courses.forEach(function (c, k) {
       var a = p.a + (n === 1 ? 0 : -span / 2 + span * k / (n - 1));
       var stagger = n > 5 && k % 2 ? 0.86 : 1;           // 번갈아 안쪽/바깥쪽에 놓아 겹치지 않게
-      var x = clamp(L.CX + Math.cos(a) * L.CRX * stagger, L.PX, L.W - L.PX);
+      var label = shortLabel(c.label), w = Math.max(64, textW(label) + L.PAD);
+      var x = clamp(L.CX + Math.cos(a) * L.CRX * stagger, w / 2 + 8, L.W - w / 2 - 8);   // 이름표가 화면 밖으로 안 나가게
       var y = clamp(L.CY + Math.sin(a) * L.CRY * stagger, 34, L.H - 34);
-      var label = shortLabel(c.label), w = Math.max(64, label.length * L.K + L.PAD + (c.watch ? 12 : 0));
 
       var path = el("path", { d: curve(p.x, p.y, x, y), "class": "mm-line mm-branch", stroke: f.color }, lineLayer);
       var g = el("g", { "class": "mm-course" + (c.watch ? " has-video" : ""), style: "--c:" + f.color }, courseLayer);
       g.style.transform = "translate(" + p.x + "px," + p.y + "px) scale(.2)"; g.style.opacity = "0";
       el("rect", { x: -w / 2, y: -16, width: w, height: 32, rx: 16 }, g);
-      var tx = el("text", { y: 5, "text-anchor": "middle" }, g); tx.textContent = (c.watch ? "▶ " : "") + label;
+      var tx = el("text", { y: 5, "text-anchor": "middle" }, g); tx.textContent = label;
       g.setAttribute("aria-label", c.title);
       onActivate(g, function () { selectedCourse = k; showDetail(f, c, g); });
       requestAnimationFrame(function () { requestAnimationFrame(function () {
@@ -142,7 +155,7 @@
     var box = document.getElementById("mm-detail");
     box.style.setProperty("--c", f.color);
     var meta = document.getElementById("d-meta"); meta.textContent = "";
-    [c.university, c.level, "약 " + c.hours + "시간", f.emoji + " " + f.name].forEach(function (t, k) {
+    [c.university, c.level, "약 " + c.hours + "시간", f.name].forEach(function (t, k) {
       var s = document.createElement("span"); s.className = "tag " + (k === 0 ? c.university.toLowerCase() : "level"); s.textContent = t; meta.appendChild(s);
     });
     document.getElementById("d-title").textContent = c.title;
@@ -153,7 +166,7 @@
       if (ext) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
       act.appendChild(a);
     }
-    if (c.watch) { link("▶ 여기서 바로 보기", c.watch, "btn"); link("원본 강의 페이지 ↗", c.url, "hint", true); }
+    if (c.watch) { link("여기서 바로 보기", c.watch, "btn"); link("원본 강의 페이지 ↗", c.url, "hint", true); }
     else { link("원본 강의 페이지 ↗", c.url, "btn secondary", true);
       var h = document.createElement("span"); h.className = "hint"; h.textContent = "공식 영상이 외부 사이트에만 있어요"; act.appendChild(h); }
     box.hidden = false;

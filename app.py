@@ -18,6 +18,7 @@ from functools import wraps
 
 import firebase_admin
 from firebase_admin import credentials as fb_credentials, firestore as fb_firestore
+from markupsafe import Markup
 from flask import Flask, abort, flash, g, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -109,17 +110,48 @@ VIDEOS = {
     "yale-death": "PLEA18FAF1AD9047B0", "yale-game": "PL6EF60E1027E1A10B", "yale-polphil": "PL8D95DEA9B7DFE825",
 }
 
+# 선 아이콘 모음 (24x24, 같은 굵기·끝모양으로 통일). 이모티콘 대신 쓴다.
+ICON_PATHS = {
+    "code": '<polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/><line x1="14" y1="4" x2="10" y2="20"/>',
+    "chip": '<rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+    "window": '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/>',
+    "phone": '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/>',
+    "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/>',
+    "shield": '<path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+    "calc": '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/>',
+    "trend": '<polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/>',
+    "book": '<path d="M12 6c-2-1.5-5-2-8-2v14c3 0 6 .5 8 2 2-1.5 5-2 8-2V4c-3 0-6 .5-8 2z"/><path d="M12 6v14"/>',
+    "columns": '<path d="M2 10l10-6 10 6zM5 10v10M9.5 10v10M14.5 10v10M19 10v10M3 21h18"/>',
+    "flask": '<path d="M9 3h6M10 3v6l-5.5 10a1.6 1.6 0 0 0 1.4 2.3h12.2a1.6 1.6 0 0 0 1.4-2.3L14 9V3"/><path d="M7.5 15h9"/>',
+    "chart": '<path d="M6 20V11M12 20V4M18 20v-6"/>',
+}
+TRACK_ICON = {"cs": "code", "web": "globe", "app": "phone", "ai": "chip", "data": "chart", "security": "shield",
+              "math": "calc", "econ": "trend", "human": "book", "history": "columns", "science": "flask"}
+FIELD_ICON = {"prog": "code", "ai": "chip", "webapp": "window", "sys": "shield", "math": "calc", "econ": "trend",
+              "human": "book", "history": "columns", "science": "flask"}
+
+
+def icon(name, size=20):
+    """템플릿에서 {{ icon('code') }} 로 쓰는 인라인 SVG 아이콘."""
+    return Markup(
+        f'<svg class="ico" viewBox="0 0 24 24" width="{size}" height="{size}" fill="none" stroke="currentColor" '
+        f'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICON_PATHS[name]}</svg>'
+    )
+
+
+app.jinja_env.globals["icon"] = icon
+
 # 강의 화면(마인드맵)의 분야. (key, 이모지, 이름, 색)
 FIELDS = [
-    ("prog", "💻", "프로그래밍", "#8b5cf6"),
-    ("ai", "🤖", "AI·머신러닝", "#ec4899"),
-    ("webapp", "📱", "웹·앱·게임", "#3b82f6"),
-    ("sys", "🔐", "보안·시스템", "#f59e0b"),
-    ("math", "🧮", "수학·통계", "#10b981"),
-    ("econ", "📈", "경제·경영", "#ef4444"),
-    ("human", "🧠", "심리·철학·문학", "#a855f7"),
-    ("history", "🌍", "역사", "#84cc16"),
-    ("science", "🔬", "과학", "#06b6d4"),
+    ("prog", "프로그래밍", "#8b5cf6"),
+    ("ai", "AI·머신러닝", "#ec4899"),
+    ("webapp", "웹·앱·게임", "#3b82f6"),
+    ("sys", "보안·시스템", "#f59e0b"),
+    ("math", "수학·통계", "#10b981"),
+    ("econ", "경제·경영", "#ef4444"),
+    ("human", "심리·철학·문학", "#a855f7"),
+    ("history", "역사", "#84cc16"),
+    ("science", "과학", "#06b6d4"),
 ]
 FIELD_OF = {
     **dict.fromkeys(["cs50x", "cs50p", "cip", "cs106b", "cs106l", "cs50r", "cs50tech"], "prog"),
@@ -146,17 +178,17 @@ app.jinja_env.globals["watch_slug"] = watch_slug
 # 분야별 학습 경로. (slug, 이 수준 이하인 사람에게 포함, 이유)
 # 수준: 0 = 프로그래밍이 처음, 1 = 기초 문법은 앎, 2 = 개발 경험 있음
 TRACKS = {
-    "cs": ("컴퓨터 과학 기초", "전공자처럼 컴퓨터 과학의 뼈대를 탄탄히 다지고 싶어요", "💻"),
-    "web": ("웹 개발", "웹사이트와 웹 서비스를 만들고 싶어요", "🌐"),
-    "app": ("앱·게임 개발", "모바일 앱이나 게임을 만들고 싶어요", "📱"),
-    "ai": ("AI·머신러닝", "인공지능과 머신러닝을 배우고 싶어요", "🤖"),
-    "data": ("데이터 분석", "데이터를 다루고 분석하고 싶어요", "📊"),
-    "security": ("보안·시스템", "보안과 컴퓨터 내부 동작을 이해하고 싶어요", "🔐"),
-    "math": ("수학·통계", "미적분, 선형대수, 확률·통계를 탄탄히 배우고 싶어요", "🧮"),
-    "econ": ("경제·경영", "경제와 금융, 전략적 사고를 배우고 싶어요", "📈"),
-    "human": ("심리·철학·문학", "사람의 마음과 삶, 생각하는 법을 배우고 싶어요", "🧠"),
-    "history": ("역사", "고대부터 근대까지 세계사의 흐름을 알고 싶어요", "🌍"),
-    "science": ("과학 (생물·화학·물리·천문)", "자연과학의 기초를 처음부터 배우고 싶어요", "🔬"),
+    "cs": ("컴퓨터 과학 기초", "전공자처럼 컴퓨터 과학의 뼈대를 탄탄히 다지고 싶어요"),
+    "web": ("웹 개발", "웹사이트와 웹 서비스를 만들고 싶어요"),
+    "app": ("앱·게임 개발", "모바일 앱이나 게임을 만들고 싶어요"),
+    "ai": ("AI·머신러닝", "인공지능과 머신러닝을 배우고 싶어요"),
+    "data": ("데이터 분석", "데이터를 다루고 분석하고 싶어요"),
+    "security": ("보안·시스템", "보안과 컴퓨터 내부 동작을 이해하고 싶어요"),
+    "math": ("수학·통계", "미적분, 선형대수, 확률·통계를 탄탄히 배우고 싶어요"),
+    "econ": ("경제·경영", "경제와 금융, 전략적 사고를 배우고 싶어요"),
+    "human": ("심리·철학·문학", "사람의 마음과 삶, 생각하는 법을 배우고 싶어요"),
+    "history": ("역사", "고대부터 근대까지 세계사의 흐름을 알고 싶어요"),
+    "science": ("과학 (생물·화학·물리·천문)", "자연과학의 기초를 처음부터 배우고 싶어요"),
 }
 TRACK_COLORS = {"cs": "#8b5cf6", "web": "#3b82f6", "app": "#0ea5e9", "ai": "#ec4899", "data": "#14b8a6",
                 "security": "#f59e0b", "math": "#10b981", "econ": "#ef4444", "human": "#a855f7",
@@ -322,7 +354,7 @@ CHAT_SYSTEM = """너는 친근한 학습 상담사다. 대화로 학습자의 �
 맞춤 커리큘럼(강의 순서, 공부 방향, 주당 공부 일수, 하루 공부 시간, 전체 기한)을 직접 정해준다. 오늘 날짜: {today}.
 
 [대화 규칙]
-- 한국어로, 짧고 다정하게. 한 번에 질문은 1~2개만 한다.
+- 한국어로, 짧고 다정하게. 이모지·이모티콘은 쓰지 않는다. 한 번에 질문은 1~2개만 한다.
 - 알아낼 것: (1) 배우고 싶은 것/최종 목표 (2) 현재 배경·경험 수준 (3) 공부에 쓸 수 있는 시간(주 몇 일, 하루 몇 시간) (4) 원하는 기한(있다면).
 - 보통 2~4번 주고받은 뒤 정보가 충분하면 바로 plan 을 낸다. 학습자가 막연하거나 "알아서 해줘"라고 하면 \
 네가 합리적으로 정해서 바로 plan 을 낸다. 이미 답한 것은 다시 묻지 않는다.
@@ -1035,15 +1067,18 @@ def courses():
         slug = SLUG_BY_URL.get(r["url"])
         if FIELD_OF.get(slug) is None:
             continue
-        label = r["title"].split(":")[0].strip()
+        code, _, name = r["title"].partition(":")
+        code, name = code.strip(), name.strip() or code.strip()
+        label = code if len(code) <= 8 else name   # 'CS50P' 처럼 짧은 코드는 그대로, 긴 코드는 한글 강의명으로
         by_field[FIELD_OF[slug]].append({
-            "slug": slug, "title": r["title"], "label": label if len(label) <= 14 else label[:13] + "…",
+            "slug": slug, "title": r["title"], "label": label,
             "description": r["description"], "level": r["level"], "hours": r["hours"],
             "university": r["university"], "url": r["url"],
             "watch": url_for("watch", slug=slug) if slug in VIDEOS else None,
         })
         total += 1
-    fields = [{"key": k, "emoji": e, "name": n, "color": c, "courses": by_field[k]} for k, e, n, c in FIELDS]
+    fields = [{"key": k, "name": n, "color": c, "courses": by_field[k], "icon_name": FIELD_ICON[k],
+               "icon": ICON_PATHS[FIELD_ICON[k]]} for k, n, c in FIELDS]
     return render_template("courses.html", fields=fields, total=total)
 
 
@@ -1140,9 +1175,10 @@ def curriculum_chat():
 
 def _quick_ctx():
     return {
-        "tracks": TRACKS, "levels": LEVELS, "hours_options": HOURS_OPTIONS,
+        "tracks": TRACKS, "levels": LEVELS, "hours_options": HOURS_OPTIONS, "track_icons": TRACK_ICON,
         "qm": {
-            "tracks": [{"key": k, "emoji": t[2], "name": t[0], "desc": t[1], "color": TRACK_COLORS.get(k, "#8b5cf6")}
+            "tracks": [{"key": k, "name": t[0], "desc": t[1], "color": TRACK_COLORS.get(k, "#8b5cf6"),
+                        "icon": ICON_PATHS[TRACK_ICON[k]]}
                        for k, t in TRACKS.items()],
             "levels": [{"key": k, "name": n} for k, n in LEVELS.items()],
             "hours": list(HOURS_OPTIONS),

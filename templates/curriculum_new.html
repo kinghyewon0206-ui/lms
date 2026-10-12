@@ -3,7 +3,7 @@
 {% block content %}
 <form method="post" class="card" id="quick-form">
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-  <h2>🗺️ 나에게 맞는 커리큘럼 만들기</h2>
+  <h2>나에게 맞는 커리큘럼 만들기</h2>
   <p class="hint">분야 → 실력 → 공부 시간 순서로 가지를 따라가며 골라 보세요. 대학 무료 강의로 순서를 짜드려요.
     컴퓨터뿐 아니라 수학·경제·심리·역사·과학도 있어요.</p>
 
@@ -20,7 +20,7 @@
       <div class="choices-grid">
       {% for key, t in tracks.items() %}
       <label class="choice"><input type="radio" name="track" value="{{ key }}" required>
-        <span><strong>{{ t[2] }} {{ t[0] }}</strong><small>{{ t[1] }}</small></span></label>
+        <span class="choice-ico">{{ icon(track_icons[key], 22) }}</span><span><strong>{{ t[0] }}</strong><small>{{ t[1] }}</small></span></label>
       {% endfor %}
       </div>
     </fieldset>
@@ -80,13 +80,17 @@
     node.addEventListener("click", fn);
     node.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
   }
-  function trackText(t) { return t.emoji + " " + (L.compact ? t.name.split(" (")[0] : t.name); }
+  function trackText(t) { return L.compact ? t.name.split(" (")[0] : t.name; }
   function levelText(lv) { return L.compact ? lv.name.replace("어느 정도 경험이 있어요", "경험이 있어요") : lv.name; }
 
-  function pill(parent, x, y, w, text, color, extra) {
+  function pill(parent, x, y, w, text, color, extra, iconPath) {
     var g = el("g", { "class": "qm-node" + (extra ? " " + extra : ""), style: "--c:" + color }, parent);
     el("rect", { x: -w / 2, y: -22, width: w, height: 44, rx: 22 }, g);
-    var tx = el("text", { y: 6, "text-anchor": "middle" }, g); tx.textContent = text;
+    var tx = el("text", { y: 6, x: iconPath ? 12 : 0, "text-anchor": "middle" }, g); tx.textContent = text;
+    if (iconPath) {
+      var ic = el("g", { "class": "ico", transform: "translate(" + (-w / 2 + 16) + ",-10) scale(.83)" }, g);
+      ic.innerHTML = iconPath;
+    }
     g.style.transform = "translate(" + x + "px," + y + "px)";
     return g;
   }
@@ -115,7 +119,7 @@
     trackNodes = data.tracks.map(function (t, i) {
       var y = 40 + i * gap;
       el("path", { d: curve(L.CX + L.CR, L.CY, L.X1 - L.W1 / 2, y), "class": "qm-line", stroke: t.color }, lines);
-      var g = pill(nodes, L.X1, y, L.W1, trackText(t), t.color);
+      var g = pill(nodes, L.X1, y, L.W1, trackText(t), t.color, "", t.icon);
       g.setAttribute("aria-label", t.name + ": " + t.desc);
       var title = el("title", {}, g); title.textContent = t.desc;
       press(g, function () { pickTrack(i); });
@@ -172,9 +176,9 @@
   function update() {
     var s = document.getElementById("qm-summary"), t = data.tracks[sel.ti], lv = data.levels[sel.li];
     if (!t) s.textContent = "분야를 눌러 가지를 펼쳐 보세요.";
-    else if (!lv) s.textContent = t.emoji + " " + t.name + " → 지금 실력을 골라 주세요.";
-    else if (!sel.hours) s.textContent = t.emoji + " " + t.name + " → " + lv.name + " → 일주일 공부 시간을 골라 주세요.";
-    else s.textContent = "✅ " + t.emoji + " " + t.name + " → " + lv.name + " → 주 " + sel.hours + "시간. 아래 버튼을 눌러 만들어요!";
+    else if (!lv) s.textContent = t.name + " → 지금 실력을 골라 주세요.";
+    else if (!sel.hours) s.textContent = t.name + " → " + lv.name + " → 일주일 공부 시간을 골라 주세요.";
+    else s.textContent = "선택 완료: " + t.name + " → " + lv.name + " → 주 " + sel.hours + "시간. 아래 버튼을 눌러 만들어요!";
     submit.disabled = !form.checkValidity();
   }
   form.addEventListener("change", update);

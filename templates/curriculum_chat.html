@@ -2,10 +2,10 @@
 {% block title %}커리큘럼 상담 · LMS{% endblock %}
 {% block content %}
 <div class="head"><h2>커리큘럼 상담</h2>
-  <a class="btn secondary" href="{{ url_for('curriculum_quick') }}">🗺️ 마인드맵으로 고르기 (채팅 없이)</a></div>
+  <a class="btn secondary" href="{{ url_for('curriculum_quick') }}">마인드맵으로 고르기 (채팅 없이)</a></div>
 <p class="hint">분야는 상관없어요. 상황과 배우고 싶은 걸 편하게 말해 주세요. 강의, 공부 방향, 주당 공부 일수·시간, 기한까지 정해드려요.
   대화 내용은 OpenAI로 전송되니 개인정보는 적지 마세요.</p>
-<label class="check"><input type="checkbox" id="korean" checked> 🇰🇷 한국어 강의 우선 (영어 강의는 이해하기 어려워요)</label>
+<label class="check"><input type="checkbox" id="korean" checked> 한국어 강의 우선 (영어 강의는 이해하기 어려워요)</label>
 <div class="chat card">
   <div id="log" class="log" aria-live="polite"></div>
   <form id="form" class="chat-form">
@@ -16,7 +16,7 @@
 <input type="hidden" id="csrf" value="{{ csrf_token() }}">
 <script>
 (function () {
-  var GREETING = "안녕하세요! 저는 학습 상담사예요 😊 어떤 분야든 좋아요! 배우고 싶은 것과 지금 상황(직업이나 경험 수준)을 편하게 알려주세요.";
+  var GREETING = "안녕하세요! 저는 학습 상담사예요. 어떤 분야든 좋아요! 배우고 싶은 것과 지금 상황(직업이나 경험 수준)을 편하게 알려주세요.";
   var log = document.getElementById("log"), form = document.getElementById("form");
   var input = document.getElementById("input"), send = document.getElementById("send");
   var csrf = document.getElementById("csrf").value;
