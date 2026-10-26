@@ -1189,11 +1189,41 @@ def watch(slug):
     )
 
 
+def _schedule(cur, rows):
+    """강의마다 주차를 배정하고, 전체 기간·목표 완료일을 계산한다."""
+    steps, week = [], 0
+    for r in rows:
+        weeks = r["plan_weeks"] or max(1, math.ceil(r["hours"] / cur["hours_per_week"]))
+        tight = weeks * cur["hours_per_week"] < r["hours"] * 0.7  # 배정 시간이 강의 예상 시간보다 많이 모자람
+        steps.append({**dict(r), "weeks": weeks, "start": week + 1, "end": week + weeks, "tight": tight})
+        week += weeks
+    created_at = cur["created_at"]
+    if not isinstance(created_at, datetime.datetime):  # sqlite 는 문자열로, Firestore 는 datetime 으로 준다
+        created_at = datetime.datetime.strptime(created_at, "%Y-%m-%d %H:%M:%S")
+    created_at = created_at.replace(tzinfo=None)
+    return {
+        "steps": steps, "total_weeks": week, "done": sum(1 for s_ in steps if s_["done"]),
+        "created": created_at.date(), "deadline": (created_at + datetime.timedelta(weeks=week)).date(),
+    }
+
+
 @app.route("/curriculum")
 @login_required
 def curriculum_list():
-    rows = list_curricula(g.user["id"])
-    return render_template("curriculum_list.html", curricula=rows)
+    cards = []
+    for c in list_curricula(g.user["id"]):
+        plan = _schedule(c, list_curriculum_items(c["id"]))
+        total, done = len(plan["steps"]), plan["done"]
+        cards.append({
+            **dict(c), **plan, "total": total,
+            "percent": done * 100 // total if total else 0,
+            "next": next((s_ for s_ in plan["steps"] if not s_["done"]), None),
+            "track_name": TRACKS.get(c["track"], ("",))[0], "level_name": LEVELS.get(c["level"], ""),
+        })
+    return render_template(
+        "curriculum_list.html", curricula=cards,
+        done_courses=sum(c["done"] for c in cards), total_courses=sum(c["total"] for c in cards),
+    )
 
 
 @app.route("/curriculum/new")
@@ -1328,22 +1358,13 @@ def _own_curriculum(cid):
 @login_required
 def curriculum_detail(cid):
     cur = _own_curriculum(cid)
-    rows = list_curriculum_items(cid)
-    steps, week = [], 0
-    for r in rows:
-        weeks = r["plan_weeks"] or max(1, math.ceil(r["hours"] / cur["hours_per_week"]))
-        tight = weeks * cur["hours_per_week"] < r["hours"] * 0.7  # 배정 시간이 강의 예상 시간보다 많이 모자람
-        steps.append({**dict(r), "weeks": weeks, "start": week + 1, "end": week + weeks, "tight": tight})
-        week += weeks
-    done = sum(1 for s_ in steps if s_["done"])
-    created_at = cur["created_at"]
-    if not isinstance(created_at, datetime.datetime):  # sqlite 는 문자열로, Firestore 는 datetime 으로 준다
-        created_at = datetime.datetime.strptime(created_at, "%Y-%m-%d %H:%M:%S")
+    plan = _schedule(cur, list_curriculum_items(cid))
+    steps = plan["steps"]
     return render_template(
-        "curriculum_detail.html", cur=cur, steps=steps, total_weeks=week,
-        total_hours=sum(s_["hours"] for s_ in steps), done=done,
+        "curriculum_detail.html", cur=cur, steps=steps, total_weeks=plan["total_weeks"],
+        total_hours=sum(s_["hours"] for s_ in steps), done=plan["done"],
         track_name=TRACKS.get(cur["track"], ("맞춤",))[0], level_name=LEVELS.get(cur["level"], ""),
-        deadline=(created_at.replace(tzinfo=None) + datetime.timedelta(weeks=week)).date(),
+        deadline=plan["deadline"],
     )
 
 

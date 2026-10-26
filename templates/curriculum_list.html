@@ -4,12 +4,32 @@
 <div class="head"><h2>내 커리큘럼</h2>
   <a class="btn" href="{{ url_for('curriculum_new') }}">커리큘럼 만들기</a></div>
 {% if curricula %}
+  <div class="plan-box">
+    <div><span>커리큘럼</span><strong>{{ curricula|length }}개</strong></div>
+    <div><span>완료한 강의</span><strong>{{ done_courses }}/{{ total_courses }}개</strong></div>
+  </div>
   <div class="courses">
   {% for c in curricula %}
-    <a class="card course plain" href="{{ url_for('curriculum_detail', cid=c['id']) }}">
+    <a class="card course plain mylist" href="{{ url_for('curriculum_detail', cid=c['id']) }}">
+      <div class="meta">
+        {% if c['source'] == 'ai' %}<span class="tag ai">AI가 짰어요</span>{% else %}<span class="tag">빠른 생성</span>{% endif %}
+        {% if c['track_name'] %}<span class="tag week">{{ c['track_name'] }}</span>{% endif %}
+        {% if c['level_name'] %}<span class="tag level">{{ c['level_name'] }}</span>{% endif %}
+      </div>
       <h3>{{ c['title'] }}</h3>
-      <p>주 {{ c['hours_per_week'] }}시간 · 진행 {{ c['done'] }}/{{ c['total'] }}</p>
-      <div class="bar"><span style="width: {{ (c['done'] * 100 // c['total']) if c['total'] else 0 }}%"></span></div>
+      <dl class="facts">
+        <div><dt>페이스</dt><dd>{% if c['days_per_week'] %}주 {{ c['days_per_week'] }}일 · 하루 {{ '%g' % c['hours_per_day'] }}시간{% else %}주 {{ c['hours_per_week'] }}시간{% endif %}</dd></div>
+        <div><dt>전체 기간</dt><dd>{{ c['total_weeks'] }}주 · 강의 {{ c['total'] }}개</dd></div>
+        <div><dt>목표 완료일</dt><dd>{{ c['deadline'] }}</dd></div>
+        <div><dt>만든 날</dt><dd>{{ c['created'] }}</dd></div>
+      </dl>
+      {% if c['next'] %}
+      <p class="next"><span>다음 강의</span>{{ c['next']['title'] }} <small>{{ c['next']['university'] }}</small></p>
+      {% elif c['total'] %}
+      <p class="next finished"><span>완료</span>모든 강의를 끝냈어요</p>
+      {% endif %}
+      <div class="progress"><div class="bar"><span style="width: {{ c['percent'] }}%"></span></div>
+        <small>{{ c['percent'] }}% · {{ c['done'] }}/{{ c['total'] }}</small></div>
     </a>
   {% endfor %}
   </div>
