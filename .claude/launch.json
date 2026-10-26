@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "lms",
-      "runtimeExecutable": ".venv/bin/python",
-      "runtimeArgs": ["app.py"],
-      "port": 5000
+      "runtimeExecutable": "env",
+      "runtimeArgs": ["PORT=5001", ".venv/bin/python", "app.py"],
+      "port": 5001
     }
   ]
 }
