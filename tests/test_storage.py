@@ -12,9 +12,10 @@ def test_init_db_creates_schema_and_seeds(sqlite_app):
     with sqlite_app.app_context():
         db = storage.get_db()
         tables = {r["name"] for r in db.execute("SELECT name FROM sqlite_master WHERE type = 'table'")}
-        assert {"users", "courses", "curricula", "curriculum_items", "course_views", "schema_migrations"} <= tables
+        assert {"users", "courses", "curricula", "curriculum_items", "course_views", "schema_migrations",
+                "econ_enrollments", "econ_lesson_progress"} <= tables
         assert db.execute("SELECT COUNT(*) FROM courses WHERE curated = 1").fetchone()[0] == len(SEED_COURSES)
-        assert [r["version"] for r in db.execute("SELECT version FROM schema_migrations")] == [1]
+        assert [r["version"] for r in db.execute("SELECT version FROM schema_migrations ORDER BY version")] == [1, 2]
 
 
 def test_init_db_is_idempotent(sqlite_app):
@@ -23,7 +24,7 @@ def test_init_db_is_idempotent(sqlite_app):
         assert storage.migrate_sqlite() == []  # 이미 적용된 번호는 다시 돌지 않는다
         db = storage.get_db()
         assert db.execute("SELECT COUNT(*) FROM courses").fetchone()[0] == len(SEED_COURSES)
-        assert db.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 1
+        assert db.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == len(storage.SQLITE_MIGRATIONS)
 
 
 def test_foreign_keys_are_enforced(sqlite_app):

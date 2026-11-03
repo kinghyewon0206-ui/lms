@@ -16,7 +16,7 @@ import firebase_admin
 from firebase_admin import credentials as fb_credentials, firestore as fb_firestore
 from flask import current_app, g
 
-from econova import config
+from econova import config, progress
 from econova.legacy_catalog import SEED_COURSES
 
 
@@ -365,9 +365,50 @@ def _migrate_1_legacy_lms(db):
     _add_missing_columns(db, "curriculum_items", (("weeks", "INTEGER NOT NULL DEFAULT 0"), ("tips", "TEXT NOT NULL DEFAULT ''")))
 
 
-# (번호, 설명, 함수). ECONOVA 테이블은 여기에 2, 3, ... 으로 추가한다.
+def _migrate_2_econova_enrollment(db):
+    """ECONOVA 수강 신청과 레슨 진도. 기존 LMS 테이블은 건드리지 않는다.
+    course_id·lesson_id 는 DB 번호가 아니라 content/*.json 의 고정 문자열 id 다."""
+    db.execute(
+        """
+        CREATE TABLE IF NOT EXISTS econ_enrollments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            course_id TEXT NOT NULL,
+            selected_difficulty TEXT NOT NULL DEFAULT 'beginner'
+                CHECK (selected_difficulty IN ('beginner', 'intermediate', 'advanced')),
+            status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'completed')),
+            enrolled_at TEXT NOT NULL,
+            completed_at TEXT,
+            content_version INTEGER NOT NULL,
+            UNIQUE (user_id, course_id)
+        )
+        """
+    )
+    db.execute(
+        """
+        CREATE TABLE IF NOT EXISTS econ_lesson_progress (
+            enrollment_id INTEGER NOT NULL REFERENCES econ_enrollments(id) ON DELETE CASCADE,
+            course_id TEXT NOT NULL,
+            lesson_id TEXT NOT NULL,
+            material_reviewed INTEGER NOT NULL DEFAULT 0,
+            material_reviewed_at TEXT,
+            quiz_submitted INTEGER NOT NULL DEFAULT 0,
+            quiz_submission_id TEXT,
+            quiz_submitted_at TEXT,
+            quiz_score REAL,
+            status TEXT NOT NULL DEFAULT 'not_started' CHECK (status IN ('not_started', 'in_progress', 'completed')),
+            completed_at TEXT,
+            updated_at TEXT,
+            PRIMARY KEY (enrollment_id, lesson_id)
+        )
+        """
+    )
+
+
+# (번호, 설명, 함수). 새 테이블은 다음 번호로 추가한다.
 SQLITE_MIGRATIONS = [
     (1, "기존 LMS 스키마", _migrate_1_legacy_lms),
+    (2, "ECONOVA 수강 신청·레슨 진도", _migrate_2_econova_enrollment),
 ]
 
 
@@ -419,3 +460,197 @@ def init_db():
     if not using_firestore():  # Firestore 는 스키마가 없어서 테이블을 만들 필요가 없다
         migrate_sqlite()
     seed_courses()
+
+
+# ============================================================================
+# ECONOVA 수강 신청·레슨 진도
+#   sqlite   : econ_enrollments, econ_lesson_progress
+#   Firestore: users/{user_id}/econ_enrollments/{course_id}
+#              users/{user_id}/econ_enrollments/{course_id}/lessons/{lesson_id}
+# 두 저장소 모두 같은 모양의 dict 를 돌려준다 (시각은 UTC 기준 naive datetime).
+# 진도 상태 계산은 econova.progress 가 맡고, 여기서는 읽고 쓰기만 한다.
+# ============================================================================
+
+class NotEnrolledError(Exception):
+    """수강 신청하지 않은 강좌의 진도를 바꾸려고 했을 때."""
+
+
+_TS_FORMAT = "%Y-%m-%d %H:%M:%S"
+_ENROLLMENT_FIELDS = ("course_id", "selected_difficulty", "status", "enrolled_at", "completed_at", "content_version")
+_PROGRESS_FIELDS = tuple(progress.empty_record("", ""))
+_PROGRESS_BOOLS = ("material_reviewed", "quiz_submitted")
+_PROGRESS_TIMES = ("material_reviewed_at", "quiz_submitted_at", "completed_at", "updated_at")
+
+
+def _utcnow():
+    return datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None, microsecond=0)
+
+
+def _as_dt(value):
+    """sqlite 문자열 / Firestore datetime 을 같은 모양(naive UTC datetime)으로."""
+    if value is None or value == "":
+        return None
+    if isinstance(value, datetime.datetime):
+        return value.astimezone(datetime.timezone.utc).replace(tzinfo=None) if value.tzinfo else value
+    return datetime.datetime.strptime(value, _TS_FORMAT)
+
+
+def _sql_ts(value):
+    return value.strftime(_TS_FORMAT) if value else None
+
+
+def _enrollment_dict(user_id, data):
+    out = {"user_id": user_id, **{k: data.get(k) for k in _ENROLLMENT_FIELDS}}
+    out["enrolled_at"], out["completed_at"] = _as_dt(out["enrolled_at"]), _as_dt(out["completed_at"])
+    return out
+
+
+def _progress_dict(data):
+    out = {k: data.get(k) for k in _PROGRESS_FIELDS}
+    for k in _PROGRESS_BOOLS:
+        out[k] = bool(out[k])
+    for k in _PROGRESS_TIMES:
+        out[k] = _as_dt(out[k])
+    out["status"] = out["status"] or progress.NOT_STARTED
+    return out
+
+
+def _enrollment_ref(db, user_id, course_id):
+    return db.collection("users").document(str(user_id)).collection("econ_enrollments").document(course_id)
+
+
+def enroll_course(user_id, course_id, difficulty, content_version):
+    """수강 신청. 새로 신청했으면 True, 이미 수강 중이면 아무것도 바꾸지 않고 False."""
+    now = _utcnow()
+    if using_firestore():
+        db = _fs()
+        ref = _enrollment_ref(db, user_id, course_id)
+
+        @fb_firestore.transactional
+        def _txn(transaction):
+            if ref.get(transaction=transaction).exists:
+                return False
+            transaction.set(ref, {"course_id": course_id, "selected_difficulty": difficulty, "status": "active",
+                                  "enrolled_at": now.replace(tzinfo=datetime.timezone.utc), "completed_at": None,
+                                  "content_version": content_version})
+            return True
+
+        return _txn(db.transaction())
+    db = get_db()
+    cur = db.execute(
+        # OR IGNORE 는 CHECK 위반(잘못된 난이도)까지 조용히 넘기므로, 중복(UNIQUE)만 무시하도록 ON CONFLICT 를 쓴다
+        "INSERT INTO econ_enrollments (user_id, course_id, selected_difficulty, enrolled_at, content_version)"
+        " VALUES (?, ?, ?, ?, ?) ON CONFLICT (user_id, course_id) DO NOTHING",
+        (user_id, course_id, difficulty, _sql_ts(now), content_version),
+    )
+    db.commit()
+    return cur.rowcount == 1
+
+
+def get_enrollment(user_id, course_id):
+    if using_firestore():
+        snap = _enrollment_ref(_fs(), user_id, course_id).get()
+        return _enrollment_dict(user_id, snap.to_dict()) if snap.exists else None
+    row = get_db().execute("SELECT * FROM econ_enrollments WHERE user_id = ? AND course_id = ?",
+                           (user_id, course_id)).fetchone()
+    return _enrollment_dict(user_id, dict(row)) if row else None
+
+
+def list_enrollments(user_id):
+    """수강 중인 강좌들, 신청한 순서대로."""
+    if using_firestore():
+        col = _fs().collection("users").document(str(user_id)).collection("econ_enrollments")
+        rows = [_enrollment_dict(user_id, d.to_dict()) for d in col.stream()]
+        rows.sort(key=lambda r: (r["enrolled_at"] or datetime.datetime.min, r["course_id"]))
+        return rows
+    return [_enrollment_dict(user_id, dict(r)) for r in get_db().execute(
+        "SELECT * FROM econ_enrollments WHERE user_id = ? ORDER BY enrolled_at, id", (user_id,))]
+
+
+def set_enrollment_difficulty(user_id, course_id, difficulty):
+    """본인 수강 정보의 난이도를 바꾼다. 수강 중이 아니면 False."""
+    if using_firestore():
+        ref = _enrollment_ref(_fs(), user_id, course_id)
+        if not ref.get().exists:
+            return False
+        ref.update({"selected_difficulty": difficulty})
+        return True
+    db = get_db()
+    cur = db.execute("UPDATE econ_enrollments SET selected_difficulty = ? WHERE user_id = ? AND course_id = ?",
+                     (difficulty, user_id, course_id))
+    db.commit()
+    return cur.rowcount == 1
+
+
+def list_lesson_progress(user_id, course_id):
+    """{lesson_id: 진도 기록}. 기록이 없는 레슨은 빠져 있다 (= not_started)."""
+    if using_firestore():
+        col = _enrollment_ref(_fs(), user_id, course_id).collection("lessons")
+        return {d.id: _progress_dict(d.to_dict()) for d in col.stream()}
+    rows = get_db().execute(
+        "SELECT p.* FROM econ_lesson_progress p JOIN econ_enrollments e ON e.id = p.enrollment_id"
+        " WHERE e.user_id = ? AND e.course_id = ?", (user_id, course_id))
+    return {r["lesson_id"]: _progress_dict(dict(r)) for r in rows}
+
+
+def list_all_lesson_progress(user_id):
+    """{course_id: {lesson_id: 진도 기록}} — 대시보드에서 한 번에 읽는다."""
+    if using_firestore():
+        out = {e["course_id"]: list_lesson_progress(user_id, e["course_id"]) for e in list_enrollments(user_id)}
+        return {cid: recs for cid, recs in out.items() if recs}   # sqlite 와 같게: 기록이 없는 강좌는 뺀다
+    out = {}
+    for r in get_db().execute(
+            "SELECT p.* FROM econ_lesson_progress p JOIN econ_enrollments e ON e.id = p.enrollment_id"
+            " WHERE e.user_id = ?", (user_id,)):
+        out.setdefault(r["course_id"], {})[r["lesson_id"]] = _progress_dict(dict(r))
+    return out
+
+
+def update_lesson_progress(user_id, course_id, lesson_id, requirements, *, material_reviewed=False,
+                           quiz_submission_id=None):
+    """레슨 진도에 이벤트를 반영하고 새 기록을 돌려준다. 읽기-계산-쓰기를 한 트랜잭션에서 한다.
+    수강 신청하지 않은 강좌면 NotEnrolledError."""
+    now = _utcnow()
+    if using_firestore():
+        db = _fs()
+        enrollment = _enrollment_ref(db, user_id, course_id)
+        ref = enrollment.collection("lessons").document(lesson_id)
+
+        @fb_firestore.transactional
+        def _txn(transaction):
+            if not enrollment.get(transaction=transaction).exists:
+                raise NotEnrolledError()
+            snap = ref.get(transaction=transaction)
+            old = _progress_dict(snap.to_dict()) if snap.exists else progress.empty_record(course_id, lesson_id)
+            rec = progress.apply_event(old, requirements, now, material_reviewed=material_reviewed,
+                                       quiz_submission_id=quiz_submission_id)
+            transaction.set(ref, {k: (v.replace(tzinfo=datetime.timezone.utc) if isinstance(v, datetime.datetime) else v)
+                                  for k, v in rec.items()})
+            return rec
+
+        return _txn(db.transaction())
+
+    db = get_db()
+    try:
+        db.execute("BEGIN IMMEDIATE")   # 같은 레슨을 동시에 바꿔도 마지막 계산이 앞의 변경을 덮지 않게 잠근다
+        row = db.execute("SELECT id FROM econ_enrollments WHERE user_id = ? AND course_id = ?",
+                         (user_id, course_id)).fetchone()
+        if row is None:
+            raise NotEnrolledError()
+        old_row = db.execute("SELECT * FROM econ_lesson_progress WHERE enrollment_id = ? AND lesson_id = ?",
+                             (row["id"], lesson_id)).fetchone()
+        old = _progress_dict(dict(old_row)) if old_row else progress.empty_record(course_id, lesson_id)
+        rec = progress.apply_event(old, requirements, now, material_reviewed=material_reviewed,
+                                   quiz_submission_id=quiz_submission_id)
+        values = {k: (_sql_ts(v) if k in _PROGRESS_TIMES else int(v) if k in _PROGRESS_BOOLS else v) for k, v in rec.items()}
+        cols = ", ".join(values)
+        db.execute(
+            f"INSERT INTO econ_lesson_progress (enrollment_id, {cols}) VALUES (?, {', '.join('?' * len(values))})"
+            f" ON CONFLICT(enrollment_id, lesson_id) DO UPDATE SET {', '.join(f'{k} = excluded.{k}' for k in values)}",
+            (row["id"], *values.values()),
+        )
+        db.commit()
+    except BaseException:
+        db.rollback()
+        raise
+    return rec
