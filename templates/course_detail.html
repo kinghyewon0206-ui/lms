@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% import "_cards.html" as cards %}
-{% block title %}{{ c.name }} · LMS{% endblock %}
+{% block title %}{{ c.name }} · 이전 LMS 보관함 · ECONOVA{% endblock %}
 {% block content %}
-<nav class="crumbs" aria-label="경로"><a href="{{ url_for('courses') }}">강의 탐색</a> <span>/</span> {{ c.field_name }}</nav>
+<nav class="crumbs" aria-label="경로"><a href="{{ url_for('courses') }}">대학 공개 강의 (보관)</a> <span>/</span> {{ c.field_name }}</nav>
 
 <section class="cd-hero" style="--c: {{ c.color }}">
   <div class="cd-main">

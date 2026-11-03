@@ -2,8 +2,10 @@
 
 규칙은 econova/learning.py 에 있고, 여기서는 요청을 받아 그 결과를 화면에 넘긴다.
 사용자는 항상 로그인한 본인(g.user)이다. 다른 학생의 id 를 받는 주소는 없다.
+
+강좌 JSON 은 ECONOVA 화면(render_econova)에서만 읽는다. 로그인·기존 LMS 화면은 강좌 JSON 이 깨져 있어도 동작한다.
 """
-from flask import Blueprint, abort, flash, g, redirect, render_template, request, url_for
+from flask import Blueprint, abort, current_app, flash, g, redirect, render_template, request, url_for
 
 from econova import content, learning, storage
 from econova.auth import login_required
@@ -11,9 +13,17 @@ from econova.auth import login_required
 bp = Blueprint("econova", __name__)
 
 
-@bp.app_context_processor
-def _template_helpers():
-    return {"difficulty_names": content.DIFFICULTY_NAMES, "sdg_info": learning.catalog().sdgs}
+def render_econova(template, **context):
+    """ECONOVA 템플릿 렌더링. SDG 이름·색과 난이도 이름을 함께 넘긴다 (예전에는 모든 화면에서 읽었다)."""
+    return render_template(template, sdg_info=learning.catalog().sdgs, difficulty_names=content.DIFFICULTY_NAMES,
+                           **context)
+
+
+@bp.app_errorhandler(content.ContentError)
+def _content_unavailable(exc):
+    """강좌 JSON 이 잘못돼 ECONOVA 화면을 만들 수 없을 때. 자세한 이유는 서버 로그에만 남긴다."""
+    current_app.logger.error("ECONOVA 강좌 콘텐츠를 불러오지 못했습니다 (%s): %s", request.path, exc)
+    return render_template("errors/content_unavailable.html"), 503
 
 
 def _course_or_404(course_id):
@@ -29,7 +39,7 @@ def catalog():
     cat = learning.catalog()
     enrolled = {e["course_id"] for e in storage.list_enrollments(g.user["id"])}
     visible = cat.visible()
-    return render_template(
+    return render_econova(
         "econova/catalog.html",
         enrolled_courses=[c for c in visible if c.id in enrolled],
         available=[c for c in visible if c.published and c.id not in enrolled],
@@ -43,7 +53,7 @@ def catalog():
 def course_detail(course_id):
     course = _course_or_404(course_id)
     state = learning.course_state(g.user["id"], course)
-    return render_template("econova/course_detail.html", course=course, **state)
+    return render_econova("econova/course_detail.html", course=course, **state)
 
 
 @bp.route("/courses/<course_id>/enroll", methods=["POST"])
@@ -106,7 +116,7 @@ def lesson(course_id, lesson_id):
     state = learning.course_state(g.user["id"], course)
     record = state["records"].get(lesson_.id)
     index = course.lessons.index(lesson_)
-    return render_template(
+    return render_econova(
         "econova/lesson.html", course=course, lesson=lesson_, enrollment=enrollment, record=record,
         status=state["progress"]["statuses"][lesson_.id], progress=state["progress"], sections=learning.LESSON_SECTIONS,
         prev_lesson=course.lessons[index - 1] if index > 0 else None,

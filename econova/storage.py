@@ -225,6 +225,13 @@ def list_curricula(user_id):
     ).fetchall()
 
 
+def count_curricula(user_id):
+    """기존 LMS 에서 만든 커리큘럼 개수. (대시보드의 보관함 안내용. 항목까지 읽지 않는다)"""
+    if using_firestore():
+        return sum(1 for _ in _fs().collection("curricula").where("user_id", "==", user_id).stream())
+    return get_db().execute("SELECT COUNT(*) FROM curricula WHERE user_id = ?", (user_id,)).fetchone()[0]
+
+
 def get_curriculum(cid, user_id):
     """본인 소유일 때만 돌려준다."""
     if using_firestore():
@@ -582,13 +589,17 @@ def set_enrollment_difficulty(user_id, course_id, difficulty):
     return cur.rowcount == 1
 
 
+# 진도 행의 course_id 는 복사본이다. 어느 강좌의 기록인지는 항상 수강 정보(econ_enrollments)의 course_id 로 정한다.
+_PROGRESS_SELECT = ", ".join("e.course_id AS course_id" if f == "course_id" else f"p.{f}" for f in _PROGRESS_FIELDS)
+
+
 def list_lesson_progress(user_id, course_id):
     """{lesson_id: 진도 기록}. 기록이 없는 레슨은 빠져 있다 (= not_started)."""
     if using_firestore():
         col = _enrollment_ref(_fs(), user_id, course_id).collection("lessons")
         return {d.id: _progress_dict(d.to_dict()) for d in col.stream()}
     rows = get_db().execute(
-        "SELECT p.* FROM econ_lesson_progress p JOIN econ_enrollments e ON e.id = p.enrollment_id"
+        f"SELECT {_PROGRESS_SELECT} FROM econ_lesson_progress p JOIN econ_enrollments e ON e.id = p.enrollment_id"
         " WHERE e.user_id = ? AND e.course_id = ?", (user_id, course_id))
     return {r["lesson_id"]: _progress_dict(dict(r)) for r in rows}
 
@@ -600,7 +611,7 @@ def list_all_lesson_progress(user_id):
         return {cid: recs for cid, recs in out.items() if recs}   # sqlite 와 같게: 기록이 없는 강좌는 뺀다
     out = {}
     for r in get_db().execute(
-            "SELECT p.* FROM econ_lesson_progress p JOIN econ_enrollments e ON e.id = p.enrollment_id"
+            f"SELECT {_PROGRESS_SELECT} FROM econ_lesson_progress p JOIN econ_enrollments e ON e.id = p.enrollment_id"
             " WHERE e.user_id = ?", (user_id,)):
         out.setdefault(r["course_id"], {})[r["lesson_id"]] = _progress_dict(dict(r))
     return out
@@ -631,6 +642,10 @@ def update_lesson_progress(user_id, course_id, lesson_id, requirements, *, mater
         return _txn(db.transaction())
 
     db = get_db()
+    if db.in_transaction:
+        # 이 연결에 커밋하지 않은 다른 쓰기가 남아 있으면 BEGIN 이 실패하고, 아래 rollback 이 그 쓰기까지 지운다.
+        # 지금 지원하는 흐름에서는 생기지 않지만, 남의 변경을 조용히 지우지 않도록 시작 전에 멈춘다.
+        raise RuntimeError("커밋하지 않은 변경이 남아 있는 DB 연결에서는 레슨 진도를 저장할 수 없습니다.")
     try:
         db.execute("BEGIN IMMEDIATE")   # 같은 레슨을 동시에 바꿔도 마지막 계산이 앞의 변경을 덮지 않게 잠근다
         row = db.execute("SELECT id FROM econ_enrollments WHERE user_id = ? AND course_id = ?",

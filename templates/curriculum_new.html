@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}커리큘럼 만들기 · LMS{% endblock %}
+{% block title %}커리큘럼 만들기 · 이전 LMS 보관함 · ECONOVA{% endblock %}
 {% block content %}
 <form method="post" class="card" id="quick-form" data-overlay="AI가 나에게 맞는 커리큘럼을 짜고 있어요" data-overlay-sub="강의를 고르고 순서를 정하는 중이에요. 보통 10~30초 걸려요." data-overlay-steps="강의를 고르고 순서를 정하는 중이에요. 보통 10~30초 걸려요.|공부 방향과 이유를 정리하는 중이에요.|거의 다 됐어요. 조금만 더 기다려 주세요.">
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

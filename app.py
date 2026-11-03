@@ -18,7 +18,7 @@ from markupsafe import Markup
 from flask import Flask, abort, flash, g, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from econova import config, learning, storage
+from econova import config, content, learning, storage
 from econova.auth import login_required
 from econova.config import env as _env
 from econova import web as econova_web
@@ -36,7 +36,17 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
 app.config["DATABASE"] = config.sqlite_path()
 storage.init_app(app)
 app.register_blueprint(econova_web.bp)
-config.db_backend()  # 설정이 잘못됐으면(운영 환경인데 DB_BACKEND 가 없는 등) 요청을 받기 전에 기동을 멈춘다
+# 위험한 설정이면 요청을 받기 전에 기동을 멈춘다: 운영 환경인데 DB_BACKEND 가 없거나,
+# 운영 환경에서 개발용 테스트 강좌(ECONOVA_DEV_FIXTURES=1)를 켜려는 경우.
+# (강좌 JSON 형식 오류는 여기서 멈추지 않는다. 로그인·기존 LMS 는 계속 쓸 수 있고 ECONOVA 화면만 안내 페이지를 보여준다.
+#  배포 전에는 flask --app app check-content 로 검사한다.)
+config.db_backend()
+config.dev_fixtures_enabled()
+
+# 기존 LMS(보관) 화면들. base.html 이 이 화면들 위에 보관 안내를 띄운다.
+LEGACY_ENDPOINTS = frozenset({"legacy_home", "courses", "course_detail", "watch", "curriculum_list", "curriculum_new",
+                              "curriculum_quick", "curriculum_detail"})
+app.jinja_env.globals["is_legacy_page"] = lambda: request.endpoint in LEGACY_ENDPOINTS
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
@@ -647,8 +657,21 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    """ECONOVA 학생 대시보드: 수강 중인 강좌별 진도."""
-    return render_template("econova/dashboard.html", **learning.dashboard(g.user["id"]))
+    """ECONOVA 학생 대시보드: 수강 중인 강좌별 진도. 기존 LMS 커리큘럼이 있으면 보관함 안내도 띄운다."""
+    return econova_web.render_econova("econova/dashboard.html", legacy_curricula=storage.count_curricula(g.user["id"]),
+                                      **learning.dashboard(g.user["id"]))
+
+
+# ---------------------------------------------------------------- 오류 화면
+# 기본 영어 오류 페이지 대신 ECONOVA 화면. 강좌 JSON 을 읽지 않으므로 콘텐츠가 깨져 있어도 보인다.
+@app.errorhandler(403)
+def forbidden(_exc):
+    return render_template("errors/403.html", course_id=(request.view_args or {}).get("course_id")), 403
+
+
+@app.errorhandler(404)
+def not_found(_exc):
+    return render_template("errors/404.html"), 404
 
 
 # ---------------------------------------------------------------- 기존 LMS (보관)
@@ -979,6 +1002,20 @@ def init_db_command(allow_firestore):
         raise click.ClickException("DB_BACKEND=firestore 입니다. 운영 데이터를 바꾸려면 --firestore 를 붙여 다시 실행하세요.")
     init_db()
     click.echo(f"{config.db_backend()} 저장소를 초기화했습니다.")
+
+
+@app.cli.command("check-content")
+def check_content_command():
+    """강좌 JSON(content/)을 검사한다. 실제 강좌와 개발용 테스트 강좌 파일을 모두 읽는다.
+    배포 전에 실행: flask --app app check-content  (문제가 있으면 종료 코드 1)"""
+    try:
+        real = content.load_catalog(include_fixtures=False)
+        with_fixtures = content.load_catalog(include_fixtures=True)
+    except content.ContentError as exc:
+        raise click.ClickException(f"강좌 콘텐츠 오류: {exc}")
+    fixtures = [c for c in with_fixtures.courses if c.fixture]
+    click.echo(f"강좌 콘텐츠 정상: 실제 강좌 {len(real.courses)}개 (레슨 {sum(len(c.lessons) for c in real.courses)}개, "
+               f"공개 {len(real.published())}개), 개발용 테스트 강좌 {len(fixtures)}개")
 
 
 if __name__ == "__main__":

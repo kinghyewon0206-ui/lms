@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}강좌 정보를 불러올 수 없어요 · ECONOVA{% endblock %}
+{% block content %}
+<section class="err-page" aria-labelledby="err-title">
+  <p class="err-code">잠시 점검 중</p>
+  <h1 id="err-title">강좌 정보를 불러올 수 없어요</h1>
+  <p>ECONOVA 강좌 정보에 문제가 있어 지금은 이 화면을 보여줄 수 없어요. 선생님께 알려 주세요.
+    로그인과 이전 LMS 보관함은 계속 사용할 수 있어요.</p>
+  <div class="actions">
+    {% if g.user %}
+    <a class="btn" href="{{ url_for('legacy_home') }}">이전 LMS 보관함</a>
+    {% else %}
+    <a class="btn" href="{{ url_for('index') }}">처음 화면으로</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

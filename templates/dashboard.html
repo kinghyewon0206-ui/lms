@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% import "_cards.html" as cards %}
-{% block title %}기존 LMS (보관) · ECONOVA{% endblock %}
+{% block title %}이전 LMS 보관함 · ECONOVA{% endblock %}
 {% block content %}
-<p class="hint legacy-note">이 화면은 ECONOVA 이전의 학습 기능이에요. 기록 보관을 위해 남겨 두었어요.
-  <a href="{{ url_for('dashboard') }}">ECONOVA 대시보드로 →</a></p>
 <section class="dash-hero">
   <div>
     <span class="eyebrow">기존 LMS (보관) · {{ g.user['email'] }}</span>
@@ -12,7 +10,7 @@
   </div>
   <div class="dash-actions">
     <a class="btn" href="{{ url_for('curriculum_new') }}">커리큘럼 만들기</a>
-    <a class="btn secondary" href="{{ url_for('courses') }}">강의 탐색</a>
+    <a class="btn secondary" href="{{ url_for('courses') }}">대학 공개 강의</a>
   </div>
 </section>
 
