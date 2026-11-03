@@ -47,13 +47,34 @@ cp .env.example .env          # 처음 한 번. 필요한 값만 채운다
 - 회원가입·로그인·세션·CSRF·커리큘럼 테스트는 sqlite 와 **가짜 Firestore**(`tests/fake_firestore.py`) 양쪽에서 돈다.
   실제 Firestore 와 완전히 같다는 보장은 아니므로, 배포 전에는 개발용 Firebase 프로젝트에서 따로 확인해야 한다.
 
+## ECONOVA 강좌 콘텐츠
+
+강좌·레슨의 정본은 Git 으로 관리하는 JSON 이다. 앱은 시작할 때 한 번 읽고 형식을 검사한다
+(잘못되면 파일 이름과 이유가 담긴 `ContentError`). JSON 을 고친 뒤에는 서버를 다시 시작한다.
+
+| 위치 | 내용 |
+|---|---|
+| `content/catalog.json` | 실제 강좌 순서 (c01~c09) |
+| `content/courses/cNN.json` | 강좌 1개 + 레슨 3개. `status`, 레슨별 `requirements`, 자료·퀴즈 승인 상태 |
+| `content/dev_fixtures/` | 개발·자동 테스트 전용 가짜 강좌. `ECONOVA_DEV_FIXTURES=1` 일 때만 보인다 (운영에서는 켤 수 없음) |
+| `content/sdgs.json` | SDG 번호·이름·색 |
+
+- 공개(`published`)는 강좌 정보가 있는지와 별개다. 모든 레슨의 필수 자료와 퀴즈가 `approved` 여야만 `published` 로 둘 수 있고,
+  그렇지 않으면 로더가 거절한다. 지금 실제 강좌 9개는 모두 `coming_soon` 이다.
+- 레슨 완료 = 레슨의 `requirements` 를 모두 마침 (기본: 필수 자료 확인 + 필수 퀴즈 제출). 퀴즈가 없으면 통과로 치지 않는다.
+- 공개된 실제 강좌가 아직 없으므로, 로컬에서 수강·진도 화면을 보려면 `.env` 에 `ECONOVA_DEV_FIXTURES=1` 을 넣는다.
+
 ## 코드 구조
 
 | 위치 | 역할 |
 |---|---|
-| `app.py` | Flask 앱, 라우트, AI 커리큘럼 기능 (`gunicorn app:app`) |
-| `econova/config.py` | 환경 설정, `DB_BACKEND` 선택 규칙 |
-| `econova/storage.py` | 저장소 계층 (sqlite / Firestore), sqlite 마이그레이션 |
+| `app.py` | Flask 앱, 인증, 대시보드, 기존 LMS 라우트(`/legacy`, `/course/…`, `/curriculum/…`) (`gunicorn app:app`) |
+| `econova/web.py` | ECONOVA 화면: `/courses`, `/courses/<id>`, 수강 신청, 난이도, `/learn/<course>/<lesson>` |
+| `econova/learning.py` | 학습 규칙: 공개 강좌만 수강, 레슨 접근 권한, 진도 이벤트, 대시보드 요약 |
+| `econova/content.py` | 강좌 JSON 로더와 형식 검사 |
+| `econova/progress.py` | 진도 계산 (저장소와 무관한 순수 함수) |
+| `econova/config.py` | 환경 설정, `DB_BACKEND` 선택 규칙, 개발용 테스트 강좌 스위치 |
+| `econova/storage.py` | 저장소 계층 (sqlite / Firestore), sqlite 마이그레이션, 수강·진도 저장 |
 | `econova/legacy_catalog.py` | 기존 LMS 의 대학 강의 목록 |
 | `tests/` | pytest 테스트 |
 
