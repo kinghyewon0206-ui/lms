@@ -12,15 +12,16 @@ import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from functools import lru_cache
-from functools import wraps
 
 import click
 from markupsafe import Markup
 from flask import Flask, abort, flash, g, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from econova import config, storage
+from econova import config, learning, storage
+from econova.auth import login_required
 from econova.config import env as _env
+from econova import web as econova_web
 from econova.legacy_catalog import SEED_COURSES
 from econova.storage import (
     DuplicateEmailError, add_curriculum_item, bump_course_view, course_views, create_curriculum,
@@ -34,6 +35,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
 app.config["DATABASE"] = config.sqlite_path()
 storage.init_app(app)
+app.register_blueprint(econova_web.bp)
 config.db_backend()  # 설정이 잘못됐으면(운영 환경인데 DB_BACKEND 가 없는 등) 요청을 받기 전에 기동을 멈춘다
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
@@ -557,17 +559,6 @@ def build_chat_plan(plan):
         return None
 
 
-def login_required(view):
-    @wraps(view)
-    def wrapped(*args, **kwargs):
-        if g.user is None:
-            flash("로그인이 필요합니다.", "error")
-            return redirect(url_for("login"))
-        return view(*args, **kwargs)
-
-    return wrapped
-
-
 def csrf_token():
     if "csrf_token" not in session:
         session["csrf_token"] = secrets.token_hex(16)
@@ -656,6 +647,15 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
+    """ECONOVA 학생 대시보드: 수강 중인 강좌별 진도."""
+    return render_template("econova/dashboard.html", **learning.dashboard(g.user["id"]))
+
+
+# ---------------------------------------------------------------- 기존 LMS (보관)
+# ECONOVA 메뉴에서는 숨겼지만 기능과 데이터는 그대로 둔다. /legacy 에서 들어갈 수 있다.
+@app.route("/legacy")
+@login_required
+def legacy_home():
     cat = catalog_view(course_views())
     return render_template("dashboard.html", mine=list_curricula(g.user["id"])[:3], popular=cat[:4])
 
@@ -724,7 +724,7 @@ def course_detail(slug):
     return render_template("course_detail.html", c=course, related=related)
 
 
-@app.route("/courses")
+@app.route("/legacy/courses")  # 예전 주소 /courses 는 ECONOVA 강좌 카탈로그가 쓴다
 @login_required
 def courses():
     by_field = {key: [] for key, *_ in FIELDS}

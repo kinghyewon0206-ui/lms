@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% import "econova/_macros.html" as m with context %}
+{% block title %}대시보드 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page">
+  <section class="dash-hero">
+    <div>
+      <span class="eyebrow">ECONOVA 대시보드</span>
+      <h1>안녕하세요, {{ g.user['name'] }}님</h1>
+      <p>수강 중인 강좌의 진도를 확인하고 이어서 학습하세요.</p>
+    </div>
+    <dl class="ec-stats">
+      <div><dt>수강 중인 강좌</dt><dd>{{ enrolled }}개</dd></div>
+      <div><dt>완료한 레슨</dt><dd>{{ completed_lessons }}개{% if total_lessons %} <small>/ {{ total_lessons }}</small>{% endif %}</dd></div>
+    </dl>
+  </section>
+
+  <section class="block" aria-labelledby="h-mine">
+    <div class="browse-head"><h2 id="h-mine">내 강좌</h2><a class="hint" href="{{ url_for('econova.catalog') }}">강좌 카탈로그 →</a></div>
+    {% if cards %}
+    <div class="ec-grid">
+      {% for card in cards %}
+      {% set c = card.course %}
+      {% if c %}
+      <article class="ec-card ec-mine">
+        <a class="ec-cover-link" href="{{ url_for('econova.course_detail', course_id=c.id) }}" aria-label="{{ c.title_ko }} 강좌 상세"></a>
+        <div class="ec-card-top">
+          <span class="ec-code">{{ c.id|upper }}</span>
+          <span>{% if c.fixture %}<span class="pill pill-dev">개발용 테스트 강좌</span> {% endif %}<span class="pill {{ 'pill-done' if card.progress.status == 'lessons_completed' else 'pill-on' }}">{{ m.course_status_text(card.progress) }}</span></span>
+        </div>
+        <h3>{{ c.title_ko }}</h3>
+        <p>{{ c.description }}</p>
+        {{ m.sdg_badges(c) }}
+        {{ m.progress_bar(card.progress, c.title_ko ~ ' 진도') }}
+        <p class="hint">난이도 {{ difficulty_names[card.enrollment.selected_difficulty] }}</p>
+        <div class="ec-card-actions">
+          {% if card.available and card.progress.next_lesson %}
+          <a class="btn" href="{{ url_for('econova.continue_learning', course_id=c.id) }}">이어서 학습</a>
+          {% elif not card.available %}
+          <span class="hint">지금은 학습할 수 없는 강좌예요.</span>
+          {% else %}
+          <a class="btn secondary" href="{{ url_for('econova.course_detail', course_id=c.id) }}">강좌 보기</a>
+          {% endif %}
+        </div>
+      </article>
+      {% else %}
+      <article class="ec-card is-soon">
+        <h3>{{ card.enrollment.course_id }}</h3>
+        <p class="hint">이 강좌 정보는 지금 이용할 수 없어요. 학습 기록은 그대로 보관돼요.</p>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="ec-empty">
+      <p>아직 수강 중인 강좌가 없어요. 강좌 카탈로그에서 관심 있는 경제 강좌를 골라 보세요.</p>
+      <a class="btn" href="{{ url_for('econova.catalog') }}">강좌 둘러보기</a>
+    </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

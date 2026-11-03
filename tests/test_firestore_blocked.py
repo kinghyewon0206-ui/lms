@@ -16,7 +16,8 @@ def test_full_flow_in_sqlite_mode_never_calls_firebase(sqlite_app):
     signup(client)
     login(client)
     set_csrf(client)
-    for path in ("/dashboard", "/courses", "/course/econ-micro", "/watch/econ-micro", "/curriculum", "/curriculum/quick"):
+    for path in ("/dashboard", "/courses", "/courses/c02", "/legacy", "/legacy/courses", "/course/econ-micro",
+                 "/watch/econ-micro", "/curriculum", "/curriculum/quick"):
         assert client.get(path).status_code == 200, path
     res = client.post("/curriculum/quick", data={"track": "econ", "level": "0", "hours": "5", "csrf_token": "test-csrf-token"})
     assert res.status_code == 302

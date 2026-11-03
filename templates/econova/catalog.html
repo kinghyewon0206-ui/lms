@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "econova/_macros.html" as m with context %}
+{% block title %}강좌 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page">
+  <header class="ec-head">
+    <span class="eyebrow">강좌 카탈로그</span>
+    <h1>SDG와 함께 배우는 경제 강좌</h1>
+    <p class="hint">강좌마다 레슨 3개로 이루어져 있어요. 여러 강좌를 동시에 수강할 수 있고, 진도는 강좌마다 따로 기록돼요.</p>
+  </header>
+
+  {% if enrolled_courses %}
+  <section class="block" aria-labelledby="h-enrolled">
+    <h2 id="h-enrolled">수강 중인 강좌 <small>{{ enrolled_courses|length }}</small></h2>
+    <div class="ec-grid">{% for c in enrolled_courses %}{{ m.catalog_card(c, true) }}{% endfor %}</div>
+  </section>
+  {% endif %}
+
+  <section class="block" aria-labelledby="h-available">
+    <h2 id="h-available">수강 가능한 강좌 <small>{{ available|length }}</small></h2>
+    {% if available %}
+    <div class="ec-grid">{% for c in available %}{{ m.catalog_card(c) }}{% endfor %}</div>
+    {% else %}
+    <div class="ec-empty"><p>지금 바로 수강 신청할 수 있는 강좌가 없어요. 검증된 학습자료와 평가가 준비되는 대로 공개할게요.</p></div>
+    {% endif %}
+  </section>
+
+  {% if upcoming %}
+  <section class="block" aria-labelledby="h-upcoming">
+    <h2 id="h-upcoming">준비 중인 강좌 <small>{{ upcoming|length }}</small></h2>
+    <p class="hint">학습자료와 평가를 검증하고 있는 강좌예요. 공개되기 전에는 수강 신청할 수 없어요.</p>
+    <div class="ec-grid">{% for c in upcoming %}{{ m.catalog_card(c) }}{% endfor %}</div>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

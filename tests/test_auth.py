@@ -82,7 +82,8 @@ def test_logout_requires_post(logged_in):
     assert logged_in.get("/logout").status_code == 405
 
 
-@pytest.mark.parametrize("path", ["/dashboard", "/courses", "/course/econ-micro", "/watch/econ-micro", "/curriculum",
+@pytest.mark.parametrize("path", ["/dashboard", "/courses", "/courses/c02", "/learn/c02/c02-l1", "/legacy",
+                                  "/legacy/courses", "/course/econ-micro", "/watch/econ-micro", "/curriculum",
                                   "/curriculum/new", "/curriculum/quick"])
 def test_login_required(client, path):
     res = client.get(path)

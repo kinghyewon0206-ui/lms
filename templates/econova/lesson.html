@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% import "econova/_macros.html" as m with context %}
+{% block title %}{{ lesson.title_ko }} · {{ course.title_ko }} · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <nav class="crumbs" aria-label="경로">
+    <a href="{{ url_for('econova.catalog') }}">강좌</a> <span>/</span>
+    <a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> 레슨 {{ lesson.order }}
+  </nav>
+
+  <header class="ec-lesson-head">
+    <div>
+      <span class="eyebrow">레슨 {{ lesson.order }} / {{ course.lessons|length }}{% if course.fixture %} · <span class="pill pill-dev">개발용 테스트 강좌</span>{% endif %}</span>
+      <h1>{{ lesson.title_ko }}</h1>
+      <p class="ec-en">{{ lesson.title }}</p>
+    </div>
+    <div class="ec-lesson-meta">
+      <span class="pill pill-{{ status }}">{% if status == 'completed' %}레슨 완료{% elif status == 'in_progress' %}진행 중{% else %}시작 전{% endif %}</span>
+      <span class="hint">난이도 {{ difficulty_names[enrollment.selected_difficulty] }}</span>
+    </div>
+  </header>
+
+  <section class="ec-checklist" aria-labelledby="h-req">
+    <h2 id="h-req">레슨 완료 조건</h2>
+    <p class="hint">아래 필수 활동을 모두 마치면 레슨이 완료돼요. 퀴즈 점수는 진도와 따로 기록돼요.</p>
+    <ul>
+      {% for req in lesson.requirements %}
+      {% set done = record and (record.material_reviewed if req == 'material' else record.quiz_submitted) %}
+      <li class="{{ 'done' if done }}">
+        <span class="ec-check" aria-hidden="true">{{ '✓' if done else '' }}</span>
+        {% if req == 'material' %}필수 학습자료 확인{% else %}필수 형성 퀴즈 제출{% endif %}
+        <small>{% if done %}완료{% elif req == 'quiz' %}제출 전 · 퀴즈 기능 준비 중{% else %}아직 안 함{% endif %}</small>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  {% for key, title, phase in sections %}
+  <section class="ec-section" id="sec-{{ key }}" aria-labelledby="h-{{ key }}">
+    <h2 id="h-{{ key }}">{{ loop.index }}. {{ title }}</h2>
+
+    {% if key == 'objectives' %}
+      {% if lesson.objectives %}
+        {% if course.fixture %}<p class="ec-fixture-note">개발용 테스트 자료 — 실제 학습 목표가 아니에요.</p>{% endif %}
+        <ul class="ec-list">{% for o in lesson.objectives %}<li>{{ o }}</li>{% endfor %}</ul>
+      {% else %}
+        <p class="ec-placeholder-text">이 레슨의 학습 목표는 아직 검토 중이에요.</p>
+      {% endif %}
+
+    {% elif key == 'concept' and course.fixture and lesson.material_approved %}
+      <p class="ec-fixture-note">개발용 테스트 자료 — 실제 경제학 학습 내용이 아니에요.</p>
+      <p>{{ lesson.material.body }}</p>
+      {% if 'material' in lesson.requirements %}
+        {% if record and record.material_reviewed %}
+        <p class="ec-done-note">학습자료 확인 완료</p>
+        {% else %}
+        <form method="post" action="{{ url_for('econova.material_reviewed', course_id=course.id, lesson_id=lesson.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit" class="btn">학습자료를 끝까지 확인했어요</button>
+        </form>
+        {% endif %}
+      {% endif %}
+
+    {% elif key == 'quiz' and 'quiz' in lesson.requirements %}
+      <div class="ec-placeholder">
+        <span class="pill pill-soon">{{ phase }} 예정</span>
+        <p>필수 형성 퀴즈는 퀴즈 기능이 추가되면 여기서 제출할 수 있어요. 제출하기 전에는 레슨이 완료되지 않아요.</p>
+        <p class="hint">퀴즈 상태: {% if record and record.quiz_submitted %}제출함{% else %}제출 전{% endif %}</p>
+      </div>
+
+    {% else %}
+      <div class="ec-placeholder">
+        <span class="pill pill-soon">{% if phase %}{{ phase }} 예정{% else %}준비 중{% endif %}</span>
+        <p>이 부분은 아직 준비 중이에요. 검증된 학습 내용만 보여줄 예정이라, 그 전까지는 비워 둡니다.</p>
+      </div>
+    {% endif %}
+  </section>
+  {% endfor %}
+
+  <nav class="ec-lesson-nav" aria-label="레슨 이동">
+    {% if prev_lesson %}<a class="btn secondary" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=prev_lesson.id) }}">← 이전 레슨</a>{% else %}<span></span>{% endif %}
+    <a class="hint" href="{{ url_for('econova.course_detail', course_id=course.id) }}">강좌로 돌아가기 · {{ progress.percent }}%</a>
+    {% if next_lesson %}<a class="btn secondary" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=next_lesson.id) }}">다음 레슨 →</a>{% else %}<span></span>{% endif %}
+  </nav>
+</div>
+{% endblock %}

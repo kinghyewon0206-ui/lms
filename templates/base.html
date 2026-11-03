@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}LMS{% endblock %}</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%238b5cf6%22/><text x=%2250%22 y=%2271%22 font-size=%2260%22 font-weight=%22700%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22>L</text></svg>">
+  <title>{% block title %}ECONOVA{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%235b4bdb%22/><text x=%2250%22 y=%2271%22 font-size=%2260%22 font-weight=%22700%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22>E</text></svg>">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -15,13 +15,11 @@
     <div class="busy-card"><span class="spinner big"></span><p id="busy-msg">잠시만 기다려 주세요</p><small id="busy-sub"></small></div>
   </div>
   <header class="nav">
-    <a class="brand" href="{{ url_for('index') }}"><span class="logo-mark">L</span>LMS</a>
-    <nav>
+    <a class="brand" href="{{ url_for('index') }}"><span class="logo-mark">E</span>ECONOVA</a>
+    <nav aria-label="주 메뉴">
       {% if g.user %}
-        <form action="{{ url_for('courses') }}" method="get" class="nav-search" role="search">
-          <input type="search" name="q" placeholder="강의 검색" aria-label="강의 검색" autocomplete="off">
-        </form>
-        <a href="{{ url_for('curriculum_list') }}">내 커리큘럼</a>
+        <a href="{{ url_for('dashboard') }}"{% if request.endpoint == 'dashboard' %} aria-current="page"{% endif %}>대시보드</a>
+        <a href="{{ url_for('econova.catalog') }}"{% if request.endpoint and request.endpoint.startswith('econova.') %} aria-current="page"{% endif %}>강좌</a>
         <span class="who">{{ g.user['name'] }}님</span>
         <form action="{{ url_for('logout') }}" method="post" class="inline">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -41,6 +39,9 @@
     {% endwith %}
     {% block content %}{% endblock %}
   </main>
+  {% if g.user %}
+  <footer class="site-foot"><a href="{{ url_for('legacy_home') }}">기존 LMS 기능 (보관)</a></footer>
+  {% endif %}
 <script>
 (function () {
   var bar = document.getElementById("topbar"), busy = document.getElementById("busy");

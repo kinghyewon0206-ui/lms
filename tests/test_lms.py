@@ -14,20 +14,22 @@ def _cid(res):
 
 
 def test_index(client):
-    assert "로그인하고 학습을 시작하세요" in client.get("/").get_data(as_text=True)
+    html = client.get("/").get_data(as_text=True)
+    assert "ECONOVA" in html and "지속가능발전목표(SDG)로 배우는 경제" in html
 
 
 def test_index_redirects_when_logged_in(logged_in):
     assert logged_in.get("/").headers["Location"].endswith("/dashboard")
 
 
-def test_dashboard(logged_in):
-    html = logged_in.get("/dashboard").get_data(as_text=True)
-    assert "안녕하세요, 학생님" in html and "인기 강의" in html
+def test_legacy_home(logged_in):
+    # 예전 대시보드(내 커리큘럼 + 인기 강의)는 /legacy 로 옮겨 보관한다
+    html = logged_in.get("/legacy").get_data(as_text=True)
+    assert "안녕하세요, 학생님" in html and "인기 강의" in html and "기존 LMS (보관)" in html
 
 
 def test_courses_page(logged_in):
-    res = logged_in.get("/courses?q=경제")
+    res = logged_in.get("/legacy/courses?q=경제")  # 예전 강의 탐색 (/courses 는 ECONOVA 카탈로그)
     assert res.status_code == 200
     assert "미시경제학 원리" in res.get_data(as_text=True)
 
@@ -83,7 +85,7 @@ def test_quick_curriculum_lifecycle(app, logged_in):
     assert res.status_code == 302
     assert "1/5 완료" in logged_in.get(f"/curriculum/{cid}").get_data(as_text=True)
     assert "20%" in logged_in.get("/curriculum").get_data(as_text=True)
-    assert "진행 1/5" in logged_in.get("/dashboard").get_data(as_text=True)
+    assert "진행 1/5" in logged_in.get("/legacy").get_data(as_text=True)
 
     logged_in.post(f"/curriculum/{cid}/toggle/{items[0]['item_id']}", data={"csrf_token": CSRF})
     assert "0/5 완료" in logged_in.get(f"/curriculum/{cid}").get_data(as_text=True)

@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% import "_cards.html" as cards %}
-{% block title %}홈 · LMS{% endblock %}
+{% block title %}기존 LMS (보관) · ECONOVA{% endblock %}
 {% block content %}
+<p class="hint legacy-note">이 화면은 ECONOVA 이전의 학습 기능이에요. 기록 보관을 위해 남겨 두었어요.
+  <a href="{{ url_for('dashboard') }}">ECONOVA 대시보드로 →</a></p>
 <section class="dash-hero">
   <div>
-    <span class="eyebrow">{{ g.user['email'] }}</span>
+    <span class="eyebrow">기존 LMS (보관) · {{ g.user['email'] }}</span>
     <h1>안녕하세요, {{ g.user['name'] }}님</h1>
     <p>오늘 배울 강의를 골라 보세요. 목표를 알려주시면 순서까지 짜드려요.</p>
   </div>
