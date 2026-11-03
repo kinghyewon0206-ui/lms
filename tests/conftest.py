@@ -105,6 +105,12 @@ def client(app):
     return app.test_client()
 
 
+@pytest.fixture
+def fixtures_on(monkeypatch):
+    """개발용 테스트 강좌(content/dev_fixtures)를 켠다. 실제 강좌는 아직 하나도 공개되지 않았기 때문이다."""
+    monkeypatch.setenv("ECONOVA_DEV_FIXTURES", "1")
+
+
 # ------------------------------------------------------------- 도우미
 CSRF = "test-csrf-token"
 

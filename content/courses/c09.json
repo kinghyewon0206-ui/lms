@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "id": "c09",
+  "slug": "sdg-economic-challenge",
+  "title": "SDG Economic Challenge",
+  "title_ko": "SDG 경제 챌린지",
+  "description": "직접 고른 SDG와 관련된 경제 문제를 정의하고, 근거를 분석해 정책 제안서를 만듭니다.",
+  "objectives": [
+    "SDG와 관련된 경제 문제를 구체적으로 정의한다.",
+    "자료를 근거로 정책 대안을 비교한다.",
+    "경제적 근거를 갖춘 정책 제안을 발표한다."
+  ],
+  "sdgs": "student_selected",
+  "review": {
+    "status": "draft",
+    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+  },
+  "estimated_hours": 9,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "coming_soon",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "c09-l1",
+    "c09-l2",
+    "c09-l3"
+  ],
+  "lessons": [
+    {
+      "id": "c09-l1",
+      "order": 1,
+      "title": "Identify an Economic Problem",
+      "title_ko": "경제 문제 정의하기",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c09-l2",
+      "order": 2,
+      "title": "Analyze Evidence and Compare Policy Options",
+      "title_ko": "근거 분석과 정책 대안 비교",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c09-l3",
+      "order": 3,
+      "title": "Develop and Present an Economic Policy Proposal",
+      "title_ko": "경제 정책 제안서 작성과 발표",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

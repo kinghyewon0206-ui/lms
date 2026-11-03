@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "c06",
+  "slug": "inequality-and-policy",
+  "title": "Inequality & Policy",
+  "title_ko": "불평등과 정책",
+  "description": "소득 분배를 측정하는 방법을 배우고, 조세와 사회 보장 정책이 불평등과 빈곤에 미치는 영향을 분석합니다.",
+  "objectives": [
+    "소득 불평등을 나타내는 지표를 읽고 해석한다.",
+    "조세와 이전지출의 재분배 효과를 설명한다.",
+    "빈곤 감소 정책의 비용과 효과를 비교한다."
+  ],
+  "sdgs": [
+    1,
+    10
+  ],
+  "review": {
+    "status": "draft",
+    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+  },
+  "estimated_hours": 6,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "coming_soon",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "c06-l1",
+    "c06-l2",
+    "c06-l3"
+  ],
+  "lessons": [
+    {
+      "id": "c06-l1",
+      "order": 1,
+      "title": "Income Distribution and Inequality",
+      "title_ko": "소득 분배와 불평등",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c06-l2",
+      "order": 2,
+      "title": "Taxation and Redistribution",
+      "title_ko": "조세와 재분배",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c06-l3",
+      "order": 3,
+      "title": "Poverty, Social Protection, and Public Finance",
+      "title_ko": "빈곤, 사회 보장, 재정",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "courses": [
+    "courses/c01.json",
+    "courses/c02.json",
+    "courses/c03.json",
+    "courses/c04.json",
+    "courses/c05.json",
+    "courses/c06.json",
+    "courses/c07.json",
+    "courses/c08.json",
+    "courses/c09.json"
+  ]
+}

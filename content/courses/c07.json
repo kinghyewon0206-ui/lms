@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "c07",
+  "slug": "personal-finance",
+  "title": "Personal Finance",
+  "title_ko": "개인 금융",
+  "description": "예산 세우기, 저축과 복리, 금융 위험을 배우고 금융 서비스 접근성 문제를 살펴봅니다.",
+  "objectives": [
+    "소득과 지출을 바탕으로 예산을 세운다.",
+    "단리와 복리를 계산하고 비교한다.",
+    "금융 위험의 종류와 금융 포용의 의미를 설명한다."
+  ],
+  "sdgs": [
+    1,
+    8
+  ],
+  "review": {
+    "status": "draft",
+    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+  },
+  "estimated_hours": 6,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "coming_soon",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "c07-l1",
+    "c07-l2",
+    "c07-l3"
+  ],
+  "lessons": [
+    {
+      "id": "c07-l1",
+      "order": 1,
+      "title": "Income, Spending, and Budgeting",
+      "title_ko": "소득, 지출, 예산",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c07-l2",
+      "order": 2,
+      "title": "Saving, Interest, and Compound Growth",
+      "title_ko": "저축, 이자, 복리",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c07-l3",
+      "order": 3,
+      "title": "Financial Risk and Financial Inclusion",
+      "title_ko": "금융 위험과 금융 포용",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

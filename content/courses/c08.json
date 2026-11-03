@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "id": "c08",
+  "slug": "global-economics",
+  "title": "Global Economics",
+  "title_ko": "세계 경제",
+  "description": "나라들이 무역을 하는 이유와 환율의 역할을 배우고, 지속가능한 글로벌 공급망을 탐구합니다.",
+  "objectives": [
+    "비교우위로 무역의 이익을 설명한다.",
+    "환율 변화가 수출입에 미치는 영향을 분석한다.",
+    "공급망에서 지속가능한 생산을 위한 과제를 설명한다."
+  ],
+  "sdgs": [
+    8,
+    12,
+    17
+  ],
+  "review": {
+    "status": "draft",
+    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+  },
+  "estimated_hours": 6,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "coming_soon",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "c08-l1",
+    "c08-l2",
+    "c08-l3"
+  ],
+  "lessons": [
+    {
+      "id": "c08-l1",
+      "order": 1,
+      "title": "Comparative Advantage and International Trade",
+      "title_ko": "비교우위와 국제 무역",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c08-l2",
+      "order": 2,
+      "title": "Exchange Rates and International Markets",
+      "title_ko": "환율과 국제 시장",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c08-l3",
+      "order": 3,
+      "title": "Global Supply Chains and Sustainable Production",
+      "title_ko": "글로벌 공급망과 지속가능한 생산",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

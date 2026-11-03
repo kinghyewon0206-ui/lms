@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "c02",
+  "slug": "markets-and-prices",
+  "title": "Markets & Prices",
+  "title_ko": "시장과 가격",
+  "description": "수요와 공급으로 가격이 정해지는 원리를 배우고, 식량 시장 사례로 가격 변화의 영향을 분석합니다.",
+  "objectives": [
+    "수요·공급 곡선의 의미와 곡선을 이동시키는 요인을 설명한다.",
+    "균형 가격과 거래량이 정해지는 과정을 분석한다.",
+    "가격 탄력성으로 식량 가격 변화의 영향을 해석한다."
+  ],
+  "sdgs": [
+    2,
+    12
+  ],
+  "review": {
+    "status": "draft",
+    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+  },
+  "estimated_hours": 6,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "coming_soon",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "c02-l1",
+    "c02-l2",
+    "c02-l3"
+  ],
+  "lessons": [
+    {
+      "id": "c02-l1",
+      "order": 1,
+      "title": "Supply and Demand",
+      "title_ko": "수요와 공급",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c02-l2",
+      "order": 2,
+      "title": "Market Equilibrium and Price Formation",
+      "title_ko": "시장 균형과 가격 결정",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c02-l3",
+      "order": 3,
+      "title": "Price Elasticity and Food Markets",
+      "title_ko": "가격 탄력성과 식량 시장",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

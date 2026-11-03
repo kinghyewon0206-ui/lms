@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "c01",
+  "slug": "economics-and-choices",
+  "title": "Economics & Choices",
+  "title_ko": "경제학과 선택",
+  "description": "한정된 자원 속에서 사람과 사회가 어떻게 선택하는지 배우고, 이를 책임 있는 소비와 연결합니다.",
+  "objectives": [
+    "희소성 때문에 선택이 필요한 이유를 설명한다.",
+    "기회비용으로 여러 대안을 비교한다.",
+    "소비 선택이 자원 배분과 지속가능성에 미치는 영향을 설명한다."
+  ],
+  "sdgs": [
+    12
+  ],
+  "review": {
+    "status": "draft",
+    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+  },
+  "estimated_hours": 6,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "coming_soon",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "c01-l1",
+    "c01-l2",
+    "c01-l3"
+  ],
+  "lessons": [
+    {
+      "id": "c01-l1",
+      "order": 1,
+      "title": "Scarcity and Economic Choices",
+      "title_ko": "희소성과 경제적 선택",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c01-l2",
+      "order": 2,
+      "title": "Opportunity Cost and Rational Decisions",
+      "title_ko": "기회비용과 합리적 의사결정",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c01-l3",
+      "order": 3,
+      "title": "Sustainable Consumption and Resource Allocation",
+      "title_ko": "지속가능한 소비와 자원 배분",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

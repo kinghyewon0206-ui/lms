@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "id": "dev-f2",
+  "slug": "dev-fixture-b",
+  "title": "Fixture Course B",
+  "title_ko": "개발용 테스트 강좌 B",
+  "fixture": true,
+  "description": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다.",
+  "objectives": [
+    "수강 신청과 진도 기능을 시험한다. (개발용)"
+  ],
+  "sdgs": [
+    8
+  ],
+  "review": {
+    "status": "fixture",
+    "note": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+  },
+  "estimated_hours": 1,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "published",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "dev-f2-l1",
+    "dev-f2-l2"
+  ],
+  "lessons": [
+    {
+      "id": "dev-f2-l1",
+      "order": 1,
+      "title": "Test Lesson 1",
+      "title_ko": "테스트 레슨 1",
+      "status": "published",
+      "objectives": [
+        "테스트 학습목표 1 (개발용)"
+      ],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "approved",
+        "body": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 1)"
+      },
+      "quiz": {
+        "status": "approved",
+        "assessment_id": "dev-f2-l1-quiz"
+      }
+    },
+    {
+      "id": "dev-f2-l2",
+      "order": 2,
+      "title": "Test Lesson 2",
+      "title_ko": "테스트 레슨 2",
+      "status": "published",
+      "objectives": [
+        "테스트 학습목표 2 (개발용)"
+      ],
+      "requirements": [
+        "material"
+      ],
+      "material": {
+        "status": "approved",
+        "body": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 2)"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

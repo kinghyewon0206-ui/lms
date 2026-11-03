@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "id": "c04",
+  "slug": "growth-and-stability",
+  "title": "Growth & Stability",
+  "title_ko": "성장과 안정",
+  "description": "한 나라의 경제 규모와 성장, 물가 변화를 측정하는 방법을 배우고 생활 수준과의 관계를 이해합니다.",
+  "objectives": [
+    "GDP가 무엇을 측정하고 무엇을 놓치는지 설명한다.",
+    "생산성이 장기 성장에 미치는 영향을 설명한다.",
+    "인플레이션이 구매력과 생활 수준에 미치는 영향을 해석한다."
+  ],
+  "sdgs": [
+    8
+  ],
+  "review": {
+    "status": "draft",
+    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+  },
+  "estimated_hours": 6,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "coming_soon",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "lesson_ids": [
+    "c04-l1",
+    "c04-l2",
+    "c04-l3"
+  ],
+  "lessons": [
+    {
+      "id": "c04-l1",
+      "order": 1,
+      "title": "GDP and Measuring Economic Activity",
+      "title_ko": "GDP와 경제 활동 측정",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c04-l2",
+      "order": 2,
+      "title": "Economic Growth and Productivity",
+      "title_ko": "경제 성장과 생산성",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "c04-l3",
+      "order": 3,
+      "title": "Inflation, Purchasing Power, and Living Standards",
+      "title_ko": "인플레이션, 구매력, 생활 수준",
+      "status": "draft",
+      "objectives": [],
+      "requirements": [
+        "material",
+        "quiz"
+      ],
+      "material": {
+        "status": "missing"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

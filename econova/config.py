@@ -53,6 +53,16 @@ def db_backend():
     return value
 
 
+def dev_fixtures_enabled():
+    """개발용 테스트 강좌(content/dev_fixtures)를 보여줄지. ECONOVA_DEV_FIXTURES=1 일 때만 켜지고,
+    운영 환경에서 켜려고 하면 실행을 멈춘다. (가짜 자료가 학생에게 보이면 안 되므로)"""
+    if env("ECONOVA_DEV_FIXTURES").strip() != "1":
+        return False
+    if is_production():
+        raise ConfigError("운영 환경에서는 ECONOVA_DEV_FIXTURES 를 켤 수 없습니다.")
+    return True
+
+
 def sqlite_path():
     """sqlite 파일 위치. SQLITE_PATH 로 바꿀 수 있다. (테스트는 임시 파일을 쓴다)"""
     return env("SQLITE_PATH") or os.path.join(BASE_DIR, "lms.db")
