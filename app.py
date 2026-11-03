@@ -1,5 +1,4 @@
 import datetime
-import hashlib
 import html as htmllib
 import ipaddress
 import json
@@ -9,83 +8,35 @@ import os
 import re
 import secrets
 import socket
-import sqlite3
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from functools import lru_cache
 from functools import wraps
 
-import firebase_admin
-from firebase_admin import credentials as fb_credentials, firestore as fb_firestore
+import click
 from markupsafe import Markup
 from flask import Flask, abort, flash, g, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+from econova import config, storage
+from econova.config import env as _env
+from econova.legacy_catalog import SEED_COURSES
+from econova.storage import (
+    DuplicateEmailError, add_curriculum_item, bump_course_view, course_views, create_curriculum,
+    create_user, curated_course_id, delete_curriculum, get_curriculum, get_user_by_email, get_user_by_id,
+    init_db, list_courses, list_curricula, list_curriculum_items, resolve_course_id, toggle_curriculum_item,
+    using_firestore,
+)
 
 app = Flask(__name__)
 # 실서비스에서는 반드시 환경변수로 안전한 값을 설정하세요.
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
-app.config["DATABASE"] = os.path.join(BASE_DIR, "lms.db")
+app.config["DATABASE"] = config.sqlite_path()
+storage.init_app(app)
+config.db_backend()  # 설정이 잘못됐으면(운영 환경인데 DB_BACKEND 가 없는 등) 요청을 받기 전에 기동을 멈춘다
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
-
-# ------------------------------------------------------------------- DB
-# 원본 강의 페이지로 연결되는 무료 공개 강의 (영어)
-# (slug, 대학, 제목, 설명, 난이도, 예상 학습시간(대략, 직접 잡은 추정치), URL)
-SEED_COURSES = [
-    ("cs50x", "Harvard", "CS50x: 컴퓨터 과학 입문", "하버드 최고 인기 입문 강의. C, 파이썬, SQL, 웹까지 컴퓨터 과학 전반을 배웁니다.", "입문", 100, "https://cs50.harvard.edu/x/"),
-    ("cs50p", "Harvard", "CS50P: 파이썬 프로그래밍 입문", "프로그래밍 경험이 없어도 파이썬을 처음부터 배우는 강의.", "입문", 60, "https://cs50.harvard.edu/python/"),
-    ("cs50tech", "Harvard", "CS50 Technology: 기술 이해하기", "코딩 없이 인터넷, 보안, 프로그래밍 같은 기술의 원리를 이해하는 강의.", "입문", 20, "https://cs50.harvard.edu/technology/"),
-    ("cs50biz", "Harvard", "CS50 Business: 비즈니스를 위한 컴퓨터 과학", "경영자·기획자를 위한 기술 개념 강의.", "입문", 20, "https://cs50.harvard.edu/business/"),
-    ("cs50sql", "Harvard", "CS50 SQL: 데이터베이스 입문", "SQL로 데이터베이스를 설계하고 조회하는 방법을 배웁니다.", "초급", 30, "https://cs50.harvard.edu/sql/"),
-    ("cs50r", "Harvard", "CS50 R: R 프로그래밍 입문", "R로 데이터를 다루고 시각화하는 방법을 배웁니다.", "초급", 30, "https://cs50.harvard.edu/r/"),
-    ("cs50cyber", "Harvard", "CS50 Cybersecurity: 사이버 보안 입문", "해킹과 방어의 기본 원리, 안전하게 사용하는 법을 배웁니다.", "초급", 30, "https://cs50.harvard.edu/cybersecurity/"),
-    ("cs50games", "Harvard", "CS50 Games: 2D 게임 개발", "Lua와 LÖVE로 여러 고전 게임을 직접 만들어 봅니다.", "중급", 50, "https://cs50.harvard.edu/games/"),
-    ("cs50web", "Harvard", "CS50 Web: 파이썬·자바스크립트 웹 프로그래밍", "HTML, CSS, Django, JavaScript로 웹 앱을 만드는 강의.", "중급", 60, "https://cs50.harvard.edu/web/"),
-    ("cs50mobile", "Harvard", "CS50 Mobile: React Native 앱 개발", "React Native로 iOS/안드로이드 앱을 한 번에 만듭니다.", "중급", 60, "https://cs50.harvard.edu/mobile/"),
-    ("cs50ai", "Harvard", "CS50 AI: 파이썬으로 배우는 인공지능", "탐색, 지식 표현, 머신러닝, 자연어 처리 등 AI 핵심 개념을 실습합니다.", "중급", 60, "https://cs50.harvard.edu/ai/"),
-    ("cip", "Stanford", "Code in Place: 파이썬 입문", "스탠퍼드 CS106A 기반의 무료 파이썬 입문 프로그램.", "입문", 40, "https://codeinplace.stanford.edu/"),
-    ("cs106b", "Stanford", "CS106B: 프로그래밍 추상화 (C++)", "재귀, 자료구조, 알고리즘 분석을 C++로 배우는 두 번째 프로그래밍 강의.", "초급", 100, "https://web.stanford.edu/class/cs106b/"),
-    ("cs106l", "Stanford", "CS106L: 표준 C++ 프로그래밍", "현대 C++의 표준 라이브러리와 관용구를 배웁니다.", "중급", 40, "https://web.stanford.edu/class/cs106l/"),
-    ("cs107", "Stanford", "CS107: 컴퓨터 구조와 시스템", "메모리, 포인터, 어셈블리 등 컴퓨터가 실제로 동작하는 방식을 배웁니다.", "중급", 100, "https://web.stanford.edu/class/cs107/"),
-    ("cs142", "Stanford", "CS142: 웹 애플리케이션", "React와 Node.js로 현대적인 웹 앱을 개발합니다.", "중급", 80, "https://cs142.stanford.edu/"),
-    ("cs253", "Stanford", "CS253: 웹 보안", "웹 사이트를 노리는 공격과 방어 기법을 배웁니다.", "고급", 60, "https://web.stanford.edu/class/cs253/"),
-    ("cs193p", "Stanford", "CS193p: iOS 앱 개발", "SwiftUI로 아이폰 앱을 만드는 스탠퍼드의 유명 강의.", "중급", 80, "https://cs193p.sites.stanford.edu/"),
-    ("cs109", "Stanford", "CS109: 컴퓨터 과학자를 위한 확률", "확률과 통계를 머신러닝에 쓰는 관점에서 배웁니다.", "중급", 100, "https://cs109.stanford.edu/"),
-    ("cs221", "Stanford", "CS221: 인공지능 원리와 기법", "탐색, 게임, 확률 모델 등 AI의 기초를 폭넓게 다룹니다.", "고급", 90, "https://cs221.stanford.edu/"),
-    ("cs229", "Stanford", "CS229: 머신러닝", "지도/비지도 학습, 딥러닝, 강화학습을 수학적으로 다루는 대표 머신러닝 강의.", "고급", 100, "https://cs229.stanford.edu/"),
-    ("cs230", "Stanford", "CS230: 딥러닝", "신경망 구조와 실전 딥러닝 프로젝트 기법을 배웁니다.", "고급", 60, "https://cs230.stanford.edu/"),
-    ("cs231n", "Stanford", "CS231n: 컴퓨터 비전을 위한 딥러닝", "이미지 인식을 중심으로 신경망과 딥러닝을 깊이 있게 배웁니다.", "고급", 100, "https://cs231n.stanford.edu/"),
-    ("cs224n", "Stanford", "CS224N: 딥러닝 기반 자연어 처리", "트랜스포머와 대규모 언어모델까지 다루는 자연어 처리 강의.", "고급", 100, "https://web.stanford.edu/class/cs224n/"),
-    ("cs224w", "Stanford", "CS224W: 그래프 머신러닝", "그래프 데이터와 그래프 신경망을 다룹니다.", "고급", 70, "https://web.stanford.edu/class/cs224w/"),
-    ("cs234", "Stanford", "CS234: 강화학습", "에이전트가 시행착오로 배우는 강화학습의 이론과 알고리즘.", "고급", 80, "https://web.stanford.edu/class/cs234/"),
-    ("cs25", "Stanford", "CS25: Transformers United", "트랜스포머 연구자들의 초청 강연 시리즈.", "고급", 30, "https://web.stanford.edu/class/cs25/"),
-    ("cs336", "Stanford", "CS336: 언어모델을 밑바닥부터", "언어모델을 처음부터 직접 만들며 배우는 고급 강의.", "고급", 120, "https://stanford-cs336.github.io/spring2025/"),
-    ("ee364a", "Stanford", "EE364a: 볼록 최적화", "머신러닝·공학 전반의 기반이 되는 최적화 이론.", "고급", 100, "https://web.stanford.edu/class/ee364a/"),
-    # ---- 컴퓨터 밖 분야 (MIT OpenCourseWare, Open Yale Courses) ----
-    ("econ-micro", "MIT", "MIT 14.01: 미시경제학 원리", "시장, 수요와 공급, 소비자와 기업의 선택 등 경제학의 기본기를 배웁니다.", "입문", 60, "https://ocw.mit.edu/courses/14-01sc-principles-of-microeconomics-fall-2011/"),
-    ("finance", "MIT", "MIT 15.401: 금융 이론 I", "화폐의 시간가치, 채권·주식 평가, 위험과 수익 등 금융의 핵심 개념.", "초급", 40, "https://ocw.mit.edu/courses/15-401-finance-theory-i-fall-2008/"),
-    ("yale-game", "Yale", "Yale ECON 159: 게임 이론", "전략적 상황에서의 의사결정을 생활 속 사례로 배우는 인기 강의.", "초급", 50, "https://oyc.yale.edu/economics/econ-159"),
-    ("psych-mit", "MIT", "MIT 9.00SC: 심리학 입문", "지각, 학습, 기억, 사회심리 등 인간의 마음과 행동을 과학적으로 다룹니다.", "입문", 40, "https://ocw.mit.edu/courses/9-00sc-introduction-to-psychology-fall-2011/"),
-    ("yale-death", "Yale", "Yale PHIL 176: 죽음 (Death)", "죽음의 본질과 삶의 의미를 철학적으로 탐구하는 유명 강의.", "입문", 40, "https://oyc.yale.edu/philosophy/phil-176"),
-    ("yale-polphil", "Yale", "Yale PLSC 114: 정치철학 입문", "플라톤부터 현대까지 정의, 자유, 권력에 대한 고전 사상을 읽습니다.", "초급", 40, "https://oyc.yale.edu/political-science/plsc-114"),
-    ("bio-mit", "MIT", "MIT 7.01SC: 생물학의 기초", "DNA, 단백질, 세포, 유전의 원리를 처음부터 배웁니다.", "입문", 60, "https://ocw.mit.edu/courses/7-01sc-fundamentals-of-biology-fall-2011/"),
-    ("chem-mit", "MIT", "MIT 5.111: 화학의 원리", "원자 구조, 화학 결합, 열역학 등 일반화학의 기초.", "초급", 60, "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/"),
-    ("phys-mit", "MIT", "MIT 8.01SC: 고전역학 (물리 I)", "힘, 운동, 에너지, 운동량 등 물리학의 기초를 풀이 중심으로 배웁니다.", "초급", 70, "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"),
-    ("calc-mit", "MIT", "MIT 18.01SC: 미적분학", "극한, 미분, 적분의 기초를 풀이 중심으로 배웁니다.", "초급", 70, "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/"),
-    ("linalg-mit", "MIT", "MIT 18.06SC: 선형대수학", "벡터, 행렬, 고유값 등 머신러닝의 바탕이 되는 수학.", "중급", 60, "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/"),
-    ("stats-mit", "MIT", "MIT 18.05: 확률과 통계 입문", "확률의 기초부터 통계적 추론까지 폭넓게 배웁니다.", "중급", 60, "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/"),
-    ("yale-finmkt", "Yale", "Yale ECON 252: 금융 시장", "노벨상 수상자 쉴러가 금융 시장과 제도가 어떻게 움직이는지 설명합니다.", "초급", 40, "https://oyc.yale.edu/economics/econ-252"),
-    ("yale-moral", "Yale", "Yale PHIL 181: 철학과 인간 본성의 과학", "인간은 어떻게 생각하고 선택하는지를 철학과 과학으로 함께 탐구합니다.", "초급", 40, "https://oyc.yale.edu/philosophy/phil-181"),
-    ("yale-novel", "Yale", "Yale ENGL 291: 1945년 이후 미국 소설", "전후 미국 문학의 대표작을 읽으며 소설을 깊이 감상하는 법을 배웁니다.", "초급", 40, "https://oyc.yale.edu/english/engl-291"),
-    ("yale-greek", "Yale", "Yale CLCV 205: 고대 그리스사", "페르시아 전쟁과 아테네·스파르타의 흥망 등 고대 그리스의 역사를 배웁니다.", "입문", 40, "https://oyc.yale.edu/classics/clcv-205"),
-    ("yale-middle", "Yale", "Yale HIST 210: 초기 중세 (284–1000)", "로마 제국의 몰락부터 중세 유럽이 형성되는 과정을 배웁니다.", "초급", 40, "https://oyc.yale.edu/history/hist-210"),
-    ("yale-civil", "Yale", "Yale HIST 119: 남북전쟁과 재건기", "미국을 바꾼 남북전쟁과 그 이후의 재건 시대를 다룹니다.", "초급", 40, "https://oyc.yale.edu/history/hist-119"),
-    ("yale-epidemics", "Yale", "Yale HIST 234: 전염병과 서양 사회", "페스트, 콜레라 같은 전염병이 사회와 역사를 어떻게 바꿨는지 배웁니다.", "입문", 40, "https://oyc.yale.edu/history/hist-234"),
-    ("yale-astro", "Yale", "Yale ASTR 160: 천체물리학의 최전선", "블랙홀, 우주의 팽창, 외계 행성 등 현대 천문학의 핵심 논쟁을 다룹니다.", "입문", 40, "https://oyc.yale.edu/astronomy/astr-160"),
-]
 
 # 사이트 안에서 바로 재생할 수 있는 공식 유튜브 재생목록. (slug -> playlist id)
 # 대학 공식 채널(CS50, Stanford Online)이고 삽입(embed)이 허용된 것만 넣었다. 나머지 강의는 원본 링크로만 연결한다.
@@ -272,21 +223,6 @@ PATHS = {
 }
 LEVELS = {0: "이 분야는 처음이에요", 1: "기초는 알아요", 2: "어느 정도 경험이 있어요"}
 HOURS_OPTIONS = (3, 5, 10, 20)
-
-
-def _env(name):
-    """환경변수 또는 .env 파일에서 값을 읽는다. (.env 는 저장 즉시 반영, 서버 재시작 불필요)"""
-    if os.environ.get(name):
-        return os.environ[name]
-    try:
-        with open(os.path.join(BASE_DIR, ".env"), encoding="utf-8") as f:
-            for line in f:
-                key, _, value = line.strip().partition("=")
-                if key.strip() == name:
-                    return value.strip().strip("\"'")
-    except OSError:
-        pass
-    return ""
 
 
 def _openai_json(messages, temperature=0.4):
@@ -621,363 +557,6 @@ def build_chat_plan(plan):
         return None
 
 
-def get_db():
-    if "db" not in g:
-        g.db = sqlite3.connect(app.config["DATABASE"])
-        g.db.row_factory = sqlite3.Row
-    return g.db
-
-
-@app.teardown_appcontext
-def close_db(_exc):
-    db = g.pop("db", None)
-    if db is not None:
-        db.close()
-
-
-# ============================================================================
-# 저장소: 로컬에서는 sqlite3 파일(lms.db), 배포 환경에서는(FIREBASE_CREDENTIALS_JSON
-# 이 있으면) Firebase Firestore 를 쓴다. Render 무료 플랜은 재배포할 때마다 디스크가
-# 초기화되는데, Firestore 는 서버 밖에 저장되니 재배포해도 회원 데이터가 지워지지 않는다.
-# ============================================================================
-
-class DuplicateEmailError(Exception):
-    """이미 가입된 이메일로 회원가입을 시도했을 때."""
-
-
-def using_firestore():
-    return bool(_env("FIREBASE_CREDENTIALS_JSON"))
-
-
-_fb_app = None
-
-
-def _fs():
-    """Firestore 클라이언트. Firebase 앱은 프로세스당 한 번만 초기화해야 해서 전역에 캐시한다."""
-    global _fb_app
-    if _fb_app is None:
-        cred = fb_credentials.Certificate(json.loads(_env("FIREBASE_CREDENTIALS_JSON")))
-        _fb_app = firebase_admin.initialize_app(cred)
-    return fb_firestore.client(_fb_app)
-
-
-def create_user(email, name, password_hash):
-    """새 사용자를 만든다. 이메일이 이미 있으면 DuplicateEmailError."""
-    if using_firestore():
-        db = _fs()
-        ref = db.collection("users").document(email)
-
-        @fb_firestore.transactional
-        def _txn(transaction):
-            if ref.get(transaction=transaction).exists:
-                raise DuplicateEmailError()
-            transaction.set(ref, {
-                "email": email, "name": name, "password_hash": password_hash,
-                "role": "student", "created_at": fb_firestore.SERVER_TIMESTAMP,
-            })
-
-        _txn(db.transaction())
-        return
-    try:
-        get_db().execute(
-            "INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?)", (email, name, password_hash)
-        )
-        get_db().commit()
-    except sqlite3.IntegrityError:
-        raise DuplicateEmailError()
-
-
-def get_user_by_email(email):
-    if using_firestore():
-        snap = _fs().collection("users").document(email).get()
-        if not snap.exists:
-            return None
-        return {**snap.to_dict(), "id": snap.id}
-    return get_db().execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
-
-
-def get_user_by_id(uid):
-    # Firestore 에서는 이메일을 사용자 문서의 id 로 쓴다 (자동으로 유일해지고, 이메일로 바로 조회 가능).
-    return get_user_by_email(uid) if using_firestore() else get_db().execute(
-        "SELECT * FROM users WHERE id = ?", (uid,)
-    ).fetchone()
-
-
-def list_courses(university=None):
-    """curated=1 인(직접 고른) 강의 목록. university 를 주면 그 대학만."""
-    if using_firestore():
-        rows = [{**d.to_dict(), "id": d.id} for d in _fs().collection("courses").where("curated", "==", True).stream()]
-        rows.sort(key=lambda r: r.get("seed_order", 0))
-        return [r for r in rows if r["university"] == university] if university else rows
-    db = get_db()
-    if university:
-        return db.execute(
-            "SELECT * FROM courses WHERE curated = 1 AND university = ? ORDER BY id", (university,)
-        ).fetchall()
-    return db.execute("SELECT * FROM courses WHERE curated = 1 ORDER BY id").fetchall()
-
-
-def curated_course_id(slug):
-    """SEED_COURSES 의 slug 에 해당하는 courses 문서/행의 id."""
-    if using_firestore():
-        return slug
-    url = next(c[6] for c in SEED_COURSES if c[0] == slug)
-    return get_db().execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
-
-
-def resolve_course_id(item):
-    """커리큘럼 항목이 가리키는 courses 문서/행의 id. 목록 밖(AI 가 찾은) 강의는 없으면 새로 만든다."""
-    if item["slug"]:
-        return curated_course_id(item["slug"])
-
-    c = item["custom"]
-    url = c["url"]
-    if using_firestore():
-        cid = hashlib.sha1(url.encode()).hexdigest()[:16]
-        ref = _fs().collection("courses").document(cid)
-        if not ref.get().exists:
-            ref.set({"university": c["university"], "title": item["title"], "description": c["description"],
-                      "level": c["level"], "hours": item["hours"], "url": url, "curated": False})
-        return cid
-
-    db = get_db()
-    db.execute(
-        "INSERT OR IGNORE INTO courses (university, title, description, level, hours, url, curated)"
-        " VALUES (?, ?, ?, ?, ?, ?, 0)",
-        (c["university"], item["title"], c["description"], c["level"], item["hours"], url),
-    )
-    return db.execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
-
-
-def bump_course_view(slug):
-    """강의를 본 횟수를 1 올린다. (인기 순위에 쓴다)"""
-    if using_firestore():
-        _fs().collection("course_views").document(slug).set({"views": fb_firestore.Increment(1)}, merge=True)
-        return
-    db = get_db()
-    db.execute(
-        "INSERT INTO course_views (slug, views) VALUES (?, 1) ON CONFLICT(slug) DO UPDATE SET views = views + 1", (slug,)
-    )
-    db.commit()
-
-
-def course_views():
-    """{slug: 조회수}"""
-    if using_firestore():
-        return {d.id: int((d.to_dict() or {}).get("views", 0)) for d in _fs().collection("course_views").stream()}
-    return {r["slug"]: r["views"] for r in get_db().execute("SELECT slug, views FROM course_views")}
-
-
-def create_curriculum(user_id, title, track, level, hours_per_week, source, note, goal_text,
-                       days_per_week=0, hours_per_day=0):
-    if using_firestore():
-        ref = _fs().collection("curricula").document()
-        ref.set({
-            "user_id": user_id, "title": title, "track": track, "level": level,
-            "hours_per_week": hours_per_week, "source": source, "note": note, "goal_text": goal_text,
-            "days_per_week": days_per_week, "hours_per_day": hours_per_day,
-            "created_at": fb_firestore.SERVER_TIMESTAMP,
-        })
-        return ref.id
-    db = get_db()
-    cur = db.execute(
-        "INSERT INTO curricula (user_id, title, track, level, hours_per_week, source, note, goal_text,"
-        " days_per_week, hours_per_day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        (user_id, title, track, level, hours_per_week, source, note, goal_text, days_per_week, hours_per_day),
-    )
-    db.commit()
-    return cur.lastrowid
-
-
-def add_curriculum_item(cid, course_id, position, reason, weeks=0, tips=""):
-    if using_firestore():
-        _fs().collection("curricula").document(cid).collection("items").document().set({
-            "course_id": course_id, "position": position, "reason": reason, "done": False,
-            "weeks": weeks, "tips": tips,
-        })
-        return
-    get_db().execute(
-        "INSERT INTO curriculum_items (curriculum_id, course_id, position, reason, weeks, tips)"
-        " VALUES (?, ?, ?, ?, ?, ?)",
-        (cid, course_id, position, reason, weeks, tips),
-    )
-    get_db().commit()
-
-
-def list_curricula(user_id):
-    """사용자의 커리큘럼 목록 (강의 개수·완료 개수 포함), 최신순."""
-    if using_firestore():
-        db = _fs()
-        rows = []
-        for d in db.collection("curricula").where("user_id", "==", user_id).stream():
-            data = d.to_dict()
-            items = [i.to_dict() for i in db.collection("curricula").document(d.id).collection("items").stream()]
-            rows.append({**data, "id": d.id, "total": len(items), "done": sum(1 for i in items if i.get("done"))})
-        rows.sort(key=lambda r: r.get("created_at") or datetime.datetime.min, reverse=True)
-        return rows
-    return get_db().execute(
-        """
-        SELECT c.*, COUNT(i.id) AS total, COALESCE(SUM(i.done), 0) AS done
-        FROM curricula c LEFT JOIN curriculum_items i ON i.curriculum_id = c.id
-        WHERE c.user_id = ? GROUP BY c.id ORDER BY c.id DESC
-        """,
-        (user_id,),
-    ).fetchall()
-
-
-def get_curriculum(cid, user_id):
-    """본인 소유일 때만 돌려준다."""
-    if using_firestore():
-        snap = _fs().collection("curricula").document(cid).get()
-        if not snap.exists or snap.to_dict().get("user_id") != user_id:
-            return None
-        return {**snap.to_dict(), "id": snap.id}
-    return get_db().execute(
-        "SELECT * FROM curricula WHERE id = ? AND user_id = ?", (cid, user_id)
-    ).fetchone()
-
-
-def list_curriculum_items(cid):
-    """강의 정보와 합쳐서, 순서대로."""
-    if using_firestore():
-        db = _fs()
-        items = list(db.collection("curricula").document(cid).collection("items").stream())
-        items.sort(key=lambda d: d.to_dict().get("position", 0))
-        out = []
-        for d in items:
-            it = d.to_dict()
-            course_snap = db.collection("courses").document(it["course_id"]).get()
-            course = course_snap.to_dict() if course_snap.exists else {}
-            out.append({**course, "item_id": d.id, "reason": it.get("reason", ""), "done": bool(it.get("done")),
-                        "plan_weeks": it.get("weeks") or 0, "tips": it.get("tips", "")})
-        return out
-    return get_db().execute(
-        """
-        SELECT i.id AS item_id, i.reason, i.done, i.weeks AS plan_weeks, i.tips, c.*
-        FROM curriculum_items i JOIN courses c ON c.id = i.course_id
-        WHERE i.curriculum_id = ? ORDER BY i.position
-        """,
-        (cid,),
-    ).fetchall()
-
-
-def toggle_curriculum_item(cid, item_id):
-    if using_firestore():
-        ref = _fs().collection("curricula").document(cid).collection("items").document(item_id)
-        snap = ref.get()
-        if snap.exists:
-            ref.update({"done": not snap.to_dict().get("done")})
-        return
-    db = get_db()
-    db.execute("UPDATE curriculum_items SET done = 1 - done WHERE id = ? AND curriculum_id = ?", (item_id, cid))
-    db.commit()
-
-
-def delete_curriculum(cid):
-    if using_firestore():
-        db = _fs()
-        for d in db.collection("curricula").document(cid).collection("items").stream():
-            d.reference.delete()
-        db.collection("curricula").document(cid).delete()
-        return
-    db = get_db()
-    db.execute("DELETE FROM curriculum_items WHERE curriculum_id = ?", (cid,))
-    db.execute("DELETE FROM curricula WHERE id = ?", (cid,))
-    db.commit()
-
-
-def init_db():
-    if using_firestore():
-        # Firestore 는 스키마가 없어서 테이블을 만들 필요는 없고, 강의 목록만 채워 넣으면 된다.
-        db = _fs()
-        batch = db.batch()
-        for i, c in enumerate(SEED_COURSES):
-            slug, university, title, description, level, hours, url = c
-            batch.set(db.collection("courses").document(slug), {
-                "university": university, "title": title, "description": description,
-                "level": level, "hours": hours, "url": url, "curated": True, "seed_order": i,
-            })
-        batch.commit()
-        return
-
-    db = get_db()
-    db.execute("CREATE TABLE IF NOT EXISTS course_views (slug TEXT PRIMARY KEY, views INTEGER NOT NULL DEFAULT 0)")
-    db.execute(
-        """
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT NOT NULL UNIQUE,
-            name TEXT NOT NULL,
-            password_hash TEXT NOT NULL,
-            role TEXT NOT NULL DEFAULT 'student',
-            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        )
-        """
-    )
-    cols = [r["name"] for r in db.execute("PRAGMA table_info(courses)")]
-    if cols and "hours" not in cols:
-        db.execute("DROP TABLE courses")  # 강의 목록은 SEED_COURSES 에서 다시 채워진다
-    db.execute(
-        """
-        CREATE TABLE IF NOT EXISTS courses (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            university TEXT NOT NULL,
-            title TEXT NOT NULL,
-            description TEXT NOT NULL,
-            level TEXT NOT NULL,
-            hours INTEGER NOT NULL DEFAULT 40,
-            url TEXT NOT NULL UNIQUE,
-            curated INTEGER NOT NULL DEFAULT 0
-        )
-        """
-    )
-    if "curated" not in [r["name"] for r in db.execute("PRAGMA table_info(courses)")]:
-        db.execute("ALTER TABLE courses ADD COLUMN curated INTEGER NOT NULL DEFAULT 0")
-    db.executemany(
-        """
-        INSERT INTO courses (university, title, description, level, hours, url, curated)
-        VALUES (?, ?, ?, ?, ?, ?, 1)
-        ON CONFLICT(url) DO UPDATE SET university = excluded.university, title = excluded.title,
-            description = excluded.description, level = excluded.level, hours = excluded.hours, curated = 1
-        """,
-        [c[1:] for c in SEED_COURSES],
-    )
-    db.execute(
-        """
-        CREATE TABLE IF NOT EXISTS curricula (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL REFERENCES users(id),
-            title TEXT NOT NULL,
-            track TEXT NOT NULL,
-            level INTEGER NOT NULL,
-            hours_per_week INTEGER NOT NULL,
-            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-        )
-        """
-    )
-    for col, ddl in (("source", "TEXT NOT NULL DEFAULT 'rule'"), ("note", "TEXT NOT NULL DEFAULT ''"),
-                     ("goal_text", "TEXT NOT NULL DEFAULT ''"), ("days_per_week", "INTEGER NOT NULL DEFAULT 0"),
-                     ("hours_per_day", "REAL NOT NULL DEFAULT 0")):
-        if col not in [r["name"] for r in db.execute("PRAGMA table_info(curricula)")]:
-            db.execute(f"ALTER TABLE curricula ADD COLUMN {col} {ddl}")
-    db.execute(
-        """
-        CREATE TABLE IF NOT EXISTS curriculum_items (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            curriculum_id INTEGER NOT NULL REFERENCES curricula(id) ON DELETE CASCADE,
-            course_id INTEGER NOT NULL REFERENCES courses(id),
-            position INTEGER NOT NULL,
-            reason TEXT NOT NULL,
-            done INTEGER NOT NULL DEFAULT 0
-        )
-        """
-    )
-    for col, ddl in (("weeks", "INTEGER NOT NULL DEFAULT 0"), ("tips", "TEXT NOT NULL DEFAULT ''")):
-        if col not in [r["name"] for r in db.execute("PRAGMA table_info(curriculum_items)")]:
-            db.execute(f"ALTER TABLE curriculum_items ADD COLUMN {col} {ddl}")
-    db.commit()
-
-
 def login_required(view):
     @wraps(view)
     def wrapped(*args, **kwargs):
@@ -1001,7 +580,9 @@ app.jinja_env.globals["csrf_token"] = csrf_token
 @app.before_request
 def load_user():
     sent = request.form.get("csrf_token") or request.headers.get("X-CSRF-Token", "")
-    if request.method == "POST" and not secrets.compare_digest(sent, session.get("csrf_token", "-")):
+    expected = session.get("csrf_token", "")
+    # 세션에 토큰이 없을 때 "-" 를 보내면 통과하던 문제가 있어서, 토큰이 없으면 무조건 거절한다
+    if request.method == "POST" and not (expected and secrets.compare_digest(sent, expected)):
         abort(400)  # 다른 사이트에서 몰래 보낸 요청 차단
     user_id = session.get("user_id")
     g.user = get_user_by_id(user_id) if user_id is not None else None
@@ -1385,8 +966,23 @@ def curriculum_delete(cid):
     return redirect(url_for("curriculum_list"))
 
 
-with app.app_context():
+@app.cli.command("init-db")
+@click.option("--firestore", "allow_firestore", is_flag=True,
+              help="DB_BACKEND=firestore 일 때 Firestore 에 강의 목록을 씁니다. (운영 데이터이므로 직접 확인한 뒤에만)")
+def init_db_command(allow_firestore):
+    """테이블을 만들고(마이그레이션) 강의 목록을 채운다.
+
+    예전에는 app 을 import 하기만 해도 이 작업이 돌아서, 로컬 실행이 운영 Firestore 에 쓰기도 했다.
+    이제는 이 명령으로만 실행된다: flask --app app init-db
+    """
+    if using_firestore() and not allow_firestore:
+        raise click.ClickException("DB_BACKEND=firestore 입니다. 운영 데이터를 바꾸려면 --firestore 를 붙여 다시 실행하세요.")
     init_db()
+    click.echo(f"{config.db_backend()} 저장소를 초기화했습니다.")
+
 
 if __name__ == "__main__":
+    if not using_firestore():  # 로컬 sqlite 는 편의상 실행할 때 준비한다 (import 할 때는 하지 않는다)
+        with app.app_context():
+            init_db()
     app.run(debug=True, port=int(os.environ.get("PORT", 5000)))

@@ -6,6 +6,8 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
+      - key: DB_BACKEND          # 운영은 반드시 firestore. 빠지면 앱이 기동을 거부한다
+        value: firestore
       - key: SECRET_KEY
         generateValue: true
       - key: OPENAI_API_KEY
