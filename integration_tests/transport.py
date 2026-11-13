@@ -36,7 +36,9 @@ class GuardedTransport:
             except ValueError:
                 err = {}
             self.http_errors.append({"status": exc.code, "type": err.get("type"), "code": err.get("code"),
-                                     "param": err.get("param"), "message": str(err.get("message") or "")[:300]})
+                                     "param": err.get("param"),
+                                     # 401 안내문에는 (일부 가린) 키가 들어 있다 → 키처럼 보이는 부분은 지운다
+                                     "message": re.sub(r"sk-\S*", "[가림]", str(err.get("message") or ""))[:300]})
             raise urllib.error.HTTPError(exc.url, exc.code, "error", {}, None)
         self.usage.append(json.loads(raw).get("usage") or {})
         return fake_backends._Resp(raw)

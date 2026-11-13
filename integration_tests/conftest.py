@@ -260,6 +260,12 @@ def openai_transport(app, monkeypatch):
     monkeypatch.setenv("ECONOVA_AI_MODEL", AI_LIVE.model)
     t = _live_transport()
     monkeypatch.setattr(urllib.request, "urlopen", t)
+    # 진짜 urlopen 은 내부에서 OpenerDirector.open 을 부른다. 기본 차단(_no_network)을 풀되 OpenAI 주소 하나만 허용한다.
+    def openai_only(self, fullurl, *args, **kwargs):
+        if getattr(fullurl, "full_url", fullurl) != ai_client.OPENAI_URL:
+            raise AssertionError("허용되지 않은 외부 네트워크 요청입니다.")
+        return _REAL_OPENER_OPEN(self, fullurl, *args, **kwargs)
+    monkeypatch.setattr(urllib.request.OpenerDirector, "open", openai_only)
     return t
 
 
@@ -274,6 +280,7 @@ def _live_transport():
 
 
 _REAL_URLOPEN = urllib.request.urlopen
+_REAL_OPENER_OPEN = urllib.request.OpenerDirector.open
 
 
 def pytest_terminal_summary(terminalreporter):
