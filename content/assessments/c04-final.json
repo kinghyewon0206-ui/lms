@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "id": "c04-final",
+  "kind": "final",
+  "course_id": "c04",
+  "version": 1,
+  "title": "Growth & Stability: Final Assessment",
+  "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "Proposed: 7 of 10 questions (70%). Not approved by a teacher (admin); completion is not recognized until approved."
+  },
+  "questions": [
+    {
+      "id": "c04-final-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l1",
+      "objective": 3,
+      "concept_ids": [
+        "correlation_causation"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A news story notes that, across the regions of Country Y, those with more hospitals per person also have higher GDP per capita. It concludes that building hospitals will raise GDP. What is the main weakness in this reasoning?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The story should compare nominal GDP across regions instead of GDP per capita"
+        },
+        {
+          "id": "b",
+          "text": "Hospitals provide services, so their output is left out of GDP by definition"
+        },
+        {
+          "id": "c",
+          "text": "It treats a correlation as proof of cause; richer regions may simply build more hospitals"
+        },
+        {
+          "id": "d",
+          "text": "The reasoning is sound, because the two measures move together closely across regions"
+        }
+      ],
+      "source_ids": [
+        "openstax-is2e-12-3",
+        "openstax-pe3-19-5"
+      ]
+    },
+    {
+      "id": "c04-final-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l1",
+      "objective": 2,
+      "concept_ids": [
+        "nominal_vs_real_gdp",
+        "growth_rate"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country Z produces only laptops and meals. Base year: 250 laptops at $400 each and 1,500 meals at $10 each. Next year: 260 laptops at $360 each and 1,650 meals at $12 each. Using base-year prices, by what percent did real GDP grow? Round to one decimal place. (Enter a number only, in percent.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-19-2"
+      ]
+    },
+    {
+      "id": "c04-final-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l1",
+      "objective": 3,
+      "concept_ids": [
+        "gdp_limits"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In Country AA, many parents leave paid jobs to care for their own young children at home instead of paying for child care, and the children receive about the same amount of care. What happens to measured GDP, and why?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Measured GDP falls, though care may be unchanged, because unpaid household work is not counted"
+        },
+        {
+          "id": "b",
+          "text": "Measured GDP stays the same, because child care is a service and the amount of care is unchanged"
+        },
+        {
+          "id": "c",
+          "text": "Measured GDP rises, because parents now have more leisure time, which GDP adds as a benefit"
+        },
+        {
+          "id": "d",
+          "text": "Measured GDP falls, because paid child care was an intermediate good that is no longer produced"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-19-5"
+      ]
+    },
+    {
+      "id": "c04-final-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l2",
+      "objective": 1,
+      "concept_ids": [
+        "labor_productivity",
+        "economic_growth"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In Country BB, total real output rose 6% last year, and total hours worked also rose 6%. What happened to labor productivity (output per hour)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It rose about 6%, because total output rose by that amount"
+        },
+        {
+          "id": "b",
+          "text": "It rose about 12%, the sum of output and hours growth"
+        },
+        {
+          "id": "c",
+          "text": "It fell, because workers had to put in more hours"
+        },
+        {
+          "id": "d",
+          "text": "It stayed about the same, since output and hours rose equally"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ]
+    },
+    {
+      "id": "c04-final-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l2",
+      "objective": 2,
+      "concept_ids": [
+        "compound_growth"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country CC's real GDP per capita is $5,000 and grows at 6% per year, compounded, for 12 years. What is real GDP per capita after 12 years, to the nearest dollar? (Enter a number only, in dollars.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ]
+    },
+    {
+      "id": "c04-final-q6",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l2",
+      "objective": 3,
+      "concept_ids": [
+        "decoupling",
+        "economic_growth",
+        "physical_capital",
+        "human_capital"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country DD can raise growth fastest by expanding a high-emission cement industry, or more slowly at first by investing in worker training and cleaner production methods. Which statement best applies the SDG 8 targets to this choice?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "SDG 8 is judged by the GDP growth rate alone, so the cement plan is clearly the better choice"
+        },
+        {
+          "id": "b",
+          "text": "Target 8.1 favors fast per capita growth, but 8.4 calls for decoupling, so it is a trade-off"
+        },
+        {
+          "id": "c",
+          "text": "Target 8.2 forbids any expansion of heavy industry, so the SDGs require the training plan"
+        },
+        {
+          "id": "d",
+          "text": "Training lies outside SDG 8, because target 8.2 is about physical capital such as new factories"
+        }
+      ],
+      "source_ids": [
+        "un-sdg-8",
+        "openstax-pe3-20-3"
+      ]
+    },
+    {
+      "id": "c04-final-q7",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l3",
+      "objective": 1,
+      "concept_ids": [
+        "inflation_rate"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: News reports say that inflation in Country EE went from 2% last year to 5% this year. Which description of the change is accurate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Inflation rose by 3 percentage points, which is a 150 percent increase in the rate"
+        },
+        {
+          "id": "b",
+          "text": "Inflation rose by 3 percent, so prices are now 3 percent above last year's level"
+        },
+        {
+          "id": "c",
+          "text": "Inflation rose by 150 percentage points, because 5 is two and a half times 2"
+        },
+        {
+          "id": "d",
+          "text": "Prices rose 7 percent this year, since that is the sum of the two inflation rates"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-1"
+      ]
+    },
+    {
+      "id": "c04-final-q8",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l3",
+      "objective": 2,
+      "concept_ids": [
+        "purchasing_power",
+        "real_income",
+        "inflation_redistribution"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A retiree in Country FF receives a pension fixed at $1,800 a month. Over several years, the price index rises from 100 to 120. What is the pension worth now in base-year dollars? (Enter a number only, in dollars.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "imf-fd-inflation-basics"
+      ]
+    },
+    {
+      "id": "c04-final-q9",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l3",
+      "objective": 3,
+      "concept_ids": [
+        "inflation_redistribution"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Inflation in Country GG turns out much higher than people expected when they signed their contracts. Which person is most likely to lose purchasing power as a result?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A homeowner repaying a mortgage at a fixed interest rate"
+        },
+        {
+          "id": "b",
+          "text": "A worker whose wage is adjusted to the price index each year"
+        },
+        {
+          "id": "c",
+          "text": "A shop owner whose selling prices rise along with other prices"
+        },
+        {
+          "id": "d",
+          "text": "A retiree whose pension is a fixed number of dollars each month"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-4"
+      ]
+    },
+    {
+      "id": "c04-final-q10",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l3",
+      "objective": 1,
+      "concept_ids": [
+        "inflation_rate",
+        "price_index"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country HH's price index is 100 in Year 1, 108 in Year 2, and 110 in Year 3. Which statement is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Inflation was highest in Year 3, because the index reached its highest level in Year 3"
+        },
+        {
+          "id": "b",
+          "text": "Prices fell in Year 3, because the inflation rate dropped compared with Year 2"
+        },
+        {
+          "id": "c",
+          "text": "Inflation fell from 8% to about 1.9%, yet the price level was highest in Year 3"
+        },
+        {
+          "id": "d",
+          "text": "Inflation in Year 3 was 10%, because the index is 10 points above Year 1"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-1"
+      ]
+    }
+  ]
+}

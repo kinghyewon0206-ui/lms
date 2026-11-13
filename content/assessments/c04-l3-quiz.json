@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "id": "c04-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c04",
+  "lesson_id": "c04-l3",
+  "version": 1,
+  "title": "Lesson 3 Quiz: Inflation, Purchasing Power, and Living Standards",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c04-l3-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l3",
+      "objective": 1,
+      "concept_ids": [
+        "price_index"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A household basket in Country W cost $250 in the base year and costs $265 this year. What is this year's price index (base year = 100)? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-22-1"
+      ]
+    },
+    {
+      "id": "c04-l3-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l3",
+      "objective": 1,
+      "concept_ids": [
+        "inflation_rate"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country X's inflation rate fell from 6% last year to 3% this year. What happened to the price level this year?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The price level fell, because a drop in inflation means prices went down"
+        },
+        {
+          "id": "b",
+          "text": "The price level fell by 3 percent, the size of the drop in the inflation rate"
+        },
+        {
+          "id": "c",
+          "text": "The price level stayed the same, because inflation is now below last year's rate"
+        },
+        {
+          "id": "d",
+          "text": "The price level still rose, but by about 3 percent rather than about 6 percent"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-1"
+      ]
+    },
+    {
+      "id": "c04-l3-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l3",
+      "objective": 2,
+      "concept_ids": [
+        "real_income",
+        "purchasing_power"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A worker's nominal wage rises 3% this year while the price index rises 5%. By about what percent does the worker's real wage change? Round to one decimal place and enter a negative number for a decrease. (Enter a number only, in percent.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-22-4"
+      ]
+    },
+    {
+      "id": "c04-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l3",
+      "objective": 3,
+      "concept_ids": [
+        "inflation_redistribution"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A bank makes a one-year loan at a fixed 4% interest rate, expecting 2% inflation. Inflation turns out to be 7%. Who gains from this surprise?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The borrower gains, because the loan is repaid with dollars that buy less"
+        },
+        {
+          "id": "b",
+          "text": "The bank gains, because higher prices raise the value of what it is repaid"
+        },
+        {
+          "id": "c",
+          "text": "Neither side gains, because the interest rate was fixed in the contract"
+        },
+        {
+          "id": "d",
+          "text": "Both sides gain, because inflation raises everyone's income in dollars"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "imf-fd-inflation-basics"
+      ]
+    },
+    {
+      "id": "c04-l3-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l3",
+      "objective": 3,
+      "concept_ids": [
+        "price_stability"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which is the best reason that central banks generally aim for low, stable inflation rather than high or unpredictable inflation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Low inflation means that the prices of individual goods stop changing over time"
+        },
+        {
+          "id": "b",
+          "text": "Unpredictable inflation blurs price signals and makes saving and contracts riskier"
+        },
+        {
+          "id": "c",
+          "text": "High inflation raises the real wages of workers whose pay is set in fixed dollars"
+        },
+        {
+          "id": "d",
+          "text": "Stable inflation lets the government set most prices directly instead of markets"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "openstax-pe3-28-1",
+        "ecb-monetary-policy-intro"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c04-l3",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Calculate a price index from a fixed basket of goods and services and an inflation rate from the index, and distinguish the inflation rate from the price level.",
+    "Convert nominal wages and incomes into real terms to judge changes in purchasing power and living standards.",
+    "Explain who gains and who loses from unexpected inflation and why very high or unstable inflation is costly, which is why central banks aim for low, stable inflation."
+  ],
+  "concepts": [
+    {
+      "id": "price_index",
+      "term": "Price index and basket",
+      "definition": "A price index tracks the cost of a fixed basket of goods and services that typical households buy, relative to a base year: index = (cost of the basket this year ÷ cost in the base year) × 100. The base year's index is 100.",
+      "source_ids": [
+        "openstax-pe3-22-1"
+      ]
+    },
+    {
+      "id": "inflation_rate",
+      "term": "Inflation rate vs. price level",
+      "definition": "The price level is how high prices are overall, shown by the index number. The inflation rate is how fast the price level is changing: the percentage change in the index over a period. A falling inflation rate means prices are rising more slowly, not that prices are falling.",
+      "source_ids": [
+        "openstax-pe3-22-1",
+        "imf-fd-inflation-basics"
+      ]
+    },
+    {
+      "id": "cpi_limits",
+      "term": "Limits of a consumer price index",
+      "definition": "A fixed-basket index such as a consumer price index can overstate the rise in the cost of living, because consumers substitute toward goods that became relatively cheaper and because quality improvements and new products are hard to capture.",
+      "source_ids": [
+        "openstax-pe3-22-2"
+      ]
+    },
+    {
+      "id": "purchasing_power",
+      "term": "Purchasing power",
+      "definition": "The quantity of goods and services a given amount of money can buy. When the price level rises, each dollar buys less, so the purchasing power of money falls.",
+      "source_ids": [
+        "imf-fd-inflation-basics",
+        "openstax-pe3-22-4"
+      ]
+    },
+    {
+      "id": "real_income",
+      "term": "Nominal and real wages and income",
+      "definition": "A nominal wage or income is measured in current dollars. A real wage or income is adjusted for the price level: real = nominal ÷ (price index ÷ 100). A real income rises only if nominal income grows faster than prices.",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "imf-fd-inflation-basics"
+      ]
+    },
+    {
+      "id": "inflation_redistribution",
+      "term": "Who gains and loses from unexpected inflation",
+      "definition": "When inflation turns out higher than expected, borrowers with fixed-rate loans repay with dollars that buy less, so they gain and lenders lose. People with incomes fixed in dollars, such as some pensions, lose purchasing power. Unexpectedly low inflation reverses these effects.",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "imf-fd-inflation-basics"
+      ]
+    },
+    {
+      "id": "price_stability",
+      "term": "Price stability",
+      "definition": "Very high or unstable inflation blurs price signals and makes saving, borrowing, and long-term planning risky. For this reason, central banks generally aim to keep inflation low, stable, and predictable.",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "openstax-pe3-28-1",
+        "ecb-monetary-policy-intro"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Inflation means prices in general are going up. You measure it by pricing the same basket of things over time. If your pay rises more slowly than prices, you can buy less, even with more dollars.",
+      "sections": [
+        {
+          "heading": "Pricing the same basket",
+          "concept_ids": [
+            "price_index",
+            "cpi_limits"
+          ],
+          "paragraphs": [
+            "To see whether prices are rising, imagine filling the same shopping basket every year: the same bus rides, lunches, and movie tickets. If the basket cost $180 last year and $189 this year, it now costs 5% more. Statistics offices do the same thing with a much bigger basket and turn the result into a price index, where the starting year is set to 100.",
+            "A basket is not perfect. When one item gets expensive, people often switch to something cheaper, and products keep getting better. A fixed basket misses some of these changes, so it can make the cost of living look like it rose a bit more than it really did."
+          ]
+        },
+        {
+          "heading": "How high prices are vs. how fast they rise",
+          "concept_ids": [
+            "inflation_rate"
+          ],
+          "paragraphs": [
+            "Two ideas are easy to mix up. The price level is how high prices are. The inflation rate is how fast prices are going up. If inflation drops from 4% to 2%, prices are still rising, just more slowly. Prices actually fall only if the inflation rate drops below zero."
+          ]
+        },
+        {
+          "heading": "What your money can buy",
+          "concept_ids": [
+            "purchasing_power",
+            "real_income"
+          ],
+          "paragraphs": [
+            "Purchasing power is how much your money can buy. If you earn $15 an hour and prices go up, each hour of work buys fewer things. A raise to $15.90 sounds good, but if prices rose even more than your pay, you are actually worse off. Economists call your pay in dollars your nominal wage, and what it can buy your real wage."
+          ]
+        },
+        {
+          "heading": "Winners, losers, and why steady prices matter",
+          "concept_ids": [
+            "inflation_redistribution",
+            "price_stability"
+          ],
+          "paragraphs": [
+            "Surprise inflation does not hurt everyone the same way. Someone who borrowed money at a fixed rate pays it back with dollars that buy less, so the borrower comes out ahead and the lender loses. A retired person whose pension stays at the same dollar amount can buy less every year.",
+            "When prices jump around a lot, it is hard for families and businesses to plan, save, or sign long contracts. That is why central banks, the public institutions that manage a country's money, try to keep inflation low and steady."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "A price index compares the cost of a fixed basket with its cost in a base year, and the inflation rate is the index's percentage change. Real values divide nominal values by the price index; unexpected inflation shifts purchasing power between groups.",
+      "sections": [
+        {
+          "heading": "Building a price index",
+          "concept_ids": [
+            "price_index",
+            "cpi_limits"
+          ],
+          "paragraphs": [
+            "Choose a basket that reflects what typical households buy, price it each period, and divide by its cost in the base year: index = cost this year ÷ cost in the base year × 100. A consumer price index (CPI) does this for consumer goods and services; the GDP deflator from Lesson 1 does it for all final goods and services.",
+            "Because the basket is fixed, a CPI-style index has known biases. Substitution bias: when beef gets expensive and you buy chicken, the fixed basket still assumes you buy beef. Quality and new-product bias: a phone that costs the same but does much more is effectively cheaper, which a simple price comparison misses. Both biases tend to overstate the true rise in the cost of living."
+          ]
+        },
+        {
+          "heading": "Inflation rate vs. price level",
+          "concept_ids": [
+            "inflation_rate"
+          ],
+          "paragraphs": [
+            "Inflation rate = (index this period − index last period) ÷ index last period × 100. The index is a level; inflation is a rate of change of that level. If the index goes from 100 to 104 to 106.08, inflation is 4% and then 2%. The price level reached its highest value in the last year even though inflation fell. Falling inflation is called disinflation; a falling price level (negative inflation) is deflation.",
+            "Changes in the inflation rate are best described in percentage points. A drop from 4% to 2% is a fall of 2 percentage points, which is a 50% decrease in the rate."
+          ]
+        },
+        {
+          "heading": "Real wages and purchasing power",
+          "concept_ids": [
+            "purchasing_power",
+            "real_income"
+          ],
+          "paragraphs": [
+            "Real wage = nominal wage ÷ (price index ÷ 100). The percentage change in the real wage is approximately the percentage change in the nominal wage minus the inflation rate. A 6% raise with 4% inflation is roughly a 2% gain in purchasing power; a 3% raise with 5% inflation is roughly a 2% loss.",
+            "Living standards depend on real income, which is why comparisons over time should always be made in real terms."
+          ]
+        },
+        {
+          "heading": "Redistribution and the costs of unstable inflation",
+          "concept_ids": [
+            "inflation_redistribution",
+            "price_stability"
+          ],
+          "paragraphs": [
+            "Loans, rents, and pensions are often set in dollars in advance, based on expected inflation. If inflation turns out higher than expected, borrowers repay with dollars that buy less (they gain) and lenders and people on fixed incomes lose. Inflation that everyone expects can be built into contracts in advance, so the damage comes mostly from surprises.",
+            "High or unstable inflation also makes it hard to tell whether a price rose because a good became scarcer or because all prices are rising, so price signals become less useful. Saving and long-term contracts become riskier. Central banks generally aim to keep inflation low, stable, and predictable. How they do that is a topic for a later course."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "A fixed-weight index is I_t = 100 × Σ p_t·q₀ ÷ Σ p₀·q₀. Real values use exact ratios: (1 + real growth) = (1 + nominal growth) ÷ (1 + π). Unexpected inflation transfers real value through the gap between actual and expected inflation.",
+      "sections": [
+        {
+          "heading": "A fixed-weight index and its bias",
+          "concept_ids": [
+            "price_index",
+            "cpi_limits"
+          ],
+          "paragraphs": [
+            "With base-period quantities q₀, the index is I_t = 100 × Σ pᵢₜ·qᵢ₀ ÷ Σ pᵢ₀·qᵢ₀. It answers the question: how much more does the old basket cost now? When relative prices change, a household can keep its well-being at lower cost by shifting toward goods that became relatively cheaper, so the fixed-weight index overstates the increase in the cost of maintaining a given standard of living (substitution bias). Quality changes and new goods add further upward bias unless the statistics office adjusts for them."
+          ]
+        },
+        {
+          "heading": "Inflation as a growth rate of the price level",
+          "concept_ids": [
+            "inflation_rate"
+          ],
+          "paragraphs": [
+            "Inflation is πₜ = Iₜ ÷ Iₜ₋₁ − 1. The price level after n periods is I₀ × Π(1 + πₜ), so the level depends on the whole history of inflation, while πₜ describes one period only. If πₜ falls from 0.04 to 0.02, Iₜ still rises; the level falls only when πₜ < 0. Changes in π are stated in percentage points (Δπ = −2 points), while the proportional change in π is (0.02 − 0.04) ÷ 0.04 = −50%."
+          ]
+        },
+        {
+          "heading": "Exact real values",
+          "concept_ids": [
+            "purchasing_power",
+            "real_income"
+          ],
+          "paragraphs": [
+            "The purchasing power of $1 is proportional to 1 ÷ I. If prices rise by a factor (1 + π), purchasing power falls by the share π ÷ (1 + π), not by π. A 25% rise in prices cuts purchasing power by 20%. For wages, (1 + g_real) = (1 + g_nominal) ÷ (1 + π); the shortcut g_real ≈ g_nominal − π ignores a small cross term."
+          ]
+        },
+        {
+          "heading": "Expected vs. unexpected inflation",
+          "concept_ids": [
+            "inflation_redistribution",
+            "price_stability"
+          ],
+          "paragraphs": [
+            "A lender who charges nominal rate i expects a real return of (1 + i) ÷ (1 + πᵉ) − 1. The realized real return is (1 + i) ÷ (1 + π) − 1. When π > πᵉ, the realized real return is lower than expected: value moves from the lender to the borrower in proportion to the surprise π − πᵉ. A fixed nominal income N has real value N ÷ (1 + π) after one year, so its holder loses as π rises.",
+            "Because these transfers depend on surprises, and because uncertainty about future π makes long-term nominal contracts riskier, the variability of inflation is costly even apart from its average level. At very high rates, relative price signals become hard to read and people spend effort avoiding holding money. These costs explain why central banks generally aim for low, stable, and predictable inflation."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c04-l3-we1",
+      "level": "beginner",
+      "title": "A student's basket",
+      "problem": "Hypothetical example: A student's monthly basket in Country M is 10 bus rides, 4 movie tickets, and 20 lunches. Last year the prices were $2.00, $10.00, and $6.00. This year they are $2.20, $10.50, and $6.25. How much did the basket cost each year, and what is this year's price index (last year = 100)?",
+      "steps": [
+        "Last year: 10 × $2.00 + 4 × $10.00 + 20 × $6.00 = $20 + $40 + $120 = $180.",
+        "This year: 10 × $2.20 + 4 × $10.50 + 20 × $6.25 = $22 + $42 + $125 = $189.",
+        "Index = $189 ÷ $180 × 100 = 105."
+      ],
+      "answer": "The basket cost $180 last year and $189 this year. The price index is 105, so the basket's prices rose 5%.",
+      "check": {
+        "type": "ratio",
+        "numerator": 189,
+        "denominator": 180,
+        "expected": 1.05
+      }
+    },
+    {
+      "id": "c04-l3-we2",
+      "level": "intermediate",
+      "title": "Inflation falls, prices still rise",
+      "problem": "Hypothetical example: Country N's price index is 100 in Year 1, 104 in Year 2, and 106.08 in Year 3. Find the inflation rate in Years 2 and 3, describe the change in inflation, and say what happened to the price level.",
+      "steps": [
+        "Year 2 inflation = (104 − 100) ÷ 100 = 4%.",
+        "Year 3 inflation = (106.08 − 104) ÷ 104 = 2%.",
+        "Change in inflation = 2 − 4 = −2 percentage points (a 50% decrease in the rate).",
+        "The index rose every year, so the price level is at its highest in Year 3."
+      ],
+      "answer": "Inflation fell from 4% to 2%, down 2 percentage points, but the price level kept rising (from 104 to 106.08). This is disinflation, not deflation.",
+      "check": {
+        "type": "ratio",
+        "numerator": 106.08,
+        "denominator": 104,
+        "expected": 1.02
+      }
+    },
+    {
+      "id": "c04-l3-we3",
+      "level": "intermediate",
+      "title": "Is a raise really a raise?",
+      "problem": "Hypothetical example: A worker in Country N earns $15.00 an hour. Next year the wage rises 6% while the price index rises 4%. What is the new nominal wage, the new real wage in today's (starting-year) dollars, and the change in purchasing power?",
+      "steps": [
+        "New nominal wage = $15.00 × 1.06 = $15.90.",
+        "Real wage = $15.90 ÷ 1.04 ≈ $15.29 in today's (starting-year) dollars.",
+        "Real growth factor = 1.06 ÷ 1.04 ≈ 1.0192, so purchasing power rises about 1.92% (the shortcut 6% − 4% gives 2%)."
+      ],
+      "answer": "The nominal wage rises to $15.90, but in real terms it is about $15.29, a gain in purchasing power of about 1.92%, not 6%.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1.06,
+        "denominator": 1.04,
+        "expected": 1.0192,
+        "tolerance": 0.0001
+      }
+    },
+    {
+      "id": "c04-l3-we4",
+      "level": "advanced",
+      "title": "A loan when inflation surprises",
+      "problem": "Hypothetical example: A credit union lends $1,000 for one year at a fixed nominal rate of 5%, expecting 2% inflation. Actual inflation turns out to be 6%. Find the repayment, its value in start-of-year dollars, and the expected and realized real interest rates.",
+      "steps": [
+        "Repayment = $1,000 × 1.05 = $1,050.",
+        "Value in start-of-year dollars = $1,050 ÷ 1.06 ≈ $990.57.",
+        "Expected real rate = 1.05 ÷ 1.02 − 1 ≈ 2.94%.",
+        "Realized real rate = 1.05 ÷ 1.06 − 1 ≈ −0.94%."
+      ],
+      "answer": "The lender receives $1,050, which buys only what about $990.57 bought a year earlier. The realized real return is about −0.94% instead of the expected 2.94%: the surprise moved purchasing power from the lender to the borrower.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1050,
+        "denominator": 1.06,
+        "expected": 990.57,
+        "tolerance": 0.01
+      }
+    },
+    {
+      "id": "c04-l3-we5",
+      "level": "advanced",
+      "title": "A fixed pension over several years",
+      "problem": "Hypothetical example: A retiree in Country P receives a pension fixed at $2,000 a month. Over five years, the price index rises from 100 to 125. What is the pension worth in base-year dollars, and by what percent has its purchasing power fallen?",
+      "steps": [
+        "Real value = $2,000 ÷ (125 ÷ 100) = $1,600.",
+        "Loss of purchasing power = ($2,000 − $1,600) ÷ $2,000 = 20%.",
+        "Note: prices rose 25%, but purchasing power fell 20%, because the loss share is π ÷ (1 + π) = 0.25 ÷ 1.25."
+      ],
+      "answer": "The pension buys what $1,600 bought five years ago, a 20% loss of purchasing power.",
+      "check": {
+        "type": "ratio",
+        "numerator": 2000,
+        "denominator": 1.25,
+        "expected": 1600
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "How statistics offices measure inflation",
+      "source_ids": [
+        "openstax-pe3-22-1",
+        "openstax-pe3-22-2"
+      ],
+      "paragraphs": [
+        "Statistics offices track the prices of a large basket of goods and services that households buy and express its cost as an index with a base year equal to 100. Because people substitute toward cheaper goods and products improve over time, these offices work to adjust the index so that it does not overstate the rise in the cost of living."
+      ]
+    },
+    {
+      "title": "Fixed incomes, loans, and surprise inflation",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "imf-fd-inflation-basics"
+      ],
+      "paragraphs": [
+        "Retirees with pensions fixed in dollars lose purchasing power as prices rise, and lenders on fixed-rate loans lose when inflation turns out higher than expected, while borrowers gain. Economists describe the erosion of purchasing power as one of the main costs of inflation, especially when incomes lag behind prices."
+      ]
+    },
+    {
+      "title": "Why central banks seek stable prices",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "openstax-pe3-28-1",
+        "ecb-monetary-policy-intro"
+      ],
+      "paragraphs": [
+        "Central banks describe their goal as keeping inflation low, stable, and predictable. Episodes of very high inflation show why: when prices change rapidly, price signals become hard to read and planning for the future becomes difficult."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8
+    ],
+    "title": "Prices up 9%, wages up 4%: how should Country Q respond?",
+    "paragraphs": [
+      "SDG 8 aims for decent work for all. Target 8.5 calls for full and productive employment and decent work for all women and men, and equal pay for work of equal value. Decent work depends on what wages can actually buy, so inflation matters for this goal.",
+      "Hypothetical situation: In Country Q, the price index rose 9% this year after years of low inflation, while average nominal wages rose only 4%. Workers on low wages and retirees on fixed pensions are hit hardest. The government is considering three responses."
+    ],
+    "options": [
+      {
+        "name": "Link the minimum wage and public pensions to the price index",
+        "benefits": [
+          "It protects the purchasing power of low-wage workers and retirees automatically.",
+          "People can plan with more confidence because their real income is protected."
+        ],
+        "costs": [
+          "Indexed payments raise government and employer costs while inflation is high.",
+          "If wages chase prices and prices chase wages, high inflation could last longer."
+        ],
+        "assumptions": [
+          "The price index measures the cost of living of these groups reasonably well."
+        ]
+      },
+      {
+        "name": "Give a temporary cash payment to low-income households",
+        "benefits": [
+          "Help goes to those who are hurt most, at a lower total cost than indexing everything.",
+          "It is temporary, so it does not lock in higher costs if inflation falls."
+        ],
+        "costs": [
+          "Extra spending adds to demand and may push prices up a little further.",
+          "Some households just above the cut-off get no help."
+        ],
+        "assumptions": [
+          "The government can identify low-income households quickly and accurately."
+        ]
+      },
+      {
+        "name": "Let the central bank focus on returning inflation to a low, stable rate, with no new payments",
+        "benefits": [
+          "Low, stable inflation protects the purchasing power of everyone's income and savings over time.",
+          "It avoids new government spending."
+        ],
+        "costs": [
+          "Low-income households get no direct help while prices are high.",
+          "Bringing inflation down can slow spending and hiring for a while (a later course explains why)."
+        ],
+        "assumptions": [
+          "People trust the central bank, so inflation expectations stay anchored."
+        ]
+      }
+    ],
+    "discussion": [
+      "With prices up 9% and wages up 4%, roughly how much purchasing power did the average worker lose? Which option best protects decent work (target 8.5) now, and which best protects living standards over the next ten years? Can you combine options to limit their costs?"
+    ],
+    "source_ids": [
+      "un-sdg-8",
+      "openstax-pe3-22-4",
+      "ecb-monetary-policy-intro"
+    ]
+  },
+  "key_takeaways": [
+    "A price index compares the cost of a fixed basket with its base-year cost (base = 100); a fixed basket tends to overstate the rise in the cost of living.",
+    "The price level is how high prices are; the inflation rate is how fast that level is changing. Falling inflation still means rising prices.",
+    "Real wage = nominal wage ÷ (price index ÷ 100); purchasing power rises only if pay grows faster than prices.",
+    "Unexpectedly high inflation helps fixed-rate borrowers and hurts lenders and people on fixed incomes.",
+    "Very high or unstable inflation is costly, so central banks aim for low, stable, and predictable inflation."
+  ],
+  "source_ids": [
+    "openstax-pe3-22-1",
+    "openstax-pe3-22-2",
+    "openstax-pe3-22-4",
+    "openstax-pe3-28-1",
+    "imf-fd-inflation-basics",
+    "ecb-monetary-policy-intro",
+    "un-sdg-8"
+  ]
+}

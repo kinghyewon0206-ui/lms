@@ -1,0 +1,439 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c05-l3",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Use the price-floor model to predict how a minimum wage above the equilibrium wage affects wages, employment, and the surplus of labor in a competitive labor market.",
+    "Explain why real-world evidence on minimum wages is mixed and still debated, including the roles of how high the minimum is relative to local wages and of employer market power.",
+    "Compare labor policies such as the minimum wage, job training, job-search help, and earned-income support by their benefits, costs, and trade-offs."
+  ],
+  "concepts": [
+    {
+      "id": "minimum_wage",
+      "term": "Minimum wage as a price floor",
+      "definition": "A legal lower limit on the wage employers may pay. In the labor market it works like a price floor: it matters (is binding) only if it is set above the equilibrium wage.",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "labor_surplus",
+      "term": "Surplus of labor",
+      "definition": "When the wage is held above equilibrium, the quantity of labor supplied is greater than the quantity of labor demanded. In the simple competitive model, the gap is a surplus of labor: people who want jobs at that wage but are not hired.",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "minimum_wage_evidence",
+      "term": "Mixed evidence on minimum wages",
+      "definition": "Studies of real minimum wage increases reach different conclusions: some find reduced hiring of low-skill workers, while others find little or no effect on employment. Economists continue to debate the results, and the effects appear to depend on how high the minimum is compared with local wages.",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-21-4"
+      ]
+    },
+    {
+      "id": "monopsony",
+      "term": "Employer market power (monopsony)",
+      "definition": "A monopsony is a labor market with a single employer (or a few dominant ones) that can set wages. Because workers have few alternatives, such an employer hires fewer workers and pays a lower wage than a competitive labor market would.",
+      "source_ids": [
+        "openstax-pe3-14-2"
+      ]
+    },
+    {
+      "id": "active_labor_policy",
+      "term": "Job training and job-search help",
+      "definition": "Policies that help people return to work: training or retraining to fix skill mismatches (structural unemployment) and job-search help to speed up matching (frictional unemployment). They cost public money and their results depend on program design.",
+      "source_ids": [
+        "openstax-pe3-21-4"
+      ]
+    },
+    {
+      "id": "earned_income_support",
+      "term": "Earned-income support",
+      "definition": "A payment, often delivered through the tax system, that adds to the income of low-wage workers and grows with earnings up to a limit, so it rewards work. In the U.S., the Earned Income Tax Credit (EITC) is an example. It is paid for by taxpayers rather than employers, and it shrinks as income rises above a certain level.",
+      "source_ids": [
+        "openstax-pe3-15-3"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "A minimum wage is a lowest legal wage. In the simplest model, setting it above the market wage helps the workers who keep their jobs but leaves more people wanting work than employers want to hire. Real-world results are debated, and there are other ways to help low-wage workers.",
+      "sections": [
+        {
+          "heading": "A floor under wages",
+          "concept_ids": [
+            "minimum_wage"
+          ],
+          "paragraphs": [
+            "Many places have a law that says employers cannot pay less than a certain amount per hour. That amount is the minimum wage. In Course 2 you met the price floor, a legal lowest price. A minimum wage is a price floor for work. If the minimum is lower than the wage the market already pays, it changes nothing. It only matters when it is set above the market wage."
+          ]
+        },
+        {
+          "heading": "The simple model's prediction",
+          "concept_ids": [
+            "labor_surplus"
+          ],
+          "paragraphs": [
+            "Suppose the market wage for a job is $14 an hour and a law sets the minimum at $16. At the higher wage, more people want those jobs. But each worker now costs employers more, so they may hire fewer people. The result in the simple model: more people want work than there are jobs. That gap is a surplus of labor, and it shows up as unemployment. Workers who keep their jobs earn more; some others may not get hired."
+          ]
+        },
+        {
+          "heading": "What happens in real life is debated",
+          "concept_ids": [
+            "minimum_wage_evidence",
+            "monopsony"
+          ],
+          "paragraphs": [
+            "Economists have studied many real minimum wage increases, and they do not all agree on what happened. Some studies find fewer jobs for low-skill workers; others find little change. A small increase in a place where wages are already high is different from a big jump in a place where wages are low.",
+            "Another reason is that some employers have the power to set wages. Imagine a town where one big company is almost the only place to work. Workers have few other choices, so the company can pay less than a competitive market would. In a case like that, a minimum wage can raise pay without necessarily cutting jobs. Whether that describes a real town is a question for evidence, not just theory."
+          ]
+        },
+        {
+          "heading": "Other tools",
+          "concept_ids": [
+            "active_labor_policy",
+            "earned_income_support"
+          ],
+          "paragraphs": [
+            "A minimum wage is not the only option. Training programs teach new skills, so workers can move into jobs that pay more. Job-search help, like a job center, helps people find openings faster. Earned-income support adds money to low-wage workers' pay through the tax system, and the more they earn (up to a limit), the more support they get. Each tool costs something: training and support cost public money, and none of them works perfectly for everyone."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "A binding minimum wage raises the wage of those employed, lowers the quantity of labor demanded, and raises the quantity supplied, creating a surplus of labor in the competitive model. Real-world effects depend on how high the minimum is relative to local wages and on employer market power, and other labor policies have their own trade-offs.",
+      "sections": [
+        {
+          "heading": "Binding and non-binding minimums",
+          "concept_ids": [
+            "minimum_wage"
+          ],
+          "paragraphs": [
+            "On a labor market graph with the wage on the vertical axis, the minimum wage is a horizontal line. If the line is below the equilibrium wage, the market wage is already higher and the law has no effect (non-binding). If the line is above the equilibrium wage, employers must pay at least that amount and the market cannot reach equilibrium (binding)."
+          ]
+        },
+        {
+          "heading": "Reading the graph",
+          "concept_ids": [
+            "labor_surplus"
+          ],
+          "paragraphs": [
+            "At a binding minimum wage, read two quantities off the graph. The labor demand curve shows how many workers employers want to hire at that wage, which is less than equilibrium employment. The labor supply curve shows how many people want to work at that wage, which is more. In the competitive model, employment equals the quantity demanded, and the horizontal gap between the curves is the surplus of labor. The workers who are employed earn more than before, so the policy creates both winners and losers.",
+            "How big the effects are depends on the slopes. If employers can easily replace labor with machines or cut back output, labor demand is more responsive and the drop in employment is larger. If few extra people enter the market at the higher wage, labor supply is less responsive and the surplus is smaller."
+          ]
+        },
+        {
+          "heading": "Why the evidence is mixed",
+          "concept_ids": [
+            "minimum_wage_evidence",
+            "monopsony"
+          ],
+          "paragraphs": [
+            "Researchers measure what actually happens after minimum wages rise, and their results differ. Some studies find that higher minimum wages reduce low-skill hiring somewhat, while others find no measurable employment effect, and studies on both sides are debated. Economists also argue about how to weigh job losses for some workers against higher incomes for many others.",
+            "Two factors help explain the range of results. First, the level matters: a minimum that is modest compared with typical local wages is likely to have smaller effects than one far above them. Second, market structure matters: where a few employers have the power to set wages (monopsony), they pay less and hire fewer workers than a competitive market would. A minimum wage set between the monopsony wage and the competitive wage can, in theory, raise both pay and employment. How common such markets are is still debated."
+          ]
+        },
+        {
+          "heading": "Comparing labor policies",
+          "concept_ids": [
+            "active_labor_policy",
+            "earned_income_support"
+          ],
+          "paragraphs": [
+            "Training and retraining target structural unemployment by building the human capital employers want; the trade-off is cost and uncertain results. Job-search help targets frictional unemployment by speeding up matching; it is cheaper but does not create jobs or skills. Earned-income support raises the income of low-wage workers and encourages work because it grows with earnings; it is paid by taxpayers instead of employers, and as it phases out at higher incomes, each extra dollar earned adds less to take-home income. Unemployment insurance supports people while they search, though very long benefit periods may slow the return to work."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "With L_d = a − bW and L_s = c + dW, a binding minimum wage W_min > W* lowers employment by b(W_min − W*) and creates a surplus of labor of (b + d)(W_min − W*). Total wage income of employed workers can rise or fall. Under monopsony, the competitive prediction can reverse over a range of minimum wages, which is one reason the evidence is contested.",
+      "sections": [
+        {
+          "heading": "The competitive model in equations",
+          "concept_ids": [
+            "minimum_wage",
+            "labor_surplus"
+          ],
+          "paragraphs": [
+            "Let W* = (a − c)/(b + d). If W_min ≤ W*, the floor is non-binding. If W_min > W*, employment is L_d(W_min) = a − bW_min, so the employment loss is ΔL = b(W_min − W*), and the surplus of labor is L_s(W_min) − L_d(W_min) = (b + d)(W_min − W*). Part of the surplus is people who were already in the market and lost or did not get jobs (b(W_min − W*)); the rest is new job seekers drawn in by the higher wage (d(W_min − W*)).",
+            "Total wage income of those employed changes from W*·L* to W_min·L_d(W_min). Whether it rises depends on how responsive labor demand is: if a 1% rise in the wage lowers employment by less than 1% (inelastic labor demand), total wage income rises even though fewer people work."
+          ]
+        },
+        {
+          "heading": "Monopsony and contested evidence",
+          "concept_ids": [
+            "monopsony",
+            "minimum_wage_evidence"
+          ],
+          "paragraphs": [
+            "A monopsonist faces the upward-sloping labor supply curve, so hiring one more worker means paying a higher wage to all workers. Its marginal cost of labor is above the wage, and it hires where labor demand equals that marginal cost. The result is employment L_m below the competitive level L_c and a wage W_m below the competitive wage W_c.",
+            "A minimum wage W_min with W_m < W_min ≤ W_c makes the marginal cost of labor equal to W_min over a range of employment, so the firm can hire more workers at the floor than it did at W_m. In this range, a minimum wage can raise both the wage and employment. Above W_c, the competitive prediction of lower employment returns. Because real labor markets differ in employer power and in how high the minimum is relative to local wages, empirical studies can reasonably reach different conclusions, and the debate is not settled."
+          ]
+        },
+        {
+          "heading": "Policy design and trade-offs",
+          "concept_ids": [
+            "active_labor_policy",
+            "earned_income_support"
+          ],
+          "paragraphs": [
+            "Earned-income support is typically designed with a phase-in rate (support rises with earnings), a flat range, and a phase-out rate (support falls as earnings rise further). During the phase-out, each extra dollar earned raises take-home income by only (1 − phase-out rate), which acts like an extra tax on work. A slow phase-out weakens work incentives less but costs more. Training and job-search programs should be judged by how much they raise employment and earnings compared with what would have happened without them, relative to their cost."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c05-l3-we1",
+      "level": "beginner",
+      "title": "How many people want jobs that are not there?",
+      "problem": "Hypothetical example: A city sets a minimum wage of $17 per hour for its restaurant jobs, which is above the market wage. At $17, 260 people want restaurant jobs, but restaurants want to hire only 220 workers. In the simple model, how large is the surplus of labor?",
+      "steps": [
+        "Quantity of labor supplied at $17 = 260 people.",
+        "Quantity of labor demanded at $17 = 220 workers.",
+        "Surplus of labor = 260 − 220 = 40 people."
+      ],
+      "answer": "In the simple competitive model, 40 people want restaurant jobs at $17 but are not hired. The 220 people who are hired earn more than the market wage.",
+      "check": {
+        "type": "difference",
+        "a": 260,
+        "b": 220,
+        "expected": 40
+      }
+    },
+    {
+      "id": "c05-l3-we2",
+      "level": "intermediate",
+      "title": "A binding minimum wage on the graph",
+      "problem": "Hypothetical example: In a market for entry-level retail workers, labor demand is L_d = 800 − 20W and labor supply is L_s = 50 + 30W. Find the equilibrium. Then a minimum wage of $18 per hour is introduced. Find employment and the surplus of labor at the minimum wage.",
+      "steps": [
+        "Equilibrium: 800 − 20W = 50 + 30W, so W* = 750/50 = $15 and L* = 800 − 300 = 500.",
+        "$18 is above $15, so the minimum wage is binding.",
+        "At $18: L_d = 800 − 360 = 440 and L_s = 50 + 540 = 590.",
+        "Employment falls from 500 to 440 (by 60), and the surplus of labor is 590 − 440 = 150."
+      ],
+      "answer": "Without the minimum wage, W* = $15 and 500 workers are employed. At $18, employers hire 440 workers while 590 want jobs, so the simple model predicts 60 fewer jobs and a surplus of 150 workers.",
+      "check": {
+        "type": "equilibrium",
+        "a": 800,
+        "b": 20,
+        "c": 50,
+        "d": 30,
+        "price": 15,
+        "quantity": 500
+      }
+    },
+    {
+      "id": "c05-l3-we3",
+      "level": "advanced",
+      "title": "Winners, losers, and total wage income",
+      "problem": "Hypothetical example (the market from worked example 2): Using the formulas, confirm the employment loss and the surplus of labor at W_min = $18. Then compare the total hourly wage income of employed workers before and after the minimum wage.",
+      "steps": [
+        "Employment loss = b(W_min − W*) = 20 × (18 − 15) = 60. Surplus = (b + d)(W_min − W*) = 50 × 3 = 150. Both match worked example 2.",
+        "Before: $15 × 500 = $7,500 per hour.",
+        "After: $18 × 440 = $7,920 per hour.",
+        "The wage rose by 20% (3/15) while employment fell by 12% (60/500), so labor demand is inelastic in this range and total wage income rises."
+      ],
+      "answer": "Total wage income of employed workers rises from $7,500 to $7,920 per hour, but 60 fewer people are employed. The policy raises the group's income while some individuals lose work, which is exactly the trade-off economists debate.",
+      "check": {
+        "type": "product",
+        "factors": [
+          18,
+          440
+        ],
+        "expected": 7920
+      }
+    },
+    {
+      "id": "c05-l3-we4",
+      "level": "intermediate",
+      "title": "Earned-income support during the phase-in",
+      "problem": "Hypothetical example: An earned-income support program adds 20 cents for every dollar a low-wage worker earns, up to a limit. A worker earns $6,000 in a year, which is below the limit. How much support does the worker receive, and what is the worker's total income?",
+      "steps": [
+        "Support = 0.20 × $6,000 = $1,200.",
+        "Total income = $6,000 + $1,200 = $7,200.",
+        "Each extra dollar earned in this range brings $1.20 of income, so the program rewards working more."
+      ],
+      "answer": "The worker receives $1,200 of support, for a total income of $7,200. The support is paid by taxpayers, not by the employer, which is one difference from a minimum wage.",
+      "check": {
+        "type": "product",
+        "factors": [
+          6000,
+          0.2
+        ],
+        "expected": 1200
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "id": "c05-l3-g1",
+      "title": "A minimum wage above the equilibrium wage",
+      "caption": "Hypothetical example (worked examples 2 and 3). Without a minimum wage, labor demand and labor supply meet at W = $15 and L = 500. At the $18 minimum wage, employers hire 440 workers while 590 want to work: a surplus of labor of 150 in the simple competitive model.",
+      "axis": {
+        "p_max": 40,
+        "q_max": 1000,
+        "p_label": "Wage W ($ per hour)",
+        "q_label": "Labor L (workers)"
+      },
+      "demand": [
+        {
+          "label": "Labor demand",
+          "a": 800,
+          "b": 20
+        }
+      ],
+      "supply": [
+        {
+          "label": "Labor supply",
+          "c": 50,
+          "d": 30
+        }
+      ],
+      "price_lines": [
+        {
+          "label": "Minimum wage $18",
+          "price": 18
+        }
+      ],
+      "expected_equilibria": [
+        {
+          "demand": "Labor demand",
+          "supply": "Labor supply",
+          "price": 15,
+          "quantity": 500
+        }
+      ]
+    }
+  ],
+  "real_world_examples": [
+    {
+      "title": "Minimum wage and living wage debates",
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ],
+      "paragraphs": [
+        "Supporters of higher minimum wages and local living wage laws argue that full-time workers should earn enough to stay out of poverty. Critics warn that higher wage floors can reduce hiring of low-skill workers. Studies point in different directions, and weighing job losses for some against income gains for others has no simple answer."
+      ]
+    },
+    {
+      "title": "One employer, few alternatives",
+      "source_ids": [
+        "openstax-pe3-14-2"
+      ],
+      "paragraphs": [
+        "The classic example of monopsony is a town with a single large employer, such as a mining company, where workers have nowhere else nearby to work. Such an employer can pay less and hire fewer workers than a competitive labor market would. Laws such as minimum wages are among the tools that aim to balance the bargaining power of workers and employers."
+      ]
+    },
+    {
+      "title": "Rewarding work through the tax system",
+      "source_ids": [
+        "openstax-pe3-15-3"
+      ],
+      "paragraphs": [
+        "The U.S. Earned Income Tax Credit gives low-income working families a credit that rises with earnings, levels off, and then gradually shrinks as income rises further. Because it grows with earnings, it is widely seen as rewarding work. Other support programs that shrink quickly as earnings rise can make extra work barely pay off."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8
+    ],
+    "title": "Raising low-wage workers' living standards: which tool?",
+    "paragraphs": [
+      "SDG target 8.5 aims for full and productive employment and decent work for all women and men, including young people and persons with disabilities, and equal pay for work of equal value. SDG target 8.8 calls for protecting labour rights and promoting safe and secure working environments for all workers.",
+      "Hypothetical situation: A region's leaders want to raise the living standards of workers in low-paid jobs such as cleaning, food service, and warehouse work. Some local employers are large and face little competition for workers; others are small shops with thin profit margins. The leaders are comparing three approaches."
+    ],
+    "options": [
+      {
+        "name": "Raise the regional minimum wage by a moderate amount",
+        "benefits": [
+          "Workers who keep their jobs earn more immediately, and the cost does not come from the public budget.",
+          "Where large employers hold wages down, a moderate floor may raise pay without cutting jobs."
+        ],
+        "costs": [
+          "Small shops may hire fewer people, cut hours, or raise prices.",
+          "If the floor is high compared with local wages, some low-skill workers may find it harder to get hired."
+        ],
+        "assumptions": [
+          "The increase is modest relative to local wages, and employers' wage-setting power is significant."
+        ]
+      },
+      {
+        "name": "Expand earned-income support paid through taxes",
+        "benefits": [
+          "Raises low-wage workers' income without raising employers' labor costs, so hiring is less likely to fall.",
+          "Rewards work because support grows with earnings."
+        ],
+        "costs": [
+          "Costs public money, which requires higher taxes or cuts elsewhere.",
+          "As support phases out, extra earnings add less to take-home pay, weakening the incentive to work more hours."
+        ],
+        "assumptions": [
+          "The region can fund the program, and eligible workers actually claim it."
+        ]
+      },
+      {
+        "name": "Fund skills training and stronger enforcement of labor rights and safety rules",
+        "benefits": [
+          "Training raises productivity, which can lift wages over the long run.",
+          "Enforcement protects workers' rights and safety now, directly supporting SDG target 8.8."
+        ],
+        "costs": [
+          "Results take time, and training does not help everyone equally.",
+          "Inspections and programs cost money and need trained staff."
+        ],
+        "assumptions": [
+          "Training matches local job needs, and inspectors have the resources to act."
+        ]
+      }
+    ],
+    "discussion": [
+      "Who pays and who benefits under each option? Using the labor market graph and the idea of employer market power, explain under what conditions you would choose a minimum wage increase, and when you would prefer another tool or a combination."
+    ],
+    "source_ids": [
+      "un-sdg-8",
+      "openstax-pe3-4-1",
+      "openstax-pe3-15-3"
+    ]
+  },
+  "key_takeaways": [
+    "A minimum wage is a price floor for labor. In the simple competitive model, a binding minimum raises the wage of those employed, lowers employment, and creates a surplus of labor.",
+    "Real-world evidence is mixed and debated: effects appear to depend on how high the minimum is relative to local wages and on employer market power (monopsony).",
+    "Training, job-search help, and earned-income support target different problems and have their own costs; good labor policy weighs these trade-offs rather than relying on a single tool."
+  ],
+  "source_ids": [
+    "openstax-pe3-4-1",
+    "openstax-pe3-3-4",
+    "openstax-pe3-14-2",
+    "openstax-pe3-21-4",
+    "openstax-pe3-15-3",
+    "un-sdg-8"
+  ]
+}

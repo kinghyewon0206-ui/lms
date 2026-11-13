@@ -3,7 +3,7 @@
   "id": "c03-final",
   "kind": "final",
   "course_id": "c03",
-  "version": 2,
+  "version": 3,
   "title": "Market Failure: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -164,7 +164,7 @@
     },
     {
       "id": "c03-final-q5",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c03-l2",
       "objective": 2,
@@ -175,7 +175,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: If two neighbors install a security camera on their street together, each pays 4 and each gets a value of 6. If one household installs it alone, that household pays 8, and both households get a value of 6. If no one installs it, both get 0. If each household looks only at its own gain and decides separately, which outcome is most likely?",
+      "prompt": "Hypothetical example (all amounts are in hundreds of dollars): If two neighbors install a security camera on their street together, each pays 4 and each gets a value of 6. If one household installs it alone, that household pays 8, and both households get a value of 6. If no one installs it, both get 0. If each household looks only at its own gain and decides separately, which outcome is most likely?",
       "choices": [
         {
           "id": "a",

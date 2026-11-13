@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c05-l2",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Classify people as employed, unemployed, or not in the labor force, and explain why discouraged workers are not counted as unemployed.",
+    "Calculate the labor force participation rate and the unemployment rate from the same data, and explain why they measure different things.",
+    "Distinguish frictional, structural, and cyclical unemployment, describe the natural rate of unemployment, and explain how productivity and human capital are linked to wages."
+  ],
+  "concepts": [
+    {
+      "id": "labor_force",
+      "term": "Working-age population and labor force",
+      "definition": "The working-age population is the group of people old enough to work (for example, everyone aged 16 and older in U.S. statistics). The labor force is the part of that group who are either employed or unemployed.",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "unemployed",
+      "term": "Unemployed",
+      "definition": "A person counts as unemployed only if they have no job, are available to work, and have actively looked for work recently (for example, in the past four weeks). Wanting a job is not enough.",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "not_in_labor_force",
+      "term": "Not in the labor force and discouraged workers",
+      "definition": "People of working age who neither have a job nor are actively looking for one, such as many full-time students, retirees, and people caring for family, are not in the labor force. Discouraged workers want a job but have stopped looking because they believe none is available, so they are counted as out of the labor force, not as unemployed.",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "participation_rate",
+      "term": "Labor force participation rate",
+      "definition": "The share of the working-age population that is in the labor force: labor force ÷ working-age population × 100.",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "unemployment_rate",
+      "term": "Unemployment rate",
+      "definition": "The share of the labor force that is unemployed: number of unemployed ÷ labor force × 100. Its denominator is the labor force, not the whole working-age population.",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "unemployment_types",
+      "term": "Frictional, structural, and cyclical unemployment",
+      "definition": "Frictional unemployment happens while people search for and move between jobs. Structural unemployment happens when workers' skills or locations do not match the jobs available. Cyclical unemployment rises in recessions and falls in expansions. The natural rate of unemployment is the rate that remains when the economy is neither booming nor in a recession (mainly frictional plus structural).",
+      "source_ids": [
+        "openstax-pe3-21-3",
+        "openstax-pe3-21-4"
+      ]
+    },
+    {
+      "id": "productivity_human_capital",
+      "term": "Productivity and human capital",
+      "definition": "Labor productivity is the value of output produced per hour worked. Human capital is the skills and knowledge that make workers productive, built through education, training, and experience. Over the long run, higher productivity is the main source of higher average wages.",
+      "source_ids": [
+        "openstax-pe3-20-2",
+        "openstax-pe3-20-3"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Not everyone without a job is unemployed. To be unemployed, you must be available and actively looking for work. Two different rates describe the job market, and skills that make workers more productive tend to raise wages.",
+      "sections": [
+        {
+          "heading": "Three groups",
+          "concept_ids": [
+            "labor_force",
+            "unemployed",
+            "not_in_labor_force"
+          ],
+          "paragraphs": [
+            "Economists sort people old enough to work into three groups. Employed people have a job, full-time or part-time. Unemployed people have no job, are ready to start, and have been actively looking, for example by sending applications. Everyone else is not in the labor force: a full-time student who is not looking for work, a retired grandparent, or a parent who stays home with a baby.",
+            "The employed and the unemployed together make up the labor force. Here is a tricky case: someone who wants a job but has given up looking because they think there are no jobs is called a discouraged worker. Because they are not looking, they are not counted as unemployed. They are counted as out of the labor force."
+          ]
+        },
+        {
+          "heading": "Two different rates",
+          "concept_ids": [
+            "participation_rate",
+            "unemployment_rate"
+          ],
+          "paragraphs": [
+            "The unemployment rate answers: of the people in the labor force, what share cannot find a job? The labor force participation rate answers a different question: of all the people old enough to work, what share are in the labor force at all? The first divides by the labor force. The second divides by everyone of working age. Mixing up the two denominators is the most common mistake."
+          ]
+        },
+        {
+          "heading": "Why people are unemployed",
+          "concept_ids": [
+            "unemployment_types"
+          ],
+          "paragraphs": [
+            "Some unemployment is just the time it takes to find a good match, like a graduate spending a few weeks applying for jobs. That is frictional unemployment. Some happens because people's skills no longer fit the jobs that exist, like a typesetter whose work is now done by software. That is structural unemployment. And some happens because the whole economy slows down and businesses cut jobs during a recession. That is cyclical unemployment. Even in good times, some frictional and structural unemployment remains."
+          ]
+        },
+        {
+          "heading": "Skills, productivity, and pay",
+          "concept_ids": [
+            "productivity_human_capital"
+          ],
+          "paragraphs": [
+            "Productivity means how much a worker can produce in an hour. A carpenter with good tools and years of training can build more in an hour than a beginner. The skills and knowledge people build through school, training, and experience are called human capital. Employers can pay more to workers who produce more, so over time more productivity usually means higher wages."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "The unemployment rate and the labor force participation rate use different denominators, so the same event can move them differently. Unemployment has frictional, structural, and cyclical parts, and productivity built on human capital is the long-run anchor for wages.",
+      "sections": [
+        {
+          "heading": "Who is in the labor force?",
+          "concept_ids": [
+            "labor_force",
+            "unemployed",
+            "not_in_labor_force"
+          ],
+          "paragraphs": [
+            "Working-age population = employed + unemployed + not in the labor force, and labor force = employed + unemployed. The test for being unemployed has three parts: no job, available to work, and actively searching. A part-time worker who wants more hours is still counted as employed, and a discouraged worker who has stopped searching is out of the labor force. Because of these rules, the official unemployment count can understate how many people want work; economists call the missing part hidden unemployment."
+          ]
+        },
+        {
+          "heading": "Two rates, two denominators",
+          "concept_ids": [
+            "participation_rate",
+            "unemployment_rate"
+          ],
+          "paragraphs": [
+            "Labor force participation rate = labor force ÷ working-age population × 100. Unemployment rate = unemployed ÷ labor force × 100. Take a discouraged worker who stops searching. They move from unemployed to not in the labor force. The number of unemployed falls and the labor force falls by the same amount, so the unemployment rate goes down even though nobody found a job. The participation rate also goes down, because the labor force shrank while the working-age population stayed the same. That is why economists look at both rates together."
+          ]
+        },
+        {
+          "heading": "Types of unemployment and the natural rate",
+          "concept_ids": [
+            "unemployment_types"
+          ],
+          "paragraphs": [
+            "Frictional unemployment comes from the search process itself and is not all bad: taking time to find a good match can make workers more productive later. Structural unemployment comes from a mismatch between workers' skills (or locations) and the jobs available, and education and retraining are the main remedies. Cyclical unemployment rises when firms expect lower sales in a recession and hire fewer workers at every wage, shifting labor demand to the left.",
+            "If wages adjusted instantly, a fall in labor demand would just lower the wage. In practice, wages tend to be sticky downward, so when labor demand falls, the wage stays above the new equilibrium for a while and a surplus of labor appears. The graph below shows this. The natural rate of unemployment is the rate that remains when the economy is neither booming nor in recession; it can change over time with economic, social, and policy conditions."
+          ]
+        },
+        {
+          "heading": "Productivity, human capital, and wages",
+          "concept_ids": [
+            "productivity_human_capital"
+          ],
+          "paragraphs": [
+            "Labor productivity is output per hour worked. Workers become more productive with more human capital (education, training, experience), more and better physical capital (tools and equipment), and better technology. In the language of Lesson 1, higher productivity raises the value of the marginal product of labor and shifts labor demand to the right. If an employer paid well below the value a worker produces, other employers could bid that worker away, so over the long run, output per hour is the main factor behind the average wage level."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Let N be the working-age population, E employment, U unemployment, and LF = E + U. Then the participation rate is LF/N and the unemployment rate is U/LF. Moving people between categories changes each ratio in ways you can calculate, and the labor-market model explains cyclical unemployment as a surplus of labor at a sticky wage.",
+      "sections": [
+        {
+          "heading": "Measurement identities",
+          "concept_ids": [
+            "labor_force",
+            "unemployed",
+            "not_in_labor_force",
+            "participation_rate",
+            "unemployment_rate"
+          ],
+          "paragraphs": [
+            "With N = E + U + O (O = not in the labor force) and LF = E + U, the participation rate is p = LF/N and the unemployment rate is u = U/LF. Note that the employment-to-population ratio is E/N = p(1 − u), so the three measures are linked.",
+            "If x unemployed people become discouraged and stop searching, U and LF both fall by x: u′ = (U − x)/(LF − x) and p′ = (LF − x)/N. Because U < LF, subtracting the same x from both makes the ratio smaller, so u′ < u. The participation rate falls by x/N. A falling unemployment rate is therefore less reassuring if the participation rate is falling at the same time.",
+            "The reverse also happens: when job prospects improve, some people outside the labor force start searching. They count as unemployed until they find work, so the unemployment rate can rise briefly even as the job market strengthens."
+          ]
+        },
+        {
+          "heading": "Cyclical unemployment as a surplus of labor",
+          "concept_ids": [
+            "unemployment_types"
+          ],
+          "paragraphs": [
+            "Use L_d = a − bW and L_s = c + dW. A recession lowers expected sales, reducing a. If the wage stayed at its old level W₀ instead of falling to the new equilibrium, the surplus of labor would be L_s(W₀) − L_d(W₀) = (c + dW₀) − (a′ − bW₀). This surplus is cyclical unemployment. As wages and demand adjust over time, unemployment returns toward the natural rate, which is the frictional and structural part that remains in normal times."
+          ]
+        },
+        {
+          "heading": "Productivity and the long-run wage",
+          "concept_ids": [
+            "productivity_human_capital"
+          ],
+          "paragraphs": [
+            "Labor productivity is Y/H, output (in value) per hour worked. In the competitive hiring rule W = MPL × P from Lesson 1, a sustained rise in the value produced per hour raises labor demand at every wage, and competition among employers passes much of the gain into wages over time. Human capital raises MPL directly; physical capital and technology raise it by giving each worker better tools and methods. Short-run surprises in productivity can move unemployment for a while, because wages adjust to productivity only slowly."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c05-l2-we1",
+      "level": "beginner",
+      "title": "Counting the unemployed",
+      "problem": "Hypothetical example: In a small town, 760 people have jobs and 40 people have no job but are available and have applied for jobs in the past four weeks. What is the labor force, and what is the unemployment rate?",
+      "steps": [
+        "Labor force = employed + unemployed = 760 + 40 = 800.",
+        "Unemployment rate = unemployed ÷ labor force = 40 ÷ 800 = 0.05.",
+        "As a percentage: 0.05 × 100 = 5%."
+      ],
+      "answer": "The labor force is 800 and the unemployment rate is 5%. Note that the denominator is the labor force, not the whole population of the town.",
+      "check": {
+        "type": "ratio",
+        "numerator": 40,
+        "denominator": 800,
+        "expected": 0.05
+      }
+    },
+    {
+      "id": "c05-l2-we2",
+      "level": "intermediate",
+      "title": "Two rates from the same data",
+      "problem": "Hypothetical example: A city has a working-age population of 1,250. Of them, 690 are employed, 60 are unemployed, and 500 are not in the labor force. Calculate the labor force participation rate and the unemployment rate.",
+      "steps": [
+        "Check the total: 690 + 60 + 500 = 1,250.",
+        "Labor force = 690 + 60 = 750.",
+        "Participation rate = 750 ÷ 1,250 = 0.60, or 60%.",
+        "Unemployment rate = 60 ÷ 750 = 0.08, or 8%."
+      ],
+      "answer": "The labor force participation rate is 60% and the unemployment rate is 8%. The two rates use different denominators: the working-age population for participation, the labor force for unemployment.",
+      "check": {
+        "type": "ratio",
+        "numerator": 750,
+        "denominator": 1250,
+        "expected": 0.6
+      }
+    },
+    {
+      "id": "c05-l2-we3",
+      "level": "advanced",
+      "title": "When discouraged workers leave the labor force",
+      "problem": "Hypothetical example (the city from worked example 2): 15 of the 60 unemployed people stop searching because they believe no jobs are available. Nobody finds a job. Recalculate both rates and explain the change.",
+      "steps": [
+        "Unemployed: 60 − 15 = 45. Labor force: 750 − 15 = 735. Not in the labor force: 500 + 15 = 515.",
+        "New unemployment rate = 45 ÷ 735 ≈ 0.0612, or about 6.1% (down from 8%).",
+        "New participation rate = 735 ÷ 1,250 = 0.588, or 58.8% (down from 60%).",
+        "Employment is still 690: the unemployment rate fell only because people stopped looking."
+      ],
+      "answer": "The unemployment rate falls from 8% to about 6.1% and the participation rate falls from 60% to 58.8%, even though no one found work. A lower unemployment rate can hide weaker job prospects, so check participation too.",
+      "check": {
+        "type": "ratio",
+        "numerator": 45,
+        "denominator": 735,
+        "expected": 0.0612,
+        "tolerance": 0.0001
+      }
+    },
+    {
+      "id": "c05-l2-we4",
+      "level": "advanced",
+      "title": "A recession with a sticky wage",
+      "problem": "Hypothetical example: In a regional market for construction workers, labor supply is L_s = 100 + 25W and labor demand is L_d = 1,100 − 25W, so the equilibrium is W = $20 and L = 600. A recession lowers labor demand to L_d = 900 − 25W. Find the new equilibrium. If the wage stays stuck at $20 for a while, how large is the surplus of labor?",
+      "steps": [
+        "New equilibrium: 900 − 25W = 100 + 25W, so W = 800/50 = $16 and L = 900 − 400 = 500.",
+        "At the sticky wage W = $20: L_d = 900 − 500 = 400 and L_s = 100 + 500 = 600.",
+        "Surplus of labor = 600 − 400 = 200 workers."
+      ],
+      "answer": "If wages adjusted fully, the wage would fall to $16 and employment to 500. With the wage stuck at $20, only 400 are hired while 600 want to work: 200 workers are cyclically unemployed until wages or demand adjust.",
+      "check": {
+        "type": "equilibrium",
+        "a": 900,
+        "b": 25,
+        "c": 100,
+        "d": 25,
+        "price": 16,
+        "quantity": 500
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "id": "c05-l2-g1",
+      "title": "Cyclical unemployment with a sticky wage",
+      "caption": "Hypothetical example (worked example 4). A recession shifts labor demand from D1 to D2. If the wage stays at $20, employers hire 400 workers while 600 want to work, a surplus of 200. With full adjustment the wage would fall to $16 and employment to 500.",
+      "axis": {
+        "p_max": 50,
+        "q_max": 1000,
+        "p_label": "Wage W ($ per hour)",
+        "q_label": "Labor L (workers)"
+      },
+      "demand": [
+        {
+          "label": "Labor demand D1",
+          "a": 1100,
+          "b": 25
+        },
+        {
+          "label": "Labor demand D2",
+          "a": 900,
+          "b": 25
+        }
+      ],
+      "supply": [
+        {
+          "label": "Labor supply",
+          "c": 100,
+          "d": 25
+        }
+      ],
+      "price_lines": [
+        {
+          "label": "Sticky wage $20",
+          "price": 20
+        }
+      ],
+      "expected_equilibria": [
+        {
+          "demand": "Labor demand D1",
+          "supply": "Labor supply",
+          "price": 20,
+          "quantity": 600
+        },
+        {
+          "demand": "Labor demand D2",
+          "supply": "Labor supply",
+          "price": 16,
+          "quantity": 500
+        }
+      ]
+    }
+  ],
+  "real_world_examples": [
+    {
+      "title": "Why the official unemployment rate can understate hardship",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ],
+      "paragraphs": [
+        "Official statistics count people as unemployed only if they are actively searching. Discouraged workers who have given up are left out, and part-time workers who want full-time jobs, or graduates working in jobs far below their training, are counted as employed. Economists therefore also look at participation and other measures to get a fuller picture."
+      ]
+    },
+    {
+      "title": "Why wages do not fall quickly in a recession",
+      "source_ids": [
+        "openstax-pe3-21-3"
+      ],
+      "paragraphs": [
+        "Wages tend to rise easily but fall slowly. Contracts and laws, employers' wish to keep good workers and protect morale, and workers' concern about their pay compared with others all make firms more likely to lay off some workers than to cut everyone's pay. That stickiness is one reason unemployment rises in recessions."
+      ]
+    },
+    {
+      "title": "Productivity sets the long-run level of wages",
+      "source_ids": [
+        "openstax-pe3-20-2",
+        "openstax-pe3-20-3"
+      ],
+      "paragraphs": [
+        "Over long periods, the average wage in an economy rises mainly when output per hour rises. Education and training (human capital), better equipment (physical capital), and new technology work together to raise that output."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8
+    ],
+    "title": "Young people who are neither working nor learning",
+    "paragraphs": [
+      "SDG target 8.6 calls for substantially reducing the proportion of youth not in employment, education or training (often called NEET). SDG target 8.5 aims for full and productive employment and decent work for all women and men, including young people.",
+      "Hypothetical situation: In a mid-sized city, many 18- to 24-year-olds have finished school but are not working, studying, or training. Some are searching for jobs; others have given up. Local employers say they cannot find workers with the skills they need. The city has a limited budget and must choose where to start."
+    ],
+    "options": [
+      {
+        "name": "Subsidized apprenticeships with local employers",
+        "benefits": [
+          "Young people build human capital on the job and earn a wage while they learn.",
+          "Training matches what local employers actually need, which targets structural unemployment."
+        ],
+        "costs": [
+          "Subsidies cost the city money, and some firms might have hired the same young people anyway.",
+          "The number of places depends on how many employers sign up."
+        ],
+        "assumptions": [
+          "Employers offer real training rather than using subsidized workers as cheap labor."
+        ]
+      },
+      {
+        "name": "A job-search center with career counseling",
+        "benefits": [
+          "Helps young people find openings and match their skills faster, reducing frictional unemployment.",
+          "Relatively cheap per person, and it can reach discouraged young people and bring them back to searching."
+        ],
+        "costs": [
+          "It does not create new jobs or new skills, so it helps less if the problem is a skills mismatch.",
+          "Measured unemployment may rise at first as discouraged young people start searching again."
+        ],
+        "assumptions": [
+          "Suitable jobs exist and the main barrier is information and confidence."
+        ]
+      },
+      {
+        "name": "Free short vocational courses",
+        "benefits": [
+          "Builds skills such as digital or technical skills quickly for many people.",
+          "Participants count as being in education or training, so the NEET share falls right away."
+        ],
+        "costs": [
+          "Courses cost money, and skills may not match open jobs if the courses are not designed with employers.",
+          "Some participants may finish without finding work."
+        ],
+        "assumptions": [
+          "The courses teach skills that employers value and lead to jobs afterward."
+        ]
+      }
+    ],
+    "discussion": [
+      "For each option, which type of unemployment does it target, and how would it change the unemployment rate and the labor force participation rate in the short run? Is a quick fall in the NEET share the same as success? Explain."
+    ],
+    "source_ids": [
+      "un-sdg-8",
+      "openstax-pe3-21-4"
+    ]
+  },
+  "key_takeaways": [
+    "Labor force = employed + unemployed. To be unemployed, a person must be without a job, available, and actively looking; discouraged workers are out of the labor force.",
+    "Participation rate = labor force ÷ working-age population; unemployment rate = unemployed ÷ labor force. When discouraged workers stop searching, both rates fall.",
+    "Unemployment is frictional, structural, or cyclical; the natural rate is what remains in normal times. Productivity, built on human capital, physical capital, and technology, is the long-run anchor for wages."
+  ],
+  "source_ids": [
+    "openstax-pe3-21-1",
+    "openstax-pe3-21-3",
+    "openstax-pe3-21-4",
+    "openstax-pe3-20-2",
+    "openstax-pe3-20-3",
+    "un-sdg-8"
+  ]
+}

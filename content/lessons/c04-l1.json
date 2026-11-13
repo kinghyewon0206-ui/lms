@@ -1,0 +1,469 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c04-l1",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Explain what GDP measures, the market value of final goods and services produced within a country in a period, and why intermediate goods are left out.",
+    "Distinguish nominal GDP from real GDP, calculate real GDP and growth rates with base-year prices or a GDP deflator, and tell a percentage change apart from a percentage-point change.",
+    "Evaluate GDP per capita as a measure of living standards by identifying what GDP leaves out and explaining why a correlation, such as GDP per capita moving with life expectancy, does not by itself prove causation."
+  ],
+  "concepts": [
+    {
+      "id": "gdp",
+      "term": "Gross domestic product (GDP)",
+      "definition": "The market value of all final goods and services produced within a country during a given period, usually a year or a quarter. Each item is valued at its market price, so very different goods can be added into one number.",
+      "source_ids": [
+        "openstax-pe3-19-1"
+      ]
+    },
+    {
+      "id": "final_vs_intermediate",
+      "term": "Final goods and intermediate goods",
+      "definition": "A final good or service is bought by its end user. An intermediate good is used up in making another product. GDP counts only final goods and services, because the value of intermediate goods is already included in the price of the final product; counting both would be double counting.",
+      "source_ids": [
+        "openstax-pe3-19-1"
+      ]
+    },
+    {
+      "id": "nominal_vs_real_gdp",
+      "term": "Nominal GDP, real GDP, and the GDP deflator",
+      "definition": "Nominal GDP values output at the prices of the year it was produced. Real GDP values output at the prices of a fixed base year, so it changes only when quantities change. The GDP deflator is a price index for all final goods and services: real GDP = nominal GDP ÷ (deflator ÷ 100).",
+      "source_ids": [
+        "openstax-pe3-19-2"
+      ]
+    },
+    {
+      "id": "growth_rate",
+      "term": "Growth rate (percentage change vs. percentage-point change)",
+      "definition": "A growth rate is the percentage change in a value from one period to the next: (new − old) ÷ old × 100. When the value being compared is itself a rate, the plain difference between two rates is measured in percentage points, which is not the same as the percentage change in the rate.",
+      "source_ids": [
+        "openstax-pe3-19-2"
+      ]
+    },
+    {
+      "id": "gdp_per_capita",
+      "term": "GDP per capita",
+      "definition": "GDP divided by population. It shows output per person, which makes countries of different sizes easier to compare, but it gives only a rough idea of living standards.",
+      "source_ids": [
+        "openstax-pe3-19-4"
+      ]
+    },
+    {
+      "id": "gdp_limits",
+      "term": "What GDP leaves out",
+      "definition": "GDP counts market production. It misses unpaid household production, leisure time, environmental quality, and how income is distributed, and it can rise because of spending that does not make people better off, such as rebuilding after a disaster.",
+      "source_ids": [
+        "openstax-pe3-19-5"
+      ]
+    },
+    {
+      "id": "correlation_causation",
+      "term": "Correlation vs. causation",
+      "definition": "Two measures are correlated when they tend to move together. A correlation alone does not show that one causes the other: the cause could run the other way, or a third factor could drive both.",
+      "source_ids": [
+        "openstax-is2e-12-3",
+        "openstax-pe3-19-5"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "GDP adds up the market value of the final goods and services a country produces in a year. It is a useful measure of how much an economy produces, but it is not a full measure of how well people live.",
+      "sections": [
+        {
+          "heading": "One number for a whole economy",
+          "concept_ids": [
+            "gdp"
+          ],
+          "paragraphs": [
+            "An economy produces millions of different things: bread, bikes, haircuts, video games, bus rides. You cannot add 3 bikes to 50 haircuts, but you can add up what they sell for. Gross domestic product, or GDP, is the total market value of everything a country produces for final use in a period, usually one year. If GDP goes up, the country produced more value that year, measured at that year's prices."
+          ]
+        },
+        {
+          "heading": "Count the bread, not the flour",
+          "concept_ids": [
+            "final_vs_intermediate"
+          ],
+          "paragraphs": [
+            "Suppose a farmer sells wheat to a miller, the miller sells flour to a bakery, and the bakery sells bread to you. The price of the bread already includes the flour and the wheat. If you added the wheat, the flour, and the bread together, you would count the wheat three times. So GDP counts only final goods, like the bread you eat, and skips intermediate goods, like the flour the bakery used up."
+          ]
+        },
+        {
+          "heading": "Higher prices are not more stuff",
+          "concept_ids": [
+            "nominal_vs_real_gdp",
+            "growth_rate"
+          ],
+          "paragraphs": [
+            "If a country makes exactly the same things as last year but every price goes up, its GDP measured in today's prices rises. Nobody is better off, though, because there is no extra stuff. That is why economists use two versions. Nominal GDP uses each year's own prices. Real GDP uses the prices of one fixed year, so it rises only when the country actually produces more.",
+            "The growth rate tells you how fast something changed in percent. If real GDP grows from $100 billion to $103 billion, it grew 3%. Be careful when the thing you compare is already a percent. If the growth rate goes from 2% to 3%, it went up by 1 percentage point, not by 1 percent."
+          ]
+        },
+        {
+          "heading": "Per person, and what the number misses",
+          "concept_ids": [
+            "gdp_per_capita",
+            "gdp_limits"
+          ],
+          "paragraphs": [
+            "A big country can have a big GDP just because many people live there. Dividing GDP by population gives GDP per capita, the amount produced per person. It is a better way to compare countries, but it is still an average.",
+            "GDP also leaves things out. When a parent cooks dinner at home, nothing is sold, so GDP does not count it. GDP does not count free time, clean air, or whether income is shared fairly. A country can have a high GDP per capita while many people in it struggle."
+          ]
+        },
+        {
+          "heading": "Moving together is not the same as causing",
+          "concept_ids": [
+            "correlation_causation"
+          ],
+          "paragraphs": [
+            "In many data sets, countries with higher GDP per capita also have longer life expectancy. That tells you the two move together. It does not tell you why. Richer countries might spend more on health care, healthier people might work and produce more, or something else, like better schools, might raise both. Seeing two things move together is a clue, not proof."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "GDP measures final output at market prices. Comparing years requires real GDP, comparing countries calls for GDP per capita, and judging well-being needs evidence beyond GDP and careful reasoning about cause and effect.",
+      "sections": [
+        {
+          "heading": "Defining and counting GDP",
+          "concept_ids": [
+            "gdp",
+            "final_vs_intermediate"
+          ],
+          "paragraphs": [
+            "GDP is the market value of all final goods and services produced within a country in a given period. Three parts of that definition matter. \"Market value\" means items are weighted by their prices. \"Final\" means intermediate goods are excluded to avoid double counting. \"Produced within a country in the period\" means used goods sold this year, which were counted when they were made, are not added again, and output made abroad is not included.",
+            "An equivalent way to avoid double counting is to add up the value added at each stage: the sales price of each firm minus what it paid for intermediate goods. Summed across all stages, value added equals the price of the final product."
+          ]
+        },
+        {
+          "heading": "Nominal GDP, real GDP, and the deflator",
+          "concept_ids": [
+            "nominal_vs_real_gdp"
+          ],
+          "paragraphs": [
+            "Nominal GDP can rise because quantities rise, because prices rise, or both. Real GDP removes the price effect by valuing every year's quantities at the prices of one base year. Comparing real GDP across years therefore shows the change in the volume of output.",
+            "The ratio of the two gives the GDP deflator: deflator = nominal GDP ÷ real GDP × 100. In the base year, nominal and real GDP are equal, so the deflator is 100. A deflator of 120 means prices of final goods and services are, on average, 20% higher than in the base year."
+          ]
+        },
+        {
+          "heading": "Growth rates, percentages, and percentage points",
+          "concept_ids": [
+            "growth_rate"
+          ],
+          "paragraphs": [
+            "The growth rate of real GDP is (this year's real GDP − last year's real GDP) ÷ last year's real GDP × 100. Economists use real GDP for growth so that inflation is not mistaken for extra output.",
+            "When the numbers you compare are themselves rates, two different measures are possible. If the real growth rate falls from 4% to 3%, the difference is 1 percentage point. The percentage change in the rate is (3 − 4) ÷ 4 × 100 = −25%. Both statements are correct, but they answer different questions, and news reports often mix them up."
+          ]
+        },
+        {
+          "heading": "GDP per capita and its blind spots",
+          "concept_ids": [
+            "gdp_per_capita",
+            "gdp_limits"
+          ],
+          "paragraphs": [
+            "GDP per capita = GDP ÷ population. It adjusts for country size and is the usual starting point for comparing average living standards. Its growth rate is roughly the growth rate of real GDP minus the growth rate of population.",
+            "Because GDP is built from market transactions, it leaves out household production and volunteer work, places no value on leisure, does not subtract environmental damage, and, as an average, says nothing about distribution. It can even rise when a country spends money repairing storm damage. For these reasons, GDP is best read together with other indicators, such as health, education, employment, and environmental measures."
+          ]
+        },
+        {
+          "heading": "Correlation and causation",
+          "concept_ids": [
+            "correlation_causation"
+          ],
+          "paragraphs": [
+            "Across countries, higher GDP per capita tends to come with better health, more schooling, and other improvements. A positive correlation between GDP per capita and life expectancy is consistent with several stories: higher income pays for better nutrition and health care (income → health), healthier workers produce more (health → income), or a third factor such as stronger institutions raises both. The correlation by itself cannot tell these apart. Economists look for additional evidence, such as changes over time or natural experiments, before claiming a cause."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Formally, nominal GDP is Σ Pₜ·Qₜ and real GDP is Σ P₀·Qₜ. Ratios of these sums give the deflator and growth rates, and the same algebra shows why per-capita growth and real growth are approximations of exact ratios.",
+      "sections": [
+        {
+          "heading": "GDP as a sum of final expenditures and of value added",
+          "concept_ids": [
+            "gdp",
+            "final_vs_intermediate"
+          ],
+          "paragraphs": [
+            "For an economy producing goods i = 1, …, n in year t, nominal GDP is Yₜ = Σ Pᵢₜ·Qᵢₜ, where Qᵢₜ counts only final uses. If firm j sells output worth Sⱼ and buys intermediate inputs worth Mⱼ, its value added is Vⱼ = Sⱼ − Mⱼ. Summing over a production chain, ΣVⱼ equals the value of the final sale, because every intermediate purchase appears once as a cost and once as a sale and cancels out."
+          ]
+        },
+        {
+          "heading": "Real GDP, the deflator, and growth algebra",
+          "concept_ids": [
+            "nominal_vs_real_gdp",
+            "growth_rate"
+          ],
+          "paragraphs": [
+            "With base year 0, real GDP is Rₜ = Σ Pᵢ₀·Qᵢₜ and the deflator is Dₜ = 100 × Yₜ ÷ Rₜ. The growth factor of nominal GDP splits exactly into a quantity part and a price part: Yₜ ÷ Yₜ₋₁ = (Rₜ ÷ Rₜ₋₁) × (Dₜ ÷ Dₜ₋₁). Writing growth rates as decimals, (1 + g_nominal) = (1 + g_real)(1 + π), so g_real = (1 + g_nominal) ÷ (1 + π) − 1. The familiar shortcut g_real ≈ g_nominal − π drops the small cross term g_real·π and is accurate only when the rates are small.",
+            "A percentage-point change in a rate r is r₂ − r₁. The percentage change in that rate is (r₂ − r₁) ÷ r₁ × 100. For r₁ = 4% and r₂ = 3%, these are −1 percentage point and −25%."
+          ]
+        },
+        {
+          "heading": "Per-capita growth and the limits of an average",
+          "concept_ids": [
+            "gdp_per_capita",
+            "gdp_limits"
+          ],
+          "paragraphs": [
+            "Let y = R ÷ N be real GDP per capita, with population N. Then (1 + g_y) = (1 + g_R) ÷ (1 + g_N), and g_y ≈ g_R − g_N for small rates. If real GDP grows 8% and population grows 2%, per-capita growth is 1.08 ÷ 1.02 − 1 ≈ 5.88%, slightly less than the 6% shortcut.",
+            "Because y is a mean, two economies with the same y can have very different distributions of income. And since Y counts only market transactions at market prices, a measure of welfare would need to add non-market production and leisure and subtract environmental depletion. Such adjusted measures exist, but they require value judgments and estimates that GDP avoids."
+          ]
+        },
+        {
+          "heading": "Why a correlation coefficient is not a causal estimate",
+          "concept_ids": [
+            "correlation_causation"
+          ],
+          "paragraphs": [
+            "Suppose across countries the correlation between log GDP per capita x and life expectancy y is strongly positive. A correlation coefficient measures how closely the two variables move together along a line; it does not say whether x causes y or y causes x. If an omitted variable z (for example, institutional quality or schooling) raises both x and y, the observed association can be large even if the direct effect of x on y is small. Reverse causation (y → x) produces the same pattern. To estimate a causal effect, researchers need variation in x that is unrelated to other determinants of y, which a simple scatter of countries does not provide."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c04-l1-we1",
+      "level": "beginner",
+      "title": "Wheat, flour, and bread: avoiding double counting",
+      "problem": "Hypothetical example: In Country A, a farmer sells wheat to a miller for $200. The miller sells flour made from it to a bakery for $500. The bakery sells the bread to households for $900. Adding every sale gives $1,600. How much does this chain add to GDP?",
+      "steps": [
+        "The wheat ($200) and the flour ($500) are intermediate goods: they are used up in making the bread.",
+        "Leave out intermediate sales: $1,600 − ($200 + $500) = $900.",
+        "Check with value added: farmer $200, miller $500 − $200 = $300, bakery $900 − $500 = $400. Total = $200 + $300 + $400 = $900."
+      ],
+      "answer": "The chain adds $900 to GDP, the value of the final good (the bread). Counting $1,600 would double count the wheat and flour.",
+      "check": {
+        "type": "difference",
+        "a": 1600,
+        "b": 700,
+        "expected": 900
+      }
+    },
+    {
+      "id": "c04-l1-we2",
+      "level": "beginner",
+      "title": "GDP per capita",
+      "problem": "Hypothetical example: Country B produces final goods and services worth $48 billion in a year, and 3 million people live there. What is its GDP per capita?",
+      "steps": [
+        "GDP per capita = GDP ÷ population.",
+        "$48,000,000,000 ÷ 3,000,000 = $16,000."
+      ],
+      "answer": "GDP per capita is $16,000 per person. This is an average; it does not say how income is shared.",
+      "check": {
+        "type": "ratio",
+        "numerator": 48000000000,
+        "denominator": 3000000,
+        "expected": 16000
+      }
+    },
+    {
+      "id": "c04-l1-we3",
+      "level": "intermediate",
+      "title": "Nominal and real GDP with base-year prices",
+      "problem": "Hypothetical example: Country C produces only bikes and haircuts. Year 1 (the base year): 100 bikes at $200 and 500 haircuts at $20. Year 2: 110 bikes at $240 and 520 haircuts at $24. Find nominal GDP in both years, real GDP in Year 2 (in Year 1 prices), the Year 2 GDP deflator, and the growth rates of nominal and real GDP.",
+      "steps": [
+        "Nominal GDP, Year 1 = 100 × $200 + 500 × $20 = $20,000 + $10,000 = $30,000 (also real GDP, since Year 1 is the base year).",
+        "Nominal GDP, Year 2 = 110 × $240 + 520 × $24 = $26,400 + $12,480 = $38,880.",
+        "Real GDP, Year 2 = 110 × $200 + 520 × $20 = $22,000 + $10,400 = $32,400.",
+        "Deflator, Year 2 = $38,880 ÷ $32,400 × 100 = 120.",
+        "Nominal growth = ($38,880 − $30,000) ÷ $30,000 = 29.6%. Real growth = ($32,400 − $30,000) ÷ $30,000 = 8%."
+      ],
+      "answer": "Nominal GDP rose 29.6%, but most of that was higher prices (deflator 120). Real GDP, the actual increase in output, grew 8%.",
+      "check": {
+        "type": "ratio",
+        "numerator": 32400,
+        "denominator": 30000,
+        "expected": 1.08
+      }
+    },
+    {
+      "id": "c04-l1-we4",
+      "level": "intermediate",
+      "title": "Percentage points vs. percent",
+      "problem": "Hypothetical example: Country D's real GDP growth rate falls from 4% last year to 3% this year. Describe the change in percentage points and as a percentage change in the growth rate.",
+      "steps": [
+        "Percentage-point change = 3 − 4 = −1 percentage point.",
+        "Percentage change in the rate = (3 − 4) ÷ 4 = −0.25, a 25% decrease.",
+        "Real GDP itself still grew this year (by 3%); only the speed of growth slowed."
+      ],
+      "answer": "The growth rate fell by 1 percentage point, which is a 25% decrease in the rate. Real GDP still rose 3%.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1,
+        "denominator": 4,
+        "expected": 0.25
+      }
+    },
+    {
+      "id": "c04-l1-we5",
+      "level": "advanced",
+      "title": "Deflating nominal GDP and testing the shortcut",
+      "problem": "Hypothetical example: Country E's nominal GDP is $500 billion in the base year (deflator 100) and $561.6 billion the next year, when the deflator is 104. Find real GDP in the second year, the exact real growth rate, and compare it with the shortcut g_real ≈ g_nominal − π.",
+      "steps": [
+        "Real GDP = $561.6 billion ÷ (104 ÷ 100) = $540 billion.",
+        "Exact real growth = 540 ÷ 500 − 1 = 0.08, or 8%.",
+        "Nominal growth = 561.6 ÷ 500 − 1 = 12.32%; inflation in the deflator = 4%.",
+        "Shortcut: 12.32% − 4% = 8.32%. Exact: 1.1232 ÷ 1.04 − 1 = 8%. The shortcut overstates by the cross term (0.08 × 0.04 = 0.32 percentage point)."
+      ],
+      "answer": "Real GDP is $540 billion and real growth is exactly 8%. The shortcut gives 8.32%, close but slightly too high.",
+      "check": {
+        "type": "ratio",
+        "numerator": 561.6,
+        "denominator": 1.04,
+        "expected": 540,
+        "tolerance": 1e-06
+      }
+    },
+    {
+      "id": "c04-l1-we6",
+      "level": "advanced",
+      "title": "From real growth to per-capita growth",
+      "problem": "Hypothetical example: Continuing Country E, real GDP rises from $500 billion to $540 billion while the population rises from 20 million to 20.4 million. Find real GDP per capita in both years and its exact growth rate.",
+      "steps": [
+        "Year 1: $500 billion ÷ 20 million = $25,000.",
+        "Year 2: $540 billion ÷ 20.4 million ≈ $26,470.59.",
+        "Growth factor = 1.08 ÷ 1.02 ≈ 1.0588, so per-capita growth ≈ 5.88%.",
+        "Shortcut: 8% − 2% = 6%, slightly too high for the same reason as before."
+      ],
+      "answer": "Real GDP per capita grows about 5.88%, from $25,000 to about $26,470.59.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1.08,
+        "denominator": 1.02,
+        "expected": 1.0588,
+        "tolerance": 0.0001
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "How statisticians avoid double counting",
+      "source_ids": [
+        "openstax-pe3-19-1"
+      ],
+      "paragraphs": [
+        "National statisticians count final goods and services and leave out intermediate goods, because an input such as a part built into a vehicle is already included in the vehicle's price. Counting the part separately would make the economy look larger than it is."
+      ]
+    },
+    {
+      "title": "Turning nominal figures into real ones",
+      "source_ids": [
+        "openstax-pe3-19-2"
+      ],
+      "paragraphs": [
+        "Official statistics report GDP both at current prices and adjusted for inflation with a price index for final goods and services. Long-run comparisons of output are made with the inflation-adjusted series, because nominal figures over several decades mostly reflect rising prices."
+      ]
+    },
+    {
+      "title": "GDP per capita as a rough guide to living standards",
+      "source_ids": [
+        "openstax-pe3-19-4",
+        "openstax-pe3-19-5"
+      ],
+      "paragraphs": [
+        "Comparisons across countries usually start with GDP per capita, because total GDP partly reflects population size. Economists stress that this is a rough guide: it says nothing about leisure, unpaid work, environmental quality, or inequality, even though higher GDP per capita tends to come together with improvements such as better health and education."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8
+    ],
+    "title": "Which number should Country F put on its scoreboard?",
+    "paragraphs": [
+      "SDG 8 aims to promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all. Target 8.1 calls for sustaining per capita economic growth in line with national circumstances. Note that the target is about growth per person, not total GDP.",
+      "Hypothetical situation: Country F's real GDP grew 3% last year, but its population grew 2.5%, so real GDP per capita grew only about 0.5%. Meanwhile, a survey suggests that most of the income gains went to the richest households, and a large share of work, such as caring for relatives and family farming, never shows up in GDP. The government must choose what to report as its main measure of progress."
+    ],
+    "options": [
+      {
+        "name": "Report real GDP per capita growth as the headline number",
+        "benefits": [
+          "It matches the wording of target 8.1 and removes the effect of population growth.",
+          "It is easy to compare across years and with other countries."
+        ],
+        "costs": [
+          "As an average, it hides the fact that most gains went to the richest households.",
+          "Unpaid care work and household production stay invisible."
+        ],
+        "assumptions": [
+          "Average output per person is a reasonable stand-in for how typical households are doing."
+        ]
+      },
+      {
+        "name": "Publish a small dashboard: GDP per capita plus employment, a measure of distribution, and an environmental indicator",
+        "benefits": [
+          "It shows trade-offs that one number hides, such as growth that comes with rising pollution or inequality.",
+          "It connects to other SDG 8 targets on employment and decent work."
+        ],
+        "costs": [
+          "Collecting more data costs money and time.",
+          "Several numbers can point in different directions, which makes the message harder to communicate."
+        ],
+        "assumptions": [
+          "The extra indicators can be measured reliably and are not chosen to make the government look good."
+        ]
+      },
+      {
+        "name": "Report total real GDP growth, the largest and most familiar number",
+        "benefits": [
+          "It is the number most often used in the news and by investors.",
+          "It reflects the overall size of the economy, which matters for tax revenue."
+        ],
+        "costs": [
+          "With fast population growth, it makes progress look better than it is per person (3% instead of about 0.5%).",
+          "It shares the blind spots of GDP per capita and adds the population problem."
+        ],
+        "assumptions": [
+          "Total output, not output per person, is what the public cares about most."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which option best serves target 8.1, and which best shows whether growth is inclusive? If a minister points out that regions with higher GDP per capita also have lower unemployment, what further evidence would you ask for before concluding that raising GDP will create jobs?"
+    ],
+    "source_ids": [
+      "un-sdg-8",
+      "openstax-pe3-19-5"
+    ]
+  },
+  "key_takeaways": [
+    "GDP is the market value of final goods and services produced within a country in a period; intermediate goods are excluded to avoid double counting.",
+    "Real GDP values output at base-year prices, so it changes only with quantities; the GDP deflator = nominal GDP ÷ real GDP × 100.",
+    "A change from 4% to 3% is a fall of 1 percentage point but a 25% decrease in the rate; say which one you mean.",
+    "GDP per capita is a rough average guide to living standards that leaves out household production, leisure, the environment, and distribution.",
+    "When GDP per capita and life expectancy move together, that is a correlation; showing that one causes the other needs more evidence."
+  ],
+  "source_ids": [
+    "openstax-pe3-19-1",
+    "openstax-pe3-19-2",
+    "openstax-pe3-19-4",
+    "openstax-pe3-19-5",
+    "openstax-is2e-12-3",
+    "un-sdg-8"
+  ]
+}

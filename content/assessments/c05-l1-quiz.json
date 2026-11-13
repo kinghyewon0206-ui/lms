@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "id": "c05-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c05",
+  "lesson_id": "c05-l1",
+  "version": 1,
+  "title": "Lesson 1 Quiz: Labor Supply and Demand",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c05-l1-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l1",
+      "objective": 1,
+      "concept_ids": [
+        "derived_demand",
+        "labor_shifts"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Many more people in a city start ordering meals for home delivery. What is the most likely effect on the city's labor market for delivery riders?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Labor supply of riders shifts left, so the wage for riders falls"
+        },
+        {
+          "id": "b",
+          "text": "Labor demand for riders shifts right, so wages and employment rise"
+        },
+        {
+          "id": "c",
+          "text": "Labor demand for riders shifts left, because apps replace their work"
+        },
+        {
+          "id": "d",
+          "text": "Nothing changes, because riders do not cook the meals being ordered"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-14-1"
+      ]
+    },
+    {
+      "id": "c05-l1-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l1",
+      "objective": 1,
+      "concept_ids": [
+        "marginal_product",
+        "derived_demand"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A juice bar is deciding whether to hire one more worker. The extra worker would let the bar sell 9 more smoothies per hour, and each smoothie sells for $4. The wage is $20 per hour. By how many dollars per hour does the value of the extra worker's output exceed the wage? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-14-1"
+      ]
+    },
+    {
+      "id": "c05-l1-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l1",
+      "objective": 2,
+      "concept_ids": [
+        "labor_supply"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Using the work–leisure trade-off, why does the quantity of labor supplied usually rise when the wage rises?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Higher wages make leisure activities cheaper, so people want more free time"
+        },
+        {
+          "id": "b",
+          "text": "Employers want more workers when wages rise, which pulls people into jobs"
+        },
+        {
+          "id": "c",
+          "text": "A higher wage shifts the whole labor supply curve to the right"
+        },
+        {
+          "id": "d",
+          "text": "Each hour of leisure now means giving up more pay, so working is more attractive"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ]
+    },
+    {
+      "id": "c05-l1-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l1",
+      "objective": 2,
+      "concept_ids": [
+        "labor_equilibrium",
+        "labor_market"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a city's market for home health aides, labor demand is L_d = 1,200 − 40W and labor supply is L_s = 200 + 60W, where W is the hourly wage in dollars. How many aides are employed at the equilibrium? (Enter a number only, in workers.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-14-1"
+      ]
+    },
+    {
+      "id": "c05-l1-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l1",
+      "objective": 3,
+      "concept_ids": [
+        "labor_shifts"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A state now requires new electricians to complete two extra years of training before they can work. Other things equal, what does the labor market model predict for electricians?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Labor supply shifts left: the wage rises and employment falls"
+        },
+        {
+          "id": "b",
+          "text": "Labor demand shifts left: the wage falls and employment falls"
+        },
+        {
+          "id": "c",
+          "text": "Labor supply shifts right: the wage falls and employment rises"
+        },
+        {
+          "id": "d",
+          "text": "Labor demand shifts right: the wage rises and employment rises"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ]
+    }
+  ]
+}

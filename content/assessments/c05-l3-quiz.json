@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "id": "c05-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c05",
+  "lesson_id": "c05-l3",
+  "version": 1,
+  "title": "Lesson 3 Quiz: Wages, Minimum Wage, and Labor Policy",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c05-l3-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l3",
+      "objective": 1,
+      "concept_ids": [
+        "minimum_wage",
+        "labor_surplus"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "In the simple competitive model, what happens when a minimum wage is set above the equilibrium wage?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Employers hire more workers, because the higher wage attracts applicants"
+        },
+        {
+          "id": "b",
+          "text": "More people want jobs than employers want to fill, a surplus of labor"
+        },
+        {
+          "id": "c",
+          "text": "Employers want more workers than are available, a shortage of labor"
+        },
+        {
+          "id": "d",
+          "text": "Nothing changes, because the market wage adjusts to the new minimum"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "c05-l3-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l3",
+      "objective": 1,
+      "concept_ids": [
+        "minimum_wage",
+        "labor_surplus"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a market for hotel housekeepers, labor demand is L_d = 1,100 − 35W and labor supply is L_s = 140 + 45W, where W is the hourly wage in dollars. A minimum wage of $15 per hour is introduced. According to the simple competitive model, how many fewer housekeepers are employed than at the equilibrium without a minimum wage? (Enter a number only, in workers.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "c05-l3-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l3",
+      "objective": 2,
+      "concept_ids": [
+        "minimum_wage_evidence"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which statement best describes what economists have found about real-world minimum wage increases?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Studies agree that increases cause large job losses"
+        },
+        {
+          "id": "b",
+          "text": "Studies agree that increases have no effect on jobs"
+        },
+        {
+          "id": "c",
+          "text": "Findings differ, and effects seem to depend on local conditions"
+        },
+        {
+          "id": "d",
+          "text": "Studies show that employment rises whenever the minimum rises"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-14-2"
+      ]
+    },
+    {
+      "id": "c05-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l3",
+      "objective": 2,
+      "concept_ids": [
+        "monopsony"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a remote town, one large employer is the main place to work, and it pays less than a competitive labor market would. In the monopsony model, what can a moderate minimum wage, set between the current wage and the competitive wage, do?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Lower employment, as in the simple competitive model"
+        },
+        {
+          "id": "b",
+          "text": "Lower the wage, because the employer's costs go up"
+        },
+        {
+          "id": "c",
+          "text": "Keep employment the same but cut each worker's hours"
+        },
+        {
+          "id": "d",
+          "text": "Raise both the wage and the number of workers hired"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-14-2"
+      ]
+    },
+    {
+      "id": "c05-l3-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l3",
+      "objective": 3,
+      "concept_ids": [
+        "active_labor_policy"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a region, many former coal miners are unemployed because the new job openings are in health care and need different skills. Which policy targets the main cause of this unemployment most directly?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A retraining program that teaches skills used in health care"
+        },
+        {
+          "id": "b",
+          "text": "A website that lists current job openings in the region"
+        },
+        {
+          "id": "c",
+          "text": "A higher minimum wage for health care jobs in the region"
+        },
+        {
+          "id": "d",
+          "text": "Longer unemployment benefits for the former coal miners"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-21-4"
+      ]
+    }
+  ]
+}

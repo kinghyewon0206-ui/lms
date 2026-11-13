@@ -1,0 +1,417 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c05-l1",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Explain why the demand for labor is a derived demand and how a worker's marginal product and the price of the output set the value of hiring one more worker.",
+    "Explain labor supply with the trade-off between work and leisure, and find the equilibrium wage and employment where labor demand equals labor supply.",
+    "Predict how changes in productivity, demand for the product, population, and required education shift labor demand or labor supply and change the equilibrium wage and employment."
+  ],
+  "concepts": [
+    {
+      "id": "labor_market",
+      "term": "Labor market",
+      "definition": "A market in which workers offer their time and skills (labor supply) and employers hire them (labor demand). The price in this market is the wage, and the quantity is the number of workers or hours employed.",
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ]
+    },
+    {
+      "id": "derived_demand",
+      "term": "Derived demand",
+      "definition": "Employers do not want labor for its own sake; they hire workers to produce goods and services that customers buy. Because of this, the demand for labor depends on (is derived from) the demand for the product the workers make.",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-14-1"
+      ]
+    },
+    {
+      "id": "marginal_product",
+      "term": "Marginal product of labor and its value",
+      "definition": "The marginal product of labor is the extra output from hiring one more worker (or one more hour of work). In a competitive market, the value of that extra output is the marginal product times the price of the output. A firm keeps hiring as long as this value is at least the wage.",
+      "source_ids": [
+        "openstax-pe3-14-1"
+      ]
+    },
+    {
+      "id": "labor_supply",
+      "term": "Labor supply and the work–leisure trade-off",
+      "definition": "Labor supply shows how many workers (or hours) people offer at each wage. Every hour spent working is an hour not spent on leisure, so a higher wage raises the opportunity cost of leisure and draws more people into work. The market labor supply curve therefore usually slopes upward.",
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ]
+    },
+    {
+      "id": "labor_equilibrium",
+      "term": "Equilibrium wage and employment",
+      "definition": "The wage at which the quantity of labor demanded equals the quantity of labor supplied, together with the employment level at that wage. Above it, there is a surplus of labor that pushes the wage down; below it, there is a shortage of labor that pushes the wage up.",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-14-1"
+      ]
+    },
+    {
+      "id": "labor_shifts",
+      "term": "Shifts in labor demand and labor supply",
+      "definition": "Labor demand shifts when productivity, demand for the product, technology, or the prices of other inputs change. Labor supply shifts when the number of available workers changes (for example, through population growth or aging) or when the education or qualifications required for a job change.",
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Wages are a price: the price of an hour of work. Employers hire workers because customers want what those workers make, and people decide how much to work by comparing pay with free time.",
+      "sections": [
+        {
+          "heading": "A market for work",
+          "concept_ids": [
+            "labor_market"
+          ],
+          "paragraphs": [
+            "You already know markets for things like pizza or sneakers. There is also a market for work. In the labor market, workers are the sellers: they offer their time and skills. Employers are the buyers: they hire workers. The price in this market has a special name, the wage."
+          ]
+        },
+        {
+          "heading": "Why employers hire",
+          "concept_ids": [
+            "derived_demand",
+            "marginal_product"
+          ],
+          "paragraphs": [
+            "A pizza shop does not hire a cook because it likes having cooks around. It hires a cook because customers want pizza. If more people start ordering pizza, the shop needs more cooks. Economists say the demand for workers is a derived demand: it comes from the demand for the product.",
+            "Before hiring one more worker, an owner asks a simple question: how much extra will this person help us sell? If one more cook lets the shop sell 4 more pizzas an hour at $10 each, that cook adds $40 of value an hour. If the wage is less than that, hiring the cook pays off."
+          ]
+        },
+        {
+          "heading": "Why people work",
+          "concept_ids": [
+            "labor_supply"
+          ],
+          "paragraphs": [
+            "Every hour you spend at a part-time job is an hour you are not spending with friends, playing sports, or resting. That free time is called leisure. When the wage goes up, each hour of leisure costs you more pay that you give up, so more people decide that working is worth it. That is why more people offer to work at higher wages."
+          ]
+        },
+        {
+          "heading": "Where the wage ends up, and what moves it",
+          "concept_ids": [
+            "labor_equilibrium",
+            "labor_shifts"
+          ],
+          "paragraphs": [
+            "If the wage is too high, more people want jobs than employers want to hire, and the wage tends to fall. If the wage is too low, employers cannot find enough workers, and the wage tends to rise. The wage settles where the number of workers employers want equals the number of people who want to work. That is the equilibrium wage.",
+            "Things outside the wage can change the whole picture. If workers get better tools and can produce more, or if customers suddenly want more of the product, employers want more workers at every wage. If many new people move to town, more workers are available at every wage. If a job starts to require a long training course, fewer people can do it."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Labor demand slopes downward because the value of each extra worker's output falls as more workers are hired; labor supply slopes upward because higher wages raise the cost of leisure. Their intersection sets the equilibrium wage and employment, and shifts in either curve move that equilibrium.",
+      "sections": [
+        {
+          "heading": "The labor market on a graph",
+          "concept_ids": [
+            "labor_market",
+            "labor_equilibrium"
+          ],
+          "paragraphs": [
+            "Draw the labor market like any other market, but change the labels: the vertical axis is the wage W (dollars per hour) and the horizontal axis is the quantity of labor L (number of workers). The labor demand curve slopes downward and the labor supply curve slopes upward. Where they cross, the quantity of labor demanded equals the quantity supplied. That point gives the equilibrium wage and equilibrium employment.",
+            "At a wage above equilibrium, the quantity of labor supplied is greater than the quantity demanded: a surplus of labor. Some people who want jobs cannot find them, and competition among job seekers pushes the wage down. At a wage below equilibrium, there is a shortage of labor, and employers compete for workers by raising pay."
+          ]
+        },
+        {
+          "heading": "Labor demand is derived demand",
+          "concept_ids": [
+            "derived_demand",
+            "marginal_product"
+          ],
+          "paragraphs": [
+            "Firms hire labor because of the output it produces. The marginal product of labor is the extra output from one more worker. Multiplying it by the price of the output gives the value of that worker's extra output. A firm keeps hiring while this value is at least the wage.",
+            "With a fixed amount of equipment and space, each extra worker usually adds less output than the one before (think of a fourth cook squeezed into a small kitchen). As the marginal product falls, so does its value, which is why the firm hires more workers only at a lower wage. That is the downward slope of labor demand."
+          ]
+        },
+        {
+          "heading": "Labor supply and the work–leisure trade-off",
+          "concept_ids": [
+            "labor_supply"
+          ],
+          "paragraphs": [
+            "Time is limited, so choosing to work means giving up leisure. The wage is the opportunity cost of an hour of leisure. As the wage rises, more people find that an hour of work is worth more than an hour of free time, and people with the right skills are drawn in from other jobs and other places. The quantity of labor supplied rises: a movement along the labor supply curve."
+          ]
+        },
+        {
+          "heading": "Shifts versus movements",
+          "concept_ids": [
+            "labor_shifts"
+          ],
+          "paragraphs": [
+            "A change in the wage itself causes a movement along the curves. Other changes shift a whole curve. Labor demand shifts right when workers become more productive (better tools, technology that complements their work, more training) or when demand for the product rises; it shifts left when demand for the product falls or when technology replaces the work. Labor supply shifts right when the working population grows; it shifts left when a job requires more education or a license that takes longer to earn.",
+            "A rightward shift of labor demand raises both the equilibrium wage and employment. A rightward shift of labor supply raises employment but lowers the wage. A leftward shift of labor supply raises the wage but lowers employment."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "A competitive firm hires until the wage equals the value of the marginal product of labor, MPL × P. With linear labor demand L_d = a − bW and labor supply L_s = c + dW, equilibrium is W* = (a − c)/(b + d), and a productivity increase that raises the value of the marginal product by k dollars at every employment level raises W* by k·b/(b + d).",
+      "sections": [
+        {
+          "heading": "The hiring rule: W = MPL × P",
+          "concept_ids": [
+            "marginal_product",
+            "derived_demand"
+          ],
+          "paragraphs": [
+            "Let MPL be the marginal product of labor and P the price of output in a competitive product market. The value of the marginal product is VMP = MPL × P. Hiring one more worker adds VMP to revenue and W to cost, so a profit-maximizing firm hires until W = VMP. The firm's labor demand curve is therefore its VMP schedule.",
+            "Hypothetical example: with fixed equipment, the 1st to 4th workers add 10, 8, 6, and 4 units of output per hour, and each unit sells for $3. Their VMPs are $30, $24, $18, and $12 per hour. At a wage of $20 the firm hires 2 workers; at $15 it hires 3. Diminishing marginal product makes labor demand slope downward.",
+            "Because VMP contains P, labor demand is derived demand in a precise sense: if the output price rises, VMP rises at every level of employment and the labor demand curve shifts up. If MPL rises (better tools, better training), the curve shifts up for the same reason."
+          ]
+        },
+        {
+          "heading": "A linear labor market",
+          "concept_ids": [
+            "labor_market",
+            "labor_supply",
+            "labor_equilibrium"
+          ],
+          "paragraphs": [
+            "Write labor demand as L_d = a − bW (b > 0) and labor supply as L_s = c + dW (d > 0). The positive slope d reflects the work–leisure trade-off: a higher W raises the opportunity cost of leisure. Setting L_d = L_s gives W* = (a − c)/(b + d) and L* = a − bW*.",
+            "At any wage W above W*, the surplus of labor is L_s − L_d = (b + d)(W − W*). At any wage below W*, the shortage is (b + d)(W* − W). Market pressure pushes W toward W*."
+          ]
+        },
+        {
+          "heading": "Comparative statics of a productivity increase",
+          "concept_ids": [
+            "labor_shifts"
+          ],
+          "paragraphs": [
+            "Suppose a productivity gain raises VMP by k dollars at every employment level. The demand curve shifts up by k, so the new demand is L_d = a − b(W − k) = (a + bk) − bW. Substituting gives ΔW* = k·b/(b + d) and ΔL* = k·b·d/(b + d). Only part of the productivity gain shows up in the wage; the share b/(b + d) is larger when labor supply is less responsive (small d).",
+            "Shifts in labor supply work the same way with the opposite sign on the wage. Population growth raises c and lowers W* while raising L*. A new licensing requirement that takes years of training lowers c, which raises W* and lowers L*."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c05-l1-we1",
+      "level": "beginner",
+      "title": "Is one more mechanic worth hiring?",
+      "problem": "Hypothetical example: A bike repair shop is thinking about hiring one more mechanic. With the extra mechanic, the shop can finish 2 more repairs per hour, and each repair brings in $15. The wage for the job is $22 per hour. How much value does the extra mechanic add per hour, and should the shop hire?",
+      "steps": [
+        "Extra repairs per hour = 2.",
+        "Value of the extra work = 2 repairs × $15 = $30 per hour.",
+        "Compare with the wage: $30 > $22, so the extra mechanic adds more than the shop pays."
+      ],
+      "answer": "The extra mechanic adds $30 of value per hour, which is $8 more than the $22 wage, so hiring pays off. If fewer customers wanted repairs, this value would fall: that is why labor demand is derived from product demand.",
+      "check": {
+        "type": "product",
+        "factors": [
+          2,
+          15
+        ],
+        "expected": 30
+      }
+    },
+    {
+      "id": "c05-l1-we2",
+      "level": "intermediate",
+      "title": "Equilibrium in a local labor market",
+      "problem": "Hypothetical example: In a town's market for warehouse workers, labor demand is L_d = 900 − 20W and labor supply is L_s = 100 + 30W, where W is the hourly wage in dollars and L is the number of workers. Find the equilibrium wage and employment. What happens at a wage of $20?",
+      "steps": [
+        "Set demand equal to supply: 900 − 20W = 100 + 30W, so 800 = 50W and W = $16.",
+        "Employment: L = 900 − 20 × 16 = 580 (check: 100 + 30 × 16 = 580).",
+        "At W = $20: L_d = 900 − 400 = 500 and L_s = 100 + 600 = 700, so 200 more people want jobs than employers want to hire."
+      ],
+      "answer": "The equilibrium wage is $16 per hour and 580 warehouse workers are employed. At $20 there would be a surplus of 200 workers, which pushes the wage back down toward $16.",
+      "check": {
+        "type": "equilibrium",
+        "a": 900,
+        "b": 20,
+        "c": 100,
+        "d": 30,
+        "price": 16,
+        "quantity": 580
+      }
+    },
+    {
+      "id": "c05-l1-we3",
+      "level": "advanced",
+      "title": "How much of a productivity gain reaches wages?",
+      "problem": "Hypothetical example (the market from worked example 2): New scanners raise the value of each warehouse worker's marginal product by $5 per hour at every employment level. Find the new labor demand, the new equilibrium, and the changes in the wage and employment. Compare them with the formulas k·b/(b + d) and k·b·d/(b + d).",
+      "steps": [
+        "The demand curve shifts up by k = 5: L_d = 900 − 20(W − 5) = 1,000 − 20W.",
+        "New equilibrium: 1,000 − 20W = 100 + 30W, so W = 900/50 = $18 and L = 1,000 − 360 = 640.",
+        "Changes: ΔW = 18 − 16 = $2 and ΔL = 640 − 580 = 60.",
+        "Formulas: k·b/(b + d) = 5 × 20/50 = 2 and k·b·d/(b + d) = 5 × 20 × 30/50 = 60. They match."
+      ],
+      "answer": "The new equilibrium is W = $18 and L = 640. The wage rises by $2 (40% of the $5 productivity gain) and employment rises by 60 workers.",
+      "check": {
+        "type": "equilibrium",
+        "a": 1000,
+        "b": 20,
+        "c": 100,
+        "d": 30,
+        "price": 18,
+        "quantity": 640
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "id": "c05-l1-g1",
+      "title": "A productivity gain in the labor market",
+      "caption": "Hypothetical example (worked examples 2 and 3). The wage is on the vertical axis and the number of workers on the horizontal axis. Labor demand D1 meets labor supply at W = $16 and L = 580. Higher productivity shifts labor demand up to D2, and the new equilibrium is W = $18 and L = 640.",
+      "axis": {
+        "p_max": 50,
+        "q_max": 1000,
+        "p_label": "Wage W ($ per hour)",
+        "q_label": "Labor L (workers)"
+      },
+      "demand": [
+        {
+          "label": "Labor demand D1",
+          "a": 900,
+          "b": 20
+        },
+        {
+          "label": "Labor demand D2",
+          "a": 1000,
+          "b": 20
+        }
+      ],
+      "supply": [
+        {
+          "label": "Labor supply",
+          "c": 100,
+          "d": 30
+        }
+      ],
+      "price_lines": [],
+      "expected_equilibria": [
+        {
+          "demand": "Labor demand D1",
+          "supply": "Labor supply",
+          "price": 16,
+          "quantity": 580
+        },
+        {
+          "demand": "Labor demand D2",
+          "supply": "Labor supply",
+          "price": 18,
+          "quantity": 640
+        }
+      ]
+    }
+  ],
+  "real_world_examples": [
+    {
+      "title": "Demand for nurses follows demand for health care",
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ],
+      "paragraphs": [
+        "Hospitals hire nurses because patients need care. When the demand for health care services grows, for example as a population gets older, the demand for nurses grows with it. This is derived demand in action: the labor market for nurses moves with the market for the service they provide."
+      ]
+    },
+    {
+      "title": "Technology can raise demand for some workers and lower it for others",
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ],
+      "paragraphs": [
+        "New technology can complement workers, making them more productive and raising the demand for their labor, or it can substitute for workers, doing tasks they used to do. Economists have linked technological change to rising demand for highly skilled workers and weaker demand for some lower-skill jobs, which can widen the gap between their wages."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8
+    ],
+    "title": "A factory automates: higher productivity, but for whom?",
+    "paragraphs": [
+      "SDG 8 aims to promote sustained, inclusive and sustainable economic growth, full and productive employment, and decent work for all. SDG target 8.2 calls for higher economic productivity through diversification, technological upgrading, and innovation, including a focus on high-value-added and labor-intensive sectors.",
+      "Hypothetical situation: A furniture factory, the largest employer in a small town, can install machines that cut and sand wood automatically. Output per worker would rise sharply. The factory would need more technicians who can run and repair the machines, but fewer workers for manual cutting and sanding. The town council and the company are discussing how to handle the change."
+    ],
+    "options": [
+      {
+        "name": "Automate right away",
+        "benefits": [
+          "Productivity rises quickly, so the factory can lower costs and compete with other producers.",
+          "Demand for skilled technicians rises, and their wages may go up."
+        ],
+        "costs": [
+          "Demand for manual workers falls, and some may lose their jobs or face lower wages.",
+          "Workers who lose jobs may struggle to find new ones in a small town."
+        ],
+        "assumptions": [
+          "The factory can find or train enough technicians, and laid-off workers can eventually find other work."
+        ]
+      },
+      {
+        "name": "Automate gradually and retrain current workers as technicians",
+        "benefits": [
+          "Many current workers move into higher-productivity, better-paid jobs instead of losing work.",
+          "The town keeps more of its workforce and income."
+        ],
+        "costs": [
+          "Training takes time and money, and productivity rises more slowly at first.",
+          "Not every worker may want to retrain or succeed in the training."
+        ],
+        "assumptions": [
+          "The training actually raises workers' productivity enough for the new jobs, and someone is willing to pay for it."
+        ]
+      },
+      {
+        "name": "Keep the current production methods",
+        "benefits": [
+          "No one loses a job in the short run.",
+          "The town avoids the disruption of a major change."
+        ],
+        "costs": [
+          "Productivity and wages stay flat, and the factory may lose customers to more efficient competitors.",
+          "If the factory later shrinks or closes, the job losses could be larger."
+        ],
+        "assumptions": [
+          "Competitors do not automate, or customers keep buying even if prices are higher."
+        ]
+      }
+    ],
+    "discussion": [
+      "Use labor demand and supply to explain who gains and who loses under each option. Which option best fits the SDG 8 goal of productivity growth together with decent work for all, and what would you add to protect workers who lose out?"
+    ],
+    "source_ids": [
+      "un-sdg-8",
+      "openstax-pe3-4-1"
+    ]
+  },
+  "key_takeaways": [
+    "The labor market has a price called the wage. Labor demand is a derived demand: employers hire because customers want the product workers make.",
+    "A competitive firm hires until the wage equals the value of the marginal product of labor (marginal product × output price); labor supply slopes upward because a higher wage raises the opportunity cost of leisure.",
+    "Productivity and product demand shift labor demand; population and required education shift labor supply. Each shift changes the equilibrium wage and employment in a predictable direction."
+  ],
+  "source_ids": [
+    "openstax-pe3-4-1",
+    "openstax-pe3-14-1",
+    "un-sdg-8"
+  ]
+}

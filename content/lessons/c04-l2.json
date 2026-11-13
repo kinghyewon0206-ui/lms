@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c04-l2",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Define labor productivity and explain how physical capital, human capital, and technology raise output per worker or per hour.",
+    "Calculate growth over several years with compound growth, and use the rule of 70 as an approximation of doubling time.",
+    "Evaluate growth strategies against SDG 8 targets, including trade-offs among faster growth, higher productivity, and decoupling growth from environmental degradation."
+  ],
+  "concepts": [
+    {
+      "id": "economic_growth",
+      "term": "Economic growth",
+      "definition": "A sustained increase in an economy's real output over time. For living standards, the key measure is growth in real GDP per capita.",
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ]
+    },
+    {
+      "id": "labor_productivity",
+      "term": "Labor productivity",
+      "definition": "Real output (the quantity of goods and services, valued at constant prices) produced per worker or per hour worked. Over the long run, rising labor productivity is the main source of higher real GDP per capita.",
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ]
+    },
+    {
+      "id": "physical_capital",
+      "term": "Physical capital",
+      "definition": "Produced tools of production such as machines, buildings, and infrastructure (roads, ports, power networks). More and better capital lets each worker produce more.",
+      "source_ids": [
+        "openstax-pe3-20-3"
+      ]
+    },
+    {
+      "id": "human_capital",
+      "term": "Human capital",
+      "definition": "The skills, knowledge, and experience of workers, built through education, training, and practice. More human capital lets workers produce more, and more valuable, output per hour.",
+      "source_ids": [
+        "openstax-pe3-20-3"
+      ]
+    },
+    {
+      "id": "technology",
+      "term": "Technology",
+      "definition": "Knowledge about how to produce, broadly defined: new products, better production methods, and better ways of organizing work. Better technology raises the output that the same workers and capital can produce.",
+      "source_ids": [
+        "openstax-pe3-20-3"
+      ]
+    },
+    {
+      "id": "compound_growth",
+      "term": "Compound growth and the rule of 70",
+      "definition": "When a value grows at rate g per year, after t years it equals the starting value × (1 + g)ᵗ, because each year's growth builds on the previous total. The rule of 70 is an approximation of doubling time: years to double ≈ 70 ÷ (growth rate in percent).",
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ]
+    },
+    {
+      "id": "decoupling",
+      "term": "Decoupling growth from environmental degradation",
+      "definition": "Raising output while resource use or environmental harm grows more slowly (relative decoupling) or falls (absolute decoupling). SDG target 8.4 calls for improving resource efficiency and working to decouple growth from environmental degradation.",
+      "source_ids": [
+        "un-sdg-8"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Economies grow over the long run mainly because each worker learns to produce more. Better tools, more skills, and better ideas raise productivity, and small yearly growth rates add up to big differences over time.",
+      "sections": [
+        {
+          "heading": "What growth means",
+          "concept_ids": [
+            "economic_growth"
+          ],
+          "paragraphs": [
+            "Economic growth means an economy produces more real goods and services year after year. What matters most for how people live is growth per person: if output grows but the population grows just as fast, the average person is not better off."
+          ]
+        },
+        {
+          "heading": "Producing more per hour",
+          "concept_ids": [
+            "labor_productivity"
+          ],
+          "paragraphs": [
+            "Labor productivity is how much a worker produces in an hour (or in a year). If a bakery worker makes 20 loaves an hour this year and 25 next year, productivity went up. Over decades, rising productivity is the main reason people in many countries can buy far more than their grandparents could."
+          ]
+        },
+        {
+          "heading": "Three sources of higher productivity",
+          "concept_ids": [
+            "physical_capital",
+            "human_capital",
+            "technology"
+          ],
+          "paragraphs": [
+            "Physical capital means tools and equipment: an electric mixer in the bakery, a delivery van, a paved road to the market. Human capital means what workers know and can do, gained through school, training, and experience. Technology means better ideas: a new recipe, a smarter way to plan the bakery's day, or an app that takes orders.",
+            "Each one helps workers produce more in the same hour. They also work together: a new machine is most useful when workers are trained to use it."
+          ]
+        },
+        {
+          "heading": "Small rates, big results",
+          "concept_ids": [
+            "compound_growth"
+          ],
+          "paragraphs": [
+            "Growth builds on itself. If income grows 2% this year, next year's 2% is taken from a bigger amount. That is called compound growth. A handy shortcut, the rule of 70, estimates how long it takes something to double: divide 70 by the growth rate. At 2% a year, income doubles in about 70 ÷ 2 = 35 years. At 7% a year, it doubles in about 10 years. The rule is an estimate, not an exact answer."
+          ]
+        },
+        {
+          "heading": "Growth and the planet",
+          "concept_ids": [
+            "decoupling"
+          ],
+          "paragraphs": [
+            "More production can mean more fuel burned, more water used, and more waste. The UN's SDG 8 asks countries to grow in a way that uses resources more efficiently, so that growth and environmental harm do not rise together. Separating the two is called decoupling. A country that produces more while using less energy is decoupling."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Long-run growth in real GDP per capita comes from rising labor productivity, which depends on physical capital, human capital, and technology. Compounding turns small differences in growth rates into large differences in living standards.",
+      "sections": [
+        {
+          "heading": "Growth, productivity, and hours",
+          "concept_ids": [
+            "economic_growth",
+            "labor_productivity"
+          ],
+          "paragraphs": [
+            "Total output equals hours worked × output per hour. So real GDP can grow because people work more hours or because each hour produces more. Hours worked per person cannot rise forever, so sustained growth in real GDP per capita must come mainly from higher labor productivity.",
+            "For small rates, output growth ≈ growth in hours + growth in productivity. If hours rise 2% and productivity rises 3%, output rises about 5%."
+          ]
+        },
+        {
+          "heading": "The ingredients of productivity",
+          "concept_ids": [
+            "physical_capital",
+            "human_capital",
+            "technology"
+          ],
+          "paragraphs": [
+            "Economists summarize the link between inputs and output with an aggregate production function: output per worker depends on physical capital per worker, human capital per worker, and technology. Adding capital per worker raises output per worker, but each extra machine adds a bit less than the one before when nothing else changes (diminishing returns). Human capital makes both workers and machines more effective.",
+            "Technology is what keeps growth going. Because new ideas can be used by many firms at once, technological progress can raise productivity without running into the same diminishing returns as piling up more machines. This is also why policies that support research, education, and the spread of ideas are central to long-run growth."
+          ]
+        },
+        {
+          "heading": "Compound growth and doubling time",
+          "concept_ids": [
+            "compound_growth"
+          ],
+          "paragraphs": [
+            "Value after t years = starting value × (1 + g)ᵗ, where g is the yearly growth rate as a decimal. Compounding means the gap between, say, 2% and 4% growth is much larger after 35 years than the 2-percentage-point difference suggests: at 2%, income roughly doubles; at 4%, it roughly quadruples.",
+            "The rule of 70 gives a quick estimate: doubling time ≈ 70 ÷ (growth rate in percent). It works because the exact doubling time is ln 2 ÷ ln(1 + g), and ln 2 ≈ 0.69 while ln(1 + g) ≈ g for small g. It is an approximation, most accurate for growth rates of a few percent."
+          ]
+        },
+        {
+          "heading": "Productivity, decent work, and the environment",
+          "concept_ids": [
+            "decoupling"
+          ],
+          "paragraphs": [
+            "SDG target 8.2 calls for higher productivity through diversification, technological upgrading, and innovation, while target 8.4 calls for better resource efficiency and decoupling growth from environmental degradation. These targets can pull in the same direction (a more efficient technology saves both labor and energy) or against each other (expanding a resource-heavy industry can raise output quickly but increase pollution).",
+            "Economists distinguish relative decoupling, where resource use grows more slowly than output, from absolute decoupling, where resource use actually falls while output rises."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "With output Y = A·F(K, H, L), growth in output per hour can be split into contributions from capital deepening, human capital, and technology. Compounding follows (1 + g)ᵗ, the rule of 70 approximates ln 2 ÷ ln(1 + g), and decoupling can be measured with resource or emissions intensity.",
+      "sections": [
+        {
+          "heading": "Decomposing output growth",
+          "concept_ids": [
+            "economic_growth",
+            "labor_productivity"
+          ],
+          "paragraphs": [
+            "Write output as Y = L × (Y ÷ L), hours times productivity. Then the exact growth factor is (1 + g_Y) = (1 + g_L)(1 + g_Y/L), and g_Y ≈ g_L + g_Y/L when the rates are small. Per-capita output is (Y ÷ L) × (L ÷ N), so growth in output per person also depends on how hours per person change."
+          ]
+        },
+        {
+          "heading": "An aggregate production function",
+          "concept_ids": [
+            "physical_capital",
+            "human_capital",
+            "technology"
+          ],
+          "paragraphs": [
+            "A common form is y = A·k^α·h^(1−α), where y is output per hour, k is physical capital per hour, h is human capital per hour, A is technology, and 0 < α < 1. Taking growth rates, g_y ≈ g_A + α·g_k + (1 − α)·g_h. Because α < 1, raising k alone yields diminishing returns: doubling k multiplies y by only 2^α. Sustained growth in y therefore requires continued growth in A or h.",
+            "Growth accounting uses this equation in reverse: the part of g_y not explained by measured growth in k and h is attributed to technology and efficiency (the residual). That residual also absorbs measurement errors, so it should be read with caution."
+          ]
+        },
+        {
+          "heading": "Compounding and the accuracy of the rule of 70",
+          "concept_ids": [
+            "compound_growth"
+          ],
+          "paragraphs": [
+            "Doubling requires (1 + g)ᵗ = 2, so t = ln 2 ÷ ln(1 + g). With g as a percent G, ln(1 + G/100) ≈ G/100, which gives t ≈ 69.3 ÷ G, rounded to 70 ÷ G for easy mental math. At G = 3.5, the rule gives 20 years and the exact value is about 20.15 years; at G = 10, the rule gives 7 years and the exact value is about 7.27 years. The approximation gets worse as the rate rises."
+          ]
+        },
+        {
+          "heading": "Measuring decoupling",
+          "concept_ids": [
+            "decoupling"
+          ],
+          "paragraphs": [
+            "Define emissions intensity as E ÷ Y, emissions per unit of real output. Then (1 + g_E) = (1 + g_Y)(1 + g_E/Y). Relative decoupling means g_E/Y < 0 but g_E > 0; absolute decoupling means g_E < 0 while g_Y > 0. For absolute decoupling, intensity must fall faster than output grows, roughly g_E/Y < −g_Y. Higher growth targets (target 8.1) therefore raise the bar that efficiency gains (target 8.4) must clear."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c04-l2-we1",
+      "level": "beginner",
+      "title": "Training and output per worker",
+      "problem": "Hypothetical example: A furniture factory in Country G has 40 workers who make 1,200 chairs a week. After a training program, the same 40 workers make 1,320 chairs a week. What is labor productivity (chairs per worker per week) before and after, and by what percent did it rise?",
+      "steps": [
+        "Before: 1,200 ÷ 40 = 30 chairs per worker.",
+        "After: 1,320 ÷ 40 = 33 chairs per worker.",
+        "Change: (33 − 30) ÷ 30 = 0.10, or 10%."
+      ],
+      "answer": "Productivity rose from 30 to 33 chairs per worker per week, a 10% increase, thanks to more human capital.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1320,
+        "denominator": 40,
+        "expected": 33
+      }
+    },
+    {
+      "id": "c04-l2-we2",
+      "level": "intermediate",
+      "title": "Hours plus productivity",
+      "problem": "Hypothetical example: Country H produces $2.4 million of real output with 60,000 hours of work. Next year, hours worked rise 2% and output per hour rises 3%. What is output per hour this year, and by how much does total output grow?",
+      "steps": [
+        "Output per hour this year = $2,400,000 ÷ 60,000 = $40.",
+        "Growth factor of output = 1.02 × 1.03 = 1.0506.",
+        "Output grows 5.06%, close to the shortcut 2% + 3% = 5%."
+      ],
+      "answer": "Output per hour is $40 now, and total output grows by about 5.06% (to about $2.52 million).",
+      "check": {
+        "type": "product",
+        "factors": [
+          1.02,
+          1.03
+        ],
+        "expected": 1.0506
+      }
+    },
+    {
+      "id": "c04-l2-we3",
+      "level": "advanced",
+      "title": "The rule of 70 vs. exact doubling time",
+      "problem": "Hypothetical example: Country J's real GDP per capita is $10,000 and grows 3.5% per year. Estimate the doubling time with the rule of 70, compute the exact doubling time, and find GDP per capita after 20 years.",
+      "steps": [
+        "Rule of 70: 70 ÷ 3.5 = 20 years.",
+        "Exact: ln 2 ÷ ln 1.035 ≈ 0.6931 ÷ 0.0344 ≈ 20.15 years.",
+        "After 20 years: $10,000 × 1.035²⁰ ≈ $10,000 × 1.9898 ≈ $19,897.89, just short of $20,000."
+      ],
+      "answer": "The rule of 70 says about 20 years; the exact doubling time is about 20.15 years, so after 20 years income is about $19,898, slightly less than double.",
+      "check": {
+        "type": "ratio",
+        "numerator": 70,
+        "denominator": 3.5,
+        "expected": 20
+      }
+    },
+    {
+      "id": "c04-l2-we4",
+      "level": "advanced",
+      "title": "Is this growth decoupled?",
+      "problem": "Hypothetical example: Country K's real GDP rises from $200 billion to $210 billion while its carbon emissions fall from 100 million tons to 98 million tons. Compute emissions intensity (tons per $1,000 of real GDP) in both years and classify the decoupling.",
+      "steps": [
+        "Year 1 intensity: 100 million tons ÷ $200 billion = 0.5 tons per $1,000.",
+        "Year 2 intensity: 98 million tons ÷ $210 billion ≈ 0.4667 tons per $1,000.",
+        "Intensity fell by about 6.67% while output rose 5%, so emissions fell in absolute terms (−2%)."
+      ],
+      "answer": "Emissions intensity fell from 0.5 to about 0.4667 tons per $1,000. Because emissions fell while output grew, this is absolute decoupling.",
+      "check": {
+        "type": "ratio",
+        "numerator": 98,
+        "denominator": 210,
+        "expected": 0.4667,
+        "tolerance": 0.0001
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Why productivity matters so much",
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ],
+      "paragraphs": [
+        "Economists measure labor productivity as the value of output per hour worked and treat its growth as the main driver of long-run gains in real income per person. Tables of compound growth show how a difference of a few percentage points per year turns into a many-fold difference in income over 50 years."
+      ]
+    },
+    {
+      "title": "Capital, skills, and ideas together",
+      "source_ids": [
+        "openstax-pe3-20-3"
+      ],
+      "paragraphs": [
+        "Growth accounting studies split productivity growth into contributions from physical capital, human capital, and technology. Investments in infrastructure, schooling, and research appear repeatedly as the ingredients behind sustained gains, and they are often most effective in combination."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8
+    ],
+    "title": "Country L's growth plan: mine, train, or retool?",
+    "paragraphs": [
+      "SDG target 8.2 calls for higher economic productivity through diversification, technological upgrading and innovation. Target 8.4 calls for improving resource efficiency in consumption and production and working to decouple economic growth from environmental degradation. Target 8.1 asks countries to sustain per capita growth.",
+      "Hypothetical situation: Country L has a fixed budget for a five-year growth plan. Economists estimate that expanding a large open-pit mine would raise growth fastest but would also raise water use and emissions. Two other plans would raise growth more slowly at first but rely on productivity and efficiency."
+    ],
+    "options": [
+      {
+        "name": "Expand the open-pit mine and the roads that serve it",
+        "benefits": [
+          "Output and tax revenue rise quickly, helping per capita growth (target 8.1).",
+          "It creates construction and mining jobs within a few years."
+        ],
+        "costs": [
+          "Water use and emissions rise with output, the opposite of decoupling (target 8.4).",
+          "The economy depends more on one commodity whose price can swing sharply, which does not diversify the economy (target 8.2)."
+        ],
+        "assumptions": [
+          "Mineral prices stay high enough for the mine to stay profitable, and environmental damage can be contained."
+        ]
+      },
+      {
+        "name": "Fund technical schools and apprenticeships in growing industries",
+        "benefits": [
+          "Human capital raises productivity in many industries at once and supports diversification (target 8.2).",
+          "Workers gain skills that lead to better-paid, more secure jobs."
+        ],
+        "costs": [
+          "The payoff takes years, so measured growth rises slowly at first.",
+          "Trained workers may move abroad if local firms do not hire them."
+        ],
+        "assumptions": [
+          "Firms will create jobs that use the new skills."
+        ]
+      },
+      {
+        "name": "Subsidize factories to adopt energy- and water-saving equipment",
+        "benefits": [
+          "Lower resource use per unit of output supports decoupling (target 8.4).",
+          "Lower energy costs can make local firms more competitive over time."
+        ],
+        "costs": [
+          "Subsidies cost public money that could fund schools or roads.",
+          "If output then grows fast, total resource use can still rise (only relative decoupling)."
+        ],
+        "assumptions": [
+          "Firms would not have adopted the equipment without the subsidy, so the money changes behavior."
+        ]
+      }
+    ],
+    "discussion": [
+      "Using the rule of 70, how much faster would income double at 6% growth than at 3%? Is that speed worth higher emissions? Could Country L combine two options so that growth (8.1), productivity (8.2), and decoupling (8.4) all improve, and what would it give up to do so?"
+    ],
+    "source_ids": [
+      "un-sdg-8"
+    ]
+  },
+  "key_takeaways": [
+    "Sustained growth in real GDP per capita comes mainly from rising labor productivity, not from working ever more hours.",
+    "Physical capital, human capital, and technology raise productivity; capital alone runs into diminishing returns, so ideas and skills keep growth going.",
+    "Compound growth follows (1 + g)ᵗ; the rule of 70 (70 ÷ growth rate in percent) approximates doubling time and is less accurate at high rates.",
+    "SDG 8 links growth with productivity (8.2) and with decoupling growth from environmental degradation (8.4); these goals can conflict, so growth plans involve trade-offs."
+  ],
+  "source_ids": [
+    "openstax-pe3-20-2",
+    "openstax-pe3-20-3",
+    "un-sdg-8"
+  ]
+}

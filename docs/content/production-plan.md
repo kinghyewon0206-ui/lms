@@ -7,13 +7,24 @@
 > **English-only rule (2026-11-13, permanent):** all ECONOVA user-facing text — c04–c09 included — is written in English from the start.
 > See `docs/content/english-only-guidelines.md`. `tests/test_english_only.py` enforces it. (This planning document itself is internal.)
 
-## 0. 진행 상황 (2026-11-13, 모두 AI 초안 · 사람 승인 전 · 미공개)
+## 0. 진행 상황 (2026-11-14, 모두 AI 초안 · 사람 승인 전 · 미공개)
 | 강좌 | 상태 | 검토 문서 |
 |---|---|---|
 | c02 Markets and Prices | 초안 v3 (영어로 재작성) | `docs/content/c02-review.md` |
 | c01 Economics and Choice | 초안 v2 (영어로 재작성) | `docs/content/c01-review.md` |
 | c03 Market Failure | 초안 v2 (영어로 재작성), 탄소세 시뮬레이션 연결 | `docs/content/c03-review.md` |
-| c04 ~ c09 | 아직 없음 (다음: c04, c05) | — |
+| c04 Growth & Stability | 초안 v1 (영어로 처음부터 작성), 독립 AI 정확성 검토 반영 | `docs/content/c04-review.md` |
+| c05 Labor & Employment | 초안 v1 (영어로 처음부터 작성), 시뮬레이션 없이 임금·고용 축 그래프, 독립 AI 정확성 검토 반영 | `docs/content/c05-review.md` |
+| c06 ~ c09 | 아직 없음 (다음: c06, c07) | — |
+
+### 다음 단계: c06·c07 준비 (카탈로그 기준)
+- **c06 Inequality & Policy** (SDG 1, 10): 소득 분배와 불평등 / 조세와 재분배 / 빈곤·사회 보장·재정. 출처 후보: OpenStax 14·15장(불평등·빈곤),
+  UN SDG 1·10. 로렌츠 곡선·지니 계수는 지금 그래프 렌더러(직선 수요·공급)로 그릴 수 없으므로 표와 계산으로 설명하고, 그림이 필요하면 렌더러 확장을 따로 제안한다.
+  주의: 실제 지니 계수·빈곤율 같은 통계를 지어내지 않는다. 재분배 정책의 효과는 논쟁이 있는 부분을 균형 있게 쓴다.
+- **c07 Personal Finance** (SDG 1, 8): 소득·지출·예산 / 저축·이자·복리 / 금융 위험과 금융 포용. 복리 계산기는 새 시뮬레이션이라 강좌 콘텐츠와 따로 승인한다
+  (그 전까지 레슨 예제·표로 복리를 다룬다). 주의: 특정 금융 상품 추천이나 개인 투자 조언으로 읽히지 않게 쓰고, 이자율은 모두 가상의 값으로 둔다.
+- 제작 방식은 c04·c05 와 같다: `scratchpad` 의 course-brief(작성 규칙), 비공개 원본 `~/econova-private/i18n/<id>.full.json` → 분리 도구,
+  QA(정답 위치·절대 표현·가장 긴 정답·예제 복사·중복), 독립 AI 정확성 검토, `tests/test_course_drafts.py` 의 DRAFTED 목록에 강좌 추가.
 
 ## 1. 강좌별 범위 (강좌 JSON 에 이미 정한 제목·학습목표·SDG)
 | 강좌 | 레슨 | SDG | 시뮬레이션 | 출처 후보 (확인 전) |
@@ -21,7 +32,7 @@
 | c01 경제학과 선택 | 희소성과 경제적 선택 / 기회비용과 합리적 의사결정 / 지속가능한 소비와 자원 배분 | 12 | (선택) 기회비용 비교표 | OpenStax *Principles of Economics 3e* 1·2장, UN SDG 12 |
 | c03 시장 실패 | 외부효과와 시장 실패 / 공공재와 공유 자원 / 탄소세와 정부 개입 | 7, 13 | **탄소세 (이미 있음)** | OpenStax 12·13장, UN SDG 7·13 |
 | c04 성장과 안정 | GDP와 경제 활동 측정 / 경제 성장과 생산성 / 인플레이션·구매력·생활 수준 | 8 | (선택) 실질·명목 GDP 계산 | OpenStax 19·20·22장, UN SDG 8 |
-| c05 노동과 고용 | 노동의 수요와 공급 / 고용·실업·생산성 / 임금·최저임금·노동 정책 | 8 | 수요·공급 실험실을 노동 시장에 재사용 | OpenStax 14·21장, ILO 개념 정의, UN SDG 8 |
+| c05 노동과 고용 | 노동의 수요와 공급 / 고용·실업·생산성 / 임금·최저임금·노동 정책 | 8 | 실험실 미사용 (축 이름이 가격·수량이라 오해 소지). 축 이름 설정 기능은 따로 제안 | OpenStax 14·21장, ILO 개념 정의, UN SDG 8 |
 | c06 불평등과 정책 | 소득 분배와 불평등 / 조세와 재분배 / 빈곤·사회 보장·재정 | 1, 10 | (선택) 로렌츠 곡선 그리기 | OpenStax 14·15장, World Bank 빈곤 정의, UN SDG 1·10 |
 | c07 개인 금융 | 소득·지출·예산 / 저축·이자·복리 / 금융 위험과 금융 포용 | 1, 8 | (제안) 복리 계산기 — 새 시뮬레이션 | OpenStax 17장, World Bank 금융 포용 정의, UN SDG 8.10 |
 | c08 세계 경제 | 비교우위와 국제 무역 / 환율과 국제 시장 / 글로벌 공급망과 지속가능한 생산 | 8, 12, 17 | (제안) 비교우위 생산 가능 곡선 | OpenStax 29·33장, UN SDG 17 |

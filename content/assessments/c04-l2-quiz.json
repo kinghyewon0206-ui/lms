@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "id": "c04-l2-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c04",
+  "lesson_id": "c04-l2",
+  "version": 1,
+  "title": "Lesson 2 Quiz: Economic Growth and Productivity",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c04-l2-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l2",
+      "objective": 1,
+      "concept_ids": [
+        "labor_productivity",
+        "human_capital",
+        "technology"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "In which situation does labor productivity (real output per hour worked) rise?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Workers trained on new software finish more orders in each hour than before"
+        },
+        {
+          "id": "b",
+          "text": "A firm hires more workers, and output per worker stays the same as before"
+        },
+        {
+          "id": "c",
+          "text": "Workers put in more hours, and the firm's total output stays the same"
+        },
+        {
+          "id": "d",
+          "text": "The price of the firm's product rises, while its output per hour stays the same"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-20-2",
+        "openstax-pe3-20-3"
+      ]
+    },
+    {
+      "id": "c04-l2-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l2",
+      "objective": 1,
+      "concept_ids": [
+        "physical_capital",
+        "human_capital",
+        "technology"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country S (1) builds a new rail line to its ports, (2) pays for nurses to complete an advanced training course, and (3) has its factories adopt a better method of scheduling production. Which classification of these three changes is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "(1) human capital, (2) physical capital, (3) technology"
+        },
+        {
+          "id": "b",
+          "text": "(1) technology, (2) human capital, (3) physical capital"
+        },
+        {
+          "id": "c",
+          "text": "(1) physical capital, (2) human capital, (3) technology"
+        },
+        {
+          "id": "d",
+          "text": "(1) physical capital, (2) technology, (3) human capital"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-20-3"
+      ]
+    },
+    {
+      "id": "c04-l2-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l2",
+      "objective": 2,
+      "concept_ids": [
+        "compound_growth"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country T's real GDP per capita grows at a steady 2.5% per year. Using the rule of 70, about how many years will it take to double? (Enter a number only, in years.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ]
+    },
+    {
+      "id": "c04-l2-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l2",
+      "objective": 2,
+      "concept_ids": [
+        "compound_growth",
+        "economic_growth"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country U's real GDP is $80 billion and grows 4% per year, compounded, for 3 years. What is real GDP after 3 years, in billions of dollars? Round to two decimal places. (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-20-2"
+      ]
+    },
+    {
+      "id": "c04-l2-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l2",
+      "objective": 3,
+      "concept_ids": [
+        "decoupling",
+        "economic_growth"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Over one year, Country V's real GDP grew 5% while the total amount of raw materials its economy used fell 2%. How does this outcome relate to SDG target 8.4?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Output and material use moved together, so no decoupling took place this year"
+        },
+        {
+          "id": "b",
+          "text": "Output grew while material use fell, which is the decoupling target 8.4 describes"
+        },
+        {
+          "id": "c",
+          "text": "Material use fell, so real GDP probably shrank in this year despite the reported growth"
+        },
+        {
+          "id": "d",
+          "text": "Labor productivity fell, because the economy used fewer materials for each worker"
+        }
+      ],
+      "source_ids": [
+        "un-sdg-8"
+      ]
+    }
+  ]
+}

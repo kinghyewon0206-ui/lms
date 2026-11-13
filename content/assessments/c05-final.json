@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "id": "c05-final",
+  "kind": "final",
+  "course_id": "c05",
+  "version": 1,
+  "title": "Labor & Employment: Final Assessment",
+  "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "Proposed: 7 of 10 questions (70%). Not approved by a teacher (admin); completion is not recognized until approved."
+  },
+  "questions": [
+    {
+      "id": "c05-final-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l1",
+      "objective": 3,
+      "concept_ids": [
+        "labor_shifts"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A grocery chain installs self-checkout machines that do much of the work cashiers used to do. Other things equal, what happens in the chain's labor market for cashiers?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Labor supply of cashiers shifts left, so the wage rises"
+        },
+        {
+          "id": "b",
+          "text": "Labor demand for cashiers shifts right, so employment rises"
+        },
+        {
+          "id": "c",
+          "text": "Labor demand for cashiers shifts left, so wage and employment fall"
+        },
+        {
+          "id": "d",
+          "text": "Labor supply of cashiers shifts right, so the wage falls"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ]
+    },
+    {
+      "id": "c05-final-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l1",
+      "objective": 2,
+      "concept_ids": [
+        "labor_equilibrium"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a region's market for bus drivers, labor demand is L_d = 1,500 − 50W and labor supply is L_s = 180 + 60W, where W is the hourly wage in dollars. What is the equilibrium wage, in dollars per hour? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-14-1"
+      ]
+    },
+    {
+      "id": "c05-final-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l1",
+      "objective": 3,
+      "concept_ids": [
+        "labor_shifts"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A large group of young adults finishes school and enters a city's job market for entry-level office work. Other things equal, what does the labor market model predict?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Labor demand shifts right: the wage rises and employment rises"
+        },
+        {
+          "id": "b",
+          "text": "Labor supply shifts right: the wage falls and employment rises"
+        },
+        {
+          "id": "c",
+          "text": "Labor supply shifts left: the wage rises and employment falls"
+        },
+        {
+          "id": "d",
+          "text": "Labor demand shifts left: the wage falls and employment falls"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1"
+      ]
+    },
+    {
+      "id": "c05-final-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l2",
+      "objective": 2,
+      "concept_ids": [
+        "participation_rate",
+        "unemployment_rate"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A county has 2,500 working-age residents, and its labor force participation rate is 64%. Of the people in the labor force, 112 are unemployed. What is the county's unemployment rate, in percent? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "c05-final-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l2",
+      "objective": 3,
+      "concept_ids": [
+        "unemployment_types"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: During a recession, a car dealership lays off several salespeople because fewer people are buying cars. What type of unemployment does this create?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Frictional, because the salespeople are moving between jobs by choice"
+        },
+        {
+          "id": "b",
+          "text": "Structural, because the salespeople's skills are no longer needed"
+        },
+        {
+          "id": "c",
+          "text": "Natural, because some unemployment exists even in normal times"
+        },
+        {
+          "id": "d",
+          "text": "Cyclical, because it is caused by a downturn in the whole economy"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-21-3",
+        "openstax-pe3-21-4"
+      ]
+    },
+    {
+      "id": "c05-final-q6",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l2",
+      "objective": 3,
+      "concept_ids": [
+        "productivity_human_capital"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Why do workers who gain more education and training tend to earn higher wages over time?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Their skills raise their productivity, so employers value their work more"
+        },
+        {
+          "id": "b",
+          "text": "Training lowers the total number of workers in the economy as a whole"
+        },
+        {
+          "id": "c",
+          "text": "Employers are required by law to pay more for each diploma a worker has"
+        },
+        {
+          "id": "d",
+          "text": "More education raises the legal minimum wage that applies to the worker"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-20-2",
+        "openstax-pe3-20-3"
+      ]
+    },
+    {
+      "id": "c05-final-q7",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l3",
+      "objective": 1,
+      "concept_ids": [
+        "labor_surplus",
+        "minimum_wage"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a market for farm workers, labor demand is L_d = 700 − 25W and labor supply is L_s = 100 + 35W, where W is the hourly wage in dollars. A minimum wage of $13 per hour is set. According to the simple competitive model, how large is the surplus of labor at the minimum wage? (Enter a number only, in workers.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "c05-final-q8",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l3",
+      "objective": 1,
+      "concept_ids": [
+        "minimum_wage"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: The equilibrium wage for lifeguards in a town is $16 per hour. The town then sets a minimum wage of $13 per hour. What happens in the lifeguard market?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A surplus of lifeguards appears, because the floor is binding"
+        },
+        {
+          "id": "b",
+          "text": "A shortage of lifeguards appears, because the wage falls to $13"
+        },
+        {
+          "id": "c",
+          "text": "Little changes, because the floor is below the market wage"
+        },
+        {
+          "id": "d",
+          "text": "Employment falls, because employers now pay less than before"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "c05-final-q9",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l3",
+      "objective": 2,
+      "concept_ids": [
+        "minimum_wage_evidence"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Two regions both raise their minimum wage to $15 per hour. In Region A, typical entry-level wages are already about $16; in Region B, they are about $10. Other things equal, where is a larger drop in hiring of low-skill workers more likely?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Region A, because its workers already earn more than the minimum"
+        },
+        {
+          "id": "b",
+          "text": "Both equally, because the new minimum wage is the same $15 in each"
+        },
+        {
+          "id": "c",
+          "text": "Neither region, because a minimum wage affects prices but not hiring"
+        },
+        {
+          "id": "d",
+          "text": "Region B, because the minimum is far above its typical local wages"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-4-1",
+        "openstax-pe3-21-4"
+      ]
+    },
+    {
+      "id": "c05-final-q10",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l3",
+      "objective": 3,
+      "concept_ids": [
+        "earned_income_support",
+        "minimum_wage"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Compared with raising the minimum wage, what is a key trade-off of expanding earned-income support for low-wage workers?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It raises employers' labor costs, so hiring tends to fall more"
+        },
+        {
+          "id": "b",
+          "text": "It avoids raising labor costs, but taxpayers bear the cost"
+        },
+        {
+          "id": "c",
+          "text": "It replaces wages, so workers have less reason to take jobs"
+        },
+        {
+          "id": "d",
+          "text": "It helps people without jobs more than people who are working"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-3",
+        "openstax-pe3-4-1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "id": "c05-l2-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c05",
+  "lesson_id": "c05-l2",
+  "version": 1,
+  "title": "Lesson 2 Quiz: Employment, Unemployment, and Productivity",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c05-l2-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l2",
+      "objective": 1,
+      "concept_ids": [
+        "unemployed",
+        "not_in_labor_force"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Which of these people would be counted as unemployed in official labor statistics?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Lena, 70, retired last year and is not looking for work"
+        },
+        {
+          "id": "b",
+          "text": "Omar, 17, is a full-time student who is not looking for a job"
+        },
+        {
+          "id": "c",
+          "text": "Priya, 24, has no job, is available, and applied for jobs this month"
+        },
+        {
+          "id": "d",
+          "text": "Ken, 30, works 15 hours a week but would like a full-time job"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "c05-l2-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l2",
+      "objective": 2,
+      "concept_ids": [
+        "participation_rate",
+        "labor_force"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A town has a working-age population of 4,000. Of these people, 2,820 are employed, 180 are unemployed, and 1,000 are not in the labor force. What is the town's labor force participation rate, in percent? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "c05-l2-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c05-l2",
+      "objective": 2,
+      "concept_ids": [
+        "unemployment_rate",
+        "labor_force"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (the same town as in the previous question): Its labor force is made up of 2,820 people with jobs and 180 people without jobs who are actively searching, and 1,000 working-age residents are outside the labor force. What is the town's unemployment rate, in percent? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "c05-l2-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l2",
+      "objective": 2,
+      "concept_ids": [
+        "not_in_labor_force",
+        "unemployment_rate",
+        "participation_rate"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: An unemployed worker gives up searching because she believes no suitable jobs exist. Nothing else changes. What happens to the unemployment rate and the labor force participation rate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The unemployment rate falls, and the participation rate falls"
+        },
+        {
+          "id": "b",
+          "text": "The unemployment rate rises, and the participation rate stays the same"
+        },
+        {
+          "id": "c",
+          "text": "The unemployment rate stays the same, and the participation rate falls"
+        },
+        {
+          "id": "d",
+          "text": "Both rates stay the same, because she still does not have a job"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-21-1"
+      ]
+    },
+    {
+      "id": "c05-l2-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c05-l2",
+      "objective": 3,
+      "concept_ids": [
+        "unemployment_types"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A newspaper printing plant closes because readers have moved online. Its press operators cannot find work because most local openings are in software and health care, which require different skills. Which type of unemployment is this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Frictional unemployment, because the workers are between jobs"
+        },
+        {
+          "id": "b",
+          "text": "Cyclical unemployment, because the economy is in a recession"
+        },
+        {
+          "id": "c",
+          "text": "Hidden unemployment, because the workers have become discouraged"
+        },
+        {
+          "id": "d",
+          "text": "Structural unemployment, because their skills do not match openings"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-21-3",
+        "openstax-pe3-21-4"
+      ]
+    }
+  ]
+}

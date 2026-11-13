@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "id": "c04-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c04",
+  "lesson_id": "c04-l1",
+  "version": 1,
+  "title": "Lesson 1 Quiz: GDP and Measuring Economic Activity",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c04-l1-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l1",
+      "objective": 1,
+      "concept_ids": [
+        "gdp",
+        "final_vs_intermediate",
+        "gdp_limits"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which of the following adds to Country X's GDP for this year?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A bakery in Country X buys flour this year to bake the bread it sells"
+        },
+        {
+          "id": "b",
+          "text": "A family in Country X buys a bicycle that was newly made there this year"
+        },
+        {
+          "id": "c",
+          "text": "A student in Country X buys a used car that was built there five years ago"
+        },
+        {
+          "id": "d",
+          "text": "A parent in Country X cooks dinner at home for the family without pay"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-19-1",
+        "openstax-pe3-19-5"
+      ]
+    },
+    {
+      "id": "c04-l1-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l1",
+      "objective": 2,
+      "concept_ids": [
+        "nominal_vs_real_gdp"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country P's nominal GDP this year is $660 billion, and its GDP deflator is 110 (base year = 100). What is Country P's real GDP this year, in billions of base-year dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-19-2"
+      ]
+    },
+    {
+      "id": "c04-l1-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l1",
+      "objective": 2,
+      "concept_ids": [
+        "growth_rate"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country Q's real GDP growth rate rose from 2% last year to 3% this year. Which statement describes this change correctly?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The growth rate rose by 50 percentage points, because 3 is half again as large as 2"
+        },
+        {
+          "id": "b",
+          "text": "The growth rate rose by 1 percent, so the two kinds of change are the same here"
+        },
+        {
+          "id": "c",
+          "text": "Real GDP grew by 1 percent this year, because that is the gap between the two rates"
+        },
+        {
+          "id": "d",
+          "text": "The growth rate rose by 1 percentage point, which is a 50 percent increase in the rate"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-19-2"
+      ]
+    },
+    {
+      "id": "c04-l1-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c04-l1",
+      "objective": 3,
+      "concept_ids": [
+        "correlation_causation",
+        "gdp_per_capita"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical data for 30 countries show that countries with higher GDP per capita tend to have higher life expectancy. Based on this pattern alone, what can you conclude?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Higher GDP per capita causes longer lives, so raising GDP will raise life expectancy"
+        },
+        {
+          "id": "b",
+          "text": "Longer lives cause higher GDP per capita, so health spending is what drives growth"
+        },
+        {
+          "id": "c",
+          "text": "The two move together, but the pattern alone does not show what causes what"
+        },
+        {
+          "id": "d",
+          "text": "The pattern tells us nothing, because two measures that move together are unrelated"
+        }
+      ],
+      "source_ids": [
+        "openstax-is2e-12-3",
+        "openstax-pe3-19-5"
+      ]
+    },
+    {
+      "id": "c04-l1-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c04-l1",
+      "objective": 3,
+      "concept_ids": [
+        "gdp_per_capita",
+        "growth_rate"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country R's real GDP rises from $300 billion to $315 billion in a year, while its population rises from 10 million to 10.2 million. By what percent did real GDP per capita grow? Use the exact calculation, not the subtraction shortcut, and round to one decimal place. (Enter a number only, in percent.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-19-2",
+        "openstax-pe3-19-4"
+      ]
+    }
+  ]
+}

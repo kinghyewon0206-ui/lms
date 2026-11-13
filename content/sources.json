@@ -90,7 +90,8 @@
         "surplus"
       ],
       "lesson_ids": [
-        "c02-l2"
+        "c02-l2",
+        "c05-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -597,6 +598,490 @@
         "status": "verified",
         "checked_at": "2026-11-13",
         "method": "2026-11-13: opened the page and confirmed it presents carbon taxes and emissions trading systems as the key pricing tools for climate mitigation, and describes using the revenue to support low-income households and the green transition (revenue recycling). No publication date on the page. (The World Bank carbon pricing dashboard returned HTTP 403, so it is not used.)",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-4-1",
+      "title": "4.1 Demand and Supply at Work in Labor Markets",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/4-1-demand-and-supply-at-work-in-labor-markets",
+      "concepts": [
+        "labor_market",
+        "derived_demand",
+        "labor_supply",
+        "labor_equilibrium",
+        "labor_shifts",
+        "minimum_wage",
+        "labor_surplus",
+        "minimum_wage_evidence"
+      ],
+      "lesson_ids": [
+        "c05-l1",
+        "c05-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title, authors, CC BY-NC-SA, and the no-LLM-training notice are present. Covers labor demand as derived from demand for the product, upward-sloping labor supply with a work-versus-leisure trade-off, equilibrium wage with surplus/shortage pressure, shifters of labor demand (demand for output, education/training and productivity, technology as substitute or complement, number of firms, regulation, other input prices) and labor supply (number of workers incl. population/immigration/aging, required education, government policies), technology and wage inequality, minimum wage and living wage as a price floor creating a labor surplus, and a debate over employment effects (typical estimates of reduced low-skill hiring, some contested studies finding no effect, no simple answer). The page does not discuss monopsony or employer market power.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-14-1",
+      "title": "14.1 The Theory of Labor Markets",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/14-1-the-theory-of-labor-markets",
+      "concepts": [
+        "derived_demand",
+        "marginal_product",
+        "labor_equilibrium"
+      ],
+      "lesson_ids": [
+        "c05-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Uses the term 'derived demand'; defines marginal product of labor (declining with fixed capital) and the value of the marginal product (MPL x price) in a competitive output market (marginal revenue product with market power); firms hire until the wage equals the value of the marginal product; market wage set where labor demand equals labor supply. The section does not discuss the work-leisure trade-off or use the term 'human capital'.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-14-2",
+      "title": "14.2 Wages and Employment in an Imperfectly Competitive Labor Market",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/14-2-wages-and-employment-in-an-imperfectly-competitive-labor-market",
+      "concepts": [
+        "monopsony"
+      ],
+      "lesson_ids": [
+        "c05-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines monopsony (one employer with market power, e.g. a single coal company in a town); the monopsonist hires where labor demand equals the marginal cost of labor, which exceeds the wage, so it hires fewer workers and pays less than a competitive market; lists setting minimum hourly wages among laws to balance power between workers and employers. The page does NOT analyze whether a minimum wage can raise employment under monopsony (that analysis in c05-l3 is a standard textbook extension written by the AI).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-15-3",
+      "title": "15.3 The Safety Net",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/15-3-the-safety-net",
+      "concepts": [
+        "earned_income_support"
+      ],
+      "lesson_ids": [
+        "c05-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Describes the Earned Income Tax Credit (delivered through the tax system, rises with earnings, levels off, then phases out), its reputation for rewarding work, and the poverty trap when benefits fall quickly as earnings rise.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-20-2",
+      "title": "20.2 Labor Productivity and Economic Growth",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/20-2-labor-productivity-and-economic-growth",
+      "concepts": [
+        "productivity_human_capital"
+      ],
+      "lesson_ids": [
+        "c05-l2",
+        "c04-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines labor productivity as the value produced per unit of labor input (e.g., per hour worked); states that over the long run output per hour is the main determinant of the average wage level and that employers who pay far below workers' output would lose them to competitors. c04 (2026-11-13, AI): also confirmed the section on the power of sustained economic growth (compound growth formula and table); the page does not mention the rule of 70.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-20-3",
+      "title": "20.3 Components of Economic Growth",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/20-3-components-of-economic-growth",
+      "concepts": [
+        "productivity_human_capital"
+      ],
+      "lesson_ids": [
+        "c05-l2",
+        "c04-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines human capital as the skills and knowledge that make workers productive, built through education and training; discusses physical capital and technology as components of productivity growth that work together. c04 (2026-11-13, AI): confirmed physical capital (including infrastructure), human capital, technology, the aggregate production function, and growth accounting.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-21-1",
+      "title": "21.1 How Economists Define and Compute Unemployment Rate",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/21-1-how-economists-define-and-compute-unemployment-rate",
+      "concepts": [
+        "labor_force",
+        "unemployed",
+        "not_in_labor_force",
+        "participation_rate",
+        "unemployment_rate"
+      ],
+      "lesson_ids": [
+        "c05-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines unemployed (no job, available, actively searched in the previous four weeks), employed, labor force, out of the labor force (retirees, students, caregivers), discouraged workers as not counted as unemployed (hidden unemployment), labor force participation rate = labor force / adult population 16+, unemployment rate = unemployed / labor force, and criticisms (underemployment, part-time workers wanting full-time work).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-21-3",
+      "title": "21.3 What Causes Changes in Unemployment over the Short Run",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/21-3-what-causes-changes-in-unemployment-over-the-short-run",
+      "concepts": [
+        "unemployment_types"
+      ],
+      "lesson_ids": [
+        "c05-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines cyclical unemployment (labor demand falls when firms expect a slowdown) and explains wages that are sticky downward (contracts and minimum wage laws, implicit contracts, efficiency wages, adverse selection, insider-outsider, relative wages), producing a labor surplus in the short run.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-21-4",
+      "title": "21.4 What Causes Changes in Unemployment over the Long Run",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/21-4-what-causes-changes-in-unemployment-over-the-long-run",
+      "concepts": [
+        "unemployment_types",
+        "active_labor_policy",
+        "minimum_wage_evidence"
+      ],
+      "lesson_ids": [
+        "c05-l2",
+        "c05-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines frictional and structural unemployment and the natural rate (rate when the economy is neither booming nor in recession; can change over time); mentions job-search help and retraining, unemployment insurance (benefit duration may matter), education as a remedy for structural unemployment, and that high minimum wages among other rules can affect hiring and the natural rate; wages adjust to productivity only slowly.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "un-sdg-8",
+      "title": "Goal 8: Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal8",
+      "concepts": [
+        "decent_work",
+        "productive_employment",
+        "youth_neet",
+        "labour_rights"
+      ],
+      "lesson_ids": [
+        "c05-l1",
+        "c05-l2",
+        "c05-l3",
+        "c04-l1",
+        "c04-l2",
+        "c04-l3"
+      ],
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: goal title and targets 8.2 (productivity through diversification, technological upgrading and innovation), 8.5 (full and productive employment and decent work for all, equal pay for work of equal value), 8.6 (reduce the proportion of youth not in employment, education or training) and 8.8 (protect labour rights, safe and secure working environments) confirmed on the page. c04 (2026-11-13, AI): also confirmed targets 8.1 (sustain per capita economic growth) and 8.4 (resource efficiency; decouple economic growth from environmental degradation).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-19-1",
+      "title": "19.1 Measuring the Size of the Economy: Gross Domestic Product",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/19-1-measuring-the-size-of-the-economy-gross-domestic-product",
+      "concepts": [
+        "gdp",
+        "final_vs_intermediate"
+      ],
+      "lesson_ids": [
+        "c04-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it defines GDP as the value of all final goods and services produced within a country in a given year and explains that intermediate goods are excluded to avoid double counting (tires counted within a truck's price).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-19-2",
+      "title": "19.2 Adjusting Nominal Values to Real Values",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/19-2-adjusting-nominal-values-to-real-values",
+      "concepts": [
+        "nominal_vs_real_gdp",
+        "gdp_deflator",
+        "growth_rate"
+      ],
+      "lesson_ids": [
+        "c04-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it distinguishes nominal from real GDP, defines the GDP deflator as a price index for all final goods and services, converts nominal to real GDP with the index, computes real growth rates, and notes real growth is roughly nominal growth minus inflation. It does not discuss percentage-point vs. percentage change (that distinction is the lesson's own explanation).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-19-4",
+      "title": "19.4 Comparing GDP among Countries",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/19-4-comparing-gdp-among-countries",
+      "concepts": [
+        "gdp_per_capita"
+      ],
+      "lesson_ids": [
+        "c04-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it defines GDP per capita as GDP divided by population and says it gives only a rough idea of differences in living standards.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-19-5",
+      "title": "19.5 How Well GDP Measures the Well-Being of Society",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/19-5-how-well-gdp-measures-the-well-being-of-society",
+      "concepts": [
+        "gdp_limits",
+        "gdp_per_capita"
+      ],
+      "lesson_ids": [
+        "c04-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it lists what GDP leaves out (leisure, household production, environmental quality, health and literacy outcomes, inequality, variety and new technology, defensive spending such as disaster rebuilding) and says higher GDP per capita tends to come with other improvements in everyday life. It does not itself discuss correlation vs. causation.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-22-1",
+      "title": "22.1 Tracking Inflation",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/22-1-tracking-inflation",
+      "concepts": [
+        "price_index",
+        "inflation_rate",
+        "price_level"
+      ],
+      "lesson_ids": [
+        "c04-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it explains pricing a basket of goods, a price index with a base year set to 100, and the inflation rate as the percentage change in the price level.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-22-2",
+      "title": "22.2 How to Measure Changes in the Cost of Living",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/22-2-how-to-measure-changes-in-the-cost-of-living",
+      "concepts": [
+        "consumer_price_index",
+        "substitution_bias",
+        "quality_bias"
+      ],
+      "lesson_ids": [
+        "c04-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it covers the CPI as a fixed-basket measure and its substitution bias and quality/new-goods bias, and efforts to reduce them.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-22-4",
+      "title": "22.4 The Confusion Over Inflation",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/22-4-the-confusion-over-inflation",
+      "concepts": [
+        "real_income",
+        "inflation_redistribution",
+        "price_stability"
+      ],
+      "lesson_ids": [
+        "c04-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it explains real vs. nominal values, how unexpected inflation helps fixed-rate borrowers and hurts lenders, losses for people on fixed-dollar pensions, blurred price signals and planning problems under high inflation, and hyperinflation.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-28-1",
+      "title": "28.1 The Federal Reserve Banking System and Central Banks",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/28-1-the-federal-reserve-banking-system-and-central-banks",
+      "concepts": [
+        "central_bank",
+        "monetary_policy"
+      ],
+      "lesson_ids": [
+        "c04-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it describes conducting monetary policy as a core central bank role, with goals of low unemployment and low inflation (the page does not use the term \"price stability\").",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-is2e-12-3",
+      "title": "12.3 The Regression Equation",
+      "container": "Introductory Statistics 2e",
+      "author": "Barbara Illowsky, Susan Dean (OpenStax, Rice University)",
+      "published": "2023-12-13",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/12-3-the-regression-equation",
+      "concepts": [
+        "correlation_coefficient",
+        "correlation_causation"
+      ],
+      "lesson_ids": [
+        "c04-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (as stated in the OpenStax citation notice)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed that, in its discussion of the correlation coefficient, it states that correlation does not imply causation (a strong correlation does not show that x causes y or y causes x). It does not discuss third (lurking) variables; that point is the lesson's own explanation.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "imf-fd-inflation-basics",
+      "title": "Inflation: Prices on the Rise",
+      "container": "International Monetary Fund — Finance & Development, Back to Basics",
+      "author": "Ceyda Oner (IMF)",
+      "published": "2019-07-30",
+      "url": "https://www.imf.org/en/Publications/fandd/issues/Series/Back-to-Basics/Inflation",
+      "concepts": [
+        "inflation_rate",
+        "consumer_price_index",
+        "purchasing_power",
+        "inflation_redistribution"
+      ],
+      "lesson_ids": [
+        "c04-l3"
+      ],
+      "license": "Subject to the IMF website terms of use. Content is summarized and linked only (figures are not quoted).",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it defines inflation as the rate at which prices rise over a period, describes the CPI basket, calls the erosion of purchasing power (when incomes lag prices) the biggest cost of inflation, and says fixed-rate borrowers can gain while lenders lose. It does not state a central bank inflation target, so it is not cited for that.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "ecb-monetary-policy-intro",
+      "title": "Monetary policy: Introduction",
+      "container": "European Central Bank — Monetary policy",
+      "author": "European Central Bank (ECB)",
+      "published": null,
+      "url": "https://www.ecb.europa.eu/mopo/intro/html/index.en.html",
+      "concepts": [
+        "price_stability",
+        "central_bank"
+      ],
+      "lesson_ids": [
+        "c04-l3"
+      ],
+      "license": "Subject to the ECB website terms of use. Content is summarized and linked only (figures are not quoted).",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: opened the page and confirmed it states the primary objective of price stability, keeping inflation low, stable and predictable (with a medium-term numerical target that the lessons do not quote). The page does not itself explain the costs of high or unstable inflation. No publication date on the page.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     }

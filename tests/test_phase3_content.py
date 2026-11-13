@@ -289,7 +289,7 @@ def test_preview_shows_draft_when_enabled(logged_in, monkeypatch):
     assert "Source verified · 2026-11-13" in html and "openstax.org/books/principles-economics-3e" in html
     assert "I have read all the learning materials" not in html   # 미리보기에서는 진도를 남기지 않는다
     assert logged_in.get("/preview/c02/c02-l9").status_code == 404
-    assert logged_in.get("/preview/c05/c05-l1").status_code == 404   # 자료가 없는 레슨
+    assert logged_in.get("/preview/c06/c06-l1").status_code == 404   # 자료가 없는 레슨
 
 
 def test_preview_requires_login(client, monkeypatch):

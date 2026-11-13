@@ -4,10 +4,10 @@
   "slug": "growth-and-stability",
   "title": "Growth & Stability",
   "title_ko": "Growth & Stability",
-  "description": "Learn how to measure the size and growth of an economy and changes in prices, and how they relate to living standards.",
+  "description": "Learn how to measure the size and growth of an economy and changes in prices, and how they relate to living standards and SDG 8 (decent work and economic growth).",
   "objectives": [
-    "Explain what GDP measures and what it leaves out.",
-    "Explain how productivity drives long-run growth.",
+    "Explain what GDP measures, how real GDP differs from nominal GDP, and what GDP leaves out.",
+    "Explain how productivity drives long-run growth and how growth compounds over time.",
     "Interpret how inflation affects purchasing power and living standards."
   ],
   "sdgs": [
@@ -15,7 +15,7 @@
   ],
   "review": {
     "status": "draft",
-    "note": "The course description and learning objectives are drafts awaiting teacher review."
+    "note": "Course description, objectives, lesson materials, quizzes and final assessment are AI-written drafts awaiting human review."
   },
   "estimated_hours": 6,
   "difficulty_levels": [
@@ -24,9 +24,10 @@
     "advanced"
   ],
   "status": "coming_soon",
-  "content_version": 1,
+  "content_version": 2,
   "final_assessment": {
-    "status": "upcoming"
+    "status": "draft",
+    "assessment_id": "c04-final"
   },
   "lesson_ids": [
     "c04-l1",
@@ -46,11 +47,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c04-l1.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c04-l1-quiz"
       }
     },
     {
@@ -65,11 +67,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c04-l2.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c04-l2-quiz"
       }
     },
     {
@@ -84,11 +87,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c04-l3.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c04-l3-quiz"
       }
     }
   ]
