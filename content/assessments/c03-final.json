@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "id": "c03-final",
+  "kind": "final",
+  "course_id": "c03",
+  "version": 1,
+  "title": "시장 실패 최종 평가",
+  "description": "세 레슨의 핵심 개념을 확인하는 최종 평가예요. 합격 기준을 넘으면 강좌를 수료해요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "제안값: 10문항 중 7개 이상(70%). 교사(관리자) 승인 전이며, 승인 전에는 수료를 인정하지 않는다."
+  },
+  "questions": [
+    {
+      "id": "c03-final-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c03-l1",
+      "objective": 2,
+      "concept_ids": [
+        "social_benefit",
+        "positive_externality"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가상의 예: 한 기업이 태양광 효율을 높이는 연구에 70억 원을 쓰려 해요. 이 기업이 얻는 이익은 50억 원어치이고, 다른 기업들이 이 기술을 따라 써서 얻는 이익이 30억 원어치예요. 이 연구의 사회적 순편익은 몇 억 원인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    },
+    {
+      "id": "c03-final-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l1",
+      "objective": 1,
+      "concept_ids": [
+        "positive_externality",
+        "externality"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "거래 당사자가 아닌 사람이 대가를 내지 않고 이익을 얻는 상황(긍정적 외부효과)을 고르세요.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "이웃이 가꾼 꽃밭 덕분에 지나가는 사람들이 즐거워한다"
+        },
+        {
+          "id": "b",
+          "text": "가게가 할인 판매를 해서 손님이 돈을 아꼈다"
+        },
+        {
+          "id": "c",
+          "text": "공사장 소음 때문에 근처 주민이 불편을 겪는다"
+        },
+        {
+          "id": "d",
+          "text": "내가 열심히 공부해서 내 성적이 올랐다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    },
+    {
+      "id": "c03-final-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l1",
+      "objective": 3,
+      "concept_ids": [
+        "positive_externality",
+        "social_benefit",
+        "social_optimum"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "긍정적 외부효과가 있는 상품 시장을 그래프로 그릴 때, 사회적 편익 곡선의 위치와 시장 결과에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "수요곡선보다 아래에 있어 시장 거래량이 사회적 최적보다 많다"
+        },
+        {
+          "id": "b",
+          "text": "수요곡선보다 위에 있어 시장 거래량이 사회적 최적보다 적다"
+        },
+        {
+          "id": "c",
+          "text": "공급곡선보다 위에 있어 시장이 과잉 생산한다"
+        },
+        {
+          "id": "d",
+          "text": "수요곡선과 겹쳐 시장 거래량이 사회적 최적과 같다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    },
+    {
+      "id": "c03-final-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l2",
+      "objective": 1,
+      "concept_ids": [
+        "common_resource",
+        "rivalry",
+        "excludability"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "통행료가 없는 도로는 한산할 때 공공재에 가깝지만, 출퇴근 시간에 꽉 막히면 성격이 달라져요. 막히는 무료 도로에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "돈을 낸 차만 다니므로 사적재가 된다"
+        },
+        {
+          "id": "b",
+          "text": "여전히 비경합적이므로 공공재 그대로다"
+        },
+        {
+          "id": "c",
+          "text": "누구나 쓸 수 있지만 한 대가 더 들어오면 다른 차가 불편해지는 공유 자원에 가까워진다"
+        },
+        {
+          "id": "d",
+          "text": "통행을 막을 수 있으므로 배제적인 재화가 된다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-13-3"
+      ]
+    },
+    {
+      "id": "c03-final-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l2",
+      "objective": 2,
+      "concept_ids": [
+        "free_rider",
+        "public_good"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가상의 예: 이웃 두 집이 골목 방범 카메라를 함께 달면 각자 4씩 내고 각자 6의 가치를 얻어요. 한 집만 혼자 달면 그 집이 8을 내고, 두 집 모두 6의 가치를 얻어요. 아무도 달지 않으면 두 집 모두 0 이에요. 두 집이 각자 자기 이익만 보고 따로 결정한다면 결과로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "둘 다 4씩 내서 함께 단다"
+        },
+        {
+          "id": "b",
+          "text": "한 집만 달고 두 집 모두 이익을 본다"
+        },
+        {
+          "id": "c",
+          "text": "카메라는 두 집 모두에게 손해이므로 처음부터 달지 않는 것이 옳다"
+        },
+        {
+          "id": "d",
+          "text": "각자 내지 않는 쪽이 유리해 아무도 달지 않고, 함께 달았을 때(각 2)보다 나빠진다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-13-3"
+      ]
+    },
+    {
+      "id": "c03-final-q6",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l2",
+      "objective": 3,
+      "concept_ids": [
+        "tragedy_of_commons"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "남획으로 물고기가 줄고 있는 어장의 공유지의 비극을 줄이는 방법으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "어선마다 잡을 수 있는 몫을 정해 나누어 주어 각자 자기 몫을 아끼게 한다"
+        },
+        {
+          "id": "b",
+          "text": "누구나 원하는 만큼 잡게 해 어선끼리 경쟁하게 한다"
+        },
+        {
+          "id": "c",
+          "text": "물고기 값이 내려가도록 수입을 늘린다"
+        },
+        {
+          "id": "d",
+          "text": "어선 연료비에 보조금을 준다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-13-3"
+      ]
+    },
+    {
+      "id": "c03-final-q7",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c03-l3",
+      "objective": 2,
+      "concept_ids": [
+        "carbon_tax"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가상의 예: 수요 Qd = 200 − 4P, 공급 Qs = 20 + 2P 인 시장(세금이 없을 때 가격 30, 거래량 80)에서 생산자에게 1개당 탄소세 6 을 매겼어요. 정부가 얻는 세수는 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    },
+    {
+      "id": "c03-final-q8",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c03-l3",
+      "objective": 2,
+      "concept_ids": [
+        "carbon_tax"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "q7 의 시장에서 상품 1개를 만들 때 온실가스가 0.5kg 나와요. 탄소세 6 때문에 배출량은 몇 kg 줄어드나요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    },
+    {
+      "id": "c03-final-q9",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l3",
+      "objective": 3,
+      "concept_ids": [
+        "social_welfare_change",
+        "pollution_tax"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "q7 의 시장에서 생산 1개당 외부 피해가 8 이라고 가정해요(일정). 다음 탄소세 가운데 사회적 후생 변화(피한 외부 피해 − 시장 내부 손실)를 가장 크게 만드는 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "4"
+        },
+        {
+          "id": "b",
+          "text": "8"
+        },
+        {
+          "id": "c",
+          "text": "12"
+        },
+        {
+          "id": "d",
+          "text": "16"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    },
+    {
+      "id": "c03-final-q10",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l3",
+      "objective": 1,
+      "concept_ids": [
+        "carbon_tax",
+        "tradable_permits"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "정부가 탄소세를 도입했어요. 이 정책이 배출을 줄이는 방식을 바르게 설명한 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "전체 배출 한도를 정하고 배출할 권리를 사고팔게 한다"
+        },
+        {
+          "id": "b",
+          "text": "정부가 공장마다 달아야 할 감축 설비를 정해 의무로 한다"
+        },
+        {
+          "id": "c",
+          "text": "배출 1단위에 가격을 정하고, 얼마나 줄일지는 기업과 소비자의 선택에 맡긴다"
+        },
+        {
+          "id": "d",
+          "text": "공장 주변 주민에게 오염을 막을 법적 권리를 준다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    }
+  ]
+}

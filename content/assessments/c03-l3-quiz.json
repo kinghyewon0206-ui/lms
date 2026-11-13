@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "id": "c03-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c03",
+  "lesson_id": "c03-l3",
+  "version": 1,
+  "title": "레슨 3 형성 퀴즈: 탄소세와 정부 개입",
+  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c03-l3-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l3",
+      "objective": 1,
+      "concept_ids": [
+        "pollution_tax",
+        "command_and_control"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "모든 공장에 같은 배출 기준을 정하는 직접 규제와 비교한 오염세의 장점으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "줄이는 비용이 낮은 기업이 더 많이 줄이게 되어 같은 감축을 더 적은 비용으로 이룰 수 있다"
+        },
+        {
+          "id": "b",
+          "text": "정부가 전체 감축량을 미리 정확히 정할 수 있다"
+        },
+        {
+          "id": "c",
+          "text": "세금을 내면 오염 피해가 그 자리에서 사라진다"
+        },
+        {
+          "id": "d",
+          "text": "기업마다 같은 양을 줄이도록 정해진다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    },
+    {
+      "id": "c03-l3-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l3",
+      "objective": 1,
+      "concept_ids": [
+        "tradable_permits"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "배출권 거래제에서 정부가 직접 정하는 것으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "배출권 한 장의 가격"
+        },
+        {
+          "id": "b",
+          "text": "기업마다 써야 할 감축 기술"
+        },
+        {
+          "id": "c",
+          "text": "각 기업이 줄여야 할 양"
+        },
+        {
+          "id": "d",
+          "text": "전체 배출 한도(총량)"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    },
+    {
+      "id": "c03-l3-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c03-l3",
+      "objective": 2,
+      "concept_ids": [
+        "carbon_tax",
+        "tax_incidence"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가상의 예: 수요 Qd = 150 − 3P, 공급 Qs = 10 + 2P 이고 세금이 없을 때 균형 가격은 28 이에요. 생산자에게 1개당 탄소세 10 을 매기면 소비자가 내는 가격은 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    },
+    {
+      "id": "c03-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l3",
+      "objective": 2,
+      "concept_ids": [
+        "tax_incidence",
+        "carbon_tax"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "휘발유처럼 가격이 올라도 사람들이 쓰는 양을 쉽게 줄이지 못하는(수요가 가격에 매우 둔감한) 상품에 생산자 대상 탄소세를 매겼어요. 세금 부담에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "생산자가 대부분 부담한다"
+        },
+        {
+          "id": "b",
+          "text": "법적으로 세금을 내는 생산자가 부담 전체를 진다"
+        },
+        {
+          "id": "c",
+          "text": "소비자가 대부분 부담한다"
+        },
+        {
+          "id": "d",
+          "text": "소비자와 생산자가 정확히 반씩 나누어 부담한다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    },
+    {
+      "id": "c03-l3-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c03-l3",
+      "objective": 3,
+      "concept_ids": [
+        "social_welfare_change"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "q3 과 같은 시장에서 생산 1개당 외부 피해가 10 이라고 가정해요. 탄소세 10 을 매겼을 때 사회적 후생 변화(피한 외부 피해 − 시장 내부 손실)는 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "openstax-pe3-5-3",
+        "imf-climate-mitigation"
+      ]
+    }
+  ]
+}

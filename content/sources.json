@@ -137,7 +137,8 @@
         "tax_incidence"
       ],
       "lesson_ids": [
-        "c02-l3"
+        "c02-l3",
+        "c03-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
       "verification": {
@@ -399,13 +400,203 @@
         "social_cost"
       ],
       "lesson_ids": [
-        "c01-l3"
+        "c01-l3",
+        "c03-l1",
+        "c03-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
         "method": "2026-11-13: 페이지를 열어 외부효과(제3자에게 미치는 영향), 사적 비용과 사회적 비용, 오염을 만드는 재화가 과다 생산된다는 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-12-2",
+      "title": "12.2 Command-and-Control Regulation",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/12-2-command-and-control-regulation",
+      "concepts": [
+        "command_and_control"
+      ],
+      "lesson_ids": [
+        "c03-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 허용 배출량·기술을 정하는 직접 규제, 기준을 넘어 줄일 유인이 없음, 모든 기업에 같은 기준을 적용하는 비유연성 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-12-3",
+      "title": "12.3 Market-Oriented Environmental Tools",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/12-3-market-oriented-environmental-tools",
+      "concepts": [
+        "pollution_charge",
+        "marketable_permits",
+        "cap_and_trade",
+        "property_rights"
+      ],
+      "lesson_ids": [
+        "c03-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 오염세(세금보다 감축 비용이 쌀 때까지 감축), 배출권 거래(cap-and-trade, 1990 Clean Air Act 이산화황), 재산권(코스) 설명 확인. 'carbon tax' 라는 용어 자체는 이 절에 없음 → 탄소세 정의는 IMF 페이지로 보완",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-12-5",
+      "title": "12.5 International Environmental Issues",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/12-5-international-environmental-issues",
+      "concepts": [
+        "international_externality",
+        "climate_change"
+      ],
+      "lesson_ids": [
+        "c03-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 지구 온난화·생물다양성을 국제적 외부효과로 설명, 소득 수준이 다른 나라 사이 협상의 어려움, 2015 파리 협정 언급 확인 ('free rider' 용어는 이 절에 없음)",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-13-1",
+      "title": "13.1 Investments in Innovation",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/13-1-investments-in-innovation",
+      "concepts": [
+        "positive_externality",
+        "social_benefit"
+      ],
+      "lesson_ids": [
+        "c03-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 긍정적 외부효과(제3자에게 가는 이익) 정의, 사회적 편익이 사적 편익보다 커서 시장 생산이 사회적 최적보다 적다는 설명, 독감 예방접종 예와 보조금 제안 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-13-3",
+      "title": "13.3 Public Goods",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/13-3-public-goods",
+      "concepts": [
+        "public_good",
+        "nonexcludable",
+        "nonrival",
+        "free_rider",
+        "common_resources",
+        "tragedy_of_the_commons"
+      ],
+      "lesson_ids": [
+        "c03-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 공공재(비배제·비경합), 무임승차(죄수의 딜레마 예), 세금으로 공급·광고 방송, 공유 자원(비배제·경합)과 공유지의 비극, 재산권·허가·어획 제한·어획 할당 해결책 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "un-sdg-7",
+      "title": "Goal 7: Ensure access to affordable, reliable, sustainable and modern energy for all",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal7",
+      "concepts": [
+        "energy_access",
+        "renewable_energy",
+        "energy_efficiency"
+      ],
+      "lesson_ids": [
+        "c03-l1",
+        "c03-l2",
+        "c03-l3"
+      ],
+      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 Goal 7 제목, 세부목표 7.1(현대적 에너지 접근), 7.2(재생에너지 비중 확대), 7.3(에너지 효율 개선 속도 2배) 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "un-sdg-13",
+      "title": "Goal 13: Take urgent action to combat climate change and its impacts",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal13",
+      "concepts": [
+        "climate_action",
+        "climate_policy_integration"
+      ],
+      "lesson_ids": [
+        "c03-l1",
+        "c03-l2",
+        "c03-l3"
+      ],
+      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 Goal 13 제목, 세부목표 13.1(기후 재해 회복력), 13.2(기후 대응을 국가 정책·전략·계획에 반영), 13.3(기후 교육·인식·역량) 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "imf-climate-mitigation",
+      "title": "Climate mitigation",
+      "container": "International Monetary Fund — Topics: Climate change",
+      "author": "International Monetary Fund (IMF)",
+      "published": null,
+      "url": "https://www.imf.org/en/Topics/climate-change/climate-mitigation",
+      "concepts": [
+        "carbon_tax",
+        "emissions_trading",
+        "carbon_pricing",
+        "revenue_recycling"
+      ],
+      "lesson_ids": [
+        "c03-l3"
+      ],
+      "license": "IMF 웹사이트 이용 약관을 따른다. 내용을 요약하고 링크만 한다 (수치는 인용하지 않음).",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 탄소세·배출권 거래제를 기후 완화의 핵심 가격 수단으로 설명, 세수를 저소득 가계 지원과 친환경 전환 지원에 쓰는 방안(revenue recycling) 확인. 발행일은 페이지에 없음. (World Bank 탄소 가격 대시보드는 HTTP 403 으로 열지 못해 쓰지 않음)",
         "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
       }
     }

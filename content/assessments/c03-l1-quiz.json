@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "id": "c03-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c03",
+  "lesson_id": "c03-l1",
+  "version": 1,
+  "title": "레슨 1 형성 퀴즈: 외부효과와 시장 실패",
+  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c03-l1-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l1",
+      "objective": 1,
+      "concept_ids": [
+        "externality",
+        "negative_externality"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "다음 중 부정적 외부효과의 예로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "빵집이 빵 값을 올려 손님이 돈을 더 냈다"
+        },
+        {
+          "id": "b",
+          "text": "이웃집의 밤샘 파티 소음 때문에 옆집 학생이 잠을 못 잤다"
+        },
+        {
+          "id": "c",
+          "text": "비싼 운동화를 사서 내 용돈이 줄었다"
+        },
+        {
+          "id": "d",
+          "text": "회사가 직원에게 월급을 주었다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    },
+    {
+      "id": "c03-l1-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l1",
+      "objective": 1,
+      "concept_ids": [
+        "positive_externality",
+        "social_optimum"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "양봉업자가 기르는 벌이 근처 과수원의 꽃가루받이를 도와 과일 수확이 늘었어요. 과수원 주인은 양봉업자에게 아무 대가도 내지 않아요. 이 상황에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "부정적 외부효과라서 꿀이 사회적으로 바람직한 양보다 많이 생산되기 쉽다"
+        },
+        {
+          "id": "b",
+          "text": "과수원이 대가를 내지 않았으므로 외부효과가 아니다"
+        },
+        {
+          "id": "c",
+          "text": "긍정적 외부효과라서 양봉이 사회적으로 바람직한 양보다 적게 이루어지기 쉽다"
+        },
+        {
+          "id": "d",
+          "text": "벌은 공유 자원이므로 과다 이용된다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    },
+    {
+      "id": "c03-l1-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c03-l1",
+      "objective": 2,
+      "concept_ids": [
+        "social_cost"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가상의 예: 화력 발전소가 전기 1MWh 를 만드는 데 연료비·인건비 등으로 8만 원이 들고, 대기오염으로 주변 주민이 입는 피해가 1MWh 당 3만 원이에요. 전기 1MWh 의 사회적 비용은 몇 만 원인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    },
+    {
+      "id": "c03-l1-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c03-l1",
+      "objective": 3,
+      "concept_ids": [
+        "negative_externality",
+        "social_optimum"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "어떤 상품을 만들 때 부정적 외부효과가 생겨요. 정부 개입이 없을 때 시장 결과에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "시장 거래량이 사회적 최적 거래량보다 적다"
+        },
+        {
+          "id": "b",
+          "text": "시장 거래량과 사회적 최적 거래량이 같고 가격만 다르다"
+        },
+        {
+          "id": "c",
+          "text": "사회적 비용 곡선이 공급곡선보다 아래에 있다"
+        },
+        {
+          "id": "d",
+          "text": "시장 거래량이 사회적 최적 거래량보다 많다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    },
+    {
+      "id": "c03-l1-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c03-l1",
+      "objective": 3,
+      "concept_ids": [
+        "social_cost",
+        "social_optimum"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가상의 예: 수요 Qd = 80 − P, 공급 Qs = P 인 시장에서 생산 1단위마다 외부 비용이 10 생겨요. 시장 거래량은 사회적 최적 거래량보다 몇 단위 많나요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-1"
+      ]
+    }
+  ]
+}
