@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "id": "c07-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c07",
+  "lesson_id": "c07-l1",
+  "version": 1,
+  "title": "Lesson 1 Quiz: Income, Spending, and Budgeting",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c07-l1-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l1",
+      "objective": 1,
+      "concept_ids": [
+        "gross_net_income"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Maya's weekly pay stub shows gross pay of $640. Deductions are $88 for taxes and $32 for a retirement plan contribution. What is her net (take-home) pay for the week, in dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "cfpb-pay-stub-tool"
+      ]
+    },
+    {
+      "id": "c07-l1-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l1",
+      "objective": 2,
+      "concept_ids": [
+        "fixed_variable_expenses"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which of these is the best example of a variable expense for a student?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A phone plan that costs $40 each month"
+        },
+        {
+          "id": "b",
+          "text": "Snacks and eating out, which change from month to month"
+        },
+        {
+          "id": "c",
+          "text": "A monthly bus pass sold at a set price"
+        },
+        {
+          "id": "d",
+          "text": "A streaming subscription billed at a flat monthly fee"
+        }
+      ],
+      "source_ids": [
+        "cfpb-emergency-fund-guide"
+      ]
+    },
+    {
+      "id": "c07-l1-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l1",
+      "objective": 2,
+      "concept_ids": [
+        "needs_wants",
+        "fixed_variable_expenses"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Two students each pay $60 a month for a car insurance policy. Student A drives to a night job with no bus service. Student B lives next to a train station and drives mainly on weekends for fun. How should each classify the expense?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Both should call it a want, because insurance is optional spending"
+        },
+        {
+          "id": "b",
+          "text": "Both should call it a variable need, because prices can change"
+        },
+        {
+          "id": "c",
+          "text": "Both should call it a need, because the bill arrives each month"
+        },
+        {
+          "id": "d",
+          "text": "It is a fixed need for A and closer to a fixed want for B"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c07-l1-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l1",
+      "objective": 3,
+      "concept_ids": [
+        "financial_goals"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Leo wants $1,100 for a used scooter in 6 months. He has already saved $260. Ignoring interest, how much must he save each month to reach the goal on time, in dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "cfpb-emergency-fund-guide"
+      ]
+    },
+    {
+      "id": "c07-l1-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l1",
+      "objective": 2,
+      "concept_ids": [
+        "budget",
+        "gross_net_income"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Rosa's net income is $1,800 a month, but her planned spending and saving add up to $1,950. She notices her gross pay is $2,150. Which response is the best way to make her budget consistent with the budget identity?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cut variable wants (or raise net income) so spending plus saving equals net income"
+        },
+        {
+          "id": "b",
+          "text": "Base the budget on $2,150 gross pay, since that covers the $1,950 plan"
+        },
+        {
+          "id": "c",
+          "text": "Keep the plan and cover the $150 gap each month with a credit card"
+        },
+        {
+          "id": "d",
+          "text": "Stop saving until spending fits, since saving matters less than spending"
+        }
+      ],
+      "source_ids": [
+        "cfpb-pay-stub-tool",
+        "openstax-pe3-2-1"
+      ]
+    }
+  ]
+}

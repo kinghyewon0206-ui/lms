@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c07-l2",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Explain why people save, what an emergency fund is for, and why it is usually kept where it can be reached quickly.",
+    "Calculate and compare simple and compound interest, including the effect of compounding frequency (APR vs. APY).",
+    "Convert a nominal return into a real return using inflation, and explain how interest, fees, and minimum payments affect the cost of borrowing."
+  ],
+  "concepts": [
+    {
+      "id": "saving_emergency_fund",
+      "term": "Saving and the emergency fund",
+      "definition": "Saving is the part of income not spent now. An emergency fund is money set aside for unexpected costs, such as a repair, a medical bill, or a loss of income. Without one, a small shock can push a household into debt. It is usually kept in a safe, easy-to-reach place such as a savings account.",
+      "source_ids": [
+        "cfpb-emergency-fund-guide",
+        "openstax-pe3-17-2"
+      ]
+    },
+    {
+      "id": "simple_interest",
+      "term": "Simple interest",
+      "definition": "Interest paid only on the original amount (the principal). Interest I = P × r × t, where P is the principal, r is the annual interest rate as a decimal, and t is the time in years.",
+      "source_ids": [
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "compound_interest",
+      "term": "Compound interest",
+      "definition": "Interest paid on the principal and on interest already earned. With n compounding periods per year, the amount after t years is A = P(1 + r/n)^(n·t), where r/n is the rate per period. Over long periods, compounding makes savings (and debts) grow much faster than simple interest.",
+      "source_ids": [
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "apr_apy",
+      "term": "APR vs. APY and rate units",
+      "definition": "Interest rates are usually stated per year. The annual percentage rate (APR) is the yearly rate before compounding; the rate per period is APR ÷ n. The annual percentage yield (APY) includes the effect of compounding within the year: APY = (1 + APR/n)^n − 1. For loans, the APR can also include certain fees, depending on the rules for that type of loan, so it is a broader measure of borrowing cost than the interest rate alone.",
+      "source_ids": [
+        "cfpb-reg-dd-apy",
+        "cfpb-mortgage-apr",
+        "cfpb-credit-card-apr"
+      ]
+    },
+    {
+      "id": "real_return",
+      "term": "Nominal vs. real return",
+      "definition": "A nominal return is measured in dollars. A real return measures the change in purchasing power: (1 + real) = (1 + nominal) ÷ (1 + inflation). The approximation real ≈ nominal − inflation works for small rates. This lesson uses the exact formula unless a problem says otherwise.",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "borrowing_cost",
+      "term": "The cost of borrowing",
+      "definition": "Borrowing lets you spend now, but you repay the principal plus interest and sometimes fees. The total cost depends on the rate, the fees, and how long the debt lasts. Paying only the minimum on a credit card keeps the balance high for longer, so total interest rises and repayment can take years.",
+      "source_ids": [
+        "openstax-pe3-17-1",
+        "cfpb-credit-card-apr",
+        "cfpb-minimum-payment-box",
+        "cfpb-mortgage-apr"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Saving gives you a cushion for surprises. When you save in an account that pays interest, you earn money on your money. With compound interest, you also earn interest on the interest, so growth speeds up over time. Borrowing works the same way in reverse: interest makes debt grow.",
+      "sections": [
+        {
+          "heading": "Why save, and the emergency fund",
+          "concept_ids": [
+            "saving_emergency_fund"
+          ],
+          "paragraphs": [
+            "Saving means not spending part of your income now so you can use it later. One of the most important reasons to save is an emergency fund: money set aside for surprises, like a broken phone screen, a car repair, or a few weeks without work.",
+            "Without an emergency fund, a surprise bill often ends up on a credit card or a loan, and then it costs even more. Because emergencies can happen at any time, this money is usually kept somewhere safe that you can reach quickly, such as a savings account."
+          ]
+        },
+        {
+          "heading": "Simple interest vs. compound interest",
+          "concept_ids": [
+            "simple_interest",
+            "compound_interest"
+          ],
+          "paragraphs": [
+            "Interest is the price a bank pays you for using your money (or the price you pay to borrow). With simple interest, you earn interest only on the money you put in. With compound interest, the interest you earn is added to your balance, and next year you earn interest on that bigger balance.",
+            "Hypothetical example: you save $1,000 at 5% a year, compounded once a year. Year 1: interest $50.00, balance $1,050.00. Year 2: interest $52.50, balance $1,102.50. Year 3: interest $55.13, balance $1,157.63. With simple interest, you would get $50 every year and have $1,150.00. The difference is small at first, but after 30 years it is large: about $4,321.94 with compounding vs. $2,500.00 with simple interest (same assumptions, no deposits or withdrawals)."
+          ]
+        },
+        {
+          "heading": "Reading interest rates",
+          "concept_ids": [
+            "apr_apy",
+            "real_return"
+          ],
+          "paragraphs": [
+            "Rates are usually given per year. The APR is the yearly rate before compounding. The APY shows what you actually earn in a year once compounding is included, so the APY is a little higher than the APR when interest is added more than once a year. When comparing savings accounts, compare APYs.",
+            "Prices also rise over time (inflation). If your savings earn 5% but prices rise 3%, your money grows in dollars, but what it can buy grows by only about 2%. That is the difference between a nominal return and a real return."
+          ]
+        },
+        {
+          "heading": "When you are the borrower",
+          "concept_ids": [
+            "borrowing_cost"
+          ],
+          "paragraphs": [
+            "When you borrow, you pay interest instead of earning it. If you carry a credit card balance, interest is added each month. On many cards, you can avoid interest on purchases by paying the full balance by the due date. Paying only the minimum keeps the balance around for a long time, and you end up paying much more interest. Fees, like late fees, add to the cost too."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Simple interest grows linearly (I = P·r·t); compound interest grows by a constant factor each period (A = P(1 + r/n)^(n·t)). APY converts any compounding frequency to a comparable yearly figure. Real returns adjust for inflation, and the cost of a loan depends on its rate, fees, and repayment pattern.",
+      "sections": [
+        {
+          "heading": "Saving, liquidity, and the emergency fund",
+          "concept_ids": [
+            "saving_emergency_fund"
+          ],
+          "paragraphs": [
+            "Households can hold savings in different forms. A checking account offers easy access and little or no interest; a savings account pays some interest; a certificate of deposit (CD) usually pays more for a fixed term but charges a penalty for early withdrawal. The trade-off is between return and liquidity, meaning how quickly and cheaply money can be turned into spending.",
+            "An emergency fund needs liquidity and a stable value, so it is usually kept in a deposit account rather than in investments whose value can fall just when you need the money. A common rule of thumb is a few months of essential expenses, but the right size depends on your situation (job stability, family needs, insurance)."
+          ]
+        },
+        {
+          "heading": "Linear vs. compound growth",
+          "concept_ids": [
+            "simple_interest",
+            "compound_interest"
+          ],
+          "paragraphs": [
+            "Simple interest: I = P × r × t, so the balance P + I rises by the same dollar amount each year (linear growth). Compound interest with annual compounding: A = P(1 + r)^t, so the balance is multiplied by (1 + r) each year (exponential growth). The gap between the two widens over time, because each year's interest is earned on a larger base.",
+            "Hypothetical example: $500 at 4% for 3 years. Simple: $500 × 0.04 × 3 = $60 of interest, ending balance $560.00. Compound (annual): Year 1 $500.00 → $520.00; Year 2 $520.00 → $540.80; Year 3 $540.80 → $562.43 (rounded to the nearest cent). The rule of 70 from Course 4 gives an approximate doubling time: about 70 ÷ 4 = 17.5 years at 4% (the exact value is ln 2 ÷ ln 1.04 ≈ 17.7 years)."
+          ]
+        },
+        {
+          "heading": "Compounding frequency: APR and APY",
+          "concept_ids": [
+            "apr_apy"
+          ],
+          "paragraphs": [
+            "Always check the units of a rate. A 6% APR compounded monthly means 6% ÷ 12 = 0.5% per month. Over a year, the balance grows by (1.005)^12 ≈ 1.0617, so the APY is about 6.17%. More frequent compounding raises the APY slightly: at a 6% APR, quarterly compounding gives an APY of about 6.14% and daily compounding (365 days) about 6.18%.",
+            "U.S. rules require deposit accounts to state an APY that reflects both the rate and the compounding frequency, which makes accounts comparable. For loans, the APR is a broader measure than the interest rate because it can include some fees (for example, certain charges paid to get a mortgage). The exact fees included depend on the type of loan and the rules that apply."
+          ]
+        },
+        {
+          "heading": "Real returns and the cost of debt",
+          "concept_ids": [
+            "real_return",
+            "borrowing_cost"
+          ],
+          "paragraphs": [
+            "Real return = (1 + nominal return) ÷ (1 + inflation) − 1, the same exact formula used for real wages in Course 4. A savings account paying 5% when inflation is 3% gives a real return of 1.05 ÷ 1.03 − 1 ≈ 1.94%. The shortcut 5% − 3% = 2% is close for small rates. If the nominal rate is below inflation, the real return is negative and purchasing power falls.",
+            "For a borrower, the same math works in reverse. A credit card balance at 24% APR grows by about 2% a month if it is not paid down. Simplified hypothetical example: on a $1,000 balance, one month's interest is about $1,000 × 0.02 = $20. If the payment barely covers that interest, the balance hardly falls, and the debt can last for years. U.S. credit card statements generally must show how long repayment would take at the minimum payment, which makes this cost visible."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "With per-period rate j = r/n and N = n·t periods, A = P(1 + j)^N. The effective annual rate (APY) is (1 + r/n)^n − 1. Real returns satisfy (1 + i_real) = (1 + i)/(1 + π). For an amortized loan, the payment is M = P·j ÷ (1 − (1 + j)^(−N)), and total interest is N·M − P.",
+      "sections": [
+        {
+          "heading": "Precautionary saving",
+          "concept_ids": [
+            "saving_emergency_fund"
+          ],
+          "paragraphs": [
+            "An emergency fund is precautionary saving: a buffer against income and expense shocks. Its value comes from liquidity and stability, not from return. Holding it in a deposit account sacrifices some expected return (an opportunity cost), but it avoids two costly alternatives: selling a volatile asset after its price has fallen, or borrowing at a high APR. In the U.S., deposits at insured banks are protected by FDIC deposit insurance up to a limit, while investments such as stocks and mutual funds are not."
+          ]
+        },
+        {
+          "heading": "Simple and compound growth, formally",
+          "concept_ids": [
+            "simple_interest",
+            "compound_interest"
+          ],
+          "paragraphs": [
+            "Simple interest: A_s = P(1 + r·t), linear in t. Compound interest: A_c = P(1 + r/n)^(n·t), exponential in t. For t ≥ 1 and r > 0, A_c ≥ A_s, and the ratio A_c ÷ A_s grows without bound as t increases. Hypothetical comparison at P = $1,000, r = 5%, n = 1: after 3 years $1,157.63 vs. $1,150.00; after 30 years $4,321.94 vs. $2,500.00 (rounded to the nearest cent).",
+            "Rates must match their periods: j = r ÷ n is the rate per period, and N = n·t is the number of periods. Using an annual rate with a monthly period count (or the reverse) is a common error that produces wildly wrong results."
+          ]
+        },
+        {
+          "heading": "Effective annual rates and real returns",
+          "concept_ids": [
+            "apr_apy",
+            "real_return"
+          ],
+          "paragraphs": [
+            "APY = (1 + r/n)^n − 1, which increases with n and approaches e^r − 1 as n → ∞. At r = 6%: n = 1 gives 6.00%, n = 4 gives 6.136%, n = 12 gives 6.168%, n = 365 gives 6.183%. U.S. deposit rules (Regulation DD) define the APY so that it reflects both the interest rate and the compounding frequency. On loans, the disclosed APR can fold certain fees into the rate, so two loans with the same interest rate can have different APRs.",
+            "Exact real return: i_real = (1 + i) ÷ (1 + π) − 1. The approximation i_real ≈ i − π ignores the cross term and overstates the real return slightly when π > 0 (5% nominal, 3% inflation: exact 1.942%, approximate 2%). Over many years, real growth compounds too: the real value after t years is P[(1 + i) ÷ (1 + π)]^t. Past returns do not guarantee future returns, so any long-run projection is an illustration that depends on its assumptions."
+          ]
+        },
+        {
+          "heading": "Amortized loans and minimum payments",
+          "concept_ids": [
+            "borrowing_cost"
+          ],
+          "paragraphs": [
+            "For a loan of P repaid in N equal payments at rate j per period, the payment is M = P·j ÷ (1 − (1 + j)^(−N)). Each payment covers that period's interest on the remaining balance, and the rest reduces the principal, so interest charges fall over time. Total interest is N·M − P, which is less than P × r × t because the balance shrinks.",
+            "A minimum payment that is close to the interest charge j·B reduces the balance B very slowly, so the number of payments, and total interest, become large. In the limit where the payment equals j·B, the balance never falls. Fees (origination, late, or annual fees) raise the true cost beyond what the interest rate alone suggests."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c07-l2-we1",
+      "level": "beginner",
+      "title": "Simple vs. compound interest, year by year",
+      "problem": "Hypothetical example: You deposit $500 in a savings account that pays 4% a year. You make no other deposits or withdrawals. Compare the balance after 3 years with simple interest and with interest compounded once a year. Round to the nearest cent.",
+      "steps": [
+        "Simple interest: I = $500 × 0.04 × 3 = $60, so the balance is $560.00.",
+        "Compound, Year 1: interest $500.00 × 0.04 = $20.00, balance $520.00.",
+        "Compound, Year 2: interest $520.00 × 0.04 = $20.80, balance $540.80.",
+        "Compound, Year 3: interest $540.80 × 0.04 = $21.63, balance $562.43 (exactly $562.432 before rounding)."
+      ],
+      "answer": "Simple interest gives $560.00; annual compounding gives $562.43. The extra $2.43 is interest earned on earlier interest.",
+      "check": {
+        "type": "product",
+        "factors": [
+          500,
+          0.04,
+          3
+        ],
+        "expected": 60
+      }
+    },
+    {
+      "id": "c07-l2-we2",
+      "level": "intermediate",
+      "title": "Compound growth as repeated multiplication",
+      "problem": "Hypothetical example: $1,000 is saved at 5% a year, compounded annually, for 3 years with no other deposits. Find the ending balance with A = P(1 + r)^t, show the year-by-year balances, and compare with simple interest. Round to the nearest cent.",
+      "steps": [
+        "A = $1,000 × 1.05 × 1.05 × 1.05 = $1,157.625 ≈ $1,157.63.",
+        "Year by year: $1,000.00 → $1,050.00 → $1,102.50 → $1,157.63.",
+        "Simple interest: $1,000 × (1 + 0.05 × 3) = $1,150.00.",
+        "Compounding adds $7.63 over 3 years; at the same assumptions over 30 years the gap would be about $1,821.94 ($4,321.94 vs. $2,500.00)."
+      ],
+      "answer": "The balance is $1,157.63 after 3 years with annual compounding, compared with $1,150.00 with simple interest.",
+      "check": {
+        "type": "product",
+        "factors": [
+          1000,
+          1.05,
+          1.05,
+          1.05
+        ],
+        "expected": 1157.625
+      }
+    },
+    {
+      "id": "c07-l2-we3",
+      "level": "intermediate",
+      "title": "From APR to APY",
+      "problem": "Hypothetical example: Bank A offers a savings account with a 6% APR compounded monthly. What is the rate per month, and what is the APY? Round the APY to two decimal places.",
+      "steps": [
+        "Rate per month = 6% ÷ 12 = 0.5% = 0.005.",
+        "Growth factor over one year = (1.005)^12 ≈ 1.061678.",
+        "APY = 1.061678 − 1 ≈ 0.0617, or about 6.17%."
+      ],
+      "answer": "The monthly rate is 0.5%, and the APY is about 6.17%, slightly higher than the 6% APR because of monthly compounding.",
+      "check": {
+        "type": "product",
+        "factors": [
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005,
+          1.005
+        ],
+        "expected": 1.0616778119
+      }
+    },
+    {
+      "id": "c07-l2-we4",
+      "level": "advanced",
+      "title": "Exact real return",
+      "problem": "Hypothetical example: A savings account has an APY of 5%. Inflation over the same year is 3%. Find the real return with the exact formula, compare it with the approximation, and say what the result means. Round to two decimal places.",
+      "steps": [
+        "Exact real return = 1.05 ÷ 1.03 − 1 ≈ 0.019417, or about 1.94%.",
+        "Approximation: 5% − 3% = 2%, which slightly overstates the real return.",
+        "Meaning: after one year, the saver can buy about 1.94% more goods and services than at the start."
+      ],
+      "answer": "The real return is about 1.94% (exact); the shortcut gives 2%. Purchasing power grows, but by less than the 5% nominal return.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1.05,
+        "denominator": 1.03,
+        "expected": 1.0194,
+        "tolerance": 0.0001
+      }
+    },
+    {
+      "id": "c07-l2-we5",
+      "level": "advanced",
+      "title": "The true interest cost of an installment loan",
+      "problem": "Hypothetical example: You borrow $1,200 at a 12% APR, compounded monthly (1% per month), and repay it in 12 equal monthly payments. There are no fees. Find the payment and the total interest, and explain why total interest is not $1,200 × 0.12 = $144. Round to the nearest cent.",
+      "steps": [
+        "j = 0.01, N = 12. (1.01)^(−12) ≈ 0.887449, so 1 − 0.887449 = 0.112551.",
+        "M = $1,200 × 0.01 ÷ 0.112551 ≈ $106.62 per month.",
+        "Total paid ≈ 12 × $106.6185 ≈ $1,279.42, so total interest ≈ $79.42 (the last payment would be adjusted by a few cents for rounding).",
+        "Interest is charged only on the remaining balance, which falls with each payment, so it is much less than $144."
+      ],
+      "answer": "The payment is about $106.62 a month, and total interest is about $79.42. A fee would raise the total cost and the loan's APR above 12%.",
+      "check": {
+        "type": "ratio",
+        "numerator": 12,
+        "denominator": 0.11255077473,
+        "expected": 106.62,
+        "tolerance": 0.005
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Where households keep their savings",
+      "source_ids": [
+        "openstax-pe3-17-2",
+        "fdic-deposit-insurance"
+      ],
+      "paragraphs": [
+        "Economics textbooks describe a range of choices for household savings: checking accounts with easy access and little interest, savings accounts with some interest, and certificates of deposit that pay more but charge a penalty for early withdrawal. In the United States, deposits at insured banks are protected by FDIC deposit insurance up to a stated limit per depositor, per bank, and ownership category; stocks, bonds, mutual funds, and crypto assets are not deposits and are not covered, even when bought through a bank."
+      ]
+    },
+    {
+      "title": "Disclosures that make rates comparable",
+      "source_ids": [
+        "cfpb-reg-dd-apy",
+        "cfpb-mortgage-apr",
+        "cfpb-minimum-payment-box"
+      ],
+      "paragraphs": [
+        "U.S. rules require banks to state the APY on deposit accounts in a standard way that reflects the rate and the frequency of compounding. For mortgages, the APR is a broader measure of the cost of borrowing than the interest rate because it includes certain fees. Credit card statements generally must show how long it would take to pay off the balance by paying only the minimum, and the CFPB notes that paying more each month means paying less interest over time."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      1,
+      8
+    ],
+    "title": "Emergency savings or emergency loans: how should Country S help?",
+    "paragraphs": [
+      "SDG 1 aims to end poverty. Target 1.5 calls for building the resilience of the poor and vulnerable to economic, social, and environmental shocks. Target 8.10 calls for strengthening domestic financial institutions to expand access to banking, insurance, and financial services for all.",
+      "Hypothetical situation: In Country S, many low-income households have no savings. When a shock hits, such as an illness or a broken motorbike used for work, they borrow from informal lenders at very high rates, and some fall into long-lasting debt. The government is considering three programs."
+    ],
+    "options": [
+      {
+        "name": "Matched emergency savings accounts",
+        "benefits": [
+          "Each dollar a household saves (up to a limit) is matched, so an emergency fund builds faster.",
+          "Households avoid high-cost borrowing when a shock hits."
+        ],
+        "costs": [
+          "Matching costs public money, and the poorest households may be able to save very little to match.",
+          "It takes time to build a fund, so it does not help with today's shocks."
+        ],
+        "assumptions": [
+          "Households can reach a safe, low-fee account."
+        ]
+      },
+      {
+        "name": "A cap on interest rates for small loans",
+        "benefits": [
+          "Borrowers pay less interest when they do borrow.",
+          "It limits the worst debt traps."
+        ],
+        "costs": [
+          "Lenders may stop offering small loans to riskier borrowers, who may turn to unregulated lenders.",
+          "Fees might rise to replace interest unless they are also limited."
+        ],
+        "assumptions": [
+          "The cap can be enforced, including against informal lenders."
+        ]
+      },
+      {
+        "name": "Clear cost disclosure and a public money-skills campaign",
+        "benefits": [
+          "Borrowers can compare loans by total cost, including fees.",
+          "Low cost to the government."
+        ],
+        "costs": [
+          "Information alone does not create savings or cheaper credit.",
+          "People under stress may not use the information."
+        ],
+        "assumptions": [
+          "Lenders comply with the disclosure rules."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which program would most reduce the harm from shocks (target 1.5)? Which best expands useful access to financial services (target 8.10)? Use what you know about compound interest and the cost of borrowing to explain why a small emergency fund can matter so much."
+    ],
+    "source_ids": [
+      "un-sdg-1",
+      "un-sdg-8",
+      "cfpb-emergency-fund-guide"
+    ]
+  },
+  "key_takeaways": [
+    "An emergency fund is saving for surprises; it is usually kept where it is safe and easy to reach.",
+    "Simple interest: I = P × r × t. Compound interest: A = P(1 + r/n)^(n·t). Compounding earns interest on interest, so the gap grows over time.",
+    "APY = (1 + APR/n)^n − 1 shows the yearly effect of compounding; compare savings accounts by APY. A loan's APR can include certain fees.",
+    "Real return = (1 + nominal) ÷ (1 + inflation) − 1; the shortcut nominal − inflation is close for small rates.",
+    "Interest, fees, and slow repayment raise the cost of debt; paying only the minimum can keep a balance for years. Past returns do not guarantee future returns."
+  ],
+  "source_ids": [
+    "cfpb-emergency-fund-guide",
+    "openstax-pe3-17-1",
+    "openstax-pe3-17-2",
+    "openstax-pe3-17-3",
+    "openstax-pe3-22-4",
+    "cfpb-reg-dd-apy",
+    "cfpb-mortgage-apr",
+    "cfpb-credit-card-apr",
+    "cfpb-minimum-payment-box",
+    "fdic-deposit-insurance",
+    "un-sdg-1",
+    "un-sdg-8"
+  ]
+}

@@ -1,0 +1,496 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c06-l3",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Distinguish absolute from relative poverty, explain why any poverty line is a policy choice, and calculate a poverty rate and a poverty gap.",
+    "Explain how social protection programs work, including how benefits that shrink as earnings rise can create a poverty trap, and calculate the effective marginal tax rate a worker faces.",
+    "Compare the costs, coverage, and incentive effects of targeted and universal poverty-reduction policies, and explain how public budget constraints and human-capital policies for economic mobility shape the choice."
+  ],
+  "concepts": [
+    {
+      "id": "poverty_line",
+      "term": "Absolute and relative poverty lines",
+      "definition": "A poverty line is the income below which a person or household is counted as poor. An absolute line is a fixed amount of real income, often based on the cost of basic needs such as food. A relative line moves with typical incomes, for example half of the median income. Choosing the method and the level is a policy decision, so different lines give different poverty counts.",
+      "source_ids": [
+        "openstax-pe3-15-1",
+        "worldbank-measuring-poverty"
+      ]
+    },
+    {
+      "id": "poverty_rate_gap",
+      "term": "Poverty rate and poverty gap",
+      "definition": "The poverty rate (headcount ratio) is the number of people below the poverty line divided by the population. The poverty gap is the total amount of money needed to raise everyone below the line exactly up to it. The rate counts how many are poor; the gap also shows how far below the line they are.",
+      "source_ids": [
+        "openstax-pe3-15-1"
+      ]
+    },
+    {
+      "id": "social_protection",
+      "term": "Social protection (the safety net)",
+      "definition": "Public programs that support people who are poor or at risk, such as cash assistance, tax credits for low-income workers, food assistance, health coverage, housing help, and pensions. A social protection floor is a basic set of guarantees meant to cover the whole population.",
+      "source_ids": [
+        "openstax-pe3-15-3",
+        "un-sdg-1"
+      ]
+    },
+    {
+      "id": "poverty_trap",
+      "term": "Poverty trap and effective marginal tax rate",
+      "definition": "When benefits fall as earnings rise, each extra dollar earned brings less than a dollar of extra income. The share of an extra dollar lost to benefit cuts and taxes is the effective marginal tax rate. If it is close to 100%, working more barely raises income: a poverty trap. Phasing benefits out more slowly keeps more reward for work but costs more.",
+      "source_ids": [
+        "openstax-pe3-15-2",
+        "openstax-pe3-15-3"
+      ]
+    },
+    {
+      "id": "targeting_universality",
+      "term": "Targeting vs. universality",
+      "definition": "Targeted (means-tested) programs pay only people below an income limit, so they cost less per dollar that reaches the poor, but they need more administration, can miss eligible people who do not apply, and create phase-outs. Universal programs pay everyone in a group, so they reach all the poor and are simple to run, but they cost much more in total.",
+      "source_ids": [
+        "openstax-pe3-15-3",
+        "openstax-pe3-15-2"
+      ]
+    },
+    {
+      "id": "public_finance",
+      "term": "Public finance and the budget constraint",
+      "definition": "Every program must be paid for by taxes, borrowing, or cuts to other spending. Asking who pays, how much revenue is needed as a share of the tax base, and what else is given up is part of judging any poverty policy.",
+      "source_ids": [
+        "openstax-pe3-30-2",
+        "un-sdg-1"
+      ]
+    },
+    {
+      "id": "economic_mobility",
+      "term": "Economic mobility and opportunity",
+      "definition": "Economic mobility is the ability to move up or down the income ladder, within a lifetime or between generations (intergenerational mobility). Policies that build human capital, such as early childhood programs, good schools, and job training, aim to give children a fair chance regardless of their family's income.",
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "To fight poverty, a country first has to decide who counts as poor. Then it chooses programs to help, such as cash, food, or health care. Each program has a cost that someone must pay, and the way benefits are designed can make working more worth a lot or very little.",
+      "sections": [
+        {
+          "heading": "Drawing the line",
+          "concept_ids": [
+            "poverty_line"
+          ],
+          "paragraphs": [
+            "A poverty line is the income below which a family is counted as poor. One way to set it is to estimate the cost of basic needs, like enough food, and build the line from that. This is an absolute line: it stays the same in real terms, even as the country gets richer. Another way is a relative line, like half of the typical (median) income. A relative line rises when typical incomes rise, because what counts as a decent life changes as a society gets richer.",
+            "Neither line is a law of nature. Someone has to choose the method and the amount, so a poverty number always depends on that choice."
+          ]
+        },
+        {
+          "heading": "How many are poor, and how poor?",
+          "concept_ids": [
+            "poverty_rate_gap"
+          ],
+          "paragraphs": [
+            "The poverty rate is the share of people below the line. If 130 of every 1,000 people are below it, the poverty rate is 13%. But the rate does not tell you how far below the line people are. The poverty gap does: it adds up how much money each poor family would need to reach the line. Two towns can have the same poverty rate but very different gaps."
+          ]
+        },
+        {
+          "heading": "The safety net",
+          "concept_ids": [
+            "social_protection"
+          ],
+          "paragraphs": [
+            "Social protection means public programs that help people when income is low or life gets hard: cash help, tax credits for low-paid workers, food assistance, health coverage, help with rent, and pensions for older people. Together they are often called the safety net. Some countries aim for a basic floor of protection that covers everyone."
+          ]
+        },
+        {
+          "heading": "When working more barely helps",
+          "concept_ids": [
+            "poverty_trap"
+          ],
+          "paragraphs": [
+            "Many benefits shrink as a family earns more, so the help goes to the people who need it most. But if benefits shrink too fast, working extra hours barely raises the family's income. Hypothetical example: if a benefit falls by $1 for every $1 earned, a parent who takes on more work ends up with the same total income. That is called a poverty trap.",
+            "A slower phase-out, such as cutting the benefit by 40 cents for each extra dollar, lets workers keep more of what they earn. The trade-off is cost: the government keeps paying some benefit to more families."
+          ]
+        },
+        {
+          "heading": "Help everyone, or only the poor?",
+          "concept_ids": [
+            "targeting_universality",
+            "public_finance"
+          ],
+          "paragraphs": [
+            "A targeted program pays only families below an income limit. It is cheaper, but families must apply and prove their income, and some who qualify never sign up. A universal program pays everyone in a group, such as all children. It reaches every poor child and is simple, but it costs much more because rich families get it too.",
+            "Every program has to be paid for with taxes, borrowing, or cuts to something else. A good policy question is always: who pays, and what do we give up?"
+          ]
+        },
+        {
+          "heading": "A fair chance to move up",
+          "concept_ids": [
+            "economic_mobility"
+          ],
+          "paragraphs": [
+            "Economic mobility means being able to move up the income ladder during your life or compared with your parents. Children from poorer families often start with fewer resources, weaker schools, and fewer connections. Early childhood programs, good schools, and job training try to give every child a fair chance. They take years to pay off, but they work on the causes of poverty, not only the symptoms."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Poverty measures depend on the line chosen and on whether you count heads or gaps. Social protection programs differ in coverage, cost, and incentives: phase-outs raise effective marginal tax rates, targeting saves money but misses people, and every option must fit a budget.",
+      "sections": [
+        {
+          "heading": "Poverty lines as policy choices",
+          "concept_ids": [
+            "poverty_line",
+            "poverty_rate_gap"
+          ],
+          "paragraphs": [
+            "An absolute poverty line fixes a real standard, often built from the cost of a basic food budget multiplied up to cover other needs, and adjusts it only for inflation. A relative line is a percentage of median income, so it rises as typical incomes rise. With an absolute line, broad income growth reduces measured poverty; with a relative line, poverty falls only if low incomes grow faster than the median. Other choices matter too: whether in-kind benefits count as income, whether the line differs by region, and how family size is handled. Keeping the definition stable over time makes trends comparable.",
+            "The poverty rate H = (number below the line) ÷ (population) treats a person $1 below the line the same as a person with no income. The poverty gap, the sum of (line − income) over all poor people, measures depth and gives the minimum transfer that would end income poverty if it could be perfectly targeted with no cost or behavioral change."
+          ]
+        },
+        {
+          "heading": "Social protection and its building blocks",
+          "concept_ids": [
+            "social_protection"
+          ],
+          "paragraphs": [
+            "Social protection systems combine social assistance (cash or in-kind help financed by general taxes, often means-tested), social insurance (benefits such as pensions or unemployment insurance linked to contributions), and tax credits for low-income workers. SDG target 1.3 asks countries to build nationally appropriate social protection systems and measures for all, including floors, and to achieve substantial coverage of the poor and vulnerable."
+          ]
+        },
+        {
+          "heading": "Effective marginal tax rates and the poverty trap",
+          "concept_ids": [
+            "poverty_trap"
+          ],
+          "paragraphs": [
+            "If a benefit falls by φ dollars for each extra dollar earned (the phase-out rate) and income or payroll taxes take t of each extra dollar, the effective marginal tax rate is about φ + t. Several programs phasing out over the same income range can push the combined rate near or above 100%, which is the poverty trap. Work costs such as child care and transportation shrink the gain further.",
+            "Slower phase-outs, work requirements, and earnings-based credits are ways to soften the trap. A slower phase-out means benefits reach higher up the income scale, so the program costs more. It is arithmetic that a higher effective marginal rate lowers the gain from working more; how many people actually change their hours is an empirical question."
+          ]
+        },
+        {
+          "heading": "Targeting, universality, and paying for it",
+          "concept_ids": [
+            "targeting_universality",
+            "public_finance"
+          ],
+          "paragraphs": [
+            "Targeted programs aim money at the poor, so a given budget can provide larger benefits to each poor household. Their weaknesses are administrative cost, incomplete take-up (some eligible people do not apply, because of complexity, lack of information, or stigma), errors that leave out eligible people, and phase-outs that raise marginal rates. Universal programs have high coverage and low administrative cost per person and no phase-out, but a much larger gross budget, part of which comes back from richer households through the taxes that finance it.",
+            "Comparing options requires the budget constraint: the required revenue divided by the tax base gives the tax rate needed. Who pays depends on the tax used: a progressive income tax, a flat tax, or a sales tax spreads the burden differently. Borrowing shifts the cost to the future, and cutting other spending gives up other goals."
+          ]
+        },
+        {
+          "heading": "Mobility and human capital",
+          "concept_ids": [
+            "economic_mobility"
+          ],
+          "paragraphs": [
+            "Intergenerational mobility describes how strongly a child's adult income is linked to their parents' income. Low mobility means the circumstances of birth matter a lot. Policies to build human capital, such as early childhood education, better schools in poorer neighborhoods, student aid, and job training, aim to widen opportunity. Such policies may raise both equality and long-run output, which makes them less of a trade-off, but their results depend on design and take years to appear."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Formally, poverty measures are functions of the income distribution and a line z; programs are net-tax schedules with phase-out rates that set effective marginal tax rates; and policy choices must satisfy a government budget constraint. Comparing designs means comparing cost per dollar reaching the poor, coverage, and incentives.",
+      "sections": [
+        {
+          "heading": "Poverty measures as functions of the line",
+          "concept_ids": [
+            "poverty_line",
+            "poverty_rate_gap"
+          ],
+          "paragraphs": [
+            "Let z be the poverty line and yᵢ the income of person i in a population of n. The headcount ratio is H = (1 ÷ n) Σ 1[yᵢ < z]. The total poverty gap is Σ max(0, z − yᵢ), and the poverty gap index divides it by n·z. An absolute line fixes z in real terms; a relative line sets z = α × median(y), for example α = 0.5. With a relative line, multiplying every income by λ > 0 leaves H unchanged; with an absolute line, H falls when λ > 1.",
+            "The headcount ignores depth: moving a poor person from just below z to just above it lowers H, even if the money came from someone much poorer. The gap measure does not reward such transfers. The choice of z, α, the income concept (cash only or including in-kind benefits), and the equivalence scale for household size are normative and practical choices that change the measured level of poverty."
+          ]
+        },
+        {
+          "heading": "Social protection as a net-tax schedule",
+          "concept_ids": [
+            "social_protection"
+          ],
+          "paragraphs": [
+            "Any combination of programs can be written as a net tax N(y) = T(y) − B(y), so disposable income is y − N(y). Social insurance adds contributions to T and conditional benefits to B; social assistance adds means-tested B; refundable tax credits make N(y) negative at low earnings. A social protection floor sets a minimum on y − N(y) for everyone, which is a guarantee of B(0) at least equal to the floor."
+          ]
+        },
+        {
+          "heading": "Effective marginal tax rates",
+          "concept_ids": [
+            "poverty_trap"
+          ],
+          "paragraphs": [
+            "The effective marginal tax rate is EMTR(y) = dN ÷ dy = T′(y) − B′(y). With a benefit B(y) = max(0, b − φy) and a tax rate t, EMTR = t + φ in the phase-out range. Stacking k programs with phase-out rates φ₁, …, φₖ over the same range gives EMTR = t + φ₁ + … + φₖ, which can exceed 1.",
+            "For a guarantee b and phase-out rate φ, the benefit ends at break-even income y* = b ÷ φ. Lowering φ cuts the EMTR but raises y*, extending benefits to more households and raising cost. This is a mechanical trade-off. How strongly people's decisions to work, and how many hours to work, respond to the EMTR is an empirical matter: studies reach different estimates for different groups, programs, and settings, so the size of the response should be treated as uncertain."
+          ]
+        },
+        {
+          "heading": "Comparing targeted and universal designs under a budget constraint",
+          "concept_ids": [
+            "targeting_universality",
+            "public_finance"
+          ],
+          "paragraphs": [
+            "Let a program pay b to each recipient with administrative cost share c. A universal program with N recipients costs (1 + c)·b·N; a targeted program reaching a fraction τ (take-up) of P eligible poor costs (1 + c′)·b·τ·P, typically with c′ > c. Useful comparisons are cost per dollar reaching the poor, coverage of the poor (1 for universal versus τ for targeted, before errors), and the EMTR the design creates.",
+            "With a tax base Y and a flat tax, the balanced-budget tax rate is t = cost ÷ Y. Gross cost overstates the net burden of a universal program, because higher-income recipients pay back part of their benefit through the tax. Borrowing relaxes the constraint now but requires higher taxes or lower spending later, and every dollar spent has an opportunity cost in other public goals."
+          ]
+        },
+        {
+          "heading": "Mobility, human capital, and contested evidence",
+          "concept_ids": [
+            "economic_mobility"
+          ],
+          "paragraphs": [
+            "Intergenerational mobility is often summarized by the slope β in a regression of children's log adult income on parents' log income: β near 0 means weak persistence (high mobility), β near 1 means strong persistence. A positive β is a correlation; it mixes inherited human capital, schooling quality, neighborhoods, networks, and discrimination. Programs that raise children's human capital aim to lower β; evaluations of early childhood and schooling interventions report a range of effects, so the size of their long-run payoff remains debated even where the direction is generally positive."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c06-l3-we1",
+      "level": "beginner",
+      "title": "Calculating a poverty rate",
+      "problem": "Hypothetical example: A town has 2,000 residents. A survey finds that 260 of them live in households with income below the poverty line. What is the town's poverty rate?",
+      "steps": [
+        "Poverty rate = people below the line ÷ total population.",
+        "260 ÷ 2,000 = 0.13.",
+        "As a percent: 0.13 × 100 = 13%."
+      ],
+      "answer": "The poverty rate is 13%. It tells you how many are poor, not how far below the line they are.",
+      "check": {
+        "type": "ratio",
+        "numerator": 260,
+        "denominator": 2000,
+        "expected": 0.13
+      }
+    },
+    {
+      "id": "c06-l3-we2",
+      "level": "beginner",
+      "title": "A relative poverty line",
+      "problem": "Hypothetical example: In Country G, the median household income is $30,000. The government sets a relative poverty line at 50% of the median. Where is the line? If every income in the country doubled, what would happen to this line and to an absolute line of $15,000?",
+      "steps": [
+        "Relative line = 0.5 × $30,000 = $15,000.",
+        "If every real income doubled, the median would become $60,000, and the relative line would become $30,000.",
+        "The absolute line would stay at $15,000 (adjusted only for inflation)."
+      ],
+      "answer": "The relative line is $15,000. If all real incomes doubled, the relative line would double to $30,000 and the share of people below it would not change, while fewer people (none of those originally above $7,500) would be below the fixed $15,000 absolute line.",
+      "check": {
+        "type": "product",
+        "factors": [
+          30000,
+          0.5
+        ],
+        "expected": 15000
+      }
+    },
+    {
+      "id": "c06-l3-we3",
+      "level": "intermediate",
+      "title": "How much of a raise does a worker keep?",
+      "problem": "Hypothetical example: Dana receives a benefit that falls by 40 cents for every extra dollar she earns. She takes on extra shifts and earns $5,000 more this year. Ignoring other taxes, how much does her total income rise, and what is her effective marginal tax rate?",
+      "steps": [
+        "Benefit cut = 0.40 × $5,000 = $2,000.",
+        "Rise in total income = $5,000 − $2,000 = $3,000.",
+        "Effective marginal tax rate = $2,000 ÷ $5,000 = 40%.",
+        "Compare: with a $1-for-$1 phase-out, the benefit would fall by $5,000 and her income would not rise at all."
+      ],
+      "answer": "Her total income rises by $3,000, and her effective marginal tax rate is 40%. A faster phase-out would leave her with less of each extra dollar and could create a poverty trap.",
+      "check": {
+        "type": "difference",
+        "a": 5000,
+        "b": 2000,
+        "expected": 3000
+      }
+    },
+    {
+      "id": "c06-l3-we4",
+      "level": "intermediate",
+      "title": "The poverty gap",
+      "problem": "Hypothetical example: The poverty line is $15,000. Four households are below it, with incomes of $12,000, $9,000, $13,500, and $6,000. What is the poverty gap: the total amount needed to raise each of them exactly to the line?",
+      "steps": [
+        "Individual gaps: $3,000, $6,000, $1,500, and $9,000.",
+        "Shortcut: 4 × $15,000 − ($12,000 + $9,000 + $13,500 + $6,000) = $60,000 − $40,500.",
+        "Poverty gap = $19,500."
+      ],
+      "answer": "The poverty gap is $19,500. That is the smallest transfer that could end income poverty here, but only under strong assumptions: perfect targeting, no administrative cost, and no change in work.",
+      "check": {
+        "type": "difference",
+        "a": 60000,
+        "b": 40500,
+        "expected": 19500
+      }
+    },
+    {
+      "id": "c06-l3-we5",
+      "level": "advanced",
+      "title": "Universal vs. targeted: cost per dollar reaching the poor",
+      "problem": "Hypothetical example: A region has 1,000 households, 150 of them poor. Option U pays $2,000 to every household with administrative costs of 2% of payments. Option T pays $2,000 only to poor households who apply; take-up is 80%, and administrative costs are 10% of payments. Compare total cost, dollars reaching poor households, and cost per dollar reaching the poor.",
+      "steps": [
+        "Option U: payments = 1,000 × $2,000 = $2,000,000; total cost = 1.02 × $2,000,000 = $2,040,000. Poor households receive 150 × $2,000 = $300,000.",
+        "Option U cost per dollar reaching the poor = $2,040,000 ÷ $300,000 = 6.8.",
+        "Option T: recipients = 0.8 × 150 = 120; payments = 120 × $2,000 = $240,000; total cost = 1.10 × $240,000 = $264,000.",
+        "Option T cost per dollar reaching the poor = $264,000 ÷ $240,000 = 1.1.",
+        "Coverage of poor households: Option U 100%; Option T 80% (30 eligible households get nothing)."
+      ],
+      "answer": "Option U costs $2,040,000, or $6.80 per dollar reaching the poor, but covers every poor household. Option T costs $264,000, or $1.10 per dollar reaching the poor, but misses 30 poor households and needs a phase-out. Neither is better on every measure.",
+      "check": {
+        "type": "ratio",
+        "numerator": 2040000,
+        "denominator": 300000,
+        "expected": 6.8
+      }
+    },
+    {
+      "id": "c06-l3-we6",
+      "level": "advanced",
+      "title": "What tax rate pays for it?",
+      "problem": "Hypothetical example: The region in the previous example has total household income (its tax base) of $40,000,000. If each option is paid for with a flat income tax and a balanced budget, what tax rate does each require?",
+      "steps": [
+        "Option U: $2,040,000 ÷ $40,000,000 = 0.051, a 5.1% tax rate.",
+        "Option T: $264,000 ÷ $40,000,000 = 0.0066, a 0.66% tax rate.",
+        "Under Option U, every household pays 5.1% of its income and receives $2,000, so households with income below $2,000 ÷ 0.051 ≈ $39,216 gain on net and those above it pay more than they receive. The gross cost overstates the net transfer."
+      ],
+      "answer": "Option U needs a 5.1% flat tax and Option T needs 0.66%. The universal design has a much larger budget, but much of it circulates back to the households that pay the tax.",
+      "check": {
+        "type": "ratio",
+        "numerator": 2040000,
+        "denominator": 40000000,
+        "expected": 0.051
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "How a national poverty line was first built",
+      "source_ids": [
+        "openstax-pe3-15-1"
+      ],
+      "paragraphs": [
+        "The U.S. official poverty line was created in the 1960s from the cost of a nutritionally adequate diet, multiplied by three because families then spent about a third of their income on food. It has since been adjusted for inflation. Because it counts cash income, in-kind help such as food or housing assistance is not included, and economists continue to debate whether and how to change the definition."
+      ]
+    },
+    {
+      "title": "International poverty lines",
+      "source_ids": [
+        "worldbank-measuring-poverty"
+      ],
+      "paragraphs": [
+        "The World Bank measures extreme poverty with global poverty lines derived from the national poverty lines of low-income countries, with higher lines for lower-middle- and upper-middle-income countries. It uses purchasing power parities to convert incomes and lines into a common unit so that countries can be compared."
+      ]
+    },
+    {
+      "title": "Phase-outs in the safety net",
+      "source_ids": [
+        "openstax-pe3-15-2",
+        "openstax-pe3-15-3"
+      ],
+      "paragraphs": [
+        "Textbook analyses of the U.S. safety net show how food assistance, health coverage, and cash programs each shrink as earnings rise. When several programs phase out together, a low-income worker can keep only a small part of each extra dollar earned. Work requirements, time limits, and credits that rise with earnings are among the responses."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      1,
+      10
+    ],
+    "title": "Building a child benefit for Country H",
+    "paragraphs": [
+      "SDG target 1.3 calls for implementing nationally appropriate social protection systems and measures for all, including floors, and achieving substantial coverage of the poor and the vulnerable by 2030. Target 1.2 aims to reduce at least by half the proportion of people living in poverty according to national definitions. SDG target 10.4 calls for fiscal, wage and social protection policies that progressively achieve greater equality.",
+      "Hypothetical situation: In Country H, child poverty is high, many families work informally so their incomes are hard to verify, and the government can raise an extra amount equal to about 1% of national income. It is choosing among three designs."
+    ],
+    "options": [
+      {
+        "name": "A universal child benefit paid for every child",
+        "benefits": [
+          "Reaches every poor child without applications, so coverage is high and administration is simple.",
+          "Has no phase-out of its own, so it adds no benefit-withdrawal effect to marginal tax rates, though the taxes that fund it do add to marginal rates."
+        ],
+        "costs": [
+          "Spreading the budget across all children makes each payment small.",
+          "Richer families also receive it unless taxes recover it, which some voters oppose."
+        ],
+        "assumptions": [
+          "Births are registered and the government can pay families reliably."
+        ]
+      },
+      {
+        "name": "A means-tested cash transfer for low-income families",
+        "benefits": [
+          "Concentrates the budget on poor families, so each payment can be much larger.",
+          "Costs less per dollar reaching the poor."
+        ],
+        "costs": [
+          "Verifying informal incomes is hard and costly, and some eligible families will be missed.",
+          "The phase-out raises effective marginal tax rates and could discourage reporting income."
+        ],
+        "assumptions": [
+          "The government can estimate household incomes reasonably well, for example with proxy measures."
+        ]
+      },
+      {
+        "name": "Invest in free school meals, early childhood education, and health services",
+        "benefits": [
+          "Builds children's human capital, which may raise mobility and future earnings.",
+          "In-kind help goes directly to nutrition, learning, and health."
+        ],
+        "costs": [
+          "Does not raise family cash income now, so measured income poverty may fall slowly.",
+          "Results depend on service quality and take years to appear."
+        ],
+        "assumptions": [
+          "Schools and clinics can expand without a big drop in quality, and families can reach them."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which design does most for target 1.3, which for target 1.2, and which for long-run mobility? With a fixed budget, would you combine designs? Explain who pays in each case and which parts of your reasoning rely on contested evidence about incentives or long-run effects."
+    ],
+    "source_ids": [
+      "un-sdg-1",
+      "un-sdg-10",
+      "openstax-pe3-15-2",
+      "openstax-pe3-15-5"
+    ]
+  },
+  "key_takeaways": [
+    "An absolute poverty line is fixed in real terms; a relative line moves with typical incomes. Either way, the line is a policy choice.",
+    "The poverty rate counts how many are poor; the poverty gap measures how far below the line they are.",
+    "When benefits shrink as earnings rise, the effective marginal tax rate rises; near 100%, it creates a poverty trap. Slower phase-outs help incentives but cost more.",
+    "Targeted programs cost less per dollar reaching the poor but miss some eligible people and create phase-outs; universal programs cover everyone but need larger budgets.",
+    "Every program faces a budget constraint: ask who pays, what tax rate is needed, and what is given up.",
+    "Human-capital policies aim to raise economic mobility; their direction is widely supported, but the size of long-run effects is debated."
+  ],
+  "source_ids": [
+    "openstax-pe3-15-1",
+    "openstax-pe3-15-2",
+    "openstax-pe3-15-3",
+    "openstax-pe3-15-5",
+    "openstax-pe3-30-2",
+    "worldbank-measuring-poverty",
+    "un-sdg-1",
+    "un-sdg-10"
+  ]
+}

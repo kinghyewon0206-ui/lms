@@ -7,7 +7,7 @@
 > **English-only rule (2026-11-13, permanent):** all ECONOVA user-facing text — c04–c09 included — is written in English from the start.
 > See `docs/content/english-only-guidelines.md`. `tests/test_english_only.py` enforces it. (This planning document itself is internal.)
 
-## 0. 진행 상황 (2026-11-14, 모두 AI 초안 · 사람 승인 전 · 미공개)
+## 0. 진행 상황 (2026-11-14, c01~c07 초안 · 모두 사람 승인 전 · 미공개)
 | 강좌 | 상태 | 검토 문서 |
 |---|---|---|
 | c02 Markets and Prices | 초안 v3 (영어로 재작성) | `docs/content/c02-review.md` |
@@ -15,16 +15,28 @@
 | c03 Market Failure | 초안 v2 (영어로 재작성), 탄소세 시뮬레이션 연결 | `docs/content/c03-review.md` |
 | c04 Growth & Stability | 초안 v1 (영어로 처음부터 작성), 독립 AI 정확성 검토 반영 | `docs/content/c04-review.md` |
 | c05 Labor & Employment | 초안 v1 (영어로 처음부터 작성), 시뮬레이션 없이 임금·고용 축 그래프, 독립 AI 정확성 검토 반영 | `docs/content/c05-review.md` |
-| c06 ~ c09 | 아직 없음 (다음: c06, c07) | — |
+| c06 Inequality & Policy | 초안 v1 (영어), 분포표·로렌츠 곡선은 글과 계산으로, 독립 AI 정확성 검토 반영 | `docs/content/c06-review.md` |
+| c07 Personal Finance | 초안 v1 (영어), 복리는 연도별 표(글)로, 계산기 없음, 독립 AI 정확성 검토 반영 | `docs/content/c07-review.md` |
+| c08 ~ c09 | 아직 없음 (다음: c08, c09) | — |
 
-### 다음 단계: c06·c07 준비 (카탈로그 기준)
-- **c06 Inequality & Policy** (SDG 1, 10): 소득 분배와 불평등 / 조세와 재분배 / 빈곤·사회 보장·재정. 출처 후보: OpenStax 14·15장(불평등·빈곤),
-  UN SDG 1·10. 로렌츠 곡선·지니 계수는 지금 그래프 렌더러(직선 수요·공급)로 그릴 수 없으므로 표와 계산으로 설명하고, 그림이 필요하면 렌더러 확장을 따로 제안한다.
-  주의: 실제 지니 계수·빈곤율 같은 통계를 지어내지 않는다. 재분배 정책의 효과는 논쟁이 있는 부분을 균형 있게 쓴다.
-- **c07 Personal Finance** (SDG 1, 8): 소득·지출·예산 / 저축·이자·복리 / 금융 위험과 금융 포용. 복리 계산기는 새 시뮬레이션이라 강좌 콘텐츠와 따로 승인한다
-  (그 전까지 레슨 예제·표로 복리를 다룬다). 주의: 특정 금융 상품 추천이나 개인 투자 조언으로 읽히지 않게 쓰고, 이자율은 모두 가상의 값으로 둔다.
-- 제작 방식은 c04·c05 와 같다: `scratchpad` 의 course-brief(작성 규칙), 비공개 원본 `~/econova-private/i18n/<id>.full.json` → 분리 도구,
-  QA(정답 위치·절대 표현·가장 긴 정답·예제 복사·중복), 독립 AI 정확성 검토, `tests/test_course_drafts.py` 의 DRAFTED 목록에 강좌 추가.
+검토 대기 항목과 정책 제안은 `docs/content/review-backlog.md` 에 모은다 (탄소세 단위, 출처 미지지 설명, 최저임금·수요독점, 허용 오차 정책, 사람 승인).
+
+### 다음 단계: c08·c09 준비 (카탈로그 기준, 식별자 변경 없음)
+- **c08 Global Economics** (SDG 8, 12, 17): c08-l1 비교우위와 국제 무역 / c08-l2 환율과 국제 시장 / c08-l3 글로벌 공급망과 지속가능한 생산.
+  - 비교우위는 c01 의 생산 가능 곡선·기회비용을 이어 쓴다 (두 나라·두 재화 표, 교역 조건 범위). 그래프 렌더러는 직선 수요·공급만 그리므로
+    두 나라 생산 가능 곡선은 표와 계산으로 설명한다 (그림이 필요하면 렌더러 확장을 따로 제안).
+  - 환율: 절상·절하의 방향(통화 표기 방향 혼동 주의), 수출·수입 가격 효과. 실제 환율 수치는 쓰지 않는다.
+  - 공급망: 외부효과(c03)·지속가능한 생산(SDG 12)·파트너십(SDG 17) 연결. 무역의 이익과 피해(일자리 이동 등)를 균형 있게.
+  - 출처 후보(열어서 확인): OpenStax 19~20장 다음의 국제 무역 장(예: 33·34장 — 슬러그 확인), UN SDG 17 (17.10~17.12 무역 관련 세부목표), SDG 12.
+- **c09 SDG Economic Challenge** (학생이 SDG 선택, 캡스톤): 기존 캡스톤 시스템과 맞춰야 한다.
+  - 수료 조건은 `econova/capstone.py completion_state`: 레슨 3개 완료 + 캡스톤 제출 + 루브릭 자기 평가 + 성찰. **최종 평가는 없다**
+    (강좌 JSON `final_assessment` 는 지금처럼 두고, 캡스톤 정의 `content/capstone/c09.json` 의 단계·루브릭이 그 역할을 한다).
+  - 레슨은 `requirements: material, quiz` 그대로: 각 레슨 자료 + 형성 퀴즈 5문항. 캡스톤 단계와 레슨 연결(sdg·problem·concepts·stakeholders → l1,
+    incentives·solution·evaluation → l2, proposal·reflection → l3)을 바꾸지 않고, 레슨이 그 단계를 준비시키도록 쓴다.
+  - 레슨 주제: 경제 문제를 정의하는 법(인과·이해관계자·유인), 근거 평가(출처 신뢰도, 상관·인과, 비교 기준), 정책 제안서(목표·수단·비용·편익·상충관계·형평).
+    앞 강좌(c01~c08) 개념을 다시 쓰고, 기존 두 실험실은 "선택 활용"으로만 언급 (없는 기능 소개 금지).
+  - 캡스톤 정의·루브릭은 이미 영어 초안이 있고 사람 승인이 필요하다 (`content/capstone/c09.json`). 루브릭 승인 전에는 수료를 기록하지 않는다.
+  - `tests/test_course_drafts.py` 는 최종 평가 10문항을 요구하므로, c09 를 넣을 때는 캡스톤 강좌용 검사(최종 평가 대신 캡스톤 정의 확인)를 따로 둔다.
 
 ## 1. 강좌별 범위 (강좌 JSON 에 이미 정한 제목·학습목표·SDG)
 | 강좌 | 레슨 | SDG | 시뮬레이션 | 출처 후보 (확인 전) |

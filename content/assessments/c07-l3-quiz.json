@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "id": "c07-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c07",
+  "lesson_id": "c07-l3",
+  "version": 1,
+  "title": "Lesson 3 Quiz: Financial Risk and Financial Inclusion",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c07-l3-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l3",
+      "objective": 1,
+      "concept_ids": [
+        "fraud_scams"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: You get a text that claims to be from your bank. It says your account will be closed within an hour unless you pay a $200 fee with gift cards. Which response fits the warning signs described in this lesson?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Pay quickly, since closing the account would cost you more"
+        },
+        {
+          "id": "b",
+          "text": "Reply to the text and ask the sender to prove who they are"
+        },
+        {
+          "id": "c",
+          "text": "Pay half now and promise the rest after checking your balance"
+        },
+        {
+          "id": "d",
+          "text": "Stop, and contact the bank using a number you already trust"
+        }
+      ],
+      "source_ids": [
+        "ftc-avoid-scam"
+      ]
+    },
+    {
+      "id": "c07-l3-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l3",
+      "objective": 1,
+      "concept_ids": [
+        "financial_risk_types"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Tom put his savings into a 3-year certificate of deposit. Six months later his car breaks down, and getting the money out early means paying a penalty. Which type of risk is this?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Liquidity risk"
+        },
+        {
+          "id": "b",
+          "text": "Credit (default) risk"
+        },
+        {
+          "id": "c",
+          "text": "Market risk"
+        },
+        {
+          "id": "d",
+          "text": "Inflation risk"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-17-2"
+      ]
+    },
+    {
+      "id": "c07-l3-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l3",
+      "objective": 2,
+      "concept_ids": [
+        "diversification"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Nina splits $1,200 equally among three investments. Over the period, the first gains 8%, the second gains 2%, and the third loses 20%. How much is her total worth at the end, in dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-17-2"
+      ]
+    },
+    {
+      "id": "c07-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l3",
+      "objective": 2,
+      "concept_ids": [
+        "diversification",
+        "risk_return"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: An investor holds small amounts of shares in 300 different companies across many industries. A recession then lowers profits at most companies. What is the most likely effect on the portfolio?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It is protected, because 300 companies offset one another's losses"
+        },
+        {
+          "id": "b",
+          "text": "It falls by more than one company would, because losses add up"
+        },
+        {
+          "id": "c",
+          "text": "It probably loses value, because a market-wide shock is hard to diversify"
+        },
+        {
+          "id": "d",
+          "text": "It is unaffected, because recessions mainly hurt single companies"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-17-2",
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "c07-l3-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l3",
+      "objective": 3,
+      "concept_ids": [
+        "financial_inclusion",
+        "digital_finance"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which policy is the clearest example of the financial inclusion called for in SDG target 8.10?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Raising the minimum balance for opening a savings account"
+        },
+        {
+          "id": "b",
+          "text": "Helping local institutions offer low-cost accounts and insurance to all"
+        },
+        {
+          "id": "c",
+          "text": "Closing rural bank branches to lower the costs of urban banking"
+        },
+        {
+          "id": "d",
+          "text": "Offering high-interest loans with fees that are not disclosed"
+        }
+      ],
+      "source_ids": [
+        "un-sdg-8",
+        "worldbank-financial-inclusion"
+      ]
+    }
+  ]
+}

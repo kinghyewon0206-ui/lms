@@ -332,13 +332,14 @@
       "lesson_ids": [
         "c01-l1",
         "c01-l2",
-        "c01-l3"
+        "c01-l3",
+        "c07-l1"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: opened the page and confirmed it explains the budget constraint, opportunity cost, sunk cost, marginal analysis, and utility.",
+        "method": "2026-11-13: opened the page and confirmed it explains the budget constraint, opportunity cost, sunk cost, marginal analysis, and utility. c07 (2026-11-13, AI): reopened; confirmed budget constraint, opportunity cost as the value of the next best alternative, and trade-offs in personal spending.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -682,16 +683,22 @@
       "published": "2022-12-14",
       "url": "https://openstax.org/books/principles-economics-3e/pages/15-3-the-safety-net",
       "concepts": [
-        "earned_income_support"
+        "earned_income_support",
+        "transfer_payments",
+        "social_protection",
+        "poverty_trap",
+        "targeting_universality"
       ],
       "lesson_ids": [
-        "c05-l3"
+        "c05-l3",
+        "c06-l2",
+        "c06-l3"
       ],
       "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "Opened 2026-11-13: title and book metadata present. Describes the Earned Income Tax Credit (delivered through the tax system, rises with earnings, levels off, then phases out), its reputation for rewarding work, and the poverty trap when benefits fall quickly as earnings rise.",
+        "method": "Opened 2026-11-13: title and book metadata present. Describes the Earned Income Tax Credit (delivered through the tax system, rises with earnings, levels off, then phases out), its reputation for rewarding work, and the poverty trap when benefits fall quickly as earnings rise. c06 (2026-11-13, AI): re-opened; also describes TANF, SNAP, Medicaid, housing assistance, school meals and other programs (cash vs. in-kind classification is the AI's inference; the page does not use those terms), income-based eligibility, and SNAP benefits falling as earnings rise. The page does not use the terms 'means testing' or 'universality'.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -820,7 +827,8 @@
         "decent_work",
         "productive_employment",
         "youth_neet",
-        "labour_rights"
+        "labour_rights",
+        "financial_inclusion"
       ],
       "lesson_ids": [
         "c05-l1",
@@ -828,13 +836,16 @@
         "c05-l3",
         "c04-l1",
         "c04-l2",
-        "c04-l3"
+        "c04-l3",
+        "c07-l1",
+        "c07-l2",
+        "c07-l3"
       ],
       "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "Opened 2026-11-13: goal title and targets 8.2 (productivity through diversification, technological upgrading and innovation), 8.5 (full and productive employment and decent work for all, equal pay for work of equal value), 8.6 (reduce the proportion of youth not in employment, education or training) and 8.8 (protect labour rights, safe and secure working environments) confirmed on the page. c04 (2026-11-13, AI): also confirmed targets 8.1 (sustain per capita economic growth) and 8.4 (resource efficiency; decouple economic growth from environmental degradation).",
+        "method": "Opened 2026-11-13: goal title and targets 8.2 (productivity through diversification, technological upgrading and innovation), 8.5 (full and productive employment and decent work for all, equal pay for work of equal value), 8.6 (reduce the proportion of youth not in employment, education or training) and 8.8 (protect labour rights, safe and secure working environments) confirmed on the page. c04 (2026-11-13, AI): also confirmed targets 8.1 (sustain per capita economic growth) and 8.4 (resource efficiency; decouple economic growth from environmental degradation). c07 (2026-11-13, AI): also confirmed target 8.10 (strengthen the capacity of domestic financial institutions to encourage and expand access to banking, insurance and financial services for all) and 8.3 (including through access to financial services).",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -985,13 +996,15 @@
         "price_stability"
       ],
       "lesson_ids": [
-        "c04-l3"
+        "c04-l3",
+        "c07-l2",
+        "c07-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: opened the page and confirmed it explains real vs. nominal values, how unexpected inflation helps fixed-rate borrowers and hurts lenders, losses for people on fixed-dollar pensions, blurred price signals and planning problems under high inflation, and hyperinflation.",
+        "method": "2026-11-13: opened the page and confirmed it explains real vs. nominal values, how unexpected inflation helps fixed-rate borrowers and hurts lenders, losses for people on fixed-dollar pensions, blurred price signals and planning problems under high inflation, and hyperinflation. c07 (2026-11-13, AI): cited for real vs. nominal values and for inflation reducing the real value of fixed payments and savings (inflation risk).",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -1082,6 +1095,522 @@
         "status": "verified",
         "checked_at": "2026-11-13",
         "method": "2026-11-13: opened the page and confirmed it states the primary objective of price stability, keeping inflation low, stable and predictable (with a medium-term numerical target that the lessons do not quote). The page does not itself explain the costs of high or unstable inflation. No publication date on the page.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-15-1",
+      "title": "15.1 Drawing the Poverty Line",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/15-1-drawing-the-poverty-line",
+      "concepts": [
+        "poverty_line",
+        "poverty_rate_gap",
+        "inequality_vs_poverty"
+      ],
+      "lesson_ids": [
+        "c06-l1",
+        "c06-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines poverty by a poverty line (income needed for a basic standard of living) and separates it from inequality (comparison of income shares); describes how the U.S. line was built from the cost of a nutritionally adequate diet multiplied by three and adjusted for inflation; calls any poverty line somewhat arbitrary and argues for a stable definition; notes the line counts cash income and excludes in-kind help; mentions World Bank international lines. The page does NOT use the terms 'absolute' and 'relative' poverty, and does NOT define the poverty gap; those definitions in c06-l3 are standard textbook definitions written by the AI.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-15-2",
+      "title": "15.2 The Poverty Trap",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/15-2-the-poverty-trap",
+      "concepts": [
+        "poverty_trap",
+        "equity_efficiency_tradeoff"
+      ],
+      "lesson_ids": [
+        "c06-l2",
+        "c06-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Explains that benefits reduced as earnings rise act like a tax on work and can leave little or no gain from working (poverty trap); shows that a slower phase-out keeps more incentive to work but costs the government more; mentions work-related costs and work requirements/time limits. The term 'effective marginal tax rate' and the stacking formula in c06-l3 are AI-written standard extensions.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-15-4",
+      "title": "15.4 Income Inequality: Measurement and Causes",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/15-4-income-inequality-measurement-and-causes",
+      "concepts": [
+        "quintile_distribution",
+        "lorenz_curve",
+        "inequality_vs_poverty",
+        "causes_of_inequality"
+      ],
+      "lesson_ids": [
+        "c06-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Describes income shares by quintile; the Lorenz curve (cumulative population share vs. cumulative income share, 45-degree line of perfect equality, more unequal curves bow farther below it, built from cumulative shares); inequality vs. poverty moving separately; causes of rising inequality (household composition, demand for skilled labor growing faster than supply, technology, globalization, winner-take-all markets). The page does NOT mention the Gini coefficient or the area interpretation (cited from worldbank-gini-index instead).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-15-5",
+      "title": "15.5 Government Policies to Reduce Income Inequality",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/15-5-government-policies-to-reduce-income-inequality",
+      "concepts": [
+        "redistribution",
+        "tax_progressivity",
+        "equality_vs_equity",
+        "equity_efficiency_tradeoff",
+        "economic_mobility",
+        "income_vs_wealth",
+        "transfer_payments"
+      ],
+      "lesson_ids": [
+        "c06-l1",
+        "c06-l2",
+        "c06-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Covers redistribution through transfer programs and progressive taxation; effective vs. statutory tax rates; the ladder of opportunity, inequality rooted in circumstances of birth, human capital policies (early childhood, schools, training); inheritance/estate taxes; wealth more unequal than income because earnings differences accumulate; the possible trade-off between equality and incentives/output and policies such as education that may raise both; states there is no agreed answer on how much redistribution is appropriate. The page does NOT define 'intergenerational mobility' with a regression slope (AI-written extension in c06-l3) and does not use the word 'equity' as a formal term.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-30-2",
+      "title": "30.2 Taxation",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/30-2-taxation",
+      "concepts": [
+        "tax_progressivity",
+        "marginal_average_rate",
+        "public_finance"
+      ],
+      "lesson_ids": [
+        "c06-l2",
+        "c06-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: title and book metadata present. Defines progressive (rates rise with income; federal income tax example), proportional/flat (one fixed percentage; Medicare payroll tax example) and regressive taxes (Social Security payroll tax above its wage cap); illustrates a marginal tax rate; lists government revenue sources including excise and sales taxes. The page does NOT define the average tax rate and does not classify sales taxes as regressive; those statements in c06-l2 are AI-written standard definitions.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "worldbank-gini-index",
+      "title": "Gini index (SI.POV.GINI) — Metadata glossary, World Development Indicators",
+      "container": "World Bank DataBank",
+      "author": "World Bank",
+      "published": null,
+      "url": "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SI.POV.GINI",
+      "concepts": [
+        "gini_coefficient",
+        "lorenz_curve"
+      ],
+      "lesson_ids": [
+        "c06-l1"
+      ],
+      "license": "World Bank data and metadata are generally available under CC BY 4.0. Definitions are summarized with a link, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: defines the Gini index via the area between the Lorenz curve and a line of absolute equality, with 0 = perfect equality and 100 = perfect inequality (the statistical-concept note on the same page uses a 0 to 1 scale); data from household surveys of income or consumption, some shares estimated from grouped data; income usually more unequal than consumption. The page does NOT give the trapezoid or mean-absolute-difference formulas used in c06-l1 (AI-written standard formulas, verified numerically).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "worldbank-measuring-poverty",
+      "title": "Measuring Poverty",
+      "container": "World Bank Group",
+      "author": "World Bank",
+      "published": null,
+      "url": "https://www.worldbank.org/en/topic/measuringpoverty",
+      "concepts": [
+        "poverty_line"
+      ],
+      "lesson_ids": [
+        "c06-l3"
+      ],
+      "license": "Subject to the World Bank website terms of use. Summarized with a link, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: describes global poverty lines for extreme poverty derived from national poverty lines (median of lines in each income group), higher lines for lower-middle- and upper-middle-income countries, and purchasing power parities for comparison. The page does NOT discuss relative (societal) poverty lines or multidimensional poverty.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "un-sdg-1",
+      "title": "Goal 1: End poverty in all its forms everywhere",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal1",
+      "concepts": [
+        "social_protection",
+        "poverty_line",
+        "public_finance",
+        "financial_inclusion"
+      ],
+      "lesson_ids": [
+        "c06-l1",
+        "c06-l3",
+        "c07-l1",
+        "c07-l2",
+        "c07-l3"
+      ],
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: goal title and targets 1.1 (eradicate extreme poverty), 1.2 (reduce at least by half the proportion living in poverty in all its dimensions according to national definitions), 1.3 (nationally appropriate social protection systems and measures for all, including floors; substantial coverage of the poor and vulnerable), 1.4, 1.a (mobilization of resources) and 1.b (pro-poor policy frameworks) confirmed on the page. c07 (2026-11-13, AI): opened the page and confirmed the goal title, target 1.4 (equal rights to economic resources and access to basic services ... and financial services, including microfinance, for the poor and the vulnerable) and target 1.5 (build the resilience of the poor and reduce their exposure to economic, social and environmental shocks).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "un-sdg-10",
+      "title": "Goal 10: Reduce inequality within and among countries",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal10",
+      "concepts": [
+        "redistribution",
+        "inequality_vs_poverty",
+        "tax_progressivity"
+      ],
+      "lesson_ids": [
+        "c06-l1",
+        "c06-l2",
+        "c06-l3"
+      ],
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "Opened 2026-11-13: goal title and targets 10.1 (income growth of the bottom 40 per cent above the national average), 10.2 (inclusion of all), 10.3 (equal opportunity, reduce inequalities of outcome) and 10.4 (fiscal, wage and social protection policies; progressively achieve greater equality) confirmed on the page.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-17-1",
+      "title": "17.1 How Businesses Raise Financial Capital",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/17-1-how-businesses-raise-financial-capital",
+      "concepts": [
+        "borrowing_cost",
+        "financial_risk_types"
+      ],
+      "lesson_ids": [
+        "c07-l2",
+        "c07-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed it describes bank loans repaid with principal plus interest, bonds as contracts to repay with interest (example of annual interest on a bond), default (bondholders may recover only part of their money), and stocks/IPOs.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-17-2",
+      "title": "17.2 How Households Supply Financial Capital",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/17-2-how-households-supply-financial-capital",
+      "concepts": [
+        "saving_emergency_fund",
+        "risk_return",
+        "diversification",
+        "financial_risk_types",
+        "long_term_planning"
+      ],
+      "lesson_ids": [
+        "c07-l2",
+        "c07-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed checking/savings accounts and CDs (early-withdrawal penalty), bank accounts as low risk, low return, high liquidity, FDIC deposit protection, interest rates including an inflation adjustment and a risk premium, corporate bonds paying more than Treasury bonds, the risk-return trade-off table, stocks risky in the short run, and diversification ('eggs in one basket', mutual funds). It does not cover compound interest formulas, credit cards, or real returns, and does not explicitly say past returns do not guarantee future returns.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-17-3",
+      "title": "17.3 How to Accumulate Personal Wealth",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/17-3-how-to-accumulate-personal-wealth",
+      "concepts": [
+        "simple_interest",
+        "compound_interest",
+        "real_return",
+        "risk_return",
+        "diversification",
+        "long_term_planning"
+      ],
+      "lesson_ids": [
+        "c07-l2",
+        "c07-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed compound interest (interest on principal plus accumulated interest), the future value formula principal × (1 + rate)^time, a worked comparison of simple vs. compound interest over three years, long-run saving with an assumed real return on a diversified portfolio, the random walk of stock prices, and that many actively managed funds underperform the market. It does not give compounding frequency or APY, and does not explicitly state that past returns do not guarantee future returns (the lesson states this as its own caution).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "cfpb-pay-stub-tool",
+      "title": "Understanding your pay stub (Your Money, Your Goals tool)",
+      "container": "Consumer Financial Protection Bureau",
+      "author": "Consumer Financial Protection Bureau",
+      "published": "2021-08",
+      "url": "https://files.consumerfinance.gov/f/documents/cfpb_understanding-your-pay-stub_tool_2021-08.pdf",
+      "concepts": [
+        "gross_net_income",
+        "budget"
+      ],
+      "lesson_ids": [
+        "c07-l1"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): downloaded and read the PDF text. Confirmed gross wages = pay before deductions, net pay = gross pay minus all deductions ('take-home' pay), deductions for federal tax, Social Security and Medicare (FICA), state tax and retirement, and that knowing take-home pay helps people create a realistic budget. It does not describe budgeting methods such as 50/30/20 or zero-based budgets.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "cfpb-emergency-fund-guide",
+      "title": "An essential guide to building an emergency fund",
+      "container": "Consumer Financial Protection Bureau",
+      "author": "Consumer Financial Protection Bureau",
+      "published": null,
+      "url": "https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/",
+      "concepts": [
+        "saving_emergency_fund",
+        "financial_goals",
+        "fixed_variable_expenses"
+      ],
+      "lesson_ids": [
+        "c07-l1",
+        "c07-l2"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed an emergency fund is money for unexpected expenses (repairs, medical bills, loss of income) outside regular monthly spending, that a lack of savings can lead to debt, that a specific savings goal helps motivation, and that tracking cash flow (timing of income and bills) helps adjust spending and saving. It does not use the terms 'fixed' and 'variable' expenses or the SMART acronym.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "cfpb-reg-dd-apy",
+      "title": "Appendix A to Part 1030 (Regulation DD) - Annual Percentage Yield Calculation",
+      "container": "Consumer Financial Protection Bureau - Regulations",
+      "author": "Consumer Financial Protection Bureau",
+      "published": null,
+      "url": "https://www.consumerfinance.gov/rules-policy/regulations/1030/a/",
+      "concepts": [
+        "apr_apy"
+      ],
+      "lesson_ids": [
+        "c07-l2"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed the APY measures the total interest paid on an account based on the interest rate and the frequency of compounding, with the general formula APY = 100[(1 + Interest/Principal)^(365/Days in term) − 1]. The lesson's form (1 + APR/n)^n − 1 is the equivalent one-year case written by the AI.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "cfpb-mortgage-apr",
+      "title": "What is the difference between a mortgage interest rate and an APR?",
+      "container": "Consumer Financial Protection Bureau - Ask CFPB",
+      "author": "Consumer Financial Protection Bureau",
+      "published": null,
+      "url": "https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-mortgage-interest-rate-and-an-apr-en-135/",
+      "concepts": [
+        "apr_apy",
+        "borrowing_cost"
+      ],
+      "lesson_ids": [
+        "c07-l2"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed the interest rate is the cost of borrowing without fees, and the APR is a broader measure that also includes points, broker fees and other charges paid to get the loan (for mortgages). It is cited only for mortgages; the lesson keeps the general statement that which fees an APR includes depends on the loan type and rules.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "cfpb-credit-card-apr",
+      "title": "What is a credit card interest rate? What does APR mean?",
+      "container": "Consumer Financial Protection Bureau - Ask CFPB",
+      "author": "Consumer Financial Protection Bureau",
+      "published": null,
+      "url": "https://www.consumerfinance.gov/ask-cfpb/what-is-a-credit-card-interest-rate-what-does-apr-mean-en-44/",
+      "concepts": [
+        "apr_apy",
+        "borrowing_cost"
+      ],
+      "lesson_ids": [
+        "c07-l2"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed a card's interest rate is the price of borrowing, stated as a yearly rate (APR), and that on most cards interest on purchases can be avoided by paying the full balance by the due date. It does not discuss minimum payments.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "cfpb-minimum-payment-box",
+      "title": "A box on my credit card bill says that I will pay off the balance in three years if I pay a certain amount. What does that mean?",
+      "container": "Consumer Financial Protection Bureau - Ask CFPB",
+      "author": "Consumer Financial Protection Bureau",
+      "published": null,
+      "url": "https://www.consumerfinance.gov/ask-cfpb/a-box-on-my-credit-card-bill-says-that-i-will-pay-off-the-balance-in-three-years-if-i-pay-a-certain-amount-what-does-that-mean-do-i-have-to-pay-that-much-if-i-pay-that-much-and-make-new-purchases-will-i-still-owe-nothing-after-three-years-en-36/",
+      "concepts": [
+        "borrowing_cost"
+      ],
+      "lesson_ids": [
+        "c07-l2"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed statements must show how long payoff takes paying only the minimum, the amount needed to pay off the balance in 36 months, that new purchases are not included, and that paying more each month means paying less interest over time; minimum-only payment can take years.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "fdic-deposit-insurance",
+      "title": "Understanding Deposit Insurance",
+      "container": "Federal Deposit Insurance Corporation (FDIC)",
+      "author": "FDIC",
+      "published": null,
+      "url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+      "concepts": [
+        "saving_emergency_fund",
+        "risk_return"
+      ],
+      "lesson_ids": [
+        "c07-l2",
+        "c07-l3"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed FDIC insurance covers deposits (checking, savings, money market deposit accounts, CDs) at insured banks up to a limit per depositor, per bank, per ownership category, and does not cover stocks, bonds, mutual funds, annuities, Treasury securities or crypto assets, even if bought through a bank. The lesson does not quote the dollar limit.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "ftc-avoid-scam",
+      "title": "How To Avoid a Scam",
+      "container": "Federal Trade Commission - Consumer Advice",
+      "author": "Federal Trade Commission",
+      "published": null,
+      "url": "https://consumer.ftc.gov/articles/how-avoid-scam",
+      "concepts": [
+        "fraud_scams"
+      ],
+      "lesson_ids": [
+        "c07-l3"
+      ],
+      "license": "U.S. government work; summarized and linked only, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed four signs of a scam (impersonating a known organization, a problem or prize, pressure to act immediately, payment by cryptocurrency, wire transfer, payment app, gift card or a deposited check) and advice to verify through trusted contacts, not share information after unexpected requests, and talk to someone before acting.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "worldbank-financial-inclusion",
+      "title": "Financial Inclusion (topic overview)",
+      "container": "World Bank Group",
+      "author": "World Bank",
+      "published": null,
+      "url": "https://www.worldbank.org/en/topic/financialinclusion/overview",
+      "concepts": [
+        "financial_inclusion",
+        "digital_finance"
+      ],
+      "lesson_ids": [
+        "c07-l3"
+      ],
+      "license": "Subject to the World Bank website terms of use. Summarized and linked only; figures are not quoted.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed access to affordable financial services such as payments, credit, savings products and insurance is described as critical for poverty reduction and growth, basic transaction accounts as the baseline of access, digital financial services lowering costs and raising speed and security, risks (predatory lending, data privacy, unequal technology access, cyber-security), and a persistent gender gap. The page gives no formal definition and does not mention the SDGs; the lesson's definition is a paraphrase written by the AI.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "worldbank-global-findex",
+      "title": "The Global Findex Database 2025",
+      "container": "World Bank Group",
+      "author": "World Bank",
+      "published": "2025",
+      "url": "https://www.worldbank.org/en/publication/globalfindex",
+      "concepts": [
+        "digital_finance",
+        "financial_inclusion"
+      ],
+      "lesson_ids": [
+        "c07-l3"
+      ],
+      "license": "Subject to the World Bank website terms of use. Summarized and linked only; figures are not quoted.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c07 (2026-11-13, AI): opened the page and confirmed the database tracks account ownership including mobile money and digitally enabled accounts, saving, borrowing, digital payments and financial resilience (access to emergency money). No statistics from it are used in the lesson.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     }

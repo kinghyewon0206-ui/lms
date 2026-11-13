@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c06-l1",
+  "content_version": 1,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      }
+    ]
+  },
+  "objectives": [
+    "Distinguish income from wealth and inequality from poverty, and explain why each needs its own measure.",
+    "Organize income data by quintiles, turn group shares into cumulative shares, and read a Lorenz curve, including what the diagonal line of perfect equality and the bow below it show.",
+    "Calculate and interpret the Gini coefficient, both exactly for a small listed population and approximately from grouped quintile data, and explain why grouped data understates inequality.",
+    "Describe possible causes of rising income inequality and tell apart measurement facts from conclusions that economists still debate."
+  ],
+  "concepts": [
+    {
+      "id": "income_vs_wealth",
+      "term": "Income vs. wealth",
+      "definition": "Income is a flow: the money a person or household receives during a period, such as wages, interest, or government payments in a year. Wealth is a stock: the value of everything owned (savings, homes, businesses, shares) minus debts at a point in time. Wealth is usually distributed more unequally than income, because differences in earnings and saving add up over many years.",
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "inequality_vs_poverty",
+      "term": "Inequality vs. poverty",
+      "definition": "Poverty counts the people whose income falls below a poverty line. Inequality describes how total income is divided among groups. The two can move separately: if everyone's income rises by the same percentage, inequality shares stay the same while fewer people may be below a fixed poverty line.",
+      "source_ids": [
+        "openstax-pe3-15-1",
+        "openstax-pe3-15-4"
+      ]
+    },
+    {
+      "id": "quintile_distribution",
+      "term": "Income distribution by quintiles",
+      "definition": "Rank all households from lowest to highest income and divide them into five equal-sized groups, called quintiles, each holding 20% of households. The share of total income each quintile receives describes the income distribution. With perfect equality, each quintile would receive exactly 20%.",
+      "source_ids": [
+        "openstax-pe3-15-4"
+      ]
+    },
+    {
+      "id": "lorenz_curve",
+      "term": "Lorenz curve",
+      "definition": "A graph of cumulative income shares. The horizontal axis is the cumulative share of the population, ranked from poorest to richest; the vertical axis is the cumulative share of income they receive. A 45-degree diagonal is the line of perfect equality. The farther the curve bows below the diagonal, the more unequal the distribution.",
+      "source_ids": [
+        "openstax-pe3-15-4",
+        "worldbank-gini-index"
+      ]
+    },
+    {
+      "id": "gini_coefficient",
+      "term": "Gini coefficient",
+      "definition": "A single-number summary of inequality based on the Lorenz curve: the area between the diagonal and the Lorenz curve, divided by the whole area under the diagonal. It runs from 0 (perfect equality) to 1 (one person has all the income); the World Bank also reports it on a 0 to 100 scale. When it is estimated from grouped data, such as quintiles, it is an approximation that understates inequality within each group.",
+      "source_ids": [
+        "worldbank-gini-index"
+      ]
+    },
+    {
+      "id": "causes_of_inequality",
+      "term": "Possible causes of rising inequality",
+      "definition": "Explanations discussed by economists include faster growth in demand for high-skilled workers than in their supply (linked to technology and globalization), winner-take-all markets that reward top performers, and changes in household structure, such as more two-earner couples and more single-parent households. How much each factor matters is still debated.",
+      "source_ids": [
+        "openstax-pe3-15-4"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Inequality is about how a country's income is shared. Economists line people up from poorest to richest, split them into five equal groups, and compare each group's share. A Lorenz curve draws this, and the Gini coefficient sums it up in one number.",
+      "sections": [
+        {
+          "heading": "What you earn vs. what you own",
+          "concept_ids": [
+            "income_vs_wealth"
+          ],
+          "paragraphs": [
+            "Your income is the money that comes in over a period, like your pay from a summer job. Your wealth is what you own at a moment, like the money in your savings account, minus anything you owe. A retired person may have a low income but a paid-off house, so they are wealthy but have little income. A new graduate may earn a good salary but owe student loans, so they have income but little wealth.",
+            "Wealth is usually shared much more unequally than income. Families that earn more can save more, and those savings can grow year after year, so differences pile up over time."
+          ]
+        },
+        {
+          "heading": "Poor is not the same as unequal",
+          "concept_ids": [
+            "inequality_vs_poverty"
+          ],
+          "paragraphs": [
+            "Poverty asks: how many people have too little to meet basic needs? Inequality asks: how is the total income divided? They are different questions. Hypothetical example: if every income in a country doubled, the shares would not change, so inequality would stay the same, but many people could rise above a fixed poverty line. If only the richest people got richer, inequality would rise, but the number of poor people would not change."
+          ]
+        },
+        {
+          "heading": "Five equal groups",
+          "concept_ids": [
+            "quintile_distribution"
+          ],
+          "paragraphs": [
+            "Imagine lining up every household from the lowest income to the highest and splitting the line into five equal groups. Each group is called a quintile and holds 20% of households. Then you ask what share of all income each group receives.",
+            "Hypothetical example, Country A: Quintile 1 (poorest 20%): 5% of income. Quintile 2: 10%. Quintile 3: 15%. Quintile 4: 25%. Quintile 5 (richest 20%): 45%. The shares add up to 100%. If income were shared perfectly equally, every quintile would get 20%. Here the richest fifth gets 9 times as much as the poorest fifth."
+          ]
+        },
+        {
+          "heading": "Drawing the distribution: the Lorenz curve",
+          "concept_ids": [
+            "lorenz_curve"
+          ],
+          "paragraphs": [
+            "To draw a Lorenz curve, you add up the shares as you go, starting with the poorest. In Country A, the poorest 20% have 5%; the poorest 40% have 5% + 10% = 15%; the poorest 60% have 30%; the poorest 80% have 55%; and everyone together has 100%. These running totals are called cumulative shares.",
+            "Picture a square graph. Along the bottom is the share of people (0% to 100%), and up the side is the share of income (0% to 100%). If everyone had the same income, the poorest 20% would have 20%, the poorest 40% would have 40%, and so on, giving a straight diagonal line: the line of perfect equality. Country A's points (20%, 5%), (40%, 15%), (60%, 30%), (80%, 55%) all lie below that line, so its curve sags, or bows, under the diagonal. A bigger bow means more inequality."
+          ]
+        },
+        {
+          "heading": "One number: the Gini coefficient",
+          "concept_ids": [
+            "gini_coefficient"
+          ],
+          "paragraphs": [
+            "The Gini coefficient turns the bow into one number between 0 and 1. A Gini of 0 means perfect equality: the Lorenz curve sits on the diagonal. A Gini close to 1 means one person has almost all the income. A higher Gini means more inequality. For Country A it works out to 0.38 (you will see how in the worked examples).",
+            "One warning: a Gini is often calculated from group shares, such as quintiles. That treats everyone inside a group as if they earned the same, so it misses the inequality inside each group. The result is a slight underestimate."
+          ]
+        },
+        {
+          "heading": "Why might inequality grow?",
+          "concept_ids": [
+            "causes_of_inequality"
+          ],
+          "paragraphs": [
+            "Economists point to several possible reasons. New technology and global trade may raise the pay of highly skilled workers faster than the pay of others. Some markets reward a few top performers with very large incomes. Changes in families matter too: two high earners who marry each other pull a household up, while a single parent with one income is more likely to be near the bottom. Economists agree these forces exist but still argue about how big each one is."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Quintile shares, cumulative shares, the Lorenz curve, and the Gini coefficient are linked tools for describing a distribution. Each answers a different question, and each has blind spots that matter when you compare countries or years.",
+      "sections": [
+        {
+          "heading": "Stocks, flows, and what a measure covers",
+          "concept_ids": [
+            "income_vs_wealth",
+            "inequality_vs_poverty"
+          ],
+          "paragraphs": [
+            "Income is a flow per period; wealth is a stock at a moment. A distribution of annual income can look quite different from a distribution of wealth, which is typically more concentrated because earnings differences accumulate through saving, returns on assets, and inheritance. When you read an inequality figure, check whether it describes income or wealth, which income concept it uses (before or after taxes and transfers), and whether the unit is a person or a household.",
+            "Inequality and poverty answer different questions. A poverty rate counts people below a line; an inequality measure looks at shares across the whole distribution. A proportional rise in all incomes leaves every share, and so the Lorenz curve and the Gini coefficient, unchanged, while it can lower poverty measured against a fixed line. Gains concentrated at the top can raise inequality without changing poverty at all."
+          ]
+        },
+        {
+          "heading": "From quintile shares to cumulative shares",
+          "concept_ids": [
+            "quintile_distribution",
+            "lorenz_curve"
+          ],
+          "paragraphs": [
+            "Quintile shares describe each group separately; cumulative shares describe everyone up to a point. Hypothetical example, Country B: Quintile 1: 8%; Quintile 2: 12%; Quintile 3: 17%; Quintile 4: 23%; Quintile 5: 40%. Cumulative shares: poorest 20% → 8%; poorest 40% → 20%; poorest 60% → 37%; poorest 80% → 60%; 100% → 100%.",
+            "Plot each cumulative point (population share, income share), starting at (0, 0) and ending at (100%, 100%). Three facts follow from the definition: the curve always starts and ends on the diagonal; it never rises above the diagonal, because the poorest x% of people cannot have more than x% of income; and it gets steeper as you move right, because each added group is richer than the one before. The vertical gap between the diagonal and the curve at any point shows how far that group falls short of an equal share."
+          ]
+        },
+        {
+          "heading": "Comparing Lorenz curves",
+          "concept_ids": [
+            "lorenz_curve"
+          ],
+          "paragraphs": [
+            "Compare Country A (cumulative 5, 15, 30, 55) with Country B (cumulative 8, 20, 37, 60). At every point, Country B's curve is higher, closer to the diagonal. When one Lorenz curve lies entirely above another, the higher one shows a more equal distribution by any reasonable measure.",
+            "Curves can also cross: one country can give its poorest groups a larger share while also giving its richest group a larger share. Then the Lorenz curves alone cannot rank the two countries, and different summary measures may disagree."
+          ]
+        },
+        {
+          "heading": "The Gini coefficient as a ratio of areas",
+          "concept_ids": [
+            "gini_coefficient"
+          ],
+          "paragraphs": [
+            "Call A the area between the diagonal and the Lorenz curve, and B the area under the Lorenz curve. Because the graph is a unit square, the area under the diagonal is A + B = 0.5. The Gini coefficient is G = A ÷ (A + B) = A ÷ 0.5 = 1 − 2B. With perfect equality, A = 0 and G = 0. As the bow grows, A grows and so does G.",
+            "With quintile data, the Lorenz curve is drawn as straight segments between the known points, and B is the sum of five trapezoids. This is an approximation: it assumes everyone inside a quintile has the same income, so the true curve, which sags a little between the points, is replaced by a straight chord. The estimated Gini is therefore a little too low. A Gini also compresses the whole curve into one number, so two different distributions can share the same Gini."
+          ]
+        },
+        {
+          "heading": "Explaining changes in inequality",
+          "concept_ids": [
+            "causes_of_inequality"
+          ],
+          "paragraphs": [
+            "A supply-and-demand view of labor markets offers one explanation: if demand for high-skilled workers grows faster than their supply, their wages rise relative to others even as more people get degrees. Technology and globalization are often named as sources of that demand shift. Winner-take-all markets and changes in household composition, such as more two-earner couples and more single-parent households, add to measured household inequality.",
+            "It is a fact of measurement that a distribution has become more or less unequal; the reasons behind the change are harder to establish. Economists disagree about the relative size of each factor, and the mix probably differs between countries and periods."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Formally, the Lorenz curve L(p) maps population shares to income shares, and the Gini coefficient G = 1 − 2∫L(p)dp. For a fully listed population, G equals the mean absolute difference divided by twice the mean; for grouped data, the trapezoid rule gives a lower bound on the within-sample value.",
+      "sections": [
+        {
+          "heading": "Measurement choices behind any inequality figure",
+          "concept_ids": [
+            "income_vs_wealth",
+            "inequality_vs_poverty"
+          ],
+          "paragraphs": [
+            "Let y denote a flow (income per period) and w a stock (net worth at a date). With saving rate s and return r, wealth evolves roughly as wₜ₊₁ = (1 + r)wₜ + s·yₜ, so persistent differences in y, s, or r compound into larger differences in w. This is one reason wealth distributions are typically more concentrated than income distributions.",
+            "Inequality measures are scale invariant: multiplying every income by λ > 0 leaves every share, the Lorenz curve, and G unchanged. A poverty headcount against a fixed line z is not scale invariant; it falls when λ > 1 lifts incomes above z. So poverty and inequality can move in opposite directions, and a single statistic cannot describe both."
+          ]
+        },
+        {
+          "heading": "Lorenz curve: formal properties",
+          "concept_ids": [
+            "quintile_distribution",
+            "lorenz_curve"
+          ],
+          "paragraphs": [
+            "With incomes sorted y₁ ≤ y₂ ≤ … ≤ yₙ, the Lorenz curve passes through the points (Xₖ, Yₖ) with Xₖ = k ÷ n and Yₖ = (y₁ + … + yₖ) ÷ (y₁ + … + yₙ), and L(0) = 0, L(1) = 1. Because the slope of segment k equals yₖ ÷ ȳ (the k-th income relative to the mean), L is increasing and convex, and L(p) ≤ p. The slope equals 1 exactly where income equals the mean.",
+            "For quintiles, the same construction uses group shares sₖ and cumulative shares Yₖ = s₁ + … + sₖ with Xₖ = 0.2k. If L_B(p) ≥ L_A(p) for every p (B Lorenz-dominates A), every scale-invariant inequality measure that falls when income is transferred from a richer to a poorer person ranks B as at least as equal as A. Hypothetical example of crossing: Country C has quintile shares 3, 12, 20, 25, 40 (cumulative 3, 15, 35, 60) and Country D has 7, 10, 15, 22, 46 (cumulative 7, 17, 32, 54). D's curve is higher at 20% and 40%, C's is higher at 60% and 80%, so neither dominates; their grouped Gini values (0.348 for C, 0.36 for D) rank them, but that ranking depends on how G weights different parts of the curve."
+          ]
+        },
+        {
+          "heading": "Two ways to compute the Gini coefficient",
+          "concept_ids": [
+            "gini_coefficient"
+          ],
+          "paragraphs": [
+            "Area form: G = 1 − 2∫₀¹ L(p) dp. With grouped data, approximate the integral by trapezoids: G ≈ 1 − Σₖ (Xₖ − Xₖ₋₁)(Yₖ + Yₖ₋₁), with X₀ = Y₀ = 0. For equal-sized quintiles, each Xₖ − Xₖ₋₁ = 0.2.",
+            "Mean-absolute-difference form, for n listed incomes with mean μ: G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ), where the double sum runs over all ordered pairs (i, j). This is exact for that population, and it gives the same value as the trapezoid formula when each group contains exactly one person, because the straight segments then coincide with the true Lorenz curve. With this n² convention, the largest possible value for n people is (n − 1) ÷ n, reached when one person has everything.",
+            "When each group contains several people with different incomes, the trapezoid formula treats them as equal, ignores the within-group spread, and returns a value no larger than the exact Gini of those listed incomes. Grouped Gini values are therefore approximations, and comparisons should use the same grouping."
+          ]
+        },
+        {
+          "heading": "Explaining trends: what is settled and what is not",
+          "concept_ids": [
+            "causes_of_inequality"
+          ],
+          "paragraphs": [
+            "In a competitive labor market, the relative wage of skilled workers rises when relative demand for skill grows faster than relative supply. This is a model prediction, not a measurement. Empirical work attributes rising wage dispersion to skill-biased technological change, trade, winner-take-all dynamics, and institutions, while household-level measures are also affected by assortative mating and the share of single-earner households. Estimates of each factor's contribution vary across studies, countries, and periods, so present them as competing or complementary explanations rather than a settled decomposition."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c06-l1-we1",
+      "level": "beginner",
+      "title": "How many times more does the top fifth get?",
+      "problem": "Hypothetical example, Country A, share of total income by quintile: Quintile 1 (poorest 20%): 5%. Quintile 2: 10%. Quintile 3: 15%. Quintile 4: 25%. Quintile 5 (richest 20%): 45%. How many times as much income does the richest quintile receive as the poorest quintile?",
+      "steps": [
+        "Check that the shares add up: 5 + 10 + 15 + 25 + 45 = 100%.",
+        "Both groups have the same number of households (20% each), so you can compare their shares directly.",
+        "Ratio = 45% ÷ 5% = 9."
+      ],
+      "answer": "The richest fifth of households receives 9 times as much income as the poorest fifth. With perfect equality, both would receive 20% and the ratio would be 1.",
+      "check": {
+        "type": "ratio",
+        "numerator": 45,
+        "denominator": 5,
+        "expected": 9
+      }
+    },
+    {
+      "id": "c06-l1-we2",
+      "level": "beginner",
+      "title": "Building cumulative shares for a Lorenz curve",
+      "problem": "Hypothetical example: Using Country A's quintile shares (5%, 10%, 15%, 25%, 45%), find the cumulative income share of the poorest 20%, 40%, 60%, and 80% of households. What share of income goes to the bottom 80%?",
+      "steps": [
+        "Poorest 20%: 5%.",
+        "Poorest 40%: 5% + 10% = 15%.",
+        "Poorest 60%: 15% + 15% = 30%.",
+        "Poorest 80%: 30% + 25% = 55%. Check: everyone except the richest quintile = 100% − 45% = 55%.",
+        "Lorenz points: (20%, 5%), (40%, 15%), (60%, 30%), (80%, 55%), (100%, 100%). Each lies below the equality line, where the points would be (20%, 20%), (40%, 40%), and so on."
+      ],
+      "answer": "The bottom 80% of households receive 55% of income. On a Lorenz curve, the point (80%, 55%) is 25 percentage points below the line of perfect equality.",
+      "check": {
+        "type": "difference",
+        "a": 100,
+        "b": 45,
+        "expected": 55
+      }
+    },
+    {
+      "id": "c06-l1-we3",
+      "level": "intermediate",
+      "title": "Which Lorenz curve is closer to equality?",
+      "problem": "Hypothetical example: Country A's quintile shares are 5%, 10%, 15%, 25%, 45%. Country B's are 8%, 12%, 17%, 23%, 40%. Compare their Lorenz curves. By how many percentage points does the bottom 40%'s share differ?",
+      "steps": [
+        "Country A cumulative: 5, 15, 30, 55, 100.",
+        "Country B cumulative: 8, 20, 37, 60, 100.",
+        "At 20%, 40%, 60%, and 80% of the population, Country B's cumulative share is higher, so its Lorenz curve lies above Country A's everywhere and closer to the diagonal.",
+        "Bottom 40%: 20% − 15% = 5 percentage points more income in Country B."
+      ],
+      "answer": "Country B's Lorenz curve lies entirely above Country A's, so B's distribution is more equal. Its bottom 40% receive 20% of income, 5 percentage points more than in Country A.",
+      "check": {
+        "type": "difference",
+        "a": 20,
+        "b": 15,
+        "expected": 5
+      }
+    },
+    {
+      "id": "c06-l1-we4",
+      "level": "intermediate",
+      "title": "Gini coefficient from areas (grouped data)",
+      "problem": "Hypothetical example: Use Country A's cumulative shares (0, 0.05, 0.15, 0.30, 0.55, 1.00 at population shares 0, 0.2, 0.4, 0.6, 0.8, 1.0). Approximate the area B under the Lorenz curve with trapezoids, then find the Gini coefficient G = A ÷ (A + B), where A + B = 0.5.",
+      "steps": [
+        "Each trapezoid has width 0.2 and area 0.2 × (left height + right height) ÷ 2.",
+        "Trapezoid areas: 0.2 × (0 + 0.05) ÷ 2 = 0.005; 0.2 × (0.05 + 0.15) ÷ 2 = 0.020; 0.2 × (0.15 + 0.30) ÷ 2 = 0.045; 0.2 × (0.30 + 0.55) ÷ 2 = 0.085; 0.2 × (0.55 + 1.00) ÷ 2 = 0.155.",
+        "B = 0.005 + 0.020 + 0.045 + 0.085 + 0.155 = 0.31.",
+        "A = 0.5 − 0.31 = 0.19.",
+        "G = 0.19 ÷ 0.5 = 0.38."
+      ],
+      "answer": "Country A's Gini coefficient is about 0.38. Because it comes from quintile data, it treats incomes within each quintile as equal and slightly understates the true value.",
+      "check": {
+        "type": "ratio",
+        "numerator": 0.19,
+        "denominator": 0.5,
+        "expected": 0.38
+      }
+    },
+    {
+      "id": "c06-l1-we5",
+      "level": "advanced",
+      "title": "An exact Gini for five people, and the trapezoid formula agrees",
+      "problem": "Hypothetical example: A village has five people with annual incomes of $10,000, $20,000, $30,000, $40,000, and $100,000. Compute the exact Gini coefficient with G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ). Then compute it with the trapezoid formula, treating each person as a group of 20%.",
+      "steps": [
+        "Work in thousands of dollars. n = 5, total = 200, mean μ = 40.",
+        "Absolute differences for each unordered pair: 10, 20, 30, 90, 10, 20, 80, 10, 70, 60. Their sum is 400, so over all ordered pairs Σᵢ Σⱼ |yᵢ − yⱼ| = 2 × 400 = 800.",
+        "Exact G = 800 ÷ (2 × 25 × 40) = 800 ÷ 2,000 = 0.40.",
+        "Trapezoid check: shares are 0.05, 0.10, 0.15, 0.20, 0.50, so cumulative Y = 0.05, 0.15, 0.30, 0.50, 1.00. Sum of (Yₖ + Yₖ₋₁) = 0.05 + 0.20 + 0.45 + 0.80 + 1.50 = 3.00.",
+        "G = 1 − 0.2 × 3.00 = 0.40. The two methods agree because each group is one person, so the straight segments are the true Lorenz curve."
+      ],
+      "answer": "The exact Gini coefficient is 0.40, and the trapezoid formula gives the same 0.40 when each group contains exactly one person.",
+      "check": {
+        "type": "ratio",
+        "numerator": 800,
+        "denominator": 2000,
+        "expected": 0.4
+      }
+    },
+    {
+      "id": "c06-l1-we6",
+      "level": "advanced",
+      "title": "How grouping understates the Gini coefficient",
+      "problem": "Hypothetical example: Ten people have incomes (in thousands of dollars) of 4, 6, 8, 12, 14, 16, 20, 30, 40, and 50. The total is 200 and the sum of |yᵢ − yⱼ| over all ordered pairs is 1,576. Find the exact Gini coefficient. Then group the people into quintiles of two and compute the grouped Gini coefficient. By how much does grouping understate it?",
+      "steps": [
+        "Exact: n = 10, μ = 20, so G = 1,576 ÷ (2 × 100 × 20) = 1,576 ÷ 4,000 = 0.394.",
+        "Quintile totals: 4 + 6 = 10, 8 + 12 = 20, 14 + 16 = 30, 20 + 30 = 50, 40 + 50 = 90. Shares: 0.05, 0.10, 0.15, 0.25, 0.45.",
+        "Cumulative Y = 0.05, 0.15, 0.30, 0.55, 1.00. Sum of (Yₖ + Yₖ₋₁) = 0.05 + 0.20 + 0.45 + 0.85 + 1.55 = 3.10.",
+        "Grouped G = 1 − 0.2 × 3.10 = 0.38.",
+        "Understatement = 0.394 − 0.38 = 0.014. Grouping erased the gap between the two people inside each quintile."
+      ],
+      "answer": "The exact Gini coefficient is 0.394; the grouped estimate is 0.38, which understates it by 0.014 because it ignores inequality within each quintile.",
+      "check": {
+        "type": "difference",
+        "a": 0.394,
+        "b": 0.38,
+        "expected": 0.014
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Quintile tables and Lorenz curves in official statistics",
+      "source_ids": [
+        "openstax-pe3-15-4"
+      ],
+      "paragraphs": [
+        "Statistical agencies rank households by income, divide them into quintiles, and publish each quintile's share of income, sometimes with a separate figure for the top 5%. Textbooks turn these tables into Lorenz curves by adding the shares cumulatively, which makes it easy to see whether a country's distribution has moved closer to or farther from the line of perfect equality over time."
+      ]
+    },
+    {
+      "title": "How the World Bank defines the Gini index",
+      "source_ids": [
+        "worldbank-gini-index"
+      ],
+      "paragraphs": [
+        "The World Bank's development indicators define the Gini index using the area between the Lorenz curve and a line of perfect equality, with 0 meaning perfect equality and 100 meaning perfect inequality. Its notes explain that the data come from household surveys of income or consumption, that some values are estimated from grouped data, and that income is usually distributed more unequally than consumption."
+      ]
+    },
+    {
+      "title": "Wealth is more concentrated than income",
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ],
+      "paragraphs": [
+        "Discussions of inequality policy point out that wealth is distributed more unequally than income, because differences in earnings accumulate over time. That is why some policies, such as taxes on large inheritances, focus on wealth rather than annual income."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      1,
+      10
+    ],
+    "title": "Which inequality number should Country E track?",
+    "paragraphs": [
+      "SDG 10 aims to reduce inequality within and among countries. Target 10.1 calls for progressively achieving and sustaining income growth of the bottom 40 percent of the population at a rate higher than the national average by 2030. SDG target 1.2 calls for reducing at least by half the proportion of people living in poverty in all its dimensions according to national definitions.",
+      "Hypothetical situation: Country E's statistics office can afford to improve only one headline indicator. Last year, average income grew 4%, income of the bottom 40% grew 3%, and the grouped Gini coefficient barely moved. Meanwhile, survey staff warn that very rich households rarely answer surveys. The minister must choose which number to publish first each year."
+    ],
+    "options": [
+      {
+        "name": "Headline the Gini coefficient",
+        "benefits": [
+          "It summarizes the whole distribution in one widely used number.",
+          "It allows comparisons with past years and other countries that use the same method."
+        ],
+        "costs": [
+          "It can stay flat even when the bottom 40% falls behind, because different shapes of the Lorenz curve can share the same Gini.",
+          "With grouped data and missing top incomes, it understates inequality."
+        ],
+        "assumptions": [
+          "The survey covers rich and poor households well, and the grouping is the same each year."
+        ]
+      },
+      {
+        "name": "Headline income growth of the bottom 40% compared with the average (target 10.1)",
+        "benefits": [
+          "It matches the wording of target 10.1 and shows directly whether the poorer part of the population is catching up.",
+          "It is easy to explain: last year the bottom 40% grew 1 percentage point slower than the average."
+        ],
+        "costs": [
+          "It says nothing about changes within the top 60%, such as gains concentrated at the very top.",
+          "Growth rates can jump around from year to year, especially for small groups."
+        ],
+        "assumptions": [
+          "Incomes of the bottom 40% are measured accurately, including government transfers."
+        ]
+      },
+      {
+        "name": "Headline the poverty rate against the national poverty line (target 1.2)",
+        "benefits": [
+          "It focuses on the people in the greatest need, which many citizens see as the main concern.",
+          "It links directly to SDG 1 and to social protection programs."
+        ],
+        "costs": [
+          "It is not an inequality measure: poverty can fall while the gap between rich and poor widens.",
+          "Results depend on where the poverty line is drawn, which is a policy choice."
+        ],
+        "assumptions": [
+          "The national poverty line reflects a meaningful minimum standard of living."
+        ]
+      }
+    ],
+    "discussion": [
+      "Using the idea that poverty and inequality can move separately, explain a situation in which each headline number would give a misleading picture. Would you publish a small set of indicators instead, and what would that cost?"
+    ],
+    "source_ids": [
+      "un-sdg-10",
+      "un-sdg-1",
+      "worldbank-gini-index",
+      "openstax-pe3-15-4"
+    ]
+  },
+  "key_takeaways": [
+    "Income is a flow over a period; wealth is a stock at a moment. Wealth is usually more unequal than income.",
+    "Poverty counts people below a line; inequality describes how income is shared. They can move in different directions.",
+    "Quintile shares turned into cumulative shares give the points of the Lorenz curve; the diagonal is perfect equality, and a bigger bow means more inequality.",
+    "The Gini coefficient is the area between the diagonal and the Lorenz curve divided by the area under the diagonal: 0 is perfect equality, and higher values mean more inequality.",
+    "A Gini computed from grouped data is an approximation that understates inequality within groups; with one person per group it equals the exact value.",
+    "Possible causes of rising inequality include skill-biased demand, winner-take-all markets, and household changes; their relative size is still debated."
+  ],
+  "source_ids": [
+    "openstax-pe3-15-1",
+    "openstax-pe3-15-4",
+    "openstax-pe3-15-5",
+    "worldbank-gini-index",
+    "un-sdg-10",
+    "un-sdg-1"
+  ]
+}

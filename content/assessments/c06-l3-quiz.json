@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "id": "c06-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c06",
+  "lesson_id": "c06-l3",
+  "version": 1,
+  "title": "Lesson 3 Quiz: Poverty, Social Protection, and Public Finance",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c06-l3-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l3",
+      "objective": 1,
+      "concept_ids": [
+        "poverty_line"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country M uses a relative poverty line equal to 60% of median income. Over ten years, every income in the country grows by 25% after inflation. What happens to measured poverty?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It falls sharply, because real incomes are higher for everyone"
+        },
+        {
+          "id": "b",
+          "text": "It rises, because the poverty line grows faster than incomes"
+        },
+        {
+          "id": "c",
+          "text": "It falls to zero, because nobody stays below the old line"
+        },
+        {
+          "id": "d",
+          "text": "It stays about the same, because the line rises with incomes"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-1"
+      ]
+    },
+    {
+      "id": "c06-l3-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l3",
+      "objective": 1,
+      "concept_ids": [
+        "poverty_rate_gap"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Town P and Town Q are the same size and both have a poverty rate of 10%. In Town P, every poor family is about $1,000 below the line; in Town Q, every poor family is about $8,000 below it. Which statement is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Town Q has a larger poverty gap, so ending poverty there costs more"
+        },
+        {
+          "id": "b",
+          "text": "The towns have equal poverty gaps, because their poverty rates match"
+        },
+        {
+          "id": "c",
+          "text": "Town P has a larger poverty gap, because more families are near the line"
+        },
+        {
+          "id": "d",
+          "text": "The poverty gaps cannot be compared without each town's Gini coefficient"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-1"
+      ]
+    },
+    {
+      "id": "c06-l3-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c06-l3",
+      "objective": 2,
+      "concept_ids": [
+        "poverty_trap"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Omar's housing benefit falls by 35 cents for each extra dollar he earns, and he also pays a 10% income tax on extra earnings. He earns $2,000 more this year. What is his effective marginal tax rate? (Enter a number in percent, without the % sign.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-15-2",
+        "openstax-pe3-15-3"
+      ]
+    },
+    {
+      "id": "c06-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l3",
+      "objective": 2,
+      "concept_ids": [
+        "poverty_trap",
+        "public_finance"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A benefit pays $8,000 to a family with no earnings and falls by 80 cents per extra dollar earned. Policymakers lower the phase-out rate to 40 cents per dollar. Which pair of effects follows from the arithmetic?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Workers keep less of each dollar, and the benefit ends at a lower income"
+        },
+        {
+          "id": "b",
+          "text": "Workers keep more of each dollar, and the program's total cost falls"
+        },
+        {
+          "id": "c",
+          "text": "Workers keep more of each dollar, and the benefit reaches higher incomes"
+        },
+        {
+          "id": "d",
+          "text": "Workers keep the same share, and the benefit ends at the same income"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-2"
+      ]
+    },
+    {
+      "id": "c06-l3-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l3",
+      "objective": 3,
+      "concept_ids": [
+        "targeting_universality"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Compared with a universal benefit of the same size per recipient, what is a typical drawback of a targeted (means-tested) benefit?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It needs a much larger total budget for the same payment size"
+        },
+        {
+          "id": "b",
+          "text": "Some eligible households do not apply, so it covers fewer of the poor"
+        },
+        {
+          "id": "c",
+          "text": "It removes the phase-out, so effective marginal tax rates drop sharply"
+        },
+        {
+          "id": "d",
+          "text": "It sends a larger share of its spending to high-income households"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-3"
+      ]
+    }
+  ]
+}

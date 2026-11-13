@@ -9,7 +9,7 @@ import pytest
 
 from econova import content
 
-DRAFTED = ("c01", "c02", "c03", "c04", "c05")
+DRAFTED = ("c01", "c02", "c03", "c04", "c05", "c06", "c07")
 
 
 def _catalog():
@@ -46,7 +46,7 @@ def test_mcq_answer_positions_are_balanced(course_id):
                 assert [c["id"] for c in q["choices"]] == ["a", "b", "c", "d"], q["id"]
 
 
-@pytest.mark.parametrize("course_id", ("c04", "c05"))
+@pytest.mark.parametrize("course_id", ("c04", "c05", "c06", "c07"))
 def test_new_courses_cite_only_verified_sources(course_id):
     cat = _catalog()
     for lesson in cat.course(course_id).lessons:

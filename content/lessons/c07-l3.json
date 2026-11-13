@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c07-l3",
+  "content_version": 1,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      }
+    ]
+  },
+  "objectives": [
+    "Explain the main types of financial risk (market, inflation, credit or default, liquidity, and fraud) and recognize common warning signs of scams.",
+    "Explain the trade-off between risk and return, why diversification reduces but does not eliminate risk, and why long-term plans depend on assumptions rather than guarantees.",
+    "Explain what financial inclusion means (access to accounts, payments, savings, credit, and insurance, including mobile money) and how it connects to SDG targets 1.4 and 8.10."
+  ],
+  "concepts": [
+    {
+      "id": "financial_risk_types",
+      "term": "Types of financial risk",
+      "definition": "Market risk: the value of an investment can fall when prices in the market fall. Inflation risk: rising prices reduce the purchasing power of money and of fixed payments. Credit (default) risk: a borrower may not repay in full. Liquidity risk: you may not be able to turn an asset into cash quickly without a loss or penalty.",
+      "source_ids": [
+        "openstax-pe3-17-1",
+        "openstax-pe3-17-2",
+        "openstax-pe3-22-4"
+      ]
+    },
+    {
+      "id": "fraud_scams",
+      "term": "Fraud and scams",
+      "definition": "Fraud risk is the risk of losing money to deception. Common warning signs include someone pretending to be from a trusted organization, a sudden problem or prize, pressure to act immediately, and demands for payment by gift card, wire transfer, payment app, or cryptocurrency.",
+      "source_ids": [
+        "ftc-avoid-scam"
+      ]
+    },
+    {
+      "id": "risk_return",
+      "term": "Risk vs. return",
+      "definition": "Investments that offer a higher average return usually carry more risk, meaning their results vary more and can include losses. Safer choices, such as insured bank deposits, usually pay less. No investment offers a high return with no risk, and past returns do not guarantee future returns.",
+      "source_ids": [
+        "openstax-pe3-17-2",
+        "openstax-pe3-17-3",
+        "fdic-deposit-insurance"
+      ]
+    },
+    {
+      "id": "diversification",
+      "term": "Diversification",
+      "definition": "Spreading money across many different investments so that a loss on one has a smaller effect on the total. Diversification reduces the risk tied to any single company or asset, but it cannot remove risks that affect the whole market at once.",
+      "source_ids": [
+        "openstax-pe3-17-2",
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "long_term_planning",
+      "term": "Long-term financial planning",
+      "definition": "Matching saving and investment choices to goals and time horizons: money needed soon (such as an emergency fund) belongs in safe, liquid places, while money for goals decades away can tolerate more short-term ups and downs. Long-run projections are illustrations based on assumptions, not promises.",
+      "source_ids": [
+        "openstax-pe3-17-2",
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "financial_inclusion",
+      "term": "Financial inclusion",
+      "definition": "Access for individuals and businesses to useful, affordable financial services: a transaction account, payments, savings, credit, and insurance, delivered responsibly. Access helps people manage shocks, save, and invest in work or education, which links it to poverty reduction (SDG target 1.4) and to expanding financial services for all (SDG target 8.10).",
+      "source_ids": [
+        "worldbank-financial-inclusion",
+        "un-sdg-1",
+        "un-sdg-8"
+      ]
+    },
+    {
+      "id": "digital_finance",
+      "term": "Mobile money and digital financial services",
+      "definition": "Mobile money accounts and other digital financial services let people store, send, and receive money with a mobile phone, often at lower cost and higher speed than cash. They also bring risks such as fraud, data privacy problems, and predatory lending, and they require phone and network access.",
+      "source_ids": [
+        "worldbank-financial-inclusion",
+        "worldbank-global-findex"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Money can be lost in several ways: prices of investments can fall, inflation can shrink what money buys, borrowers may not repay, cash can be hard to get at quickly, and scammers can trick you. Spreading money around lowers some risks. And many people in the world still cannot use basic financial services at all.",
+      "sections": [
+        {
+          "heading": "Ways money can be lost",
+          "concept_ids": [
+            "financial_risk_types",
+            "fraud_scams"
+          ],
+          "paragraphs": [
+            "Market risk: if you own shares of a company, their price can drop. Inflation risk: cash kept in a drawer buys less every year when prices rise. Credit risk: if you lend money, the borrower might not pay you back. Liquidity risk: some savings, like a certificate of deposit, charge a penalty if you take the money out early, so it is hard to use in an emergency.",
+            "Fraud is a different kind of risk. Scammers pretend to be a bank, a government office, or a company you know. They say there is a problem or a prize, push you to act right now, and ask you to pay with gift cards, a wire transfer, a payment app, or cryptocurrency. Real organizations give you time to check. If you are unsure, stop and contact the organization using a phone number or website you already trust."
+          ]
+        },
+        {
+          "heading": "Higher return usually means higher risk",
+          "concept_ids": [
+            "risk_return",
+            "diversification"
+          ],
+          "paragraphs": [
+            "A savings account at an insured bank pays a small amount of interest, and the money is very safe. Investments like shares in companies can earn more on average, but their value goes up and down, and you can lose money. If someone promises a high return with no risk, treat it as a warning sign.",
+            "\"Don't put all your eggs in one basket\" is the idea behind diversification. If all your money is in one company and it fails, you lose a lot. If it is spread across many, one failure hurts much less. But if the whole market falls, spreading out will not fully protect you."
+          ]
+        },
+        {
+          "heading": "Thinking long term",
+          "concept_ids": [
+            "long_term_planning"
+          ],
+          "paragraphs": [
+            "Money you might need soon, like an emergency fund, should stay safe and easy to reach. Money for something far away, like retirement, can ride out more ups and downs. What suits you depends on your situation. And remember: what an investment earned in the past does not guarantee what it will earn in the future."
+          ]
+        },
+        {
+          "heading": "Who can use financial services?",
+          "concept_ids": [
+            "financial_inclusion",
+            "digital_finance"
+          ],
+          "paragraphs": [
+            "Many adults around the world still have no bank or mobile money account. Without one, it is harder to save safely, get paid, borrow at a fair price, or buy insurance. Financial inclusion means making these basic services available and affordable to everyone.",
+            "Mobile money lets people send, receive, and store money using a phone. It can be cheaper and faster than carrying cash, which matters for families who send money to relatives or run small businesses. The UN goals connect this to ending poverty (SDG 1) and to decent work and growth (SDG 8)."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Financial risk has several sources, and fraud is a separate threat with recognizable warning signs. Higher expected returns come with more variability; diversification removes much company-specific risk but not market-wide risk. Financial inclusion means access to accounts, payments, savings, credit, and insurance, and it is part of SDG targets 1.4 and 8.10.",
+      "sections": [
+        {
+          "heading": "Five sources of financial risk",
+          "concept_ids": [
+            "financial_risk_types",
+            "fraud_scams"
+          ],
+          "paragraphs": [
+            "Market risk is the chance that asset prices fall; stock prices, for example, can swing widely in the short run. Inflation risk is the chance that rising prices reduce the real value of savings or fixed payments (Course 4). Credit or default risk is the chance that a borrower does not repay; lenders charge riskier borrowers higher rates to make up for it, which is why corporate bonds usually pay more than government bonds. Liquidity risk is the chance that you cannot turn an asset into cash quickly without a loss or penalty.",
+            "Fraud risk works differently: the loss comes from deception, not from the market. Typical signs are impersonation, a surprise problem or prize, pressure to act now, and unusual payment methods. Because scammers create urgency, a simple rule helps: slow down, do not share personal or financial information after an unexpected request, and verify through a contact you already trust."
+          ]
+        },
+        {
+          "heading": "The risk–return trade-off and diversification",
+          "concept_ids": [
+            "risk_return",
+            "diversification"
+          ],
+          "paragraphs": [
+            "Investors generally require a higher average return to hold riskier assets. Insured bank deposits have low risk and low return; bonds are usually in the middle; stocks have historically offered higher average returns with much larger ups and downs. These are general patterns, not promises: past returns do not guarantee future returns.",
+            "Diversification spreads money across many assets whose results do not move together perfectly. Company-specific events, such as one firm's failed product, then have a small effect on the total. But events that hit the whole market, like a recession, affect most assets at once, so diversification reduces risk without eliminating it."
+          ]
+        },
+        {
+          "heading": "Matching plans to time horizons",
+          "concept_ids": [
+            "long_term_planning"
+          ],
+          "paragraphs": [
+            "A long-term plan matches each goal to a time horizon and a level of risk. Money needed within months needs liquidity and stable value. Money for goals many years away can tolerate more short-term variability, because there is more time to recover from a fall, although recovery is not guaranteed. Starting early matters because compound growth (Lesson 2) has more years to work. The right mix depends on your situation, goals, and tolerance for risk."
+          ]
+        },
+        {
+          "heading": "Financial inclusion and the SDGs",
+          "concept_ids": [
+            "financial_inclusion",
+            "digital_finance"
+          ],
+          "paragraphs": [
+            "Financial inclusion means that individuals and businesses can use useful, affordable financial services: a transaction account to receive and make payments, a safe place to save, credit on fair terms, and insurance against shocks. A basic account is often the starting point for the other services. Exclusion falls hardest on poor households, rural communities, and in many places women.",
+            "SDG target 1.4 includes equal access to financial services, including microfinance, for the poor and vulnerable. SDG target 8.10 calls for strengthening domestic financial institutions to expand access to banking, insurance, and financial services for all. Mobile money and other digital services have expanded access by lowering costs, but they also create new risks: scams, data privacy problems, and easy access to expensive credit. Inclusion that helps people is responsible inclusion."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Expected return E[R] = Σ pₛ·Rₛ summarizes the average outcome; risk describes the spread of outcomes. Lenders price default risk by requiring (1 + i)(1 − d) = 1 + i* for expected loss share d. Diversification lowers the weight of any single asset, but common (market-wide) shocks remain. Inclusion lowers transaction costs and widens access to saving, credit, and insurance.",
+      "sections": [
+        {
+          "heading": "Pricing risk",
+          "concept_ids": [
+            "financial_risk_types",
+            "fraud_scams"
+          ],
+          "paragraphs": [
+            "Credit risk is priced through a risk premium. If a lender expects a share d of loans to default with nothing recovered and wants an expected gross return of 1 + i*, it must charge i such that (1 + i)(1 − d) = 1 + i*, so i = (1 + i*) ÷ (1 − d) − 1, which exceeds i* + d. Inflation risk enters through the real return (1 + i) ÷ (1 + π) − 1: a fixed nominal payment loses real value when π is higher than expected. Liquidity risk appears as a discount or penalty for converting an asset to cash quickly. Market risk is the variability of the asset's price.",
+            "Fraud is not a priced risk in the same way: a scam offers no compensating return, and its \"returns\" are often the bait. A promise of high returns with little or no risk contradicts the risk–return trade-off and is itself a warning sign."
+          ]
+        },
+        {
+          "heading": "Expected return, variability, and diversification",
+          "concept_ids": [
+            "risk_return",
+            "diversification"
+          ],
+          "paragraphs": [
+            "With outcomes Rₛ in states s with probabilities pₛ, the expected return is E[R] = Σ pₛ·Rₛ. Two assets can have the same E[R] but very different spreads of outcomes. Risk-averse savers require a higher E[R] to accept a wider spread, which is the risk–return trade-off.",
+            "A portfolio's return is the weighted average Σ wₖ·Rₖ of its assets' returns. Spreading money across many assets with shocks that are not perfectly correlated reduces the variability of the total, because company-specific shocks partly offset each other. Shocks common to all assets (market or systematic risk) do not average out, so diversification has a limit. Historically, many actively managed funds have not beaten the market average, which is consistent with prices that are hard to predict."
+          ]
+        },
+        {
+          "heading": "Long horizons and assumptions",
+          "concept_ids": [
+            "long_term_planning"
+          ],
+          "paragraphs": [
+            "A projection such as P(1 + g)^t assumes a constant return g. Actual returns vary year to year, so the realized outcome can be far above or below the projection, and the order of good and bad years matters when money is added or withdrawn. A sound plan states its assumptions (return, inflation, time, fees), uses real rather than nominal returns for long horizons, and keeps short-term needs in liquid assets so that a market fall does not force a sale at a low price."
+          ]
+        },
+        {
+          "heading": "The economics of inclusion",
+          "concept_ids": [
+            "financial_inclusion",
+            "digital_finance"
+          ],
+          "paragraphs": [
+            "Exclusion raises the cost of basic financial activities. Without an account, saving is riskier (cash can be lost or stolen), payments cost more, and borrowing often comes from informal lenders at high rates. Insurance markets that pool risk across many households are out of reach, so a single shock can push a household into poverty. Digital services lower the fixed cost of serving small, remote customers, which is why mobile money spread quickly in places where bank branches were scarce.",
+            "Measured inclusion is usually account ownership, but use matters too: saving in an account, receiving payments digitally, and being able to get emergency money. Policy therefore combines access (target 8.10) with consumer protection, because new channels also bring fraud, data misuse, and high-cost credit. Equal access for the poor and vulnerable is part of target 1.4."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c07-l3-we1",
+      "level": "beginner",
+      "title": "Eggs in one basket vs. four baskets",
+      "problem": "Hypothetical example: Alex has $1,000 to invest for several years. Option 1: put all of it into Company W. Option 2: put $250 into each of four companies, including W. Over the period, Company W's shares lose half their value, and the other three companies each gain 4%. How much does Alex have under each option?",
+      "steps": [
+        "Option 1: $1,000 × 0.5 = $500.",
+        "Option 2, Company W: $250 × 0.5 = $125.",
+        "Option 2, other three: $750 × 1.04 = $780.",
+        "Option 2 total: $125 + $780 = $905."
+      ],
+      "answer": "Option 1 leaves $500; Option 2 leaves $905. Spreading the money limited the damage from one company's loss, though Option 2 still lost money overall.",
+      "check": {
+        "type": "linear",
+        "intercept": 125,
+        "slope": 1.04,
+        "x": 750,
+        "expected": 905
+      }
+    },
+    {
+      "id": "c07-l3-we2",
+      "level": "intermediate",
+      "title": "Same average, different risk",
+      "problem": "Hypothetical example: Choice A is an insured savings deposit paying a fixed 3% for one year. Choice B is an investment that, in this simplified example, returns +12% or −6% with equal probability. Compare their expected returns and their risk.",
+      "steps": [
+        "Expected return of B = 0.5 × 12% + 0.5 × (−6%) = 6% − 3% = 3%.",
+        "Choice A returns 3% with no variation (in this example).",
+        "Both have an expected return of 3%, but B's outcome ranges from −6% to +12%."
+      ],
+      "answer": "The two choices have the same expected return (3%), but B is much riskier. A risk-averse saver would choose B only if it offered a higher expected return, which is the risk–return trade-off.",
+      "check": {
+        "type": "linear",
+        "intercept": 6,
+        "slope": 0.5,
+        "x": -6,
+        "expected": 3
+      }
+    },
+    {
+      "id": "c07-l3-we3",
+      "level": "intermediate",
+      "title": "Inflation risk for cash",
+      "problem": "Hypothetical example: Kai keeps $500 in cash at home for two years. Prices rise 4% each year. What is the cash worth in start-of-period dollars after two years? Round to the nearest cent.",
+      "steps": [
+        "Price level factor after two years = 1.04 × 1.04 = 1.0816.",
+        "Real value = $500 ÷ 1.0816 ≈ $462.28.",
+        "Loss of purchasing power = $500 − $462.28 = $37.72, about 7.5%."
+      ],
+      "answer": "The $500 buys only what about $462.28 bought two years earlier. Cash avoids market risk but carries inflation risk (and the risk of loss or theft).",
+      "check": {
+        "type": "ratio",
+        "numerator": 500,
+        "denominator": 1.0816,
+        "expected": 462.28,
+        "tolerance": 0.005
+      }
+    },
+    {
+      "id": "c07-l3-we4",
+      "level": "advanced",
+      "title": "What lower transfer fees are worth",
+      "problem": "Hypothetical example: A worker in a city sends $200 home to family every month. A cash courier charges a fee of 8% of the amount sent. A mobile money service charges 2%. How much does the family save in fees per year by switching, assuming the fees stay the same?",
+      "steps": [
+        "Fee difference per transfer = (8% − 2%) × $200 = 0.06 × $200 = $12.",
+        "Per year: $12 × 12 transfers = $144.",
+        "As a share of the $2,400 sent each year, that is 6%."
+      ],
+      "answer": "Switching saves $144 a year in this example. Lower transaction costs are one way digital financial services can support household budgets, as long as users can avoid scams and fees are clearly disclosed.",
+      "check": {
+        "type": "product",
+        "factors": [
+          200,
+          0.06,
+          12
+        ],
+        "expected": 144
+      }
+    },
+    {
+      "id": "c07-l3-we5",
+      "level": "advanced",
+      "title": "Pricing default risk",
+      "problem": "Hypothetical example: Lender L wants an expected return of 4% on one-year loans. It expects 3% of borrowers to default and repay nothing. What interest rate must it charge? Round to two decimal places, and compare with simply adding 4% + 3%.",
+      "steps": [
+        "Condition: (1 + i)(1 − 0.03) = 1.04.",
+        "1 + i = 1.04 ÷ 0.97 ≈ 1.072165.",
+        "i ≈ 7.22%, slightly more than 4% + 3% = 7%, because the lost loans would also have paid interest."
+      ],
+      "answer": "The lender must charge about 7.22%. The extra 3.22 percentage points above the target are a risk premium for credit (default) risk.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1.04,
+        "denominator": 0.97,
+        "expected": 1.0722,
+        "tolerance": 0.0001
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Risk, return, and diversification in household investing",
+      "source_ids": [
+        "openstax-pe3-17-2",
+        "openstax-pe3-17-3"
+      ],
+      "paragraphs": [
+        "Economics textbooks compare bank accounts, bonds, stocks, and other assets by return, risk, and liquidity: safer assets tend to pay less, and stocks have offered higher average returns with large short-run swings. They recommend diversification, often through funds that hold many companies, and note that many professionally managed funds have not beaten the market average, because future price changes are hard to predict."
+      ]
+    },
+    {
+      "title": "How regulators describe scams",
+      "source_ids": [
+        "ftc-avoid-scam"
+      ],
+      "paragraphs": [
+        "The U.S. Federal Trade Commission describes four common signs of a scam: impersonation of a trusted organization, a claimed problem or prize, pressure to act immediately, and a demand for payment by an unusual method such as gift cards, wire transfers, payment apps, or cryptocurrency."
+      ]
+    },
+    {
+      "title": "Measuring financial inclusion",
+      "source_ids": [
+        "worldbank-financial-inclusion",
+        "worldbank-global-findex"
+      ],
+      "paragraphs": [
+        "The World Bank describes access to affordable financial services, such as payments, savings, credit, and insurance, as important for reducing poverty and supporting growth. Its Global Findex surveys track account ownership, including mobile money accounts, along with saving, borrowing, digital payments, and whether people can get emergency money. The World Bank also notes the risks of digital finance, such as predatory lending and data privacy problems."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      1,
+      8
+    ],
+    "title": "Expanding access to financial services in Country T",
+    "paragraphs": [
+      "SDG target 1.4 calls for equal rights to economic resources and access to financial services, including microfinance, especially for the poor and the vulnerable. SDG target 8.10 calls for strengthening domestic financial institutions to expand access to banking, insurance, and financial services for all.",
+      "Hypothetical situation: In rural Country T, few adults have an account. Farmers keep savings in cash, pay high fees to send money, and borrow from informal lenders. Many people have a basic mobile phone. The government wants to expand financial inclusion and is comparing three approaches."
+    ],
+    "options": [
+      {
+        "name": "License mobile money agents in every village",
+        "benefits": [
+          "People can save, send, and receive money cheaply using basic phones.",
+          "Reaches remote areas faster than building bank branches."
+        ],
+        "costs": [
+          "New users may be targeted by scams or lose money through mistakes.",
+          "People without phones or network coverage are left out."
+        ],
+        "assumptions": [
+          "Agents are supervised and fees are clearly disclosed."
+        ]
+      },
+      {
+        "name": "Require banks to offer a basic low-fee account to everyone",
+        "benefits": [
+          "Accounts come with deposit protection and a path to other services.",
+          "Uses existing regulated institutions (target 8.10)."
+        ],
+        "costs": [
+          "Banks may have few branches in rural areas, so access stays limited.",
+          "Low-fee accounts may be costly for banks, which may push fees elsewhere."
+        ],
+        "assumptions": [
+          "People have the identification needed to open an account."
+        ]
+      },
+      {
+        "name": "Subsidize small loans for farmers through microfinance institutions",
+        "benefits": [
+          "Credit lets farmers buy seed and tools, which can raise income.",
+          "Directly supports microfinance named in target 1.4."
+        ],
+        "costs": [
+          "Borrowers who face a bad harvest may fall into debt they cannot repay.",
+          "Subsidies cost public money and may crowd out saving products."
+        ],
+        "assumptions": [
+          "Loans are used for productive investment, and lenders treat borrowers fairly."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which approach best expands access for the poorest households (target 1.4)? Which best builds strong domestic financial institutions (target 8.10)? Which financial risks from this lesson does each option create or reduce, and how could consumer protection limit them?"
+    ],
+    "source_ids": [
+      "un-sdg-1",
+      "un-sdg-8",
+      "worldbank-financial-inclusion"
+    ]
+  },
+  "key_takeaways": [
+    "Main financial risks: market, inflation, credit (default), liquidity, and fraud.",
+    "Scam warning signs: impersonation, a sudden problem or prize, pressure to act now, and unusual payment methods.",
+    "Higher average returns usually come with more risk; a promise of high returns with no risk is a warning sign, and past returns do not guarantee future returns.",
+    "Diversification reduces the effect of any single investment's loss but cannot remove market-wide risk.",
+    "Financial inclusion means access to useful, affordable accounts, payments, savings, credit, and insurance; mobile money has expanded access. It is part of SDG targets 1.4 and 8.10."
+  ],
+  "source_ids": [
+    "openstax-pe3-17-1",
+    "openstax-pe3-17-2",
+    "openstax-pe3-17-3",
+    "openstax-pe3-22-4",
+    "ftc-avoid-scam",
+    "fdic-deposit-insurance",
+    "worldbank-financial-inclusion",
+    "worldbank-global-findex",
+    "un-sdg-1",
+    "un-sdg-8"
+  ]
+}

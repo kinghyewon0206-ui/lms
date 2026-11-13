@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "id": "c07-l2-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c07",
+  "lesson_id": "c07-l2",
+  "version": 1,
+  "title": "Lesson 2 Quiz: Saving, Interest, and Compound Growth",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c07-l2-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l2",
+      "objective": 2,
+      "concept_ids": [
+        "simple_interest"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: You deposit $800 in an account that pays 3% simple interest per year. You make no other deposits or withdrawals. How much interest, in dollars, do you earn in total over 4 years? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "c07-l2-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l2",
+      "objective": 2,
+      "concept_ids": [
+        "compound_interest"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: $2,500 is deposited at 4% per year, compounded annually, for 2 years with no other deposits or withdrawals. What is the balance after 2 years, in dollars? Round to the nearest cent. (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "c07-l2-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l2",
+      "objective": 2,
+      "concept_ids": [
+        "apr_apy",
+        "compound_interest"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Bank A pays a 4.00% APR compounded monthly. Bank B pays a 4.05% APY. Assuming no fees and the same safety, which account earns more over one year?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Bank B, because 4.05% is higher than 4.00%"
+        },
+        {
+          "id": "b",
+          "text": "They earn the same, since both rates are close to 4%"
+        },
+        {
+          "id": "c",
+          "text": "Bank A, because its APY is about 4.07%"
+        },
+        {
+          "id": "d",
+          "text": "Bank B, because monthly compounding lowers the APY"
+        }
+      ],
+      "source_ids": [
+        "cfpb-reg-dd-apy"
+      ]
+    },
+    {
+      "id": "c07-l2-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l2",
+      "objective": 3,
+      "concept_ids": [
+        "real_return"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A savings account earns a nominal return of 6% over a year in which inflation is 4%. Using the exact formula (1 + nominal) ÷ (1 + inflation) − 1, what is the real return, in percent? Round to two decimal places. (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "c07-l2-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l2",
+      "objective": 1,
+      "concept_ids": [
+        "saving_emergency_fund"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Why is an emergency fund usually kept in an insured savings account rather than invested in the shares of a single company?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Shares cannot be sold quickly, even in normal markets"
+        },
+        {
+          "id": "b",
+          "text": "It needs to be reachable quickly and keep a stable value"
+        },
+        {
+          "id": "c",
+          "text": "Savings accounts tend to earn higher returns than shares"
+        },
+        {
+          "id": "d",
+          "text": "Insured accounts protect the fund against inflation"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-17-2",
+        "fdic-deposit-insurance",
+        "cfpb-emergency-fund-guide"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c07-l1",
+  "content_version": 1,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      }
+    ]
+  },
+  "objectives": [
+    "Distinguish gross income from net (take-home) income and explain why a budget usually starts from net income.",
+    "Classify expenses as fixed or variable and as needs or wants, and build a monthly budget that balances income, spending, and saving.",
+    "Write a specific, measurable financial goal with a deadline and calculate how much to save each period to reach it."
+  ],
+  "concepts": [
+    {
+      "id": "gross_net_income",
+      "term": "Gross income vs. net (take-home) income",
+      "definition": "Gross income is what you earn before anything is taken out. Net income, or take-home pay, is what is left after deductions such as income and payroll taxes and, for some workers, retirement or health-plan contributions. Net income is the money actually available to spend and save.",
+      "source_ids": [
+        "cfpb-pay-stub-tool"
+      ]
+    },
+    {
+      "id": "fixed_variable_expenses",
+      "term": "Fixed vs. variable expenses",
+      "definition": "A fixed expense stays about the same each month, such as rent or a phone plan. A variable expense changes from month to month, such as groceries, fuel, or eating out. Variable expenses are usually easier to adjust in the short run.",
+      "source_ids": [
+        "cfpb-emergency-fund-guide"
+      ]
+    },
+    {
+      "id": "needs_wants",
+      "term": "Needs vs. wants",
+      "definition": "Needs are things required for basic living and working, such as housing, food, and transportation to school or work. Wants make life more enjoyable but can be cut back. The line between them depends on your situation, and every choice to spend has an opportunity cost.",
+      "source_ids": [
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "budget",
+      "term": "Budget and budgeting methods",
+      "definition": "A budget is a plan that lists expected income and assigns it to spending and saving for a period, usually a month. Common methods include tracking every category against a plan, a zero-based budget (every dollar of net income gets a job), and percentage guidelines such as 50/30/20 (needs/wants/saving). These are examples, not rules; the right split depends on your situation.",
+      "source_ids": [
+        "cfpb-pay-stub-tool",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "financial_goals",
+      "term": "Financial goals (SMART framing)",
+      "definition": "A useful financial goal is specific, measurable, achievable, relevant, and time-bound (SMART). For example, \"save $600 for a used bike in 6 months\" can be turned into a saving amount per month and checked against the budget.",
+      "source_ids": [
+        "cfpb-emergency-fund-guide"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Your paycheck is smaller than your pay rate suggests, because taxes and other deductions come out first. A budget is a simple plan for the money you actually take home: what must be paid, what you would like to buy, and what you will save.",
+      "sections": [
+        {
+          "heading": "The money you earn vs. the money you get",
+          "concept_ids": [
+            "gross_net_income"
+          ],
+          "paragraphs": [
+            "Imagine your first part-time job pays $15 an hour and you work 20 hours. You earned $300. That is your gross pay. But the paycheck says less, because taxes and sometimes other deductions are taken out first. What lands in your account is your net pay, also called take-home pay.",
+            "When you plan your spending, start with take-home pay. Planning with the bigger gross number is a common mistake: you would be budgeting money you never receive."
+          ]
+        },
+        {
+          "heading": "Kinds of spending",
+          "concept_ids": [
+            "fixed_variable_expenses",
+            "needs_wants"
+          ],
+          "paragraphs": [
+            "Some bills are the same every month, like a phone plan or a bus pass. These are fixed expenses. Others go up and down, like snacks, clothes, or movie tickets. These are variable expenses.",
+            "It also helps to sort spending into needs and wants. Food and a way to get to school or work are needs. A new game or a second streaming service is a want. Wants are not bad, but they are the easiest place to cut when money is tight. Remember the opportunity cost: every dollar spent on one thing is a dollar you cannot spend or save for something else."
+          ]
+        },
+        {
+          "heading": "Making a simple budget",
+          "concept_ids": [
+            "budget",
+            "financial_goals"
+          ],
+          "paragraphs": [
+            "A budget is a plan for your money. Write down your take-home pay. Then list your fixed expenses, your usual variable expenses, and an amount to save. If the total is more than your take-home pay, something has to change: spend less on wants, find more income, or save toward the goal more slowly.",
+            "Goals make saving easier. \"Save some money\" is vague. \"Save $600 for a used bike in 6 months\" is clear: you know you need about $100 a month, and you can check each month whether you are on track."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "A budget allocates net income across fixed and variable expenses and saving. Sorting expenses by type (fixed/variable) and by priority (needs/wants) shows where adjustments are possible, and SMART goals turn plans into amounts per month.",
+      "sections": [
+        {
+          "heading": "From gross pay to take-home pay",
+          "concept_ids": [
+            "gross_net_income"
+          ],
+          "paragraphs": [
+            "Net income = gross income − deductions. Deductions typically include income tax withholding and payroll taxes, and may include contributions to a retirement plan or health insurance. A pay stub lists each deduction for the pay period and the year to date.",
+            "Because deductions can be a meaningful share of gross pay, a budget built on gross income overstates the money available. Budgets are therefore usually built on net income."
+          ]
+        },
+        {
+          "heading": "Two ways to sort expenses",
+          "concept_ids": [
+            "fixed_variable_expenses",
+            "needs_wants"
+          ],
+          "paragraphs": [
+            "Fixed vs. variable describes how an expense behaves over time. Needs vs. wants describes how important it is. The two sortings are different: rent is usually a fixed need, groceries a variable need, a gym membership a fixed want, and restaurant meals a variable want.",
+            "This matters for adjusting a budget. Fixed expenses are often set by contracts, so they change slowly (moving to cheaper housing takes time). Variable wants can change next week. Whether something is a need also depends on your situation: a car may be a need for someone with no bus service and a want for someone who lives next to a train station."
+          ]
+        },
+        {
+          "heading": "Budgeting methods",
+          "concept_ids": [
+            "budget"
+          ],
+          "paragraphs": [
+            "A tracking budget compares planned and actual amounts in each category at the end of the month. A zero-based budget assigns every dollar of net income to a category, including saving, so that income − spending − saving = 0. A percentage guideline such as 50/30/20 is a starting point: for example, about 50% of net income for needs, 30% for wants, and 20% for saving and paying down debt.",
+            "Percentage guidelines are examples, not rules. Where housing is expensive, needs may take far more than 50%. The goal of any method is the same: spending plus saving should not exceed net income, and the plan should reflect your priorities."
+          ]
+        },
+        {
+          "heading": "Goals that you can measure",
+          "concept_ids": [
+            "financial_goals"
+          ],
+          "paragraphs": [
+            "A SMART goal is specific (what), measurable (how much), achievable (fits the budget), relevant (matters to you), and time-bound (by when). The saving needed per month is (goal amount − amount already saved) ÷ months left. If that amount does not fit the budget, you can lower the goal, extend the deadline, cut other spending, or raise income."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Formally, a monthly budget satisfies spending + saving = net income, where net income = gross income − deductions. A budget is a personal budget constraint: each allocation has an opportunity cost, and a goal G with current savings S and deadline T months requires saving s = (G − S) ÷ T per month (ignoring interest).",
+      "sections": [
+        {
+          "heading": "The budget identity",
+          "concept_ids": [
+            "gross_net_income",
+            "budget"
+          ],
+          "paragraphs": [
+            "Let Y_g be gross income and D the deductions, so net income is Y_n = Y_g − D. A balanced monthly budget satisfies F + V + s = Y_n, where F is fixed expenses, V is variable expenses, and s is saving. A deficit (F + V > Y_n) must be financed by drawing down savings or by borrowing, which has a cost (Lesson 2).",
+            "The deduction rate D ÷ Y_g varies with income, tax rules, and benefit choices, so the same gross pay can produce different take-home pay. This is why a budget built on Y_g instead of Y_n is systematically too optimistic."
+          ]
+        },
+        {
+          "heading": "Adjustment and opportunity cost",
+          "concept_ids": [
+            "fixed_variable_expenses",
+            "needs_wants"
+          ],
+          "paragraphs": [
+            "A personal budget works like the budget constraint from Course 1: with Y_n fixed, an extra dollar in one category means one dollar less somewhere else, so every allocation has an opportunity cost. In the short run, F is close to fixed because of contracts, so adjustments fall on V and s. In the long run, F can change too (a cheaper apartment, a different phone plan).",
+            "The needs/wants classification is a ranking, not a law of nature. It depends on preferences and circumstances, so two reasonable people can classify the same item differently. What the budget identity requires is only that the totals add up."
+          ]
+        },
+        {
+          "heading": "From goals to required saving",
+          "concept_ids": [
+            "financial_goals"
+          ],
+          "paragraphs": [
+            "For a goal G, current savings S, and T months, the required saving is s = (G − S) ÷ T, ignoring interest (interest would lower s slightly; see Lesson 2). A goal is feasible within the current budget only if s ≤ Y_n − F − V. If it is not, the levers are G (smaller goal), T (later deadline), V or F (spend less), and Y_n (earn more). Writing the goal in SMART form makes each lever explicit and lets you check progress each month."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c07-l1-we1",
+      "level": "beginner",
+      "title": "From a pay stub to take-home pay",
+      "problem": "Hypothetical example: Jordan's monthly pay stub shows gross pay of $2,400. Deductions are $250 for income tax, $134 for payroll taxes, and nothing else. How much is Jordan's take-home pay, and which number should Jordan's budget start from?",
+      "steps": [
+        "Total deductions = $250 + $134 = $384.",
+        "Net (take-home) pay = $2,400 − $384 = $2,016.",
+        "Deductions are $384 ÷ $2,400 = 16% of gross pay."
+      ],
+      "answer": "Jordan takes home $2,016 a month. The budget should start from $2,016, not $2,400, because the $384 in deductions never reaches Jordan's account.",
+      "check": {
+        "type": "difference",
+        "a": 2400,
+        "b": 384,
+        "expected": 2016
+      }
+    },
+    {
+      "id": "c07-l1-we2",
+      "level": "intermediate",
+      "title": "Building and testing a monthly budget",
+      "problem": "Hypothetical example: Sam's net income is $2,000 a month. Fixed expenses: rent share $750, phone $45, transit pass $65, insurance $90. Variable expenses (usual month): groceries $260, electricity $60, eating out and entertainment $140, clothes $90. How much is left for saving, and how does it compare with the 20% saving share in the 50/30/20 example guideline?",
+      "steps": [
+        "Fixed expenses = $750 + $45 + $65 + $90 = $950.",
+        "Variable expenses = $260 + $60 + $140 + $90 = $550.",
+        "Left for saving = $2,000 − $950 − $550 = $500.",
+        "20% of net income = 0.20 × $2,000 = $400, so Sam's plan saves $100 more than that example guideline."
+      ],
+      "answer": "Sam can save $500 a month (25% of net income). The 50/30/20 split is only one example; Sam's plan balances because spending plus saving equals net income.",
+      "check": {
+        "type": "difference",
+        "a": 1050,
+        "b": 550,
+        "expected": 500
+      }
+    },
+    {
+      "id": "c07-l1-we3",
+      "level": "advanced",
+      "title": "Turning a goal into a monthly amount",
+      "problem": "Hypothetical example: Priya wants a $1,800 laptop for school in 12 months and has already saved $300. Ignoring interest, how much must she save each month? Her budget currently leaves $110 a month for saving. Is the goal feasible, and what are her options?",
+      "steps": [
+        "Required saving s = (G − S) ÷ T = ($1,800 − $300) ÷ 12 = $125 a month.",
+        "Available saving is $110, so the plan falls short by $15 a month ($180 over the year).",
+        "Options: cut $15 a month of variable wants, earn $15 more a month, extend the deadline to about 14 months ($1,500 ÷ $110 ≈ 13.6, so 14 months), or choose a cheaper laptop."
+      ],
+      "answer": "She needs $125 a month, which is $15 more than her budget allows. She can adjust spending, income, the deadline, or the goal; which choice is best depends on her situation.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1500,
+        "denominator": 12,
+        "expected": 125
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Reading a pay stub",
+      "source_ids": [
+        "cfpb-pay-stub-tool"
+      ],
+      "paragraphs": [
+        "Consumer education materials from the U.S. Consumer Financial Protection Bureau (CFPB) walk new workers through a sample pay stub: gross wages, each tax and deduction, and the resulting net pay. They point out that seeing how gross pay shrinks to take-home pay helps people plan a realistic budget."
+      ]
+    },
+    {
+      "title": "Tracking cash flow and setting a first goal",
+      "source_ids": [
+        "cfpb-emergency-fund-guide"
+      ],
+      "paragraphs": [
+        "The CFPB's guide to emergency savings suggests tracking when money comes in and goes out, because bills that come due before payday can leave a person short even when the monthly totals balance. It also suggests that a specific savings goal helps people stay motivated."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      1,
+      8
+    ],
+    "title": "A first paycheck program: what should Town R teach?",
+    "paragraphs": [
+      "SDG 1 aims to end poverty in all its forms. Target 1.4 calls for equal rights to economic resources and access to basic services and financial services, including microfinance, for all men and women, especially the poor and the vulnerable. SDG 8 calls for decent work for all (target 8.5).",
+      "Hypothetical situation: Town R runs a summer jobs program for young people from low-income families. Many participants will receive their first paycheck. The program has time for one short money workshop and is choosing between three designs."
+    ],
+    "options": [
+      {
+        "name": "A hands-on pay stub and budget workshop",
+        "benefits": [
+          "Participants practice turning gross pay into take-home pay and planning a real month.",
+          "Skills apply right away, while the paychecks arrive."
+        ],
+        "costs": [
+          "Needs trained staff and real-looking materials.",
+          "One workshop may not change habits by itself."
+        ],
+        "assumptions": [
+          "Participants have, or can open, a place to receive and keep their pay."
+        ]
+      },
+      {
+        "name": "Help every participant open a low-cost account and set up automatic saving",
+        "benefits": [
+          "Pay arrives safely, and a small saving amount builds up without effort.",
+          "Connects young workers to basic financial services (target 1.4)."
+        ],
+        "costs": [
+          "Some participants may face fees or identification requirements.",
+          "Automatic saving can leave too little for urgent family needs."
+        ],
+        "assumptions": [
+          "Suitable low-cost accounts are available in Town R."
+        ]
+      },
+      {
+        "name": "Give each participant a printed budgeting guide only",
+        "benefits": [
+          "Very low cost, so the program can reach more people.",
+          "Participants can return to it later."
+        ],
+        "costs": [
+          "Many people do not read printed guides closely.",
+          "No practice and no help with access to accounts."
+        ],
+        "assumptions": [
+          "Participants are motivated to learn on their own."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which design best helps young workers turn a first paycheck into lasting financial stability? Is a budgeting skill enough without access to an account (target 1.4)? Could two options be combined at a reasonable cost?"
+    ],
+    "source_ids": [
+      "un-sdg-1",
+      "un-sdg-8",
+      "cfpb-pay-stub-tool"
+    ]
+  },
+  "key_takeaways": [
+    "Net (take-home) income = gross income − deductions; budgets usually start from net income.",
+    "Fixed vs. variable describes how an expense behaves; needs vs. wants describes how important it is. Variable wants are usually the quickest to adjust.",
+    "A budget assigns net income to spending and saving so that the totals add up; methods such as 50/30/20 are examples, not rules.",
+    "Every spending choice has an opportunity cost, because net income is limited.",
+    "A SMART goal turns a wish into a monthly saving amount: (goal − amount already saved) ÷ months left."
+  ],
+  "source_ids": [
+    "cfpb-pay-stub-tool",
+    "cfpb-emergency-fund-guide",
+    "openstax-pe3-2-1",
+    "un-sdg-1",
+    "un-sdg-8"
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "id": "c07-final",
+  "kind": "final",
+  "course_id": "c07",
+  "version": 1,
+  "title": "Personal Finance: Final Assessment",
+  "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "Proposed: 7 of 10 questions (70%). Not approved by a teacher (admin); completion is not recognized until approved."
+  },
+  "questions": [
+    {
+      "id": "c07-final-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l1",
+      "objective": 2,
+      "concept_ids": [
+        "gross_net_income",
+        "budget"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Chris earns $3,000 a month in gross pay, and deductions take 18% of it. Chris plans to save 20% of net (take-home) income. How many dollars a month will Chris save? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "cfpb-pay-stub-tool"
+      ]
+    },
+    {
+      "id": "c07-final-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l1",
+      "objective": 2,
+      "concept_ids": [
+        "fixed_variable_expenses",
+        "budget"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Dana wants to free up $50 in next month's budget. Which change can she most likely make the fastest?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Move to an apartment with cheaper rent"
+        },
+        {
+          "id": "b",
+          "text": "Change the terms of her yearly phone contract"
+        },
+        {
+          "id": "c",
+          "text": "Spend less on eating out and entertainment"
+        },
+        {
+          "id": "d",
+          "text": "Switch to a car loan with lower payments"
+        }
+      ],
+      "source_ids": [
+        "cfpb-emergency-fund-guide"
+      ]
+    },
+    {
+      "id": "c07-final-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l1",
+      "objective": 3,
+      "concept_ids": [
+        "financial_goals"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which of these is the best example of a SMART financial goal?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Save $900 for a laptop in 12 months by setting aside $75 a month"
+        },
+        {
+          "id": "b",
+          "text": "Save a lot more money this year than I did last year"
+        },
+        {
+          "id": "c",
+          "text": "Try to spend less on things I do not really need"
+        },
+        {
+          "id": "d",
+          "text": "Become better with money and stop wasting it soon"
+        }
+      ],
+      "source_ids": [
+        "cfpb-emergency-fund-guide"
+      ]
+    },
+    {
+      "id": "c07-final-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l2",
+      "objective": 2,
+      "concept_ids": [
+        "compound_interest",
+        "apr_apy"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: $1,500 is deposited at a 4.8% APR compounded monthly for one year, with no other deposits or withdrawals. What is the balance after one year, in dollars? Round to the nearest cent. (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-17-3",
+        "cfpb-reg-dd-apy"
+      ]
+    },
+    {
+      "id": "c07-final-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l2",
+      "objective": 3,
+      "concept_ids": [
+        "real_return"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Your savings account pays 2% a year, and prices rise 3% over the same year. What happens to the purchasing power of your savings?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It rises by about 2%, because the account balance grows"
+        },
+        {
+          "id": "b",
+          "text": "It stays the same, because interest is paid on the balance"
+        },
+        {
+          "id": "c",
+          "text": "It rises by about 5%, the sum of interest and inflation"
+        },
+        {
+          "id": "d",
+          "text": "It falls by about 1%, because prices rise faster than the balance"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-4"
+      ]
+    },
+    {
+      "id": "c07-final-q6",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l2",
+      "objective": 3,
+      "concept_ids": [
+        "apr_apy",
+        "borrowing_cost"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Loan X and Loan Y are each $5,000 for three years at the same 8% interest rate. Loan Y also charges a $150 fee to set up the loan. If the disclosed APR includes this fee, how do the two loans compare?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Both APRs are 8%, because the interest rates are equal"
+        },
+        {
+          "id": "b",
+          "text": "Loan Y has the higher APR, because it costs more in total"
+        },
+        {
+          "id": "c",
+          "text": "Loan X has the higher APR, because Y's fee lowers its rate"
+        },
+        {
+          "id": "d",
+          "text": "Loan Y has the lower APR, because fees are paid up front"
+        }
+      ],
+      "source_ids": [
+        "cfpb-mortgage-apr"
+      ]
+    },
+    {
+      "id": "c07-final-q7",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l3",
+      "objective": 1,
+      "concept_ids": [
+        "financial_risk_types"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: For ten years, Grace keeps all her savings in cash in a drawer at home, while prices rise every year. Which risk is she most clearly exposed to?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Inflation risk"
+        },
+        {
+          "id": "b",
+          "text": "Market risk"
+        },
+        {
+          "id": "c",
+          "text": "Credit risk"
+        },
+        {
+          "id": "d",
+          "text": "Liquidity risk"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-22-4"
+      ]
+    },
+    {
+      "id": "c07-final-q8",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c07-l3",
+      "objective": 1,
+      "concept_ids": [
+        "financial_risk_types"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A lender wants an expected return of 3% on one-year loans. It expects 5% of borrowers to default and repay nothing. Using (1 + i)(1 − default share) = 1 + target return, what interest rate i must it charge, in percent? Round to two decimal places. (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-17-1",
+        "openstax-pe3-17-2"
+      ]
+    },
+    {
+      "id": "c07-final-q9",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l3",
+      "objective": 3,
+      "concept_ids": [
+        "financial_inclusion",
+        "digital_finance"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A program in Country V helps rural women open mobile money accounts linked to a savings feature and simple insurance. Which SDG target does this most directly support?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Target 8.5, equal pay for work of equal value"
+        },
+        {
+          "id": "b",
+          "text": "Target 1.1, eradicating extreme poverty for everyone"
+        },
+        {
+          "id": "c",
+          "text": "Target 8.6, fewer young people out of school or work"
+        },
+        {
+          "id": "d",
+          "text": "Target 1.4, equal access to financial services for all"
+        }
+      ],
+      "source_ids": [
+        "un-sdg-1",
+        "worldbank-financial-inclusion",
+        "worldbank-global-findex"
+      ]
+    },
+    {
+      "id": "c07-final-q10",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c07-l3",
+      "objective": 2,
+      "concept_ids": [
+        "risk_return",
+        "long_term_planning"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A friend says, \"Fund Z returned 15% a year for the last three years, so it will keep doing that. Put your emergency fund in it.\" What is the best response?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Agree, because three good years show the fund has a reliable return"
+        },
+        {
+          "id": "b",
+          "text": "Agree, as long as the fund's fees are lower than a savings account's"
+        },
+        {
+          "id": "c",
+          "text": "Disagree: past returns do not guarantee future ones, and emergency money needs stability"
+        },
+        {
+          "id": "d",
+          "text": "Disagree, because funds with high past returns tend to lose money next"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-17-3",
+        "openstax-pe3-17-2"
+      ]
+    }
+  ]
+}

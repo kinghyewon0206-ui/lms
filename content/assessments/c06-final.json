@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "id": "c06-final",
+  "kind": "final",
+  "course_id": "c06",
+  "version": 1,
+  "title": "Inequality & Policy: Final Assessment",
+  "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "Proposed: 7 of 10 questions (70%). Not approved by a teacher (admin); completion is not recognized until approved."
+  },
+  "questions": [
+    {
+      "id": "c06-final-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l1",
+      "objective": 1,
+      "concept_ids": [
+        "income_vs_wealth"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Rosa is retired, has a small pension, and owns a paid-off house worth $400,000. Jamal is 25, earns $70,000 a year, and owes $30,000 in student loans. Which description fits?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Rosa has low income but high wealth; Jamal has higher income but little wealth"
+        },
+        {
+          "id": "b",
+          "text": "Rosa has high income and high wealth; Jamal has low income and low wealth"
+        },
+        {
+          "id": "c",
+          "text": "Rosa and Jamal have similar wealth, because wealth counts yearly earnings"
+        },
+        {
+          "id": "d",
+          "text": "Jamal has more wealth, because his yearly pay is larger than his debt"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "c06-final-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l1",
+      "objective": 2,
+      "concept_ids": [
+        "lorenz_curve"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country R's cumulative income shares for the poorest 20%, 40%, 60%, and 80% are 6%, 16%, 32%, and 56%. Country S's are 4%, 14%, 34%, and 60%. What can you conclude from the Lorenz curves alone?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Country R is more equal, because its poorest quintile has a larger share"
+        },
+        {
+          "id": "b",
+          "text": "Country S is more equal, because its bottom 80% has a larger share"
+        },
+        {
+          "id": "c",
+          "text": "The curves cross, so the Lorenz curves alone cannot rank the countries"
+        },
+        {
+          "id": "d",
+          "text": "The countries are equally unequal, because both curves end at 100%"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-4"
+      ]
+    },
+    {
+      "id": "c06-final-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c06-l1",
+      "objective": 3,
+      "concept_ids": [
+        "gini_coefficient"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Four roommates have monthly incomes of $1,000, $2,000, $3,000, and $6,000. Using G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ) over all ordered pairs, find the exact Gini coefficient. (Enter a decimal rounded to two decimal places, with no unit.)",
+      "unit": "",
+      "source_ids": [
+        "worldbank-gini-index"
+      ]
+    },
+    {
+      "id": "c06-final-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l2",
+      "objective": 1,
+      "concept_ids": [
+        "marginal_average_rate"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: An income tax charges 20% on income up to $50,000 and 35% on income above $50,000. Ana gets a raise from $49,000 to $52,000. What happens?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Her whole income is now taxed at 35%, so her after-tax income falls"
+        },
+        {
+          "id": "b",
+          "text": "The $2,000 above $50,000 is taxed at 35%, so her after-tax income rises"
+        },
+        {
+          "id": "c",
+          "text": "Her average tax rate jumps to 35%, matching her new marginal rate"
+        },
+        {
+          "id": "d",
+          "text": "Her marginal rate stays at 20%, because the raise is under $5,000"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-30-2"
+      ]
+    },
+    {
+      "id": "c06-final-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l2",
+      "objective": 2,
+      "concept_ids": [
+        "transfer_payments"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which statement best describes the difference between cash and in-kind transfers?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cash transfers go to working families; in-kind transfers go to retirees"
+        },
+        {
+          "id": "b",
+          "text": "In-kind transfers are a kind of tax; cash transfers are a public purchase"
+        },
+        {
+          "id": "c",
+          "text": "Cash transfers raise prices; in-kind transfers lower them for consumers"
+        },
+        {
+          "id": "d",
+          "text": "Cash can be spent as a family chooses; in-kind help is a specific good"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-3",
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "c06-final-q6",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l2",
+      "objective": 3,
+      "concept_ids": [
+        "equality_vs_equity"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Two students agree on every fact about a new tax but still disagree about whether it is fair. What does this show?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "One of them has made a calculation error about the tax"
+        },
+        {
+          "id": "b",
+          "text": "Fairness can be measured exactly with the Gini coefficient"
+        },
+        {
+          "id": "c",
+          "text": "Equity involves value judgments that facts alone cannot settle"
+        },
+        {
+          "id": "d",
+          "text": "The tax is proportional, since flat taxes are widely disputed"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "c06-final-q7",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l3",
+      "objective": 3,
+      "concept_ids": [
+        "economic_mobility"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which policy aims most directly at raising intergenerational mobility?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Expanding early childhood education in low-income neighborhoods"
+        },
+        {
+          "id": "b",
+          "text": "Cutting the general sales tax rate by one percentage point"
+        },
+        {
+          "id": "c",
+          "text": "Raising the poverty line so that more families are counted as poor"
+        },
+        {
+          "id": "d",
+          "text": "Publishing quintile income shares quarterly instead of yearly"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "c06-final-q8",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c06-l3",
+      "objective": 1,
+      "concept_ids": [
+        "poverty_rate_gap"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A district's poverty line is $20,000 a year. Three households are below it, with incomes of $14,000, $16,500, and $11,000. What is the poverty gap, the total amount needed to raise each of them exactly to the line? (Enter a number in dollars, without the $ sign or commas.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-15-1"
+      ]
+    },
+    {
+      "id": "c06-final-q9",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l3",
+      "objective": 3,
+      "concept_ids": [
+        "public_finance"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A city wants to fund a new benefit costing $3 million a year from a flat income tax. Its taxable income base is $600 million. Which statement is correct under a balanced budget?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A flat tax of 5% on the base would just cover the program's cost"
+        },
+        {
+          "id": "b",
+          "text": "Borrowing the $3 million removes the cost instead of delaying it"
+        },
+        {
+          "id": "c",
+          "text": "A sales tax would take the same share of income from each household"
+        },
+        {
+          "id": "d",
+          "text": "A 0.5% flat tax covers it, assuming the tax base does not shrink"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-30-2"
+      ]
+    },
+    {
+      "id": "c06-final-q10",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c06-l3",
+      "objective": 1,
+      "concept_ids": [
+        "poverty_line",
+        "social_protection"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A country's official poverty line counts cash income and leaves out non-cash benefits. A new food assistance card raises many poor families' food spending. Other things equal, what happens to the official poverty rate?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It falls, because the card is counted as cash income in the measure"
+        },
+        {
+          "id": "b",
+          "text": "It does not change, because in-kind help is left out of measured income"
+        },
+        {
+          "id": "c",
+          "text": "It rises, because families now spend less of their own cash on food"
+        },
+        {
+          "id": "d",
+          "text": "It falls to zero, because food needs are the basis of the poverty line"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-15-1",
+        "openstax-pe3-15-3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c06-l2",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Classify a tax as progressive, proportional (flat), or regressive by comparing the share of income it takes at different income levels, and calculate average and marginal tax rates under a bracket system.",
+    "Explain how taxes and transfer payments (cash and in-kind) change the distribution of income, and calculate incomes and inequality measures before and after taxes and transfers in a simple static model.",
+    "Distinguish equality, equity, and efficiency, and evaluate the trade-offs of redistribution, separating arithmetic facts from contested evidence about incentive effects."
+  ],
+  "concepts": [
+    {
+      "id": "tax_progressivity",
+      "term": "Progressive, proportional (flat), and regressive taxes",
+      "definition": "A tax is progressive if it takes a larger share of income as income rises, proportional (flat) if it takes the same share at every income, and regressive if it takes a smaller share of income as income rises. The classification is about the share of income paid, not the dollar amount: a flat tax collects more dollars from richer people but the same percentage.",
+      "source_ids": [
+        "openstax-pe3-30-2",
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "marginal_average_rate",
+      "term": "Marginal vs. average tax rate",
+      "definition": "The marginal tax rate is the rate paid on the next dollar of income. The average tax rate is total tax divided by total income. In a bracket system, each rate applies only to the income inside its bracket, so the average rate is below the top marginal rate, and moving into a higher bracket never lowers after-tax income.",
+      "source_ids": [
+        "openstax-pe3-30-2"
+      ]
+    },
+    {
+      "id": "transfer_payments",
+      "term": "Transfer payments: cash and in-kind",
+      "definition": "Transfer payments are payments from the government to households that are not in exchange for goods or work. Cash transfers give money the household can spend as it chooses. In-kind transfers provide specific goods or services, such as food assistance, health coverage, school meals, or housing help.",
+      "source_ids": [
+        "openstax-pe3-15-3",
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "redistribution",
+      "term": "Redistribution",
+      "definition": "Using taxes and transfers to change the distribution of income: comparing market income (before taxes and transfers) with disposable income (after them) shows how much a system narrows gaps. Whether a whole system is progressive depends on taxes and transfers together, not on one tax alone.",
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "equality_vs_equity",
+      "term": "Equality vs. equity",
+      "definition": "Equality means people end up with the same amount. Equity means fairness, which can be defined in different ways: equal opportunity, rewards linked to effort, or more help for people with greater needs. Equity is a value judgment, so people who agree on the facts can still disagree about what is fair.",
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ]
+    },
+    {
+      "id": "equity_efficiency_tradeoff",
+      "term": "The equity-efficiency trade-off",
+      "definition": "Taxes and benefits that fall as income rises can weaken incentives to work, save, or invest, so redistribution may reduce total output; administrative costs also use up resources. How large these effects are is debated, and some policies, such as education, may raise both equality and output.",
+      "source_ids": [
+        "openstax-pe3-15-5",
+        "openstax-pe3-15-2"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Taxes can take a bigger, equal, or smaller share of income from people with higher incomes. Governments also give money or services to some households. Together, taxes and transfers can narrow the gap between rich and poor, but they can also change how much people choose to work.",
+      "sections": [
+        {
+          "heading": "Bigger share, same share, smaller share",
+          "concept_ids": [
+            "tax_progressivity"
+          ],
+          "paragraphs": [
+            "To sort a tax, ask what percent of income it takes from people with low and high incomes. If richer people pay a bigger percent, the tax is progressive. If everyone pays the same percent, it is proportional, also called a flat tax. If richer people pay a smaller percent, it is regressive.",
+            "Watch out: dollars and percents are different. Hypothetical example: a 10% flat tax takes $2,000 from someone earning $20,000 and $20,000 from someone earning $200,000. The richer person pays ten times as many dollars, but the same 10%, so the tax is proportional, not progressive."
+          ]
+        },
+        {
+          "heading": "The rate on the next dollar",
+          "concept_ids": [
+            "marginal_average_rate"
+          ],
+          "paragraphs": [
+            "Many income taxes use brackets. Hypothetical example: no tax on the first $10,000, 10% on income from $10,000 to $40,000, and 30% on income above $40,000. The marginal tax rate is the rate on your next dollar. The average tax rate is your total tax divided by your total income.",
+            "A common myth says that a raise can push you into a higher bracket and leave you with less money. In a bracket system that cannot happen, because the higher rate applies only to the dollars above the bracket line. Your earlier dollars are still taxed at the lower rates."
+          ]
+        },
+        {
+          "heading": "Money and help from the government",
+          "concept_ids": [
+            "transfer_payments"
+          ],
+          "paragraphs": [
+            "Governments also send resources to households. Some are cash, like a monthly payment the family can spend on anything. Others are in-kind, meaning a specific good or service, like free school lunches, help buying food, health insurance, or help paying rent. Cash gives families more choice; in-kind help makes sure the support goes to a particular need."
+          ]
+        },
+        {
+          "heading": "Before and after: redistribution",
+          "concept_ids": [
+            "redistribution"
+          ],
+          "paragraphs": [
+            "Redistribution means taxes and transfers move income from some households to others. To see the effect, compare incomes before taxes and transfers with incomes after them. Even a flat tax can narrow the gap if the money it raises is paid back as an equal amount to every household, because that equal payment is a much bigger deal for a poor family than for a rich one."
+          ]
+        },
+        {
+          "heading": "Equal, fair, and efficient",
+          "concept_ids": [
+            "equality_vs_equity",
+            "equity_efficiency_tradeoff"
+          ],
+          "paragraphs": [
+            "Equal means everyone gets the same. Fair, or equitable, can mean different things to different people: an equal chance to succeed, a reward for effort, or extra help for people in greater need. Because fairness is a value judgment, reasonable people disagree.",
+            "There is also a possible trade-off. If taxes take a large share of each extra dollar, or if benefits shrink quickly when people earn more, some people may choose to work fewer hours. Running programs also costs money. Economists debate how big these effects are, and some policies, like better schools, may increase both fairness and total output."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Tax progressivity is defined by average tax rates across incomes, while incentives depend on marginal rates. A static before-and-after comparison shows how taxes and transfers together redistribute income, but its assumptions hide behavioral responses that make the equity-efficiency trade-off a matter of evidence and judgment.",
+      "sections": [
+        {
+          "heading": "Classifying taxes by average rates",
+          "concept_ids": [
+            "tax_progressivity",
+            "marginal_average_rate"
+          ],
+          "paragraphs": [
+            "Progressivity is defined by how the average tax rate (tax ÷ income) changes as income rises: rising means progressive, constant means proportional, falling means regressive. A fixed-dollar charge, such as a $600 annual fee paid by every household, is regressive: it is 3% of a $20,000 income but 0.3% of a $200,000 income. A tax with a cap can also be regressive above the cap: once income passes the cap, the dollars paid stop growing, so the share of income falls.",
+            "Marginal rates matter for decisions at the margin, such as whether to work extra hours, because they show how much of an extra dollar a person keeps. In a bracket system, the average rate rises toward the top marginal rate as income grows but stays below it. Effective rates, which count all taxes paid and transfers received, can differ a lot from the rates written in the law."
+          ]
+        },
+        {
+          "heading": "Cash and in-kind transfers",
+          "concept_ids": [
+            "transfer_payments"
+          ],
+          "paragraphs": [
+            "Cash transfers let households choose what to buy, which respects their own judgment and is usually cheaper to deliver. In-kind transfers, such as food assistance, health coverage, school meals, or housing help, direct resources to a specific need, which some voters prefer. In practice the line can blur: if a family would have spent at least that much on food anyway, food assistance frees up cash for other spending, much like a cash transfer.",
+            "Transfers can be universal (paid to everyone in a group, such as all children) or targeted (paid only to households below an income limit). Targeted transfers concentrate money on people in need but must shrink as income rises, which affects incentives."
+          ]
+        },
+        {
+          "heading": "Measuring redistribution with a static model",
+          "concept_ids": [
+            "redistribution"
+          ],
+          "paragraphs": [
+            "Market income is income before taxes and transfers; disposable income is market income minus taxes plus transfers. Comparing the two distributions, for example with the ratio of top to bottom incomes or a Gini coefficient, shows how much the system redistributes.",
+            "The simplest comparison is static: it assumes that market incomes do not change when the policy changes (no behavioral response) and that each tax is paid by the person who writes the check (no shifting of the tax burden through prices or wages). These assumptions make the arithmetic clear, but real effects can be larger or smaller. A key lesson from the arithmetic is that the progressivity of the whole system depends on both sides: a proportional tax combined with an equal transfer per household is progressive overall, because the net tax rate rises with income."
+          ]
+        },
+        {
+          "heading": "Equality, equity, and efficiency",
+          "concept_ids": [
+            "equality_vs_equity",
+            "equity_efficiency_tradeoff"
+          ],
+          "paragraphs": [
+            "Equality is a measurable outcome; equity is a judgment about fairness; efficiency is about getting the most total value from scarce resources. Many people care most about inequality that comes from circumstances a child is born into rather than from effort or talent, which shifts attention to equal opportunity.",
+            "Redistribution can reduce efficiency in two ways. First, high marginal rates (from taxes or from benefits that shrink as earnings rise) reduce the reward for extra work, saving, or investment, and some people respond by doing less. Second, collecting taxes and running programs costs resources. It is an arithmetic fact that a high marginal rate lowers the gain from extra work; how much people actually change their behavior is an empirical question with mixed answers. Some policies, such as education and training, may increase both equality and output."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "With tax function T(y), progressivity means the average rate T(y)/y rises with y. A linear tax-transfer system with rate t and equal transfer b has average net rate t − b/y and, when the budget balances, scales the Gini coefficient by (1 − t) in the static model. Behavioral responses break the static result, and their size is contested.",
+      "sections": [
+        {
+          "heading": "Average and marginal rates as functions",
+          "concept_ids": [
+            "tax_progressivity",
+            "marginal_average_rate"
+          ],
+          "paragraphs": [
+            "Let T(y) be tax owed at income y. The average rate is a(y) = T(y) ÷ y, and the marginal rate is m(y) = dT ÷ dy (for brackets, the rate on the bracket containing y). The tax is progressive where a(y) rises with y, proportional where a(y) is constant, and regressive where it falls. Because a′(y) = (m(y) − a(y)) ÷ y, the average rate rises exactly when the marginal rate exceeds the average rate.",
+            "For a bracket schedule with thresholds k₁ < k₂ < … and rates r₀ < r₁ < …, T(y) is continuous and piecewise linear, so after-tax income y − T(y) rises with y as long as every marginal rate is below 100%. A lump-sum charge F has a(y) = F ÷ y, which falls with income: regressive."
+          ]
+        },
+        {
+          "heading": "Transfers in the net tax function",
+          "concept_ids": [
+            "transfer_payments"
+          ],
+          "paragraphs": [
+            "Treat a cash transfer as a negative tax: the net tax is N(y) = T(y) − B(y), where B(y) is the benefit. A universal transfer has B(y) = b for everyone; a targeted transfer phases out, for example B(y) = max(0, b − φy) with phase-out rate φ. The phase-out adds φ to the marginal rate in the phase-out range, which is the source of the poverty trap studied in the next lesson.",
+            "In-kind transfers enter N(y) at their cost to the government, but their value to the household may be lower if the household would have chosen a different mix of goods, or roughly equal if the in-kind amount is less than what the household would have spent anyway (the transfer is then inframarginal)."
+          ]
+        },
+        {
+          "heading": "A linear tax-transfer system and the Gini coefficient",
+          "concept_ids": [
+            "redistribution"
+          ],
+          "paragraphs": [
+            "Consider a flat tax at rate t with every household receiving the same transfer b, financed by the tax with a balanced budget: b = t·μ, where μ is mean market income. Disposable income is d = (1 − t)y + tμ. Its mean is still μ, and every difference between two households shrinks by the factor (1 − t): |dᵢ − dⱼ| = (1 − t)|yᵢ − yⱼ|. From G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ), it follows that G_after = (1 − t)·G_before.",
+            "This result holds under stated assumptions: market incomes do not respond to the policy, the tax is not shifted to others, and there are no administrative costs. It is a property of the model, not a prediction that a real flat tax with a universal transfer will cut a country's Gini coefficient by exactly t."
+          ]
+        },
+        {
+          "heading": "Behavioral responses and the debate over magnitudes",
+          "concept_ids": [
+            "equality_vs_equity",
+            "equity_efficiency_tradeoff"
+          ],
+          "paragraphs": [
+            "If market income responds to the after-tax wage, raising t shrinks the tax base. Total revenue is then t·Y(t), with Y(t) falling as t rises, so revenue rises less than proportionally and can eventually fall. The size of the response, often summarized by an elasticity of taxable income, differs across studies, groups, and time horizons, and responses can include changes in hours, effort, and how income is reported. The range of estimates is wide, so treat any single number as uncertain.",
+            "Choosing a point on the trade-off requires a value judgment about how much weight to put on gains for poorer households versus losses in total output, which economics alone cannot settle. Equity criteria also differ: equal opportunity, need, and desert can each justify different policies. A fair analysis states the assumptions, shows the arithmetic, and keeps contested empirical claims (for example, effects of inequality or redistribution on long-run growth) separate from definitions."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c06-l2-we1",
+      "level": "beginner",
+      "title": "A flat tax: more dollars, same percent",
+      "problem": "Hypothetical example: A country has a flat income tax of 10%. Maya earns $20,000 a year and Leo earns $200,000. How much tax does each pay, and is the tax progressive, proportional, or regressive?",
+      "steps": [
+        "Maya: $20,000 × 0.10 = $2,000.",
+        "Leo: $200,000 × 0.10 = $20,000.",
+        "Share of income: $2,000 ÷ $20,000 = 10% and $20,000 ÷ $200,000 = 10%. The share is the same."
+      ],
+      "answer": "Leo pays $20,000 and Maya pays $2,000. Leo pays more dollars, but both pay 10% of income, so the tax is proportional (flat).",
+      "check": {
+        "type": "product",
+        "factors": [
+          200000,
+          0.1
+        ],
+        "expected": 20000
+      }
+    },
+    {
+      "id": "c06-l2-we2",
+      "level": "beginner",
+      "title": "A fixed fee is regressive",
+      "problem": "Hypothetical example: A town charges every household a $600 yearly service fee. What share of income is the fee for a household earning $20,000 and for one earning $200,000?",
+      "steps": [
+        "Household earning $20,000: $600 ÷ $20,000 = 0.03, or 3%.",
+        "Household earning $200,000: $600 ÷ $200,000 = 0.003, or 0.3%.",
+        "The share of income falls as income rises."
+      ],
+      "answer": "The fee takes 3% of the lower income but only 0.3% of the higher income. Both pay the same dollars, but the fee is regressive because it takes a smaller share from the richer household.",
+      "check": {
+        "type": "ratio",
+        "numerator": 600,
+        "denominator": 20000,
+        "expected": 0.03
+      }
+    },
+    {
+      "id": "c06-l2-we3",
+      "level": "intermediate",
+      "title": "Brackets: average rate vs. marginal rate",
+      "problem": "Hypothetical example: An income tax has three brackets: 0% on the first $10,000, 10% on income from $10,000 to $40,000, and 30% on income above $40,000. Find the tax, the average tax rate, and the marginal tax rate for someone earning $60,000.",
+      "steps": [
+        "First $10,000: $10,000 × 0% = $0.",
+        "Next $30,000 (from $10,000 to $40,000): $30,000 × 10% = $3,000.",
+        "Last $20,000 (from $40,000 to $60,000): $20,000 × 30% = $6,000.",
+        "Total tax = $0 + $3,000 + $6,000 = $9,000.",
+        "Average tax rate = $9,000 ÷ $60,000 = 0.15, or 15%. Marginal tax rate = 30% (the rate on the next dollar)."
+      ],
+      "answer": "Tax is $9,000. The average tax rate is 15%, half the 30% marginal rate, because the 30% rate applies only to the income above $40,000.",
+      "check": {
+        "type": "ratio",
+        "numerator": 9000,
+        "denominator": 60000,
+        "expected": 0.15
+      }
+    },
+    {
+      "id": "c06-l2-we4",
+      "level": "intermediate",
+      "title": "A flat tax plus an equal transfer narrows the gap",
+      "problem": "Hypothetical example: Five households, one from each quintile, have market incomes (in thousands of dollars) of 10, 25, 40, 60, and 115. The government collects a 20% flat tax on all market income and pays the revenue back as an equal cash transfer to each household. Assume no behavioral response. Find disposable incomes and compare the top-to-bottom income ratio before and after.",
+      "steps": [
+        "Total market income = 10 + 25 + 40 + 60 + 115 = 250. Revenue = 0.20 × 250 = 50, so each household receives 50 ÷ 5 = 10.",
+        "Disposable income = 0.8 × market income + 10: 18, 30, 42, 58, and 102. They still add up to 250.",
+        "Before: 115 ÷ 10 = 11.5. After: 102 ÷ 18 ≈ 5.667.",
+        "Net tax: the poorest household gains 8 (an average net tax rate of −80%), while the richest pays 13 net (about 11.3% of its market income). The net rate rises with income, so the system is progressive even though the tax itself is flat."
+      ],
+      "answer": "Disposable incomes are 18, 30, 42, 58, and 102 thousand dollars. The top-to-bottom ratio falls from 11.5 to about 5.67 in this static model.",
+      "check": {
+        "type": "ratio",
+        "numerator": 102,
+        "denominator": 18,
+        "expected": 5.667,
+        "tolerance": 0.001
+      }
+    },
+    {
+      "id": "c06-l2-we5",
+      "level": "advanced",
+      "title": "The Gini coefficient before and after a linear tax-transfer system",
+      "problem": "Hypothetical example: For the same five market incomes (10, 25, 40, 60, 115 thousand dollars), the sum of |yᵢ − yⱼ| over all ordered pairs is 980. Compute the exact Gini coefficient before and after the 20% flat tax with an equal transfer, and confirm that G_after = (1 − t)·G_before.",
+      "steps": [
+        "Before: n = 5, μ = 50. G_before = 980 ÷ (2 × 25 × 50) = 980 ÷ 2,500 = 0.392.",
+        "After: every gap shrinks by the factor 0.8, so the sum of gaps is 0.8 × 980 = 784, and the mean stays 50.",
+        "G_after = 784 ÷ 2,500 = 0.3136.",
+        "Check: (1 − 0.20) × 0.392 = 0.8 × 0.392 = 0.3136."
+      ],
+      "answer": "The Gini coefficient falls from 0.392 to 0.3136, exactly a 20% reduction, under the assumptions of no behavioral response, no tax shifting, and no administrative cost.",
+      "check": {
+        "type": "product",
+        "factors": [
+          0.392,
+          0.8
+        ],
+        "expected": 0.3136
+      }
+    },
+    {
+      "id": "c06-l2-we6",
+      "level": "advanced",
+      "title": "What if the top earner responds?",
+      "problem": "Hypothetical example: Suppose the richest household responds to the 20% tax by working less, so its market income is 105 instead of 115 thousand dollars; the others do not change. The government still pays out all revenue equally. Find the new transfer per household and the poorest household's disposable income. (The size of this response is assumed for illustration, not an estimate.)",
+      "steps": [
+        "New total market income = 10 + 25 + 40 + 60 + 105 = 240.",
+        "Revenue = 0.20 × 240 = 48, so the transfer is 48 ÷ 5 = 9.6.",
+        "Poorest household: 0.8 × 10 + 9.6 = 17.6, instead of 18.",
+        "Disposable incomes: 17.6, 29.6, 41.6, 57.6, 93.6. The exact Gini coefficient falls from 0.375 (market) to 0.30, but total income is 10 lower than before."
+      ],
+      "answer": "The transfer falls to 9.6 thousand dollars per household and the poorest household's disposable income falls to 17.6. The behavioral response shrinks the tax base, so the same tax rate funds less redistribution: one channel of the equity-efficiency trade-off.",
+      "check": {
+        "type": "ratio",
+        "numerator": 48,
+        "denominator": 5,
+        "expected": 9.6
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Income, payroll, and capped taxes",
+      "source_ids": [
+        "openstax-pe3-30-2"
+      ],
+      "paragraphs": [
+        "In the United States, the federal individual income tax is a common example of a progressive tax. A payroll tax that applies one rate to all earnings is proportional relative to earnings, while a payroll tax that stops at an earnings cap becomes regressive above the cap, because higher earners pay nothing more on income beyond it."
+      ]
+    },
+    {
+      "title": "The safety net mixes cash and in-kind help",
+      "source_ids": [
+        "openstax-pe3-15-3"
+      ],
+      "paragraphs": [
+        "The U.S. safety net combines cash or cash-like support, such as a tax credit for low-income working families, with in-kind programs for food, health care, housing, and home energy. Several programs reduce benefits as earnings rise, which affects the reward from working more."
+      ]
+    },
+    {
+      "title": "Statutory rates vs. effective rates",
+      "source_ids": [
+        "openstax-pe3-15-5"
+      ],
+      "paragraphs": [
+        "Discussions of redistribution note that the tax rates written in the law can differ sharply from effective rates, which take into account all sources of income and the transfers households receive. Judging how much a system redistributes requires looking at the whole package."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      10
+    ],
+    "title": "Designing a fairer fiscal system for Country F",
+    "paragraphs": [
+      "SDG target 10.4 calls on countries to adopt policies, especially fiscal, wage and social protection policies, and progressively achieve greater equality. Target 10.1 aims for income growth of the bottom 40 percent at a rate higher than the national average.",
+      "Hypothetical situation: Country F raises most of its revenue from a sales tax on all goods, which takes a larger share of income from low-income households because they spend more of what they earn. The government wants to make the overall system more redistributive while keeping total revenue roughly the same. Advisers present three designs; all estimates assume no behavioral response unless stated."
+    ],
+    "options": [
+      {
+        "name": "Raise top income tax rates and lower the sales tax",
+        "benefits": [
+          "Shifts the burden toward households with the greatest ability to pay, so average tax rates rise more steeply with income.",
+          "Lower prices from a smaller sales tax help low-income households directly."
+        ],
+        "costs": [
+          "Higher marginal rates may reduce reported income or investment at the top; the size of this effect is debated.",
+          "Income taxes are harder to collect where many people work informally, so revenue could fall short."
+        ],
+        "assumptions": [
+          "The tax authority can measure and collect high incomes, and the response of top earners is moderate."
+        ]
+      },
+      {
+        "name": "Keep the sales tax but return part of the revenue as an equal cash transfer to every household",
+        "benefits": [
+          "If the equal payment is large enough compared with what households pay in sales tax, it can make the overall system progressive even though the sales tax alone is regressive.",
+          "Universal payments are simple to run and reach poor households without an application process."
+        ],
+        "costs": [
+          "Paying every household is expensive, so the transfer per household may be small.",
+          "Rich households also receive the payment, which some voters see as wasteful."
+        ],
+        "assumptions": [
+          "The government can identify and pay every household, for example through a registry or mobile payments."
+        ]
+      },
+      {
+        "name": "Fund targeted in-kind benefits, such as school meals and health coverage, for low-income families",
+        "benefits": [
+          "Directs help to specific needs like nutrition and health, which can build children's human capital.",
+          "Costs less than a universal payment with the same benefit per family, because only eligible families receive it."
+        ],
+        "costs": [
+          "Means testing requires administration, and some eligible families may not apply.",
+          "Benefits that end at an income limit can discourage families from earning more."
+        ],
+        "assumptions": [
+          "Services are of good quality and eligible families can access them."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which design best fits target 10.4, and which best supports target 10.1? Explain which parts of your answer rest on arithmetic (how average tax rates change with income) and which rest on contested evidence (how people respond to taxes and benefits)."
+    ],
+    "source_ids": [
+      "un-sdg-10",
+      "openstax-pe3-30-2",
+      "openstax-pe3-15-5"
+    ]
+  },
+  "key_takeaways": [
+    "Progressive, proportional, and regressive describe how the share of income paid in tax changes as income rises, not the dollar amount.",
+    "The marginal rate applies to the next dollar; the average rate is total tax ÷ total income. In a bracket system, a raise never lowers after-tax income.",
+    "Transfers can be cash or in-kind, universal or targeted; the progressivity of the whole system depends on taxes and transfers together.",
+    "A flat tax with an equal transfer is progressive overall; in a static model with a balanced budget it multiplies the Gini coefficient by (1 − t).",
+    "Equality is an outcome, equity is a judgment about fairness, and efficiency is about total value; how much redistribution reduces work or output is debated."
+  ],
+  "source_ids": [
+    "openstax-pe3-30-2",
+    "openstax-pe3-15-2",
+    "openstax-pe3-15-3",
+    "openstax-pe3-15-5",
+    "un-sdg-10"
+  ]
+}
