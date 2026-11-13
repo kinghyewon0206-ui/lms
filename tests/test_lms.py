@@ -131,6 +131,7 @@ def test_chat_rejects_bad_requests(logged_in, payload):
 def test_chat_without_ai_key_fails_gracefully(app, logged_in):
     res = logged_in.post("/curriculum/chat", json={"messages": [{"role": "user", "content": "경제를 배우고 싶어요"}]},
                          headers={"X-CSRF-Token": CSRF})
-    assert res.status_code == 502 and "AI 연결에 실패" in res.get_json()["error"]
+    # Phase 8B-1: 기본 AI 스위치(ECONOVA_AI_PROVIDER=off)에서는 외부 요청 없이 '간단 모드' 안내
+    assert res.status_code == 503 and "간단 모드" in res.get_json()["error"]
     with app.app_context():
         assert storage.list_curricula(_uid(app)) == []

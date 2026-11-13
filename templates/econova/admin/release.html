@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}릴리스 준비 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page admin-page">
+  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.admin_content') }}">콘텐츠 관리</a> <span>/</span> 릴리스 준비</nav>
+  <header class="ec-head">
+    <h1>릴리스 준비</h1>
+    <p class="hint">승인 기록 중 지금 내용과 지문이 같고 아직 정본 JSON 에 반영되지 않은 항목이에요. 이 화면은 파일을 바꾸지 않아요.
+      계획을 내려받아 개발 환경에서 <code>flask --app app content-release-apply 계획.json --dry-run</code> 으로 확인한 뒤 반영하고,
+      <code>check-content</code>·테스트·커밋·배포는 평소 절차로 해요. 강좌 공개(published)는 따로 결정해요.</p>
+  </header>
+  {% if plan['items'] %}
+  <div class="table-scroll"><table class="ec-table"><thead><tr><th scope="col">종류</th><th scope="col">대상</th><th scope="col">파일</th><th scope="col">검토 기록</th><th scope="col">승인자·날짜</th></tr></thead>
+    <tbody>{% for it in plan['items'] %}<tr><td>{{ type_ko[it.target_type] }}</td><td>{{ it.target_id }}</td><td>{{ it.file }}</td><td>#{{ it.review_id }}</td><td>{{ it.reviewer_name }} · {{ it.approved_at }}</td></tr>{% endfor %}</tbody></table></div>
+  <p><a class="btn" href="{{ url_for('econova.admin_release', download=1) }}">릴리스 계획 내려받기 (JSON)</a>
+    <span class="hint">{{ '서명됨 (ECONOVA_RELEASE_SIGNING_KEY)' if plan.signature else '서명 없음 — 이 서버의 DB 검토 기록이 있는 환경에서만 반영할 수 있어요' }}</span></p>
+  {% else %}<p class="ec-placeholder-text">반영할 승인 항목이 없어요.</p>{% endif %}
+</div>
+{% endblock %}

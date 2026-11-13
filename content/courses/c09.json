@@ -26,6 +26,10 @@
   "final_assessment": {
     "status": "upcoming"
   },
+  "capstone": {
+    "status": "draft",
+    "file": "capstone/c09.json"
+  },
   "lesson_ids": [
     "c09-l1",
     "c09-l2",

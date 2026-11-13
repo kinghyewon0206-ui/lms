@@ -19,7 +19,12 @@
     <nav aria-label="주 메뉴">
       {% if g.user %}
         <a href="{{ url_for('dashboard') }}"{% if request.endpoint == 'dashboard' %} aria-current="page"{% endif %}>대시보드</a>
-        <a href="{{ url_for('econova.catalog') }}"{% if request.endpoint and request.endpoint.startswith('econova.') %} aria-current="page"{% endif %}>강좌</a>
+        <a href="{{ url_for('econova.catalog') }}"{% if request.endpoint and request.endpoint.startswith('econova.') and 'diagnostic' not in request.endpoint and 'lab' not in request.endpoint and 'discuss' not in request.endpoint and request.endpoint not in ('econova.report',) and 'admin' not in request.endpoint %} aria-current="page"{% endif %}>강좌</a>
+        <a href="{{ url_for('econova.diagnostic_home') }}"{% if request.endpoint and 'diagnostic' in request.endpoint %} aria-current="page"{% endif %}>진단평가</a>
+        <a href="{{ url_for('econova.lab_home') }}"{% if request.endpoint and 'lab' in request.endpoint %} aria-current="page"{% endif %}>실험실</a>
+        <a href="{{ url_for('econova.discuss_home') }}"{% if request.endpoint and 'discuss' in request.endpoint %} aria-current="page"{% endif %}>토론</a>
+        <a href="{{ url_for('econova.report') }}"{% if request.endpoint == 'econova.report' %} aria-current="page"{% endif %}>내 보고서</a>
+        {% if is_admin_user() %}<a href="{{ url_for('econova.admin_content') }}"{% if request.endpoint and 'admin' in request.endpoint %} aria-current="page"{% endif %}>콘텐츠 관리</a>{% endif %}
         <span class="who">{{ g.user['name'] }}님</span>
         <form action="{{ url_for('logout') }}" method="post" class="inline">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

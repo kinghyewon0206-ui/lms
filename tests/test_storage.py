@@ -15,7 +15,7 @@ def test_init_db_creates_schema_and_seeds(sqlite_app):
         assert {"users", "courses", "curricula", "curriculum_items", "course_views", "schema_migrations",
                 "econ_enrollments", "econ_lesson_progress"} <= tables
         assert db.execute("SELECT COUNT(*) FROM courses WHERE curated = 1").fetchone()[0] == len(SEED_COURSES)
-        assert [r["version"] for r in db.execute("SELECT version FROM schema_migrations ORDER BY version")] == [1, 2]
+        assert [r["version"] for r in db.execute("SELECT version FROM schema_migrations ORDER BY version")] == [v for v, _, _ in storage.SQLITE_MIGRATIONS]
 
 
 def test_init_db_is_idempotent(sqlite_app):

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% import "econova/_material.html" as mat with context %}
+{% block title %}[미리보기] {{ lesson.title_ko }} · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <aside class="preview-banner" role="note">
+    <strong>검토용 미리보기 · 학생에게 공개되지 않은 화면</strong>
+    <span>개발 환경이나 플랫폼 관리자에게만 열리는 화면이에요. 검토 전 초안도 그대로 보여 주므로, 내용을 확인한 뒤 검토 절차(draft → in_review → approved → published)를 거쳐야 학생에게 공개돼요.</span>
+  </aside>
+  <nav class="crumbs" aria-label="경로">{{ course.id|upper }} {{ course.title_ko }} <span>/</span> 레슨 {{ lesson.order }}</nav>
+  <header class="ec-lesson-head">
+    <div>
+      <span class="eyebrow">레슨 {{ lesson.order }} / {{ course.lessons|length }} · 강좌 상태 {{ course.status }} · 자료 버전 {{ doc.content_version }}</span>
+      <h1>{{ lesson.title_ko }}</h1>
+      <p class="ec-en">{{ lesson.title }}</p>
+    </div>
+    <div class="ec-lesson-meta">{{ mat.review_badge(doc) }}</div>
+  </header>
+
+  <section class="ec-checklist" aria-labelledby="h-history">
+    <h2 id="h-history">검토 기록</h2>
+    <ul>{% for h in doc.review.history %}<li><span class="pill pill-draft">{{ h.status }}</span> {{ h.at }} · {{ h.by }}{% if h.note %} — {{ h.note }}{% endif %}</li>{% endfor %}</ul>
+  </section>
+
+  {% include "econova/_lesson_body.html" %}
+
+  <nav class="ec-lesson-nav" aria-label="레슨 이동">
+    {% for l in course.lessons %}{% if l.content %}<a class="btn secondary" href="{{ url_for('econova.preview', course_id=course.id, lesson_id=l.id) }}">레슨 {{ l.order }}</a>{% endif %}{% endfor %}
+  </nav>
+</div>
+{% if sim_widgets %}
+<script src="{{ url_for('static', filename='js/econova-sim.js') }}"></script>
+<script src="{{ url_for('static', filename='js/econova-sim-ui.js') }}"></script>
+{% endif %}
+{% endblock %}

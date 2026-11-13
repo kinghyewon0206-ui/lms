@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "kind": "assessment_keys",
+  "assessment_id": "dev-f2-l1-quiz",
+  "assessment_version": 1,
+  "questions": {
+    "dev-f2-l1-q1": {
+      "question_version": 1,
+      "public_sha256": "fd95f619de31e2d2668a414924522f736f4340b550a4e60b3c906426b10d5c70",
+      "answer": "a",
+      "explanation": "개발용 테스트 문항이에요."
+    },
+    "dev-f2-l1-q2": {
+      "question_version": 1,
+      "public_sha256": "0514a43c752e2ed065bc29a486b0326685e4a70f7c6089eb64778ceecc90b6a2",
+      "answer": 6,
+      "tolerance": 0,
+      "explanation": "개발용 테스트 문항이에요.",
+      "check": {
+        "type": "difference",
+        "a": 10,
+        "b": 4,
+        "expected": 6,
+        "answer_field": "expected"
+      }
+    }
+  },
+  "synthetic": true
+}

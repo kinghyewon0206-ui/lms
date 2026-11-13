@@ -105,9 +105,9 @@ def _import_app(**extra_env):
 
 
 def test_fixtures_in_production_stop_startup():
-    res = _import_app(RENDER="true", DB_BACKEND="sqlite", ECONOVA_DEV_FIXTURES="1")
+    res = _import_app(RENDER="true", DB_BACKEND="sqlite", ECONOVA_DEV_FIXTURES="1", SECRET_KEY="s" * 40)
     assert res.returncode != 0 and "ConfigError" in res.stderr and "ECONOVA_DEV_FIXTURES" in res.stderr
-    ok = _import_app(RENDER="true", DB_BACKEND="sqlite")
+    ok = _import_app(RENDER="true", DB_BACKEND="sqlite", SECRET_KEY="s" * 40)
     assert ok.returncode == 0 and "started" in ok.stdout
 
 
@@ -127,7 +127,7 @@ def test_production_fixture_error_is_not_hidden_as_content_error(logged_in, monk
 def test_check_content_command_ok(sqlite_app, content_copy):
     res = sqlite_app.test_cli_runner().invoke(args=["check-content"])
     assert res.exit_code == 0, res.output
-    assert "실제 강좌 9개 (레슨 27개, 공개 0개), 개발용 테스트 강좌 2개" in res.output
+    assert "실제 강좌 9개 (레슨 27개, 공개 0개), 개발용 테스트 강좌 3개" in res.output
 
 
 def test_check_content_command_reports_errors(sqlite_app, broken_content):
@@ -256,7 +256,7 @@ def test_progress_course_comes_from_enrollment(sqlite_app):
 # ------------------------------------------------------------- 보안 회귀
 def _sample_path(rule):
     import re
-    return re.sub(r"<[^>]+>", "x", rule.rule)
+    return re.sub(r"<[^>]+>", lambda m: "1" if m.group(0).startswith("<int:") else "x", rule.rule)
 
 
 def test_every_post_route_requires_csrf(app, logged_in):

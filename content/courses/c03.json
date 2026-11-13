@@ -90,7 +90,10 @@
       "quiz": {
         "status": "missing",
         "assessment_id": null
-      }
+      },
+      "simulations": [
+        "carbon-tax"
+      ]
     }
   ]
 }

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}캡스톤 버전 {{ v.version }} · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.capstone_home', course_id=course.id) }}">캡스톤</a> <span>/</span> 버전 {{ v.version }}</nav>
+  <header class="ec-head"><h1>버전 {{ v.version }} · {{ '제출본' if v.kind == 'submitted' else '저장본' }}</h1>
+    <p class="hint">{{ v.created_at }} (UTC) 저장 · 읽기 전용</p></header>
+  {% for s in defn.steps %}
+  <section class="ec-section"><h2>{{ s.title }}</h2>
+    {% for f in s.fields %}<p><strong>{{ f.label }}</strong></p>
+      <p class="cap-text">{% if f.type == 'sdg' and v.sections.get(f.id) %}SDG {{ v.sections[f.id] }} {{ sdg_names.get(v.sections[f.id]|int, ('',))[0] }}{% else %}{{ v.sections.get(f.id) or '(비어 있음)' }}{% endif %}</p>{% endfor %}
+  </section>
+  {% endfor %}
+  {% if sa %}<section class="ec-section"><h2>이 버전의 자기평가</h2>
+    <p>가중 평균 수준 {{ sa_summary.average_level }} / {{ sa_summary.max_level }} (공식 점수 아님)</p>
+    <ul class="ec-list">{% for c in defn.rubric.criteria %}{% if c.id in sa.scores %}<li>{{ c.name }}: 수준 {{ sa.scores[c.id].level }}{% if sa.scores[c.id].note %} — {{ sa.scores[c.id].note }}{% endif %}</li>{% endif %}{% endfor %}</ul></section>{% endif %}
+</div>
+{% endblock %}

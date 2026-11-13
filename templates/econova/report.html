@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% import "econova/_macros.html" as m with context %}
+{% block title %}내 학습 보고서 · ECONOVA{% endblock %}
+{% block content %}
+{% set r = report %}
+<div class="ec-page report-page">
+  <header class="ec-head">
+    <span class="eyebrow">나만 볼 수 있는 보고서</span>
+    <h1>내 학습 보고서</h1>
+    <p class="hint">내 기록으로 정해진 규칙에 따라 계산했어요. <span class="pill pill-measure">측정 결과</span> 는 저장된 점수·진도 그대로,
+      <span class="pill pill-soon">잠정</span> 은 근거(문항 {{ r.evidence_rule.min }}개 미만)가 적은 추정, <span class="pill pill-ai">AI 조언</span> 은 참고용 설명이에요.
+      '숙달도' 같은 추정 퍼센트는 만들지 않아요.</p>
+  </header>
+
+  <section class="ec-section" aria-labelledby="h-overview">
+    <h2 id="h-overview">한눈에 보기 <span class="pill pill-measure">측정 결과</span></h2>
+    <div class="report-stats">
+      <div><strong>{{ r.totals.courses }}</strong><span>수강 중인 강좌</span></div>
+      <div><strong>{{ r.totals.lessons_completed }}/{{ r.totals.lessons_total }}</strong><span>완료한 레슨</span></div>
+      <div><strong>{{ r.totals.lessons_in_progress }}</strong><span>진행 중인 레슨</span></div>
+      <div><strong>{{ r.totals.completed_courses }}</strong><span>수료한 강좌</span></div>
+    </div>
+    {% for c in r.courses %}{% if c.course %}
+      <div class="report-course">
+        <h3><a href="{{ url_for('econova.course_detail', course_id=c.course.id) }}">{{ c.course.title_ko }}</a>
+          {% if c.completed %}<span class="pill pill-completed">수료{% if c.policy in ('dev_provisional', 'dev_capstone') %} (개발용 테스트){% elif c.policy == 'capstone_self_directed' %} (자기주도 캡스톤 제출){% endif %}</span>{% endif %}</h3>
+        {{ m.progress_bar(c.progress, c.course.title_ko ~ ' 진도') }}
+        {% if c.progress.next_lesson %}<p class="hint">다음 레슨: <a href="{{ url_for('econova.lesson', course_id=c.course.id, lesson_id=c.progress.next_lesson.id) }}">레슨 {{ c.progress.next_lesson.order }} {{ c.progress.next_lesson.title_ko }}</a></p>{% endif %}
+        {% if c.capstone %}<p class="hint">캡스톤: {{ '제출함' if c.capstone.status == 'submitted' else '작성 중' }} (버전 {{ c.capstone.current_version }}) · <a href="{{ url_for('econova.capstone_home', course_id=c.course.id) }}">캡스톤 보기</a></p>{% endif %}
+      </div>
+    {% endif %}{% else %}
+      <p class="ec-placeholder-text">아직 수강 중인 강좌가 없어요. <a href="{{ url_for('econova.catalog') }}">강좌 카탈로그</a>에서 시작해 보세요.</p>
+    {% endfor %}
+  </section>
+
+  <section class="ec-section" aria-labelledby="h-assess">
+    <h2 id="h-assess">평가 결과와 재응시 변화 <span class="pill pill-measure">측정 결과</span></h2>
+    {% for a in r.assessments %}
+      <div class="report-assess">
+        <h3>{{ a.title }} <span class="hint">{{ a.course_title }} · {{ '최종 평가' if a.kind == 'final' else '형성 퀴즈' }}</span></h3>
+        <div class="report-trend">
+          <svg viewBox="0 0 220 60" width="220" height="60" role="img" aria-labelledby="trend-{{ loop.index }}">
+            <desc id="trend-{{ loop.index }}">{{ a.title }} 응시 {{ a.attempts|length }}번 정답률: {% for t in a.attempts %}{{ t.n }}번째 {{ t.percent }}%{% if not loop.last %}, {% endif %}{% endfor %}</desc>
+            <line x1="6" y1="54" x2="214" y2="54" class="trend-axis"/><line x1="6" y1="6" x2="214" y2="6" class="trend-axis"/>
+            {% if a.points|length > 1 %}<polyline class="trend-line" points="{% for x, y in a.points %}{{ x }},{{ y }} {% endfor %}"/>{% endif %}
+            {% for x, y in a.points %}<circle class="trend-dot" cx="{{ x }}" cy="{{ y }}" r="3.5"/>{% endfor %}
+          </svg>
+          <p>처음 {{ a.first }}% · 최고 {{ a.best }}% · 마지막 {{ a.latest }}%{% if a.change is not none %} · 변화 {{ '%+d' % a.change }}%p{% endif %}</p>
+        </div>
+        {% if a.mixed_versions %}<p class="hint">평가 버전이 바뀐 응시가 섞여 있어 단순 비교에 주의하세요.</p>{% endif %}
+        <details><summary>응시 기록 표</summary>
+          <table class="ec-table"><thead><tr><th scope="col">회차</th><th scope="col">점수</th><th scope="col">정답률</th><th scope="col">시각 (UTC)</th></tr></thead>
+            <tbody>{% for t in a.attempts %}<tr><td>{{ t.n }}</td><td>{{ t.score|round(1) }}/{{ t.max_score|round(1) }}{% if t.passed %} · 합격선 통과{% endif %}</td><td>{{ t.percent }}%</td><td>{{ t.created_at }}</td></tr>{% endfor %}</tbody></table></details>
+      </div>
+    {% else %}<p class="ec-placeholder-text">아직 제출한 퀴즈·평가가 없어요.</p>{% endfor %}
+
+    <h3>진단평가 기록</h3>
+    {% if r.diagnostic %}
+      <ul class="ec-list">{% for d in r.diagnostic %}<li>{{ d.created_at }} · {{ d.score }}/{{ d.max_score }} · 추천 난이도 {{ r.difficulty_names[d.level] }} (임시 기준)</li>{% endfor %}</ul>
+      <p class="hint">최근 진단평가 영역별 결과:</p>
+      <ul class="concept-bars">{% for a in r.diagnostic_areas %}
+        <li><span class="cb-label">{{ a.area }}</span><span class="cb-bar" aria-hidden="true"><span style="width: {{ (a.correct * 100 // a.total) if a.total else 0 }}%"></span></span>
+          <span class="cb-count">{{ a.correct }}/{{ a.total }} 문항{% if a.review %} · 다시 보기{% endif %}</span></li>{% endfor %}</ul>
+    {% else %}<p class="ec-placeholder-text">아직 진단평가를 보지 않았어요. <a href="{{ url_for('econova.diagnostic_home') }}">진단평가 보기</a></p>{% endif %}
+  </section>
+
+  <section class="ec-section" aria-labelledby="h-concepts">
+    <h2 id="h-concepts">개념별 결과</h2>
+    <p class="hint">가장 최근 응시에서 개념별로 맞힌 문항 수예요. 문항이 {{ r.evidence_rule.min }}개 미만이면 <span class="pill pill-soon">잠정</span>, 정답률 {{ r.evidence_rule.below }}% 이상이고 근거가 충분하면 강점으로 표시해요.</p>
+    {% if r.analysis.measured %}
+    <ul class="concept-bars">{% for c in r.analysis.measured %}
+      <li><span class="cb-label">{{ c.term }} <span class="hint">{{ c.lesson_title }}</span></span>
+        <span class="cb-bar" aria-hidden="true"><span style="width: {{ c.correct * 100 // c.total }}%"></span></span>
+        <span class="cb-count">{{ c.correct }}/{{ c.total }} 문항 정답 {% if c.provisional %}<span class="pill pill-soon">잠정</span>{% elif c.strength %}<span class="pill pill-measure">강점</span>{% else %}<span class="pill pill-review">복습 권장</span>{% endif %}</span></li>
+    {% endfor %}</ul>
+    {% else %}<p class="ec-placeholder-text">아직 개념별로 볼 수 있는 평가 기록이 없어요.</p>{% endif %}
+  </section>
+
+  <section class="ec-section" aria-labelledby="h-recs" data-recs>
+    <h2 id="h-recs">추천 학습</h2>
+    {% set a = r.analysis %}
+    {% if a.insufficient %}<p class="ec-placeholder-text">퀴즈·평가 기록이 없어 추천 근거가 부족해요 (잠정).</p>{% endif %}
+    {% if a['items'] %}
+      <ul class="ec-list">{% for it in a['items'] %}
+        <li><strong>{{ it.term }}</strong> — {{ it.lesson_title }} <span class="pill {{ 'pill-review' if it.status == 'review' else 'pill-soon' }}">{{ {'review': '복습 권장', 'provisional': '잠정', 'unpracticed': '아직 확인 안 함'}[it.status] }}</span>
+          <div class="hint">근거: {{ it.reason }}{% if it.assessments %} (평가: {{ it.assessments|join(', ') }}){% endif %}</div>
+          <div><a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-concept">자료 다시 보기</a>{% for x in it.actions if x.kind == 'quiz' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-quiz">퀴즈</a>{% endfor %}{% for x in it.actions if x.kind == 'simulation' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-simulation">시뮬레이션</a>{% endfor %}</div></li>
+      {% endfor %}</ul>
+      {% if ai_enabled %}
+      <div class="ai-box">
+        <button type="button" class="btn secondary" data-recs-explain data-endpoint="{{ url_for('econova.recommendations_explain') }}" data-csrf="{{ csrf_token() }}">AI 에게 추천 이유 쉽게 설명 듣기</button>
+        <div data-recs-out aria-live="polite"></div>
+        <p class="hint"><span class="pill pill-ai">AI 조언</span> 은 위 측정 결과를 풀어 쓴 참고용이에요. 순위와 수치는 바꾸지 않아요.</p>
+      </div>
+      {% endif %}
+    {% elif not a.insufficient %}<p class="ec-placeholder-text">지금은 따로 복습을 권할 개념이 없어요.</p>{% endif %}
+  </section>
+
+  <section class="ec-section" aria-labelledby="h-timeline">
+    <h2 id="h-timeline">최근 학습 활동</h2>
+    {% if r.timeline %}
+    <ol class="report-timeline">{% for at, what, detail in r.timeline %}<li><time>{{ at }}</time> <strong>{{ what }}</strong> <span>{{ detail }}</span></li>{% endfor %}</ol>
+    <p class="hint">시각은 UTC 예요. 저장한 시뮬레이션 {{ r.simulations }}개.</p>
+    {% else %}<p class="ec-placeholder-text">아직 학습 활동이 없어요.</p>{% endif %}
+  </section>
+</div>
+{% if ai_enabled and report.analysis['items'] %}<script src="{{ url_for('static', filename='js/econova-ai.js') }}"></script>{% endif %}
+{% endblock %}

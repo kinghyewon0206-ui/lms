@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}경제 토론 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page">
+  <header class="ec-head">
+    <span class="eyebrow">경제 토론</span>
+    <h1>여러 관점으로 정책을 따져 봐요</h1>
+    <p class="hint">정해진 정답을 맞히는 활동이 아니에요. 모형·근거·가정·가치 판단을 나눠 생각하는 연습이에요.
+      수강 중인 공개 강좌의 승인된 주제만 보여요.</p>
+  </header>
+  {% for row in rows %}
+  <section class="ec-section">
+    <h2>{{ row.course.title_ko }}</h2>
+    {% if row.topics %}
+    <ul class="ec-list">{% for t in row.topics %}<li><a href="{{ url_for('econova.discuss_topic', course_id=row.course.id, topic_id=t.id) }}">{{ t.title }}</a></li>{% endfor %}</ul>
+    {% else %}<p class="ec-placeholder-text">이 강좌에는 아직 승인된 토론 주제가 없어요.</p>{% endif %}
+  </section>
+  {% else %}
+  <p class="ec-placeholder-text">수강 중인 공개 강좌가 없어요. 강좌를 수강하면 토론 주제가 보여요.</p>
+  {% endfor %}
+</div>
+{% endblock %}

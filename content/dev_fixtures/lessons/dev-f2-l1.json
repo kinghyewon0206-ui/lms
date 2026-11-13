@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "lesson_id": "dev-f2-l1",
+  "content_version": 1,
+  "review": {
+    "status": "approved",
+    "reviewer": {
+      "name": "테스트용 검토자 (fixture)",
+      "role": "fixture"
+    },
+    "reviewed_at": "2026-11-03",
+    "approved_at": "2026-11-03",
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-03",
+        "by": "개발용 fixture 생성",
+        "note": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+      },
+      {
+        "status": "approved",
+        "at": "2026-11-03",
+        "by": "테스트용 검토자 (fixture)",
+        "note": "화면·진도 시험용"
+      }
+    ]
+  },
+  "objectives": [
+    "테스트 학습목표 1 (개발용)"
+  ],
+  "concepts": [
+    {
+      "id": "fixture-concept",
+      "term": "테스트 개념 1",
+      "definition": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다.",
+      "source_ids": []
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "[하] 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 1)",
+      "sections": [
+        {
+          "heading": "하 테스트 본문",
+          "concept_ids": [
+            "fixture-concept"
+          ],
+          "paragraphs": [
+            "하 난이도 테스트 문단입니다. 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "[중] 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 1)",
+      "sections": [
+        {
+          "heading": "중 테스트 본문",
+          "concept_ids": [
+            "fixture-concept"
+          ],
+          "paragraphs": [
+            "중 난이도 테스트 문단입니다. 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "[상] 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 1)",
+      "sections": [
+        {
+          "heading": "상 테스트 본문",
+          "concept_ids": [
+            "fixture-concept"
+          ],
+          "paragraphs": [
+            "상 난이도 테스트 문단입니다. 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "dev-f2-l1-we1",
+      "level": "all",
+      "title": "테스트 예제",
+      "problem": "가상의 테스트 문제: 5 − 3 은?",
+      "steps": [
+        "5 에서 3 을 뺀다."
+      ],
+      "answer": "2",
+      "check": {
+        "type": "difference",
+        "a": 5,
+        "b": 3,
+        "expected": 2
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "id": "dev-f2-l1-g1",
+      "title": "테스트 그래프",
+      "caption": "가상의 테스트 데이터",
+      "axis": {
+        "p_max": 60,
+        "q_max": 110,
+        "p_label": "가격 P",
+        "q_label": "수량 Q"
+      },
+      "demand": [
+        {
+          "label": "D",
+          "a": 100,
+          "b": 2
+        }
+      ],
+      "supply": [
+        {
+          "label": "S",
+          "c": 10,
+          "d": 1
+        }
+      ],
+      "price_lines": [],
+      "expected_equilibria": [
+        {
+          "demand": "D",
+          "supply": "S",
+          "price": 30,
+          "quantity": 40
+        }
+      ]
+    }
+  ],
+  "real_world_examples": [],
+  "sdg_case": {
+    "sdgs": [
+      2
+    ],
+    "title": "테스트 SDG 사례",
+    "paragraphs": [
+      "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+    ],
+    "options": [
+      {
+        "name": "선택지 A",
+        "benefits": [
+          "테스트 편익"
+        ],
+        "costs": [
+          "테스트 비용"
+        ],
+        "assumptions": [
+          "테스트 가정"
+        ]
+      },
+      {
+        "name": "선택지 B",
+        "benefits": [
+          "테스트 편익"
+        ],
+        "costs": [
+          "테스트 비용"
+        ],
+        "assumptions": [
+          "테스트 가정"
+        ]
+      }
+    ],
+    "discussion": [],
+    "source_ids": []
+  },
+  "key_takeaways": [
+    "테스트 요점 (개발용)"
+  ],
+  "source_ids": []
+}

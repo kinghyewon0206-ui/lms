@@ -3,6 +3,7 @@
   "fixture": true,
   "courses": [
     "dev-f1.json",
-    "dev-f2.json"
+    "dev-f2.json",
+    "dev-f3.json"
   ]
 }

@@ -1,0 +1,63 @@
+{# 시뮬레이션 위젯 (실험실·레슨·미리보기 공용). 필요한 값: sim_context() 가 만든 w 하나.
+   서버가 첫 화면(그래프·표)을 그리고, static/js/econova-sim-ui.js 가 같은 공식으로 실시간 갱신한다. #}
+{% import "econova/_graph.html" as gr with context %}
+{% set RANGES = {"a": [1, 300, 1], "b": [0.1, 10, 0.1], "c": [-100, 200, 1], "d": [0.1, 10, 0.1],
+                 "t": [0, 50, 0.5], "md": [0, 50, 0.5], "e": [0, 5, 0.1]} %}
+{% macro widget(w, compact=false) %}
+{% set uid = w.sim_id ~ ('-' ~ w.lesson.id if w.lesson else '') %}
+<section class="sim-widget{{ ' compact' if compact }}" data-sim="{{ w.sim_id }}" data-defaults='{{ w.defaults|tojson }}'
+         aria-labelledby="sim-title-{{ uid }}">
+  <h3 id="sim-title-{{ uid }}">{{ w.sim.title }}</h3>
+  <p class="sim-note">수학 모형의 계산 결과예요. 숫자는 가상의 예이며 실제 통계가 아니에요.
+    {% if w.sim_id == 'supply-demand' %}수요 Qd = a − bP, 공급 Qs = c + dP{% else %}공급에 단위당 세금 t: Qs = c + d(P − t){% endif %}</p>
+
+  <form method="post" action="{{ url_for('econova.lab_save', sim_id=w.sim_id) }}" class="sim-form" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    {% if w.lesson %}<input type="hidden" name="lesson_id" value="{{ w.lesson.id }}"><input type="hidden" name="course_id" value="{{ w.course.id }}">{% endif %}
+    <div class="sim-controls">
+      {% for name in w.sim.inputs %}{% set lim = w.limits[name] %}{% set rg = RANGES[name] %}
+      <div class="sim-ctl" data-name="{{ name }}">
+        <label for="{{ uid }}-{{ name }}">{{ lim[3] }} <small>({{ lim[4] }})</small></label>
+        <div class="sim-ctl-row">
+          <input type="range" min="{{ rg[0] }}" max="{{ rg[1] }}" step="{{ rg[2] }}" value="{{ w.inputs.get(name, '') if w.inputs.get(name) is not none else 0 }}"
+                 aria-label="{{ lim[3] }} 슬라이더" data-role="range" tabindex="-1">
+          <input type="text" inputmode="decimal" id="{{ uid }}-{{ name }}" name="{{ name }}" data-role="number"
+                 value="{{ '%g' % w.inputs[name] if w.inputs.get(name) is not none else '' }}" aria-describedby="{{ uid }}-{{ name }}-err">
+        </div>
+        <p class="sim-err" id="{{ uid }}-{{ name }}-err" role="alert"></p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="sim-buttons">
+      <button type="button" class="btn secondary" data-action="baseline">지금 값을 비교 기준으로</button>
+      <button type="button" class="btn secondary" data-action="reset">처음 값으로</button>
+      <button type="submit" class="btn">결과 저장</button>
+    </div>
+    <p class="hint">저장하면 서버가 같은 공식으로 다시 계산한 값만 기록해요.</p>
+  </form>
+
+  <div class="sim-graph" data-role="graph">{{ gr.supply_demand(w.spec) }}</div>
+  <p class="sim-summary" data-role="summary" aria-live="polite">
+    {% set r = w.results %}
+    {% if w.sim_id == 'supply-demand' %}
+      {% if r.status == 'interior' %}균형 가격 {{ '%g' % r.price }}원, 균형 거래량 {{ '%g' % r.quantity }}개.{% else %}{{ r.reason }}{% endif %}
+    {% else %}
+      {% if r.status == 'interior' %}세금 {{ '%g' % w.inputs.t }}원: 소비자 가격 {{ '%g' % r.consumer_price }}원, 생산자 가격 {{ '%g' % r.producer_price }}원, 거래량 {{ '%g' % r.quantity }}개, 세수 {{ '%g' % r.revenue }}원.{% else %}{{ r.reason }}{% endif %}
+    {% endif %}
+  </p>
+  <div class="sim-table-wrap"><table class="ec-table sim-table" data-role="table"><caption class="sr-only">계산 결과</caption>
+    <thead><tr><th scope="col">항목</th><th scope="col">값</th></tr></thead>
+    <tbody>{% for label, value, unit in w.rows %}<tr><th scope="row">{{ label }}</th><td>{{ '%g' % value }} {{ unit }}</td></tr>{% endfor %}</tbody></table></div>
+  <div class="sim-notes" data-role="notes"></div>
+  {% if w.sim_id == 'carbon-tax' %}
+  <details class="sim-assume"><summary>모형의 가정과 해석 주의</summary>
+    <ul class="ec-list">
+      <li>직선 수요·공급, 완전 경쟁, 세금은 생산자에게 단위당으로 부과된다고 가정해요. 누가 법적으로 내든 부담 비율은 같아요.</li>
+      <li>'시장 내부 손실(사중손실)'은 오염 같은 외부 피해가 <strong>없다고 가정할 때</strong> 줄어드는 시장 거래 이익이에요.</li>
+      <li>외부 피해(md)를 넣으면 줄어든 거래로 피한 피해까지 계산해요. 이때 사회 전체 후생은 늘 수도 줄 수도 있어요. 탄소세가 항상 후생을 줄이는 것은 아니에요.</li>
+      <li>md·e 는 설명용 가정값이에요. 실제 탄소의 사회적 비용이나 배출 계수가 아니에요.</li>
+    </ul>
+  </details>
+  {% endif %}
+</section>
+{% endmacro %}

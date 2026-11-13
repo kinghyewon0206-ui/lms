@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "kind": "assessment_keys",
+  "assessment_id": "dev-f2-final",
+  "assessment_version": 1,
+  "questions": {
+    "dev-f2-final-q1mcq": {
+      "question_version": 1,
+      "public_sha256": "82156ddbad82a5ac044005d024c5ee9dd5b3c7f267431219edeab33f1f59cd49",
+      "answer": "a",
+      "explanation": "개발용 테스트 문항이에요."
+    },
+    "dev-f2-final-q2mcq": {
+      "question_version": 1,
+      "public_sha256": "19df254d6686585fb070c7e6c1fea1afe4ccfc0025e3e227b1741ffe9b29da52",
+      "answer": "a",
+      "explanation": "개발용 테스트 문항이에요."
+    },
+    "dev-f2-final-qn": {
+      "question_version": 1,
+      "public_sha256": "bcad4135a5cc0671225956a403b60d840f9655126f14c8dc221d9b94632f3b45",
+      "answer": 6,
+      "tolerance": 0,
+      "explanation": "개발용 테스트 문항이에요.",
+      "check": {
+        "type": "difference",
+        "a": 10,
+        "b": 4,
+        "expected": 6,
+        "answer_field": "expected"
+      }
+    }
+  },
+  "synthetic": true
+}

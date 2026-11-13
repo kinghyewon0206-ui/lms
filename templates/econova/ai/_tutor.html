@@ -1,0 +1,45 @@
+{# 레슨 AI 튜터. 필요한 값: tutor{enabled, conversation_id, messages, suggested, max_chars}, course, lesson, level.
+   AI 답변은 항상 'AI 생성' 표시와 함께, 승인된 자료 근거 여부·출처·한계를 따로 보여준다. 모든 글은 이스케이프된다. #}
+{% macro ai_message(m) %}
+  {% set meta = m.meta or {} %}
+  <div class="tutor-msg tutor-ai">
+    <p class="tutor-label"><span class="pill pill-ai">AI 생성</span> <span class="tutor-grounding g-{{ meta.grounding or 'insufficient' }}">{{ meta.grounding_label or '' }}</span></p>
+    <p class="tutor-answer">{{ meta.answer or m.content }}</p>
+    {% if meta.beyond_sources %}<p class="tutor-beyond"><strong>자료 밖 AI 추가 설명:</strong> {{ meta.beyond_sources }}</p>{% endif %}
+    {% if meta.sources %}<p class="tutor-sources">근거로 쓴 확인된 출처: {% for s in meta.sources %}<span class="src-chip">{{ s.title }}{% if s.container %} · {{ s.container }}{% endif %}</span>{% endfor %}</p>{% endif %}
+    {% if meta.limitations %}<p class="tutor-limits">한계: {{ meta.limitations }}</p>{% endif %}
+    {% if meta.follow_up_questions %}<ul class="tutor-follow">{% for q in meta.follow_up_questions %}<li>{{ q }}</li>{% endfor %}</ul>{% endif %}
+  </div>
+{% endmacro %}
+<div class="tutor-panel" data-tutor data-course="{{ course.id }}" data-lesson="{{ lesson.id }}" data-level="{{ level }}"
+     data-endpoint="{{ url_for('econova.tutor_api') }}" data-conversation="{{ tutor.conversation_id }}" data-max="{{ tutor.max_chars }}">
+  <p class="hint">AI 튜터는 이 레슨의 <strong>승인된 학습자료</strong>를 근거로 설명해요. AI 답변은 틀릴 수 있고, 점수·진도에는 영향을 주지 않아요.
+    질문에 이름·연락처 같은 개인정보는 쓰지 마세요.</p>
+  <div class="tutor-log" role="log" aria-live="polite" aria-label="AI 튜터 대화">
+    {% for m in tutor.messages %}
+      {% if m.role == 'student' %}<div class="tutor-msg tutor-me"><p class="tutor-label">나</p><p>{{ m.content }}</p></div>
+      {% else %}{{ ai_message(m) }}{% endif %}
+    {% else %}
+      <p class="tutor-empty">아직 대화가 없어요. 아래 추천 질문을 눌러 시작해 보세요.</p>
+    {% endfor %}
+  </div>
+  {% if tutor.enabled %}
+  <div class="tutor-suggest" aria-label="추천 질문">
+    {% for q in tutor.suggested %}<button type="button" class="chip-btn" data-suggest>{{ q }}</button>{% endfor %}
+  </div>
+  <form class="tutor-form" method="post" action="{{ url_for('econova.tutor_api') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label for="tutor-input-{{ lesson.id }}">AI 튜터에게 질문하기</label>
+    <textarea id="tutor-input-{{ lesson.id }}" name="message" rows="3" maxlength="{{ tutor.max_chars }}" required
+              aria-describedby="tutor-count-{{ lesson.id }}"></textarea>
+    <div class="tutor-actions">
+      <span class="hint" id="tutor-count-{{ lesson.id }}" data-count>0 / {{ tutor.max_chars }}자</span>
+      <button type="submit" class="btn">질문 보내기</button>
+    </div>
+    <p class="tutor-status" data-status role="status" aria-live="polite"></p>
+  </form>
+  <noscript><p class="hint">AI 튜터는 JavaScript 가 켜져 있어야 쓸 수 있어요.</p></noscript>
+  {% else %}
+  <p class="ec-placeholder-text">AI 기능이 지금은 꺼져 있어요. 학습자료·퀴즈·시뮬레이션은 그대로 이용할 수 있어요.</p>
+  {% endif %}
+</div>

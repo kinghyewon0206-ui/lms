@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "dev-f1-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "dev-f1",
+  "lesson_id": "dev-f1-l3",
+  "version": 1,
+  "title": "[개발용] dev-f1-l3 퀴즈",
+  "description": "개발·자동 테스트 전용 가짜 퀴즈입니다.",
+  "review": {
+    "status": "approved",
+    "reviewer": {
+      "name": "테스트용 검토자 (fixture)",
+      "role": "fixture"
+    },
+    "reviewed_at": "2026-11-03",
+    "approved_at": "2026-11-03",
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-03",
+        "by": "개발용 fixture 생성"
+      },
+      {
+        "status": "approved",
+        "at": "2026-11-03",
+        "by": "테스트용 검토자 (fixture)",
+        "note": "평가 흐름 시험용"
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "dev-f1-l3-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "dev-f1-l3",
+      "objective": 1,
+      "concept_ids": [
+        "fixture-concept"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "approved",
+      "prompt": "[개발용] dev-f1-l3-q1: 정답은 '맞음'이에요.",
+      "choices": [
+        {
+          "id": "a",
+          "text": "맞음"
+        },
+        {
+          "id": "b",
+          "text": "틀림"
+        }
+      ]
+    },
+    {
+      "id": "dev-f1-l3-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "dev-f1-l3",
+      "objective": 1,
+      "concept_ids": [
+        "fixture-concept"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "approved",
+      "prompt": "[개발용] dev-f1-l3-q2: 10 − 4 = ?",
+      "unit": ""
+    }
+  ]
+}

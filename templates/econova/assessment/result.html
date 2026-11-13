@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}평가 결과 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <header class="ec-head">
+    <span class="eyebrow">{{ '최종 평가' if attempt.kind == 'final' else '형성 퀴즈' }} 결과 · {{ attempt.created_at }} (UTC)</span>
+    <h1>{{ assessment.title if assessment else attempt.assessment_id }}</h1>
+    <p class="dg-rec">{{ attempt.score|round(1) }} / {{ attempt.max_score|round(1) }}점 ({{ (attempt.ratio * 100)|round|int }}%)</p>
+    <p class="hint">정해진 규칙으로 채점했어요(AI 채점 없음). 제출한 답과 점수는 바꿀 수 없어요.</p>
+  </header>
+
+  <section class="ec-section" aria-labelledby="h-meaning">
+    <h2 id="h-meaning">이 결과의 의미</h2>
+    {% if attempt.kind == 'lesson_quiz' %}
+      <p>형성 퀴즈를 제출해서 레슨 완료 조건 중 '필수 퀴즈 제출'이 채워졌어요. 점수는 레슨 완료에 영향을 주지 않고, 가장 높은 점수가 따로 기록돼요.</p>
+    {% else %}
+      {% set p = attempt.passing %}
+      <p>합격 기준(정답률 {{ (p.score_ratio * 100)|round|int }}% 이상)
+        {% if attempt.passed %}을 <strong>넘었어요</strong>.{% else %}에 미치지 못했어요.{% endif %}
+        {% if p.status == 'approved' %}교사가 승인한 기준이에요.{% elif p.status == 'dev_provisional' %}<span class="pill pill-dev">개발용 임시 기준</span>{% else %}<span class="pill pill-draft">승인 전 제안값</span>이라 수료로 인정하지 않아요.{% endif %}</p>
+      {% if enrollment and enrollment.status == 'completed' %}
+        <p class="ec-done-note">강좌 수료 {% if enrollment.completion_policy == 'dev_provisional' %}(개발용 임시 기준에 따른 테스트 수료){% endif %}</p>
+      {% endif %}
+    {% endif %}
+    {% if assessment and assessment.version != attempt.assessment_version %}
+      <p class="hint">이 결과는 평가 버전 {{ attempt.assessment_version }} 기준이에요. 지금 평가는 버전 {{ assessment.version }}이라 문항이 다를 수 있어요. 예전 결과는 다시 계산하지 않아요.</p>
+    {% endif %}
+  </section>
+
+  <section class="ec-section" aria-labelledby="h-items">
+    <h2 id="h-items">문항별 결과와 해설</h2>
+    {% for r in attempt.results %}
+      {% set q = assessment.question(r.id) if assessment and reveal else none %}
+      {% set same = q and q.version == r.version %}
+      <div class="dg-result-q {{ 'ok' if r.correct else 'no' }}">
+        <p><strong>{{ loop.index }}. {{ '정답' if r.correct else '오답' }}</strong> {% if same %}{{ q.prompt }}{% else %}(문항 {{ r.id }}){% endif %}</p>
+        {% if same %}
+          {% if q.type == 'mcq' %}
+            {% set mine = (q.choices|selectattr('id', 'equalto', r.answer)|first) %}
+            {% set right = (q.choices|selectattr('id', 'equalto', q.answer)|first) %}
+            <p class="hint">내 답: {{ mine.text if mine else '(응답 없음)' }} · 정답: {{ right.text }}</p>
+          {% else %}
+            <p class="hint">내 답: {{ r.answer or '(응답 없음)' }} · 정답: {{ '%g' % q.answer }} (허용 오차 ±{{ '%g' % q.tolerance }})</p>
+          {% endif %}
+          <p>{{ q.explanation }}</p>
+          <p class="hint">학습목표 {{ q.objective }}: {{ q.objective_text }}</p>
+        {% elif not reveal %}
+          {% set pq = assessment.question(r.id) if assessment else none %}
+          <p class="hint">내 답: {{ r.answer or '(응답 없음)' }}{% if pq %} · 학습목표 {{ pq.objective }}: {{ pq.objective_text }}{% endif %}.
+            최종 평가의 정답·해설은 합격하거나 응시 기회를 모두 쓴 뒤에 보여줘요 (재응시 공정성).</p>
+        {% else %}
+          <p class="hint">내 답: {{ r.answer or '(응답 없음)' }}. 문항이 바뀌었거나 지금 공개되지 않아 해설을 보여줄 수 없어요.</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </section>
+
+  {% if feedback_allowed and review %}
+  <section class="ec-section" id="ai-feedback" aria-labelledby="h-review">
+    <h2 id="h-review">다시 볼 내용</h2>
+    <p class="hint">틀린 문항의 학습목표와 개념이에요 (정해진 규칙으로 정리, AI 아님).</p>
+    <ul class="ec-list">
+      {% for q in review %}
+      <li><strong>{{ q.lesson_title }}</strong> — {{ q.objective_text }}{% if q.concepts %} · 개념: {{ q.concepts|map(attribute='term')|join(', ') }}{% endif %}
+        {% if course and course.lesson(q.lesson_id) %} <a href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=q.lesson_id) }}#sec-concept">자료 다시 보기</a>{% endif %}</li>
+      {% endfor %}
+    </ul>
+    {% if ai_feedback %}
+    <div class="ai-box" aria-labelledby="h-ai-fb">
+      <h3 id="h-ai-fb"><span class="pill pill-ai">AI 생성</span> 오답 설명</h3>
+      <p class="hint">AI 가 승인된 해설을 바탕으로 쓴 설명이에요. 틀릴 수 있어요. 점수·진도·수료는 바뀌지 않아요.</p>
+      {% for it in ai_feedback['items'] %}
+      <div class="ai-fb-item">
+        <p><strong>{{ it.prompt }}</strong></p>
+        <p>왜 틀렸을까: {{ it.why_incorrect }}</p>
+        <p>핵심 개념: {{ it.concept_explanation }}</p>
+        {% if it.simpler_example %}<p>더 쉬운 예: {{ it.simpler_example }}</p>{% endif %}
+        <p class="hint">복습 주제: {{ it.review_topic }}</p>
+      </div>
+      {% endfor %}
+      {% if ai_feedback.follow_up_questions %}<p>생각해 볼 질문:</p><ul class="ec-list">{% for q in ai_feedback.follow_up_questions %}<li>{{ q }}</li>{% endfor %}</ul>{% endif %}
+      {% if ai_feedback.limitations %}<p class="tutor-limits">한계: {{ ai_feedback.limitations }}</p>{% endif %}
+    </div>
+    {% endif %}
+    {% if ai_enabled %}
+    <form method="post" action="{{ url_for('econova.explain_attempt', attempt_id=attempt.id) }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn secondary">{{ 'AI 설명 다시 받기' if ai_feedback else 'AI 에게 내 오답 설명 듣기' }}</button>
+      <span class="hint">점수는 바뀌지 않아요.</span>
+    </form>
+    {% else %}
+    <p class="hint">AI 설명 기능은 지금 꺼져 있어요. 위의 해설과 학습자료로 복습할 수 있어요.</p>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  <nav class="ec-lesson-nav">
+    {% if course %}
+      {% if attempt.kind == 'lesson_quiz' and course.lesson(attempt.lesson_id) %}
+        <a class="btn" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=attempt.lesson_id) }}">레슨으로 돌아가기</a>
+      {% else %}
+        <a class="btn" href="{{ url_for('econova.completion', course_id=course.id) }}">수료 현황</a>
+      {% endif %}
+      <a class="btn secondary" href="{{ url_for('econova.assessment_history', course_id=course.id) }}">응시 기록</a>
+    {% endif %}
+  </nav>
+</div>
+{% endblock %}

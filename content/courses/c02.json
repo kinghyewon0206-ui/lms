@@ -25,9 +25,10 @@
     "advanced"
   ],
   "status": "coming_soon",
-  "content_version": 1,
+  "content_version": 2,
   "final_assessment": {
-    "status": "upcoming"
+    "status": "draft",
+    "assessment_id": "c02-final"
   },
   "lesson_ids": [
     "c02-l1",
@@ -47,12 +48,16 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c02-l1.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
-      }
+        "status": "draft",
+        "assessment_id": "c02-l1-quiz"
+      },
+      "simulations": [
+        "supply-demand"
+      ]
     },
     {
       "id": "c02-l2",
@@ -66,12 +71,16 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c02-l2.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
-      }
+        "status": "draft",
+        "assessment_id": "c02-l2-quiz"
+      },
+      "simulations": [
+        "supply-demand"
+      ]
     },
     {
       "id": "c02-l3",
@@ -85,12 +94,16 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c02-l3.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
-      }
+        "status": "draft",
+        "assessment_id": "c02-l3-quiz"
+      },
+      "simulations": [
+        "supply-demand"
+      ]
     }
   ]
 }

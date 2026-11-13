@@ -1,0 +1,30 @@
+{# 수요·공급 그래프 (좌표는 econova/graphs.py 가 결정적으로 계산). 그래프 아래에 같은 정보를 표로도 보여준다. #}
+{% macro supply_demand(spec) %}
+{% set g = graph_geometry(spec) %}
+<figure class="ec-graph">
+  <figcaption><strong>{{ spec.title }}</strong></figcaption>
+  <svg viewBox="0 0 {{ g.width }} {{ g.height }}" role="img" aria-labelledby="{{ spec.id }}-desc">
+    <desc id="{{ spec.id }}-desc">{{ spec.caption }}</desc>
+    {% for t in g.p_ticks %}<line class="gr-grid" x1="{{ g.pad }}" y1="{{ t.y }}" x2="{{ g.right }}" y2="{{ t.y }}"/>
+    <text class="gr-tick" x="{{ g.pad - 8 }}" y="{{ t.y + 4 }}" text-anchor="end">{{ t.v }}</text>{% endfor %}
+    {% for t in g.q_ticks %}<text class="gr-tick" x="{{ t.x }}" y="{{ g.origin.y + 18 }}" text-anchor="middle">{{ t.v }}</text>{% endfor %}
+    <line class="gr-axis" x1="{{ g.origin.x }}" y1="{{ g.top }}" x2="{{ g.origin.x }}" y2="{{ g.origin.y }}"/>
+    <line class="gr-axis" x1="{{ g.origin.x }}" y1="{{ g.origin.y }}" x2="{{ g.right }}" y2="{{ g.origin.y }}"/>
+    <text class="gr-axis-label" x="{{ g.origin.x }}" y="{{ g.top - 14 }}" text-anchor="middle">{{ g.p_label }}</text>
+    <text class="gr-axis-label" x="{{ g.right }}" y="{{ g.origin.y + 36 }}" text-anchor="end">{{ g.q_label }}</text>
+    {% for pl in g.price_lines %}<line class="gr-price" x1="{{ pl.x1 }}" y1="{{ pl.y }}" x2="{{ pl.x2 }}" y2="{{ pl.y }}"/>
+    <text class="gr-price-label" x="{{ pl.x2 }}" y="{{ pl.y - 6 }}" text-anchor="end">{{ pl.label }}</text>{% endfor %}
+    {% for l in g.lines %}<line class="gr-{{ l.kind }}" x1="{{ l.x1 }}" y1="{{ l.y1 }}" x2="{{ l.x2 }}" y2="{{ l.y2 }}"/>
+    <text class="gr-label gr-{{ l.kind }}-label" {% if l.label_side == 'left' %}x="{{ l.x2 - 6 }}" text-anchor="end"{% else %}x="{{ l.x2 + 4 }}"{% endif %} y="{{ l.y2 + (14 if l.kind == 'demand' else -4) }}">{{ l.label }}</text>{% endfor %}
+    {% for p in g.points %}<circle class="gr-eq" cx="{{ p.x }}" cy="{{ p.y }}" r="4.5"/>{% endfor %}
+  </svg>
+  <p class="hint">{{ spec.caption }}</p>
+  {% if g.points %}
+  <table class="ec-table">
+    <caption class="sr-only">균형점</caption>
+    <thead><tr><th scope="col">수요·공급</th><th scope="col">균형 가격</th><th scope="col">균형 거래량</th></tr></thead>
+    <tbody>{% for p in g.points %}<tr><td>{{ p.label }}</td><td>{{ p.price }}</td><td>{{ p.quantity }}</td></tr>{% endfor %}</tbody>
+  </table>
+  {% endif %}
+</figure>
+{% endmacro %}

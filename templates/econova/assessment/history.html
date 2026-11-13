@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}응시 기록 · {{ course.title_ko }} · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> 응시 기록</nav>
+  <header class="ec-head"><h1>응시 기록</h1><p class="hint">이 강좌에서 제출한 형성 퀴즈와 최종 평가예요. 최신순이고, 기록은 지우거나 고칠 수 없어요.</p></header>
+  {% if attempts %}
+  <table class="ec-table ec-table-wide">
+    <thead><tr><th scope="col">제출 시각 (UTC)</th><th scope="col">종류</th><th scope="col">평가</th><th scope="col">점수</th><th scope="col">합격</th><th scope="col"></th></tr></thead>
+    <tbody>
+    {% for a in attempts %}
+      <tr>
+        <td>{{ a.created_at }}</td>
+        <td>{{ '최종 평가' if a.kind == 'final' else '형성 퀴즈' }}</td>
+        <td>{{ a.assessment_id }} (v{{ a.assessment_version }})</td>
+        <td>{{ (a.ratio * 100)|round|int }}%</td>
+        <td>{% if a.passed is none %}–{% elif a.passed %}합격{% else %}불합격{% endif %}</td>
+        <td><a href="{{ url_for('econova.assessment_result', attempt_id=a.id) }}">결과 보기</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="ec-placeholder-text">아직 제출한 평가가 없어요.</p>
+  {% endif %}
+  <p><a class="btn secondary" href="{{ url_for('econova.completion', course_id=course.id) }}">수료 현황 보기</a></p>
+</div>
+{% endblock %}

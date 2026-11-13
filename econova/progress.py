@@ -34,19 +34,29 @@ def lesson_status(requirements, record):
     return NOT_STARTED
 
 
-def apply_event(record, requirements, now, *, material_reviewed=False, quiz_submission_id=None):
-    """레슨 진도 기록에 이벤트(자료 확인, 퀴즈 제출)를 반영한 새 기록을 돌려준다. (원래 기록은 바꾸지 않는다)"""
+def apply_event(record, requirements, now, *, material_reviewed=False, quiz_submission_id=None, quiz_score=None):
+    """레슨 진도 기록에 이벤트(자료 확인, 퀴즈 제출)를 반영한 새 기록을 돌려준다. (원래 기록은 바꾸지 않는다)
+
+    멱등: 같은 이벤트를 몇 번 반영해도 결과가 같다. now 는 그 이벤트가 일어난 시각(퀴즈는 응시 기록의 제출 시각)이다.
+    - 퀴즈 제출: 처음 제출한 응시의 id·시각을 남긴다 (완료 조건이 처음 충족된 근거). 다시 풀어도 바꾸지 않는다.
+    - quiz_score(0~1)는 완료 판정에 쓰지 않고, 최고 점수만 남긴다 (내려가지 않음).
+    - updated_at 은 실제로 무언가 바뀐 경우에만 바꾼다."""
     rec = dict(record)
     if material_reviewed and not rec.get("material_reviewed"):
         rec["material_reviewed"], rec["material_reviewed_at"] = True, now
     if quiz_submission_id:
-        rec["quiz_submitted"], rec["quiz_submission_id"], rec["quiz_submitted_at"] = True, str(quiz_submission_id), now
+        if not rec.get("quiz_submitted"):
+            rec["quiz_submitted"], rec["quiz_submission_id"], rec["quiz_submitted_at"] = True, str(quiz_submission_id), now
+        if quiz_score is not None:
+            best = rec.get("quiz_score")
+            rec["quiz_score"] = quiz_score if best is None else max(best, quiz_score)
     rec["status"] = lesson_status(requirements, rec)
     if rec["status"] == COMPLETED:
         rec["completed_at"] = rec.get("completed_at") or now
     else:
         rec["completed_at"] = None
-    rec["updated_at"] = now
+    if any(rec.get(k) != record.get(k) for k in rec if k != "updated_at"):
+        rec["updated_at"] = now
     return rec
 
 

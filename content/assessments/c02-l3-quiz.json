@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "id": "c02-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c02",
+  "lesson_id": "c02-l3",
+  "version": 1,
+  "title": "레슨 3 형성 퀴즈: 가격 탄력성과 식량 시장",
+  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-03",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 교사 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c02-l3-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l3",
+      "objective": 1,
+      "concept_ids": [
+        "elasticity_categories"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요의 가격 탄력성(절댓값)이 0.3 인 상품의 수요는 어떤가요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "탄력적"
+        },
+        {
+          "id": "b",
+          "text": "비탄력적"
+        },
+        {
+          "id": "c",
+          "text": "단위탄력적"
+        },
+        {
+          "id": "d",
+          "text": "완전탄력적"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-5-1"
+      ]
+    },
+    {
+      "id": "c02-l3-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l3",
+      "objective": 2,
+      "concept_ids": [
+        "midpoint_method",
+        "price_elasticity_demand"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가격이 4 에서 6 으로 오르자 수요량이 120 에서 80 으로 줄었어요. 중간점 방법으로 구한 탄력성(절댓값)은? (소수로 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-5-1"
+      ]
+    },
+    {
+      "id": "c02-l3-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l3",
+      "objective": 2,
+      "concept_ids": [
+        "total_revenue"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요가 비탄력적인 상품의 가격을 올리면 판매자의 총수입은 어떻게 되나요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "늘어난다"
+        },
+        {
+          "id": "b",
+          "text": "줄어든다"
+        },
+        {
+          "id": "c",
+          "text": "변하지 않는다"
+        },
+        {
+          "id": "d",
+          "text": "0 이 된다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-5-3"
+      ]
+    },
+    {
+      "id": "c02-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l3",
+      "objective": 3,
+      "concept_ids": [
+        "food_demand_inelastic"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "식량 수요가 비탄력적인 시장에서 풍작으로 공급이 크게 늘었을 때 나타나기 쉬운 결과는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "가격이 조금만 내리고 농가 총수입이 크게 는다"
+        },
+        {
+          "id": "b",
+          "text": "가격이 크게 떨어지고 농가 총수입이 줄 수 있다"
+        },
+        {
+          "id": "c",
+          "text": "가격과 거래량이 모두 줄어든다"
+        },
+        {
+          "id": "d",
+          "text": "수요곡선이 오른쪽으로 이동한다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-5-3"
+      ]
+    },
+    {
+      "id": "c02-l3-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l3",
+      "objective": 2,
+      "concept_ids": [
+        "total_revenue"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "음료 한 병 2,000원에 하루 300병이 팔렸어요. 이날 판매자의 총수입은 몇 원인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-5-3"
+      ]
+    }
+  ]
+}

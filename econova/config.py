@@ -63,6 +63,43 @@ def dev_fixtures_enabled():
     return True
 
 
+def content_preview_enabled():
+    """검토 전 초안(draft·in_review) 학습자료 미리보기(/preview/...)를 켤지. ECONOVA_CONTENT_PREVIEW=1 일 때만 켜지고,
+    운영 환경에서 켜려고 하면 실행을 멈춘다. (초안이 학생에게 공개되면 안 되므로)"""
+    if env("ECONOVA_CONTENT_PREVIEW").strip() != "1":
+        return False
+    if is_production():
+        raise ConfigError("운영 환경에서는 ECONOVA_CONTENT_PREVIEW 를 켤 수 없습니다.")
+    return True
+
+
+def private_content_dir():
+    """정답 키·교사용 검토 문서처럼 공개 저장소에 두면 안 되는 자료의 폴더 (ECONOVA_PRIVATE_CONTENT_DIR).
+
+    기본값은 저장소 밖이다. 개발: ~/econova-private. 운영: 기본값 없음 (설정하지 않으면 정답 키가 필요한 평가는
+    열리지 않는다 — 조용히 다른 값으로 채점하지 않는다). Render 에서는 Secret Files 를 쓰고 그 폴더(/etc/secrets)를 적는다.
+    저장소 안을 가리키면 실수로 커밋될 수 있으므로 실행을 멈춘다 (.gitignore 된 폴더라도 허용하지 않는다).
+    """
+    value = env("ECONOVA_PRIVATE_CONTENT_DIR").strip()
+    if not value:
+        return None if is_production() else os.path.join(os.path.expanduser("~"), "econova-private")
+    path = os.path.realpath(os.path.expanduser(value))
+    if path == os.path.realpath(BASE_DIR) or path.startswith(os.path.realpath(BASE_DIR) + os.sep):
+        raise ConfigError("ECONOVA_PRIVATE_CONTENT_DIR 는 저장소 밖 폴더여야 합니다 (정답 키가 커밋되지 않도록).")
+    return path
+
+
+DEFAULT_SECRET_KEY = "dev-only-change-me"
+
+
+def secret_key():
+    """세션 서명 키. 운영에서는 32자 이상의 SECRET_KEY 가 반드시 있어야 한다 (기본값이면 세션 위조가 가능)."""
+    value = os.environ.get("SECRET_KEY") or env("SECRET_KEY")
+    if is_production() and (not value or value == DEFAULT_SECRET_KEY or len(value) < 32):
+        raise ConfigError("운영 환경에서는 32자 이상의 SECRET_KEY 를 설정해야 합니다.")
+    return value or DEFAULT_SECRET_KEY
+
+
 def sqlite_path():
     """sqlite 파일 위치. SQLITE_PATH 로 바꿀 수 있다. (테스트는 임시 파일을 쓴다)"""
     return env("SQLITE_PATH") or os.path.join(BASE_DIR, "lms.db")

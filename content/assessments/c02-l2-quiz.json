@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "id": "c02-l2-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c02",
+  "lesson_id": "c02-l2",
+  "version": 1,
+  "title": "레슨 2 형성 퀴즈: 시장 균형과 가격 결정",
+  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-03",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 교사 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c02-l2-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l2",
+      "objective": 1,
+      "concept_ids": [
+        "equilibrium"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요량과 공급량이 같아지는 가격을 무엇이라고 하나요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "최고 가격"
+        },
+        {
+          "id": "b",
+          "text": "균형 가격"
+        },
+        {
+          "id": "c",
+          "text": "가격 하한"
+        },
+        {
+          "id": "d",
+          "text": "기회비용"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    },
+    {
+      "id": "c02-l2-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l2",
+      "objective": 2,
+      "concept_ids": [
+        "surplus_shortage"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "시장 가격이 균형 가격보다 높을 때 나타나는 현상으로 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "초과수요가 생겨 가격이 오른다"
+        },
+        {
+          "id": "b",
+          "text": "초과공급(잉여)이 생겨 가격이 내려가는 압력이 생긴다"
+        },
+        {
+          "id": "c",
+          "text": "수요량과 공급량이 같다"
+        },
+        {
+          "id": "d",
+          "text": "공급곡선이 왼쪽으로 이동한다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    },
+    {
+      "id": "c02-l2-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l2",
+      "objective": 3,
+      "concept_ids": [
+        "four_step"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "다른 조건이 같을 때 어떤 상품의 수요가 줄면 균형은 어떻게 바뀌나요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "가격↑, 거래량↑"
+        },
+        {
+          "id": "b",
+          "text": "가격↓, 거래량↓"
+        },
+        {
+          "id": "c",
+          "text": "가격↑, 거래량↓"
+        },
+        {
+          "id": "d",
+          "text": "가격↓, 거래량↑"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-3"
+      ]
+    },
+    {
+      "id": "c02-l2-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l2",
+      "objective": 1,
+      "concept_ids": [
+        "equilibrium"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요함수 Qd = 120 − 3P, 공급함수 Qs = 20 + 2P 일 때 균형 가격은 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    },
+    {
+      "id": "c02-l2-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l2",
+      "objective": 3,
+      "concept_ids": [
+        "price_controls",
+        "surplus_shortage"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "위 시장(Qd = 120 − 3P, Qs = 20 + 2P)에 정부가 가격 상한을 16 으로 정하면 부족량(수요량 − 공급량)은 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-3-4"
+      ]
+    }
+  ]
+}

@@ -685,3 +685,169 @@ main:has(.err-page) { max-width: 640px; }
   .ec-lesson-meta { align-items: flex-start; }
   .ec-lesson-nav { flex-wrap: wrap; }
 }
+
+/* ---------- ECONOVA Phase 3: 학습자료 · 그래프 · 진단평가 ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.preview-banner { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; padding: 14px 18px; border-radius: var(--radius-sm);
+  background: #ffe4e9; border: 1px solid #ffc9d6; color: #7a1d36; font-size: 13px; line-height: 1.55; }
+.ec-layer { font-size: 12px; font-weight: 800; letter-spacing: .04em; color: #166534; margin: 0 0 6px; }
+.ec-concepts { margin: 0; display: grid; gap: 10px; }
+.ec-concepts div { padding: 10px 12px; border-left: 3px solid var(--primary); background: #f8f8fd; border-radius: 0 8px 8px 0; }
+.ec-concepts dt { font-weight: 800; }
+.ec-concepts dd { margin: 4px 0 0; line-height: 1.6; font-size: 14px; }
+.ec-cite { font-size: 11px; margin-left: 2px; }
+.ec-cite a { text-decoration: none; }
+.ec-level-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 2px 0 12px; }
+.ec-level-tabs a { padding: 7px 14px; border-radius: 999px; background: var(--lilac-soft); color: var(--primary-dark); text-decoration: none; font-size: 13px; font-weight: 700; }
+.ec-level-tabs a[aria-current="true"] { background: var(--primary); color: #fff; }
+.ec-level-summary { font-weight: 600; background: #f8f8fd; padding: 10px 12px; border-radius: 8px; line-height: 1.6; }
+.ec-section h3 { font-size: 16px; margin: 16px 0 6px; font-weight: 700; }
+.ec-section p { line-height: 1.7; font-size: 15px; }
+.ec-example { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; margin-top: 10px; }
+.ec-example h3 { margin-top: 0; }
+.ec-example summary { cursor: pointer; font-weight: 700; color: var(--primary-dark); }
+.ec-answer { background: #f0fdf4; padding: 8px 10px; border-radius: 8px; }
+.ec-graph { margin: 8px 0 0; }
+.ec-graph svg { width: 100%; max-width: 560px; height: auto; display: block; background: #fff; border: 1px solid var(--border); border-radius: 10px; }
+.gr-grid { stroke: #eef0f5; stroke-width: 1; }
+.gr-axis { stroke: #4b5160; stroke-width: 1.5; }
+.gr-tick, .gr-axis-label, .gr-label, .gr-price-label { font-size: 12px; fill: #4b5160; font-family: var(--font-cute); }
+.gr-demand { stroke: #2563eb; stroke-width: 2.5; }
+.gr-supply { stroke: #dc2626; stroke-width: 2.5; }
+.gr-demand-label { fill: #2563eb; font-weight: 700; }
+.gr-supply-label { fill: #dc2626; font-weight: 700; }
+.gr-price { stroke: #8a5a00; stroke-width: 1.5; stroke-dasharray: 6 4; }
+.gr-eq { fill: #111827; }
+.ec-table { border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+.ec-table th, .ec-table td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+.ec-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 10px; }
+.ec-option { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 14px; }
+.ec-option h4 { margin: 0 0 6px; font-size: 15px; }
+.ec-option ul { margin: 2px 0 8px; padding-left: 18px; line-height: 1.55; }
+.ec-opt-k { font-size: 12px !important; font-weight: 800; color: var(--muted); margin: 6px 0 0 !important; }
+.ec-discuss { background: #fff8e8; padding: 10px 12px; border-radius: 8px; margin-top: 12px; }
+.ec-sources { padding-left: 20px; line-height: 1.6; font-size: 14px; }
+.ec-sources li { margin-bottom: 8px; }
+.ec-sources small { display: block; }
+.dg-question { border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 14px; background: #fff; }
+.dg-question legend { font-weight: 700; padding: 0 4px; }
+.dg-question .dg-cat { font-size: 12px; color: var(--muted); font-weight: 700; }
+.dg-choice { display: flex; flex-direction: row; align-items: center; gap: 8px; font-weight: 500; padding: 6px 0; }
+.dg-numeric input { max-width: 200px; }
+.dg-result-q { border-left: 4px solid #d1d5db; padding: 8px 12px; margin: 8px 0; background: #fff; border-radius: 0 8px 8px 0; }
+.dg-result-q.ok { border-color: #16a34a; }
+.dg-result-q.no { border-color: #dc2626; }
+.dg-rec { font-size: 22px; font-weight: 800; }
+.ec-diag-notice { background: #f0f4ff; border-color: #c9d6ff; }
+.ec-diag-notice p { color: #1e2a5a; }
+.dg-question legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; line-height: 1.5; }
+.dg-question legend + * { clear: both; }
+.ec-quiz-box { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; background: #fbfbfe; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.ec-quiz-box p { margin: 0; }
+.ec-table-wide { width: 100%; }
+@media (max-width: 640px) { .ec-table-wide { display: block; overflow-x: auto; } }
+
+/* ---------- ECONOVA Phase 5: 경제 시뮬레이션 ---------- */
+.sim-widget { border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; background: #fff; display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.sim-widget h3 { margin: 0; font-size: 18px; font-weight: 700; }
+.sim-note { margin: 0; font-size: 13px; color: #5b4a1f; background: #fff8e8; border-radius: 8px; padding: 8px 10px; }
+.sim-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 16px; }
+.sim-ctl label { font-size: 13px; }
+.sim-ctl-row { display: flex; gap: 8px; align-items: center; }
+.sim-ctl-row input[type=range] { flex: 1; min-width: 0; accent-color: var(--primary); }
+.sim-ctl-row input[type=text] { width: 84px; padding: 6px 8px; font-size: 14px; }
+.sim-ctl input[aria-invalid=true] { border-color: #dc2626; }
+.sim-err { color: #b3264d; font-size: 12px; margin: 2px 0 0; min-height: 0; }
+.sim-err:empty { display: none; }
+.sim-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sim-buttons .btn { padding: 9px 16px; font-size: 14px; }
+.sim-graph svg { width: 100%; max-width: 560px; height: auto; display: block; background: #fff; border: 1px solid var(--border); border-radius: 10px; }
+.sim-summary { font-weight: 700; margin: 0; }
+.sim-table-wrap { overflow-x: auto; }
+.sim-table { width: 100%; }
+.sim-notes-title { font-weight: 800; margin: 6px 0 0; }
+.gr-base { stroke-dasharray: 5 4; opacity: .55; }
+.gr-eq-base { fill: #9ca3af; }
+.gr-wedge { stroke: #8a5a00; stroke-width: 3; }
+.sim-assume summary { cursor: pointer; font-weight: 700; color: var(--primary-dark); font-size: 14px; }
+.sim-widget.compact .sim-controls { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+/* 메뉴 항목이 늘어(실험실·토론) 중간 너비에서 글자가 두 줄로 깨지지 않게: 줄바꿈 금지, 좁으면 메뉴를 로고 아래 줄로 */
+.nav nav a, .nav nav button.link { white-space: nowrap; }
+@media (max-width: 900px) {
+  .nav { flex-wrap: wrap; row-gap: 6px; }
+  .nav nav { width: 100%; justify-content: space-between; flex-wrap: wrap; row-gap: 2px; }
+}
+
+/* ---------------------------------------------------------------- Phase 6: AI 튜터·피드백·토론·추천 */
+.pill-ai { background: #fff1e6; color: #9a4a00; border: 1px solid #f5c79a; }
+.pill-measure { background: #e8f5ee; color: #1d6b43; border: 1px solid #b6dfc7; }
+.pill-review { background: #fde8e8; color: #9b1c1c; border: 1px solid #f5b5b5; }
+.pill-claim { background: var(--lilac-soft); color: var(--primary-dark); }
+.tutor-panel { display: grid; gap: 12px; }
+.tutor-log { display: grid; gap: 10px; max-height: 520px; overflow-y: auto; padding: 4px; }
+.tutor-msg { border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; background: var(--card); overflow-wrap: anywhere; }
+.tutor-msg p { margin: 4px 0; white-space: pre-wrap; }
+.tutor-me { background: var(--lilac-soft); justify-self: end; max-width: 90%; }
+.tutor-ai { border-left: 4px solid #f5a35c; }
+.tutor-label { font-size: 12px; color: var(--muted); font-weight: 700; }
+.tutor-grounding { font-weight: 600; }
+.tutor-grounding.g-grounded { color: #1d6b43; }
+.tutor-grounding.g-partial { color: #9a6700; }
+.tutor-grounding.g-insufficient { color: #9b1c1c; }
+.tutor-beyond { background: #fffaf3; border-radius: 8px; padding: 6px 10px; }
+.tutor-limits { font-size: 13px; color: #8a4b08; }
+.tutor-follow { margin: 4px 0 0; padding-left: 20px; font-size: 14px; }
+.tutor-sources { font-size: 13px; }
+.src-chip { display: inline-block; margin: 2px 4px 2px 0; padding: 2px 8px; border-radius: 999px; background: #eef4ff; color: #1e429f; }
+.tutor-suggest { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-btn { border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+.chip-btn:hover, .chip-btn:focus-visible { border-color: var(--primary); }
+.tutor-form { display: grid; gap: 6px; }
+.tutor-actions { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tutor-status { min-height: 1.2em; font-size: 13px; color: var(--muted); margin: 0; }
+.tutor-empty { color: var(--muted); }
+.ai-box { border: 1px solid #f5c79a; background: #fffaf3; border-radius: 12px; padding: 12px 16px; margin: 12px 0; display: grid; gap: 6px; }
+.ai-fb-item { border-top: 1px dashed #f5c79a; padding-top: 8px; }
+.persp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.persp-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--card); }
+.persp-card h3 { margin: 0 0 6px; font-size: 16px; }
+.debate-question { background: var(--lilac-soft); border-radius: 10px; padding: 10px 12px; }
+.claim-list { list-style: none; padding: 0; margin: 4px 0; display: grid; gap: 4px; }
+.table-scroll { overflow-x: auto; }
+.recs-table td, .recs-table th { vertical-align: top; }
+
+/* ---------------------------------------------------------------- Phase 7: 관리·보고서·캡스톤 */
+.admin-error { color: #9b1c1c; background: #fde8e8; border-radius: 8px; padding: 6px 10px; }
+.admin-json { max-height: 420px; overflow: auto; background: #f7f7fb; padding: 10px; border-radius: 8px; font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.admin-q { border-top: 1px solid var(--border); padding: 8px 0; }
+.radio-row { display: flex; gap: 8px; align-items: flex-start; font-weight: 500; }
+.radio-row input { width: auto; margin-top: 4px; }
+.report-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.report-stats div { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--card); display: grid; }
+.report-stats strong { font-size: 22px; }
+.report-stats span { font-size: 13px; color: var(--muted); }
+.report-course, .report-assess { border-top: 1px solid var(--border); padding: 10px 0; }
+.report-course h3, .report-assess h3 { margin: 0 0 6px; font-size: 16px; }
+.report-trend { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.report-trend svg { max-width: 100%; height: auto; }
+.trend-axis { stroke: var(--border); stroke-dasharray: 3 3; }
+.trend-line { fill: none; stroke: var(--primary); stroke-width: 2; }
+.trend-dot { fill: var(--primary); }
+.concept-bars { list-style: none; padding: 0; display: grid; gap: 8px; }
+.concept-bars li { display: grid; grid-template-columns: minmax(120px, 1.2fr) 2fr auto; gap: 8px; align-items: center; }
+.cb-bar { background: #eef0f6; border-radius: 999px; height: 10px; overflow: hidden; }
+.cb-bar span { display: block; height: 100%; background: var(--primary); }
+.cb-count { font-size: 13px; white-space: nowrap; }
+.report-timeline { list-style: none; padding: 0; border-left: 2px solid var(--border); display: grid; gap: 6px; }
+.report-timeline li { padding-left: 12px; font-size: 14px; }
+.report-timeline time { color: var(--muted); font-size: 12px; margin-right: 6px; }
+@media (max-width: 560px) { .concept-bars li { grid-template-columns: 1fr; } }
+.cap-steps { display: grid; gap: 6px; padding-left: 22px; }
+.cap-steps .cap-done::marker { color: #1d6b43; }
+.cap-check { list-style: none; padding: 0; }
+.cap-form fieldset { border: 1px solid var(--border); }
+.cap-form legend h2 { margin: 0; font-size: 18px; }
+.cap-form textarea, .cap-form input, .cap-form select { width: 100%; }
+.cap-save { position: sticky; bottom: 0; background: var(--card); padding: 10px 0; display: flex; gap: 8px; }
+.cap-text { white-space: pre-wrap; overflow-wrap: anywhere; }

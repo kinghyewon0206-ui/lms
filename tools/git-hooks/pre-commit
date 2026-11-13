@@ -1,0 +1,6 @@
+#!/bin/sh
+# 커밋 전에 정답 키·교사용 검토 문서·API 키가 스테이지되지 않았는지 검사한다 (econova/public_safety.py).
+# 켜기 (한 번만, 각자 컴퓨터에서): git config core.hooksPath tools/git-hooks
+PY="${PYTHON:-.venv/bin/python}"
+[ -x "$PY" ] || PY=python3
+exec "$PY" -m econova.public_safety --staged

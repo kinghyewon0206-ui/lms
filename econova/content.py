@@ -16,23 +16,22 @@ from dataclasses import dataclass
 from functools import lru_cache
 
 from econova import config
+from econova import assessments, lesson_content, private_content
+from econova.lesson_content import ContentError  # noqa: F401  (예전처럼 content.ContentError 로도 쓴다)
 
 CONTENT_DIR = os.path.join(config.BASE_DIR, "content")
 
 COURSE_STATUSES = ("draft", "coming_soon", "published", "archived")
 VISIBLE_STATUSES = ("coming_soon", "published")   # 카탈로그에 보이는 상태
 LESSON_STATUSES = ("draft", "published")
-RESOURCE_STATUSES = ("missing", "draft", "in_review", "approved")
+RESOURCE_STATUSES = ("missing",) + lesson_content.REVIEW_STATUSES   # missing → draft → in_review → approved → published
+READY_STATUSES = lesson_content.APPROVED_STATUSES                        # 학생에게 쓸 수 있는 자료·퀴즈 상태
 ACTIVITIES = ("material", "quiz")                  # 레슨 완료 조건으로 쓸 수 있는 활동
 DIFFICULTIES = ("beginner", "intermediate", "advanced")
 DIFFICULTY_NAMES = {"beginner": "하 (Beginner)", "intermediate": "중 (Intermediate)", "advanced": "상 (Advanced)"}
 STUDENT_SELECTED = "student_selected"              # SDG 를 학생이 고르는 강좌 (c09)
 
 _ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
-
-
-class ContentError(ValueError):
-    """커리큘럼 JSON 이 잘못됐을 때."""
 
 
 @dataclass(frozen=True)
@@ -47,14 +46,18 @@ class Lesson:
     requirements: tuple
     material: dict
     quiz: dict
+    content: object = None     # lesson_content.LessonMaterial (학습자료 파일이 있을 때)
+    quiz_assessment: object = None   # assessments.Assessment (형성 퀴즈 파일이 있을 때)
+    simulations: tuple = ()          # 이 레슨에 넣을 시뮬레이션 id (econova.simulations.SIMULATIONS)
 
     @property
     def material_approved(self):
-        return self.material.get("status") == "approved"
+        return self.material.get("status") in READY_STATUSES and self.content is not None
 
     @property
     def quiz_approved(self):
-        return self.quiz.get("status") == "approved"
+        return (self.quiz.get("status") in READY_STATUSES and self.quiz_assessment is not None
+                and self.quiz_assessment.approved)
 
     def activity_available(self, activity):
         return {"material": self.material_approved, "quiz": self.quiz_approved}[activity]
@@ -78,6 +81,18 @@ class Course:
     final_assessment_status: str
     lessons: tuple
     fixture: bool = False
+    final: object = None       # assessments.Assessment (최종 평가 파일이 있을 때)
+    capstone: object = None    # capstone.Capstone (SDG 캡스톤 강좌, Phase 7)
+
+    @property
+    def capstone_ready(self):
+        """학생이 쓸 수 있는 캡스톤이 있는가 (승인된 정의만)."""
+        return self.capstone is not None and self.capstone.approved
+
+    @property
+    def final_ready(self):
+        """학생이 볼 수 있는 최종 평가가 있는가 (승인·공개된 평가만)."""
+        return self.final is not None and self.final.approved
 
     @property
     def published(self):
@@ -95,6 +110,7 @@ class Course:
 class Catalog:
     courses: tuple
     sdgs: dict                 # {번호: (이름, 색)}
+    sources: dict = None       # {출처 id: lesson_content.Source}
 
     def course(self, course_id):
         return next((c for c in self.courses if c.id == course_id), None)
@@ -144,7 +160,7 @@ def _resource(data, key, where):
 
 
 # ------------------------------------------------------------------ 파싱
-def _parse_lesson(data, course_id, where, fixture):
+def _parse_lesson(data, course_id, where, fixture, sources, base_dir):
     where = f"{where} 레슨 {data.get('id', '?')}"
     lesson_id = _text(data, "id", where)
     if not _ID_RE.match(lesson_id) or not lesson_id.startswith(f"{course_id}-"):
@@ -155,22 +171,78 @@ def _parse_lesson(data, course_id, where, fixture):
     if "material" not in requirements or len(set(requirements)) != len(requirements):
         raise ContentError(f"{where}: requirements 에는 material 이 반드시 있어야 하고 중복이 없어야 합니다.")
     material, quiz = _resource(data, "material", where), _resource(data, "quiz", where)
-    if quiz["status"] == "approved" and not str(quiz.get("assessment_id") or "").strip():
+    if quiz["status"] in READY_STATUSES and not str(quiz.get("assessment_id") or "").strip():
         raise ContentError(f"{where}: 승인된 퀴즈에는 assessment_id 가 있어야 합니다.")
-    if material["status"] == "approved" and not fixture:
-        # Phase 3 에서 검증 자료(출처·하중상 본문) 형식이 정해지기 전까지 실제 강좌의 자료 승인은 막는다
-        raise ContentError(f"{where}: 실제 강좌 자료의 승인 형식은 아직 정해지지 않았습니다 (Phase 3).")
+    doc = None
+    if material["status"] != "missing":
+        # 학습자료는 별도 파일에 있다. 강좌 JSON 의 상태는 파일의 검토 상태와 같아야 한다 (한쪽만 바꿔 공개하는 것을 막음)
+        rel = str(material.get("file") or "").strip()
+        if not rel or os.path.isabs(rel) or ".." in rel.split("/"):
+            raise ContentError(f"{where}: 학습자료가 있으면 material.file 에 상대 경로를 적어야 합니다.")
+        doc = lesson_content.parse_material(
+            lesson_content.read_json(os.path.join(base_dir, rel), os.path.relpath(os.path.join(base_dir, rel), CONTENT_DIR)),
+            lesson_id, sources, fixture=fixture, where=os.path.relpath(os.path.join(base_dir, rel), CONTENT_DIR))
+        if doc.review_status != material["status"]:
+            raise ContentError(f"{where}: material.status({material['status']})가 학습자료 파일의 검토 상태"
+                               f"({doc.review_status})와 다릅니다.")
+    objectives = _texts(data, "objectives", where, allow_empty=True) or (doc.objectives if doc else ())
+    from econova.simulations import SIMULATIONS   # 지연 import (simulations → grading 만 쓰므로 순환 없음)
+    sims = tuple(data.get("simulations") or ())
+    if len(set(sims)) != len(sims) or any(s not in SIMULATIONS for s in sims):
+        raise ContentError(f"{where}: simulations 에는 {', '.join(SIMULATIONS)} 중 겹치지 않는 id 만 쓸 수 있습니다.")
+    quiz_doc = None
+    if quiz["status"] != "missing":
+        # 형성 퀴즈도 별도 파일(assessments/<id>.json). 상태는 파일의 검토 상태와 같아야 한다
+        quiz_doc = _load_assessment(quiz.get("assessment_id"), course_id,
+                                    {lesson_id: (objectives, tuple(c["id"] for c in doc.concepts) if doc else ())},
+                                    fixture, base_dir, where)
+        if quiz_doc.kind != "lesson_quiz" or quiz_doc.lesson_id != lesson_id:
+            raise ContentError(f"{where}: quiz.assessment_id 가 이 레슨의 형성 퀴즈가 아닙니다.")
+        if quiz_doc.review_status != quiz["status"]:
+            raise ContentError(f"{where}: quiz.status({quiz['status']})가 퀴즈 파일의 검토 상태({quiz_doc.review_status})와 다릅니다.")
     return Lesson(
         id=lesson_id, course_id=course_id, order=_need(data, "order", int, where),
         title=_text(data, "title", where), title_ko=_text(data, "title_ko", where),
         status=_choice(data.get("status"), LESSON_STATUSES, where, "status"),
-        objectives=_texts(data, "objectives", where, allow_empty=True),
-        requirements=requirements, material=material, quiz=quiz,
+        objectives=objectives,
+        requirements=requirements, material=material, quiz=quiz, content=doc, quiz_assessment=quiz_doc, simulations=sims,
     )
 
 
-def parse_course(data, where="course", fixture=False):
-    """강좌 JSON(dict) 하나를 검사해서 Course 로 만든다."""
+def _load_assessment(assessment_id, course_id, lessons, fixture, base_dir, where):
+    aid = str(assessment_id or "").strip()
+    if not _ID_RE.match(aid):
+        raise ContentError(f"{where}: 평가가 있으면 assessment_id 를 소문자·숫자·하이픈으로 적어야 합니다.")
+    path = os.path.join(base_dir, "assessments", f"{aid}.json")
+    rel = os.path.relpath(path, CONTENT_DIR)
+    public = lesson_content.read_json(path, rel)
+    leaked = private_content.public_violations(public)
+    if leaked:   # 공개 저장소의 파일에 정답 정보가 들어 있으면 안 된다
+        raise ContentError(f"{rel}: 공개 평가 파일에 정답 정보가 들어 있습니다 ({', '.join(leaked[:5])}). "
+                           "비공개 정답 키 파일로 옮겨야 합니다.")
+    try:
+        merged = private_content.merge(public, private_content.read_keys(aid, fixture), rel)
+    except private_content.KeysUnavailable as exc:
+        return assessments.parse_assessment(public, aid, course_id, lessons, fixture=fixture, where=rel,
+                                            keys_problem=str(exc))
+    try:
+        return assessments.parse_assessment(merged, aid, course_id, lessons, fixture=fixture, where=rel)
+    except ContentError as exc:
+        # 공개 정의는 맞는데 정답 키 쪽이 틀렸다면(정답이 선택지에 없음, 계산 검증 실패 등) 그 평가만 닫는다
+        doc = assessments.parse_assessment(public, aid, course_id, lessons, fixture=fixture, where=rel,
+                                           keys_problem=f"정답 키 검사 실패: {exc}")
+        return doc
+
+
+FINAL_STATUSES = ("upcoming",) + lesson_content.REVIEW_STATUSES
+
+
+def parse_course(data, where="course", fixture=False, sources=None, base_dir=None):
+    """강좌 JSON(dict) 하나를 검사해서 Course 로 만든다. 학습자료 파일은 base_dir 기준으로 읽는다."""
+    if sources is None:
+        sources = read_sources()
+    if base_dir is None:
+        base_dir = os.path.join(CONTENT_DIR, "dev_fixtures") if fixture else CONTENT_DIR
     if not isinstance(data, dict):
         raise ContentError(f"{where}: 강좌는 JSON 객체여야 합니다.")
     if data.get("schema_version") != 1:
@@ -208,11 +280,41 @@ def parse_course(data, where="course", fixture=False):
     lesson_ids = _texts(data, "lesson_ids", where)
     if len(set(lesson_ids)) != len(lesson_ids):
         raise ContentError(f"{where}: lesson_ids 에 중복이 있습니다.")
-    lessons = tuple(_parse_lesson(item, course_id, where, fixture) for item in _need(data, "lessons", list, where))
+    lessons = tuple(_parse_lesson(item, course_id, where, fixture, sources, base_dir)
+                    for item in _need(data, "lessons", list, where))
     if [lesson.id for lesson in lessons] != list(lesson_ids):
         raise ContentError(f"{where}: lessons 의 순서·id 가 lesson_ids 와 다릅니다.")
     if [lesson.order for lesson in lessons] != list(range(1, len(lessons) + 1)):
         raise ContentError(f"{where}: 레슨 order 는 1 부터 빠짐없이 차례대로여야 합니다.")
+
+    final_status = _choice(final.get("status", "upcoming"), FINAL_STATUSES, where, "final_assessment.status")
+    final_doc = None
+    if final_status != "upcoming":
+        final_doc = _load_assessment(
+            final.get("assessment_id"), course_id,
+            {lesson.id: (lesson.objectives, tuple(c["id"] for c in lesson.content.concepts) if lesson.content else ())
+             for lesson in lessons}, fixture, base_dir, where)
+        if not final_doc.is_final:
+            raise ContentError(f"{where}: final_assessment.assessment_id 가 최종 평가가 아닙니다.")
+        if final_doc.review_status != final_status:
+            raise ContentError(f"{where}: final_assessment.status({final_status})가 최종 평가 파일의 검토 상태"
+                               f"({final_doc.review_status})와 다릅니다.")
+
+    capstone_doc = None
+    cap = data.get("capstone")
+    if cap is not None:
+        # SDG 캡스톤 정의 (content/capstone/<id>.json). 상태는 정의 파일의 검토 상태와 같아야 한다.
+        from econova import capstone as capstone_mod
+        rel = str((cap or {}).get("file") or "").strip()
+        if not isinstance(cap, dict) or not rel or os.path.isabs(rel) or ".." in rel.split("/"):
+            raise ContentError(f"{where}: capstone 은 {{status, file(상대 경로)}} 이어야 합니다.")
+        path = os.path.join(base_dir, rel)
+        capstone_doc = capstone_mod.parse_definition(
+            lesson_content.read_json(path, os.path.relpath(path, CONTENT_DIR)), course_id, lesson_ids, fixture=fixture,
+            where=os.path.relpath(path, CONTENT_DIR))
+        if capstone_doc.review_status != cap.get("status"):
+            raise ContentError(f"{where}: capstone.status({cap.get('status')})가 캡스톤 정의 파일의 검토 상태"
+                               f"({capstone_doc.review_status})와 다릅니다.")
 
     status = _choice(data.get("status"), COURSE_STATUSES, where, "status")
     if status == "published":
@@ -221,13 +323,23 @@ def parse_course(data, where="course", fixture=False):
             if lesson.status != "published" or missing:
                 raise ContentError(f"{where}: 레슨 {lesson.id} 의 필수 자료/평가({', '.join(missing) or 'status'})가 "
                                    "승인되지 않아 강좌를 published 로 둘 수 없습니다.")
+        if final_doc is None and capstone_doc is not None:
+            # 캡스톤 강좌(c09 처럼 최종 평가 없이 캡스톤으로 마치는 강좌): 캡스톤 정의와 루브릭이 승인돼야 공개할 수 있다
+            if not capstone_doc.approved:
+                raise ContentError(f"{where}: 승인된 캡스톤 정의가 없어 강좌를 published 로 둘 수 없습니다.")
+            if capstone_doc.rubric["status"] != "approved" and not fixture:
+                raise ContentError(f"{where}: 캡스톤 루브릭이 승인되지 않아 강좌를 published 로 둘 수 없습니다.")
+        elif final_doc is None or not final_doc.approved:
+            raise ContentError(f"{where}: 승인된 최종 평가(final_assessment)가 없어 강좌를 published 로 둘 수 없습니다.")
+        elif not final_doc.passing_usable(fixture):
+            raise ContentError(f"{where}: 최종 평가의 합격 기준이 승인되지 않아 강좌를 published 로 둘 수 없습니다.")
 
     return Course(
         id=course_id, slug=slug, title=_text(data, "title", where), title_ko=_text(data, "title_ko", where),
         description=_text(data, "description", where), objectives=_texts(data, "objectives", where),
         sdgs=sdg_numbers, sdg_student_selected=selected, review_status=str(review.get("status", "")),
         estimated_hours=hours, difficulty_levels=levels, status=status, content_version=version,
-        final_assessment_status=str(final.get("status", "upcoming")), lessons=lessons, fixture=fixture,
+        final_assessment_status=final_status, lessons=lessons, fixture=fixture, final=final_doc, capstone=capstone_doc,
     )
 
 
@@ -241,18 +353,24 @@ def _read_json(path):
         raise ContentError(f"{os.path.relpath(path, CONTENT_DIR)}: JSON 문법 오류 ({exc.msg}, {exc.lineno}행)")
 
 
-def _read_catalog_file(directory, fixture):
+def read_sources():
+    """출처 레지스트리(content/sources.json)."""
+    return lesson_content.parse_sources(_read_json(os.path.join(CONTENT_DIR, "sources.json")))
+
+
+def _read_catalog_file(directory, fixture, sources):
     index = _read_json(os.path.join(directory, "catalog.json"))
     if not isinstance(index, dict) or index.get("schema_version") != 1 or not isinstance(index.get("courses"), list):
         raise ContentError(f"{os.path.relpath(directory, CONTENT_DIR) or '.'}/catalog.json: 형식이 잘못됐습니다.")
     courses = []
     for name in index["courses"]:
         path = os.path.join(directory, name)
-        courses.append(parse_course(_read_json(path), where=os.path.relpath(path, CONTENT_DIR), fixture=fixture))
+        courses.append(parse_course(_read_json(path), where=os.path.relpath(path, CONTENT_DIR), fixture=fixture,
+                                    sources=sources, base_dir=directory))
     return courses
 
 
-def build_catalog(courses, sdgs):
+def build_catalog(courses, sdgs, sources=None):
     """강좌 목록 전체를 검사한다: 강좌 id·slug·레슨 id 중복."""
     seen_courses, seen_slugs, seen_lessons = set(), set(), set()
     for c in courses:
@@ -269,7 +387,12 @@ def build_catalog(courses, sdgs):
         for n in c.sdgs:
             if n not in sdgs:
                 raise ContentError(f"{c.id}: SDG {n} 정보가 sdgs.json 에 없습니다.")
-    return Catalog(courses=tuple(courses), sdgs=sdgs)
+        for lesson in c.lessons:
+            if lesson.content:
+                for n in lesson.content.sdg_case["sdgs"]:
+                    if n not in sdgs:
+                        raise ContentError(f"{lesson.id}: SDG {n} 정보가 sdgs.json 에 없습니다.")
+    return Catalog(courses=tuple(courses), sdgs=sdgs, sources=sources if sources is not None else read_sources())
 
 
 def _read_sdgs():
@@ -283,10 +406,11 @@ def _read_sdgs():
 @lru_cache(maxsize=2)
 def load_catalog(include_fixtures=False):
     """JSON 을 읽어 검사한 Catalog. 파일은 배포와 함께 바뀌므로 프로세스마다 한 번만 읽는다."""
-    courses = _read_catalog_file(CONTENT_DIR, fixture=False)
+    sources = read_sources()
+    courses = _read_catalog_file(CONTENT_DIR, fixture=False, sources=sources)
     if include_fixtures:
-        courses += _read_catalog_file(os.path.join(CONTENT_DIR, "dev_fixtures"), fixture=True)
-    return build_catalog(courses, _read_sdgs())
+        courses += _read_catalog_file(os.path.join(CONTENT_DIR, "dev_fixtures"), fixture=True, sources=sources)
+    return build_catalog(courses, _read_sdgs(), sources)
 
 
 def get_catalog():

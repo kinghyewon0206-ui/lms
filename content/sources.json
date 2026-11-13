@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "note": "ECONOVA 출처 레지스트리. verification.status 가 verified 인 출처만 승인·공개된 레슨에서 인용할 수 있다. 레슨 본문은 출처 문장을 옮기지 않고 새로 쓴 설명이며, 출처는 근거와 더 읽을거리로만 연결한다.",
+  "sources": [
+    {
+      "id": "openstax-pe3-3-1",
+      "title": "3.1 Demand, Supply, and Equilibrium in Markets for Goods and Services",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/3-1-demand-supply-and-equilibrium-in-markets-for-goods-and-services",
+      "concepts": ["demand", "quantity_demanded", "law_of_demand", "supply", "law_of_supply", "equilibrium", "surplus", "shortage"],
+      "lesson_ids": ["c02-l1", "c02-l2"],
+      "license": "CC BY-NC-SA 4.0. OpenStax 는 자사 콘텐츠를 대규모 언어모델 학습에 쓰는 것을 서면 허락 없이 금지한다고 고지한다. ECONOVA 는 본문을 복제하지 않고 링크와 인용 표시만 한다.",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 제목·저자·발행일·라이선스와 수요·공급·균형·초과공급·초과수요 정의가 있는지 확인"}
+    },
+    {
+      "id": "openstax-pe3-3-2",
+      "title": "3.2 Shifts in Demand and Supply for Goods and Services",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/3-2-shifts-in-demand-and-supply-for-goods-and-services",
+      "concepts": ["demand_shifters", "supply_shifters", "movement_vs_shift"],
+      "lesson_ids": ["c02-l1"],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 수요 이동 요인(소득·기호·인구·관련재 가격·기대)과 공급 이동 요인(투입 비용·날씨·기술·정부 정책) 목록 확인"}
+    },
+    {
+      "id": "openstax-pe3-3-3",
+      "title": "3.3 Changes in Equilibrium Price and Quantity: The Four-Step Process",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/3-3-changes-in-equilibrium-price-and-quantity-the-four-step-process",
+      "concepts": ["equilibrium", "four_step"],
+      "lesson_ids": ["c02-l2"],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 4단계 분석법(원래 시장 그리기 → 수요/공급 중 무엇 → 이동 방향 → 새 균형 비교) 확인"}
+    },
+    {
+      "id": "openstax-pe3-3-4",
+      "title": "3.4 Price Ceilings and Price Floors",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/3-4-price-ceilings-and-price-floors",
+      "concepts": ["price_ceiling", "price_floor", "shortage", "surplus"],
+      "lesson_ids": ["c02-l2"],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 가격 상한→부족, 가격 하한→잉여, 농산물 가격 지지 사례 서술 확인"}
+    },
+    {
+      "id": "openstax-pe3-5-1",
+      "title": "5.1 Price Elasticity of Demand and Price Elasticity of Supply",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply",
+      "concepts": ["price_elasticity_demand", "midpoint_method", "elasticity_categories", "price_elasticity_supply"],
+      "lesson_ids": ["c02-l3"],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 중간점 공식과 탄력적·비탄력적·단위탄력적 구분 확인"}
+    },
+    {
+      "id": "openstax-pe3-5-3",
+      "title": "5.3 Elasticity and Pricing",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/5-3-elasticity-and-pricing",
+      "concepts": ["total_revenue", "food_demand_inelastic", "tax_incidence"],
+      "lesson_ids": ["c02-l3"],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 탄력성과 총수입의 관계, 조세 부담 귀착, 식량 수요가 대체로 비탄력적이라 풍작 때 농가 수입이 줄 수 있다는 서술 확인"}
+    },
+    {
+      "id": "un-sdg-2",
+      "title": "Goal 2: End hunger, achieve food security and improved nutrition and promote sustainable agriculture",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal2",
+      "concepts": ["food_security", "food_price_volatility", "food_reserves"],
+      "lesson_ids": ["c02-l1", "c02-l2", "c02-l3"],
+      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 목표 2 제목, 세부목표 2.1(식량 접근)과 2.c(식량 시장 기능, 식량 비축 정보, 가격 변동성 완화) 확인"}
+    },
+    {
+      "id": "un-sdg-12",
+      "title": "Goal 12: Ensure sustainable consumption and production patterns",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal12",
+      "concepts": ["food_waste", "sustainable_consumption"],
+      "lesson_ids": ["c02-l2", "c02-l3"],
+      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 목표 12 제목과 세부목표 12.3(1인당 음식물 쓰레기 절반 감축, 식량 손실 감축) 확인"}
+    },
+    {
+      "id": "fao-food-price-index",
+      "title": "FAO Food Price Index",
+      "container": "World Food Situation",
+      "author": "Food and Agriculture Organization of the United Nations (FAO)",
+      "published": null,
+      "url": "https://www.fao.org/worldfoodsituation/foodpricesindex/en/",
+      "concepts": ["food_price_volatility", "price_index"],
+      "lesson_ids": ["c02-l3"],
+      "license": "FAO 웹사이트 이용 약관을 따른다. 지수의 정의만 요약하고, 수치는 인용하지 않는다 (매달 갱신됨).",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 지수가 곡물·식물성 유지·유제품·육류·설탕 5개 품목군의 국제 가격 변화를 수출 비중 가중 평균으로 측정한다는 설명 확인"}
+    },
+    {
+      "id": "worldbank-food-security-update",
+      "title": "Food Security Update",
+      "container": "World Bank — Agriculture and Food (brief)",
+      "author": "World Bank Group",
+      "published": null,
+      "url": "https://www.worldbank.org/en/topic/agriculture/brief/food-security-update",
+      "concepts": ["food_price_inflation", "food_security"],
+      "lesson_ids": ["c02-l3"],
+      "license": "World Bank 웹사이트 이용 약관을 따른다. 정기적으로 내용이 바뀌는 페이지이므로 수치는 인용하지 않는다.",
+      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 국가별 식품 물가 상승을 정기적으로 점검하는 세계은행 자료임을 확인 (확인 시점 제목: Food Security Update – October 2026)"}
+    },
+    {
+      "id": "unep-food-waste-index-2024",
+      "title": "Food Waste Index Report 2024",
+      "container": "United Nations Environment Programme",
+      "author": "United Nations Environment Programme (UNEP)",
+      "published": null,
+      "url": "https://www.unep.org/resources/publication/food-waste-index-report-2024",
+      "concepts": ["food_waste"],
+      "lesson_ids": [],
+      "license": "확인하지 못함",
+      "verification": {"status": "unverified", "checked_at": "2026-11-03", "method": "페이지 접속이 HTTP 403 으로 거부되어 제목·발행일·내용을 확인하지 못함. 확인 전까지 레슨에서 인용하지 않는다."}
+    }
+  ]
+}

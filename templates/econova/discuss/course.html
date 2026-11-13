@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title_ko }} 토론 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page">
+  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.discuss_home') }}">경제 토론</a> <span>/</span> {{ course.title_ko }}</nav>
+  <header class="ec-head"><h1>{{ course.title_ko }} 토론 주제</h1></header>
+  {% if topics %}
+  <ul class="ec-list">{% for t in topics %}<li><a href="{{ url_for('econova.discuss_topic', course_id=course.id, topic_id=t.id) }}">{{ t.title }}</a> — {{ t.policy_question }}</li>{% endfor %}</ul>
+  {% else %}<p class="ec-placeholder-text">아직 승인된 토론 주제가 없어요.</p>{% endif %}
+</div>
+{% endblock %}

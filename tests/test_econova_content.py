@@ -89,8 +89,8 @@ def test_fixtures_are_off_by_default():
 def test_fixtures_when_enabled(fixtures_on):
     cat = content.get_catalog()
     fixtures = [c for c in cat.courses if c.fixture]
-    assert [c.id for c in fixtures] == ["dev-f1", "dev-f2"]
-    assert [c.id for c in cat.published()] == ["dev-f1", "dev-f2"]   # 공개된 것은 테스트 강좌뿐
+    assert [c.id for c in fixtures] == ["dev-f1", "dev-f2", "dev-f3"]   # dev-f3: 캡스톤 강좌 (Phase 7)
+    assert [c.id for c in cat.published()] == ["dev-f1", "dev-f2", "dev-f3"]   # 공개된 것은 테스트 강좌뿐
     assert cat.course("dev-f2").lesson("dev-f2-l2").requirements == ("material",)
 
 
@@ -114,7 +114,7 @@ def test_visible_and_published_filtering():
     cat = content.build_catalog(list(base.courses) + [content.parse_course(draft), content.parse_course(archived)], base.sdgs)
     visible = [c.id for c in cat.visible()]
     assert "zz-draft" not in visible and "zz-old" not in visible
-    assert {c.id for c in cat.published()} == {"dev-f1", "dev-f2"}
+    assert {c.id for c in cat.published()} == {"dev-f1", "dev-f2", "dev-f3"}
     assert all(c.id in visible for c in base.courses)
 
 
@@ -151,7 +151,10 @@ def test_valid_course_parses():
     (lambda d: d["lessons"][0].update(requirements=["material", "essay"]), "requirements"),
     (lambda d: d["lessons"][0].update(requirements=["material", "material"]), "중복"),
     (lambda d: d["lessons"][0]["quiz"].update(status="approved", assessment_id=None), "assessment_id"),
-    (lambda d: d["lessons"][0]["material"].update(status="approved"), "Phase 3"),
+    # 강좌 JSON 의 상태만 approved 로 바꿔도 학습자료 파일(draft)과 달라 거절된다 (Phase 2 의 '실제 자료 승인 금지'를 대체)
+    (lambda d: d["lessons"][0]["material"].update(status="approved"), "학습자료 파일의 검토 상태"),
+    (lambda d: d["lessons"][0]["material"].pop("file"), "material.file"),
+    (lambda d: d["lessons"][0]["material"].update(file="../../etc/passwd"), "material.file"),
     (lambda d: d["lessons"][0]["material"].update(status="ok"), "material.status"),
     (lambda d: d.update(fixture=True), "dev_fixtures"),
     (lambda d: d.update(status="published"), "published"),
@@ -163,7 +166,7 @@ def test_invalid_course_is_rejected(mutate, message):
 def test_publish_requires_every_required_activity_approved():
     # 테스트 강좌에서 퀴즈 승인 하나만 빼도 published 가 거절된다
     def drop_quiz(d):
-        d["lessons"][2]["quiz"] = {"status": "draft", "assessment_id": None}
+        d["lessons"][2]["quiz"] = {"status": "missing", "assessment_id": None}
     assert "quiz" in _bad(drop_quiz, raw=_fixture_raw(), fixture=True)
 
     def unpublish_lesson(d):

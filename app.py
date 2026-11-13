@@ -18,7 +18,8 @@ from markupsafe import Markup
 from flask import Flask, abort, flash, g, jsonify, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from econova import config, content, learning, storage
+from econova import config, content, learning, login_guard, quotas, roles, storage
+from econova.ai import legacy as legacy_ai
 from econova.auth import login_required
 from econova.config import env as _env
 from econova import web as econova_web
@@ -32,7 +33,11 @@ from econova.storage import (
 
 app = Flask(__name__)
 # 실서비스에서는 반드시 환경변수로 안전한 값을 설정하세요.
-app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-change-me")
+app.config["SECRET_KEY"] = config.secret_key()   # 운영에서 없거나 약하면 시작하지 않는다
+# 세션 쿠키: 자바스크립트에서 읽지 못하게, 다른 사이트 요청에 실리지 않게, 운영(HTTPS)에서는 Secure
+app.config.update(SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax",
+                  SESSION_COOKIE_SECURE=config.is_production(),
+                  MAX_CONTENT_LENGTH=1024 * 1024)   # 요청 본문 1MB 상한 (가장 긴 캡스톤 제출도 수십 KB)
 app.config["DATABASE"] = config.sqlite_path()
 storage.init_app(app)
 app.register_blueprint(econova_web.bp)
@@ -42,11 +47,19 @@ app.register_blueprint(econova_web.bp)
 #  배포 전에는 flask --app app check-content 로 검사한다.)
 config.db_backend()
 config.dev_fixtures_enabled()
+config.content_preview_enabled()
+config.private_content_dir()      # 비공개 정답 키 폴더가 저장소 안을 가리키면 멈춘다
+login_guard.limits()              # 로그인 제한·신뢰 프록시 설정 값이 잘못되면 멈춘다
+quotas.validate_all()             # 저장 한도 설정 값이 잘못되면 멈춘다
+login_guard.trusted_proxy_hops()
+from econova.ai import client as _ai_client  # noqa: E402
+_ai_client.settings()             # 운영에서 모의 AI, 키 없는 openai 공급자, 잘못된 한도 값이면 멈춘다
 
 # 기존 LMS(보관) 화면들. base.html 이 이 화면들 위에 보관 안내를 띄운다.
 LEGACY_ENDPOINTS = frozenset({"legacy_home", "courses", "course_detail", "watch", "curriculum_list", "curriculum_new",
                               "curriculum_quick", "curriculum_detail"})
 app.jinja_env.globals["is_legacy_page"] = lambda: request.endpoint in LEGACY_ENDPOINTS
+app.jinja_env.globals["is_admin_user"] = lambda: roles.is_admin(g.user)   # 메뉴 표시용 (권한 검사는 서버에서 따로)
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
@@ -237,8 +250,19 @@ LEVELS = {0: "이 분야는 처음이에요", 1: "기초는 알아요", 2: "어�
 HOURS_OPTIONS = (3, 5, 10, 20)
 
 
-def _openai_json(messages, temperature=0.4):
-    """OpenAI Chat Completions 를 호출해 JSON 객체 응답(dict)을 돌려준다. 키가 없거나 실패하면 None."""
+LEGACY_MAX_OUTPUT_TOKENS = 1500   # 이전 LMS 의 커리큘럼 JSON 은 ECONOVA 답보다 길다
+LEGACY_MAX_HISTORY_CHARS = 6000   # 상담 대화 전체 글자 수 상한 (메시지당 1000자 × 최대 24개 → 비용 상한)
+
+
+def _openai_json(messages, temperature=0.4, budget=None):
+    """OpenAI Chat Completions 를 호출해 JSON 객체 응답(dict)을 돌려준다. 키가 없거나 실패하면 None.
+    Phase 7: 호출마다 예산(budget: econova.ai.legacy.LegacyBudget)에서 한도를 확인하고 사용량을 기록한다.
+    예산이 없거나 한도를 넘으면 부르지 않는다. Phase 8B-1: 앱 전체 AI 스위치(ECONOVA_AI_PROVIDER)를 따른다."""
+    mode = legacy_ai.provider()                 # off 면 외부 요청 없음
+    if mode == "off" or budget is None or not budget.spend():
+        return None
+    if mode == "mock":                          # 개발·테스트 전용: 네트워크 없이 정해진 답
+        return dict(legacy_ai.MOCK_CHAT_REPLY)
     api_key = _env("OPENAI_API_KEY")
     if not api_key:
         return None
@@ -247,6 +271,8 @@ def _openai_json(messages, temperature=0.4):
         "messages": messages,
         "response_format": {"type": "json_object"},
         "temperature": temperature,
+        "max_tokens": LEGACY_MAX_OUTPUT_TOKENS,
+        "user": budget.user_ref,   # 가명 (이메일·이름 아님)
     }
     req = urllib.request.Request(
         "https://api.openai.com/v1/chat/completions",
@@ -254,9 +280,11 @@ def _openai_json(messages, temperature=0.4):
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
     )
     try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            return json.loads(json.loads(resp.read())["choices"][0]["message"]["content"])
-    except Exception as exc:  # 네트워크/키/형식 오류
+        with urllib.request.urlopen(req, timeout=budget.timeout) as resp:
+            raw = json.loads(resp.read())
+        budget.record(raw.get("usage"))
+        return json.loads(raw["choices"][0]["message"]["content"])
+    except Exception as exc:  # 네트워크/키/형식 오류 (요청·응답 내용은 기록하지 않는다)
         logging.warning("OpenAI 호출 실패: %s", type(exc).__name__)
         return None
 
@@ -268,7 +296,7 @@ def _catalog():
     ]
 
 
-def ai_plan(track_name, level_name, hours, goal_text):
+def ai_plan(track_name, level_name, hours, goal_text, budget=None):
     """(간단 모드) 선택한 답변으로 GPT 가 강의 순서를 고른다. 실패하면 None."""
     system = (
         "너는 대학 무료 온라인 강의로 학습 커리큘럼을 짜주는 조언자다. "
@@ -283,7 +311,7 @@ def ai_plan(track_name, level_name, hours, goal_text):
          "goal": goal_text or "(없음)", "catalog": _catalog()},
         ensure_ascii=False,
     )
-    data = _openai_json([{"role": "system", "content": system}, {"role": "user", "content": user}])
+    data = _openai_json([{"role": "system", "content": system}, {"role": "user", "content": user}], budget=budget)
     try:
         valid = {c["id"] for c in _catalog()}
         items, seen = [], set()
@@ -342,7 +370,7 @@ KOREAN_PREF = ("학습자는 영어 강의를 이해하기 어렵다. 한국어 
                "custom 의 title 은 한국어 강의명, title_en 은 영어 원제(한국어 강의면 영어 번역)로 써라.")
 
 
-def ai_chat(history, force_plan, korean=False):
+def ai_chat(history, force_plan, korean=False, budget=None):
     """상담 대화를 이어간다. 반환: dict(type=question|plan ...) 또는 None(실패)."""
     system = CHAT_SYSTEM.format(
         today=datetime.date.today().isoformat(), catalog=json.dumps(_catalog(), ensure_ascii=False)
@@ -352,7 +380,7 @@ def ai_chat(history, force_plan, korean=False):
         messages.append({"role": "system", "content": KOREAN_PREF})
     if force_plan:
         messages.append({"role": "system", "content": "충분히 대화했다. 지금까지의 정보로 지금 바로 type=plan 으로 답해라."})
-    return _openai_json(messages, temperature=0.5)
+    return _openai_json(messages, temperature=0.5, budget=budget)
 
 
 # 유료 강좌·수강편람·학사 페이지로 자주 쓰이는 서브도메인 (무료 공개 강의가 아니라서 제외)
@@ -445,16 +473,37 @@ def verify_course_url(url, words=()):
     return _clean_title(title)
 
 
-@lru_cache(maxsize=128)
-def search_course_url(title_en, university, words):
-    """웹 검색으로 강의의 실제 공식 페이지를 찾아 (url, 페이지 제목)을 돌려준다. 못 찾으면 None."""
+_SEARCH_CACHE, _SEARCH_LOCK = {}, __import__("threading").Lock()
+
+
+def search_course_url(title_en, university, words, budget=None):
+    """웹 검색으로 강의의 실제 공식 페이지를 찾아 (url, 페이지 제목)을 돌려준다. 못 찾으면 None.
+    같은 강의는 프로세스 안에서 다시 검색하지 않는다(캐시 — 예산을 쓰지 않음). 새 검색은 예산에서 한도를 확인한다."""
+    key = (title_en, university, words)
+    with _SEARCH_LOCK:
+        if key in _SEARCH_CACHE:
+            return _SEARCH_CACHE[key]
+    result = _search_course_url(title_en, university, words, budget)
+    if result is not None or (budget is not None and budget.blocked is None):
+        with _SEARCH_LOCK:
+            if len(_SEARCH_CACHE) >= 128:
+                _SEARCH_CACHE.pop(next(iter(_SEARCH_CACHE)))
+            _SEARCH_CACHE[key] = result
+    return result
+
+
+def _search_course_url(title_en, university, words, budget):
+    if not legacy_ai.external_allowed():        # off·mock 에서는 웹 검색(외부 AI 요청)을 하지 않는다
+        return None
     api_key = _env("OPENAI_API_KEY")
-    if not api_key:
+    if not api_key or budget is None or not budget.spend():
         return None
     body = {
         "model": _env("OPENAI_MODEL") or "gpt-4o",
         "tools": [{"type": "web_search_preview"}],
         "input": f'Find the official free course page for "{title_en}" ({university}). Prefer the university\'s own website.',
+        "max_output_tokens": LEGACY_MAX_OUTPUT_TOKENS,
+        "user": budget.user_ref,
     }
     req = urllib.request.Request(
         "https://api.openai.com/v1/responses",
@@ -462,8 +511,10 @@ def search_course_url(title_en, university, words):
         headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
     )
     try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            output = json.loads(resp.read())["output"]
+        with urllib.request.urlopen(req, timeout=min(60, budget.timeout * 2)) as resp:
+            raw = json.loads(resp.read())
+        budget.record(raw.get("usage"))
+        output = raw["output"]
     except Exception as exc:
         logging.warning("강의 검색 실패: %s", type(exc).__name__)
         return None
@@ -482,7 +533,7 @@ def search_course_url(title_en, university, words):
     return None
 
 
-def _resolve_custom(entry):
+def _resolve_custom(entry, budget=None):
     """목록 밖 강의의 링크를 확인하고, 안 열리면 웹 검색으로 실제 페이지를 찾는다. (url, 제목) 또는 None."""
     c = entry["custom"]
     if not c["words"]:  # 영어 원제가 없으면 엉뚱한 페이지를 걸러낼 수 없으므로 제외
@@ -493,7 +544,7 @@ def _resolve_custom(entry):
     if title:
         found = (url, title)
     else:
-        found = search_course_url(c["title_en"], c["university"], c["words"])
+        found = search_course_url(c["title_en"], c["university"], c["words"], budget)
     if not found:
         return None
     url, title = found
@@ -502,7 +553,7 @@ def _resolve_custom(entry):
     return url, title
 
 
-def build_chat_plan(plan):
+def build_chat_plan(plan, budget=None):
     """GPT 가 낸 plan 을 검증·정리한다. 목록 밖 강의는 링크를 확인하고, 주차·총 기간은 서버가 계산한다."""
     try:
         catalog = {c[0]: c for c in SEED_COURSES}
@@ -541,7 +592,7 @@ def build_chat_plan(plan):
 
         customs = [r for r in raw if r["custom"]]
         with ThreadPoolExecutor(max_workers=5) as ex:  # 링크 확인/검색은 병렬로
-            found = list(ex.map(_resolve_custom, customs))
+            found = list(ex.map(lambda e: _resolve_custom(e, budget), customs))
         rejected, bad, urls_seen = 0, set(), set(by_url)
         for r, f in zip(customs, found):
             if not f or f[0] in urls_seen:  # 못 찾았거나, 이미 있는 강의와 같은 페이지
@@ -589,6 +640,15 @@ def load_user():
     g.user = get_user_by_id(user_id) if user_id is not None else None
 
 
+@app.after_request
+def security_headers(resp):
+    """다른 사이트가 화면을 몰래 감싸(iframe) 관리자 버튼을 누르게 하는 공격(clickjacking), 형식 추측, 주소 유출을 막는다."""
+    resp.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
+    resp.headers.setdefault("X-Content-Type-Options", "nosniff")
+    resp.headers.setdefault("Referrer-Policy", "same-origin")
+    return resp
+
+
 # --------------------------------------------------------------- routes
 @app.route("/")
 def index():
@@ -608,10 +668,14 @@ def signup():
         error = None
         if not name:
             error = "이름을 입력해주세요."
-        elif not EMAIL_RE.match(email):
+        elif len(name) > 50:
+            error = "이름은 50자 이하로 입력해주세요."
+        elif len(email) > 254 or not EMAIL_RE.match(email):
             error = "올바른 이메일을 입력해주세요."
         elif len(password) < 8:
             error = "비밀번호는 8자 이상이어야 합니다."
+        elif len(password) > 256:
+            error = "비밀번호가 너무 길어요 (256자 이하)."
         elif password != confirm:
             error = "비밀번호가 일치하지 않습니다."
 
@@ -633,17 +697,28 @@ def signup():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form.get("email", "").strip().lower()
+        email = request.form.get("email", "").strip().lower()[:254]
         password = request.form.get("password", "")
 
+        # 로그인 시도 제한 (econova/login_guard.py): 계정+IP·계정·IP 별 실패 수. 저장소 기록이라 워커 사이에 공유된다.
+        if login_guard.blocked(email):
+            # 어느 제한에 걸렸는지는 알리지 않는다 (계정 존재 여부 등을 추측할 수 없게)
+            flash("로그인 시도가 많아 잠시 막았어요. 15분쯤 뒤에 다시 시도해 주세요.", "error")
+            return render_template("login.html", email=email), 429
         user = get_user_by_email(email)
         if user is None or not check_password_hash(user["password_hash"], password):
+            login_guard.record_failure(email)
             flash("이메일 또는 비밀번호가 올바르지 않습니다.", "error")
             return render_template("login.html", email=email), 401
 
+        login_guard.record_success(email)
         session.clear()
         session["user_id"] = user["id"]
-        return redirect(url_for("dashboard"))
+        resp = redirect(url_for("dashboard"))
+        # 이 브라우저는 이 계정으로 로그인에 성공했다는 서명 쿠키 (계정 전체 제한을 건너뛰어 주인이 잠기지 않게)
+        resp.set_cookie(login_guard.DEVICE_COOKIE, login_guard.device_cookie_value(email), max_age=login_guard.DEVICE_MAX_AGE,
+                        httponly=True, samesite="Lax", secure=config.is_production())
+        return resp
 
     return render_template("login.html")
 
@@ -658,8 +733,12 @@ def logout():
 @login_required
 def dashboard():
     """ECONOVA 학생 대시보드: 수강 중인 강좌별 진도. 기존 LMS 커리큘럼이 있으면 보관함 안내도 띄운다."""
+    from econova import ai_web, diagnostic as diag
+    test = diag.load()
     return econova_web.render_econova("econova/dashboard.html", legacy_curricula=storage.count_curricula(g.user["id"]),
-                                      **learning.dashboard(g.user["id"]))
+                                      diagnostic=learning.latest_diagnostic(g.user["id"]),
+                                      recs=ai_web.dashboard_recommendations(g.user["id"]), ai_enabled=ai_web.ai_enabled(),
+                                      area_names=test["category_names"], **learning.dashboard(g.user["id"]))
 
 
 # ---------------------------------------------------------------- 오류 화면
@@ -850,17 +929,36 @@ def curriculum_chat():
     ):
         return jsonify(error="잘못된 요청이에요."), 400
     history = [{"role": m["role"], "content": m["content"].strip()} for m in history]
+    if sum(len(m["content"]) for m in history) > LEGACY_MAX_HISTORY_CHARS:   # 공급자에게 보내는 글 전체 길이 제한
+        return jsonify(error="대화가 너무 길어요. 새로 시작하거나 '간단 모드'를 이용해주세요."), 400
 
-    korean = bool(data.get("korean"))
-    result = ai_chat(history, force_plan=sum(m["role"] == "user" for m in history) >= 6, korean=korean)
+    try:   # 저장 한도: AI 를 부르기 전에 확인한다 (한도면 AI 사용량도 쓰지 않음)
+        quotas.check("LEGACY_CURRICULA", storage.count_curricula(g.user["id"]))
+    except quotas.QuotaExceeded as exc:
+        return jsonify(error=exc.message), 409
+    if legacy_ai.provider() == "off":   # 앱 전체 AI 스위치가 꺼져 있으면 외부 요청 없이 안내만
+        return jsonify(error="AI 상담 기능이 지금은 꺼져 있어요. '간단 모드'로 커리큘럼을 만들 수 있어요."), 503
+    budget = legacy_ai.LegacyBudget(app, g.user["id"])
+    if not budget.acquire():
+        return jsonify(error=budget.message()), 429
+    try:
+        return _curriculum_chat(history, bool(data.get("korean")), budget)
+    finally:
+        budget.release()
+
+
+def _curriculum_chat(history, korean, budget):
+    result = ai_chat(history, force_plan=sum(m["role"] == "user" for m in history) >= 6, korean=korean, budget=budget)
     if not isinstance(result, dict):
+        if budget.blocked in ("rate_limited", "global_limit"):
+            return jsonify(error=budget.message() + " '간단 모드'는 AI 없이 쓸 수 있어요."), 429
         return jsonify(error="AI 연결에 실패했어요. 잠시 후 다시 시도하거나 '간단 모드'를 이용해주세요."), 502
 
     message = str(result.get("message", "")).strip()[:1500]
     if result.get("type") != "plan":
         return jsonify(reply=message or "조금 더 자세히 말씀해 주시겠어요?", done=False)
 
-    plan = build_chat_plan(result.get("plan"))
+    plan = build_chat_plan(result.get("plan"), budget)
     if plan is None:
         return jsonify(reply="커리큘럼을 만들지 못했어요. 배우고 싶은 것을 한 번 더 알려주시겠어요?", done=False)
 
@@ -873,8 +971,9 @@ def curriculum_chat():
             f"목표 기한은 {plan['target_weeks']}주다. 기한 안에 끝나도록 강의를 줄이거나 조정해서 type=plan 으로 다시 답해라."
         )
         retry = ai_chat(history + [{"role": "assistant", "content": json.dumps(result, ensure_ascii=False)},
-                                   {"role": "system", "content": feedback}], force_plan=True, korean=korean)
-        retry_plan = build_chat_plan(retry.get("plan")) if isinstance(retry, dict) and retry.get("type") == "plan" else None
+                                   {"role": "system", "content": feedback}], force_plan=True, korean=korean, budget=budget)
+        retry_plan = build_chat_plan(retry.get("plan"), budget) \
+            if isinstance(retry, dict) and retry.get("type") == "plan" else None
         if retry_plan:
             plan, message = retry_plan, str(retry.get("message", "")).strip()[:1500]
     dropped = []
@@ -887,6 +986,8 @@ def curriculum_chat():
                     + " 강의는 뺐어요. 기간을 늘리면 더 추가할 수 있어요.")
     if plan["rejected"]:
         message += f"\n\n※ 링크를 확인하지 못한 강의 {plan['rejected']}개는 제외했어요."
+        if budget.blocked:
+            message += f" ({budget.message()})"
     if plan["target_weeks"] is not None and plan["total_weeks"] > plan["target_weeks"] and not dropped:
         message += (f"\n\n※ 이 공부 페이스로는 약 {plan['total_weeks']}주가 걸려요. "
                     f"목표 기한({plan['target_weeks']}주)보다 {plan['total_weeks'] - plan['target_weeks']}주 더 필요해요.")
@@ -930,16 +1031,28 @@ def curriculum_quick():
             return render_template("curriculum_new.html", **_quick_ctx()), 400
 
         goal_text = request.form.get("goal", "").strip()[:500]
+        try:
+            quotas.check("LEGACY_CURRICULA", storage.count_curricula(g.user["id"]))
+        except quotas.QuotaExceeded as exc:
+            flash(exc.message, "error")
+            return render_template("curriculum_new.html", **_quick_ctx()), 409
 
-        plan = ai_plan(TRACKS[track][0], LEVELS[level], hours, goal_text)
+        plan, budget = None, legacy_ai.LegacyBudget(app, g.user["id"])
+        ai_on = legacy_ai.provider() != "off"
+        if ai_on and budget.acquire():
+            try:
+                plan = ai_plan(TRACKS[track][0], LEVELS[level], hours, goal_text, budget=budget)
+            finally:
+                budget.release()
         if plan:
             source, (note, steps) = "ai", plan
         else:
             source, note = "rule", ""
             steps = [(slug, reason) for slug, max_level, reason in PATHS[track] if level <= max_level]
             steps = steps or [(slug, reason) for slug, _, reason in PATHS[track][-2:]]
-            if _env("OPENAI_API_KEY"):
-                flash("AI 연결에 실패해서 기본 추천으로 만들었어요.", "error")
+            if ai_on and legacy_ai.external_allowed():
+                flash((budget.message() + " 기본 추천으로 만들었어요.") if budget.blocked
+                      else "AI 연결에 실패해서 기본 추천으로 만들었어요.", "error")
 
         cid = create_curriculum(
             g.user["id"], f"{g.user['name']}님의 {TRACKS[track][0]} 커리큘럼", track, level, hours, source, note, goal_text
@@ -1016,6 +1129,190 @@ def check_content_command():
     fixtures = [c for c in with_fixtures.courses if c.fixture]
     click.echo(f"강좌 콘텐츠 정상: 실제 강좌 {len(real.courses)}개 (레슨 {sum(len(c.lessons) for c in real.courses)}개, "
                f"공개 {len(real.published())}개), 개발용 테스트 강좌 {len(fixtures)}개")
+    # 정답 키 확인: 키가 없거나 맞지 않는 평가는 열리지 않는다(fail closed). 공개(승인)된 평가에 키가 없으면 오류.
+    from econova import diagnostic
+    closed, blocking = [], []
+    for c in with_fixtures.courses:
+        for a in [lesson.quiz_assessment for lesson in c.lessons] + [c.final]:
+            if a is not None and not a.answer_keys:
+                closed.append(f"{a.id}: {a.keys_problem}")
+                if a.approved:
+                    blocking.append(a.id)
+    test = diagnostic.load()
+    if not test["answer_keys"]:
+        closed.append(f"진단평가: {test['keys_problem']}")
+    for line in closed:
+        click.echo(f"  [정답 키 없음 → 응시 불가] {line}")
+    click.echo(f"정답 키 확인: 열 수 없는 평가 {len(closed)}개" if closed else "정답 키 확인: 모든 평가에 정답 키가 있습니다.")
+    if blocking:
+        raise click.ClickException(f"승인된 평가에 정답 키가 없습니다: {', '.join(blocking)}")
+
+
+# ---------------------------------------------------------------- 플랫폼 관리자 (Phase 7)
+# 관리자 권한은 웹에서 바꿀 수 없다. 서버 셸에 접근할 수 있는 운영자가 본인 확인을 거친 뒤 CLI 로만 부여한다.
+# 가입 이메일은 소유 확인을 하지 않으므로 "이 이메일이면 관리자" 같은 자동 부여는 하지 않는다.
+@app.cli.command("admin-grant")
+@click.argument("email")
+@click.option("--operator", required=True, help="권한을 부여하는 운영자 이름 (감사 기록에 남음)")
+@click.option("--verification", required=True,
+              help="이 계정 주인이 맞는지 확인한 방법 (예: '대면 확인 2026-11-05, 계정 로그인 화면 확인')")
+@click.option("--note", default="", help="메모")
+def admin_grant_command(email, operator, verification, note):
+    """이미 가입한 계정에 플랫폼 관리자 권한을 준다. 확인 문구를 직접 입력해야 한다."""
+    email = email.strip().lower()
+    if len(verification.strip()) < 10 or len(operator.strip()) < 2:
+        raise click.ClickException("운영자 이름과 본인 확인 방법(10자 이상)을 구체적으로 적어야 합니다.")
+    if config.is_production() and config.env("ECONOVA_ALLOW_ADMIN_BOOTSTRAP").strip() != "1":
+        raise click.ClickException("운영 환경에서는 ECONOVA_ALLOW_ADMIN_BOOTSTRAP=1 을 이 명령에만 잠시 설정해야 합니다.")
+    user = get_user_by_email(email)
+    if user is None:
+        raise click.ClickException("그 이메일로 가입한 계정이 없습니다. 본인이 먼저 가입해야 합니다.")
+    typed = click.prompt(f"관리자 권한을 줄 계정의 이메일을 다시 입력하세요 ({email})", default="", show_default=False)
+    if typed.strip().lower() != email:
+        raise click.ClickException("확인 이메일이 다릅니다. 아무것도 바꾸지 않았습니다.")
+    storage.grant_admin(user["id"], operator.strip(), verification.strip(), note.strip())
+    click.echo(f"관리자 권한을 부여했습니다: {email} (부여자 {operator.strip()})")
+
+
+@app.cli.command("admin-revoke")
+@click.argument("email")
+def admin_revoke_command(email):
+    """관리자 권한을 취소한다 (계정은 학생으로 돌아간다. 부여 기록은 취소 시각과 함께 남는다)."""
+    user = get_user_by_email(email.strip().lower())
+    if user is None:
+        raise click.ClickException("그 이메일로 가입한 계정이 없습니다.")
+    storage.revoke_admin(user["id"])
+    click.echo(f"관리자 권한을 취소했습니다: {email}")
+
+
+@app.cli.command("admin-list")
+def admin_list_command():
+    """현재 관리자 계정 목록 (운영자 확인용)."""
+    ids = storage.list_admin_user_ids()
+    for uid in ids:
+        user = get_user_by_id(uid)
+        grant = storage.get_admin_grant(uid)
+        click.echo(f"- {user['email'] if user else uid} · 부여 {grant['granted_at']} by {grant['granted_by']}")
+    click.echo(f"관리자 {len(ids)}명")
+
+
+@app.cli.command("content-release-apply")
+@click.argument("plan_file", type=click.Path(exists=True, dir_okay=False))
+@click.option("--dry-run", is_flag=True, help="파일을 바꾸지 않고 확인만")
+@click.option("--trust-plan", is_flag=True,
+              help="이 DB 에 검토 기록이 없을 때(운영에서 내보낸 계획): ECONOVA_RELEASE_SIGNING_KEY 로 서명이 확인된 계획만 반영")
+def content_release_apply_command(plan_file, dry_run, trust_plan):
+    """관리 화면에서 내려받은 릴리스 계획을 정본 JSON 의 review 블록에 반영한다 (개발 환경 전용, 웹에서는 불가).
+    항목마다 지금 파일의 내용 지문이 승인 때와 같은지 다시 확인하고, 다르면 건너뛴다. 반영 뒤에는 check-content 와
+    테스트를 돌리고, 사람이 diff 를 확인한 뒤 커밋한다."""
+    import json as _json
+    from econova import admin_content
+    if config.is_production():
+        raise click.ClickException("운영 환경에서는 정본 콘텐츠 파일을 바꾸지 않습니다. 개발 환경에서 반영하고 Git 으로 배포하세요.")
+    with open(plan_file, encoding="utf-8") as f:
+        plan = _json.load(f)
+    signed_ok = admin_content.plan_signature_ok(plan, config.env("ECONOVA_RELEASE_SIGNING_KEY"))
+
+    def verify(item):
+        """(문제, DB 가 정한 값). DB 에 기록이 있으면 검토자·날짜·번호를 DB 에서 가져온다 (계획의 값은 믿지 않는다).
+        DB 에 없으면 --trust-plan 과 유효한 서명이 둘 다 있어야 한다 (서명 없는·고친 계획으로 승인을 만들 수 없게)."""
+        record = storage.get_content_review(item["review_id"])
+        if record is None:
+            if not trust_plan:
+                return "이 DB 에 검토 기록이 없음 (운영에서 내보낸 서명된 계획이면 --trust-plan)", None
+            if not signed_ok:
+                return "계획 서명이 없거나 맞지 않음 (ECONOVA_RELEASE_SIGNING_KEY 확인) — 반영하지 않음", None
+            return None, None
+        if (record["decision"], record["content_digest"], record["target_type"], record["target_id"]) != \
+                ("approve", item["content_digest"], item["target_type"], item["target_id"]):
+            return "검토 기록과 계획 내용이 다름", None
+        if storage.get_admin_grant(record["reviewer_user_id"]) is None:
+            return "승인한 관리자의 권한이 취소됨 — 다시 검토 필요", None
+        later = admin_content.superseded_by(record, storage.list_content_reviews(item["target_type"], item["target_id"]))
+        if later is not None:   # 승인 뒤에 '다시 검토'·'수정 요청' 이 기록됐다면 이 승인은 반영하지 않는다
+            return f"승인 뒤에 '{admin_content.DECISION_KO.get(later['decision'], later['decision'])}'(#{later['id']}) 이 기록됨", None
+        return None, {"review_id": record["id"], "reviewer_name": record["reviewer_name"],
+                      "approved_at": record["created_at"].strftime("%Y-%m-%d") if record["created_at"] else ""}
+    try:
+        results = admin_content.apply_release(plan, verify_record=verify, dry_run=dry_run)
+    except ValueError as exc:
+        raise click.ClickException(str(exc))
+    for item, result in results:
+        click.echo(f"- {item['target_type']}:{item['target_id']} → {result}")
+    content.load_catalog.cache_clear()
+    click.echo("반영 뒤에는 flask --app app check-content 와 테스트를 실행하고 diff 를 확인하세요.")
+
+
+@app.cli.command("content-verify-approvals")
+@click.option("--include-fixtures", is_flag=True, help="개발용 fixture 도 검사")
+def content_verify_approvals_command(include_fixtures):
+    """정본 JSON 의 관리자 승인(합격 기준 포함)이 모두 DB 의 검토 기록으로 뒷받침되는지 확인한다 (읽기만 함).
+    배포 직후 운영 환경에서 실행한다. 기록이 없거나 지문이 다르면 종료 코드 1."""
+    from econova import admin_content
+    approvals = admin_content.canonical_admin_approvals(include_fixtures)
+    problems = admin_content.verify_canonical_approvals(
+        storage.get_content_review, include_fixtures, list_reviews=storage.list_content_reviews,
+        reviewer_active=lambda uid: storage.get_admin_grant(uid) is not None)
+    for t, why in problems:
+        click.echo(f"  [검증 실패] {t.type}:{t.id} — {why}")
+    if problems:
+        raise click.ClickException(f"검증되지 않은 정본 승인 {len(problems)}개")
+    click.echo(f"정본 관리자 승인 {len(approvals)}개 모두 DB 검토 기록과 일치합니다.")
+
+
+@app.cli.command("ai-purge")
+def ai_purge_command():
+    """보존 기간(ECONOVA_AI_RETENTION_DAYS, 기본 30일)이 지난 AI 대화 메시지와 오래된 사용량 기록을 지운다.
+    점수·진도·수강 기록은 건드리지 않는다. 운영에서는 Render Cron Job 등으로 매일 실행한다."""
+    import datetime
+    from econova.ai import client as ai_client
+    days = ai_client.settings().retention_days
+    before = storage._utcnow() - datetime.timedelta(days=days)
+    msgs, convs = storage.purge_ai_data(before, usage_before=storage._utcnow() - datetime.timedelta(days=max(days, 90)))
+    click.echo(f"AI 기록 정리: {days}일 지난 메시지 {msgs}개, 빈 대화 {convs}개를 지웠습니다.")
+    n = storage.purge_login_counters(storage._utcnow())
+    click.echo(f"로그인 실패 기록 정리: 만료된 기록 {n}개를 지웠습니다.")
+
+
+@app.cli.command("check-public-files")
+@click.option("--staged", is_flag=True, help="이미 스테이지한 파일만 검사 (pre-commit 훅과 같음)")
+def check_public_files_command(staged):
+    """공개 저장소에 올리면 안 되는 내용(정답 키·교사용 검토 문서·API 키)이 커밋 대상에 있는지 검사한다."""
+    from econova import public_safety
+    if public_safety.main(["--staged"] if staged else []):
+        raise click.ClickException("커밋하면 안 되는 내용이 있습니다.")
+
+
+@app.cli.command("review-package")
+@click.argument("course_id")
+@click.option("--output", "-o", default=None, type=click.Path(dir_okay=False),
+              help="만들 Markdown 파일 경로. 기본: <비공개 폴더>/review/<강좌>-review-package.md")
+def review_package_command(course_id, output):
+    """교사용 교육 검토 문서(정답 포함)를 만든다. 학생 화면으로는 제공하지 않는다. 어떤 자료도 승인하지 않는다.
+    정답이 들어 있으므로 저장소 밖(비공개 폴더)이나, 저장소 안이라면 git 이 무시하는 곳에만 쓴다."""
+    import datetime
+    from econova import public_safety, review_package
+    if output is None:
+        private_dir = config.private_content_dir()
+        if not private_dir:
+            raise click.ClickException("비공개 폴더(ECONOVA_PRIVATE_CONTENT_DIR)가 없어 기본 위치를 정할 수 없습니다. -o 로 지정하세요.")
+        output = os.path.join(private_dir, "review", f"{course_id}-review-package.md")
+    inside, ignored = public_safety.is_ignored_inside_repo(output)
+    if inside and not ignored:
+        raise click.ClickException(f"{output} 는 저장소 안의 커밋될 수 있는 위치입니다. 정답이 공개될 수 있어 쓰지 않습니다. "
+                                   "비공개 폴더나 git 이 무시하는 폴더(docs/review/)를 지정하세요.")
+    catalog = content.load_catalog(include_fixtures=False)
+    course = catalog.course(course_id)
+    if course is None:
+        raise click.ClickException(f"강좌 {course_id!r} 가 없습니다.")
+    try:
+        text = review_package.build(course, catalog.sources, datetime.date.today().isoformat())
+    except review_package.KeysMissing as exc:
+        raise click.ClickException(str(exc))
+    os.makedirs(os.path.dirname(os.path.abspath(output)), exist_ok=True)
+    with open(output, "w", encoding="utf-8") as f:
+        f.write(text + "\n")
+    click.echo(f"검토 문서를 만들었습니다: {output}")
 
 
 if __name__ == "__main__":

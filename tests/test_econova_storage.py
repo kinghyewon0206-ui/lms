@@ -127,7 +127,7 @@ def test_sqlite_migration_2_on_existing_database(sqlite_app, tmp_path, monkeypat
         storage.add_curriculum_item(cid, storage.curated_course_id("econ-micro"), 1, "why")
         assert "econ_enrollments" not in {r[0] for r in db.execute("SELECT name FROM sqlite_master")}
 
-        assert storage.migrate_sqlite() == [2]
+        assert storage.migrate_sqlite() == [2, 3, 4, 5, 6, 7, 8]   # Phase 2~8B 의 마이그레이션
         assert storage.migrate_sqlite() == []
         assert storage.get_user_by_email("old@example.com")["name"] == "Old"
         assert len(storage.list_curriculum_items(cid)) == 1

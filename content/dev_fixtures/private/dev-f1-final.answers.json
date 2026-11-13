@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "kind": "assessment_keys",
+  "assessment_id": "dev-f1-final",
+  "assessment_version": 1,
+  "questions": {
+    "dev-f1-final-q1mcq": {
+      "question_version": 1,
+      "public_sha256": "59f34706d0937aa631f9895b39940a993d5c123101f1f14e27758792df1b42d7",
+      "answer": "a",
+      "explanation": "개발용 테스트 문항이에요."
+    },
+    "dev-f1-final-q2mcq": {
+      "question_version": 1,
+      "public_sha256": "32f5796c479bc1cf23682f61c6603426b1c948ef7896fbb42c57c873a68c2f5e",
+      "answer": "a",
+      "explanation": "개발용 테스트 문항이에요."
+    },
+    "dev-f1-final-q3mcq": {
+      "question_version": 1,
+      "public_sha256": "e1f7f51642989189882d5a4b09d3cefa5f8af9cb0479d644d22db35b9ec43a1a",
+      "answer": "a",
+      "explanation": "개발용 테스트 문항이에요."
+    },
+    "dev-f1-final-qn": {
+      "question_version": 1,
+      "public_sha256": "a02f37a49a549163e88754a1d3d1d1a683a20ef2e91653a68e4b568113fdf89b",
+      "answer": 6,
+      "tolerance": 0,
+      "explanation": "개발용 테스트 문항이에요.",
+      "check": {
+        "type": "difference",
+        "a": 10,
+        "b": 4,
+        "expected": 6,
+        "answer_field": "expected"
+      }
+    }
+  },
+  "synthetic": true
+}

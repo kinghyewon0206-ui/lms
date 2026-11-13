@@ -23,13 +23,28 @@ def _enroll(client, course_id, difficulty=None):
     return _post(client, f"/courses/{course_id}/enroll", **data)
 
 
-def _submit_quiz(app, course_id, lesson_id, email="student@example.com", assessment_id=None, submission="sub-1"):
-    """Phase 4 퀴즈 기능 대신 '올바른 제출 이벤트'를 흉내 낸다 (테스트 전용)."""
-    course = content.get_catalog().course(course_id)
-    lesson = course.lesson(lesson_id)
+def take(client, page_url, assessment, correct=True):
+    """실제 화면 흐름으로 평가를 제출한다: 화면을 열어 일회용 토큰을 받고, 답을 채워 제출한다. 결과 주소를 돌려준다."""
+    import re
+    html = client.get(page_url).get_data(as_text=True)
+    token = re.search(r'name="submission_token" value="([^"]+)"', html).group(1)
+    answers = {}
+    for q in assessment.questions:
+        if correct:
+            answers[f"q_{q['id']}"] = q["answer"] if q["type"] == "mcq" else f"{q['answer']:g}"
+        else:
+            answers[f"q_{q['id']}"] = "b" if q["type"] == "mcq" and q["answer"] == "a" else "-1"
+    res = client.post(page_url, data={"csrf_token": CSRF, "submission_token": token, **answers})
+    assert res.status_code == 302 and "/assessments/attempts/" in res.headers["Location"], res.status_code
+    return res.headers["Location"]
+
+
+def _submit_quiz(app, client, course_id, lesson_id, email="student@example.com", correct=True):
+    """레슨 형성 퀴즈를 실제로 제출하고, 그 레슨의 진도 기록을 돌려준다."""
+    lesson = content.get_catalog().course(course_id).lesson(lesson_id)
+    take(client, f"/learn/{course_id}/{lesson_id}/quiz", lesson.quiz_assessment, correct)
     with app.app_context():
-        return learning.record_quiz_submission(_uid(app, email), course, lesson,
-                                               assessment_id or lesson.quiz.get("assessment_id"), submission)
+        return storage.list_lesson_progress(_uid(app, email), course_id)[lesson_id]
 
 
 def _switch_user(client, email):
@@ -138,7 +153,7 @@ def test_course_detail_before_and_after_enrollment(logged_in):
     _enroll(logged_in, "dev-f1", "advanced")
     html = logged_in.get("/courses/dev-f1").get_data(as_text=True)
     assert "내 진도" in html and "0% · 레슨 0/3 완료" in html and 'href="/learn/dev-f1/dev-f1-l1"' in html
-    assert '<option value="advanced" selected>' in html and "준비 중" in html   # 최종 평가는 준비 중 표시
+    assert '<option value="advanced" selected>' in html and "잠김" in html   # 레슨을 다 끝내기 전 최종 평가는 잠김
 
 
 def test_course_detail_unknown_404(logged_in):
@@ -155,8 +170,8 @@ def test_lesson_access_rules(logged_in):
     assert res.status_code == 302 and res.headers["Location"].endswith("/courses/dev-f1")
     _enroll(logged_in, "dev-f1")
     html = logged_in.get("/learn/dev-f1/dev-f1-l1").get_data(as_text=True)
-    assert "레슨 완료 조건" in html and "필수 형성 퀴즈 제출" in html and "제출 전 · 퀴즈 기능 준비 중" in html
-    assert "개발용 테스트 자료" in html and "AI 튜터" in html and "Phase 6 예정" in html
+    assert "레슨 완료 조건" in html and "필수 형성 퀴즈 제출" in html and "퀴즈 풀기" in html
+    assert "개발용 테스트 자료" in html and "AI 튜터" in html and "AI 기능이 지금은 꺼져 있어요" in html   # 기본값: AI 꺼짐
     for title in ("학습 목표", "검증된 개념 설명", "난이도별 학습 내용", "풀이 예제", "경제 그래프", "SDG 사례",
                   "인터랙티브 시뮬레이션", "형성 퀴즈", "되돌아보기와 피드백"):
         assert title in html
@@ -190,19 +205,30 @@ def test_material_review_alone_does_not_complete_quiz_lesson(app, logged_in):
 def test_quiz_submission_rules(app, logged_in):
     _enroll(logged_in, "dev-f1")
     _post(logged_in, "/learn/dev-f1/dev-f1-l1/material-reviewed")
-    with pytest.raises(learning.LearningError, match="퀴즈가 아니에요"):
-        _submit_quiz(app, "dev-f1", "dev-f1-l1", assessment_id="dev-f1-l2-quiz")
-    with pytest.raises(learning.LearningError, match="올바르지 않아요"):
-        _submit_quiz(app, "dev-f1", "dev-f1-l1", submission="  ")
-    with pytest.raises(learning.LearningError, match="필수 퀴즈가 없어요"):   # 퀴즈가 필요 없는 레슨
-        _submit_quiz(app, "dev-f2", "dev-f2-l2", assessment_id="x")
-    with pytest.raises(learning.LearningError, match="필수 퀴즈가 없어요"):   # 승인된 퀴즈가 없는 실제 강좌
-        _submit_quiz(app, "c02", "c02-l1", assessment_id="x")
-    with pytest.raises(storage.NotEnrolledError):
-        _submit_quiz(app, "dev-f2", "dev-f2-l1")
+    cat = content.get_catalog()
+    f1, f2, c02 = cat.course("dev-f1"), cat.course("dev-f2"), cat.course("c02")
+    # 퀴즈 제출은 화면이 보낸 표시가 아니라 서버에 저장된 본인의 응시 기록으로만 반영된다
+    with app.app_context():
+        uid = _uid(app)
+        with pytest.raises(learning.LearningError, match="찾을 수 없어요"):
+            learning.record_quiz_submission(uid, f1, f1.lesson("dev-f1-l1"), "999999")
+        with pytest.raises(learning.LearningError, match="필수 퀴즈가 없어요"):   # 퀴즈가 필요 없는 레슨
+            learning.record_quiz_submission(uid, f2, f2.lesson("dev-f2-l2"), "1")
+        with pytest.raises(learning.LearningError, match="필수 퀴즈가 없어요"):   # 퀴즈가 아직 draft 인 실제 강좌
+            learning.record_quiz_submission(uid, c02, c02.lesson("c02-l1"), "1")
+    res = _post(logged_in, "/learn/dev-f1/dev-f1-l1/material-reviewed", quiz_submitted="1", status="completed")
+    with app.app_context():
+        assert storage.list_lesson_progress(_uid(app), "dev-f1")["dev-f1-l1"]["status"] == "in_progress"   # 위조 무시
+    assert logged_in.get("/learn/dev-f2/dev-f2-l1/quiz").status_code == 303   # 수강 전
+    assert logged_in.get("/learn/c02/c02-l1/quiz").status_code == 403         # 공개 전 강좌
+    assert logged_in.get("/learn/dev-f2/dev-f2-l2/quiz").status_code in (303, 404)
 
-    rec = _submit_quiz(app, "dev-f1", "dev-f1-l1")
-    assert rec["status"] == "completed"
+    rec = _submit_quiz(app, logged_in, "dev-f1", "dev-f1-l1")
+    assert rec["status"] == "completed" and rec["quiz_score"] == 1.0
+    with app.app_context():
+        [attempt] = storage.list_assessment_attempts(_uid(app), assessment_id="dev-f1-l1-quiz")
+        with pytest.raises(learning.LearningError, match="퀴즈가 아니에요"):   # 다른 레슨의 퀴즈 기록으로는 안 됨
+            learning.record_quiz_submission(_uid(app), f1, f1.lesson("dev-f1-l2"), attempt["id"])
     html = logged_in.get("/courses/dev-f1").get_data(as_text=True)
     assert "33% · 레슨 1/3 완료" in html
     assert DONE_PILL in logged_in.get("/learn/dev-f1/dev-f1-l1").get_data(as_text=True)
@@ -210,7 +236,7 @@ def test_quiz_submission_rules(app, logged_in):
 
 def test_quiz_before_material_is_in_progress(app, logged_in):
     _enroll(logged_in, "dev-f1")
-    assert _submit_quiz(app, "dev-f1", "dev-f1-l2")["status"] == "in_progress"
+    assert _submit_quiz(app, logged_in, "dev-f1", "dev-f1-l2")["status"] == "in_progress"
     _post(logged_in, "/learn/dev-f1/dev-f1-l2/material-reviewed")
     with app.app_context():
         assert storage.list_lesson_progress(_uid(app), "dev-f1")["dev-f1-l2"]["status"] == "completed"
@@ -219,7 +245,7 @@ def test_quiz_before_material_is_in_progress(app, logged_in):
 def test_progress_is_independent_between_courses(app, logged_in):
     _enroll(logged_in, "dev-f1")
     _post(logged_in, "/learn/dev-f1/dev-f1-l1/material-reviewed")
-    _submit_quiz(app, "dev-f1", "dev-f1-l1")
+    _submit_quiz(app, logged_in, "dev-f1", "dev-f1-l1")
     _enroll(logged_in, "dev-f2")                                # 나중에 다른 강좌를 신청해도
     _post(logged_in, "/learn/dev-f2/dev-f2-l2/material-reviewed")
     with app.app_context():
@@ -231,7 +257,7 @@ def test_progress_is_independent_between_courses(app, logged_in):
 def test_full_course_lessons_completed_but_not_course_completed(app, logged_in):
     _enroll(logged_in, "dev-f2")
     _post(logged_in, "/learn/dev-f2/dev-f2-l1/material-reviewed")
-    _submit_quiz(app, "dev-f2", "dev-f2-l1")
+    _submit_quiz(app, logged_in, "dev-f2", "dev-f2-l1")
     _post(logged_in, "/learn/dev-f2/dev-f2-l2/material-reviewed")
     html = logged_in.get("/dashboard").get_data(as_text=True)
     assert "100% · 레슨 2/2 완료" in html and "레슨 모두 완료 · 최종 평가 예정" in html
@@ -287,7 +313,7 @@ def test_progress_persists_after_relogin(app, client):
     set_csrf(client)
     _enroll(client, "dev-f1", "advanced")
     _post(client, "/learn/dev-f1/dev-f1-l1/material-reviewed")
-    _submit_quiz(app, "dev-f1", "dev-f1-l1")
+    _submit_quiz(app, client, "dev-f1", "dev-f1-l1")
     client.post("/logout", data={"csrf_token": CSRF})
     assert client.get("/dashboard").status_code == 302
 

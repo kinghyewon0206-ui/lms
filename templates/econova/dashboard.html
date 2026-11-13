@@ -15,11 +15,67 @@
     </dl>
   </section>
 
+  <aside class="ec-legacy-notice ec-diag-notice" role="note">
+    {% if diagnostic %}
+    <p>최근 진단평가 추천 난이도: <strong>{{ difficulty_names[diagnostic.recommended_level] }}</strong> ({{ diagnostic.score }}/{{ diagnostic.max_score }}). 추천은 참고용이고, 강좌마다 직접 바꿀 수 있어요.</p>
+    <a class="btn secondary" href="{{ url_for('econova.diagnostic_result', attempt_id=diagnostic.id) }}">결과 보기</a>
+    {% else %}
+    <p>경제 기초 진단평가(12문항)를 보면 나에게 맞는 난이도를 추천받을 수 있어요.</p>
+    <a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">진단평가 보기</a>
+    {% endif %}
+  </aside>
+
   {% if legacy_curricula %}
   <aside class="ec-legacy-notice" role="note">
     <p>이전 LMS에서 만든 커리큘럼 <strong>{{ legacy_curricula }}개</strong>가 보관되어 있어요. 지우지 않고 그대로 볼 수 있어요.</p>
     <a class="btn secondary" href="{{ url_for('curriculum_list') }}">보관된 내 커리큘럼 보기</a>
   </aside>
+  {% endif %}
+
+  {% if recs and (recs['items'] or recs.next_lessons or recs.weak_areas) %}
+  <section class="block recs" aria-labelledby="h-recs" data-recs>
+    <div class="browse-head"><h2 id="h-recs">나를 위한 학습 추천</h2></div>
+    <p class="hint"><span class="pill pill-measure">측정 결과</span> 아래 표는 내 퀴즈·평가 기록으로 <strong>정해진 규칙</strong>에 따라 계산했어요 (AI 아님).
+      개념 문항을 {{ recs.rules.min_evidence }}개 미만 확인했으면 '잠정'으로 표시해요. 수강·난이도는 자동으로 바뀌지 않아요.</p>
+    {% if recs.insufficient %}<p class="ec-placeholder-text">아직 퀴즈·평가 기록이 없어 개념별 추천의 근거가 부족해요. 레슨과 퀴즈를 진행하면 더 정확해져요.</p>{% endif %}
+    {% if recs['items'] %}
+    <div class="table-scroll"><table class="ec-table recs-table">
+      <thead><tr><th scope="col">개념</th><th scope="col">레슨</th><th scope="col">확인 결과</th><th scope="col">상태</th><th scope="col">추천 활동</th></tr></thead>
+      <tbody>
+      {% for it in recs['items'] %}
+        <tr>
+          <th scope="row">{{ it.term }}</th>
+          <td>{{ it.course_title }} · {{ it.lesson_title }}</td>
+          <td>{% if it.total %}{{ it.correct }}/{{ it.total }} ({{ it.percent }}%){% else %}확인 안 함{% endif %}</td>
+          <td><span class="pill {{ 'pill-review' if it.status == 'review' else 'pill-soon' }}">{{ {'review': '복습 권장', 'provisional': '잠정 · 근거 부족', 'unpracticed': '아직 확인 안 함'}[it.status] }}</span></td>
+          <td>
+            <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-concept">자료 다시 보기</a>
+            {% for x in it.actions if x.kind == 'quiz' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-quiz">퀴즈</a>{% endfor %}
+            {% for a in it.actions if a.kind == 'simulation' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-simulation">시뮬레이션</a>{% endfor %}
+            <div class="hint">{{ it.reason }}</div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table></div>
+    {% if recs.more %}<p class="hint">이 밖에 {{ recs.more }}개 개념이 더 있어요.</p>{% endif %}
+    {% endif %}
+    {% if recs.next_lessons %}
+    <p><strong>다음 레슨:</strong>
+      {% for n in recs.next_lessons %}<a href="{{ url_for('econova.lesson', course_id=n.course_id, lesson_id=n.lesson_id) }}">{{ n.course_title }} · 레슨 {{ n.order }} {{ n.lesson_title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    {% endif %}
+    {% if recs.weak_areas %}
+    <p><strong>진단평가에서 다시 보면 좋은 기초 영역:</strong>
+      {% for a in recs.weak_areas %}{{ area_names.get(a.area, a.area) }} ({{ a.correct }}/{{ a.total }}{% if a.provisional %}, 잠정{% endif %}){% if not loop.last %}, {% endif %}{% endfor %}</p>
+    {% endif %}
+    {% if recs['items'] and ai_enabled %}
+    <div class="ai-box">
+      <button type="button" class="btn secondary" data-recs-explain data-endpoint="{{ url_for('econova.recommendations_explain') }}" data-csrf="{{ csrf_token() }}">AI 에게 추천 이유 쉽게 설명 듣기</button>
+      <div data-recs-out aria-live="polite"></div>
+      <p class="hint">AI 설명은 위 측정 결과를 풀어 쓴 참고용 조언이에요. 순위와 수치는 바꾸지 않아요.</p>
+    </div>
+    {% endif %}
+  </section>
   {% endif %}
 
   <section class="block" aria-labelledby="h-mine">
@@ -33,7 +89,7 @@
         <a class="ec-cover-link" href="{{ url_for('econova.course_detail', course_id=c.id) }}" aria-label="{{ c.title_ko }} 강좌 상세"></a>
         <div class="ec-card-top">
           <span class="ec-code">{{ c.id|upper }}</span>
-          <span>{% if c.fixture %}<span class="pill pill-dev">개발용 테스트 강좌</span> {% endif %}<span class="pill {{ 'pill-done' if card.progress.status == 'lessons_completed' else 'pill-on' }}">{{ m.course_status_text(card.progress) }}</span></span>
+          <span>{% if c.fixture %}<span class="pill pill-dev">개발용 테스트 강좌</span> {% endif %}{% if card.enrollment.status == 'completed' %}<span class="pill pill-done">수료{% if card.enrollment.completion_policy == 'dev_provisional' %} (테스트){% endif %}</span>{% else %}<span class="pill {{ 'pill-done' if card.progress.status == 'lessons_completed' else 'pill-on' }}">{{ m.course_status_text(card.progress) }}</span>{% endif %}</span>
         </div>
         <h3>{{ c.title_ko }}</h3>
         <p>{{ c.description }}</p>
@@ -66,4 +122,5 @@
     {% endif %}
   </section>
 </div>
+{% if recs and recs['items'] and ai_enabled %}<script src="{{ url_for('static', filename='js/econova-ai.js') }}"></script>{% endif %}
 {% endblock %}

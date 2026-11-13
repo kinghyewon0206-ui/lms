@@ -5,6 +5,7 @@
 """
 import os
 import sys
+import tempfile
 import urllib.request
 
 import pytest
@@ -16,8 +17,13 @@ from econova import config  # noqa: E402
 
 config.DOTENV_PATH = os.path.join(ROOT, "tests", "_no_dotenv_in_tests")  # 존재하지 않는 경로
 for _name in ("DB_BACKEND", "FIREBASE_CREDENTIALS_JSON", "OPENAI_API_KEY", "OPENAI_MODEL", "RENDER", "APP_ENV",
-              "SQLITE_PATH"):
+              "SQLITE_PATH", "AI_PROVIDER", "ECONOVA_AI_PROVIDER"):
     os.environ.pop(_name, None)
+# 실제 정답 키(저장소 밖 비공개 폴더)는 테스트에서 읽지 않는다: 빈 임시 폴더를 비공개 폴더로 쓴다.
+# 그래서 c02 실제 평가·진단평가는 '정답 키 없음(응시 불가)' 상태가 되고, 채점 테스트는 합성 fixture 로 한다.
+# 실제 키의 정합성은 tests/test_private_content.py 가 ECONOVA_REAL_PRIVATE_CONTENT_DIR 이 있을 때만 따로 확인한다.
+EMPTY_PRIVATE_DIR = tempfile.mkdtemp(prefix="econova-test-private-")
+os.environ["ECONOVA_PRIVATE_CONTENT_DIR"] = EMPTY_PRIVATE_DIR
 
 # Firebase SDK 를 부르면 기록하고 실패시킨다. 어떤 테스트에서든 이 목록이 비어 있어야 한다.
 import firebase_admin  # noqa: E402
@@ -38,7 +44,7 @@ _fb_credentials.Certificate = _blocked("credentials.Certificate")
 _fb_firestore.client = _blocked("firestore.client")
 
 import app as app_module  # noqa: E402
-from econova import storage  # noqa: E402
+from econova import diagnostic, storage  # noqa: E402
 from tests import fake_firestore  # noqa: E402
 
 FAKE_CREDENTIALS = '{"type": "service_account", "project_id": "not-a-real-project"}'
@@ -51,6 +57,13 @@ def _no_network(monkeypatch):
         raise AssertionError("테스트 중 외부 네트워크 요청이 발생했습니다.")
     monkeypatch.setattr(urllib.request, "urlopen", refuse)
     monkeypatch.setattr(urllib.request.OpenerDirector, "open", refuse)
+
+
+@pytest.fixture(autouse=True)
+def _synthetic_diagnostic(monkeypatch):
+    """진단평가 테스트는 개발용 합성 진단평가(content/dev_fixtures/diagnostic.json + 합성 키)로 한다."""
+    monkeypatch.setattr(diagnostic, "PATH", diagnostic.FIXTURE_PATH)
+    monkeypatch.setattr(diagnostic, "KEYS_FIXTURE", True)
 
 
 @pytest.fixture(autouse=True)

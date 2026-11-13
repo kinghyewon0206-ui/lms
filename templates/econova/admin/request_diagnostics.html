@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}요청 진단 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page admin-page">
+  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.admin_content') }}">콘텐츠 관리</a> <span>/</span> 요청 진단</nav>
+  <header class="ec-head">
+    <h1>요청 진단 (프록시 홉 수 확인)</h1>
+    <p class="hint">지금 이 요청이 서버에 어떻게 도착했는지 보여 줘요. 저장하거나 기록하지 않아요.
+      내가 알고 있는 공인 IP 와 같은 주소가 나오는 홉 수를 고르고, <code>X-Forwarded-For</code> 를 일부러 넣어 보낸 요청에서도
+      그 홉 수가 위조한 값이 아닌 내 IP 를 가리키는지 확인해요. 확인이 끝나면 <code>ECONOVA_PROXY_DIAGNOSTICS</code> 를 지워 이 화면을 꺼요.</p>
+  </header>
+  <h2>현재 설정</h2>
+  <p>ECONOVA_TRUSTED_PROXY_HOPS = <strong>{{ info.configured }}</strong> · 요청 scheme = {{ scheme }} · 세션 쿠키 Secure = {{ 'yes' if secure_cookie else 'no' }}</p>
+  <h2>직접 연결 주소와 X-Forwarded-For</h2>
+  <p>remote_addr = <code>{{ info.remote_addr }}</code> · X-Forwarded-For 항목 {{ info.chain|length }}개</p>
+  {% if info.chain %}<ol>{% for ip in info.chain %}<li><code>{{ ip }}</code></li>{% endfor %}</ol>{% endif %}
+  <h2>홉 수별로 클라이언트로 볼 주소</h2>
+  <div class="table-scroll"><table class="ec-table"><thead><tr><th scope="col">홉 수</th><th scope="col">클라이언트 주소</th><th scope="col">설명</th></tr></thead>
+    <tbody>{% for c in info.candidates %}<tr><td>{{ c.hops }}{% if c.hops == info.configured %} (현재){% endif %}</td><td><code>{{ c.ip }}</code></td><td>{{ c.note }}</td></tr>{% endfor %}</tbody></table></div>
+  <h2>프록시 관련 헤더</h2>
+  {% if headers %}<ul>{% for name, value in headers %}<li><code>{{ name }}</code>: <code>{{ value }}</code></li>{% endfor %}</ul>
+  {% else %}<p class="ec-placeholder-text">프록시 관련 헤더가 없어요 (프록시 없이 직접 연결).</p>{% endif %}
+</div>
+{% endblock %}

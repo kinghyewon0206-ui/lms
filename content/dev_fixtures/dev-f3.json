@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "dev-f3",
+  "slug": "dev-fixture-c",
+  "title": "Fixture Course C (Capstone)",
+  "title_ko": "개발용 캡스톤 강좌 C",
+  "fixture": true,
+  "description": "개발·자동 테스트 전용 가짜 강좌입니다. SDG 캡스톤 흐름을 시험합니다. 실제 경제학 학습 내용이 아닙니다.",
+  "objectives": [
+    "수강 신청과 진도 기능을 시험한다. (개발용)"
+  ],
+  "sdgs": "student_selected",
+  "review": {
+    "status": "fixture",
+    "note": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+  },
+  "estimated_hours": 1,
+  "difficulty_levels": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "status": "published",
+  "content_version": 1,
+  "final_assessment": {
+    "status": "upcoming"
+  },
+  "capstone": {
+    "status": "approved",
+    "file": "capstone/dev-f3.json"
+  },
+  "lesson_ids": [
+    "dev-f3-l1",
+    "dev-f3-l2",
+    "dev-f3-l3"
+  ],
+  "lessons": [
+    {
+      "id": "dev-f3-l1",
+      "order": 1,
+      "title": "Capstone Lesson 1",
+      "title_ko": "캡스톤 레슨 1",
+      "status": "published",
+      "objectives": [],
+      "requirements": [
+        "material"
+      ],
+      "material": {
+        "status": "approved",
+        "file": "lessons/dev-f3-l1.json"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "dev-f3-l2",
+      "order": 2,
+      "title": "Capstone Lesson 2",
+      "title_ko": "캡스톤 레슨 2",
+      "status": "published",
+      "objectives": [],
+      "requirements": [
+        "material"
+      ],
+      "material": {
+        "status": "approved",
+        "file": "lessons/dev-f3-l2.json"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    },
+    {
+      "id": "dev-f3-l3",
+      "order": 3,
+      "title": "Capstone Lesson 3",
+      "title_ko": "캡스톤 레슨 3",
+      "status": "published",
+      "objectives": [],
+      "requirements": [
+        "material"
+      ],
+      "material": {
+        "status": "approved",
+        "file": "lessons/dev-f3-l3.json"
+      },
+      "quiz": {
+        "status": "missing",
+        "assessment_id": null
+      }
+    }
+  ]
+}

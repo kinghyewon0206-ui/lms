@@ -4,3 +4,9 @@ __pycache__/
 .env
 .DS_Store
 .pytest_cache/
+
+# ECONOVA 비공개 자료: 정답 키·교사용 검토 문서는 공개 저장소에 올리지 않는다 (README "평가 정답 키" 참고)
+*.answers.json
+!content/dev_fixtures/private/*.answers.json
+docs/review/
+econova-private/

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}캡스톤 자기평가 · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.capstone_home', course_id=course.id) }}">캡스톤</a> <span>/</span> 자기평가</nav>
+  <header class="ec-head"><h1>자기평가 (버전 {{ version }})</h1>
+    <p class="hint"><span class="pill pill-soon">{{ '승인된 기준' if defn.rubric.status == 'approved' else '임시 기준' }}</span> {{ defn.rubric.note }}
+      스스로 점검하는 도구이며 공식 점수가 아니에요.</p></header>
+  <form method="post" action="{{ url_for('econova.capstone_self_assessment', course_id=course.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="version" value="{{ version }}">
+    {% for c in defn.rubric.criteria %}{% set cur = (current.scores.get(c.id) if current and current.scores else none) %}
+    <fieldset class="ec-section">
+      <legend><h2>{{ c.name }} <span class="hint">가중치 {{ c.weight }}</span></h2></legend>
+      <p class="hint">{{ c.description }}</p>
+      {% for lv in defn.rubric.levels %}
+        <label class="radio-row"><input type="radio" name="score_{{ c.id }}" value="{{ lv.score }}" required{% if cur and cur.level == lv.score %} checked{% endif %}>
+          <span><strong>{{ lv.score }}. {{ lv.label }}</strong> — {{ c.descriptors[lv.score|string] }}</span></label>
+      {% endfor %}
+      {% if errors.get(c.id) %}<p class="admin-error" role="alert">{{ errors[c.id] }}</p>{% endif %}
+      <label for="note-{{ c.id }}">보완할 점 메모 (선택)</label>
+      <textarea id="note-{{ c.id }}" name="note_{{ c.id }}" rows="2" maxlength="500">{{ cur.note if cur else '' }}</textarea>
+    </fieldset>
+    {% endfor %}
+    <button class="btn" type="submit">자기평가 저장</button>
+  </form>
+</div>
+{% endblock %}

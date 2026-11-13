@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}평가를 지금 열 수 없어요 · ECONOVA{% endblock %}
+{% block content %}
+<section class="err-page" aria-labelledby="err-title">
+  <p class="err-code">잠시 점검 중</p>
+  <h1 id="err-title">평가를 지금 열 수 없어요</h1>
+  <p>채점에 필요한 자료를 서버에서 확인하지 못해, 잘못 채점되지 않도록 이 평가를 잠시 닫아 두었어요. 선생님께 알려 주세요.
+    지금까지의 학습 기록과 점수는 그대로예요. 학습자료·시뮬레이션은 계속 이용할 수 있어요.</p>
+  <div class="actions">
+    {% if g.user %}<a class="btn" href="{{ url_for('dashboard') }}">대시보드로</a>{% endif %}
+    <a class="btn secondary" href="{{ url_for('econova.lab_home') }}">경제 실험실</a>
+  </div>
+</section>
+{% endblock %}

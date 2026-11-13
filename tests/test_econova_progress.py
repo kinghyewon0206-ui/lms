@@ -40,11 +40,12 @@ def test_apply_event_sets_times_and_is_idempotent():
     r1 = progress.apply_event(rec(), BOTH, NOW, material_reviewed=True)
     assert (r1["status"], r1["material_reviewed_at"], r1["completed_at"]) == ("in_progress", NOW, None)
     r2 = progress.apply_event(r1, BOTH, later, material_reviewed=True)   # 다시 눌러도 처음 확인 시각을 유지
-    assert r2["material_reviewed_at"] == NOW and r2["updated_at"] == later
+    assert r2 == r1   # 바뀐 것이 없으면 updated_at 도 그대로 (멱등, Phase 4 안전 점검에서 바뀐 규칙)
     r3 = progress.apply_event(r2, BOTH, later, quiz_submission_id="sub-1")
-    assert (r3["status"], r3["completed_at"], r3["quiz_submission_id"]) == ("completed", later, "sub-1")
+    assert (r3["status"], r3["completed_at"], r3["quiz_submission_id"], r3["updated_at"]) == ("completed", later, "sub-1", later)
     r4 = progress.apply_event(r3, BOTH, later + datetime.timedelta(hours=1), quiz_submission_id="sub-2")
     assert r4["completed_at"] == later   # 완료 시각은 처음 완료됐을 때
+    assert (r4["quiz_submission_id"], r4["quiz_submitted_at"]) == ("sub-1", later)   # 처음 제출 기록 유지
     assert r1["quiz_submitted"] is False  # 원래 기록은 바뀌지 않는다
 
 

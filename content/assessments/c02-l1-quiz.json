@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "id": "c02-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c02",
+  "lesson_id": "c02-l1",
+  "version": 1,
+  "title": "레슨 1 형성 퀴즈: 수요와 공급",
+  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-03",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 교사 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c02-l1-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l1",
+      "objective": 1,
+      "concept_ids": [
+        "quantity_demanded",
+        "demand"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "'떡볶이가 3,000원일 때 우리 반은 하루 30접시를 사려 한다'에서 30접시는 무엇에 해당하나요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "수요"
+        },
+        {
+          "id": "b",
+          "text": "수요량"
+        },
+        {
+          "id": "c",
+          "text": "공급량"
+        },
+        {
+          "id": "d",
+          "text": "균형 거래량"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    },
+    {
+      "id": "c02-l1-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l1",
+      "objective": 2,
+      "concept_ids": [
+        "law_of_supply"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "다른 조건이 같을 때 어떤 상품의 가격이 오르면 그 상품의 공급량은 어떻게 되나요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "늘어난다"
+        },
+        {
+          "id": "b",
+          "text": "줄어든다"
+        },
+        {
+          "id": "c",
+          "text": "변하지 않는다"
+        },
+        {
+          "id": "d",
+          "text": "수요량과 같아진다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    },
+    {
+      "id": "c02-l1-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l1",
+      "objective": 3,
+      "concept_ids": [
+        "movement_vs_shift",
+        "shifters"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "소득이 늘어 같은 가격에서도 운동화(정상재)를 더 사려고 해요. 운동화 시장에서 일어나는 일로 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "수요곡선 위에서 아래로 이동한다"
+        },
+        {
+          "id": "b",
+          "text": "수요곡선이 오른쪽으로 이동한다"
+        },
+        {
+          "id": "c",
+          "text": "공급곡선이 오른쪽으로 이동한다"
+        },
+        {
+          "id": "d",
+          "text": "수요곡선이 왼쪽으로 이동한다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-2"
+      ]
+    },
+    {
+      "id": "c02-l1-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l1",
+      "objective": 3,
+      "concept_ids": [
+        "shifters"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "다음 중 어떤 상품의 공급곡선을 왼쪽으로 이동시키는 요인은 무엇인가요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "그 상품의 가격 하락"
+        },
+        {
+          "id": "b",
+          "text": "소비자 소득 증가"
+        },
+        {
+          "id": "c",
+          "text": "원재료 가격 상승"
+        },
+        {
+          "id": "d",
+          "text": "생산 기술 향상"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-2"
+      ]
+    },
+    {
+      "id": "c02-l1-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l1",
+      "objective": 2,
+      "concept_ids": [
+        "law_of_demand",
+        "quantity_demanded"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요함수가 Qd = 90 − 3P 일 때, P = 12 에서 수요량은 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    }
+  ]
+}

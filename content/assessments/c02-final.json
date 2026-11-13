@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "id": "c02-final",
+  "kind": "final",
+  "course_id": "c02",
+  "version": 1,
+  "title": "시장과 가격 최종 평가",
+  "description": "세 레슨의 핵심 개념을 확인하는 최종 평가예요. 합격 기준을 넘으면 강좌를 수료해요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-03",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 교사 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "제안값(70%)이며 교사 승인 전이다. 승인 전에는 수료를 인정하지 않는다."
+  },
+  "questions": [
+    {
+      "id": "c02-final-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l1",
+      "objective": 3,
+      "concept_ids": [
+        "shifters",
+        "movement_vs_shift"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "커피 원두 가격이 크게 올랐어요. 다른 조건이 같다면 커피 음료 시장에서 일어나는 일은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "공급곡선이 왼쪽으로 이동한다"
+        },
+        {
+          "id": "b",
+          "text": "수요곡선이 오른쪽으로 이동한다"
+        },
+        {
+          "id": "c",
+          "text": "공급곡선 위에서 위로 이동한다"
+        },
+        {
+          "id": "d",
+          "text": "아무 변화도 없다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-2"
+      ]
+    },
+    {
+      "id": "c02-final-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l1",
+      "objective": 1,
+      "concept_ids": [
+        "demand",
+        "quantity_demanded"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "다음 중 '수요량의 변화'에 해당하는 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "유행이 지나 같은 가격에서도 덜 산다"
+        },
+        {
+          "id": "b",
+          "text": "가격이 내려 더 많이 산다"
+        },
+        {
+          "id": "c",
+          "text": "인구가 늘어 같은 가격에서도 더 산다"
+        },
+        {
+          "id": "d",
+          "text": "소득이 줄어 같은 가격에서도 덜 산다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-1",
+        "openstax-pe3-3-2"
+      ]
+    },
+    {
+      "id": "c02-final-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l2",
+      "objective": 2,
+      "concept_ids": [
+        "surplus_shortage"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가격이 균형보다 낮아 부족(초과수요)이 생겼어요. 정부 개입이 없다면 이후 가격은 어떻게 움직이기 쉬운가요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "더 내려간다"
+        },
+        {
+          "id": "b",
+          "text": "균형 쪽으로 오른다"
+        },
+        {
+          "id": "c",
+          "text": "그대로 머문다"
+        },
+        {
+          "id": "d",
+          "text": "0 이 된다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    },
+    {
+      "id": "c02-final-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l2",
+      "objective": 1,
+      "concept_ids": [
+        "equilibrium"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요함수 Qd = 200 − 4P, 공급함수 Qs = 50 + 2P 일 때 균형 거래량은 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-3-1"
+      ]
+    },
+    {
+      "id": "c02-final-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l2",
+      "objective": 3,
+      "concept_ids": [
+        "price_controls"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "정부가 균형 가격보다 높은 수준에서 가격 하한을 정하면 나타나기 쉬운 결과는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "부족(초과수요)"
+        },
+        {
+          "id": "b",
+          "text": "잉여(초과공급)"
+        },
+        {
+          "id": "c",
+          "text": "균형 거래량 증가"
+        },
+        {
+          "id": "d",
+          "text": "변화 없음"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "c02-final-q6",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l3",
+      "objective": 2,
+      "concept_ids": [
+        "midpoint_method"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "가격이 10 에서 12 로 오르자 수요량이 100 에서 90 으로 줄었어요. 중간점 방법으로 구한 탄력성(절댓값)을 소수 둘째 자리까지 쓰세요.",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-5-1"
+      ]
+    },
+    {
+      "id": "c02-final-q7",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l3",
+      "objective": 2,
+      "concept_ids": [
+        "total_revenue",
+        "elasticity_categories"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요가 탄력적인 상품의 가격을 내리면 판매자의 총수입은 어떻게 되기 쉬운가요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "늘어난다"
+        },
+        {
+          "id": "b",
+          "text": "줄어든다"
+        },
+        {
+          "id": "c",
+          "text": "변하지 않는다"
+        },
+        {
+          "id": "d",
+          "text": "반드시 0 이 된다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-5-3"
+      ]
+    },
+    {
+      "id": "c02-final-q8",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c02-l3",
+      "objective": 3,
+      "concept_ids": [
+        "food_demand_inelastic"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "식량 수요가 비탄력적인 나라에서 흉작으로 공급이 줄었어요. 저소득 가구에 식비를 직접 지원하는 정책에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "재정 비용이 들지 않는다"
+        },
+        {
+          "id": "b",
+          "text": "도움이 필요한 가구에 집중할 수 있지만, 공급이 그대로면 가격을 더 올릴 수 있고 재정·행정 비용이 든다"
+        },
+        {
+          "id": "c",
+          "text": "시장 가격을 반드시 낮춘다"
+        },
+        {
+          "id": "d",
+          "text": "모든 가구에 똑같은 효과를 준다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-5-3"
+      ]
+    }
+  ]
+}

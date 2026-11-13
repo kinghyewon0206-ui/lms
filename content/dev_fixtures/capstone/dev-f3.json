@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "course_id": "dev-f3",
+  "version": 1,
+  "review": {
+    "status": "approved",
+    "reviewer": {
+      "name": "테스트용 검토자 (fixture)",
+      "role": "fixture"
+    },
+    "reviewed_at": "2026-11-03",
+    "approved_at": "2026-11-03",
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-03",
+        "by": "개발용 fixture 생성",
+        "note": "개발·자동 테스트 전용. 실제 교육 내용 아님."
+      },
+      {
+        "status": "approved",
+        "at": "2026-11-03",
+        "by": "테스트용 검토자 (fixture)",
+        "note": "캡스톤 흐름 시험용"
+      }
+    ]
+  },
+  "title": "[개발용] 캡스톤 테스트",
+  "intro": [
+    "지속가능발전목표(SDG) 하나를 골라, 경제학의 눈으로 문제를 정의하고 현실적인 해결책을 제안하는 자기주도 프로젝트예요.",
+    "점수를 받는 과제가 아니라 스스로 완성하는 프로젝트예요. 루브릭으로 스스로 점검하고, 원하면 AI 코치에게 질문할 수 있어요.",
+    "제출을 마쳐도 공식 학업 성취·자격 인증이 아니에요."
+  ],
+  "steps": [
+    {
+      "id": "sdg",
+      "lesson_id": "dev-f3-l1",
+      "title": "1. SDG 고르기",
+      "guidance": "관심 있는 지속가능발전목표(SDG)를 하나 고르고, 왜 골랐는지 적어요.",
+      "fields": [
+        {
+          "id": "sdg",
+          "label": "SDG 번호",
+          "help": "1~17 중 하나",
+          "type": "sdg",
+          "required": true
+        },
+        {
+          "id": "sdg_reason",
+          "label": "이 SDG 를 고른 이유",
+          "help": "내 경험이나 관심과 연결해 설명해요.",
+          "type": "long_text",
+          "min_chars": 30,
+          "max_chars": 800,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "problem",
+      "lesson_id": "dev-f3-l1",
+      "title": "2. 경제 문제 정의하기",
+      "guidance": "누구의, 어떤 희소성·선택의 문제인지 구체적으로 써요. 한 지역·한 시장처럼 범위를 좁히면 좋아요.",
+      "fields": [
+        {
+          "id": "problem",
+          "label": "문제 정의",
+          "help": "무엇이 문제이고, 왜 경제 문제인가요?",
+          "type": "long_text",
+          "min_chars": 80,
+          "max_chars": 2000,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "concepts",
+      "lesson_id": "dev-f3-l1",
+      "title": "3. 관련 경제 개념과 근거",
+      "guidance": "문제를 설명하는 경제 개념(수요·공급, 외부효과, 기회비용 등)과 내가 직접 확인한 근거를 적어요. 수치를 쓸 때는 출처(제목·발행 기관·날짜)를 함께 적어요.",
+      "fields": [
+        {
+          "id": "concepts",
+          "label": "관련 경제 개념",
+          "help": "개념 이름과, 그 개념이 이 문제에서 어떻게 작동하는지",
+          "type": "long_text",
+          "min_chars": 80,
+          "max_chars": 2000,
+          "required": true
+        },
+        {
+          "id": "evidence",
+          "label": "근거와 출처",
+          "help": "직접 확인한 자료의 제목·발행 기관·날짜. 확인하지 못한 수치는 쓰지 않아요.",
+          "type": "long_text",
+          "min_chars": 40,
+          "max_chars": 2000,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "stakeholders",
+      "lesson_id": "dev-f3-l1",
+      "title": "4. 이해관계자",
+      "guidance": "이 문제로 영향을 받는 사람·집단과 각자의 입장을 정리해요.",
+      "fields": [
+        {
+          "id": "stakeholders",
+          "label": "이해관계자와 입장",
+          "help": "소비자, 생산자, 정부, 미래 세대 등",
+          "type": "long_text",
+          "min_chars": 60,
+          "max_chars": 2000,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "incentives",
+      "lesson_id": "dev-f3-l2",
+      "title": "5. 유인과 상충관계",
+      "guidance": "각 이해관계자가 어떤 유인(이득·비용)에 반응하는지, 어떤 상충관계가 있는지 써요.",
+      "fields": [
+        {
+          "id": "incentives",
+          "label": "유인과 상충관계",
+          "help": "효율과 형평, 지금과 미래, 비용과 편익 사이의 선택",
+          "type": "long_text",
+          "min_chars": 80,
+          "max_chars": 2000,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "solution",
+      "lesson_id": "dev-f3-l2",
+      "title": "6. 해결책 제안",
+      "guidance": "현실적인 해결책(정책·제도·행동 변화)을 제안하고, 다른 대안과 비교해요.",
+      "fields": [
+        {
+          "id": "solution",
+          "label": "해결책과 대안 비교",
+          "help": "제안하는 방법과, 비교한 다른 방법",
+          "type": "long_text",
+          "min_chars": 80,
+          "max_chars": 2000,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "evaluation",
+      "lesson_id": "dev-f3-l2",
+      "title": "7. 비용·편익·한계 평가",
+      "guidance": "해결책의 예상 비용과 편익, 누가 부담하는지, 한계와 불확실성을 적어요.",
+      "fields": [
+        {
+          "id": "evaluation",
+          "label": "비용·편익·한계",
+          "help": "누가 얻고 누가 부담하나요? 어떤 가정에 기대고 있나요?",
+          "type": "long_text",
+          "min_chars": 80,
+          "max_chars": 2000,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "proposal",
+      "lesson_id": "dev-f3-l3",
+      "title": "8. 최종 제안서",
+      "guidance": "앞의 내용을 바탕으로 읽는 사람이 이해할 수 있는 제안서를 써요.",
+      "fields": [
+        {
+          "id": "proposal_title",
+          "label": "제안서 제목",
+          "help": "한 줄 제목",
+          "type": "text",
+          "min_chars": 5,
+          "max_chars": 120,
+          "required": true
+        },
+        {
+          "id": "proposal",
+          "label": "최종 제안서",
+          "help": "문제 → 근거 → 해결책 → 비용·편익 → 한계 순서로",
+          "type": "long_text",
+          "min_chars": 300,
+          "max_chars": 6000,
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "reflection",
+      "lesson_id": "dev-f3-l3",
+      "title": "9. 되돌아보기",
+      "guidance": "프로젝트를 하면서 배운 점, 생각이 바뀐 점, 더 알아보고 싶은 점을 적어요.",
+      "fields": [
+        {
+          "id": "reflection",
+          "label": "되돌아보기",
+          "help": "무엇을 배웠고, 다음에는 무엇을 다르게 할까요?",
+          "type": "long_text",
+          "min_chars": 80,
+          "max_chars": 2000,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "rubric": {
+    "version": 1,
+    "status": "provisional",
+    "note": "제안된 기준과 가중치예요. 사람(플랫폼 관리자)이 검토하기 전까지 임시 기준이며, 공식 점수가 아니라 스스로 점검하는 도구예요.",
+    "levels": [
+      {
+        "score": 1,
+        "label": "시작 단계"
+      },
+      {
+        "score": 2,
+        "label": "발전 중"
+      },
+      {
+        "score": 3,
+        "label": "충분함"
+      },
+      {
+        "score": 4,
+        "label": "뛰어남"
+      }
+    ],
+    "criteria": [
+      {
+        "id": "concepts",
+        "name": "경제 개념의 정확성",
+        "description": "경제 개념을 정확히 쓰고 문제에 맞게 적용했는가",
+        "weight": 15,
+        "related_steps": [
+          "concepts"
+        ],
+        "descriptors": {
+          "1": "개념이 없거나 잘못 쓰였다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "개념을 정확히 쓰고 문제의 작동 원리를 설명한다."
+        }
+      },
+      {
+        "id": "problem",
+        "name": "문제 정의",
+        "description": "범위가 분명하고 경제 문제로 설명되는가",
+        "weight": 10,
+        "related_steps": [
+          "problem"
+        ],
+        "descriptors": {
+          "1": "문제가 막연하다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "범위·대상·원인이 분명하다."
+        }
+      },
+      {
+        "id": "evidence",
+        "name": "근거의 질",
+        "description": "확인한 근거와 출처를 제시하고, 확인하지 못한 주장을 구분했는가",
+        "weight": 15,
+        "related_steps": [
+          "concepts"
+        ],
+        "descriptors": {
+          "1": "근거나 출처가 없다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "출처가 분명한 근거를 쓰고 한계를 밝힌다."
+        }
+      },
+      {
+        "id": "stakeholders",
+        "name": "이해관계자 분석",
+        "description": "영향받는 집단과 입장을 빠짐없이 살폈는가",
+        "weight": 10,
+        "related_steps": [
+          "stakeholders"
+        ],
+        "descriptors": {
+          "1": "한 집단만 다룬다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "여러 집단의 입장과 이해를 균형 있게 다룬다."
+        }
+      },
+      {
+        "id": "tradeoffs",
+        "name": "유인과 상충관계",
+        "description": "유인과 상충관계를 경제적으로 설명했는가",
+        "weight": 15,
+        "related_steps": [
+          "incentives"
+        ],
+        "descriptors": {
+          "1": "상충관계를 다루지 않는다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "핵심 상충관계와 유인을 명확히 설명한다."
+        }
+      },
+      {
+        "id": "feasibility",
+        "name": "해결책의 실현 가능성",
+        "description": "비용·편익·한계를 따져 현실적인 해결책을 제안했는가",
+        "weight": 15,
+        "related_steps": [
+          "solution",
+          "evaluation"
+        ],
+        "descriptors": {
+          "1": "해결책이 비현실적이거나 평가가 없다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "대안과 비교해 비용·편익·한계를 따진다."
+        }
+      },
+      {
+        "id": "sdg",
+        "name": "SDG 관련성",
+        "description": "고른 SDG 와 문제·해결책이 분명히 연결되는가",
+        "weight": 10,
+        "related_steps": [
+          "sdg"
+        ],
+        "descriptors": {
+          "1": "SDG 와의 연결이 약하다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "SDG 세부 목표 수준에서 연결을 설명한다."
+        }
+      },
+      {
+        "id": "communication",
+        "name": "전달과 되돌아보기",
+        "description": "제안서가 읽기 쉽고, 배운 점을 성찰했는가",
+        "weight": 10,
+        "related_steps": [
+          "proposal",
+          "reflection"
+        ],
+        "descriptors": {
+          "1": "구성이 흩어지고 성찰이 없다.",
+          "2": "일부는 갖췄지만 빠지거나 부정확한 부분이 있다.",
+          "3": "대체로 정확하고 충분하다.",
+          "4": "논리적으로 구성되고 구체적으로 성찰한다."
+        }
+      }
+    ]
+  },
+  "completion": {
+    "requires_all_lessons": true,
+    "requires_submission": true,
+    "requires_self_assessment": true,
+    "requires_reflection": true
+  },
+  "fixture": true
+}
