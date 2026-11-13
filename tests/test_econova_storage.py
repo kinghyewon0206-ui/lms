@@ -123,15 +123,12 @@ def test_sqlite_migration_2_on_existing_database(sqlite_app, tmp_path, monkeypat
         db = storage.get_db()
         storage.create_user("old@example.com", "Old", "h")
         uid = storage.get_user_by_email("old@example.com")["id"]
-        cid = storage.create_curriculum(uid, "old plan", "econ", 0, 5, "rule", "", "")
-        storage.add_curriculum_item(cid, storage.curated_course_id("econ-micro"), 1, "why")
         assert "econ_enrollments" not in {r[0] for r in db.execute("SELECT name FROM sqlite_master")}
 
-        assert storage.migrate_sqlite() == [2, 3, 4, 5, 6, 7, 8]   # Phase 2~8B 의 마이그레이션
+        assert storage.migrate_sqlite() == [2, 3, 4, 5, 6, 7, 8, 9]   # Phase 2~8B 의 마이그레이션 + 이전 LMS 테이블 삭제
         assert storage.migrate_sqlite() == []
         assert storage.get_user_by_email("old@example.com")["name"] == "Old"
-        assert len(storage.list_curriculum_items(cid)) == 1
-        assert db.execute("SELECT COUNT(*) FROM courses").fetchone()[0] > 0
+        assert "curricula" not in {r[0] for r in db.execute("SELECT name FROM sqlite_master")}
         assert storage.enroll_course(uid, "dev-f1", "beginner", 1) is True
 
 
@@ -158,5 +155,5 @@ def test_firestore_document_layout(firestore_app, fake_fs):
         ("users", "a@example.com", "econ_enrollments", "dev-f1"),
         ("users", "a@example.com", "econ_enrollments", "dev-f1", "lessons", "dev-f1-l1"),
     }
-    # 기존 컬렉션(courses, curricula 등)과 이름이 겹치지 않는다
+    # 수강·진도는 사용자 문서 아래에만 있다 (최상위 컬렉션이 아님)
     assert not any(p[0] in ("econ_enrollments", "lessons") for p in fake_fs.docs)

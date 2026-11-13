@@ -37,14 +37,6 @@
     </nav>
   </header>
   <main>
-    {% if g.user and is_legacy_page() %}
-    <aside class="legacy-banner" role="note" aria-label="보관 안내">
-      <strong>이전 LMS 보관함</strong>
-      <span>ECONOVA 이전에 쓰던 화면이에요. 예전에 만든 커리큘럼과 대학 공개 강의는 그대로 볼 수 있어요.
-        ECONOVA 경제 강좌와는 별개예요.</span>
-      <a href="{{ url_for('dashboard') }}">ECONOVA 대시보드로 →</a>
-    </aside>
-    {% endif %}
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% for category, message in messages %}
         <div class="flash {{ category }}">{{ message }}</div>
@@ -52,9 +44,6 @@
     {% endwith %}
     {% block content %}{% endblock %}
   </main>
-  {% if g.user %}
-  <footer class="site-foot"><a href="{{ url_for('legacy_home') }}">이전 LMS 보관함 (내 커리큘럼 · 대학 공개 강의)</a></footer>
-  {% endif %}
 <script>
 (function () {
   var bar = document.getElementById("topbar"), busy = document.getElementById("busy");

@@ -1,4 +1,4 @@
-"""Phase 2.1 안정성: 강좌 JSON 오류 격리, 운영 설정 fail-fast, 오류 페이지, 이전 LMS 보관함 안내,
+"""Phase 2.1 안정성: 강좌 JSON 오류 격리, 운영 설정 fail-fast, 오류 페이지,
 sqlite 트랜잭션 보호, 보안 회귀(CSRF·로그인 필수)."""
 import os
 import shutil
@@ -47,17 +47,6 @@ def test_signup_and_login_work_with_broken_content(client, broken_content):
     assert res.status_code == 302 and res.headers["Location"].endswith("/dashboard")
 
 
-@pytest.mark.parametrize("path", ["/legacy", "/legacy/courses", "/course/econ-micro", "/watch/econ-micro", "/curriculum",
-                                  "/curriculum/new", "/curriculum/quick"])
-def test_legacy_pages_work_with_broken_content(logged_in, broken_content, path):
-    assert logged_in.get(path).status_code == 200
-
-
-def test_legacy_curriculum_creation_works_with_broken_content(logged_in, broken_content):
-    res = logged_in.post("/curriculum/quick", data={"track": "econ", "level": "0", "hours": "5", "csrf_token": CSRF})
-    assert res.status_code == 302 and logged_in.get(res.headers["Location"]).status_code == 200
-
-
 @pytest.mark.parametrize("method, path", [("get", "/dashboard"), ("get", "/courses"), ("get", "/courses/c02"),
                                           ("get", "/learn/c02/c02-l1"), ("get", "/courses/c02/continue"),
                                           ("post", "/courses/c02/enroll")])
@@ -66,7 +55,7 @@ def test_econova_pages_show_controlled_error(logged_in, broken_content, caplog, 
     res = getattr(logged_in, method)(path, **kwargs)
     html = res.get_data(as_text=True)
     assert res.status_code == 503
-    assert "강좌 정보를 불러올 수 없어요" in html and "이전 LMS 보관함" in html
+    assert "강좌 정보를 불러올 수 없어요" in html and "이전 LMS" not in html
     _no_leak(html)
     assert "courses/c05.json" in caplog.text and "JSON 문법 오류" in caplog.text   # 원인은 서버 로그에만
 
@@ -152,7 +141,7 @@ def test_404_page_anonymous(client):
 def test_404_page_logged_in(logged_in):
     for path in ("/no-such-page", "/courses/nope", "/learn/dev-x/l1", "/watch/cip"):
         html = logged_in.get(path).get_data(as_text=True)
-        assert "페이지를 찾을 수 없어요" in html and 'href="/dashboard"' in html and 'href="/legacy"' in html, path
+        assert "페이지를 찾을 수 없어요" in html and 'href="/dashboard"' in html and "/legacy" not in html, path
 
 
 def test_403_page_links_back_to_course(logged_in):
@@ -174,40 +163,10 @@ def test_no_page_title_says_only_lms():
             assert "· LMS{%" not in text and ">LMS<" not in text, name
 
 
-# ------------------------------------------------------------- 이전 LMS 보관함 안내
-LEGACY_PAGES = ["/legacy", "/legacy/courses", "/course/econ-micro", "/watch/econ-micro", "/curriculum", "/curriculum/new",
-                "/curriculum/quick"]
-
-
-def test_legacy_banner_only_on_legacy_pages(logged_in):
-    for path in LEGACY_PAGES:
-        assert "이전 LMS 보관함</strong>" in logged_in.get(path).get_data(as_text=True), path
-    for path in ("/dashboard", "/courses", "/courses/c02"):
-        assert "legacy-banner" not in logged_in.get(path).get_data(as_text=True), path
-
-
-def test_footer_links_to_archive(logged_in):
-    html = logged_in.get("/dashboard").get_data(as_text=True)
-    assert 'href="/legacy">이전 LMS 보관함 (내 커리큘럼 · 대학 공개 강의)</a>' in html
-
-
-def test_dashboard_points_to_legacy_curricula(app, logged_in):
-    assert "보관된 내 커리큘럼 보기" not in logged_in.get("/dashboard").get_data(as_text=True)
-    for _ in range(2):
-        logged_in.post("/curriculum/quick", data={"track": "econ", "level": "0", "hours": "5", "csrf_token": CSRF})
-    html = logged_in.get("/dashboard").get_data(as_text=True)
-    assert "커리큘럼 <strong>2개</strong>가 보관되어 있어요" in html and 'href="/curriculum"' in html
-    with app.app_context():
-        uid = storage.get_user_by_email("student@example.com")["id"]
-        assert storage.count_curricula(uid) == 2 and storage.count_curricula("nobody") == 0
-    assert "2/10" not in html   # 기존 커리큘럼은 ECONOVA 진도와 섞이지 않는다
-
-
-def test_catalogs_are_clearly_distinguished(logged_in):
-    econova = logged_in.get("/courses").get_data(as_text=True)
-    legacy = logged_in.get("/legacy/courses").get_data(as_text=True)
-    assert "SDG와 함께 배우는 경제 강좌" in econova and "이전 LMS 보관함" not in econova.split("<footer")[0]
-    assert "대학 공개 강의 탐색 · 이전 LMS 보관함" in legacy and "이전 LMS 보관함</strong>" in legacy
+# ------------------------------------------------------------- ECONOVA 만 남음 (이전 LMS 는 없앰)
+def test_catalog_is_econova_only(logged_in):
+    html = logged_in.get("/courses").get_data(as_text=True)
+    assert "SDG와 함께 배우는 경제 강좌" in html and "이전 LMS" not in html and "대학 공개 강의" not in html
 
 
 # ------------------------------------------------------------- sqlite 트랜잭션
@@ -217,12 +176,12 @@ def test_progress_refuses_pending_transaction_without_discarding_it(sqlite_app):
         uid = storage.get_user_by_email("a@example.com")["id"]
         storage.enroll_course(uid, "dev-f1", "beginner", 1)
         db = storage.get_db()
-        db.execute("INSERT INTO course_views (slug, views) VALUES ('pending', 1)")   # 커밋하지 않은 쓰기
+        db.execute("INSERT INTO econ_login_counters (key, count, expires_at) VALUES ('pending', 1, '2099-01-01 00:00:00')")   # 커밋하지 않은 쓰기
         with pytest.raises(RuntimeError, match="커밋하지 않은 변경"):
             storage.update_lesson_progress(uid, "dev-f1", "dev-f1-l1", ("material", "quiz"), material_reviewed=True)
         assert db.in_transaction   # 남의 변경을 지우지 않았다
         db.commit()
-        assert db.execute("SELECT views FROM course_views WHERE slug = 'pending'").fetchone()[0] == 1
+        assert db.execute("SELECT count FROM econ_login_counters WHERE key = 'pending'").fetchone()[0] == 1
         assert storage.list_lesson_progress(uid, "dev-f1") == {}
         storage.update_lesson_progress(uid, "dev-f1", "dev-f1-l1", ("material", "quiz"), material_reviewed=True)
         assert not db.in_transaction

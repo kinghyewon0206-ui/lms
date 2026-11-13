@@ -30,7 +30,7 @@
 |---|---|
 | 키 | 개발 전용 프로젝트의 키. 운영 키와 분리. 실행할 때만 `OPENAI_API_KEY` 환경변수 |
 | 모델 | 공급자 문서에서 현재 제공되고 JSON 스키마(structured outputs)를 지원하는 모델을 골라 `ECONOVA_AI_MODEL` 로 지정 (코드 기본값 `gpt-4o-mini` 는 예시) |
-| 지출 통제 | 공급자 콘솔에 월 하드 리밋·알림 먼저. 앱 한도: `ECONOVA_AI_DAILY_REQUESTS=5`, `ECONOVA_AI_GLOBAL_DAILY_REQUESTS=20`, `ECONOVA_LEGACY_MAX_CALLS_PER_REQUEST=2`, `ECONOVA_AI_TIMEOUT_SECONDS=20` |
+| 지출 통제 | 공급자 콘솔에 월 하드 리밋·알림 먼저. 앱 한도: `ECONOVA_AI_DAILY_REQUESTS=5`, `ECONOVA_AI_GLOBAL_DAILY_REQUESTS=20`, `ECONOVA_AI_TIMEOUT_SECONDS=20` |
 | 구조화 응답 | 튜터·오답 설명·토론·추천·캡스톤 코치 각 1~2회. 스키마 통과, 형식이 틀리면 표시 안 됨 (로그 `invalid_response`) |
 | 근거 설명 | 튜터 답의 출처 id 가 서버 목록 안에 있는지, 근거 수준·한계 표시. 범위 밖 질문은 `insufficient` |
 | 시간 제한·오류 | 시간 제한 3초로 줄여 504 안내, 잘못된 키로 502 안내, 기록 변화 없음 |

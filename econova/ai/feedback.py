@@ -67,6 +67,8 @@ def latest(user_id, attempt_id):
 
 def explain(user_id, attempt, assessment, course, level, provider=None):
     """AI 오답 설명을 만들어 저장하고 화면용 dict 를 돌려준다. 점수·진도·수료는 바꾸지 않는다."""
+    if not client.feedback_enabled():   # 정답·해설을 공급자에게 보내지 않는다 (공급자를 부르기 전에 멈춤)
+        raise AIError("feedback_off")
     if not eligible(attempt, assessment):
         raise AIError("unavailable", "해설을 보여줄 수 없는 응시 기록")
     wrong = wrong_questions(attempt, assessment, course)

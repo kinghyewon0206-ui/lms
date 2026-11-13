@@ -35,5 +35,5 @@
 16. **[사람 승인] 운영 배포**.
 17. 배포 직후 스모크 테스트: 로그인·회원가입, `/courses`, c02 레슨·퀴즈(실제 키로 열리는지), 결과 화면 해설,
     `flask --app app check-content` (정답 키 확인), `flask --app app content-verify-approvals` (정본 승인 = DB 기록),
-    관리 화면 접근(관리자만), 보안 헤더·Secure 쿠키, AI off 상태 안내, 이전 LMS 보관함.
+    관리 화면 접근(관리자만), 보안 헤더·Secure 쿠키, AI off 상태 안내.
 18. 첫 주 모니터링: 503(평가 닫힘), 429(한도), `ai fail` 비율, 로그인 제한 발생, 오류 로그.

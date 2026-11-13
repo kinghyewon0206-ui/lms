@@ -37,11 +37,11 @@
 | 설정 | 기본 | 설명 |
 |---|---|---|
 | `ECONOVA_AI_PROVIDER` | `off` | `off` / `mock`(개발 전용, 운영에서 시작 거부) / `openai` |
-| `ECONOVA_AI_MODEL` | `OPENAI_MODEL` → `gpt-4o-mini` | 실제 사용 가능한 모델명을 운영 전에 확인 |
+| `ECONOVA_AI_MODEL` | `gpt-4o-mini` | 2026-11 실제 연동 시험으로 strict 구조화 응답 호환 확인 |
 | `OPENAI_API_KEY` | 없음 | 서버 환경변수로만. 화면·JS·로그에 나가지 않음 |
 | 한도 | 학생 하루 20회, 전체 하루 300회, 입력 600자, 이전 메시지 6개, 출력 700토큰, 20초 | `ECONOVA_AI_*` |
-| 이전 LMS 상담 | 같은 하루 한도를 공유, 요청당 호출 6회(`ECONOVA_LEGACY_MAX_CALLS_PER_REQUEST`), 출력 1500토큰 | `/curriculum/chat`, `/curriculum/quick` |
-| 앱 전체 스위치 (8B-1) | `ECONOVA_AI_PROVIDER` 하나로 ECONOVA AI 와 이전 LMS 상담을 함께 제어 | `off` 면 `OPENAI_API_KEY` 가 있어도 외부 AI 요청 0 (상담은 '간단 모드' 안내, 간단 모드는 규칙 기반) |
+| 앱 전체 스위치 (8B-1) | `ECONOVA_AI_PROVIDER` 하나로 모든 AI 기능을 제어 | `off` 면 `OPENAI_API_KEY` 가 있어도 외부 AI 요청 0 |
+| `ECONOVA_AI_FEEDBACK` | `off` | AI 오답 설명. 틀린 문항의 정답·해설을 공급자에게 보내므로 정책으로 허용할 때만 `on` (2026-11 결정: 운영 off) |
 
 ### 학생 저장 한도 (8B-1, `econova/quotas.py`, `ECONOVA_QUOTA_<이름>`)
 | 이름 | 기본 | 이유 |
@@ -53,7 +53,6 @@
 | CAPSTONE_VERSIONS / CAPSTONE_FEEDBACK | 100 / 50 | 저장할 때마다 새 버전 / AI 코치 기록 |
 | DIAGNOSTIC_ATTEMPTS | 50 | 진단평가 재응시 |
 | QUIZ_ATTEMPTS | 100 | 재응시 무제한 형성 퀴즈 하나 (최종 평가는 원래 횟수 제한을 따름) |
-| LEGACY_CURRICULA | 50 | 이전 LMS 의 내 커리큘럼 |
 한도에 닿으면 새 저장만 막고 한국어로 안내한다. 기존 기록은 지우지 않고, 학생 글은 자르지 않는다 (캡스톤은 입력 내용을 화면에 그대로 둠).
 
 **개발용 API 검증 절차 (실제 키로 처음 확인할 때)**
@@ -65,7 +64,7 @@
 
 **비용 통제 (추정 방법)**
 - 상한 비용 ≈ (하루 전체 요청 상한 300) × (요청당 입력 토큰 ≈ 3,000~6,000 + 출력 ≤ 700) × 모델 단가. 단가는 공급자 가격표로 확인.
-- 이전 LMS 상담은 요청 1번에 최대 6번 호출(웹 검색 포함)하므로 같은 한도 안에서 더 빨리 소진된다.
+- 2026-11 실제 시험: `gpt-4o-mini` 요청 5회(401 시험 제외)에 입력 4,395·출력 776 토큰 → 요청당 입력 약 900토큰.
 - 운영 중 `econ_ai_usage_global` 의 날짜별 요청·토큰을 확인한다 (관리 화면에는 오늘 요청 수가 보임).
 
 **실패 처리**: 공급자 오류·시간 초과·형식 오류 → 한국어 안내, 점수·진도·수료 변화 없음, 학생 글 보존, 비AI 학습 계속 가능.

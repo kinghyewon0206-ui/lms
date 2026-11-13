@@ -17,17 +17,16 @@
 | CAPSTONE_FEEDBACK | 50 | 캡스톤 AI 코치 기록 |
 | DIAGNOSTIC_ATTEMPTS | 50 | 진단평가 재응시 |
 | QUIZ_ATTEMPTS | 100 | 재응시 제한이 없는 형성 퀴즈 하나의 응시 수 |
-| LEGACY_CURRICULA | 50 | 이전 LMS 의 내 커리큘럼 |
 """
 from econova import config
 
 DEFAULTS = {"SIMULATION_RUNS": 200, "TUTOR_MESSAGES": 200, "FEEDBACK_REQUESTS": 10, "DEBATES_PER_TOPIC": 20,
             "DEBATES_TOTAL": 100, "CAPSTONE_VERSIONS": 100, "CAPSTONE_FEEDBACK": 50, "DIAGNOSTIC_ATTEMPTS": 50,
-            "QUIZ_ATTEMPTS": 100, "LEGACY_CURRICULA": 50}
+            "QUIZ_ATTEMPTS": 100}
 LABELS = {"SIMULATION_RUNS": "저장한 시뮬레이션", "TUTOR_MESSAGES": "이 레슨의 AI 튜터 대화",
           "FEEDBACK_REQUESTS": "이 결과에 대한 AI 오답 설명", "DEBATES_PER_TOPIC": "이 주제의 토론",
           "DEBATES_TOTAL": "토론 대화", "CAPSTONE_VERSIONS": "캡스톤 저장 버전", "CAPSTONE_FEEDBACK": "캡스톤 AI 코치 기록",
-          "DIAGNOSTIC_ATTEMPTS": "진단평가 응시", "QUIZ_ATTEMPTS": "이 퀴즈의 응시", "LEGACY_CURRICULA": "내 커리큘럼"}
+          "DIAGNOSTIC_ATTEMPTS": "진단평가 응시", "QUIZ_ATTEMPTS": "이 퀴즈의 응시"}
 
 
 class QuotaExceeded(Exception):

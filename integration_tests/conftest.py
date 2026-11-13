@@ -40,6 +40,8 @@ for _name in ("DB_BACKEND", "FIREBASE_CREDENTIALS_JSON", "OPENAI_API_KEY", "OPEN
     os.environ.pop(_name, None)
 os.environ["ECONOVA_PRIVATE_CONTENT_DIR"] = tempfile.mkdtemp(prefix="econova-it-private-")
 os.environ["ECONOVA_DEV_FIXTURES"] = "1"
+# AI 오답 설명(정답·해설 전송)은 fake 에서만 켠다. live 는 정책 승인(ECONOVA_IT_OPENAI_ALLOW_FEEDBACK=1)이 있을 때만.
+os.environ["ECONOVA_AI_FEEDBACK"] = "on" if AI_LIVE is None or os.environ.get("ECONOVA_IT_OPENAI_ALLOW_FEEDBACK") == "1" else "off"
 
 import firebase_admin  # noqa: E402
 from firebase_admin import credentials as _fb_credentials, firestore as _fb_firestore  # noqa: E402

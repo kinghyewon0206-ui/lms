@@ -1,5 +1,5 @@
 """Phase 7: 역할(학생·플랫폼 관리자), 관리자 부여 CLI, 콘텐츠 검토·감사·릴리스, 개인 학습 보고서, SDG 캡스톤,
-이전 LMS AI 한도, 보안 설정, 마이그레이션 7·Firestore. 실제 OpenAI·Firebase 는 부르지 않는다.
+보안 설정, 마이그레이션 7·Firestore. 실제 OpenAI·Firebase 는 부르지 않는다.
 화면·저장 테스트는 sqlite 와 가짜 Firestore 양쪽에서 돈다."""
 import copy
 import dataclasses
@@ -489,68 +489,6 @@ def test_lesson_and_course_pages_link_capstone(client):
     assert "검토를 마치면 열려요" in client.get("/courses/c09").get_data(as_text=True)
 
 
-# ------------------------------------------------------------- 이전 LMS AI 한도
-class _Resp(io.BytesIO):
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *a):
-        return False
-
-
-@pytest.fixture
-def fake_openai(monkeypatch):
-    monkeypatch.setenv("OPENAI_API_KEY", "sk-test-" + "Q" * 30)
-    monkeypatch.setenv("ECONOVA_AI_PROVIDER", "openai")   # Phase 8B-1: 앱 전체 스위치가 openai 일 때만 실제 요청
-    sent = []
-
-    def fake(req, timeout=None):
-        body = json.loads(req.data)
-        sent.append({"url": req.full_url, "body": body, "timeout": timeout})
-        reply = {"type": "question", "message": "어떤 분야가 궁금한가요?"}
-        return _Resp(json.dumps({"choices": [{"message": {"content": json.dumps(reply, ensure_ascii=False)}}],
-                                 "usage": {"prompt_tokens": 50, "completion_tokens": 10}}).encode())
-    monkeypatch.setattr(urllib.request, "urlopen", fake)
-    return sent
-
-
-def _chat(c, text="경제를 배우고 싶어요"):
-    return c.post("/curriculum/chat", json={"messages": [{"role": "user", "content": text}]}, headers={"X-CSRF-Token": CSRF})
-
-
-def test_legacy_chat_uses_shared_limits_and_pseudonyms(app, logged_in, fake_openai, monkeypatch):
-    monkeypatch.setenv("ECONOVA_AI_DAILY_REQUESTS", "2")
-    assert [_chat(logged_in, f"질문 {i}").status_code for i in range(3)] == [200, 200, 429]
-    assert "오늘 사용할 수 있는 AI 요청" in _chat(logged_in).get_json()["error"]
-    assert len(fake_openai) == 2
-    body = fake_openai[0]["body"]
-    assert body["user"].startswith("u_") and body["max_tokens"] == 1500 and fake_openai[0]["timeout"] == 20
-    assert "student@example.com" not in json.dumps(body, ensure_ascii=False)
-    with app.app_context():
-        from econova.ai import usage
-        used = storage.get_ai_usage(_uid(app), usage.today())
-    assert used["user"] == {"requests": 2, "input_tokens": 100, "output_tokens": 20}
-
-
-def test_legacy_chat_input_and_concurrency_limits(app, logged_in, fake_openai):
-    long = [{"role": "user", "content": "가" * 1000}, {"role": "assistant", "content": "나" * 1000}] * 3 + \
-           [{"role": "user", "content": "다" * 100}]
-    res = logged_in.post("/curriculum/chat", json={"messages": long}, headers={"X-CSRF-Token": CSRF})
-    assert res.status_code == 400 and fake_openai == []
-    with app.app_context():
-        assert storage.acquire_ai_lock(_uid(app), storage._utcnow(), 60)
-    assert _chat(logged_in).status_code == 429 and fake_openai == []
-
-
-def test_legacy_quick_mode_falls_back_when_limited(app, logged_in, fake_openai, monkeypatch):
-    monkeypatch.setenv("ECONOVA_AI_GLOBAL_DAILY_REQUESTS", "1")
-    _chat(logged_in)                                                         # 전체 한도 소진
-    res = logged_in.post("/curriculum/quick", data={"csrf_token": CSRF, "track": "cs", "level": "0", "hours": "5"})
-    assert res.status_code == 302 and len(fake_openai) == 1                # 규칙 기반 추천으로 만들어졌다
-    html = logged_in.get(res.headers["Location"]).get_data(as_text=True)
-    assert "AI 사용량이 많아" in html and "기본 추천으로 만들었어요" in html
-
-
 # ------------------------------------------------------------- 보안 설정
 def test_production_secret_key_and_cookie_flags(monkeypatch):
     monkeypatch.setenv("RENDER", "1")
@@ -597,7 +535,7 @@ def test_migration_7_on_phase6_database(sqlite_app, tmp_path, monkeypatch):
             conv = storage.create_ai_conversation(uid, "tutor", course_id="dev-f1", lesson_id="dev-f1-l1")
         finally:
             storage.SQLITE_MIGRATIONS = full
-        assert storage.migrate_sqlite() == [7, 8]
+        assert storage.migrate_sqlite() == [7, 8, 9]
         assert storage.get_enrollment(uid, "dev-f1") is not None and storage.get_ai_conversation(uid, conv) is not None
         assert roles.role_of(storage.get_user_by_id(uid)) == "student"
         with pytest.raises(sqlite3.IntegrityError):

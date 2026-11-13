@@ -1,8 +1,9 @@
-# LMS → ECONOVA
+# ECONOVA
 
-하버드·스탠퍼드 등 대학 무료 강의를 모아 보고, AI 상담으로 나만의 커리큘럼을 만드는 학습 사이트.
-경제 교육 플랫폼 ECONOVA 로 바꾸는 중이다 (전환 전 상태는 `legacy-lms-v1` 태그).
-Flask + (로컬: sqlite3 / 배포: Firebase Firestore).
+UN 지속가능발전목표(SDG)와 연결해 경제를 배우는 고등학생 **자기주도 학습 플랫폼**.
+강좌 9개(각 레슨 3개, 난이도 하·중·상), 진단평가, 형성 퀴즈·최종 평가, 경제 시뮬레이션, AI 튜터·토론, 학습 보고서, SDG 캡스톤.
+Flask + (로컬: sqlite3 / 배포: Firebase Firestore). 이전 LMS(대학 공개 강의·AI 커리큘럼)는 2026-11 에 없앴다
+(그 시절 코드는 Git 기록과 `legacy-lms-v1` 태그에만 남아 있다).
 
 ## 로컬에서 실행
 
@@ -16,11 +17,12 @@ cp .env.example .env          # 처음 한 번. 필요한 값만 채운다
 `flask` 명령으로 실행할 때는 DB 를 먼저 준비한다. 앱을 import 하기만 해서는 DB 를 만들거나 바꾸지 않는다.
 
 ```bash
-.venv/bin/flask --app app init-db   # 테이블 생성·마이그레이션 + 강의 목록 채우기 (여러 번 실행해도 같다)
+.venv/bin/flask --app app init-db   # sqlite 테이블 생성·마이그레이션 (여러 번 실행해도 같다)
 .venv/bin/flask --app app run
 ```
 
-`.env`(커밋되지 않음)에 `OPENAI_API_KEY=...` 를 넣으면 AI 상담이 켜진다.
+AI 기능은 기본으로 꺼져 있다 (`ECONOVA_AI_PROVIDER=off`). 로컬에서 키 없이 보려면 `ECONOVA_AI_PROVIDER=mock`.
+공개된 실제 강좌가 아직 없으므로 수강 화면을 보려면 `ECONOVA_DEV_FIXTURES=1` (개발용 가짜 강좌, 운영에서는 켤 수 없음).
 
 ## 개발 환경과 운영 환경
 
@@ -33,9 +35,8 @@ cp .env.example .env          # 처음 한 번. 필요한 값만 채운다
 | `FIREBASE_CREDENTIALS_JSON` | 넣지 않는다 (넣어도 sqlite 모드면 접속 안 함) | 운영 서비스 계정 키 |
 
 - 운영 환경 판단: Render 가 넣어 주는 `RENDER` 환경변수, 또는 `APP_ENV=production`.
-- 운영 Firestore 는 개발·테스트 중에 절대 바꾸지 않는다. `DB_BACKEND=firestore` 에서 `init-db` 를 실행하려면
-  `--firestore` 를 따로 붙여야 한다.
-- 개발용 Firebase 프로젝트는 아직 없다. 생기면 그 키만 로컬에서 쓴다.
+- Firebase 프로젝트는 `econova-dev` 하나를 쓴다 (2026-11 결정, 나중에 운영으로 쓸 수 있음). Firestore 는 스키마가 없어
+  `init-db` 가 할 일이 없다. 실제 연동 시험은 `integration_tests/` (아래 Phase 8B-2).
 
 ## 테스트
 
@@ -44,8 +45,8 @@ cp .env.example .env          # 처음 한 번. 필요한 값만 채운다
 ```
 
 - 실제 `.env` 를 읽지 않고, Firebase 와 외부 네트워크(OpenAI 등)를 부르면 실패하도록 막아 둔 상태로 실행된다.
-- 회원가입·로그인·세션·CSRF·커리큘럼 테스트는 sqlite 와 **가짜 Firestore**(`tests/fake_firestore.py`) 양쪽에서 돈다.
-  실제 Firestore 와 완전히 같다는 보장은 아니므로, 배포 전에는 개발용 Firebase 프로젝트에서 따로 확인해야 한다.
+- 대부분의 화면·저장 테스트는 sqlite 와 **가짜 Firestore**(`tests/fake_firestore.py`, 시각은 실제처럼 `DatetimeWithNanoseconds`)
+  양쪽에서 돈다. 실제 Firestore 확인은 `integration_tests/` 로 `econova-dev` 에서 한다.
 
 ## ECONOVA 강좌 콘텐츠
 
@@ -133,12 +134,13 @@ cp .env.example .env          # 처음 한 번. 필요한 값만 채운다
 ### AI 튜터·오답 설명·토론·추천 (Phase 6)
 
 - 공급자: `ECONOVA_AI_PROVIDER=off`(기본) | `mock`(네트워크 없는 모의 응답, 개발·테스트 전용, 운영에서는 시작 거부) |
-  `openai`(서버의 `OPENAI_API_KEY`, 기존 LMS 와 같은 Chat Completions 방식 + JSON 스키마 응답). 키는 화면·JS 로 가지 않는다.
+  `openai`(서버의 `OPENAI_API_KEY`, Chat Completions + strict JSON 스키마 응답, `gpt-4o-mini` 로 실제 확인). 키는 화면·JS 로 가지 않는다.
 - AI 튜터(`POST /api/tutor`, 레슨 화면): 서버가 **승인된 학습자료**와 **확인된 출처의 목록 정보**(제목·저자·발행처)로 맥락을 만든다.
   초안·미확인 출처·출처 본문(제3자 저작물)·평가 정답은 보내지 않는다. 답의 출처 id 는 서버 목록과 대조해 없는 것은 지우고 알린다.
   답은 `AI 생성` 표시, 근거 수준(자료 근거/일부/부족), 자료 밖 추가 설명, 한계를 나눠 보여준다. 대화는 서버에 저장(본인만).
-- 오답 설명(결과 화면): 본인 응시 기록 + 같은 평가·같은 버전·승인됨·정답 키 있음일 때만. 저장된 점수가 기준이며 AI 는 점수·진도·수료를
-  바꾸지 않는다. AI 를 못 쓰면 규칙으로 정리한 '다시 볼 내용'만 보여준다.
+- 오답 설명(결과 화면): 틀린 문항의 정답·승인된 해설을 공급자에게 보내야 하므로 **기본 꺼짐** (`ECONOVA_AI_FEEDBACK=off`,
+  2026-11 결정). 켜면 본인 응시 기록 + 같은 평가·같은 버전·승인됨·정답 키 있음일 때만 쓰고, AI 는 점수·진도·수료를 바꾸지 않는다.
+  꺼져 있으면 규칙으로 정리한 '다시 볼 내용'과 승인된 해설만 보여준다.
 - 경제 토론(`/discuss/<강좌>`): 공개·수강 중 강좌의 **승인된 주제**만. 관점 여러 개, 모형·근거·가정·가치 판단·상충관계 구분.
   학생 의견은 항상 저장되고, AI 를 못 쓰면 주제에 적힌 안내 질문·자동 정리로 이어 간다. 실제 강좌 주제는 아직 없다(개발용만).
 - 학습 추천(대시보드): `econova/recommendations.py` 가 퀴즈·평가의 개념별 정오로 **결정적으로** 계산한다 (문항 3개 미만 → 잠정).
@@ -169,20 +171,21 @@ ECONOVA 는 학교·교사가 학생을 관리하는 LMS 가 아니라 **자기�
   루브릭이 사람 승인을 받아야 수료로 기록한다. 수료는 자기주도 제출 기록이며 공식 학업 성취·자격 인증이 아니다.
   최종 평가 대신 캡스톤으로 마치는 강좌는 강좌 JSON 의 `"capstone": {"status", "file"}` 로 지정한다 (c09).
   개발용 강좌 `dev-f3` 로 시험한다. AI 코치(선택)는 질문·빠진 관점·가정·구성 제안만 하고 점수·출처를 만들지 않는다.
-- **이전 LMS AI 상담**: `/curriculum/chat`, `/curriculum/quick` 도 ECONOVA AI 의 하루 한도·동시 요청·시간 제한·가명·사용량 기록을
-  따른다 (요청당 호출 `ECONOVA_LEGACY_MAX_CALLS_PER_REQUEST`, 대화 전체 6000자).
 - **보안**: 운영 `SECRET_KEY` 32자 이상 필수, 세션 쿠키 HttpOnly·SameSite=Lax·(운영) Secure, 로그인 실패 15분 10회 제한.
 - sqlite 마이그레이션 7. 운영 준비 절차는 `docs/operations-readiness.md`.
 - Phase 8A: 보안 점검 수정(응시 횟수 동시 제출, 재응시가 남은 최종 평가의 정답 비공개, 다시 검토된 승인의 반영 차단, 서명된 릴리스 계획,
   `content-verify-approvals`, 스테이지 내용 검사, 보안 헤더). 준비 문서: `docs/content-readiness.md`, `docs/integration-test-plans.md`,
   `docs/release-checklist-8b.md`, `docs/release/commit-plan.md`.
-- Phase 8B-1: `ECONOVA_AI_PROVIDER` 하나로 이전 LMS 상담까지 제어(off 면 외부 AI 요청 0), 로그인 제한(계정+IP·계정·IP, 신뢰 프록시만
+- Phase 8B-1: `ECONOVA_AI_PROVIDER` 하나로 모든 AI 제어(off 면 외부 AI 요청 0), 로그인 제한(계정+IP·계정·IP, 신뢰 프록시만
   `X-Forwarded-For` 사용, 성공한 기기 쿠키), 학생 저장 한도(`econova/quotas.py`), 권한 취소된 관리자의 승인 반영 차단, 마이그레이션 8.
   8B-2 준비: `docs/phase-8b2-prerequisites.md`, 학생용 변경 요약: `docs/release/student-summary.md`.
 - Phase 8B-2: 실제 Firestore·OpenAI 연동 시험 도구 `integration_tests/` (기본은 가짜 백엔드로 외부 접속 없음,
   `.venv/bin/python -m pytest integration_tests`). 실제 연동은 개발 전용 자원·승인 확인값이 모두 있어야만 시작하고, 아니면 접속 전에
   멈춘다. 프록시 홉 수 측정용 관리자 진단 화면(`ECONOVA_PROXY_DIAGNOSTICS=1` 일 때만). 절차: `docs/phase-8b2-integration.md`,
   다음 승인 점검표: `docs/release/readiness-8b2.md`. 이 저장소는 pre-commit 훅(`core.hooksPath=tools/git-hooks`)을 켜 두었다.
+  실제 연동 결과: `econova-dev` Firestore 15 통과(시각 처리 결함 1건 수정), OpenAI `gpt-4o-mini` 요청 6회 통과.
+- 이전 LMS 제거 (2026-11): 대학 공개 강의·영상·AI 커리큘럼 화면과 코드, 강의 목록 시드를 없앴다. sqlite 마이그레이션 9 가
+  그 테이블을 지운다 (`users` 는 그대로). 배포 계획: `docs/deployment-econova.md`.
 
 ### 콘텐츠 검사와 오류 처리
 
@@ -191,7 +194,7 @@ ECONOVA 는 학교·교사가 학생을 관리하는 LMS 가 아니라 **자기�
 ```
 
 - 강좌 JSON 을 고쳤으면 커밋·배포 전에 위 명령을 실행한다 (배포 파이프라인에 넣는 것을 권장).
-- 강좌 JSON 이 깨져 있어도 앱은 시작되고, 로그인·회원가입·이전 LMS 보관함은 정상 동작한다.
+- 강좌 JSON 이 깨져 있어도 앱은 시작되고, 로그인·회원가입은 정상 동작한다.
   ECONOVA 화면(대시보드·강좌·레슨)만 "강좌 정보를 불러올 수 없어요"(503) 안내를 보여주고, 원인은 서버 로그에만 남긴다.
   파일을 고치면 서버를 다시 시작하지 않아도 다음 요청부터 정상으로 돌아온다 (실패한 읽기는 캐시하지 않음).
 - 반대로 보안과 관련된 설정 오류(운영 환경인데 `DB_BACKEND` 가 없거나, 운영에서 `ECONOVA_DEV_FIXTURES=1`)는
@@ -208,7 +211,7 @@ ECONOVA 는 학교·교사가 학생을 관리하는 LMS 가 아니라 **자기�
 
 | 위치 | 역할 |
 |---|---|
-| `app.py` | Flask 앱, 인증, 대시보드, 기존 LMS 라우트(`/legacy`, `/course/…`, `/curriculum/…`) (`gunicorn app:app`) |
+| `app.py` | Flask 앱 설정·시작 전 안전 검사, 첫 화면·회원가입·로그인·대시보드, 오류 화면, 관리 CLI (`gunicorn app:app`) |
 | `econova/web.py` | ECONOVA 화면: `/courses`, `/courses/<id>`, 수강 신청, 난이도, `/learn/<course>/<lesson>` |
 | `econova/learning.py` | 학습 규칙: 공개 강좌만 수강, 레슨 접근 권한, 진도 이벤트, 대시보드 요약 |
 | `econova/simulations.py`, `static/js/econova-sim*.js` | 경제 시뮬레이션 계산(서버·브라우저 동일 공식)과 화면 |
@@ -218,24 +221,26 @@ ECONOVA 는 학교·교사가 학생을 관리하는 LMS 가 아니라 **자기�
 | `econova/progress.py` | 진도 계산 (저장소와 무관한 순수 함수) |
 | `econova/config.py` | 환경 설정, `DB_BACKEND` 선택 규칙, 개발용 테스트 강좌 스위치 |
 | `econova/storage.py` | 저장소 계층 (sqlite / Firestore), sqlite 마이그레이션, 수강·진도 저장 |
-| `econova/legacy_catalog.py` | 기존 LMS 의 대학 강의 목록 |
 | `tests/` | pytest 테스트 |
 | `integration_tests/` | 실제 연동 시험 (기본 fake, live 는 승인 뒤) |
 
 sqlite 스키마를 바꿀 때는 `econova/storage.py` 의 `SQLITE_MIGRATIONS` 에 새 번호를 추가한다.
-이미 있는 번호는 고치지 않고, 사용자 데이터가 있는 테이블은 DROP 하지 않는다.
+이미 있는 번호는 고치지 않고, ECONOVA 사용자 데이터가 있는 테이블은 DROP 하지 않는다 (9번은 없앤 이전 LMS 테이블만 지움).
 
 ## 배포 (Render)
 
-`render.yaml` 참고. Render 의 Environment 에 아래 값을 넣는다.
+기존 Render 웹 서비스 `lms` 를 그대로 써서 ECONOVA 로 교체한다 (`render.yaml`). 교체 순서·환경변수·주의 사항은
+`docs/deployment-econova.md`. 요약:
 
-| 이름 | 설명 |
+| 이름 | 값 |
 |---|---|
 | `DB_BACKEND` | `firestore` (필수. 없으면 앱이 시작되지 않는다) |
-| `SECRET_KEY` | 세션 서명 키 (Render 가 자동 생성) |
-| `OPENAI_API_KEY` | AI 커리큘럼 상담용 |
-| `FIREBASE_CREDENTIALS_JSON` | Firebase 서비스 계정 키(JSON 전체) |
+| `FIREBASE_CREDENTIALS_JSON` | `econova-dev` 의 최소 권한 서비스 계정 키(JSON 전체) |
+| `SECRET_KEY` | 32자 이상 (짧으면 시작 거부) |
+| `ECONOVA_AI_PROVIDER`, `OPENAI_API_KEY`, `ECONOVA_AI_MODEL` | `openai`, 학원 제공 키, `gpt-4o-mini` |
+| `ECONOVA_AI_DAILY_REQUESTS` / `ECONOVA_AI_GLOBAL_DAILY_REQUESTS` | `20` / `300` (잠정) |
+| `ECONOVA_AI_FEEDBACK` | 넣지 않음 (기본 off: 정답·해설을 외부로 보내지 않음) |
+| `ECONOVA_TRUSTED_PROXY_HOPS` | 운영에서 측정하기 전에는 `0` |
+| `ECONOVA_PRIVATE_CONTENT_DIR` | 승인된 평가의 정답 키를 Secret Files 로 올린 뒤 `/etc/secrets` |
 
 Render 무료 플랜은 재배포할 때마다 디스크가 초기화되므로, 회원 데이터는 Firestore 에 저장한다.
-예전에는 서버가 시작될 때마다 Firestore 의 강의 목록을 다시 썼지만, 이제는 하지 않는다.
-강의 목록(`SEED_COURSES`)을 바꿨을 때만 운영자가 직접 `flask --app app init-db --firestore` 를 실행한다.

@@ -266,9 +266,9 @@ def test_feedback_requires_own_attempt_and_current_version(app, client, mock_ai,
 def test_feedback_falls_back_when_ai_disabled(logged_in):
     url = _wrong_quiz(logged_in)
     html = logged_in.get(url).get_data(as_text=True)
-    assert "다시 볼 내용" in html and "AI 설명 기능은 지금 꺼져 있어요" in html
+    assert "다시 볼 내용" in html and "AI 오답 설명은 지금 꺼져 있어요" in html
     res = logged_in.post(f"{url}/explain", data={"csrf_token": CSRF})
-    assert res.status_code == 303 and "AI 기능이 지금은 꺼져 있어요" in logged_in.get(url).get_data(as_text=True)
+    assert res.status_code == 303 and "정답·해설을 외부 AI 로 보내지 않기 위해" in logged_in.get(url).get_data(as_text=True)
 
 
 def test_feedback_drops_explanations_for_unrelated_questions(logged_in, monkeypatch):
@@ -666,7 +666,7 @@ def test_migration_6_on_phase5_database(sqlite_app, tmp_path, monkeypatch):
             run = storage.save_simulation_run(uid, "supply-demand", None, {"a": 1}, {"price": 1}, "sim-1")
         finally:
             storage.SQLITE_MIGRATIONS = full
-        assert storage.migrate_sqlite() == [6, 7, 8]
+        assert storage.migrate_sqlite() == [6, 7, 8, 9]
         assert storage.get_enrollment(uid, "dev-f1") is not None and storage.get_simulation_run(uid, run) is not None
         conv = storage.create_ai_conversation(uid, "tutor", course_id="dev-f1", lesson_id="dev-f1-l1")
         storage.add_ai_message(uid, conv, "student", "q")

@@ -24,6 +24,8 @@ for _name in ("DB_BACKEND", "FIREBASE_CREDENTIALS_JSON", "OPENAI_API_KEY", "OPEN
 # 실제 키의 정합성은 tests/test_private_content.py 가 ECONOVA_REAL_PRIVATE_CONTENT_DIR 이 있을 때만 따로 확인한다.
 EMPTY_PRIVATE_DIR = tempfile.mkdtemp(prefix="econova-test-private-")
 os.environ["ECONOVA_PRIVATE_CONTENT_DIR"] = EMPTY_PRIVATE_DIR
+# AI 오답 설명은 운영 기본값이 off 다. 기능 자체를 시험하려고 테스트에서는 켜 두고, 기본값(off)은 test_ai_feedback_off 가 따로 확인한다.
+os.environ["ECONOVA_AI_FEEDBACK"] = "on"
 
 # Firebase SDK 를 부르면 기록하고 실패시킨다. 어떤 테스트에서든 이 목록이 비어 있어야 한다.
 import firebase_admin  # noqa: E402

@@ -34,6 +34,7 @@ MESSAGES_KO = {
     "provider_error": "AI 서비스에 연결하지 못했어요. 잠시 후 다시 시도해 주세요. 지금까지의 학습 기록은 그대로예요.",
     "invalid_response": "AI 답변을 확인할 수 없어 표시하지 않았어요. 다시 시도해 주세요.",
     "unavailable": "이 내용에는 AI 도움을 쓸 수 없어요 (승인된 학습자료가 없어요).",
+    "feedback_off": "AI 오답 설명은 지금 꺼져 있어요 (정답·해설을 외부 AI 로 보내지 않기 위해). 위의 해설과 학습자료로 복습해 주세요.",
 }
 
 
@@ -291,6 +292,16 @@ def _mock_answer(req):
         return {"message": "[모의 AI] " + (f"'{items[0]['term']}' 부터 다시 보면 좋겠어요." if items else "지금은 근거가 부족해요."),
                 "tips": [f"{it['term']}: {it['reason']}" for it in items[:3]]}
     raise AIError("invalid_response", "알 수 없는 작업")
+
+
+def feedback_enabled():
+    """AI 오답 설명을 켤지 (ECONOVA_AI_FEEDBACK=on|off, 기본 off).
+    오답 설명은 그 학생이 틀린 문항의 정답·승인된 해설을 AI 공급자에게 보내야 하므로, 정책으로 허용할 때만 켠다
+    (2026-11 결정: 운영에서는 꺼 둔다). AI 공급자 자체가 off 이면 이 값과 상관없이 꺼진다."""
+    value = (config.env("ECONOVA_AI_FEEDBACK") or "off").strip().lower()
+    if value not in ("on", "off"):
+        raise config.ConfigError("ECONOVA_AI_FEEDBACK 는 on 또는 off 여야 합니다.")
+    return value == "on" and settings().enabled
 
 
 _mock_singleton = None

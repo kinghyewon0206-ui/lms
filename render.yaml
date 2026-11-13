@@ -1,3 +1,6 @@
+# ECONOVA — 기존 Render 웹 서비스 `lms` 를 그대로 쓴다 (이전 LMS 를 ECONOVA 로 교체).
+# 비밀 값(sync: false)은 Render 대시보드에서만 넣는다. 저장소에는 값을 적지 않는다.
+# 교체 순서와 주의(이전 코드가 새 Firebase 키로 다시 시작되지 않게)는 docs/deployment-econova.md.
 services:
   - type: web
     name: lms
@@ -5,14 +8,27 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    healthCheckPath: /login
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
       - key: DB_BACKEND          # 운영은 반드시 firestore. 빠지면 앱이 기동을 거부한다
         value: firestore
-      - key: SECRET_KEY
-        generateValue: true
+      - key: FIREBASE_CREDENTIALS_JSON   # econova-dev 프로젝트의 최소 권한 서비스 계정 JSON
+        sync: false
+      - key: SECRET_KEY          # 32자 이상. 짧으면 기동 거부
+        sync: false
+      - key: ECONOVA_AI_PROVIDER # off | openai (운영에서 mock 은 기동 거부)
+        value: openai
       - key: OPENAI_API_KEY
         sync: false
-      - key: OPENAI_MODEL
-        sync: false
-      - key: FIREBASE_CREDENTIALS_JSON
+      - key: ECONOVA_AI_MODEL
+        value: gpt-4o-mini
+      - key: ECONOVA_AI_DAILY_REQUESTS        # 학생 1명 하루 AI 요청 (잠정)
+        value: "20"
+      - key: ECONOVA_AI_GLOBAL_DAILY_REQUESTS # 서비스 전체 하루 AI 요청 (잠정)
+        value: "300"
+      - key: ECONOVA_TRUSTED_PROXY_HOPS       # 운영에서 측정하기 전에는 0 (추측하지 않는다)
+        value: "0"
+      - key: ECONOVA_PRIVATE_CONTENT_DIR      # 승인된 평가의 정답 키를 Secret Files 로 올린 뒤에만 (/etc/secrets)
         sync: false

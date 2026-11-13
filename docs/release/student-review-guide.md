@@ -18,7 +18,7 @@
 
 ## 1. Flask 앱 구조
 - `app.py`: 앱을 만들고 설정(`SECRET_KEY`, 쿠키 보안, 요청 크기 1MB), 보안 헤더(`security_headers`), CSRF(`csrf_token`),
-  회원가입·로그인(`signup`, `login`, `logout`), 이전 LMS 화면(`/legacy`…), 관리 CLI 명령(`admin-grant`, `check-content`,
+  회원가입·로그인(`signup`, `login`, `logout`), 관리 CLI 명령(`admin-grant`, `check-content`,
   `content-release-apply` 등)을 둔다. ECONOVA 화면은 Blueprint `econova` 로 붙는다.
 - `econova/web.py`(강좌·레슨·평가·시뮬레이션 화면), `student_web.py`(보고서·캡스톤), `ai_web.py`(AI·토론), `admin_web.py`(관리).
 - 규칙은 화면 밖 모듈에: `learning.py`(수강·평가·수료), `progress.py`(진도, 순수 함수), `grading.py`(채점), `simulations.py`.

@@ -301,13 +301,11 @@ def test_14_transactions_are_safe_to_retry(app, backend, new_user):
 
 # 15 --------------------------------------------------------------- 쿼리·색인
 def test_15_queries_and_indexes(app, new_user):
-    """이 앱의 Firestore 쿼리는 단일 필드 == 와 컬렉션 전체 읽기뿐이다 → 자동 단일 필드 색인으로 충분해야 한다.
-    live 에서 'index required'(FailedPrecondition)가 나면 이 시험이 실패한다."""
+    """ECONOVA 의 Firestore 읽기는 문서 직접 읽기와 (하위)컬렉션 전체 읽기뿐이고 where/order_by 쿼리가 없다 (이전 LMS 의
+    쿼리는 없앴다) → 색인을 만들 필요가 없다. live 에서 'index required'(FailedPrecondition)가 나면 이 시험이 실패한다."""
     u = new_user()
-    res = u.client.post("/curriculum/quick", data={"csrf_token": CSRF, "track": "cs", "level": "0", "hours": "5"})
-    assert res.status_code == 302
+    post(u.client, "/courses/dev-f1/enroll")
     with app.app_context():
-        assert storage.count_curricula(u.id) == 1                       # curricula where user_id ==
-        assert len(storage.list_curricula(u.id)) == 1
-        storage.list_courses()                                          # courses where curated == True
-        storage.purge_ai_data(storage._utcnow() - datetime.timedelta(days=3650))   # 전체 읽기 정리 쿼리
+        assert [e["course_id"] for e in storage.list_enrollments(u.id)] == ["dev-f1"]   # 하위 컬렉션 전체 읽기
+        storage.list_content_reviews()                                                    # 최상위 컬렉션 전체 읽기
+        storage.purge_ai_data(storage._utcnow() - datetime.timedelta(days=3650))          # 전체 읽기 정리

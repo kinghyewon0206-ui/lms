@@ -58,7 +58,7 @@
    (structured outputs) 지원 여부를 확인하고 `ECONOVA_AI_MODEL` 로 지정).
 4. 키는 실행할 때만 환경변수로: `export OPENAI_API_KEY=...` (`.env`·코드·커밋에 넣지 않는다).
 5. 실행 환경: 임시 sqlite, `ECONOVA_DEV_FIXTURES=1`, `ECONOVA_AI_PROVIDER=openai`, 낮은 한도
-   (`ECONOVA_AI_DAILY_REQUESTS=5`, `ECONOVA_AI_GLOBAL_DAILY_REQUESTS=20`, `ECONOVA_LEGACY_MAX_CALLS_PER_REQUEST=2`),
+   (`ECONOVA_AI_DAILY_REQUESTS=5`, `ECONOVA_AI_GLOBAL_DAILY_REQUESTS=20`, …),
    빈 정답 키 폴더. **실제 c02 초안은 승인 전이라 튜터에 쓰이지 않는다** (개발용 강좌만 시험).
 
 ### B2. 시험 항목
@@ -73,7 +73,6 @@
 | 7 | 캡스톤 코치 | 점수·링크·통계 없음 |
 | 8 | 시간 제한 (`ECONOVA_AI_TIMEOUT_SECONDS=3`, 긴 질문) | 504 안내, 기록 변화 없음 |
 | 9 | 하루 한도 초과 | 429 안내, 공급자 호출 없음 (대시보드 사용량으로 확인) |
-| 10 | 이전 LMS 상담 1회 | 요청당 호출 ≤2, 사용량 기록, 실패 시 간단 모드 안내 |
 | 11 | 잘못된 키 | 502 안내, 로그에 키 없음 |
 | 12 | 로그 확인 | `ai ok/fail task=… code=…` 만, 프롬프트·답변·키 없음 |
 

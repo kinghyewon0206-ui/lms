@@ -3,10 +3,21 @@
 <section class="hero ec-landing">
   <span class="eyebrow">ECONOVA</span>
   <h1>지속가능발전목표(SDG)로 배우는 경제</h1>
-  <p>시장, 성장, 불평등, 금융, 무역 같은 경제 개념을 실제 세계의 문제와 연결해 배우는 고등학생 경제 학습 플랫폼이에요.</p>
+  <p>시장, 성장, 불평등, 금융, 무역 같은 경제 개념을 실제 세계의 문제와 연결해 배우는 고등학생 경제 학습 플랫폼이에요.
+    내 속도에 맞춰 스스로 공부해요.</p>
   <div class="actions">
-    <a class="btn" href="{{ url_for('login') }}">로그인</a>
-    <a class="btn secondary" href="{{ url_for('signup') }}">회원가입</a>
+    <a class="btn" href="{{ url_for('signup') }}">시작하기 (회원가입)</a>
+    <a class="btn secondary" href="{{ url_for('login') }}">로그인</a>
   </div>
+</section>
+<section class="ec-section" aria-labelledby="h-features">
+  <h2 id="h-features">ECONOVA 에서 할 수 있는 것</h2>
+  <ul class="ec-list">
+    <li><strong>경제 강좌 9개</strong> — 강좌마다 레슨 3개, 난이도(하·중·상)를 골라 읽고 형성 퀴즈와 최종 평가로 확인해요.</li>
+    <li><strong>진단평가</strong> — 나에게 맞는 시작 난이도를 추천받아요 (참고용, 언제든 바꿀 수 있어요).</li>
+    <li><strong>경제 실험실</strong> — 수요·공급, 탄소세 모형의 값을 바꿔 가며 결과를 직접 계산해 봐요.</li>
+    <li><strong>AI 튜터와 토론</strong> — 승인된 학습자료를 바탕으로 질문하고, 여러 관점에서 생각해 봐요. 점수는 AI 가 정하지 않아요.</li>
+    <li><strong>내 학습 보고서와 SDG 캡스톤</strong> — 나의 기록을 돌아보고, SDG 문제에 대한 나만의 해결 방안을 써요.</li>
+  </ul>
 </section>
 {% endblock %}

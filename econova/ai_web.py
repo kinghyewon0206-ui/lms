@@ -18,7 +18,7 @@ from econova.ai.client import AIError
 from econova.auth import login_required
 from econova.web import bp, render_econova
 
-STATUS = {"disabled": 503, "rate_limited": 429, "global_limit": 429, "duplicate": 429, "busy": 429, "empty": 400,
+STATUS = {"disabled": 503, "feedback_off": 503, "rate_limited": 429, "global_limit": 429, "duplicate": 429, "busy": 429, "empty": 400,
           "too_long": 400, "timeout": 504, "provider_error": 502, "invalid_response": 502, "unavailable": 409}
 
 
@@ -98,15 +98,22 @@ def _attempt_assessment(course, attempt):
 def result_extras(attempt, course, assessment):
     """결과 화면에 붙일 결정적 복습 안내와 저장된 AI 설명 (web.assessment_result 가 부른다)."""
     if not ai_feedback.eligible(attempt, assessment):
-        return {"review": [], "ai_feedback": None, "ai_enabled": ai_enabled(), "feedback_allowed": False}
+        return {"review": [], "ai_feedback": None, "ai_enabled": _feedback_enabled(), "feedback_allowed": False}
     review, seen = [], set()
     for q in ai_feedback.wrong_questions(attempt, assessment, course):   # 같은 학습목표는 한 번만
         if (q["lesson_id"], q["objective_text"]) not in seen:
             seen.add((q["lesson_id"], q["objective_text"]))
             review.append(q)
     return {"review": review,
-            "ai_feedback": ai_feedback.latest(g.user["id"], attempt["id"]), "ai_enabled": ai_enabled(),
+            "ai_feedback": ai_feedback.latest(g.user["id"], attempt["id"]), "ai_enabled": _feedback_enabled(),
             "feedback_allowed": True}
+
+
+def _feedback_enabled():
+    try:
+        return ai_client.feedback_enabled()
+    except Exception:
+        return False
 
 
 # ---------------------------------------------------------------- 토론

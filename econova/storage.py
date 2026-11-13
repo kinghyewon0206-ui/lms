@@ -18,7 +18,6 @@ from firebase_admin import credentials as fb_credentials, firestore as fb_firest
 from flask import current_app, g
 
 from econova import config, progress
-from econova.legacy_catalog import SEED_COURSES
 
 
 def init_app(app):
@@ -104,199 +103,10 @@ def get_user_by_id(uid):
     ).fetchone()
 
 
-def list_courses(university=None):
-    """curated=1 인(직접 고른) 강의 목록. university 를 주면 그 대학만."""
-    if using_firestore():
-        rows = [{**d.to_dict(), "id": d.id} for d in _fs().collection("courses").where("curated", "==", True).stream()]
-        rows.sort(key=lambda r: r.get("seed_order", 0))
-        return [r for r in rows if r["university"] == university] if university else rows
-    db = get_db()
-    if university:
-        return db.execute(
-            "SELECT * FROM courses WHERE curated = 1 AND university = ? ORDER BY id", (university,)
-        ).fetchall()
-    return db.execute("SELECT * FROM courses WHERE curated = 1 ORDER BY id").fetchall()
-
-
-def curated_course_id(slug):
-    """SEED_COURSES 의 slug 에 해당하는 courses 문서/행의 id."""
-    if using_firestore():
-        return slug
-    url = next(c[6] for c in SEED_COURSES if c[0] == slug)
-    return get_db().execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
-
-
-def resolve_course_id(item):
-    """커리큘럼 항목이 가리키는 courses 문서/행의 id. 목록 밖(AI 가 찾은) 강의는 없으면 새로 만든다."""
-    if item["slug"]:
-        return curated_course_id(item["slug"])
-
-    c = item["custom"]
-    url = c["url"]
-    if using_firestore():
-        cid = hashlib.sha1(url.encode()).hexdigest()[:16]
-        ref = _fs().collection("courses").document(cid)
-        if not ref.get().exists:
-            ref.set({"university": c["university"], "title": item["title"], "description": c["description"],
-                      "level": c["level"], "hours": item["hours"], "url": url, "curated": False})
-        return cid
-
-    db = get_db()
-    db.execute(
-        "INSERT OR IGNORE INTO courses (university, title, description, level, hours, url, curated)"
-        " VALUES (?, ?, ?, ?, ?, ?, 0)",
-        (c["university"], item["title"], c["description"], c["level"], item["hours"], url),
-    )
-    return db.execute("SELECT id FROM courses WHERE url = ?", (url,)).fetchone()["id"]
-
-
-def bump_course_view(slug):
-    """강의를 본 횟수를 1 올린다. (인기 순위에 쓴다)"""
-    if using_firestore():
-        _fs().collection("course_views").document(slug).set({"views": fb_firestore.Increment(1)}, merge=True)
-        return
-    db = get_db()
-    db.execute(
-        "INSERT INTO course_views (slug, views) VALUES (?, 1) ON CONFLICT(slug) DO UPDATE SET views = views + 1", (slug,)
-    )
-    db.commit()
-
-
-def course_views():
-    """{slug: 조회수}"""
-    if using_firestore():
-        return {d.id: int((d.to_dict() or {}).get("views", 0)) for d in _fs().collection("course_views").stream()}
-    return {r["slug"]: r["views"] for r in get_db().execute("SELECT slug, views FROM course_views")}
-
-
-def create_curriculum(user_id, title, track, level, hours_per_week, source, note, goal_text,
-                       days_per_week=0, hours_per_day=0):
-    if using_firestore():
-        ref = _fs().collection("curricula").document()
-        ref.set({
-            "user_id": user_id, "title": title, "track": track, "level": level,
-            "hours_per_week": hours_per_week, "source": source, "note": note, "goal_text": goal_text,
-            "days_per_week": days_per_week, "hours_per_day": hours_per_day,
-            "created_at": fb_firestore.SERVER_TIMESTAMP,
-        })
-        return ref.id
-    db = get_db()
-    cur = db.execute(
-        "INSERT INTO curricula (user_id, title, track, level, hours_per_week, source, note, goal_text,"
-        " days_per_week, hours_per_day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        (user_id, title, track, level, hours_per_week, source, note, goal_text, days_per_week, hours_per_day),
-    )
-    db.commit()
-    return cur.lastrowid
-
-
-def add_curriculum_item(cid, course_id, position, reason, weeks=0, tips=""):
-    if using_firestore():
-        _fs().collection("curricula").document(cid).collection("items").document().set({
-            "course_id": course_id, "position": position, "reason": reason, "done": False,
-            "weeks": weeks, "tips": tips,
-        })
-        return
-    get_db().execute(
-        "INSERT INTO curriculum_items (curriculum_id, course_id, position, reason, weeks, tips)"
-        " VALUES (?, ?, ?, ?, ?, ?)",
-        (cid, course_id, position, reason, weeks, tips),
-    )
-    get_db().commit()
-
-
-def list_curricula(user_id):
-    """사용자의 커리큘럼 목록 (강의 개수·완료 개수 포함), 최신순."""
-    if using_firestore():
-        db = _fs()
-        rows = []
-        for d in db.collection("curricula").where("user_id", "==", user_id).stream():
-            data = d.to_dict()
-            items = [i.to_dict() for i in db.collection("curricula").document(d.id).collection("items").stream()]
-            rows.append({**data, "id": d.id, "total": len(items), "done": sum(1 for i in items if i.get("done"))})
-        rows.sort(key=lambda r: r.get("created_at") or datetime.datetime.min, reverse=True)
-        return rows
-    return get_db().execute(
-        """
-        SELECT c.*, COUNT(i.id) AS total, COALESCE(SUM(i.done), 0) AS done
-        FROM curricula c LEFT JOIN curriculum_items i ON i.curriculum_id = c.id
-        WHERE c.user_id = ? GROUP BY c.id ORDER BY c.id DESC
-        """,
-        (user_id,),
-    ).fetchall()
-
-
-def count_curricula(user_id):
-    """기존 LMS 에서 만든 커리큘럼 개수. (대시보드의 보관함 안내용. 항목까지 읽지 않는다)"""
-    if using_firestore():
-        return sum(1 for _ in _fs().collection("curricula").where("user_id", "==", user_id).stream())
-    return get_db().execute("SELECT COUNT(*) FROM curricula WHERE user_id = ?", (user_id,)).fetchone()[0]
-
-
-def get_curriculum(cid, user_id):
-    """본인 소유일 때만 돌려준다."""
-    if using_firestore():
-        snap = _fs().collection("curricula").document(cid).get()
-        if not snap.exists or snap.to_dict().get("user_id") != user_id:
-            return None
-        return {**snap.to_dict(), "id": snap.id}
-    return get_db().execute(
-        "SELECT * FROM curricula WHERE id = ? AND user_id = ?", (cid, user_id)
-    ).fetchone()
-
-
-def list_curriculum_items(cid):
-    """강의 정보와 합쳐서, 순서대로."""
-    if using_firestore():
-        db = _fs()
-        items = list(db.collection("curricula").document(cid).collection("items").stream())
-        items.sort(key=lambda d: d.to_dict().get("position", 0))
-        out = []
-        for d in items:
-            it = d.to_dict()
-            course_snap = db.collection("courses").document(it["course_id"]).get()
-            course = course_snap.to_dict() if course_snap.exists else {}
-            out.append({**course, "item_id": d.id, "reason": it.get("reason", ""), "done": bool(it.get("done")),
-                        "plan_weeks": it.get("weeks") or 0, "tips": it.get("tips", "")})
-        return out
-    return get_db().execute(
-        """
-        SELECT i.id AS item_id, i.reason, i.done, i.weeks AS plan_weeks, i.tips, c.*
-        FROM curriculum_items i JOIN courses c ON c.id = i.course_id
-        WHERE i.curriculum_id = ? ORDER BY i.position
-        """,
-        (cid,),
-    ).fetchall()
-
-
-def toggle_curriculum_item(cid, item_id):
-    if using_firestore():
-        ref = _fs().collection("curricula").document(cid).collection("items").document(item_id)
-        snap = ref.get()
-        if snap.exists:
-            ref.update({"done": not snap.to_dict().get("done")})
-        return
-    db = get_db()
-    db.execute("UPDATE curriculum_items SET done = 1 - done WHERE id = ? AND curriculum_id = ?", (item_id, cid))
-    db.commit()
-
-
-def delete_curriculum(cid):
-    if using_firestore():
-        db = _fs()
-        for d in db.collection("curricula").document(cid).collection("items").stream():
-            d.reference.delete()
-        db.collection("curricula").document(cid).delete()
-        return
-    db = get_db()
-    db.execute("DELETE FROM curriculum_items WHERE curriculum_id = ?", (cid,))
-    db.execute("DELETE FROM curricula WHERE id = ?", (cid,))
-    db.commit()
-
-
 # ---------------------------------------------------------------- 스키마
 # sqlite 마이그레이션. 번호 순서대로 한 번씩만 실행되고, 실행한 번호는 schema_migrations 에 남는다.
-# 규칙: 이미 배포된 마이그레이션은 고치지 않고 새 번호를 추가한다. 사용자 데이터가 있는 테이블은 DROP 하지 않는다.
+# 규칙: 이미 배포된 마이그레이션은 고치지 않고 새 번호를 추가한다. ECONOVA 사용자 데이터가 있는 테이블은 DROP 하지 않는다.
+# (예외: 9번은 운영을 끝낸 이전 LMS 의 테이블을 지운다 — 2026-11 결정으로 이전 LMS 기록은 보존하지 않는다)
 # (Firestore 는 스키마가 없어서 마이그레이션 대신 문서를 읽을 때 기본값을 채운다)
 
 def _columns(db, table):
@@ -628,6 +438,19 @@ def _migrate_8_econova_login_counters(db):
     )
 
 
+def _migrate_9_drop_legacy_lms(db):
+    """이전 LMS(대학 공개 강의·AI 커리큘럼)를 없앴다. 그 테이블과 기록은 보존하지 않기로 했다 (2026-11 결정).
+    users 테이블은 ECONOVA 가 그대로 쓴다. 외래키 순서대로 지운다."""
+    db.executescript(
+        """
+        DROP TABLE IF EXISTS curriculum_items;
+        DROP TABLE IF EXISTS curricula;
+        DROP TABLE IF EXISTS courses;
+        DROP TABLE IF EXISTS course_views;
+        """
+    )
+
+
 # (번호, 설명, 함수). 새 테이블은 다음 번호로 추가한다.
 SQLITE_MIGRATIONS = [
     (1, "기존 LMS 스키마", _migrate_1_legacy_lms),
@@ -638,6 +461,7 @@ SQLITE_MIGRATIONS = [
     (6, "ECONOVA AI 대화·사용량", _migrate_6_econova_ai),
     (7, "ECONOVA 관리자·콘텐츠 검토·캡스톤·로그인 제한", _migrate_7_econova_platform),
     (8, "ECONOVA 로그인 실패 카운터", _migrate_8_econova_login_counters),
+    (9, "이전 LMS 테이블 삭제", _migrate_9_drop_legacy_lms),
 ]
 
 
@@ -658,37 +482,10 @@ def migrate_sqlite():
     return applied
 
 
-def seed_courses():
-    """SEED_COURSES 를 강의 목록에 넣거나 갱신한다. (몇 번 실행해도 결과가 같다)"""
-    if using_firestore():
-        db = _fs()
-        batch = db.batch()
-        for i, c in enumerate(SEED_COURSES):
-            slug, university, title, description, level, hours, url = c
-            batch.set(db.collection("courses").document(slug), {
-                "university": university, "title": title, "description": description,
-                "level": level, "hours": hours, "url": url, "curated": True, "seed_order": i,
-            })
-        batch.commit()
-        return
-    db = get_db()
-    db.executemany(
-        """
-        INSERT INTO courses (university, title, description, level, hours, url, curated)
-        VALUES (?, ?, ?, ?, ?, ?, 1)
-        ON CONFLICT(url) DO UPDATE SET university = excluded.university, title = excluded.title,
-            description = excluded.description, level = excluded.level, hours = excluded.hours, curated = 1
-        """,
-        [c[1:] for c in SEED_COURSES],
-    )
-    db.commit()
-
-
 def init_db():
-    """스키마를 최신으로 맞추고 강의 목록을 채운다. 앱 import 때는 실행되지 않는다 (flask --app app init-db)."""
-    if not using_firestore():  # Firestore 는 스키마가 없어서 테이블을 만들 필요가 없다
+    """sqlite 스키마를 최신으로 맞춘다. Firestore 는 스키마가 없어 할 일이 없다. 앱 import 때는 실행되지 않는다."""
+    if not using_firestore():
         migrate_sqlite()
-    seed_courses()
 
 
 # ============================================================================

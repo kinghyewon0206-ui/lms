@@ -31,11 +31,8 @@ def network_spy(monkeypatch):
 
 
 def _all_ai_entry_points(c):
-    """앱의 모든 AI 진입점을 한 번씩 부른다 (ECONOVA + 이전 LMS)."""
+    """앱의 모든 AI 진입점을 한 번씩 부른다."""
     out = {}
-    out["legacy_chat"] = c.post("/curriculum/chat", json={"messages": [{"role": "user", "content": "경제 공부"}]},
-                                headers={"X-CSRF-Token": CSRF})
-    out["legacy_quick"] = c.post("/curriculum/quick", data={"csrf_token": CSRF, "track": "cs", "level": "0", "hours": "5"})
     _enroll(c, "dev-f1")
     out["tutor"] = c.post("/api/tutor", data={"csrf_token": CSRF, "course_id": "dev-f1", "lesson_id": "dev-f1-l1",
                                               "message": "질문"})
@@ -55,28 +52,45 @@ def test_provider_off_makes_no_external_ai_request_anywhere(app, logged_in, netw
     monkeypatch.setenv("ECONOVA_AI_PROVIDER", "off")
     out = _all_ai_entry_points(logged_in)
     assert network_spy == []
-    assert out["legacy_chat"].status_code == 503 and "간단 모드" in out["legacy_chat"].get_json()["error"]
-    assert out["legacy_quick"].status_code == 302                       # 규칙 기반 추천으로 정상 생성
     assert out["tutor"].status_code == 503 and out["tutor"].get_json()["code"] == "disabled"
     assert out["recs"].status_code in (409, 503)
     with app.app_context():
         from econova.ai import usage
         assert storage.get_ai_usage(_uid(app), usage.today())["global"]["requests"] == 0
-        assert storage.count_curricula(_uid(app)) == 1
 
 
 def test_provider_mock_stays_local_and_dev_only(app, logged_in, network_spy, monkeypatch):
     monkeypatch.setenv("ECONOVA_AI_PROVIDER", "mock")
     monkeypatch.setenv("ECONOVA_AI_DUPLICATE_SECONDS", "0")
-    res = logged_in.post("/curriculum/chat", json={"messages": [{"role": "user", "content": "경제 공부"}]},
-                         headers={"X-CSRF-Token": CSRF})
-    assert res.status_code == 200 and res.get_json()["reply"].startswith("[모의 AI]")
-    _all_ai_entry_points(logged_in)
+    out = _all_ai_entry_points(logged_in)
+    assert out["tutor"].status_code == 200 and out["tutor"].get_json()["message"]["answer"].startswith("[모의 AI 답변]")
     assert network_spy == []
     monkeypatch.setenv("RENDER", "1")
     monkeypatch.setenv("SECRET_KEY", "s" * 40)
     with pytest.raises(config.ConfigError, match="모의 AI"):
         ai_client.settings()
+
+
+def test_ai_feedback_is_off_by_default_and_sends_nothing(app, logged_in, network_spy, monkeypatch):
+    """AI 오답 설명은 틀린 문항의 정답·해설을 공급자에게 보내야 하므로 기본으로 꺼져 있다 (2026-11 결정).
+    AI 공급자가 openai 로 켜져 있어도 버튼이 없고, 요청을 보내도 공급자를 부르지 않는다."""
+    monkeypatch.delenv("ECONOVA_AI_FEEDBACK", raising=False)
+    monkeypatch.setenv("ECONOVA_AI_PROVIDER", "openai")
+    _enroll(logged_in, "dev-f1")
+    _post(logged_in, "/learn/dev-f1/dev-f1-l1/material-reviewed")
+    quiz = content.get_catalog().course("dev-f1").lesson("dev-f1-l1").quiz_assessment
+    url = take(logged_in, "/learn/dev-f1/dev-f1-l1/quiz", quiz, correct=False)
+    html = logged_in.get(url).get_data(as_text=True)
+    assert "AI 에게 내 오답 설명 듣기" not in html and "AI 오답 설명은 지금 꺼져 있어요" in html
+    res = logged_in.post(url + "/explain", data={"csrf_token": CSRF})
+    assert res.status_code == 303 and network_spy == []
+    assert "정답·해설을 외부 AI 로 보내지 않기 위해" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    with app.app_context():
+        from econova.ai import usage
+        assert storage.get_ai_usage(_uid(app), usage.today())["global"]["requests"] == 0
+    monkeypatch.setenv("ECONOVA_AI_FEEDBACK", "maybe")
+    with pytest.raises(config.ConfigError, match="ECONOVA_AI_FEEDBACK"):
+        ai_client.feedback_enabled()
 
 
 def test_provider_openai_requires_server_key(monkeypatch):
@@ -236,16 +250,6 @@ def test_capstone_quota_keeps_student_text(app, logged_in, tiny_quotas):
     assert res.status_code == 200 and "저장 한도(2개)" in html and "지우면 안 되는 학생 글" in html
     with app.app_context():
         assert len(storage.list_capstone_versions(_uid(app), "dev-f3")) == 2
-
-
-def test_legacy_curricula_quota(app, logged_in, tiny_quotas):
-    for _ in range(2):
-        logged_in.post("/curriculum/quick", data={"csrf_token": CSRF, "track": "cs", "level": "0", "hours": "5"})
-    res = logged_in.post("/curriculum/quick", data={"csrf_token": CSRF, "track": "cs", "level": "0", "hours": "5"})
-    assert res.status_code == 409 and "내 커리큘럼 저장 한도" in res.get_data(as_text=True)
-    res = logged_in.post("/curriculum/chat", json={"messages": [{"role": "user", "content": "경제"}]},
-                         headers={"X-CSRF-Token": CSRF})
-    assert res.status_code == 409
 
 
 def test_quota_settings_are_validated(monkeypatch):

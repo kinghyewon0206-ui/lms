@@ -82,9 +82,8 @@ def test_logout_requires_post(logged_in):
     assert logged_in.get("/logout").status_code == 405
 
 
-@pytest.mark.parametrize("path", ["/dashboard", "/courses", "/courses/c02", "/learn/c02/c02-l1", "/legacy",
-                                  "/legacy/courses", "/course/econ-micro", "/watch/econ-micro", "/curriculum",
-                                  "/curriculum/new", "/curriculum/quick"])
+@pytest.mark.parametrize("path", ["/dashboard", "/courses", "/courses/c02", "/learn/c02/c02-l1", "/diagnostic", "/lab",
+                                  "/discuss", "/report", "/capstone/c09"])
 def test_login_required(client, path):
     res = client.get(path)
     assert res.status_code == 302 and res.headers["Location"].endswith("/login")
@@ -113,7 +112,7 @@ def test_csrf_without_session_token(client):
 
 
 def test_csrf_header_for_json(logged_in):
-    res = logged_in.post("/curriculum/chat", json={"messages": []})
+    res = logged_in.post("/api/recommendations/explain")
     assert res.status_code == 400  # 토큰 없음
-    res = logged_in.post("/curriculum/chat", json={"messages": []}, headers={"X-CSRF-Token": CSRF})
-    assert res.status_code == 400 and "잘못된 요청" in res.get_json()["error"]  # 토큰은 통과, 내용 검증에서 거절
+    res = logged_in.post("/api/recommendations/explain", headers={"X-CSRF-Token": CSRF})
+    assert res.status_code != 400 and res.get_json()["ok"] is False   # 헤더 토큰은 통과 (추천 근거가 없어 409/503)
