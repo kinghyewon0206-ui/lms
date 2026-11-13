@@ -17,7 +17,7 @@
   ],
   "review": {
     "status": "draft",
-    "note": "The course description and learning objectives are drafts awaiting teacher review."
+    "note": "Course description, objectives, lesson materials, quizzes and final assessment are AI-written drafts awaiting human review."
   },
   "estimated_hours": 6,
   "difficulty_levels": [
@@ -26,9 +26,10 @@
     "advanced"
   ],
   "status": "coming_soon",
-  "content_version": 1,
+  "content_version": 2,
   "final_assessment": {
-    "status": "upcoming"
+    "status": "draft",
+    "assessment_id": "c08-final"
   },
   "lesson_ids": [
     "c08-l1",
@@ -48,11 +49,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c08-l1.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c08-l1-quiz"
       }
     },
     {
@@ -67,11 +69,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c08-l2.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c08-l2-quiz"
       }
     },
     {
@@ -86,11 +89,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c08-l3.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c08-l3-quiz"
       }
     }
   ]

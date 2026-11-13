@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c08-l3",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Describe how a global supply chain splits production into stages across countries, and calculate the value added at each stage.",
+    "Analyze the trade-off between low cost and resilience when firms choose suppliers and inventories.",
+    "Explain the environmental and social challenges of sustainable production in global supply chains, and evaluate policy responses linked to SDGs 8, 12, and 17."
+  ],
+  "concepts": [
+    {
+      "id": "global_value_chain",
+      "term": "Global supply chain (value chain)",
+      "definition": "The sequence of stages, from raw materials and parts to design, assembly, transport, and retail, that turns inputs into a finished product, often spread across several countries. Each country specializes in the stages where it has a comparative advantage, and trade often involves parts and components rather than finished goods.",
+      "source_ids": [
+        "openstax-pe3-33-3",
+        "openstax-pe3-33-4"
+      ]
+    },
+    {
+      "id": "value_added",
+      "term": "Value added",
+      "definition": "The value a stage of production adds: the price of what the stage sells minus the cost of the inputs it buys from earlier stages. Adding up the value added at every stage, starting from raw materials, gives the final price of the product.",
+      "source_ids": [
+        "openstax-pe3-33-3"
+      ]
+    },
+    {
+      "id": "interdependence_disruption",
+      "term": "Interdependence and disruption",
+      "definition": "Because each stage depends on the others, a problem at one point, such as a factory closure, a natural disaster, or a blocked shipping route, can delay production far away. Specialization lowers costs but links countries and firms closely together.",
+      "source_ids": [
+        "openstax-pe3-33-3",
+        "openstax-pe3-33-4"
+      ]
+    },
+    {
+      "id": "resilience_tradeoff",
+      "term": "Resilience and its costs",
+      "definition": "Resilience is the ability of a supply chain to keep working or recover quickly after a disruption. Firms can buy from several suppliers (diversification) or hold extra inventory, but both usually cost money in normal times, so firms face a trade-off between low cost and resilience.",
+      "source_ids": [
+        "openstax-pe3-33-3"
+      ]
+    },
+    {
+      "id": "supply_chain_externalities",
+      "term": "Externalities in global production",
+      "definition": "Production stages can create external costs, such as pollution or emissions, that are not included in the price. When those costs fall on people in the producing country, or on the whole world in the case of greenhouse gases, the market price of the product is lower than its social cost, as in Course 3.",
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-34-3"
+      ]
+    },
+    {
+      "id": "decent_work_supply_chains",
+      "term": "Decent work in supply chains",
+      "definition": "Workers at some stages of global production may face low pay, unsafe conditions, or, in the worst cases, forced or child labor. SDG 8 calls for ending forced labor and child labor (target 8.7) and protecting labor rights and safe working environments (target 8.8).",
+      "source_ids": [
+        "openstax-pe3-34-2",
+        "un-sdg-8"
+      ]
+    },
+    {
+      "id": "sustainable_production_partnership",
+      "term": "Sustainable production and global partnership",
+      "definition": "Sustainable production uses natural resources efficiently and reduces harm to people and the environment (SDG 12, for example targets 12.2 and 12.6 on company sustainability reporting). Because supply chains cross borders, many responses need cooperation between countries, firms, and civil society (SDG 17, including the trade targets 17.10–17.12).",
+      "source_ids": [
+        "un-sdg-12",
+        "un-sdg-17",
+        "un-sdg-8"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Many products are made in steps in different countries. This makes them cheaper, but it also means a problem in one place can hold up production everywhere. Factories along the chain can also pollute or treat workers badly, and those costs are not in the price you pay. Making supply chains more sustainable takes effort from companies, governments, and countries working together.",
+      "sections": [
+        {
+          "heading": "A backpack's trip around the world",
+          "concept_ids": [
+            "global_value_chain",
+            "value_added"
+          ],
+          "paragraphs": [
+            "Hypothetical example: a backpack's fabric is woven in Country F and sold for $8 (to keep it simple, assume the fabric maker buys no inputs). A factory in Country S sews it into a backpack and sells it to a brand for $20. The brand, in Country D, designs it, advertises it, and sells it in stores for $50.",
+            "Each step adds value. Weaving adds $8, sewing adds $20 − $8 = $12, and design, marketing, and selling add $50 − $20 = $30. Together: $8 + $12 + $30 = $50, the price you pay. Each country does the step it is relatively good at, the same idea as comparative advantage in Lesson 1."
+          ]
+        },
+        {
+          "heading": "When one link breaks",
+          "concept_ids": [
+            "interdependence_disruption",
+            "resilience_tradeoff"
+          ],
+          "paragraphs": [
+            "If the sewing factory in Country S closes because of a flood, the brand in Country D has nothing to sell, even though nothing went wrong in Country D. Countries that trade depend on each other.",
+            "Firms can prepare by buying from more than one supplier or by keeping extra stock in a warehouse. But a second supplier may charge more, and stored goods cost money to keep. Being ready for problems is not free."
+          ]
+        },
+        {
+          "heading": "Costs that are not in the price",
+          "concept_ids": [
+            "supply_chain_externalities",
+            "decent_work_supply_chains"
+          ],
+          "paragraphs": [
+            "Remember externalities from Course 3. A dye factory that dumps dirty water into a river imposes a cost on people downstream, but that cost is not in the backpack's price. Some factories also pay very low wages, have unsafe buildings, or, in the worst cases, use forced or child labor.",
+            "When these costs are hidden, the product looks cheaper than it really is for society."
+          ]
+        },
+        {
+          "heading": "Working together for better production",
+          "concept_ids": [
+            "sustainable_production_partnership"
+          ],
+          "paragraphs": [
+            "The UN Sustainable Development Goals include goals for sustainable production (SDG 12), decent work (SDG 8), and global partnership (SDG 17). Companies can report on their environmental and social impacts, governments can set and enforce rules, and countries can cooperate so that trade helps poorer countries grow without passing hidden costs to workers or nature."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Global value chains split production into stages located by comparative advantage, economies of scale, and specialized skills. Value added across all stages, starting from raw materials, sums to the final price. Tight specialization raises efficiency but also exposure to disruption, and resilience strategies (supplier diversification, inventories) raise costs in normal times. Externalities and labor problems at upstream stages mean market prices can understate social costs, which SDGs 8, 12, and 17 address.",
+      "sections": [
+        {
+          "heading": "Specializing in stages, not just products",
+          "concept_ids": [
+            "global_value_chain",
+            "value_added"
+          ],
+          "paragraphs": [
+            "Better communication and transportation have made it practical to split production into stages, so countries now often trade parts, components, and services within the same industry. A stage locates where costs are lowest relative to others: comparative advantage still applies, plus economies of scale (one large plant serving many countries) and specialized know-how built up over time.",
+            "Value added = sales of a stage − purchased inputs from earlier stages. Hypothetical example (assuming the fabric maker buys no inputs): fabric $8 → sewn backpack $20 → retail $50 gives value added of $8, $12, and $30. The stage with the largest value added need not employ the most workers; design and marketing can add much value with few workers, while sewing may employ many workers and add less."
+          ]
+        },
+        {
+          "heading": "Interdependence and the cost of resilience",
+          "concept_ids": [
+            "interdependence_disruption",
+            "resilience_tradeoff"
+          ],
+          "paragraphs": [
+            "Specialization concentrates production: a few plants may make a key part for a whole industry. That keeps costs low until something goes wrong. A disruption at one stage can halt every later stage, and with lean (low) inventories, there is little buffer.",
+            "Hypothetical example: a firm buys 10,000 parts a year at $30 each. Moving 40% of its orders to a second supplier that charges $1.50 more per part costs 4,000 × $1.50 = $6,000 a year, 2% of its $300,000 spending on parts. Holding extra inventory has similar costs (storage, money tied up in stock). Whether these costs are worth it depends on how likely and how costly disruptions are. Different firms and industries can reasonably choose differently, and governments sometimes encourage more resilience for goods they consider essential."
+          ]
+        },
+        {
+          "heading": "Externalities and working conditions along the chain",
+          "concept_ids": [
+            "supply_chain_externalities",
+            "decent_work_supply_chains"
+          ],
+          "paragraphs": [
+            "If a stage creates pollution, the private cost of the product is below its social cost (social cost = private cost + external cost), so the market produces more than the socially optimal quantity, exactly as in Course 3. With global chains, the external cost may fall in a different country from where the product is bought, or, for greenhouse gases, on everyone.",
+            "Labor conditions are a related concern. In some low-income countries, pay and safety fall far below high-income standards, and the worst practices include forced and child labor. Economists debate the best response: some stress enforceable minimum labor standards everywhere; others caution that boycotts can push workers into even worse options. SDG 8 asks countries to end forced and child labor (8.7) and protect labor rights and safe workplaces for all workers (8.8)."
+          ]
+        },
+        {
+          "heading": "Sustainable production and global partnership",
+          "concept_ids": [
+            "sustainable_production_partnership"
+          ],
+          "paragraphs": [
+            "SDG 12 calls for the sustainable management and efficient use of natural resources (12.2) and encourages companies, especially large and transnational ones, to adopt sustainable practices and include sustainability information in their reporting (12.6). Reporting makes hidden costs more visible to buyers, investors, and regulators, but it costs money and is only as useful as the data behind it.",
+            "SDG 17 links trade and sustainability: it promotes an open, rules-based, non-discriminatory, and equitable multilateral trading system (17.10), more exports from developing countries (17.11), and duty-free, quota-free market access for least developed countries (17.12). Some people argue that importing countries should restrict goods made with high pollution or poor labor practices; others worry that such rules can become hidden protection that blocks poor countries' exports. Many proposals try to combine standards with support that helps producers meet them."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Final price = Σ value added across stages. Resilience investments can be evaluated as insurance: compare a certain cost today with the expected loss avoided, while noting that probabilities are uncertain and some losses fall on others. External costs along the chain create a gap between private and social cost that can be addressed with taxes, standards, disclosure, or international cooperation, each with trade-offs for developing-country exporters.",
+      "sections": [
+        {
+          "heading": "Value added and where income goes",
+          "concept_ids": [
+            "global_value_chain",
+            "value_added"
+          ],
+          "paragraphs": [
+            "For stages k = 1, …, n with sales S_k and purchased inputs S_(k−1) (S₀ = 0), value added is VA_k = S_k − S_(k−1), and Σ VA_k = S_n, the final price. Hypothetical backpack: VA = 8, 12, 30; Σ = 50. Value added is the income created at each stage (wages, profits, and other payments), so it shows where in the chain income is earned.",
+            "Measuring trade by gross values can mislead: a country that assembles a product from imported parts exports the full value of the product but adds only part of it. Target 8.2's emphasis on higher productivity through diversification and technological upgrading can be read as moving toward stages with higher value added per worker."
+          ]
+        },
+        {
+          "heading": "Resilience as insurance",
+          "concept_ids": [
+            "interdependence_disruption",
+            "resilience_tradeoff"
+          ],
+          "paragraphs": [
+            "Hypothetical example: without a buffer, a firm faces a 10% chance per year of a disruption that costs $200,000, so the expected loss is 0.10 × $200,000 = $20,000. A safety stock costs $12,000 a year and would cut the loss to $40,000 if a disruption occurs. Expected cost with the buffer = $12,000 + 0.10 × $40,000 = $16,000 < $20,000, so the buffer pays off in expectation.",
+            "The decision is sensitive to the assumptions. If the probability were 5%, the expected cost would be $10,000 without the buffer and $14,000 with it, and the buffer would not pay off on average. Probabilities of rare events are hard to estimate, and a firm may also care about avoiding a very bad outcome, not just the average. Some losses from a disruption fall on customers and workers outside the firm, an externality that can lead firms to choose less resilience than society would prefer."
+          ]
+        },
+        {
+          "heading": "Pricing the hidden costs",
+          "concept_ids": [
+            "supply_chain_externalities",
+            "decent_work_supply_chains"
+          ],
+          "paragraphs": [
+            "Hypothetical example: a T-shirt has a private cost of $6, and the dyeing stage causes water pollution with an assumed external cost of $1.50 per shirt, so the social cost is $7.50. For 20,000 shirts, the total external cost is 20,000 × $1.50 = $30,000. Tools from Course 3, such as a Pigouvian tax, command-and-control standards, or tradable permits, can close the gap, but the producing country, the buying country, or both could apply them, and each choice shifts who pays and who collects revenue.",
+            "Labor problems are harder to price, and some, like forced labor, are not trade-offs to be priced at all but rights violations to be ended (target 8.7). The OpenStax textbook argues that environmental costs are usually a small share of a plant's costs and that trade restrictions are often not the best tool for raising foreign standards; others argue that without enforceable standards, competition can pressure suppliers to cut corners. Evidence on both sides should be weighed case by case."
+          ]
+        },
+        {
+          "heading": "Disclosure, standards, and partnership",
+          "concept_ids": [
+            "sustainable_production_partnership"
+          ],
+          "paragraphs": [
+            "Target 12.6 encourages large and transnational companies to integrate sustainability information into their reporting cycle. Disclosure addresses an information problem: buyers cannot see conditions at distant stages. Its limits are verification costs, uneven data quality, and the risk that reporting becomes a box-ticking exercise.",
+            "Trade-related responses involve SDG 17's tension between openness (17.10–17.12) and standards. Import restrictions based on how a good was produced can raise standards but can also reduce developing-country exports and be misused as protection. Partnership approaches, such as technical and financial support for suppliers to meet standards (compare target 8.a, Aid for Trade), aim to raise standards while keeping market access. Each approach involves trade-offs among cost, effectiveness, and fairness."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c08-l3-we1",
+      "level": "beginner",
+      "title": "Value added at the sewing stage",
+      "problem": "Hypothetical example: Fabric from Country F is sold for $8. A factory in Country S sews it into a backpack and sells the backpack to a brand for $20. The brand sells it in stores for $50. How much value does the sewing stage add, and how much does the brand's stage add?",
+      "steps": [
+        "Sewing: $20 − $8 = $12.",
+        "Brand (design, marketing, retail): $50 − $20 = $30.",
+        "Check: $8 + $12 + $30 = $50, the final price."
+      ],
+      "answer": "The sewing stage adds $12, and the brand's stage adds $30. The value added at all stages sums to the $50 price.",
+      "check": {
+        "type": "difference",
+        "a": 20,
+        "b": 8,
+        "expected": 12
+      }
+    },
+    {
+      "id": "c08-l3-we2",
+      "level": "intermediate",
+      "title": "The cost of a second supplier",
+      "problem": "Hypothetical example: A firm buys 10,000 parts a year from one supplier at $30 each. To be safer, it moves 40% of its orders to a second supplier that charges $1.50 more per part. How much more does it spend each year, and what share of its parts spending is that?",
+      "steps": [
+        "Parts moved: 40% × 10,000 = 4,000.",
+        "Extra cost: 4,000 × $1.50 = $6,000 a year.",
+        "Share: $6,000 ÷ (10,000 × $30) = $6,000 ÷ $300,000 = 2%."
+      ],
+      "answer": "Diversifying costs $6,000 more a year, 2% of parts spending. Whether that is worth it depends on how likely and how costly a disruption would be.",
+      "check": {
+        "type": "product",
+        "factors": [
+          4000,
+          1.5
+        ],
+        "expected": 6000
+      }
+    },
+    {
+      "id": "c08-l3-we3",
+      "level": "advanced",
+      "title": "Is a safety stock worth it?",
+      "problem": "Hypothetical example: A firm estimates a 10% chance each year of a supply disruption that would cost it $200,000. A safety stock costs $12,000 a year and would reduce the loss from a disruption to $40,000. Compare expected yearly costs with and without the safety stock.",
+      "steps": [
+        "Without the buffer: 0.10 × $200,000 = $20,000.",
+        "With the buffer: $12,000 + 0.10 × $40,000 = $12,000 + $4,000 = $16,000.",
+        "The buffer lowers expected cost by $4,000 a year. At a 5% chance, the comparison would be $10,000 vs. $14,000, and the buffer would not pay off on average."
+      ],
+      "answer": "Expected cost is $20,000 without the safety stock and $16,000 with it, so the buffer pays off at a 10% risk. The answer depends on the probability, which is hard to know.",
+      "check": {
+        "type": "product",
+        "factors": [
+          0.1,
+          200000
+        ],
+        "expected": 20000
+      }
+    },
+    {
+      "id": "c08-l3-we4",
+      "level": "advanced",
+      "title": "The hidden cost of dyeing",
+      "problem": "Hypothetical example: A T-shirt has a private production cost of $6. Water pollution from the dyeing stage causes an assumed external cost of $1.50 per shirt. What is the social cost per shirt, and what is the total external cost of 20,000 shirts?",
+      "steps": [
+        "Social cost = private cost + external cost = $6 + $1.50 = $7.50 per shirt.",
+        "Total external cost = 20,000 × $1.50 = $30,000."
+      ],
+      "answer": "The social cost is $7.50 per shirt, and 20,000 shirts create $30,000 of external cost that the market price leaves out (based on the assumed damage value).",
+      "check": {
+        "type": "product",
+        "factors": [
+          20000,
+          1.5
+        ],
+        "expected": 30000
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Splitting up the value chain",
+      "source_ids": [
+        "openstax-pe3-33-3",
+        "openstax-pe3-33-4"
+      ],
+      "paragraphs": [
+        "The OpenStax textbook explains that better communication and transportation have allowed production to be split into stages across firms and countries, so trade increasingly involves components rather than only finished goods. It gives the example of a smartphone designed in one country, with components made in others and assembly in yet another, and links this specialization to lower costs, economies of scale, and learning."
+      ]
+    },
+    {
+      "title": "Debates about standards and trade",
+      "source_ids": [
+        "openstax-pe3-34-2",
+        "openstax-pe3-34-3"
+      ],
+      "paragraphs": [
+        "The same textbook discusses working conditions in low-income countries, separating clearly unacceptable practices such as abusive child labor from harder cases where workers' other options are worse, and it calls for attention to enforceable minimum labor standards. On the environment, it argues that a \"race to the bottom\" in standards does not match the evidence well and that trade restrictions are often not the best tool, while noting that environmental standards differ between high-income and lower-income countries. Other economists and advocates weigh this evidence differently."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      12,
+      8,
+      17
+    ],
+    "title": "Cleaner, fairer clothing: what should Country D do?",
+    "paragraphs": [
+      "SDG 12 aims to ensure sustainable consumption and production patterns. Target 12.2 calls for the sustainable management and efficient use of natural resources, and target 12.6 encourages large and transnational companies to adopt sustainable practices and integrate sustainability information into their reporting. SDG target 8.8 calls for protecting labor rights and safe working environments, and SDG 17's trade targets (17.10–17.12) call for an open, equitable trading system and more exports from developing and least developed countries.",
+      "Hypothetical situation: Country D imports most of its clothing from several developing countries. Reports show that some dyeing plants pollute rivers and some factories have unsafe working conditions. Country D's government is considering three policies."
+    ],
+    "options": [
+      {
+        "name": "Require large clothing companies to report on their supply chains",
+        "benefits": [
+          "Makes environmental and labor conditions more visible to buyers and investors (12.6).",
+          "Keeps markets open to developing-country exporters."
+        ],
+        "costs": [
+          "Reporting costs money, and data from distant suppliers can be hard to verify.",
+          "Disclosure alone may not change conditions if buyers do not respond."
+        ],
+        "assumptions": [
+          "Reports are accurate and checked independently."
+        ]
+      },
+      {
+        "name": "Ban imports from plants that fail environmental and safety standards",
+        "benefits": [
+          "Creates a strong incentive to clean up and make workplaces safer (12.2, 8.8).",
+          "Country D's buyers stop paying for the worst practices."
+        ],
+        "costs": [
+          "Exporters in poorer countries may lose sales and jobs, which conflicts with 17.11.",
+          "Standards could be misused as hidden protection for domestic producers."
+        ],
+        "assumptions": [
+          "Standards are fair, science-based, and applied equally to all suppliers."
+        ]
+      },
+      {
+        "name": "Fund a partnership that helps supplier factories upgrade",
+        "benefits": [
+          "Pays for cleaner dyeing and safety training while keeping market access (17.10–17.12).",
+          "Builds skills that can raise productivity in supplier countries (8.2)."
+        ],
+        "costs": [
+          "Uses public money from Country D, and results take time.",
+          "Factories may accept support without changing much unless progress is monitored."
+        ],
+        "assumptions": [
+          "Partners agree on goals and can measure progress."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which policy, or which combination, would best reduce external costs and protect workers while keeping trade open for developing countries? Use the ideas of social cost, value added, and the trade-off between openness and standards in your answer."
+    ],
+    "source_ids": [
+      "un-sdg-12",
+      "un-sdg-8",
+      "un-sdg-17",
+      "openstax-pe3-34-3"
+    ]
+  },
+  "key_takeaways": [
+    "Global supply chains split production into stages across countries; each stage's value added (sales minus purchased inputs), counted from raw materials onward, sums to the final price.",
+    "Specialization across stages lowers costs but makes countries and firms interdependent, so a disruption in one place can spread along the chain.",
+    "Resilience (more suppliers, extra inventory) costs money in normal times; whether it pays off depends on the probability and size of disruptions.",
+    "External costs and poor working conditions at distant stages can make market prices lower than social costs, as with the externalities in Course 3.",
+    "SDGs 8, 12, and 17 connect decent work, sustainable production and company reporting, and open, fair trade; policies that raise standards involve trade-offs with market access for developing countries."
+  ],
+  "source_ids": [
+    "openstax-pe3-33-3",
+    "openstax-pe3-33-4",
+    "openstax-pe3-34-2",
+    "openstax-pe3-34-3",
+    "openstax-pe3-12-1",
+    "un-sdg-8",
+    "un-sdg-12",
+    "un-sdg-17"
+  ]
+}

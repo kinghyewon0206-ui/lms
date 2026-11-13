@@ -13,7 +13,7 @@
   "sdgs": "student_selected",
   "review": {
     "status": "draft",
-    "note": "The course description and learning objectives are drafts awaiting teacher review."
+    "note": "Course description, objectives, lesson materials and lesson quizzes are AI-written drafts awaiting human review. The capstone guide and rubric (capstone/c09.json) are unchanged drafts that also need human review."
   },
   "estimated_hours": 9,
   "difficulty_levels": [
@@ -22,7 +22,7 @@
     "advanced"
   ],
   "status": "coming_soon",
-  "content_version": 1,
+  "content_version": 2,
   "final_assessment": {
     "status": "upcoming"
   },
@@ -48,11 +48,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c09-l1.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c09-l1-quiz"
       }
     },
     {
@@ -67,11 +68,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c09-l2.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c09-l2-quiz"
       }
     },
     {
@@ -86,11 +88,12 @@
         "quiz"
       ],
       "material": {
-        "status": "missing"
+        "status": "draft",
+        "file": "lessons/c09-l3.json"
       },
       "quiz": {
-        "status": "missing",
-        "assessment_id": null
+        "status": "draft",
+        "assessment_id": "c09-l3-quiz"
       }
     }
   ]

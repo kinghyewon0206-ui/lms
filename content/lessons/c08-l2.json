@@ -1,0 +1,460 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c08-l2",
+  "content_version": 1,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      }
+    ]
+  },
+  "objectives": [
+    "Read an exchange rate in both quote directions, convert prices between two currencies, and state clearly which currency appreciated or depreciated.",
+    "Analyze how an appreciation or depreciation changes the prices of exports and imports and affects exporters, importers, tourists, and the trade balance.",
+    "Explain how demand and supply in the foreign exchange market determine the exchange rate, and identify factors that shift them."
+  ],
+  "concepts": [
+    {
+      "id": "exchange_rate",
+      "term": "Exchange rate and quote direction",
+      "definition": "The price of one currency in terms of another. Every rate can be quoted two ways, and the two quotes are reciprocals: if 1 ari = 4 belos (belos per ari), then 1 belo = 0.25 ari (aris per belo). Always state which currency is being priced.",
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ]
+    },
+    {
+      "id": "appreciation_depreciation",
+      "term": "Appreciation and depreciation",
+      "definition": "A currency appreciates (strengthens) when one unit of it buys more of another currency, and depreciates (weakens) when one unit buys less. Because the rate links two currencies, when one appreciates against the other, the other depreciates.",
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ]
+    },
+    {
+      "id": "export_import_prices",
+      "term": "Exchange rates and the prices of exports and imports",
+      "definition": "A good's price in the buyer's currency equals its price in the seller's currency converted at the exchange rate. When a country's currency appreciates, its exports become more expensive for foreign buyers and its imports become cheaper at home (if sellers keep their own-currency prices unchanged); a depreciation does the opposite.",
+      "source_ids": [
+        "openstax-pe3-29-1",
+        "openstax-pe3-29-3"
+      ]
+    },
+    {
+      "id": "currency_winners_losers",
+      "term": "Who gains and who loses when a currency moves",
+      "definition": "A stronger home currency tends to help importers, consumers of imported goods, and residents traveling abroad, and to hurt exporters and foreign tourists visiting the country. A weaker home currency tends to do the reverse. Firms that buy imported inputs or owe debts in foreign currency can be hurt by a depreciation.",
+      "source_ids": [
+        "openstax-pe3-29-1",
+        "openstax-pe3-29-3"
+      ]
+    },
+    {
+      "id": "trade_balance",
+      "term": "Trade balance",
+      "definition": "The value of a country's exports minus the value of its imports. A depreciation tends to raise exports and reduce imports, but the effect on the trade balance depends on how strongly quantities respond to the price changes (their elasticities) and on how much time passes.",
+      "source_ids": [
+        "openstax-pe3-29-3",
+        "openstax-pe3-5-1"
+      ]
+    },
+    {
+      "id": "forex_market",
+      "term": "Foreign exchange market",
+      "definition": "The market where currencies are traded. Demand for a currency comes from people who need it to buy that country's goods, services, and assets; supply comes from people who want to exchange it for other currencies. Expected future values, relative interest rates (returns), and relative inflation shift demand and supply and change the equilibrium exchange rate.",
+      "source_ids": [
+        "openstax-pe3-29-1",
+        "openstax-pe3-29-2"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "An exchange rate tells you how much of one currency you get for another. If your currency gets stronger, foreign things become cheaper for you, but the things your country sells abroad become more expensive for foreigners. A weaker currency does the opposite. This lesson uses two made-up currencies, so none of the rates are real.",
+      "sections": [
+        {
+          "heading": "What an exchange rate tells you",
+          "concept_ids": [
+            "exchange_rate",
+            "forex_market"
+          ],
+          "paragraphs": [
+            "Hypothetical example: Country A uses a currency called the ari (ARI), and Country B uses the belo (BEL). These currencies are invented for this lesson. Suppose 1 ari = 4 belos. This is a price written as \"belos per ari.\" You can also flip it: 1 belo = 1 ÷ 4 = 0.25 ari (\"aris per belo\"). Both statements describe the same rate.",
+            "To go from aris to belos, multiply by 4. To go from belos to aris, divide by 4. A traveler from Country A who changes 800 aris gets 800 × 4 = 3,200 belos.",
+            "Currencies are bought and sold in the foreign exchange market. People who want to buy Country A's goods or visit Country A need aris, and people who want Country B's goods need belos. Like any price, the exchange rate moves when demand and supply change."
+          ]
+        },
+        {
+          "heading": "Stronger and weaker currencies",
+          "concept_ids": [
+            "appreciation_depreciation"
+          ],
+          "paragraphs": [
+            "Suppose the rate changes from 1 ari = 4 belos to 1 ari = 5 belos. One ari now buys more belos, so the ari has appreciated (gotten stronger). Flip it: 1 belo used to buy 0.25 ari and now buys only 0.20 ari, so the belo has depreciated (gotten weaker).",
+            "Be careful: the number in a quote can go up when a currency weakens, depending on which way it is written. Always ask, \"How much of the other currency does one unit of this currency buy?\""
+          ]
+        },
+        {
+          "heading": "Prices of exports and imports",
+          "concept_ids": [
+            "export_import_prices"
+          ],
+          "paragraphs": [
+            "A machine made in Country A costs 1,000 aris. At 4 belos per ari, a buyer in Country B pays 4,000 belos. At 5 belos per ari, the same machine costs 5,000 belos. When the ari gets stronger, Country A's exports cost more for foreign buyers.",
+            "Now look the other way. A jacket made in Country B costs 2,000 belos. At 4 belos per ari, a shopper in Country A pays 2,000 ÷ 4 = 500 aris. At 5 belos per ari, it costs 2,000 ÷ 5 = 400 aris. When the ari gets stronger, imports get cheaper for people in Country A."
+          ]
+        },
+        {
+          "heading": "Who is happy and who is not",
+          "concept_ids": [
+            "currency_winners_losers",
+            "trade_balance"
+          ],
+          "paragraphs": [
+            "When the ari gets stronger, travelers from Country A and shoppers buying imports in Country A are happy, because their aris buy more. Exporters in Country A are less happy, because their products look more expensive abroad, and tourists from Country B find trips to Country A more expensive.",
+            "A stronger currency is not simply \"good\" and a weaker one is not simply \"bad.\" Each one helps some people and hurts others. Over time, a stronger ari may lead Country A to sell less abroad and buy more from abroad, but how much depends on how buyers react."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "An exchange rate is a relative price quoted in one of two reciprocal directions. Appreciation means one unit of a currency buys more foreign currency. With sellers' own-currency prices unchanged, an appreciation raises the foreign-currency price of exports and lowers the home-currency price of imports. The trade-balance effect depends on elasticities and time. The rate itself is set by demand and supply in the foreign exchange market.",
+      "sections": [
+        {
+          "heading": "Quote direction and conversion rules",
+          "concept_ids": [
+            "exchange_rate"
+          ],
+          "paragraphs": [
+            "Write every rate with its units. Hypothetical example: e = 4 BEL per ARI means 1 ARI = 4 BEL; its inverse is 1/e = 0.25 ARI per BEL. Conversion follows the units: ARI × (BEL per ARI) = BEL, and BEL ÷ (BEL per ARI) = ARI. If a problem gives you the rate in the opposite direction, take the reciprocal first.",
+            "A rate is a price of a currency, so a change in it is a change in a relative price. Hypothetical cross rate: if 1 ARI = 4 BEL and 1 cen (Country C's currency, also invented) = 2 BEL, then 1 ARI = 4 ÷ 2 = 2 cen."
+          ]
+        },
+        {
+          "heading": "Defining appreciation and depreciation without confusion",
+          "concept_ids": [
+            "appreciation_depreciation"
+          ],
+          "paragraphs": [
+            "The ari appreciates against the belo when 1 ARI buys more BEL. In BEL per ARI, this is a rise (4 → 5). In ARI per BEL, the same event is a fall (0.25 → 0.20), which shows that the belo depreciated. So \"the rate went up\" is ambiguous; \"the ari appreciated\" is not.",
+            "Both statements are true at the same moment, because an exchange rate always links two currencies. One currency cannot appreciate against another without that other one depreciating against it."
+          ]
+        },
+        {
+          "heading": "Exports, imports, and who is affected",
+          "concept_ids": [
+            "export_import_prices",
+            "currency_winners_losers"
+          ],
+          "paragraphs": [
+            "Hypothetical example, with the ari appreciating from 4 to 5 BEL per ARI and sellers keeping their own-currency prices: a 1,000-ARI export now costs a Country B buyer 5,000 BEL instead of 4,000; a 2,000-BEL import now costs a Country A buyer 400 ARI instead of 500. An exporter in Country A that instead keeps its foreign price at 6,000 BEL receives 6,000 ÷ 5 = 1,200 ARI instead of 1,500, so its revenue in aris falls by 300.",
+            "Winners from the stronger ari: Country A's importers and consumers of imports, Country A's travelers abroad, and Country B's exporters selling into Country A. Losers: Country A's exporters and firms competing with imports, and Country B's tourists visiting Country A. Firms in Country A that buy imported inputs gain from lower input costs. A depreciation reverses these effects, and it can hurt firms or banks that have borrowed in a foreign currency, because their debts become larger in home-currency terms."
+          ]
+        },
+        {
+          "heading": "The trade balance and the foreign exchange market",
+          "concept_ids": [
+            "trade_balance",
+            "forex_market"
+          ],
+          "paragraphs": [
+            "Trade balance = value of exports − value of imports. A depreciation tends to raise the quantity of exports and lower the quantity of imports, which tends to improve the trade balance. But the outcome is not guaranteed: if buyers respond little in the short run (inelastic demand, a Course 2 idea), each import costs more in home currency while quantities barely change, and the trade balance can even worsen at first. Contracts signed earlier, prices set by firms, and the time buyers need to switch suppliers all matter.",
+            "The exchange rate is the price in the foreign exchange market (see the graph). Demand for aris increases if, for example, returns on Country A's assets rise relative to Country B's, or if traders expect the ari to strengthen; the ari then appreciates. Higher inflation in Country A tends to reduce demand for aris and cause depreciation. These are tendencies; actual rates can move sharply in the short run."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Let e be the price of the home currency in foreign currency (BEL per ARI). The foreign-currency price of an export is P_A × e and the home-currency price of an import is P_B ÷ e. Percentage changes are asymmetric across the two quote directions. Trade-balance effects depend on price elasticities and adjustment lags, and the equilibrium rate is where the demand and supply of a currency meet.",
+      "sections": [
+        {
+          "heading": "Formal conversion and the asymmetry of percentage changes",
+          "concept_ids": [
+            "exchange_rate",
+            "appreciation_depreciation"
+          ],
+          "paragraphs": [
+            "Define e = BEL per ARI. Then the inverse quote is 1/e ARI per BEL. If e rises from e₀ to e₁, the ari appreciates by (e₁ − e₀)/e₀, and the belo depreciates by (1/e₁ − 1/e₀)/(1/e₀) = e₀/e₁ − 1. Hypothetical example: e from 4 to 5 → the ari appreciates 25%, and the belo depreciates 20% (0.25 → 0.20 ARI per BEL). The two percentages are not equal and opposite, so always say which currency and which quote you mean.",
+            "Cross rates follow from the units: (BEL per ARI) ÷ (BEL per cen) = cen per ARI. With 4 BEL per ARI and 2 BEL per cen, the cross rate is 2 cen per ARI."
+          ]
+        },
+        {
+          "heading": "Prices, pass-through, and the distribution of effects",
+          "concept_ids": [
+            "export_import_prices",
+            "currency_winners_losers"
+          ],
+          "paragraphs": [
+            "If a Country A exporter keeps its price P_A in aris, the foreign price is P_A × e, so an appreciation raises the foreign price one-for-one. If it keeps its price P* in belos, its home-currency revenue per unit is P*/e, so the appreciation shows up as a lower margin instead. In practice firms often do something in between, so the change in foreign prices can be smaller than the change in the exchange rate.",
+            "The same logic applies to imports (home price P_B/e), tourism (a trip costing T belos costs T/e aris), and balance sheets: a firm in Country A that owes D belos owes D/e aris, so a depreciation (lower e) raises the burden. Sharp moves in either direction can therefore cause large swings in profits for exporters, importers, and indebted firms."
+          ]
+        },
+        {
+          "heading": "Elasticities, timing, and the trade balance",
+          "concept_ids": [
+            "trade_balance"
+          ],
+          "paragraphs": [
+            "Measured in aris, the trade balance is TB = P_A·X − (P_B/e)·M, where X and M are the quantities exported and imported. A depreciation (lower e) raises the ari cost of each import and, by making exports cheaper abroad, tends to raise X and lower M. Whether TB improves depends on how responsive X and M are: if export and import demand are elastic enough, the quantity effects dominate; if they are very inelastic in the short run, the higher price of imports can dominate and TB can fall at first.",
+            "Because quantities often adjust more over time than immediately, a change in the trade balance after a currency move may build gradually. Other forces, such as incomes at home and abroad and capital flows, also affect the trade balance, so an exchange rate change is never the only explanation. Statements about the trade balance in this lesson are tendencies, not predictions."
+          ]
+        },
+        {
+          "heading": "Equilibrium in the foreign exchange market",
+          "concept_ids": [
+            "forex_market"
+          ],
+          "paragraphs": [
+            "Hypothetical example (see the graph): with the price measured as e (BEL per ARI) and the quantity as millions of aris traded, demand for aris is Q = 100 − 10e and supply of aris is Q = 15e. Equilibrium: 100 − 10e = 15e, so e = 4 and Q = 60. If higher returns in Country A raise demand to Q = 125 − 10e, the new equilibrium is e = 5 and Q = 75: the ari appreciates.",
+            "Expectations can shift demand and supply together and can be self-reinforcing, which helps explain large short-run swings. Over long periods, exchange rates tend to move toward purchasing power parity, the rate at which traded goods cost about the same in both countries, but actual rates can stay away from it for years."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c08-l2-we1",
+      "level": "beginner",
+      "title": "Converting an export price",
+      "problem": "Hypothetical example (invented currencies): The exchange rate is 1 ARI = 4 BEL (belos per ari). A machine made in Country A costs 1,000 ARI. How many belos does a buyer in Country B pay, assuming no shipping costs or taxes?",
+      "steps": [
+        "The rate is in belos per ari, so to turn aris into belos, multiply by 4.",
+        "1,000 ARI × 4 BEL per ARI = 4,000 BEL."
+      ],
+      "answer": "The buyer in Country B pays 4,000 belos.",
+      "check": {
+        "type": "product",
+        "factors": [
+          1000,
+          4
+        ],
+        "expected": 4000
+      }
+    },
+    {
+      "id": "c08-l2-we2",
+      "level": "intermediate",
+      "title": "An import gets cheaper when the home currency appreciates",
+      "problem": "Hypothetical example (invented currencies): A jacket made in Country B costs 2,000 BEL. The rate changes from 4 BEL per ARI to 5 BEL per ARI. What does the jacket cost a shopper in Country A before and after, in aris? Which currency appreciated?",
+      "steps": [
+        "Belos to aris: divide by the rate in BEL per ARI.",
+        "Before: 2,000 ÷ 4 = 500 ARI. After: 2,000 ÷ 5 = 400 ARI.",
+        "One ari now buys 5 belos instead of 4, so the ari appreciated and the belo depreciated."
+      ],
+      "answer": "The jacket's price falls from 500 ARI to 400 ARI because the ari appreciated against the belo.",
+      "check": {
+        "type": "ratio",
+        "numerator": 2000,
+        "denominator": 5,
+        "expected": 400
+      }
+    },
+    {
+      "id": "c08-l2-we3",
+      "level": "intermediate",
+      "title": "Flipping the quote",
+      "problem": "Hypothetical example (invented currencies): A newspaper in Country B reports the rate as 1 ARI = 4 BEL. A tourist from Country B wants the rate as aris per belo. What is it, and what does a hotel room priced at 60 ARI cost in belos?",
+      "steps": [
+        "Aris per belo = 1 ÷ 4 = 0.25 ARI per BEL.",
+        "Hotel room: 60 ARI × 4 BEL per ARI = 240 BEL (or 60 ÷ 0.25 = 240 BEL)."
+      ],
+      "answer": "The inverse quote is 0.25 ARI per BEL, and the room costs 240 BEL. Both directions give the same result when the units are followed.",
+      "check": {
+        "type": "ratio",
+        "numerator": 1,
+        "denominator": 4,
+        "expected": 0.25
+      }
+    },
+    {
+      "id": "c08-l2-we4",
+      "level": "advanced",
+      "title": "Appreciation and depreciation are not equal and opposite",
+      "problem": "Hypothetical example (invented currencies): The rate rises from 4 BEL per ARI to 5 BEL per ARI. By what percentage did the ari appreciate against the belo, and by what percentage did the belo depreciate against the ari? Round to the nearest whole percent.",
+      "steps": [
+        "Ari, in BEL per ARI: 5 ÷ 4 = 1.25, so the ari appreciated by 25%.",
+        "Belo, in ARI per BEL: from 1/4 = 0.25 to 1/5 = 0.20; 0.20 ÷ 0.25 = 0.80, so the belo depreciated by 20%.",
+        "In general, if one currency appreciates by x, the other depreciates by x ÷ (1 + x): 0.25 ÷ 1.25 = 0.20."
+      ],
+      "answer": "The ari appreciated by 25%, and the belo depreciated by 20%.",
+      "check": {
+        "type": "ratio",
+        "numerator": 5,
+        "denominator": 4,
+        "expected": 1.25
+      }
+    },
+    {
+      "id": "c08-l2-we5",
+      "level": "advanced",
+      "title": "An exporter that prices in foreign currency",
+      "problem": "Hypothetical example (invented currencies): A Country A exporter sells goods in Country B for a fixed 6,000 BEL. The rate moves from 4 BEL per ARI to 5 BEL per ARI. How much does its revenue in aris change?",
+      "steps": [
+        "Before: 6,000 ÷ 4 = 1,500 ARI.",
+        "After: 6,000 ÷ 5 = 1,200 ARI.",
+        "Change: 1,500 − 1,200 = 300 ARI less."
+      ],
+      "answer": "Revenue falls by 300 ARI (20%). By keeping its belo price, the exporter avoided a higher price abroad but accepted a lower margin at home.",
+      "check": {
+        "type": "difference",
+        "a": 1500,
+        "b": 1200,
+        "expected": 300
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "id": "c08-l2-g1",
+      "title": "An increase in demand for the ari",
+      "caption": "Hypothetical example (invented currencies). The price on the vertical axis is the exchange rate in belos per ari. At first, D1 meets S at 4 BEL per ARI with 60 million aris traded. Higher returns on Country A's assets raise demand for aris to D2, and the ari appreciates to 5 BEL per ARI, with 75 million aris traded.",
+      "axis": {
+        "p_max": 8,
+        "q_max": 140,
+        "p_label": "Exchange rate e (belos per ari)",
+        "q_label": "Quantity of aris traded (millions)"
+      },
+      "demand": [
+        {
+          "label": "D1",
+          "a": 100,
+          "b": 10
+        },
+        {
+          "label": "D2",
+          "a": 125,
+          "b": 10
+        }
+      ],
+      "supply": [
+        {
+          "label": "S",
+          "c": 0,
+          "d": 15
+        }
+      ],
+      "price_lines": [],
+      "expected_equilibria": [
+        {
+          "demand": "D1",
+          "supply": "S",
+          "price": 4,
+          "quantity": 60
+        },
+        {
+          "demand": "D2",
+          "supply": "S",
+          "price": 5,
+          "quantity": 75
+        }
+      ]
+    }
+  ],
+  "real_world_examples": [
+    {
+      "title": "Who gains from a stronger or weaker currency",
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ],
+      "paragraphs": [
+        "The OpenStax textbook explains that exchange rates can be quoted in either direction and that a currency \"strengthens\" when it buys more of other currencies. It stresses that a stronger currency is not automatically better: it helps a country's travelers abroad and foreign firms selling into that country, and it hurts the country's exporters and foreign visitors. It also notes that most foreign exchange trading is related to financial investment and dealer banks rather than to tourism or trade in goods."
+      ]
+    },
+    {
+      "title": "Why sharp currency moves can be risky",
+      "source_ids": [
+        "openstax-pe3-29-3",
+        "openstax-pe3-29-2"
+      ],
+      "paragraphs": [
+        "The textbook describes how large, fast exchange rate movements can cause big swings in profits for exporters, importers, and firms that rely on imported inputs, and how banks that borrow in a major foreign currency but lend in their home currency can get into trouble if the home currency weakens. It also explains that expectations, relative returns, and relative inflation shift the demand and supply of currencies, which is why rates can change quickly."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8,
+      17
+    ],
+    "title": "A falling currency in Country B: who should get help?",
+    "paragraphs": [
+      "SDG target 8.1 calls for sustaining per capita economic growth, and target 8.2 calls for higher productivity through diversification, technological upgrading, and innovation. SDG target 17.11 calls for significantly increasing the exports of developing countries.",
+      "Hypothetical situation: Country B is a developing country. Over a few months, the belo depreciates sharply against the currencies of its main trading partners. Exporters of clothing and fruit report new orders. But families pay more for imported fuel and medicine, and some small firms that borrowed in foreign currency struggle to repay. The government and the central bank are considering three responses."
+    ],
+    "options": [
+      {
+        "name": "Let the belo adjust and give temporary, targeted help to low-income households",
+        "benefits": [
+          "Exporters keep their improved price position, which may support jobs and exports (17.11).",
+          "Help goes to the households hit hardest by higher import prices."
+        ],
+        "costs": [
+          "Support programs cost public money and take time to set up.",
+          "Firms with foreign-currency debt may still fail."
+        ],
+        "assumptions": [
+          "Export quantities respond enough over time for the gains to appear."
+        ]
+      },
+      {
+        "name": "The central bank sells foreign currency reserves to slow the fall",
+        "benefits": [
+          "A more stable rate gives businesses and households time to adjust.",
+          "Import prices and foreign-currency debt burdens rise less quickly."
+        ],
+        "costs": [
+          "Reserves are limited; if the pressure continues, they can run low.",
+          "Exporters gain less of a price advantage."
+        ],
+        "assumptions": [
+          "The pressure on the belo is temporary rather than a lasting change."
+        ]
+      },
+      {
+        "name": "An export-promotion program for small producers",
+        "benefits": [
+          "Helps small firms use the weaker belo to reach new buyers and diversify (8.2).",
+          "Could create jobs in export industries."
+        ],
+        "costs": [
+          "Does little for families facing higher fuel and medicine prices now.",
+          "Benefits depend on foreign demand, which the country does not control."
+        ],
+        "assumptions": [
+          "Small producers can meet foreign quality and delivery standards."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which response best balances growth and exports (targets 8.1, 8.2, and 17.11) with protecting households that depend on imports? Use what you learned about export and import prices, winners and losers, and why the trade-balance effect can take time."
+    ],
+    "source_ids": [
+      "un-sdg-8",
+      "un-sdg-17",
+      "openstax-pe3-29-3"
+    ]
+  },
+  "key_takeaways": [
+    "Always state the quote direction: 1 ARI = 4 BEL (belos per ari) is the same rate as 1 BEL = 0.25 ARI (aris per belo).",
+    "A currency appreciates when one unit buys more of the other currency; the other currency then depreciates. The two percentage changes are not equal (25% vs. 20% in the example).",
+    "When the home currency appreciates, exports cost more abroad and imports cost less at home; a depreciation does the opposite.",
+    "A stronger currency helps importers and travelers abroad and hurts exporters; a weaker currency does the reverse and can raise the burden of foreign-currency debt.",
+    "Effects on the trade balance depend on elasticities and time, and the exchange rate itself is set by demand and supply in the foreign exchange market."
+  ],
+  "source_ids": [
+    "openstax-pe3-29-1",
+    "openstax-pe3-29-2",
+    "openstax-pe3-29-3",
+    "openstax-pe3-5-1",
+    "un-sdg-8",
+    "un-sdg-17"
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "id": "c09-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c09",
+  "lesson_id": "c09-l1",
+  "version": 1,
+  "title": "Lesson 1 Quiz: Identify an Economic Problem",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c09-l1-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c09-l1",
+      "objective": 2,
+      "concept_ids": [
+        "opportunity_cost"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A school district has $54,000 left in this year's budget. It can build handwashing stations at its schools for $54,000, or pay for extra school-bus trips for students in remote villages at $18 per trip. If it builds the handwashing stations, what is the opportunity cost measured in bus trips? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c09-l1-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l1",
+      "objective": 1,
+      "concept_ids": [
+        "sdg_targets"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which statement links a capstone problem to the SDGs at the level of a specific target and indicator?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "My problem is about SDG 6, clean water and sanitation, which matters a great deal to my town."
+        },
+        {
+          "id": "b",
+          "text": "My problem touches each of the 17 SDGs at once, since water affects health, school, and work."
+        },
+        {
+          "id": "c",
+          "text": "My problem affects SDG target 6.1, tracked by the share of people using safely managed drinking water."
+        },
+        {
+          "id": "d",
+          "text": "My problem is a global crisis, so it fits under whichever SDG gets the most public attention."
+        }
+      ],
+      "source_ids": [
+        "un-sdg-6",
+        "unstats-sdg-indicators"
+      ]
+    },
+    {
+      "id": "c09-l1-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l1",
+      "objective": 1,
+      "concept_ids": [
+        "symptoms_causes"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a river town, fish catches have fallen for years while factories upstream have expanded. Which of these is an underlying economic cause rather than a symptom?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Factories pay nothing for the waste they release, so their private cost is below the social cost."
+        },
+        {
+          "id": "b",
+          "text": "Fishing families earn less income each year, and some of them have moved away from the town."
+        },
+        {
+          "id": "c",
+          "text": "Local fish prices have gone up, because fewer fish now reach the town's market each week."
+        },
+        {
+          "id": "d",
+          "text": "The river looks darker and smells worse than it did ten years ago, especially in summer."
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1"
+      ]
+    },
+    {
+      "id": "c09-l1-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l1",
+      "objective": 2,
+      "concept_ids": [
+        "stakeholders_incentives"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Farmers in a valley pump groundwater for free, and the water table is falling, which will raise pumping costs for everyone in the future. Which explanation of the farmers' behavior uses incentives correctly?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Farmers pump a lot because they do not realize that the valley's water is a scarce resource."
+        },
+        {
+          "id": "b",
+          "text": "Farmers pump a lot because the government has set the price of groundwater too high for them."
+        },
+        {
+          "id": "c",
+          "text": "Farmers would cut their pumping as soon as future generations asked them to save the water."
+        },
+        {
+          "id": "d",
+          "text": "Each farmer gets the full gain from extra pumping but bears a small share of the falling water table."
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-3",
+        "openstax-pe3-12-1"
+      ]
+    },
+    {
+      "id": "c09-l1-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l1",
+      "objective": 3,
+      "concept_ids": [
+        "problem_statement"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which is the most researchable problem statement for a capstone project?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Our town should introduce a water tax so that its rural schools can install new pumps next year."
+        },
+        {
+          "id": "b",
+          "text": "In two rural schools in District K, attendance drops in the dry season, likely because broken pumps go unrepaired."
+        },
+        {
+          "id": "c",
+          "text": "Water is a basic human right, and many millions of people around the world still lack safe access to it."
+        },
+        {
+          "id": "d",
+          "text": "Education in our country keeps getting worse each year, and the government is not doing enough about it."
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "unstats-sdg-indicators"
+      ]
+    }
+  ]
+}

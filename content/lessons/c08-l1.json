@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c08-l1",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Distinguish absolute advantage from comparative advantage, and use opportunity costs from a two-country, two-good table to decide which country should specialize in which good.",
+    "Calculate the gains from specialization and trade, and find the range of terms of trade that benefits both countries.",
+    "Explain why the overall gains from trade are shared unequally, and use demand and supply to analyze who gains and who loses from a tariff."
+  ],
+  "concepts": [
+    {
+      "id": "absolute_advantage",
+      "term": "Absolute advantage",
+      "definition": "A country has an absolute advantage in a good when it can produce more of that good than another country with the same resources (for example, more output per worker). One country can have an absolute advantage in every good.",
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2"
+      ]
+    },
+    {
+      "id": "comparative_advantage",
+      "term": "Comparative advantage",
+      "definition": "A country has a comparative advantage in a good when it can produce that good at a lower opportunity cost than another country, meaning it gives up less of the other good for each unit. Every country has a comparative advantage in something, even if it has no absolute advantage at all, unless both countries have exactly the same opportunity costs.",
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "gains_from_trade",
+      "term": "Specialization and gains from trade",
+      "definition": "When each country shifts its resources toward the good in which it has a comparative advantage, total world output can rise. Trading part of that output lets each country consume a combination of goods outside its own production possibilities frontier (PPF). The extra output and consumption are the gains from trade.",
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "terms_of_trade",
+      "term": "Terms of trade",
+      "definition": "The rate at which one good is exchanged for another in trade (for example, 1 bicycle for 1 ton of rice). Both countries gain only if the terms of trade lie between the two countries' opportunity costs.",
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2"
+      ]
+    },
+    {
+      "id": "distribution_of_gains",
+      "term": "Who gains and who loses from trade",
+      "definition": "Trade can raise a country's total income while hurting some groups. Workers and firms in industries that compete with imports may lose jobs or income, while export industries and consumers gain. Moving to new jobs takes time and money (adjustment costs), so policies such as temporary income support and retraining are often discussed.",
+      "source_ids": [
+        "openstax-pe3-34-2",
+        "openstax-pe3-34-5"
+      ]
+    },
+    {
+      "id": "tariff",
+      "term": "Tariffs and trade barriers",
+      "definition": "A tariff is a tax on imported goods. Import quotas (limits on the quantity imported) and nontariff barriers (rules and paperwork that make importing harder) also restrict trade. Protection raises the domestic price: domestic producers of the protected good gain, while domestic consumers and firms that use the good as an input lose.",
+      "source_ids": [
+        "openstax-pe3-34-1",
+        "openstax-pe3-33-4"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Countries trade because they are better at different things in a relative sense. Even if one country is better at making everything, both countries can end up with more when each one focuses on the good it gives up the least to make. Trade helps a country overall, but some workers and businesses lose, and a tariff (a tax on imports) shifts gains and losses between groups.",
+      "sections": [
+        {
+          "heading": "Two countries, two goods",
+          "concept_ids": [
+            "absolute_advantage",
+            "comparative_advantage"
+          ],
+          "paragraphs": [
+            "Hypothetical example: Northland and Southland each have 100 workers. Each month, one worker can make the following amounts. Northland: 6 bicycles OR 3 tons of rice. Southland: 1 bicycle OR 2 tons of rice.",
+            "Northland's workers make more of both goods, so Northland has an absolute advantage in bicycles and in rice. Does that mean Southland has nothing to offer? No. Remember opportunity cost from Course 1: the real cost of something is what you give up to get it.",
+            "In Northland, a worker who makes 1 bicycle gives up half a ton of rice (3 ÷ 6 = 0.5). In Southland, a worker who makes 1 bicycle gives up 2 tons of rice (2 ÷ 1 = 2). Bicycles are \"cheaper\" to make in Northland, measured in rice given up. Going the other way, 1 ton of rice costs Northland 2 bicycles but costs Southland only half a bicycle. So Northland has a comparative advantage in bicycles, and Southland has a comparative advantage in rice."
+          ]
+        },
+        {
+          "heading": "Specialize, then trade",
+          "concept_ids": [
+            "gains_from_trade",
+            "terms_of_trade"
+          ],
+          "paragraphs": [
+            "Without trade, suppose Northland puts 80 workers on bicycles and 20 on rice (480 bicycles and 60 tons of rice), and Southland splits its workers evenly (50 bicycles and 100 tons of rice). Together they make 530 bicycles and 160 tons of rice.",
+            "Now each country specializes: all of Northland's workers make bicycles (600) and all of Southland's workers grow rice (200 tons). The two countries now make 70 more bicycles and 40 more tons of rice, using the same workers.",
+            "To share the extra output, they trade. Suppose they agree that 1 bicycle trades for 1 ton of rice, and Northland sends 70 bicycles to Southland for 70 tons of rice. Northland ends up with 530 bicycles and 70 tons of rice (50 more bicycles and 10 more tons than before). Southland ends up with 70 bicycles and 130 tons of rice (20 more bicycles and 30 more tons). Both are better off."
+          ]
+        },
+        {
+          "heading": "Winners and losers inside a country",
+          "concept_ids": [
+            "distribution_of_gains"
+          ],
+          "paragraphs": [
+            "\"Northland gains\" does not mean every person in Northland gains. When Northland starts importing rice, its rice farmers face new competition. Some may lose income or have to find a different job, which can take months, a move to a new town, or new training. Meanwhile, bicycle workers and people who buy rice gain.",
+            "That is why governments that open up to trade often also debate ways to help the people who lose out, such as temporary income support and training for new jobs."
+          ]
+        },
+        {
+          "heading": "Tariffs: a tax on imports",
+          "concept_ids": [
+            "tariff"
+          ],
+          "paragraphs": [
+            "A tariff is a tax on goods coming in from other countries. It makes imports more expensive, so the price inside the country goes up. Local producers of that good can sell more at a higher price, so they gain. Shoppers pay more and buy less, so they lose. Businesses that use the imported good to make other products also pay more.",
+            "A tariff can protect some jobs in one industry, but it does so by raising prices for everyone who buys the good."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Absolute advantage compares output per unit of resources; comparative advantage compares opportunity costs. Specializing according to comparative advantage raises total output, and trade at terms between the two countries' opportunity costs lets both consume beyond their own production possibilities frontiers. The aggregate gain is unevenly distributed, and a tariff raises the domestic price, helping domestic producers while costing consumers more than producers gain.",
+      "sections": [
+        {
+          "heading": "Opportunity cost decides comparative advantage",
+          "concept_ids": [
+            "absolute_advantage",
+            "comparative_advantage"
+          ],
+          "paragraphs": [
+            "Hypothetical example (100 workers in each country, output per worker per month). Table in text — Northland: 6 bicycles or 3 tons of rice; maximum 600 bicycles or 300 tons. Southland: 1 bicycle or 2 tons of rice; maximum 100 bicycles or 200 tons. Northland has an absolute advantage in both goods.",
+            "Opportunity cost of 1 bicycle — Northland: 3 ÷ 6 = 0.5 ton of rice; Southland: 2 ÷ 1 = 2 tons. Opportunity cost of 1 ton of rice — Northland: 6 ÷ 3 = 2 bicycles; Southland: 1 ÷ 2 = 0.5 bicycle. The two opportunity costs are reciprocals of each other, so a country cannot have the lower opportunity cost in both goods. Northland has the comparative advantage in bicycles; Southland has it in rice.",
+            "These numbers describe straight-line PPFs: each worker can switch between goods at the same rate, so opportunity cost is constant. That is a simplification. In Course 1 you saw that real PPFs usually bow outward because of increasing opportunity cost; the logic of comparative advantage still holds, but countries often stop short of full specialization."
+          ]
+        },
+        {
+          "heading": "Specialization and the terms of trade",
+          "concept_ids": [
+            "gains_from_trade",
+            "terms_of_trade"
+          ],
+          "paragraphs": [
+            "Before trade: Northland makes 480 bicycles and 60 tons of rice; Southland makes 50 bicycles and 100 tons. World total: 530 bicycles, 160 tons. After full specialization: 600 bicycles (Northland) and 200 tons (Southland). Output rises by 70 bicycles and 40 tons of rice.",
+            "For trade to help both sides, the price of a bicycle in rice must lie between the two opportunity costs: more than 0.5 ton (otherwise Northland would rather make its own rice) and less than 2 tons (otherwise Southland would rather make its own bicycles). At 1 bicycle = 1 ton of rice, Northland gets each ton of rice for 1 bicycle instead of 2, and Southland gets each bicycle for 1 ton of rice instead of 2.",
+            "With 70 bicycles traded for 70 tons, Northland consumes 530 bicycles and 70 tons; Southland consumes 70 bicycles and 130 tons. Both combinations lie outside each country's own PPF: Northland would need about 112 workers to produce its new bundle at home, and Southland would need 135."
+          ]
+        },
+        {
+          "heading": "Aggregate gains, unequal distribution",
+          "concept_ids": [
+            "distribution_of_gains"
+          ],
+          "paragraphs": [
+            "The model shows that the country as a whole can consume more. It does not say that each household gains. In Northland, rice farmers now compete with imports; in Southland, bicycle makers do. Workers in these import-competing industries may face lower wages or job loss, while workers in export industries and consumers gain. The losses are often concentrated in particular industries and regions, while the gains are spread across many consumers.",
+            "Workers do not move between industries instantly. Learning new skills, searching for a job, and sometimes moving to a new region are real adjustment costs. Economists who support open trade generally argue for keeping the gains while addressing these costs directly, through temporary support for people out of work, retraining, and policies that help firms compete, rather than by blocking trade. Others argue that these programs have not always reached or fully helped displaced workers, and that the pace of opening matters."
+          ]
+        },
+        {
+          "heading": "A tariff in demand and supply",
+          "concept_ids": [
+            "tariff"
+          ],
+          "paragraphs": [
+            "Picture the domestic market for a good that a country imports. Without trade, the price is where domestic demand meets domestic supply. With free trade, buyers can import at the world price, which is lower; domestic producers supply only part of what consumers buy, and imports fill the gap.",
+            "A tariff of t per unit raises the domestic price from the world price to the world price plus t (assuming a small country that cannot change the world price). At the higher price, quantity demanded falls and domestic quantity supplied rises, so imports shrink. Domestic producers gain producer surplus, the government collects tariff revenue on the remaining imports, and consumers lose consumer surplus. The consumers' loss is larger than the producers' gain plus the revenue, so the country as a whole suffers a deadweight loss, the same idea you met with price controls in Course 2 and with taxes in Course 3."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "With linear PPFs, the absolute value of the PPF slope is the constant opportunity cost; comparative advantage is determined by comparing these slopes. Mutually beneficial terms of trade lie strictly between the autarky price ratios. A per-unit tariff t in a small importing economy lowers imports and creates two deadweight-loss triangles; the aggregate gain from trade could in principle compensate the losers, but compensation is a policy choice, not an automatic result.",
+      "sections": [
+        {
+          "heading": "PPF slopes and comparative advantage",
+          "concept_ids": [
+            "absolute_advantage",
+            "comparative_advantage"
+          ],
+          "paragraphs": [
+            "Let a_B and a_R be output per worker of bicycles and rice, and L the number of workers. The PPF is B/a_B + R/a_R = L, a straight line with slope −a_R/a_B in (B, R) space. Its absolute value, a_R/a_B, is the opportunity cost of one bicycle in tons of rice. Hypothetical values: Northland a_B = 6, a_R = 3, so 0.5; Southland a_B = 1, a_R = 2, so 2.",
+            "Absolute advantage compares a_B (or a_R) across countries; comparative advantage compares the ratios a_R/a_B. Since Northland's ratio is lower, it has the comparative advantage in bicycles, and the reciprocal ratio shows Southland has it in rice. A country's comparative advantage can change over time as skills, technology, and scale change."
+          ]
+        },
+        {
+          "heading": "Bounds on the terms of trade and consumption beyond the PPF",
+          "concept_ids": [
+            "gains_from_trade",
+            "terms_of_trade"
+          ],
+          "paragraphs": [
+            "Let p be the price of a bicycle in tons of rice. Northland gains from exporting bicycles only if p > 0.5; Southland gains from importing bicycles only if p < 2. So mutually beneficial terms satisfy 0.5 < p < 2. At either boundary, one country is indifferent and the other takes all the gain.",
+            "At p = 1, Northland can consume along a trade line R = p(600 − B) that lies above its PPF R = 300 − 0.5B for every B < 600. Hypothetical trade: 70 bicycles for 70 tons. Northland: (530, 70); labor needed at home = 530/6 + 70/3 ≈ 111.7 workers > 100. Southland: (70, 130); labor needed = 70/1 + 130/2 = 135 workers > 100. Both bundles are unattainable without trade, which is what \"consumption beyond the PPF\" means."
+          ]
+        },
+        {
+          "heading": "Tariff welfare analysis",
+          "concept_ids": [
+            "tariff"
+          ],
+          "paragraphs": [
+            "Hypothetical example (see the graph): domestic demand Q_D = 120 − 2P and domestic supply Q_S = −20 + 2P (P in dollars, Q in thousands of units). Without trade: P = $35, Q = 50. At a world price of $20: Q_D = 80, Q_S = 20, imports = 60. A $5 tariff raises the domestic price to $25: Q_D = 70, Q_S = 30, imports = 40.",
+            "Changes (in thousands of dollars): consumer surplus falls by (80 + 70)/2 × 5 = 375; producer surplus rises by (20 + 30)/2 × 5 = 125; tariff revenue = 5 × 40 = 200. Net change = −375 + 125 + 200 = −50. The deadweight loss of 50 is two triangles: production inefficiency ½ × 5 × (30 − 20) = 25 (high-cost domestic output replaces cheaper imports) and consumption inefficiency ½ × 5 × (80 − 70) = 25 (buyers give up units worth more than the world price). This assumes a small country; a large importer might push the world price down, which changes the result."
+          ]
+        },
+        {
+          "heading": "Compensation and adjustment",
+          "concept_ids": [
+            "distribution_of_gains"
+          ],
+          "paragraphs": [
+            "Because opening to trade raises total surplus, the winners could in principle compensate the losers and everyone could still be better off. In practice, compensation requires deliberate policy (income support, retraining, help for affected regions), and it is costly, imperfect, and politically contested. Losses tend to be concentrated in specific industries and places, while gains are spread across many consumers, which also helps explain why small, organized producer groups can win protection.",
+            "Protection also has spillovers: a tariff on an input raises costs for downstream industries that use it, which can cost jobs there. Evaluating trade policy therefore means comparing the aggregate gain with the size, concentration, and duration of the losses, and with the effectiveness of the tools available to address them."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c08-l1-we1",
+      "level": "beginner",
+      "title": "Finding opportunity costs from a table",
+      "problem": "Hypothetical example: In one month, a Northland worker can make 6 bicycles or 3 tons of rice, and a Southland worker can make 1 bicycle or 2 tons of rice. What is the opportunity cost of 1 bicycle in each country, measured in tons of rice? Which country has the comparative advantage in bicycles?",
+      "steps": [
+        "Northland: making 6 bicycles means giving up 3 tons of rice, so 1 bicycle costs 3 ÷ 6 = 0.5 ton of rice.",
+        "Southland: making 1 bicycle means giving up 2 tons of rice, so 1 bicycle costs 2 ÷ 1 = 2 tons of rice.",
+        "Northland gives up less rice per bicycle (0.5 < 2)."
+      ],
+      "answer": "One bicycle costs 0.5 ton of rice in Northland and 2 tons in Southland, so Northland has the comparative advantage in bicycles (and Southland in rice), even though Northland makes more of both goods.",
+      "check": {
+        "type": "ratio",
+        "numerator": 3,
+        "denominator": 6,
+        "expected": 0.5
+      }
+    },
+    {
+      "id": "c08-l1-we2",
+      "level": "intermediate",
+      "title": "How much more does specialization produce?",
+      "problem": "Hypothetical example: Before trade, Northland makes 480 bicycles and 60 tons of rice, and Southland makes 50 bicycles and 100 tons of rice. If Northland makes only bicycles (600) and Southland makes only rice (200 tons), how much does world output of each good change?",
+      "steps": [
+        "World output before: 480 + 50 = 530 bicycles; 60 + 100 = 160 tons of rice.",
+        "World output after specialization: 600 bicycles; 200 tons of rice.",
+        "Change: 600 − 530 = 70 bicycles; 200 − 160 = 40 tons of rice."
+      ],
+      "answer": "Specialization according to comparative advantage adds 70 bicycles and 40 tons of rice with the same 200 workers.",
+      "check": {
+        "type": "difference",
+        "a": 600,
+        "b": 530,
+        "expected": 70
+      }
+    },
+    {
+      "id": "c08-l1-we3",
+      "level": "intermediate",
+      "title": "A trade that helps both countries",
+      "problem": "Hypothetical example: After specializing, Northland trades 70 bicycles to Southland for 70 tons of rice (1 bicycle = 1 ton). Show that these terms lie in the mutually beneficial range, and find Southland's gain in rice compared with its no-trade amount of 100 tons.",
+      "steps": [
+        "The opportunity cost of 1 bicycle is 0.5 ton of rice in Northland and 2 tons in Southland. The terms of trade, 1 ton per bicycle, lie between 0.5 and 2.",
+        "Southland keeps 200 − 70 = 130 tons of rice and receives 70 bicycles.",
+        "Gain in rice: 130 − 100 = 30 tons; gain in bicycles: 70 − 50 = 20."
+      ],
+      "answer": "The terms are inside the 0.5–2 range, and Southland ends up with 30 more tons of rice and 20 more bicycles than without trade. (Northland gains 50 bicycles and 10 tons.)",
+      "check": {
+        "type": "difference",
+        "a": 130,
+        "b": 100,
+        "expected": 30
+      }
+    },
+    {
+      "id": "c08-l1-we4",
+      "level": "advanced",
+      "title": "Imports and tariff revenue",
+      "problem": "Hypothetical example: In a small importing country, domestic demand is Q_D = 120 − 2P and domestic supply is Q_S = −20 + 2P (P in dollars, Q in thousands of units). The world price is $20. The government adds a $5 tariff per unit. Find imports before and after the tariff and the tariff revenue.",
+      "steps": [
+        "At P = $20: Q_D = 120 − 40 = 80, Q_S = −20 + 40 = 20, imports = 60 thousand units.",
+        "With the tariff, P = $25: Q_D = 120 − 50 = 70, Q_S = −20 + 50 = 30, imports = 40 thousand units.",
+        "Tariff revenue = $5 × 40 thousand = $200 thousand."
+      ],
+      "answer": "Imports fall from 60 to 40 thousand units, and the government collects $200 thousand in tariff revenue.",
+      "check": {
+        "type": "product",
+        "factors": [
+          5,
+          40
+        ],
+        "expected": 200
+      }
+    },
+    {
+      "id": "c08-l1-we5",
+      "level": "advanced",
+      "title": "The net cost of the tariff",
+      "problem": "Hypothetical example: Using the same market, the tariff lowers consumer surplus by $375 thousand, raises producer surplus by $125 thousand, and raises $200 thousand in revenue. What is the deadweight loss, and where does it come from?",
+      "steps": [
+        "Gains to others: $125 thousand + $200 thousand = $325 thousand.",
+        "Deadweight loss = $375 thousand − $325 thousand = $50 thousand.",
+        "Check with triangles: ½ × 5 × (30 − 20) = 25 (production) and ½ × 5 × (80 − 70) = 25 (consumption); 25 + 25 = 50."
+      ],
+      "answer": "The deadweight loss is $50 thousand: consumers lose more than producers and the government gain together.",
+      "check": {
+        "type": "difference",
+        "a": 375,
+        "b": 325,
+        "expected": 50
+      }
+    }
+  ],
+  "graphs": [
+    {
+      "id": "c08-l1-g1",
+      "title": "A tariff in an importing market",
+      "caption": "Hypothetical example (worked examples 4 and 5). D is domestic demand and S is domestic supply; without trade, P = $35 and Q = 50. At the world price of $20, buyers want 80 and domestic firms supply 20, so imports are 60. A $5 tariff raises the domestic price to $25: buyers want 70, domestic firms supply 30, and imports fall to 40.",
+      "axis": {
+        "p_max": 60,
+        "q_max": 120,
+        "p_label": "Price P ($ per unit)",
+        "q_label": "Quantity Q (thousands of units)"
+      },
+      "demand": [
+        {
+          "label": "D",
+          "a": 120,
+          "b": 2
+        }
+      ],
+      "supply": [
+        {
+          "label": "S (domestic)",
+          "c": -20,
+          "d": 2
+        }
+      ],
+      "price_lines": [
+        {
+          "label": "World price $20",
+          "price": 20
+        },
+        {
+          "label": "World price + tariff $25",
+          "price": 25
+        }
+      ],
+      "expected_equilibria": [
+        {
+          "demand": "D",
+          "supply": "S (domestic)",
+          "price": 35,
+          "quantity": 50
+        }
+      ]
+    }
+  ],
+  "real_world_examples": [
+    {
+      "title": "How textbooks illustrate comparative advantage",
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2"
+      ],
+      "paragraphs": [
+        "Economics textbooks often show comparative advantage with two countries and two goods. The OpenStax textbook uses examples in which one country is more productive in every good, and shows that both countries still gain when each shifts production toward its comparative advantage and they trade at terms between their opportunity costs. Like this lesson, those examples are simplified models with constant opportunity costs, not measurements of real economies."
+      ]
+    },
+    {
+      "title": "Protection as an indirect subsidy",
+      "source_ids": [
+        "openstax-pe3-34-1",
+        "openstax-pe3-34-2",
+        "openstax-pe3-34-5"
+      ],
+      "paragraphs": [
+        "The OpenStax textbook describes import protection as a way of making consumers pay higher prices that benefit domestic producers, with domestic consumers, foreign exporters, and industries that use the protected good as an input among the losers. It also notes that protection tends to move jobs between industries rather than create jobs overall, and that the costs of trade fall unevenly. Its recommended response is to keep the gains from trade while helping those who lose, for example with temporary assistance and retraining, rather than blocking trade."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      8,
+      17
+    ],
+    "title": "Opening to trade in Country T: how should the adjustment be handled?",
+    "paragraphs": [
+      "SDG 8 aims for sustained, inclusive economic growth and decent work for all; target 8.2 calls for higher productivity through diversification, technological upgrading, and innovation, and target 8.5 calls for full and productive employment and decent work. SDG 17 includes trade targets: 17.10 promotes a universal, rules-based, open, non-discriminatory, and equitable multilateral trading system, and 17.11 calls for significantly increasing the exports of developing countries.",
+      "Hypothetical situation: Country T, a developing country, has a comparative advantage in processed foods but protects its small car-parts industry with a high tariff. A trade agreement would cut the tariff and open new export markets for food. Economists in Country T estimate that the country as a whole would gain, but about one in ten car-parts workers, concentrated in two towns, could lose their jobs. The government is choosing among three approaches."
+    ],
+    "options": [
+      {
+        "name": "Cut the tariff now and fund retraining and temporary income support",
+        "benefits": [
+          "Consumers and firms that use car parts pay lower prices right away, and food exporters gain market access sooner.",
+          "Displaced workers get income while they search and training for growing industries."
+        ],
+        "costs": [
+          "Programs cost public money, and retraining does not always lead to jobs with similar pay.",
+          "The two towns may struggle even with support if few new employers arrive."
+        ],
+        "assumptions": [
+          "Training matches skills that growing industries need, and workers can reach those jobs."
+        ]
+      },
+      {
+        "name": "Phase the tariff down over ten years",
+        "benefits": [
+          "Workers and firms have time to adjust, retire, or retrain gradually.",
+          "Political support for the agreement may be easier to win."
+        ],
+        "costs": [
+          "Consumers keep paying higher prices for years, and a smaller but continuing deadweight loss remains during the phase-out.",
+          "Protected firms may delay improvements instead of preparing."
+        ],
+        "assumptions": [
+          "The schedule is credible and is not extended under pressure."
+        ]
+      },
+      {
+        "name": "Keep the tariff and stay out of the agreement",
+        "benefits": [
+          "Car-parts jobs in the two towns are protected in the short run.",
+          "No spending on adjustment programs is needed."
+        ],
+        "costs": [
+          "Consumers and car-using industries keep paying more, and food exporters lose new markets.",
+          "Protected jobs are paid for by everyone else, and the industry may fall further behind."
+        ],
+        "assumptions": [
+          "Partner countries do not respond with barriers of their own."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which approach best balances overall growth and productivity (target 8.2) with decent work for the people affected (target 8.5)? How does each option relate to an open, rules-based trading system (17.10) and to developing-country exports (17.11)? Use the ideas of comparative advantage, deadweight loss, and adjustment costs in your answer."
+    ],
+    "source_ids": [
+      "un-sdg-8",
+      "un-sdg-17",
+      "openstax-pe3-34-5"
+    ]
+  },
+  "key_takeaways": [
+    "Absolute advantage compares how much each country can produce; comparative advantage compares opportunity costs. Trade follows comparative advantage.",
+    "A country with an absolute advantage in every good still gains by specializing in the good with the lower opportunity cost and trading for the other.",
+    "Both countries gain only if the terms of trade lie between their opportunity costs; trade lets each country consume beyond its own PPF.",
+    "The overall gain from trade is real but unevenly shared: import-competing workers, industries, and regions can lose and face adjustment costs, so policies such as income support and retraining matter.",
+    "A tariff is a tax on imports. It raises the domestic price, helps domestic producers, raises government revenue, and costs consumers more than those gains combined (a deadweight loss)."
+  ],
+  "source_ids": [
+    "openstax-pe3-33-1",
+    "openstax-pe3-33-2",
+    "openstax-pe3-33-4",
+    "openstax-pe3-34-1",
+    "openstax-pe3-34-2",
+    "openstax-pe3-34-5",
+    "openstax-pe3-2-2",
+    "un-sdg-8",
+    "un-sdg-17"
+  ]
+}

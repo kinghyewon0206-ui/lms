@@ -289,7 +289,17 @@ def test_preview_shows_draft_when_enabled(logged_in, monkeypatch):
     assert "Source verified · 2026-11-13" in html and "openstax.org/books/principles-economics-3e" in html
     assert "I have read all the learning materials" not in html   # 미리보기에서는 진도를 남기지 않는다
     assert logged_in.get("/preview/c02/c02-l9").status_code == 404
-    assert logged_in.get("/preview/c08/c08-l1").status_code == 404   # 자료가 없는 레슨
+    # 자료가 없는 레슨: 지금은 27개 레슨 모두 초안이 있으므로, 한 레슨의 자료를 뗀 카탈로그로 확인한다
+    import dataclasses
+    from econova import learning
+    cat = content.load_catalog(False)
+    c08 = cat.course("c08")
+    bare = dataclasses.replace(c08, lessons=tuple(dataclasses.replace(lesson, content=None) if lesson.id == "c08-l1" else lesson
+                                                  for lesson in c08.lessons))
+    patched = content.build_catalog([bare if c.id == "c08" else c for c in cat.courses], cat.sdgs)
+    monkeypatch.setattr(learning, "catalog", lambda: patched)
+    assert logged_in.get("/preview/c08/c08-l1").status_code == 404
+    assert logged_in.get("/preview/c08/c08-l2").status_code == 200
 
 
 def test_preview_requires_login(client, monkeypatch):

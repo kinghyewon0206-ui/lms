@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "id": "c08-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c08",
+  "lesson_id": "c08-l3",
+  "version": 1,
+  "title": "Lesson 3 Quiz: Global Supply Chains and Sustainable Production",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c08-l3-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l3",
+      "objective": 1,
+      "concept_ids": [
+        "value_added",
+        "global_value_chain"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Parts for a coffee maker are made in Country K and sold for $24 (assume the parts maker buys no inputs). A factory in Country M assembles the coffee maker and sells it to a store for $41. The store sells it for $72. How many dollars of value does the assembly stage add? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-33-3"
+      ]
+    },
+    {
+      "id": "c08-l3-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l3",
+      "objective": 2,
+      "concept_ids": [
+        "resilience_tradeoff"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A firm buys a key part from a single low-cost supplier. It is considering adding a second supplier that charges a higher price. What is the main trade-off?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It raises costs in normal times but lowers the risk of a production stop"
+        },
+        {
+          "id": "b",
+          "text": "It lowers costs in normal times but raises the risk of a production stop"
+        },
+        {
+          "id": "c",
+          "text": "It raises costs in normal times and also raises the risk of a production stop"
+        },
+        {
+          "id": "d",
+          "text": "It leaves normal costs unchanged but makes production more exposed to disruption"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-33-3"
+      ]
+    },
+    {
+      "id": "c08-l3-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l3",
+      "objective": 3,
+      "concept_ids": [
+        "supply_chain_externalities"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A dyeing plant in Country S pollutes a river, harming people downstream. The finished shirts are sold in Country D, and the plant pays nothing for the damage. Which statement best describes the shirts' price in Country D?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It equals the shirts' social cost, because buyers in Country D are not harmed"
+        },
+        {
+          "id": "b",
+          "text": "It is above the shirts' social cost, because transport costs are included"
+        },
+        {
+          "id": "c",
+          "text": "It equals the private cost, so the external cost disappears after export"
+        },
+        {
+          "id": "d",
+          "text": "It is below the shirts' social cost, because the external cost is left out"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1"
+      ]
+    },
+    {
+      "id": "c08-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l3",
+      "objective": 3,
+      "concept_ids": [
+        "sustainable_production_partnership"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which SDG target most directly encourages large and transnational companies to adopt sustainable practices and include sustainability information in their reporting?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "SDG target 17.11"
+        },
+        {
+          "id": "b",
+          "text": "SDG target 12.6"
+        },
+        {
+          "id": "c",
+          "text": "SDG target 8.7"
+        },
+        {
+          "id": "d",
+          "text": "SDG target 12.5"
+        }
+      ],
+      "source_ids": [
+        "un-sdg-12"
+      ]
+    },
+    {
+      "id": "c08-l3-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l3",
+      "objective": 2,
+      "concept_ids": [
+        "resilience_tradeoff",
+        "interdependence_disruption"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A firm faces a 20% chance each year of a supply disruption that would cost it $150,000. A backup supplier contract costs $25,000 a year and would cut that loss to $50,000. Comparing expected yearly costs, which statement is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The backup contract lowers expected yearly cost by $5,000"
+        },
+        {
+          "id": "b",
+          "text": "The backup contract lowers expected yearly cost by $75,000"
+        },
+        {
+          "id": "c",
+          "text": "The backup contract raises expected yearly cost by $5,000"
+        },
+        {
+          "id": "d",
+          "text": "The backup contract raises expected yearly cost by $25,000"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-33-3"
+      ]
+    }
+  ]
+}

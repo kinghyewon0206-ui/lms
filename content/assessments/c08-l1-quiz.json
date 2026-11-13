@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "id": "c08-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c08",
+  "lesson_id": "c08-l1",
+  "version": 1,
+  "title": "Lesson 1 Quiz: Comparative Advantage and International Trade",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c08-l1-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l1",
+      "objective": 1,
+      "concept_ids": [
+        "absolute_advantage",
+        "comparative_advantage"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In one day, a worker in Country X can make 10 shirts or 5 chairs, and a worker in Country Y can make 4 shirts or 4 chairs. Which statement is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Country Y has the comparative advantage in shirts, since it makes fewer of them"
+        },
+        {
+          "id": "b",
+          "text": "Country X has the comparative advantage in both goods, since it makes more of each"
+        },
+        {
+          "id": "c",
+          "text": "Country X has the comparative advantage in shirts, and Country Y has it in chairs"
+        },
+        {
+          "id": "d",
+          "text": "Neither country can gain from trade, since Country X makes more of both goods"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2"
+      ]
+    },
+    {
+      "id": "c08-l1-q2",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l1",
+      "objective": 2,
+      "concept_ids": [
+        "terms_of_trade",
+        "comparative_advantage"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In one month, a worker in Country P can make 8 tons of wheat or 2 laptops, and a worker in Country Q can make 12 tons of wheat or 2 laptops. Country P exports laptops to Country Q. What is the highest price, in tons of wheat per laptop, that Country Q would be willing to pay (the upper limit of the mutually beneficial range)? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2"
+      ]
+    },
+    {
+      "id": "c08-l1-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l1",
+      "objective": 2,
+      "concept_ids": [
+        "gains_from_trade",
+        "terms_of_trade"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country Y has 100 workers, and each can make 4 shirts or 4 chairs a day. Without trade, it puts 50 workers on each good. It then specializes completely in chairs and trades 150 chairs for 225 shirts. Compared with no trade, how many more chairs per day does Country Y have to use at home? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2"
+      ]
+    },
+    {
+      "id": "c08-l1-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l1",
+      "objective": 3,
+      "concept_ids": [
+        "distribution_of_gains"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country N removes its tariff on imported rice, and rice prices in Country N fall. Which group in Country N is most likely to lose from this change?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Families in Country N who buy rice for their meals"
+        },
+        {
+          "id": "b",
+          "text": "Rice farmers in Country N who compete with the imports"
+        },
+        {
+          "id": "c",
+          "text": "Restaurants in Country N that use rice in their dishes"
+        },
+        {
+          "id": "d",
+          "text": "Rice exporters in other countries that sell to Country N"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-34-2",
+        "openstax-pe3-34-5",
+        "openstax-pe3-34-1"
+      ]
+    },
+    {
+      "id": "c08-l1-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l1",
+      "objective": 3,
+      "concept_ids": [
+        "tariff"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a small importing country, the world price of a good is $40. At $40, buyers want 200 and domestic firms supply 60 (thousands of units). A $10 tariff raises the domestic price to $50, where buyers want 180 and domestic firms supply 90. Which statement is correct (dollar amounts in thousands)?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Imports fall by 50, tariff revenue is $900, and the deadweight loss is $250"
+        },
+        {
+          "id": "b",
+          "text": "Imports fall by 50, tariff revenue is $1,400, and the deadweight loss is $0"
+        },
+        {
+          "id": "c",
+          "text": "Imports fall by 30, tariff revenue is $900, and the deadweight loss is $150"
+        },
+        {
+          "id": "d",
+          "text": "Imports fall by 20, tariff revenue is $1,800, and the deadweight loss is $100"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-34-1",
+        "openstax-pe3-33-4"
+      ]
+    }
+  ]
+}

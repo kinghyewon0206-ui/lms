@@ -1,0 +1,493 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c09-l3",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Organize an economic policy proposal with a clear goal, mechanism, target group, cost, funding source, and expected outcomes for the economy and for specific SDG targets.",
+    "Explain the trade-offs and implementation constraints of a proposal, and calculate its total cost, its share of a budget, and its cost over time in real or present-value terms.",
+    "Define measurable indicators with a baseline, target, timeframe, and data source, assess your own work honestly with the rubric, and write a reflection on limitations and improvements, as preparation for Capstone project steps 8 and 9."
+  ],
+  "concepts": [
+    {
+      "id": "proposal_structure",
+      "term": "Structure of a policy proposal",
+      "definition": "A coherent policy proposal states the goal (which SDG target and indicator it aims to move), the mechanism (how the policy changes incentives, prices, or resources to cause the change), the target group, the cost, the funding source, and the expected outcomes for the economy and for the SDG target. Each part should follow from the evidence and comparison of options.",
+      "source_ids": [
+        "jpal-cea",
+        "openstax-pe3-12-3"
+      ]
+    },
+    {
+      "id": "funding_budget",
+      "term": "Funding and the public budget constraint",
+      "definition": "Every proposal must be paid for: by taxes, user fees, borrowing, reallocating existing spending, or outside partners. Each source has an opportunity cost and a distribution of who pays. Expressing the cost as a share of the relevant budget shows whether the proposal is realistic.",
+      "source_ids": [
+        "openstax-pe3-30-2",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "tradeoffs_implementation",
+      "term": "Trade-offs and implementation constraints",
+      "definition": "A proposal involves trade-offs, such as efficiency vs. equity, speed vs. quality, and benefits now vs. costs later. It also faces implementation constraints: scarce skilled staff, administrative capacity, data, political support, and how well a tool fits the local setting. A policy that works on paper can fail if these are ignored.",
+      "source_ids": [
+        "openstax-pe3-12-3",
+        "openstax-pe3-12-4"
+      ]
+    },
+    {
+      "id": "costs_over_time",
+      "term": "Costs over time: real values and present value",
+      "definition": "Costs and benefits that occur in different years are made comparable in two ways: adjusting for inflation (real value = nominal value ÷ price index, expressed in base-year prices) and discounting future amounts to present value (PV = future amount ÷ (1 + r)ᵗ, the reverse of compound interest). State the price index and discount rate you use.",
+      "source_ids": [
+        "openstax-pe3-19-2",
+        "openstax-pe3-17-3",
+        "jpal-cea"
+      ]
+    },
+    {
+      "id": "measurable_indicators",
+      "term": "Measurable indicators: baseline, target, timeframe, data source",
+      "definition": "A measurable indicator states what will be measured, its starting value (baseline), the value you aim for (target), by when (timeframe), and where the data will come from (data source). Linking it to an official SDG indicator, where possible, makes progress comparable.",
+      "source_ids": [
+        "unstats-sdg-indicators",
+        "un-sdg-4",
+        "un-sdg-6"
+      ]
+    },
+    {
+      "id": "self_assessment_reflection",
+      "term": "Honest self-assessment and reflection",
+      "definition": "Self-assessment means rating your own work against each rubric criterion using the level descriptions and evidence from your submission, not your hopes. Reflection names what you learned, the main limitations of your evidence and analysis (such as untested assumptions or missing comparison groups), what changed your mind, and what you would improve or investigate next.",
+      "source_ids": [
+        "jpal-intro-evaluations",
+        "jpal-cea",
+        "berkeley-evaluating-resources"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "Now you put everything together into one proposal that a reader can follow. Say what you want to change, how your idea works, who it helps, what it costs and who pays, and how you will know whether it worked. Then check your own work honestly and write what you learned.",
+      "sections": [
+        {
+          "heading": "The parts of a proposal",
+          "concept_ids": [
+            "proposal_structure"
+          ],
+          "paragraphs": [
+            "A clear proposal answers six questions. Goal: what do you want to change, and which SDG target does it serve? Mechanism: how does your idea cause the change? Target group: who is it for? Cost: how much does it cost? Funding: who pays? Expected outcomes: what will be different for people, for the local economy, and for the SDG target?",
+            "Step \"8. Final proposal\" asks you to write in this order: problem → evidence → solution → costs and benefits → limits. Put the goal, mechanism, and target group in the solution part, and the cost, funding, and expected outcomes in the costs and benefits part. Give your proposal a one-line title, too."
+          ]
+        },
+        {
+          "heading": "Somebody has to pay",
+          "concept_ids": [
+            "funding_budget"
+          ],
+          "paragraphs": [
+            "Money for a project can come from taxes, fees paid by users, a loan, moving money from another program, or a partner such as a business or charity. Each choice has a cost. A fee may keep poor families away. Moving money from another program means that program does less.",
+            "Compare your cost with the budget it would come from. A project that would use 2% of a town's education budget is much easier to fund than one that would use half of it."
+          ]
+        },
+        {
+          "heading": "Nothing is free, and nothing is easy",
+          "concept_ids": [
+            "tradeoffs_implementation"
+          ],
+          "paragraphs": [
+            "Every proposal has trade-offs. Helping everyone costs more than helping only those most in need. Moving fast may mean lower quality. Spending now may save money later, or the other way around.",
+            "Think about what could go wrong when you actually do it. Are there enough trained people? Will the right families hear about it? Who will repair the equipment in three years? Writing down these limits makes your proposal more believable, not weaker."
+          ]
+        },
+        {
+          "heading": "Money today and money later",
+          "concept_ids": [
+            "costs_over_time"
+          ],
+          "paragraphs": [
+            "Prices change over time, so $1,000 next year may buy less than $1,000 today. If your project lasts several years, say whether your costs are in today's prices. Also remember that a dollar paid later is less of a burden than a dollar paid now, for the same reason that money in the bank grows with interest."
+          ]
+        },
+        {
+          "heading": "How will you know it worked?",
+          "concept_ids": [
+            "measurable_indicators"
+          ],
+          "paragraphs": [
+            "Pick one or two numbers to watch. For each one, write four things: where it is now (baseline), where you want it to be (target), by when (timeframe), and where the number will come from (data source). Example: \"School days with working drinking water: from about 120 of 180 days now to 170 of 180 days within two years, from the school's own maintenance log.\" The numbers in your capstone should come from real sources, or be clearly marked as estimates."
+          ]
+        },
+        {
+          "heading": "Check your work honestly, then reflect",
+          "concept_ids": [
+            "self_assessment_reflection"
+          ],
+          "paragraphs": [
+            "After you submit, you rate your own work with the rubric: for each criterion, pick the level (1. Beginning, 2. Developing, 3. Proficient, 4. Exemplary) whose description best matches what you actually wrote. It is a tool for checking your own work, not an official score, so honesty helps you most. If you are unsure between two levels, choose the lower one and write a note on what would raise it.",
+            "Step \"9. Reflect\" asks what you learned and what you would do differently. Name at least one real limitation, such as a number you could not verify or an effect you could not prove, and one thing you would improve."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "A strong proposal links goal, mechanism, target group, cost, funding, and outcomes into one argument; prices the plan and checks it against the budget; names the trade-offs and implementation risks; converts multi-year costs into comparable terms; sets indicators with baselines, targets, timeframes, and data sources; and closes with an honest self-assessment and reflection.",
+      "sections": [
+        {
+          "heading": "One argument, six parts",
+          "concept_ids": [
+            "proposal_structure"
+          ],
+          "paragraphs": [
+            "The proposal should read as a chain: the problem and its cause (from Lesson 1), the evidence (from Lesson 2), then the policy, whose mechanism acts on that cause. If the cause is an unpriced externality, the mechanism might be a charge or a regulation; if it is a public good nobody funds, the mechanism might be public provision or a shared-funding arrangement; if it is a high opportunity cost for families, the mechanism might be a transfer or a service closer to home.",
+            "Be precise about the target group (who is eligible and how they will be reached), the cost (unit cost × number reached, plus fixed costs), the funding source, and the expected outcomes, both economic (income, time saved, costs avoided) and for the SDG target and indicator. Follow the order in the \"Final proposal\" field: problem → evidence → solution → costs and benefits → limits."
+          ]
+        },
+        {
+          "heading": "Funding and the budget constraint",
+          "concept_ids": [
+            "funding_budget"
+          ],
+          "paragraphs": [
+            "Express the annual cost as a share of the budget it would come from, and name the opportunity cost: what would not be funded instead. Consider who bears the cost under each funding option. Broad taxes spread the burden according to the tax design; a user fee falls on users and may lower take-up among poorer households when they are price-sensitive; borrowing shifts the cost to the future; an outside partner may bring conditions or end its support.",
+            "If the full plan does not fit, propose a smaller first phase rather than an unfunded promise."
+          ]
+        },
+        {
+          "heading": "Trade-offs and implementation constraints",
+          "concept_ids": [
+            "tradeoffs_implementation"
+          ],
+          "paragraphs": [
+            "Name the main trade-offs explicitly: efficiency vs. equity (targeting the poorest reaches fewer people per dollar of administration), present vs. future (maintenance budgets vs. new construction), and coverage vs. quality. Tools also fit some settings better than others; for example, tradable permits suit markets with a limited number of large polluters, while charges can work with many small emitters.",
+            "Implementation constraints include staff and skills, administrative capacity to verify eligibility, reliable data, political and community support, and maintenance after the launch. A pilot with a comparison group is one way to reduce uncertainty before scaling up."
+          ]
+        },
+        {
+          "heading": "Comparable costs over time",
+          "concept_ids": [
+            "costs_over_time"
+          ],
+          "paragraphs": [
+            "Convert nominal costs into real terms with a price index: real cost = nominal cost ÷ (price index ÷ 100). A cost that rises 6% in dollars while prices rise 4% has risen only about 2% in real terms. Discount future amounts to present value with PV = amount ÷ (1 + r)ᵗ, which is the compound-interest formula from c07 run backward.",
+            "Use the same base year and the same discount rate for every option you compare, and say what they are."
+          ]
+        },
+        {
+          "heading": "Indicators that can be checked",
+          "concept_ids": [
+            "measurable_indicators"
+          ],
+          "paragraphs": [
+            "For each expected outcome, specify an indicator, its baseline (with source and date), its target, the timeframe, and the data source that will be used to measure it. Use an output indicator (what the program delivers, such as working water points) and an outcome indicator (what changes for people, such as attendance). Where possible, align the outcome indicator with an official SDG indicator so your results can be compared.",
+            "A target should be ambitious but consistent with your evidence: if comparable programs raised attendance by a few percentage points, a promise of 20 points needs a strong reason."
+          ]
+        },
+        {
+          "heading": "Self-assessment and reflection",
+          "concept_ids": [
+            "self_assessment_reflection"
+          ],
+          "paragraphs": [
+            "The Capstone self-assessment asks you to rate the submitted version on every rubric criterion. The Capstone project page then shows a weighted average level (not an official score) and lists the criteria rated at level 2 or below as criteria to improve. Rate by matching the level descriptions to evidence in your text; for example, \"Quality of evidence\" at level 4 requires clearly sourced evidence and stated limits.",
+            "The reflection is required to complete the Capstone project. Write about the limitations of your evidence (missing comparison groups, outdated or secondary data, unverified numbers), the assumptions your recommendation depends on, what changed your mind during the project, and what you would improve or research next."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Formally, the proposal specifies a causal chain from policy to indicator, a cost function C = F + c·N, a funding share C ÷ B, real and present-value adjustments, and indicators with baseline, target, and timeframe. The self-assessment is a weighted average of criterion levels, and an honest reflection identifies which assumptions the conclusion is most sensitive to.",
+      "sections": [
+        {
+          "heading": "Proposal as a causal chain",
+          "concept_ids": [
+            "proposal_structure"
+          ],
+          "paragraphs": [
+            "Specify the chain inputs → activities → outputs → outcomes → SDG indicator, and the economic mechanism at each link (a change in relative prices, a correction of an externality, provision of a public good, a fall in the opportunity cost of a choice). Every link is an assumption that evidence can support or weaken.",
+            "Quantify the plan with a cost function C = F + c × N, where F is the fixed cost, c the cost per person reached, and N the number reached, and with expected impact ΔY on the target indicator. Report cost-effectiveness C ÷ ΔY next to the alternatives you rejected."
+          ]
+        },
+        {
+          "heading": "Budget share and incidence of the funding",
+          "concept_ids": [
+            "funding_budget"
+          ],
+          "paragraphs": [
+            "The funding share s = C ÷ B, where B is the budget from which the program is paid, is a quick test of feasibility. The opportunity cost of the proposal is the value of the best program displaced by C. The burden of financing depends on the instrument: a tax T(y) whose average rate rises with income is progressive, one whose average rate falls with income is regressive, and a flat user fee is regressive relative to income."
+          ]
+        },
+        {
+          "heading": "Trade-offs at the margin and implementation risk",
+          "concept_ids": [
+            "tradeoffs_implementation"
+          ],
+          "paragraphs": [
+            "Scale is a marginal decision: expand coverage while the marginal benefit of reaching one more person exceeds the marginal cost, recognizing that the last people reached are often the costliest. An equity objective may justify going further, but that is a value judgment to state openly.",
+            "Model implementation risk as probabilities: if the program delivers its output with probability q, the expected impact is q × ΔY. Constraints such as staff shortages or weak maintenance lower q. A pilot with a comparison group narrows the uncertainty about ΔY and q before full rollout."
+          ]
+        },
+        {
+          "heading": "Real values and present value",
+          "concept_ids": [
+            "costs_over_time"
+          ],
+          "paragraphs": [
+            "For a nominal cost Xₜ and price index Pₜ (base year = 100), the real cost is Xₜ ÷ (Pₜ ÷ 100). For a stream of real costs Cₜ over years t = 0, …, T at discount rate r, the present value is PV = Σ Cₜ ÷ (1 + r)ᵗ. A higher r makes future costs and benefits count less, which favors projects whose benefits come early; for long-lived benefits, such as infrastructure, the ranking can depend on r.",
+            "Report results for at least two discount rates when the options have very different time profiles, and keep the order of adjustments (inflation, exchange rates, present value) consistent across options. Discount real (base-year-price) costs with a real discount rate and nominal costs with a nominal rate; never mix them."
+          ]
+        },
+        {
+          "heading": "Indicators and targets",
+          "concept_ids": [
+            "measurable_indicators"
+          ],
+          "paragraphs": [
+            "Define each indicator as I = N ÷ P with explicit numerator and denominator, baseline I₀ at date t₀ from a named source, target I* at date T, and the required path (I* − I₀) ÷ (T − t₀) per year. Distinguish outputs (under the program's control) from outcomes (also affected by other factors), and plan how a comparison group or trend will separate the program's effect from other changes."
+          ]
+        },
+        {
+          "heading": "Weighted self-assessment and a critical reflection",
+          "concept_ids": [
+            "self_assessment_reflection"
+          ],
+          "paragraphs": [
+            "The self-assessment summary is a weighted average: average level = Σ wᵢ × Lᵢ ÷ Σ wᵢ, where wᵢ is the weight of criterion i and Lᵢ the level you chose. Because high-weight criteria move the average most, an honest low rating on a heavily weighted criterion is the most useful signal of where to revise. The average is a self-check, not a grade.",
+            "A critical reflection identifies the parameters your recommendation is most sensitive to (take-up, effect size, unit cost, discount rate), the weakest link in the causal chain, the evidence that would change your conclusion, and how you would design a better test."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c09-l3-we1",
+      "level": "beginner",
+      "title": "Pricing the plan",
+      "problem": "Hypothetical example: A proposal provides reusable water bottles and a refill station service for students at a cost of $25 per student per year. It will serve 1,200 students. What is the annual cost?",
+      "steps": [
+        "Annual cost = cost per student × number of students.",
+        "$25 × 1,200 = $30,000 per year."
+      ],
+      "answer": "The proposal costs $30,000 per year. This number goes in the costs and benefits part of the final proposal.",
+      "check": {
+        "type": "product",
+        "factors": [
+          25,
+          1200
+        ],
+        "expected": 30000
+      }
+    },
+    {
+      "id": "c09-l3-we2",
+      "level": "intermediate",
+      "title": "Does it fit the budget?",
+      "problem": "Hypothetical example: The $30,000-per-year proposal above would be paid from the town's annual education budget of $1,500,000. What share of the budget is that?",
+      "steps": [
+        "Share = program cost ÷ budget.",
+        "$30,000 ÷ $1,500,000 = 0.02, which is 2%.",
+        "The opportunity cost is whatever else that 2% would have paid for, so the proposal should say what would be cut or where new money would come from."
+      ],
+      "answer": "The proposal would use 2% of the education budget.",
+      "check": {
+        "type": "ratio",
+        "numerator": 30000,
+        "denominator": 1500000,
+        "expected": 0.02
+      }
+    },
+    {
+      "id": "c09-l3-we3",
+      "level": "intermediate",
+      "title": "How a weighted self-check average works",
+      "problem": "Hypothetical example: A simplified rubric has four criteria with weights 30, 30, 20, and 20. A student rates their own work at levels 3, 2, 4, and 3. What is the weighted average level?",
+      "steps": [
+        "Multiply each level by its weight: 30 × 3 = 90, 30 × 2 = 60, 20 × 4 = 80, 20 × 3 = 60.",
+        "Add them: 90 + 60 + 80 + 60 = 290.",
+        "Divide by the total weight: 290 ÷ 100 = 2.9.",
+        "The level-2 criterion is the lowest-rated of the most heavily weighted criteria, so improving it is an efficient place to start (raising any weight-30 criterion by one level adds 0.3)."
+      ],
+      "answer": "The weighted average level is 2.9 out of 4. It is a self-check, not a grade, and the level-2 criterion is the clearest place to revise.",
+      "check": {
+        "type": "ratio",
+        "numerator": 290,
+        "denominator": 100,
+        "expected": 2.9
+      }
+    },
+    {
+      "id": "c09-l3-we4",
+      "level": "advanced",
+      "title": "Present value of a later cost",
+      "problem": "Hypothetical example: A proposal includes a pump replacement that will cost $12,100 two years from now. Using a discount rate of 10% per year, what is the present value of that cost?",
+      "steps": [
+        "PV = future amount ÷ (1 + r)ᵗ.",
+        "(1 + 0.10)² = 1.21.",
+        "PV = $12,100 ÷ 1.21 = $10,000."
+      ],
+      "answer": "The present value is $10,000. With a lower discount rate, the same future cost would count for more today.",
+      "check": {
+        "type": "ratio",
+        "numerator": 12100,
+        "denominator": 1.21,
+        "expected": 10000
+      }
+    },
+    {
+      "id": "c09-l3-we5",
+      "level": "advanced",
+      "title": "A real change in cost",
+      "problem": "Hypothetical example: A program cost $50,000 last year. This year it costs $53,000 in current dollars, and the price index rose by 4% (from 100 to 104). What is this year's cost in last year's prices, and by what percent did the real cost rise?",
+      "steps": [
+        "Real cost = nominal cost ÷ (price index ÷ 100) = $53,000 ÷ 1.04 ≈ $50,961.54.",
+        "Real change = $50,961.54 ÷ $50,000 − 1 ≈ 0.0192, about 1.92%.",
+        "The nominal increase is 6%, but most of it reflects higher prices, not more resources used."
+      ],
+      "answer": "In last year's prices, the cost is about $50,961.54, a real increase of about 1.92%, not 6%.",
+      "check": {
+        "type": "ratio",
+        "numerator": 53000,
+        "denominator": 1.04,
+        "expected": 50961.54,
+        "tolerance": 0.01
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Matching the tool to the setting",
+      "source_ids": [
+        "openstax-pe3-12-3"
+      ],
+      "paragraphs": [
+        "OpenStax compares market-oriented environmental tools with command-and-control rules. It explains that a pollution charge gives firms an incentive to find ways to cut emissions, and that market tools can reach a given reduction at lower cost to society. It also notes that tools fit different settings: tradable permits suit situations with a few hundred parties interested in trading, while pollution charges suit cases with millions of small emitters. A proposal is stronger when it explains why its tool fits the local setting."
+      ]
+    },
+    {
+      "title": "Counting costs the same way for every option",
+      "source_ids": [
+        "jpal-cea"
+      ],
+      "paragraphs": [
+        "J-PAL's cost-effectiveness guide counts the costs of a program, including participants' time and donated goods, and expresses them in the prices of one base year using price deflators, a stated exchange rate, and a discount rate for multi-year costs. It warns that the order of these adjustments must be applied consistently, and recommends collecting cost data while a program is running, because it is hard to reconstruct afterward."
+      ]
+    },
+    {
+      "title": "Who pays depends on the tax",
+      "source_ids": [
+        "openstax-pe3-30-2"
+      ],
+      "paragraphs": [
+        "OpenStax describes the main sources of government revenue and how the burden of each tax is shared. A tax that takes a larger share of income from people with higher incomes is progressive; a tax that takes a larger share from people with lower incomes is regressive. When your proposal names a funding source, say which kind it is and who would bear the cost."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      6,
+      4
+    ],
+    "title": "Presenting the proposal to Town V's council",
+    "paragraphs": [
+      "SDG target 6.1 aims for universal and equitable access to safe and affordable drinking water by 2030, tracked by indicator 6.1.1. SDG target 4.a calls for safe, inclusive, and effective learning environments.",
+      "Hypothetical situation: After comparing options, a student recommends a maintenance fund that repairs school water points within a week, paid from the town budget. The council asks how the plan should be rolled out. The student's evidence comes from one evaluated program in another region and local before-and-after data."
+    ],
+    "options": [
+      {
+        "name": "Pilot in two schools, with similar schools as a comparison group",
+        "benefits": [
+          "Produces local evidence on attendance and costs before spending more.",
+          "Low cost and easy to stop if it does not work."
+        ],
+        "costs": [
+          "Students in the comparison schools wait longer for repairs.",
+          "Results take at least a school year, so progress toward target 6.1 is slower."
+        ],
+        "assumptions": [
+          "The pilot schools are similar enough to the others that results will carry over."
+        ]
+      },
+      {
+        "name": "Immediate rollout to all rural schools",
+        "benefits": [
+          "Reaches every affected student at once.",
+          "Avoids the fairness concern of making some schools wait."
+        ],
+        "costs": [
+          "Uses a larger share of the education budget before local evidence exists.",
+          "May exceed the number of trained repair workers, lowering quality."
+        ],
+        "assumptions": [
+          "Results from the other region apply locally, and enough repair workers can be hired."
+        ]
+      },
+      {
+        "name": "Phased rollout, half funded by a small user fee on households",
+        "benefits": [
+          "Lowers the cost to the town budget and expands school by school with feedback.",
+          "Gives the community a stake in maintenance."
+        ],
+        "costs": [
+          "The fee is regressive and may fall hardest on the poorest families.",
+          "Collecting the fee adds administrative cost."
+        ],
+        "assumptions": [
+          "Households are willing and able to pay, and the fee does not reduce use of safe water."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which rollout best balances speed, fairness, cost, and learning? For your choice, write one output indicator and one outcome indicator with a baseline, target, timeframe, and data source. What limitation would you name in your reflection?"
+    ],
+    "source_ids": [
+      "un-sdg-6",
+      "un-sdg-4",
+      "jpal-intro-evaluations",
+      "openstax-pe3-30-2"
+    ]
+  },
+  "key_takeaways": [
+    "A proposal states the goal, mechanism, target group, cost, funding, and expected outcomes, and follows the order problem → evidence → solution → costs and benefits → limits.",
+    "Compare the cost with the budget it comes from, and say who pays and what is given up.",
+    "Name trade-offs and implementation constraints openly; a pilot with a comparison group can reduce uncertainty.",
+    "Put multi-year costs in real terms and in present value, using one base year and a stated discount rate.",
+    "Every indicator needs a baseline, target, timeframe, and data source.",
+    "Rate your own work by matching the rubric descriptions to what you actually wrote, and use the reflection to name limitations and next steps. This prepares Capstone steps 8 and 9."
+  ],
+  "source_ids": [
+    "jpal-cea",
+    "jpal-intro-evaluations",
+    "berkeley-evaluating-resources",
+    "openstax-pe3-2-1",
+    "openstax-pe3-12-3",
+    "openstax-pe3-12-4",
+    "openstax-pe3-17-3",
+    "openstax-pe3-19-2",
+    "openstax-pe3-30-2",
+    "unstats-sdg-indicators",
+    "un-sdg-4",
+    "un-sdg-6"
+  ]
+}

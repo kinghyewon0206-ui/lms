@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "id": "c08-l2-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c08",
+  "lesson_id": "c08-l2",
+  "version": 1,
+  "title": "Lesson 2 Quiz: Exchange Rates and International Markets",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c08-l2-q1",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l2",
+      "objective": 1,
+      "concept_ids": [
+        "exchange_rate"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): The exchange rate is 1 COR = 2.5 DEN (denas per coro). A souvenir in Country D costs 150 DEN. How many coros does a tourist from Country C pay for it, ignoring fees? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ]
+    },
+    {
+      "id": "c08-l2-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l2",
+      "objective": 1,
+      "concept_ids": [
+        "appreciation_depreciation",
+        "exchange_rate"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): A rate quoted in coros per dena changes from 0.40 COR per DEN to 0.50 COR per DEN. Which statement is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The coro appreciated, since the quoted number went up"
+        },
+        {
+          "id": "b",
+          "text": "The dena depreciated; one coro now buys more denas than before"
+        },
+        {
+          "id": "c",
+          "text": "Neither currency changed in value; just the quote direction changed"
+        },
+        {
+          "id": "d",
+          "text": "The dena appreciated; one coro now buys 2 denas instead of 2.5"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ]
+    },
+    {
+      "id": "c08-l2-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l2",
+      "objective": 2,
+      "concept_ids": [
+        "export_import_prices",
+        "currency_winners_losers"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): The coro depreciates against the dena. Sellers keep their prices in their own currencies. Which group in Country C is most likely to benefit?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Households in Country C that buy goods imported from Country D"
+        },
+        {
+          "id": "b",
+          "text": "Students from Country C who pay tuition and rent in Country D"
+        },
+        {
+          "id": "c",
+          "text": "Firms in Country C that sell their products to buyers in Country D"
+        },
+        {
+          "id": "d",
+          "text": "Firms in Country C that repay loans they borrowed in denas"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-29-1",
+        "openstax-pe3-29-3"
+      ]
+    },
+    {
+      "id": "c08-l2-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l2",
+      "objective": 1,
+      "concept_ids": [
+        "appreciation_depreciation"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): The exchange rate falls from 3.2 DEN per COR to 2.5 DEN per COR. Measured in coros per dena, by what percent did the dena appreciate against the coro? (Enter the number of percent, rounded to one decimal place, e.g., 12.5.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ]
+    },
+    {
+      "id": "c08-l2-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l2",
+      "objective": 3,
+      "concept_ids": [
+        "forex_market"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): Investors come to expect higher returns on Country C's assets than on Country D's. In the foreign exchange market for coros (price measured in denas per coro), what is the most likely result?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Supply of coros rises, and the coro appreciates"
+        },
+        {
+          "id": "b",
+          "text": "Demand for coros rises, and the coro appreciates"
+        },
+        {
+          "id": "c",
+          "text": "Demand for coros falls, and the coro depreciates"
+        },
+        {
+          "id": "d",
+          "text": "Demand for coros rises, and the coro depreciates"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-29-2"
+      ]
+    }
+  ]
+}

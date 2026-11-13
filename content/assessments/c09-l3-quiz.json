@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "id": "c09-l3-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c09",
+  "lesson_id": "c09-l3",
+  "version": 1,
+  "title": "Lesson 3 Quiz: Develop and Present an Economic Policy Proposal",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c09-l3-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l3",
+      "objective": 1,
+      "concept_ids": [
+        "proposal_structure"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which sentence states the mechanism of a policy proposal?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "A repair fund cuts the time students lose fetching water, lowering the opportunity cost of attending school."
+        },
+        {
+          "id": "b",
+          "text": "The proposal will serve about 1,100 students in four rural schools in the eastern part of District K."
+        },
+        {
+          "id": "c",
+          "text": "The repair fund will cost about $41,000 per year and will be paid for from the town's general budget."
+        },
+        {
+          "id": "d",
+          "text": "Attendance at the four schools should rise from 85% to 90% within two school years of the launch."
+        }
+      ],
+      "source_ids": [
+        "jpal-cea",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c09-l3-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l3",
+      "objective": 2,
+      "concept_ids": [
+        "funding_budget",
+        "tradeoffs_implementation"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A town plans to pay for a school water-repair fund by moving money out of its public library budget. What should the proposal say about the cost of this funding choice?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The plan costs the town nothing, because it uses money that is already in the town's budget."
+        },
+        {
+          "id": "b",
+          "text": "The plan's cost should be counted twice, once for the library and once for the new repair fund."
+        },
+        {
+          "id": "c",
+          "text": "The plan's opportunity cost is the library services that the moved money would have paid for."
+        },
+        {
+          "id": "d",
+          "text": "The plan involves no trade-off, as long as the total size of the town's budget stays the same."
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-30-2",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c09-l3-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c09-l3",
+      "objective": 2,
+      "concept_ids": [
+        "costs_over_time"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A proposal includes a $22,050 equipment replacement that will be paid two years from now. Using a discount rate of 5% per year, what is the present value of that cost, in dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-17-3",
+        "jpal-cea"
+      ]
+    },
+    {
+      "id": "c09-l3-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l3",
+      "objective": 3,
+      "concept_ids": [
+        "measurable_indicators"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which indicator statement is complete enough to measure the progress of a proposal?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Improve access to safe drinking water at the schools as much as possible over time, using the best data."
+        },
+        {
+          "id": "b",
+          "text": "Share of school days with working drinking water: from 65% in 2026 to 90% by 2028, from maintenance logs."
+        },
+        {
+          "id": "c",
+          "text": "The share of school days with working drinking water should rise a lot, as teachers notice over the year."
+        },
+        {
+          "id": "d",
+          "text": "By 2028 students will be healthier and happier at school, as shown by a survey that we may run later on."
+        }
+      ],
+      "source_ids": [
+        "unstats-sdg-indicators",
+        "un-sdg-6"
+      ]
+    },
+    {
+      "id": "c09-l3-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l3",
+      "objective": 3,
+      "concept_ids": [
+        "self_assessment_reflection"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Which sentence from a capstone reflection best names a real limitation and a next step?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "I worked very hard on this project, and I think my proposal is excellent, so I would keep it as it is."
+        },
+        {
+          "id": "b",
+          "text": "My proposal is strong, but the rubric was unfair to me, because it asked for far too much evidence."
+        },
+        {
+          "id": "c",
+          "text": "I learned a lot about water. Next time I would choose a different SDG so that the project is easier."
+        },
+        {
+          "id": "d",
+          "text": "My effect estimate came from before-and-after data alone, so next time I would look for a comparison group."
+        }
+      ],
+      "source_ids": [
+        "jpal-intro-evaluations"
+      ]
+    }
+  ]
+}

@@ -115,7 +115,9 @@
         "price_elasticity_supply"
       ],
       "lesson_ids": [
-        "c02-l3"
+        "c02-l3",
+        "c08-l2",
+        "c09-l1"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -164,7 +166,8 @@
       "lesson_ids": [
         "c02-l1",
         "c02-l2",
-        "c02-l3"
+        "c02-l3",
+        "c09-l2"
       ],
       "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
@@ -190,13 +193,14 @@
         "c01-l2",
         "c01-l3",
         "c02-l2",
-        "c02-l3"
+        "c02-l3",
+        "c08-l3"
       ],
       "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "Rechecked 2026-11-13: confirmed the Goal 12 title and targets 12.2 (efficient use of natural resources), 12.3 (halve food waste, reduce food losses), 12.5 (reduce waste generation), and 12.8 (information and awareness for sustainable lifestyles).",
+        "method": "Rechecked 2026-11-13: confirmed the Goal 12 title and targets 12.2 (efficient use of natural resources), 12.3 (halve food waste, reduce food losses), 12.5 (reduce waste generation), and 12.8 (information and awareness for sustainable lifestyles). c08 (2026-11-13, AI): also confirmed targets 12.4 (environmentally sound management of chemicals and wastes), 12.6 (encourage companies, especially large and transnational companies, to adopt sustainable practices and integrate sustainability information into their reporting cycle), and 12.7 (sustainable public procurement).",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -281,7 +285,8 @@
         "specialization"
       ],
       "lesson_ids": [
-        "c01-l1"
+        "c01-l1",
+        "c09-l1"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -333,7 +338,9 @@
         "c01-l1",
         "c01-l2",
         "c01-l3",
-        "c07-l1"
+        "c07-l1",
+        "c09-l1",
+        "c09-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -357,7 +364,8 @@
         "allocative_efficiency"
       ],
       "lesson_ids": [
-        "c01-l2"
+        "c01-l2",
+        "c08-l1"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -404,7 +412,10 @@
       "lesson_ids": [
         "c01-l3",
         "c03-l1",
-        "c03-l3"
+        "c03-l3",
+        "c08-l3",
+        "c09-l1",
+        "c09-l2"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -449,7 +460,10 @@
         "property_rights"
       ],
       "lesson_ids": [
-        "c03-l3"
+        "c03-l3",
+        "c09-l1",
+        "c09-l2",
+        "c09-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -519,7 +533,8 @@
         "tragedy_of_the_commons"
       ],
       "lesson_ids": [
-        "c03-l2"
+        "c03-l2",
+        "c09-l1"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -761,7 +776,8 @@
         "unemployment_rate"
       ],
       "lesson_ids": [
-        "c05-l2"
+        "c05-l2",
+        "c09-l1"
       ],
       "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
       "verification": {
@@ -839,13 +855,16 @@
         "c04-l3",
         "c07-l1",
         "c07-l2",
-        "c07-l3"
+        "c07-l3",
+        "c08-l1",
+        "c08-l2",
+        "c08-l3"
       ],
       "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "Opened 2026-11-13: goal title and targets 8.2 (productivity through diversification, technological upgrading and innovation), 8.5 (full and productive employment and decent work for all, equal pay for work of equal value), 8.6 (reduce the proportion of youth not in employment, education or training) and 8.8 (protect labour rights, safe and secure working environments) confirmed on the page. c04 (2026-11-13, AI): also confirmed targets 8.1 (sustain per capita economic growth) and 8.4 (resource efficiency; decouple economic growth from environmental degradation). c07 (2026-11-13, AI): also confirmed target 8.10 (strengthen the capacity of domestic financial institutions to encourage and expand access to banking, insurance and financial services for all) and 8.3 (including through access to financial services).",
+        "method": "Opened 2026-11-13: goal title and targets 8.2 (productivity through diversification, technological upgrading and innovation), 8.5 (full and productive employment and decent work for all, equal pay for work of equal value), 8.6 (reduce the proportion of youth not in employment, education or training) and 8.8 (protect labour rights, safe and secure working environments) confirmed on the page. c04 (2026-11-13, AI): also confirmed targets 8.1 (sustain per capita economic growth) and 8.4 (resource efficiency; decouple economic growth from environmental degradation). c07 (2026-11-13, AI): also confirmed target 8.10 (strengthen the capacity of domestic financial institutions to encourage and expand access to banking, insurance and financial services for all) and 8.3 (including through access to financial services). c08 (2026-11-13, AI): also confirmed targets 8.7 (eradicate forced labour, end modern slavery and human trafficking, eliminate the worst forms of child labour) and 8.a (increase Aid for Trade support for developing countries), and rechecked 8.2, 8.4 and 8.8.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -884,7 +903,9 @@
         "growth_rate"
       ],
       "lesson_ids": [
-        "c04-l1"
+        "c04-l1",
+        "c09-l1",
+        "c09-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -1042,7 +1063,8 @@
         "correlation_causation"
       ],
       "lesson_ids": [
-        "c04-l1"
+        "c04-l1",
+        "c09-l2"
       ],
       "license": "CC BY-NC-SA 4.0 (as stated in the OpenStax citation notice)",
       "verification": {
@@ -1159,7 +1181,9 @@
         "causes_of_inequality"
       ],
       "lesson_ids": [
-        "c06-l1"
+        "c06-l1",
+        "c09-l1",
+        "c09-l2"
       ],
       "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
       "verification": {
@@ -1212,7 +1236,9 @@
       ],
       "lesson_ids": [
         "c06-l2",
-        "c06-l3"
+        "c06-l3",
+        "c09-l2",
+        "c09-l3"
       ],
       "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
       "verification": {
@@ -1283,7 +1309,8 @@
         "c06-l3",
         "c07-l1",
         "c07-l2",
-        "c07-l3"
+        "c07-l3",
+        "c09-l2"
       ],
       "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
@@ -1384,7 +1411,9 @@
       ],
       "lesson_ids": [
         "c07-l2",
-        "c07-l3"
+        "c07-l3",
+        "c09-l1",
+        "c09-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
@@ -1611,6 +1640,501 @@
         "status": "verified",
         "checked_at": "2026-11-13",
         "method": "c07 (2026-11-13, AI): opened the page and confirmed the database tracks account ownership including mobile money and digitally enabled accounts, saving, borrowing, digital payments and financial resilience (access to emergency money). No statistics from it are used in the lesson.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-33-1",
+      "title": "33.1 Absolute and Comparative Advantage",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/33-1-absolute-and-comparative-advantage",
+      "concepts": [
+        "absolute_advantage",
+        "comparative_advantage",
+        "gains_from_trade",
+        "terms_of_trade"
+      ],
+      "lesson_ids": [
+        "c08-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed definitions of absolute advantage (more output with the same resources) and comparative advantage (lower opportunity cost), that trade follows comparative advantage, that specialization can raise total output, that both countries gain when the trade price lies between their opportunity costs, that trade lets a country consume beyond its own PPF, and that the examples assume straight-line PPFs (constant opportunity cost) as a simplification.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-33-2",
+      "title": "33.2 What Happens When a Country Has an Absolute Advantage in All Goods",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/33-2-what-happens-when-a-country-has-an-absolute-advantage-in-all-goods",
+      "concepts": [
+        "absolute_advantage",
+        "comparative_advantage",
+        "terms_of_trade",
+        "gains_from_trade"
+      ],
+      "lesson_ids": [
+        "c08-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed that a country with an absolute advantage in all goods still gains by specializing in its comparative advantage, that the PPF slope is the opportunity cost, that shifting production toward comparative advantage raises combined output, that there is a range of mutually beneficial terms of trade, and that trade allows consumption beyond the PPF.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-33-3",
+      "title": "33.3 Intra-industry Trade between Similar Economies",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/33-3-intra-industry-trade-between-similar-economies",
+      "concepts": [
+        "global_value_chain",
+        "value_added",
+        "economies_of_scale",
+        "dynamic_comparative_advantage"
+      ],
+      "lesson_ids": [
+        "c08-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed intra-industry trade, splitting up the value chain into stages across firms and countries (trade in components, made easier by better communication and transportation), economies of scale, learning and specialized skills, and that comparative advantage can change over time. It does not discuss supply chain disruption, resilience, supplier diversification, or inventories (the lesson's treatment of those is the AI's own explanation).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-33-4",
+      "title": "33.4 The Benefits of Reducing Barriers to International Trade",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/33-4-the-benefits-of-reducing-barriers-to-international-trade",
+      "concepts": [
+        "tariff",
+        "global_value_chain",
+        "gains_from_trade"
+      ],
+      "lesson_ids": [
+        "c08-l1",
+        "c08-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed that tariffs are taxes on imported goods, the WTO's role in negotiating lower barriers, unmeasured gains (variety, competition, knowledge transfer), that specialization across production stages lowers costs (smartphone example with design, components and assembly in different countries), and that trade on this scale causes disruption and controversy. It does not discuss who loses from trade or adjustment policies.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-34-1",
+      "title": "34.1 Protectionism: An Indirect Subsidy from Consumers to Producers",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/34-1-protectionism-an-indirect-subsidy-from-consumers-to-producers",
+      "concepts": [
+        "tariff",
+        "import_quota",
+        "nontariff_barriers",
+        "protectionism"
+      ],
+      "lesson_ids": [
+        "c08-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed definitions of protectionism, tariffs, import quotas and nontariff barriers; a demand and supply analysis in which import restrictions raise the domestic price, domestic producers gain, domestic consumers lose more than producers gain, and user industries and foreign exporters lose; and the description of protection as an indirect subsidy from consumers to producers. The page does not use the terms deadweight loss or tariff revenue (the lesson's welfare calculation is standard analysis added by the AI).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-34-2",
+      "title": "34.2 International Trade and Its Effects on Jobs, Wages, and Working Conditions",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/34-2-international-trade-and-its-effects-on-jobs-wages-and-working-conditions",
+      "concepts": [
+        "distribution_of_gains",
+        "jobs_and_trade",
+        "labor_standards"
+      ],
+      "lesson_ids": [
+        "c08-l1",
+        "c08-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed that protection reshuffles jobs between industries rather than creating them, that trade helps some workers and hurts others (import-competing vs. export industries), that costs and benefits are spread unevenly, and a discussion of working conditions in low-income countries, from clearly unacceptable practices such as abusive child labor to harder cases, with a call for enforceable minimum labor standards.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-34-3",
+      "title": "34.3 Arguments in Support of Restricting Imports",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/34-3-arguments-in-support-of-restricting-imports",
+      "concepts": [
+        "infant_industry",
+        "anti_dumping",
+        "environment_and_trade",
+        "race_to_the_bottom"
+      ],
+      "lesson_ids": [
+        "c08-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed the textbook's assessment of arguments for restricting imports, including its view that the environmental race-to-the-bottom scenario does not match the evidence well, that environmental costs are a small share of plant costs, that trade restrictions are often not the best tool for raising foreign standards, that standards differ between high-income and lower-income countries, and that WTO rules allow science-based, non-discriminatory product standards.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-34-5",
+      "title": "34.5 The Tradeoffs of Trade Policy",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/34-5-the-tradeoffs-of-trade-policy",
+      "concepts": [
+        "distribution_of_gains",
+        "adjustment_assistance"
+      ],
+      "lesson_ids": [
+        "c08-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed that some workers and firms lose from trade, that gains are not shared equally and policy should consider those who lose, and the textbook's recommendation to keep the gains from trade while addressing costs with temporary assistance, government-backed retraining, and support for competitiveness rather than blocking trade. The lesson adds, as its own balancing note, that such programs have not always fully helped displaced workers (not stated on this page).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-29-1",
+      "title": "29.1 How the Foreign Exchange Market Works",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/29-1-how-the-foreign-exchange-market-works",
+      "concepts": [
+        "exchange_rate",
+        "appreciation_depreciation",
+        "export_import_prices",
+        "currency_winners_losers",
+        "forex_market"
+      ],
+      "lesson_ids": [
+        "c08-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed that exchange rates can be quoted in either direction (reciprocals), that a currency appreciates/strengthens when it buys more of other currencies and depreciates/weakens when it buys less, that one currency's appreciation is the other's depreciation, who gains and loses from a stronger or weaker currency (exporters, importers, tourists, investors), that a stronger currency tends to reduce exports and increase imports, and that most foreign exchange trading is related to investment and dealer banks. Real-world rates on the page were not used.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-29-2",
+      "title": "29.2 Demand and Supply Shifts in Foreign Exchange Markets",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/29-2-demand-and-supply-shifts-in-foreign-exchange-markets",
+      "concepts": [
+        "forex_market",
+        "purchasing_power_parity"
+      ],
+      "lesson_ids": [
+        "c08-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed that the exchange rate is set by demand and supply for a currency, that expectations (which can shift both curves and be self-reinforcing), relative returns/interest rates, and relative inflation shift them, and that rates tend to move toward purchasing power parity over the long run while deviating in the short and medium run.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-29-3",
+      "title": "29.3 Macroeconomic Effects of Exchange Rates",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/29-3-macroeconomic-effects-of-exchange-rates",
+      "concepts": [
+        "export_import_prices",
+        "currency_winners_losers",
+        "trade_balance"
+      ],
+      "lesson_ids": [
+        "c08-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed that exchange rates affect incentives to export and import, that sharp movements cause large swings in profits for exporters, importers and firms using imported inputs, and that banks borrowing in foreign currency and lending in domestic currency are hurt by depreciation. The page does not discuss elasticity conditions or time lags for the trade balance (the lesson's hedged discussion of these is the AI's own explanation).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "un-sdg-17",
+      "title": "Goal 17: Strengthen the means of implementation and revitalize the Global Partnership for Sustainable Development",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal17",
+      "concepts": [
+        "global_partnership",
+        "multilateral_trading_system",
+        "developing_country_exports",
+        "market_access"
+      ],
+      "lesson_ids": [
+        "c08-l1",
+        "c08-l2",
+        "c08-l3"
+      ],
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "c08 (2026-11-13, AI): opened the page and confirmed the Goal 17 title and the trade targets 17.10 (universal, rules-based, open, non-discriminatory and equitable multilateral trading system under the WTO), 17.11 (significantly increase the exports of developing countries), and 17.12 (duty-free and quota-free market access for least developed countries, with simple rules of origin), and partnership targets 17.16 and 17.17.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "un-sdg-4",
+      "title": "Goal 4: Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal4",
+      "concepts": [
+        "sdg_targets",
+        "measurable_indicators"
+      ],
+      "lesson_ids": [
+        "c09-l1",
+        "c09-l2",
+        "c09-l3"
+      ],
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page and confirmed the goal title, target 4.1 (all girls and boys complete free, equitable and quality primary and secondary education leading to relevant and effective learning outcomes) with indicators 4.1.1 (minimum proficiency in reading and mathematics) and 4.1.2 (completion rate), target 4.2 (early childhood development and pre-primary education) and target 4.a (safe, non-violent, inclusive and effective learning environments).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "un-sdg-6",
+      "title": "Goal 6: Ensure availability and sustainable management of water and sanitation for all",
+      "container": "United Nations, Department of Economic and Social Affairs — Sustainable Development",
+      "author": "United Nations",
+      "published": null,
+      "url": "https://sdgs.un.org/goals/goal6",
+      "concepts": [
+        "sdg_targets",
+        "measurable_indicators"
+      ],
+      "lesson_ids": [
+        "c09-l1",
+        "c09-l3"
+      ],
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page and confirmed the goal title, target 6.1 (universal and equitable access to safe and affordable drinking water for all by 2030) with indicator 6.1.1 (proportion of population using safely managed drinking water services), and targets 6.2, 6.3 and 6.4.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "unstats-sdg-indicators",
+      "title": "SDG Indicators: Global indicator framework for the Sustainable Development Goals and targets of the 2030 Agenda",
+      "container": "United Nations Statistics Division (UN DESA)",
+      "author": "United Nations Statistics Division",
+      "published": null,
+      "url": "https://unstats.un.org/sdgs/indicators/indicators-list/",
+      "concepts": [
+        "sdg_targets",
+        "measurable_indicators",
+        "problem_statement"
+      ],
+      "lesson_ids": [
+        "c09-l1",
+        "c09-l3"
+      ],
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page and confirmed that the global indicator framework was developed by the Inter-Agency and Expert Group on SDG Indicators (IAEG-SDGs), agreed by the UN Statistical Commission in March 2017, adopted by the General Assembly on 6 July 2017 (A/RES/71/313), and is refined annually with periodic comprehensive reviews. The indicator count on the page is not quoted in the lessons. The page does not discuss disaggregation or data sources.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "berkeley-evaluating-resources",
+      "title": "Evaluating Resources",
+      "container": "UC Berkeley Library (Library Guides)",
+      "author": "UC Berkeley Library",
+      "published": null,
+      "url": "https://guides.lib.berkeley.edu/evaluating-resources",
+      "concepts": [
+        "source_reliability",
+        "self_assessment_reflection"
+      ],
+      "lesson_ids": [
+        "c09-l2",
+        "c09-l3"
+      ],
+      "license": "Subject to the UC Berkeley Library website terms. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page (last updated Nov 7, 2025) and confirmed its six questions for evaluating a source: authority (author's expertise, institutional role, point of view), purpose (why and for whom, including economic interests; educational or persuasive), publication and format (peer review, sponsors, self-published), relevance, date of publication or last update, and documentation (cited sources, fair representation, cherry-picking). It does not use the phrase 'conflict of interest'; the lesson uses that term for the 'economic interests' question. It does not define primary vs. secondary sources.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "uw-primary-secondary",
+      "title": "Integrated Social Sciences Program: Primary and Secondary Sources",
+      "container": "University of Washington Libraries (Library Guides)",
+      "author": "University of Washington Libraries",
+      "published": null,
+      "url": "https://guides.lib.uw.edu/research/iss/sourcetypes",
+      "concepts": [
+        "primary_secondary"
+      ],
+      "lesson_ids": [
+        "c09-l2"
+      ],
+      "license": "Subject to the University of Washington Libraries website terms. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page and confirmed it describes a primary source as an original document containing firsthand information and a secondary source as an interpretation, analysis, discussion or evaluation based on primary evidence; it lists data and research results (original findings, statistics) as a primary-source example and notes that the classification depends on the discipline and research question.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-is2e-1-4",
+      "title": "1.4 Experimental Design and Ethics",
+      "container": "Introductory Statistics 2e",
+      "author": "Barbara Illowsky, Susan Dean (OpenStax, Rice University)",
+      "published": "2023-12-13",
+      "url": "https://openstax.org/books/introductory-statistics-2e/pages/1-4-experimental-design-and-ethics",
+      "concepts": [
+        "correlation_causation",
+        "counterfactual"
+      ],
+      "lesson_ids": [
+        "c09-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0 (as stated in the OpenStax citation notice)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page and confirmed it explains explanatory and response variables, lurking variables (vitamin E example: users also exercise, eat well and avoid smoking), random assignment spreading lurking variables across groups, control groups and placebos, and that a randomized experiment can establish a cause-and-effect connection while studies without random assignment cannot.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "jpal-intro-evaluations",
+      "title": "Introduction to randomized evaluations",
+      "container": "J-PAL (Abdul Latif Jameel Poverty Action Lab) Research Resources",
+      "author": "Michael Gibson, Anja Sautmann (J-PAL)",
+      "published": "2023-04",
+      "url": "https://www.povertyactionlab.org/resource/introduction-evaluations",
+      "concepts": [
+        "counterfactual",
+        "self_assessment_reflection"
+      ],
+      "lesson_ids": [
+        "c09-l2",
+        "c09-l3"
+      ],
+      "license": "Subject to the J-PAL website terms of use. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page (last updated April 2023) and confirmed: impact evaluation compares participants with a comparison group; the counterfactual is what would have happened without the program; comparing participants with non-participants or before and after can be biased by selection bias (example: officials choosing well-run villages would overstate the effect); random assignment such as a lottery makes groups comparable.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "jpal-cea",
+      "title": "Conducting cost-effectiveness analysis (CEA)",
+      "container": "J-PAL (Abdul Latif Jameel Poverty Action Lab) Research Resources",
+      "author": "Radhika Bhula, Meghan Mahoney, Kyle Murphy (J-PAL)",
+      "published": "2020-07",
+      "url": "https://www.povertyactionlab.org/resource/conducting-cost-effectiveness-analysis-cea",
+      "concepts": [
+        "cost_effectiveness",
+        "uncertainty_justification",
+        "costs_over_time",
+        "proposal_structure"
+      ],
+      "lesson_ids": [
+        "c09-l2",
+        "c09-l3"
+      ],
+      "license": "Subject to the J-PAL website terms of use. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page (last updated July 2020) and confirmed: CEA reduces a program to a ratio of cost to impact (example: dollars per additional day of student attendance) to compare programs aiming at the same outcome; assumptions such as take-up and unit costs should be stated because results are sensitive to them; costs include beneficiary time and donated goods; costs are put in one base year using GDP deflators, exchange rates and a discount rate for multi-year costs, applied in a consistent order; cost data should be collected during implementation; CEA may not by itself be enough for every decision. The page does not discuss benefit-cost analysis.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-12-4",
+      "title": "12.4 The Benefits and Costs of U.S. Environmental Laws",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/12-4-the-benefits-and-costs-of-u-s-environmental-laws",
+      "concepts": [
+        "cost_effectiveness",
+        "uncertainty_justification",
+        "tradeoffs_implementation"
+      ],
+      "lesson_ids": [
+        "c09-l2",
+        "c09-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 (2026-11-14, AI): opened the page and confirmed: an EPA study estimated Clean Air Act benefits for 1970-1990 far above costs, but overall benefits exceeding costs does not mean every rule is worthwhile; for some pollutants costs may match or exceed benefits; marginal costs of pollution reduction rise and marginal benefits fall; some benefits (health, clear air) are hard to value in money.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     }

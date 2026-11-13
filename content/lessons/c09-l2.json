@@ -1,0 +1,500 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c09-l2",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Judge how credible a piece of evidence is by checking who published it, how it was produced, when, possible conflicts of interest, and whether it is a primary or secondary source, and explain why a correlation alone does not show causation.",
+    "Compare policy options on costs, benefits, cost-effectiveness, externalities, and distributional impacts, using course concepts and calculations such as cost per person reached and a benefit–cost ratio.",
+    "State the uncertainty and key assumptions behind a comparison, test how sensitive the ranking is to them, and justify a recommendation, as preparation for Capstone project steps 5 to 7."
+  ],
+  "concepts": [
+    {
+      "id": "source_reliability",
+      "term": "Source reliability",
+      "definition": "How far you can trust a source depends on its authority (who wrote or published it and their expertise), its purpose (to inform, persuade, or sell, and any economic interest or conflict of interest), how and where it was published (for example, peer review or an official statistics agency), its date, and its documentation (whether it cites its evidence and represents it fairly).",
+      "source_ids": [
+        "berkeley-evaluating-resources"
+      ]
+    },
+    {
+      "id": "primary_secondary",
+      "term": "Primary vs. secondary sources",
+      "definition": "A primary source contains original, firsthand information, such as a statistical release, survey data, or a study presenting original findings. A secondary source interprets, discusses, or evaluates primary evidence, such as a news article or a summary report. Whenever you can, check a number in its primary source.",
+      "source_ids": [
+        "uw-primary-secondary"
+      ]
+    },
+    {
+      "id": "correlation_causation",
+      "term": "Correlation vs. causation",
+      "definition": "Two variables are correlated when they tend to move together. Correlation does not imply causation: a third factor (a lurking variable) may drive both, the causation may run the other way, or the pattern may be chance. Random assignment in an experiment is one way to establish cause and effect.",
+      "source_ids": [
+        "openstax-is2e-12-3",
+        "openstax-is2e-1-4"
+      ]
+    },
+    {
+      "id": "counterfactual",
+      "term": "The counterfactual and comparison groups",
+      "definition": "The impact of a program is the difference between what happened with it and what would have happened without it (the counterfactual). Because the counterfactual cannot be observed, evaluations use a comparison group. Simple before-and-after comparisons, or comparisons of participants with non-participants, can be biased when the groups differ in other ways (selection bias).",
+      "source_ids": [
+        "jpal-intro-evaluations",
+        "openstax-is2e-1-4"
+      ]
+    },
+    {
+      "id": "cost_effectiveness",
+      "term": "Cost-effectiveness and benefit–cost comparison",
+      "definition": "Cost-effectiveness divides a program's cost by its impact on one outcome (for example, dollars per extra day of attendance), which lets you compare programs aiming at the same goal. Benefit–cost analysis puts both benefits and costs in money terms, so the benefit–cost ratio (benefits ÷ costs) or net benefit (benefits − costs) can compare programs with different goals, at the price of harder valuation assumptions.",
+      "source_ids": [
+        "jpal-cea",
+        "openstax-pe3-12-4"
+      ]
+    },
+    {
+      "id": "externalities_distribution",
+      "term": "Externalities and distributional impacts",
+      "definition": "A full comparison of policy options also asks who else is affected (positive or negative externalities on third parties) and who gains and who pays (the distribution of benefits and costs across income groups, places, and generations). A policy with high average benefits can still leave some groups worse off.",
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-12-3",
+        "openstax-pe3-30-2",
+        "openstax-pe3-15-4"
+      ]
+    },
+    {
+      "id": "uncertainty_justification",
+      "term": "Uncertainty, sensitivity, and a justified recommendation",
+      "definition": "Every comparison rests on assumptions, such as how many people take part, unit costs, and how much an outcome is worth. A sensitivity check changes one assumption at a time to see whether the ranking of options changes. A justified recommendation states the chosen option, the evidence and reasoning, the main assumptions, and what would change the conclusion.",
+      "source_ids": [
+        "jpal-cea",
+        "openstax-pe3-12-4"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "To compare solutions, you need evidence you can trust. Check who made a source and why, look for the original data, and be careful: two things happening together does not mean one causes the other. Then compare options on what they cost, what they achieve, and who gains or pays, and say how sure you are.",
+      "sections": [
+        {
+          "heading": "Can you trust this source?",
+          "concept_ids": [
+            "source_reliability"
+          ],
+          "paragraphs": [
+            "Before you use a number, ask five questions. Who published it, and do they know the topic? Why was it made: to inform, to persuade, or to sell something? Where was it published: an official statistics office, a research journal, a company ad, a social media post? When was it published or last updated? Does it say where its numbers come from?",
+            "Watch for conflicts of interest. A company selling water filters may be honest, but it gains if you believe filters work. That does not make its claim false; it means you should look for other evidence too."
+          ]
+        },
+        {
+          "heading": "Find the original",
+          "concept_ids": [
+            "primary_secondary"
+          ],
+          "paragraphs": [
+            "A primary source is where information first appears: survey data, an official statistics release, or a study reporting its own results. A secondary source talks about that information, like a news story or a blog post. Secondary sources are useful for finding your way, but numbers can get changed or rounded as they are passed along. Whenever you can, follow the link back to the original.",
+            "In the Capstone project, the \"Evidence and sources\" field asks for the title, publisher, and date of each source you checked yourself. If you could not check a number, leave it out."
+          ]
+        },
+        {
+          "heading": "Together is not the same as because",
+          "concept_ids": [
+            "correlation_causation",
+            "counterfactual"
+          ],
+          "paragraphs": [
+            "Suppose schools with school meals have higher attendance. Does that mean meals cause attendance to rise? Not necessarily. Maybe meals were first given to schools in towns that were already richer or had better roads. When two things move together, that is a correlation. To show one causes the other, you need to rule out other explanations.",
+            "The best question is: what would have happened without the program? Comparing a group that got the program with a similar group that did not is much better than only looking at before and after."
+          ]
+        },
+        {
+          "heading": "What does each option cost and achieve?",
+          "concept_ids": [
+            "cost_effectiveness"
+          ],
+          "paragraphs": [
+            "A simple way to compare options is cost per person reached: total cost ÷ number of people helped. Even better is cost per result, like dollars per extra school day attended. If two programs aim at the same result, the one with the lower cost per result does more with the same budget.",
+            "Sometimes you can also put benefits in dollars. If benefits are larger than costs, the option is worth considering; benefits ÷ costs gives the benefit–cost ratio."
+          ]
+        },
+        {
+          "heading": "Who else is affected?",
+          "concept_ids": [
+            "externalities_distribution"
+          ],
+          "paragraphs": [
+            "Look beyond the people the program is aimed at. A clean-water project may also help families near the school (a positive externality). A new fee may fall hardest on the poorest families. Ask: who gains, who pays, and is anyone left worse off?",
+            "Step \"5. Incentives and trade-offs\" asks how each stakeholder's gains and costs change, and step \"7. Evaluate costs, benefits, and limits\" asks who gains and who pays."
+          ]
+        },
+        {
+          "heading": "Say how sure you are",
+          "concept_ids": [
+            "uncertainty_justification"
+          ],
+          "paragraphs": [
+            "Your numbers depend on guesses, like how many families will sign up. Try a lower and a higher guess and see whether your favorite option still wins. Then recommend one option and explain why, what you assumed, and what could prove you wrong. Step \"6. Propose a solution\" asks you to compare your solution with the alternatives."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Evidence is weighed by authority, purpose, method, date, and documentation, and checked against primary sources. Causal claims need a credible counterfactual. Options are compared on cost-effectiveness or benefit–cost terms, with externalities and distribution made explicit, and the recommendation is tested against its key assumptions.",
+      "sections": [
+        {
+          "heading": "Evaluating sources systematically",
+          "concept_ids": [
+            "source_reliability",
+            "primary_secondary"
+          ],
+          "paragraphs": [
+            "Use a consistent checklist: authority (author's expertise and institutional role), purpose (educational or persuasive, any economic interest of the author or sponsor), publication and format (peer review, official statistics, self-published), relevance (place, period, and population match your problem), date (first published or last updated, and what has changed since), and documentation (cited sources, fair representation, no cherry-picked facts).",
+            "Trace each important number to its primary source: the survey, administrative data, or study that produced it. Note the method: a sample survey, a census, administrative records, a model estimate, or an experiment. A secondary source that gets the number right but drops the definition (for example, \"access to water\" vs. \"safely managed drinking water\") can mislead. Record what each source supports and what it does not."
+          ]
+        },
+        {
+          "heading": "From correlation to causal evidence",
+          "concept_ids": [
+            "correlation_causation",
+            "counterfactual"
+          ],
+          "paragraphs": [
+            "A correlation can arise from causation in either direction, from a lurking variable that drives both, or from chance. Programs are rarely placed at random: officials may choose places that are better organized or more in need, and families who sign up may differ from those who do not. Comparing participants with non-participants then mixes the program's effect with these differences, which is selection bias.",
+            "Stronger designs build a credible comparison group. In a randomized evaluation, a lottery decides who gets the program, so with large enough groups the two are similar on average and differences in outcomes can be attributed to the program. When randomization is impossible, analysts use comparison groups and check that the groups were on similar paths before the program. Before-and-after comparisons alone attribute every change over time to the program."
+          ]
+        },
+        {
+          "heading": "Cost-effectiveness and benefit–cost analysis",
+          "concept_ids": [
+            "cost_effectiveness"
+          ],
+          "paragraphs": [
+            "Cost-effectiveness = cost ÷ impact on one outcome. It is a useful starting point when choosing among programs that aim at the same outcome, and it avoids putting a dollar value on that outcome. Count all the costs of the program, including participants' time and donated goods, and state the assumptions behind them, such as take-up and unit costs.",
+            "Benefit–cost analysis values all benefits and costs in money. A ratio above 1 (or a positive net benefit) means estimated benefits exceed costs. Some benefits, such as health gains or the value of clean air, are hard to value, and the result depends on those estimates. Even when a policy area shows large total net benefits, an additional measure may cost more than it adds at the margin, so compare marginal benefits and marginal costs."
+          ]
+        },
+        {
+          "heading": "Externalities, incentives, and distribution",
+          "concept_ids": [
+            "externalities_distribution"
+          ],
+          "paragraphs": [
+            "Apply course concepts to each option. Does it create or correct an externality? Does it change incentives, as a pollution charge does by rewarding firms that cut emissions cheaply? Could a price-based option hurt poor households when demand is inelastic? How are costs financed: a progressive tax, a flat fee, or a sales tax spreads the burden differently.",
+            "Make a short table for each option: who gains, who pays, and how much, broken down by income group or place when possible. An inequality lens from c06, such as the share of benefits reaching the poorest households, helps compare options that look similar on average."
+          ]
+        },
+        {
+          "heading": "Uncertainty and the recommendation",
+          "concept_ids": [
+            "uncertainty_justification"
+          ],
+          "paragraphs": [
+            "List the two or three assumptions that matter most (take-up, unit cost, size of impact, how long benefits last) and rerun the comparison with plausible low and high values. If the ranking does not change, the recommendation is robust; if it does, say what evidence would settle the question.",
+            "A justified recommendation, for steps \"6. Propose a solution\" and \"7. Evaluate costs, benefits, and limits\", states the option, the comparison with alternatives, the evidence and its quality, the distribution of gains and costs, the key assumptions, and the limits of what you know."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Formally, a program's impact is a difference between observed and counterfactual outcomes, estimated with a comparison group; cost-effectiveness is C ÷ ΔY; a benefit–cost ratio is B ÷ C; and a sensitivity analysis treats the ranking of options as a function of uncertain parameters such as take-up.",
+      "sections": [
+        {
+          "heading": "Grading evidence",
+          "concept_ids": [
+            "source_reliability",
+            "primary_secondary"
+          ],
+          "paragraphs": [
+            "Treat each claim as a link in a chain: primary data (who collected it, sampling method, definitions, date) → analysis (who did it, method, peer review, funding) → secondary report (how faithfully it carries the number). A claim is only as strong as its weakest documented link. Disclose funding or interests that could bias the choice of method or the framing of results; a conflict of interest is a reason to seek independent confirmation, not proof of error.",
+            "Prefer sources whose definitions match your indicator exactly. A reported \"access rate\" and an SDG indicator with a stricter definition can differ by many percentage points without either being wrong."
+          ]
+        },
+        {
+          "heading": "Counterfactuals, selection bias, and difference-in-differences",
+          "concept_ids": [
+            "correlation_causation",
+            "counterfactual"
+          ],
+          "paragraphs": [
+            "Let Y₁ be the outcome with the program and Y₀ without it. The impact on participants is E[Y₁ − Y₀ | participant], but Y₀ is never observed for participants. A naive comparison of participants and non-participants equals the true impact plus a selection-bias term E[Y₀ | participant] − E[Y₀ | non-participant]. Random assignment makes that term zero on average, which is why an experiment can establish cause and effect.",
+            "Without random assignment, a difference-in-differences estimate compares changes: (Y_after − Y_before) for the treated group minus (Y_after − Y_before) for the comparison group. It removes fixed differences between groups and common trends, but it assumes both groups would have followed parallel paths without the program. A correlation coefficient r measures linear association only; even a high r says nothing about which variable causes which."
+          ]
+        },
+        {
+          "heading": "Cost-effectiveness, benefit–cost ratios, and the margin",
+          "concept_ids": [
+            "cost_effectiveness"
+          ],
+          "paragraphs": [
+            "For a program with cost C and impact ΔY on outcome Y, the cost-effectiveness ratio is C ÷ ΔY (or its inverse, ΔY per $100). Multi-year costs are discounted to present value and expressed in the prices of one base year, using a stated discount rate and price index; the order of these adjustments should be applied consistently. Discount real (base-year-price) costs with a real discount rate and nominal costs with a nominal rate; never mix them.",
+            "With monetized benefits B, the benefit–cost ratio is B ÷ C and the net benefit is B − C. Ratios rank options by efficiency per dollar, while net benefit ranks by total gain; with a fixed budget that can be split, rank by ratio; with mutually exclusive projects of different size, net benefit matters. At the margin, expand an activity while marginal benefit ≥ marginal cost; because cheap reductions come first, marginal cost typically rises as coverage grows."
+          ]
+        },
+        {
+          "heading": "Externalities and distributional weights",
+          "concept_ids": [
+            "externalities_distribution"
+          ],
+          "paragraphs": [
+            "Include external effects in B and C: positive spillovers (fewer infections among non-participants) add to B, and external costs add to C. Then report the incidence: for each group g, net gain NG_g = B_g − C_g, including how the financing tax is shared. Some analysts apply distributional weights wg > 1 to poorer groups and compare Σ wg × NG_g; the weights are a value judgment and should be stated, not hidden.",
+            "Check the incentives each option creates. A per-unit subsidy lowers the price paid and raises use more when demand is elastic; a user fee raises revenue but cuts use most among price-sensitive, often poorer, users."
+          ]
+        },
+        {
+          "heading": "Sensitivity analysis and robust recommendations",
+          "concept_ids": [
+            "uncertainty_justification"
+          ],
+          "paragraphs": [
+            "Write each option's cost as a function of the uncertain parameters, for example C = F + c × τ × N, where F is fixed cost, c the cost per participant, τ the take-up rate, and N the eligible population. Cost per participant, C ÷ (τN) = F ÷ (τN) + c, rises as take-up falls because fixed costs are spread over fewer people.",
+            "A recommendation is robust when the preferred option stays best across the plausible range of every key parameter. When the ranking flips within that range, report the threshold (for example, \"Option A is better only if take-up exceeds 60%\") and name the evidence that would narrow the range. Cost-effectiveness alone may not be enough to decide, because programs pursue several goals at once."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c09-l2-we1",
+      "level": "beginner",
+      "title": "Cost per student reached",
+      "problem": "Hypothetical example: A school meals program in District M costs $90,000 for one school year and serves 1,500 students. What is the cost per student reached?",
+      "steps": [
+        "Cost per student = total cost ÷ students reached.",
+        "$90,000 ÷ 1,500 = $60 per student per year."
+      ],
+      "answer": "The program costs $60 per student reached per year. This tells you about cost, not yet about results.",
+      "check": {
+        "type": "ratio",
+        "numerator": 90000,
+        "denominator": 1500,
+        "expected": 60
+      }
+    },
+    {
+      "id": "c09-l2-we2",
+      "level": "intermediate",
+      "title": "Comparing cost-effectiveness",
+      "problem": "Hypothetical example: Two programs aim to raise school attendance in the same district. Evaluations with comparison groups estimate that Option X (repairing school water points) costs $48,000 and adds 1,200 student-days of attendance, and Option Y (an attendance awareness campaign) costs $30,000 and adds 500 student-days. Which option is more cost-effective?",
+      "steps": [
+        "Option X: $48,000 ÷ 1,200 days = $40 per extra student-day.",
+        "Option Y: $30,000 ÷ 500 days = $60 per extra student-day.",
+        "Option X buys an extra day of attendance for $20 less, even though its total cost is higher."
+      ],
+      "answer": "Option X is more cost-effective: $40 per extra student-day compared with $60. A lower total cost does not mean better value.",
+      "check": {
+        "type": "ratio",
+        "numerator": 48000,
+        "denominator": 1200,
+        "expected": 40
+      }
+    },
+    {
+      "id": "c09-l2-we3",
+      "level": "intermediate",
+      "title": "A benefit–cost ratio",
+      "problem": "Hypothetical example: A town estimates that a well-maintenance program would cost $100,000 over five years and bring benefits worth $150,000 (lower medical costs and time saved, valued under stated assumptions). What are the benefit–cost ratio and the net benefit?",
+      "steps": [
+        "Benefit–cost ratio = benefits ÷ costs = $150,000 ÷ $100,000 = 1.5.",
+        "Net benefit = $150,000 − $100,000 = $50,000.",
+        "The result depends on how time saved and health gains were valued, so those assumptions must be reported with the ratio."
+      ],
+      "answer": "The benefit–cost ratio is 1.5 and the net benefit is $50,000, given the stated valuation assumptions.",
+      "check": {
+        "type": "ratio",
+        "numerator": 150000,
+        "denominator": 100000,
+        "expected": 1.5
+      }
+    },
+    {
+      "id": "c09-l2-we4",
+      "level": "advanced",
+      "title": "Before-and-after vs. a comparison group",
+      "problem": "Hypothetical example: Schools that joined a meals program raised their average attendance rate from 82% to 90% over two years. Similar schools that did not join went from 80% to 85% over the same period. Estimate the program's effect with a difference-in-differences comparison.",
+      "steps": [
+        "Change in program schools = 90 − 82 = 8 percentage points.",
+        "Change in comparison schools = 85 − 80 = 5 percentage points.",
+        "Difference-in-differences estimate = 8 − 5 = 3 percentage points.",
+        "A before-and-after comparison would claim 8 points, but 5 of those points happened anyway in similar schools."
+      ],
+      "answer": "The estimated effect is about 3 percentage points, not 8, assuming both groups of schools would have followed parallel paths without the program.",
+      "check": {
+        "type": "difference",
+        "a": 8,
+        "b": 5,
+        "expected": 3
+      }
+    },
+    {
+      "id": "c09-l2-we5",
+      "level": "advanced",
+      "title": "Sensitivity to take-up",
+      "problem": "Hypothetical example: A tutoring program has a fixed cost of $20,000 plus $30 per participant. There are 2,000 eligible students. The plan assumed 80% take-up. What are the total cost and the cost per participant if take-up is only 50%, and how does that compare with the plan?",
+      "steps": [
+        "Planned: participants = 0.8 × 2,000 = 1,600; cost = $20,000 + $30 × 1,600 = $68,000; per participant = $68,000 ÷ 1,600 = $42.50.",
+        "At 50% take-up: participants = 0.5 × 2,000 = 1,000; cost = $20,000 + $30 × 1,000 = $50,000.",
+        "Per participant = $50,000 ÷ 1,000 = $50.00.",
+        "Lower take-up lowers the total cost but raises the cost per participant, because the fixed cost is shared by fewer students."
+      ],
+      "answer": "At 50% take-up the program costs $50,000, or $50.00 per participant instead of the planned $42.50. Report this range, not a single number.",
+      "check": {
+        "type": "linear",
+        "intercept": 20000,
+        "slope": 30,
+        "x": 1000,
+        "expected": 50000
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "Why evaluators look for a comparison group",
+      "source_ids": [
+        "jpal-intro-evaluations"
+      ],
+      "paragraphs": [
+        "J-PAL, a research center that runs randomized evaluations, explains that the impact of a program is measured against the counterfactual: what would have happened to participants without it. Comparing participants with non-participants, or comparing outcomes before and after, can be biased when the groups differ systematically. In one example J-PAL discusses, if officials had chosen which villages received a program, they might have picked well-run areas, which would make the program look more effective than it was. Random assignment, such as a lottery, makes the groups comparable."
+      ]
+    },
+    {
+      "title": "Cost per result as a common yardstick",
+      "source_ids": [
+        "jpal-cea"
+      ],
+      "paragraphs": [
+        "J-PAL's guide to cost-effectiveness analysis describes reducing each program to a ratio of cost to impact, such as dollars per additional day of student attendance, so that programs aiming at the same outcome can be compared across places and years. The guide stresses stating assumptions such as take-up and unit costs, because results can be sensitive to them, and notes that cost-effectiveness may not, by itself, give enough information for every decision."
+      ]
+    },
+    {
+      "title": "Total benefits vs. benefits at the margin",
+      "source_ids": [
+        "openstax-pe3-12-4"
+      ],
+      "paragraphs": [
+        "OpenStax reports that a U.S. Environmental Protection Agency study estimated the benefits of the Clean Air Act from 1970 to 1990 to be far larger than its costs. The textbook adds that this does not mean every environmental rule is worthwhile: for some pollutants, costs may match or exceed benefits, and because the cheapest reductions come first, the marginal cost of further cuts rises while the marginal benefit falls."
+      ]
+    },
+    {
+      "title": "A lurking variable",
+      "source_ids": [
+        "openstax-is2e-1-4",
+        "openstax-is2e-12-3"
+      ],
+      "paragraphs": [
+        "The OpenStax statistics textbook describes people who take vitamin E: they also tend to exercise, eat well, and avoid smoking, so their better health cannot be credited to vitamin E alone. These other habits are lurking variables. The book's point, that correlation does not imply causation and that random assignment spreads lurking variables across groups, applies directly to judging whether an SDG program caused an outcome."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      4,
+      2,
+      1
+    ],
+    "title": "Raising attendance in Country D",
+    "paragraphs": [
+      "SDG target 4.1 aims for all girls and boys to complete free, equitable, good-quality primary and secondary education. Target 2.1 aims to end hunger and ensure access to safe, nutritious, and sufficient food all year round, and target 1.3 calls for social protection systems that substantially cover the poor and vulnerable.",
+      "Hypothetical situation: In Country D, attendance in poor rural districts is low. The education ministry has a fixed budget for a pilot and is comparing three options. Local evidence is limited: one option has been evaluated with a comparison group in a similar country, and the others have only before-and-after data."
+    ],
+    "options": [
+      {
+        "name": "Free school meals in the poorest districts",
+        "benefits": [
+          "Improves children's nutrition (target 2.1) as well as giving families a reason to send children to school.",
+          "Helps nearby local farmers if food is bought locally."
+        ],
+        "costs": [
+          "Ongoing food and kitchen costs every year.",
+          "Evidence on attendance comes only from before-and-after data, which may overstate the effect."
+        ],
+        "assumptions": [
+          "Meals reach children reliably and food prices stay stable."
+        ]
+      },
+      {
+        "name": "Cash transfers to poor families on condition that children attend school",
+        "benefits": [
+          "Supports family income (target 1.3) and lowers the opportunity cost of sending a child to school instead of to work.",
+          "Has been evaluated with a comparison group in a similar country."
+        ],
+        "costs": [
+          "Checking attendance and incomes costs money, and some eligible families may be missed.",
+          "Results from another country may not carry over."
+        ],
+        "assumptions": [
+          "Families can receive payments safely and schools can report attendance accurately."
+        ]
+      },
+      {
+        "name": "After-school tutoring for students at risk of dropping out",
+        "benefits": [
+          "Targets learning directly, which may raise completion as well as attendance.",
+          "Low cost per participant if take-up is high."
+        ],
+        "costs": [
+          "Needs trained tutors, who are scarce in rural districts.",
+          "Cost per participant rises sharply if few students take part."
+        ],
+        "assumptions": [
+          "Enough students attend sessions and tutors stay for the whole year."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which option has the most credible evidence, and why? Compute a cost per extra student-day for each option under the same hypothetical assumptions, then test what happens if take-up or the size of the effect is lower. Who gains and who pays under each option, and which one would you recommend for the pilot?"
+    ],
+    "source_ids": [
+      "un-sdg-4",
+      "un-sdg-2",
+      "un-sdg-1",
+      "jpal-cea",
+      "jpal-intro-evaluations"
+    ]
+  },
+  "key_takeaways": [
+    "Check every source's authority, purpose, publication, date, and documentation, and watch for conflicts of interest.",
+    "Trace important numbers to the primary source and record what each source does and does not support.",
+    "Correlation does not imply causation; a credible comparison group is the key to estimating a program's impact.",
+    "Compare options with cost per person reached, cost per result, and, when benefits can be valued, the benefit–cost ratio.",
+    "Make externalities and the distribution of gains and costs explicit, not only averages.",
+    "Test your ranking against the key assumptions and state what would change your recommendation. This prepares Capstone steps 5 to 7."
+  ],
+  "source_ids": [
+    "berkeley-evaluating-resources",
+    "uw-primary-secondary",
+    "openstax-is2e-12-3",
+    "openstax-is2e-1-4",
+    "jpal-intro-evaluations",
+    "jpal-cea",
+    "openstax-pe3-12-1",
+    "openstax-pe3-12-3",
+    "openstax-pe3-12-4",
+    "openstax-pe3-15-4",
+    "openstax-pe3-30-2",
+    "un-sdg-1",
+    "un-sdg-2",
+    "un-sdg-4"
+  ]
+}

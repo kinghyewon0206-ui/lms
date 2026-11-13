@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "id": "c09-l2-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c09",
+  "lesson_id": "c09-l2",
+  "version": 1,
+  "title": "Lesson 2 Quiz: Analyze Evidence and Compare Policy Options",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c09-l2-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l2",
+      "objective": 1,
+      "concept_ids": [
+        "source_reliability"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "A student finds the claim \"Our filters cut school absences by half\" on a filter company's website, with no study cited. What is the best next step?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Use the claim as it is, because a company knows more about its own products than anyone else does."
+        },
+        {
+          "id": "b",
+          "text": "Look for an independent study or official data, because the company gains if readers believe the claim."
+        },
+        {
+          "id": "c",
+          "text": "Reject the claim and the product, because information from companies is usually false or misleading."
+        },
+        {
+          "id": "d",
+          "text": "Use the claim but round the number down a little, so that the project does not overstate the effect."
+        }
+      ],
+      "source_ids": [
+        "berkeley-evaluating-resources"
+      ]
+    },
+    {
+      "id": "c09-l2-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l2",
+      "objective": 1,
+      "concept_ids": [
+        "correlation_causation",
+        "counterfactual"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Districts with more health clinics have lower rates of child illness. A report concludes that building more clinics will cut child illness. What is the main weakness of this conclusion?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "The report should have measured clinics as a percentage of the town's buildings instead of as a count."
+        },
+        {
+          "id": "b",
+          "text": "A correlation is weak evidence when the study includes fewer than ten districts, but not otherwise."
+        },
+        {
+          "id": "c",
+          "text": "The pattern proves that child illness causes clinics to close, rather than the other way around."
+        },
+        {
+          "id": "d",
+          "text": "Richer districts may have both more clinics and less illness, so the pattern may not be causal."
+        }
+      ],
+      "source_ids": [
+        "openstax-is2e-12-3",
+        "openstax-is2e-1-4"
+      ]
+    },
+    {
+      "id": "c09-l2-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c09-l2",
+      "objective": 2,
+      "concept_ids": [
+        "cost_effectiveness"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A literacy program costs $36,000. An evaluation with a comparison group estimates that it raises the number of students who reach a minimum reading level by 450. What is the program's cost per additional student reaching that level, in dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "jpal-cea"
+      ]
+    },
+    {
+      "id": "c09-l2-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l2",
+      "objective": 2,
+      "concept_ids": [
+        "externalities_distribution"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Two options cost the same and improve school water supply equally. Option P is paid for by a flat fee of the same amount per household; Option Q is paid for by a progressive income tax. Which statement is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Option P places a larger burden, relative to income, on low-income households than Option Q does."
+        },
+        {
+          "id": "b",
+          "text": "Option P is fairer, because each household pays the same dollar amount."
+        },
+        {
+          "id": "c",
+          "text": "The two options have the same effects on each income group, because their average costs are equal."
+        },
+        {
+          "id": "d",
+          "text": "Option Q is regressive, because higher-income households pay more dollars in total under it."
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-30-2",
+        "openstax-pe3-15-4"
+      ]
+    },
+    {
+      "id": "c09-l2-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c09-l2",
+      "objective": 3,
+      "concept_ids": [
+        "uncertainty_justification"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Option A costs $40 per extra student-day if take-up is 80%, but $70 if take-up is 40%. Option B costs $55 per extra student-day whatever the take-up. Local take-up is unknown. What is the best way to present the recommendation?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Recommend Option A, because its best-case figure is the lowest number in the whole comparison."
+        },
+        {
+          "id": "b",
+          "text": "Recommend Option B, because its cost per day does not depend on how many students take part."
+        },
+        {
+          "id": "c",
+          "text": "Say that A is better only if take-up is high enough, and name the evidence that would settle it."
+        },
+        {
+          "id": "d",
+          "text": "Average A's two figures and compare the result, $55, with B's $55 to show that they are equal."
+        }
+      ],
+      "source_ids": [
+        "jpal-cea"
+      ]
+    }
+  ]
+}

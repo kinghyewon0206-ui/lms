@@ -1,0 +1,467 @@
+{
+  "schema_version": 1,
+  "lesson_id": "c09-l1",
+  "content_version": 2,
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      }
+    ]
+  },
+  "objectives": [
+    "Link a real-world issue to a specific SDG target and indicator, and separate the visible symptoms of a problem from its underlying economic causes.",
+    "Identify the stakeholders in a problem and the incentives each one faces, and explain the opportunity costs and resource constraints involved, including by calculating an opportunity cost or a change in an indicator.",
+    "Write a specific, researchable economic problem statement and connect it to course concepts, as preparation for Capstone project steps 1 to 4."
+  ],
+  "concepts": [
+    {
+      "id": "sdg_targets",
+      "term": "SDG goals, targets, and indicators",
+      "definition": "Each of the 17 UN Sustainable Development Goals is broken into more specific targets (for example, SDG target 6.1 on safe and affordable drinking water), and each target is tracked with one or more indicators (for example, indicator 6.1.1, the proportion of the population using safely managed drinking water services). Linking a problem to a target and an indicator, not only to a goal, makes it measurable.",
+      "source_ids": [
+        "unstats-sdg-indicators",
+        "un-sdg-6",
+        "un-sdg-4"
+      ]
+    },
+    {
+      "id": "symptoms_causes",
+      "term": "Symptoms vs. underlying causes",
+      "definition": "A symptom is what you can see (students missing school, polluted water, empty shelves). An underlying cause is the economic reason it happens: scarcity, prices or incentives that push people toward a choice, an externality, a public good that nobody pays for, or missing information. Policies that only treat symptoms tend to fail when the cause stays in place.",
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-3"
+      ]
+    },
+    {
+      "id": "stakeholders_incentives",
+      "term": "Stakeholders and their incentives",
+      "definition": "Stakeholders are the people and groups who affect or are affected by a problem: households, students, firms, workers, governments, and future generations. Each responds to incentives, the gains and costs that a choice brings to them. Explaining a problem means explaining why each stakeholder, acting on its own incentives, behaves as it does.",
+      "source_ids": [
+        "openstax-pe3-12-3",
+        "openstax-pe3-12-1"
+      ]
+    },
+    {
+      "id": "opportunity_cost",
+      "term": "Opportunity cost and resource constraints",
+      "definition": "Opportunity cost is the value of the next best alternative given up when a choice is made. Every SDG problem involves limited money, time, land, water, or skilled people, so any solution uses resources that could have done something else. Naming the constraint and the alternative given up keeps a problem statement realistic.",
+      "source_ids": [
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "concept_toolkit",
+      "term": "Course concepts as diagnostic tools",
+      "definition": "The concepts from earlier courses work as a checklist for diagnosing a problem: opportunity cost and incentives (c01), supply, demand, and elasticity (c02), externalities and public goods (c03), real vs. nominal values and GDP (c04), unemployment (c05), inequality measures (c06), compound interest (c07), and comparative advantage and exchange rates (c08). A good diagnosis uses the few concepts that actually explain the problem.",
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-13-3",
+        "openstax-pe3-5-1",
+        "openstax-pe3-19-2",
+        "openstax-pe3-21-1",
+        "openstax-pe3-15-4",
+        "openstax-pe3-17-3"
+      ]
+    },
+    {
+      "id": "problem_statement",
+      "term": "A specific, researchable problem statement",
+      "definition": "A problem statement says who is affected, where, what is happening as measured by an indicator, and what economic mechanism you think causes it. It is narrow enough to research with available evidence and does not already contain the solution.",
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "unstats-sdg-indicators"
+      ]
+    }
+  ],
+  "levels": {
+    "beginner": {
+      "summary": "A capstone project starts with a good question. You pick an SDG, find the specific target your issue touches, look past the symptoms to the economic causes, list who is affected and what drives them, and write down the problem in one clear, narrow statement.",
+      "sections": [
+        {
+          "heading": "From a big goal to a specific target",
+          "concept_ids": [
+            "sdg_targets"
+          ],
+          "paragraphs": [
+            "The 17 SDGs are big goals, like \"quality education\" (SDG 4) or \"clean water and sanitation\" (SDG 6). Each goal is split into targets that say more exactly what should change. For example, SDG target 6.1 is about everyone having safe and affordable drinking water, and target 4.1 is about all girls and boys completing good-quality primary and secondary school.",
+            "Each target also has indicators, which are the numbers used to track progress. Indicator 6.1.1 is the share of people using safely managed drinking water services. When you say which target and indicator your problem affects, your project becomes much easier to measure.",
+            "In the Capstone project, step \"1. Choose an SDG\" asks for the SDG number and why you chose it. Mention the target, too: it makes your reason stronger."
+          ]
+        },
+        {
+          "heading": "What you see vs. why it happens",
+          "concept_ids": [
+            "symptoms_causes"
+          ],
+          "paragraphs": [
+            "Imagine that students at a rural school often miss class. That is a symptom: something you can see. To find the cause, keep asking \"why?\" Maybe the school's water pump often breaks, so students go home to drink or fetch water. Maybe nobody is paid to fix the pump, because it belongs to everyone and no one in particular.",
+            "Economists look for causes such as scarcity, incentives, external costs, or goods that nobody has a reason to pay for. If you only treat the symptom, for example by punishing absences, the real cause stays and the problem comes back."
+          ]
+        },
+        {
+          "heading": "Who is involved, and what drives them",
+          "concept_ids": [
+            "stakeholders_incentives"
+          ],
+          "paragraphs": [
+            "Stakeholders are the people and groups linked to the problem: students, parents, teachers, the local government, a water company, farmers upstream, and even future generations. Each one makes choices based on its own gains and costs. Those gains and costs are incentives.",
+            "Write down each stakeholder and ask: what does this group gain or lose from the current situation, and what would make it act differently? Step \"4. Stakeholders\" in the Capstone project asks exactly this."
+          ]
+        },
+        {
+          "heading": "Every choice gives something up",
+          "concept_ids": [
+            "opportunity_cost"
+          ],
+          "paragraphs": [
+            "Money, time, and people are limited. If a town spends its budget fixing water pumps, it cannot spend the same money on tutoring. The value of the best thing you give up is the opportunity cost.",
+            "Naming the limits (a small budget, few trained workers, one dry season a year) makes your problem real. Real problems happen under real constraints."
+          ]
+        },
+        {
+          "heading": "Use the tools you already have",
+          "concept_ids": [
+            "concept_toolkit"
+          ],
+          "paragraphs": [
+            "You have learned many economic ideas in this program. Use them like a checklist. Is someone causing a cost to others without paying for it? That is an externality. Does everyone benefit from something that nobody pays to maintain? That may be a public good. Are prices or wages changing? Check whether the change is real or only nominal. Are some groups much poorer than others? Use an inequality measure.",
+            "Pick the two or three concepts that really explain your problem. Step \"3. Economic concepts and evidence\" asks you to name each concept and explain how it works in your problem."
+          ]
+        },
+        {
+          "heading": "Write one clear problem statement",
+          "concept_ids": [
+            "problem_statement"
+          ],
+          "paragraphs": [
+            "A good problem statement answers four questions: who is affected, where, what is happening (with a number if you can), and why you think it happens. Compare \"Poverty is bad\" with \"In two rural schools in our district, students miss many days because the school water supply is unreliable, and no one has a budget or incentive to maintain the pumps.\" The second one can be researched.",
+            "Do not put your solution into the problem statement. You will compare solutions later. Step \"2. Define the economic problem\" asks you to say whose problem it is and what scarcity or choice is involved."
+          ]
+        }
+      ]
+    },
+    "intermediate": {
+      "summary": "Defining a capstone problem is a diagnosis. You link the issue to an SDG target and its indicator, trace symptoms to economic mechanisms with course concepts, map stakeholders by their incentives, state the opportunity costs under the binding constraint, and write a problem statement that can be tested with evidence.",
+      "sections": [
+        {
+          "heading": "Goals, targets, and indicators",
+          "concept_ids": [
+            "sdg_targets"
+          ],
+          "paragraphs": [
+            "The SDGs have three layers. Goals state the broad aim, targets specify what should be achieved (often by 2030), and indicators in the global indicator framework measure progress. For example, SDG 4 includes target 4.1 (complete, free, equitable, good-quality primary and secondary education) with indicators such as completion rates, and target 4.a (safe, inclusive, effective learning environments). SDG 6 includes target 6.1 (safe and affordable drinking water for all), tracked by indicator 6.1.1.",
+            "Indicators are usually ratios: a count of people with some outcome divided by the relevant population. Knowing the numerator and the denominator tells you what data you will need and what kind of change counts as progress. A change in a ratio indicator can be described in percentage points (69% minus 60% is 9 percentage points) or as a percent change (9 ÷ 60 = 15%); say which one you mean."
+          ]
+        },
+        {
+          "heading": "Diagnosing causes with economic mechanisms",
+          "concept_ids": [
+            "symptoms_causes",
+            "concept_toolkit"
+          ],
+          "paragraphs": [
+            "Move from symptom to mechanism by asking which economic force produces the outcome. Common mechanisms in SDG problems: a negative externality (a third party who is neither buyer nor seller bears a cost, such as downstream pollution), a public good or common resource that is underprovided or overused because of free riding, prices that do not reflect scarcity, low price elasticity that makes a price change hurt poor households, a fall in real income hidden by rising nominal income, unemployment or low wages in a local labor market, high-interest debt that compounds, or trade and exchange-rate shocks to an export sector.",
+            "Several causes may operate at once. Rank them by how much of the problem each plausibly explains and by whether you can find evidence about it. A diagnosis with two well-supported mechanisms is stronger than a list of ten."
+          ]
+        },
+        {
+          "heading": "Stakeholder map and incentives",
+          "concept_ids": [
+            "stakeholders_incentives"
+          ],
+          "paragraphs": [
+            "Build a stakeholder map with three columns: the group, what it gains or loses under the current situation, and what change in incentives would alter its behavior. Include groups without a voice in the market, such as people downstream of pollution or future generations who inherit a depleted resource.",
+            "Incentives explain why a problem persists even when everyone agrees it is bad. In a market with no anti-pollution rules, firms can dispose of some wastes for free, so their private cost is lower than the cost to society. Policy tools such as pollution charges or tradable permits work by changing incentives, so a clear incentive map is also the starting point for step \"5. Incentives and trade-offs\" in Lesson 2."
+          ]
+        },
+        {
+          "heading": "Opportunity costs and the binding constraint",
+          "concept_ids": [
+            "opportunity_cost"
+          ],
+          "paragraphs": [
+            "Identify the binding constraint: the scarce resource that limits what can be done (a fixed public budget, a limited number of trained teachers, groundwater that refills slowly). Then state the opportunity cost of using that resource for your issue, measured in the best alternative use. Opportunity costs are often non-monetary, such as hours students spend walking to fetch water instead of studying.",
+            "Opportunity cost belongs in the problem definition, not only in the solution. If students lose 90 minutes a day fetching water, that lost time is part of the economic problem and part of what a solution could recover."
+          ]
+        },
+        {
+          "heading": "From diagnosis to a researchable problem statement",
+          "concept_ids": [
+            "problem_statement"
+          ],
+          "paragraphs": [
+            "A researchable problem statement names the affected population, the place and time, the indicator and its current level (or the evidence you still need), and a proposed mechanism. Template: \"In [place], [group] experiences [outcome measured by indicator], which is below [target]; we think the main cause is [mechanism], because [evidence].\"",
+            "Test your statement: Could evidence show the mechanism is wrong? Is it narrow enough that you can find data? Does it avoid naming the solution? Step \"3. Economic concepts and evidence\" also asks you to record each source's title, publisher, and date, and to leave out numbers you could not verify; Lesson 2 shows how to judge those sources."
+          ]
+        }
+      ]
+    },
+    "advanced": {
+      "summary": "Formally, an SDG indicator is a ratio with a defined numerator and denominator, progress is a change measured in percentage points or percent, the gap to a target implies a required rate of change, and an externality is the difference between private and social net benefit. A problem statement is a testable claim about which mechanism moves the indicator.",
+      "sections": [
+        {
+          "heading": "Indicators as ratios and the gap to a target",
+          "concept_ids": [
+            "sdg_targets"
+          ],
+          "paragraphs": [
+            "Write an indicator as I = N ÷ P, where N is the number of people with the outcome and P is the reference population. A change from I₀ to I₁ is I₁ − I₀ percentage points, or (I₁ − I₀) ÷ I₀ as a percent change; when I₀ is small, the percent change can look large even if the percentage-point change is small.",
+            "If the baseline is I₀ in year t₀ and the target is I* in year T, the required average change is (I* − I₀) ÷ (T − t₀) percentage points per year. Comparing this with the recent trend shows whether the target is on track. The global indicator framework was adopted by the UN General Assembly in 2017 and is refined each year, so check the current wording of an indicator before using it."
+          ]
+        },
+        {
+          "heading": "Mechanisms and the private–social wedge",
+          "concept_ids": [
+            "symptoms_causes",
+            "stakeholders_incentives"
+          ],
+          "paragraphs": [
+            "Many SDG problems are a wedge between private and social net benefit. If an activity gives the decision maker a private net benefit of NBₚ per unit and imposes an external cost E per unit on third parties, the social net benefit is NBₛ = NBₚ − E. The decision maker chooses based on NBₚ, so whenever E > 0 the activity is carried further than is socially optimal: a negative externality and a market failure. For a public good, the wedge runs the other way: each user's private benefit is smaller than the total benefit, so voluntary provision falls short.",
+            "A causal claim of the form \"mechanism M explains outcome Y\" should come with a prediction you could check: if M is the cause, Y should be worse where M is stronger. Lesson 2 discusses why such patterns alone do not prove causation."
+          ]
+        },
+        {
+          "heading": "Opportunity cost under a budget constraint",
+          "concept_ids": [
+            "opportunity_cost"
+          ],
+          "paragraphs": [
+            "With a budget B and two uses with unit costs p₁ and p₂, the budget constraint is p₁x₁ + p₂x₂ ≤ B. Spending the whole budget on use 1 gives up B ÷ p₂ units of use 2, which is the opportunity cost of that choice. With several alternatives, the opportunity cost is the value of the best one forgone, not the sum of all of them.",
+            "Time costs belong in the same accounting. If n students each lose h hours per week, the weekly time cost is n × h hours; valuing it in money requires an assumption, such as the value of study time or a wage, which you should state."
+          ]
+        },
+        {
+          "heading": "Choosing the explanatory concepts",
+          "concept_ids": [
+            "concept_toolkit"
+          ],
+          "paragraphs": [
+            "Match the concept to the structure of the problem: excludability and rivalry (public goods and common resources), the gap between private and social cost (externalities), the elasticity ε = %ΔQ ÷ %ΔP (how strongly people respond to a price change), real value = nominal value ÷ price index (purchasing power), the unemployment rate = unemployed ÷ labor force, inequality measures such as income shares or the Gini coefficient, compound growth A = P(1 + r)ᵗ, and comparative advantage and exchange rates for trade-exposed sectors.",
+            "Each concept implies data you will need. An elasticity argument needs prices and quantities; a real-income argument needs a price index; a distribution argument needs data broken down by income group. If the data do not exist, say so and treat the mechanism as a hypothesis."
+          ]
+        },
+        {
+          "heading": "The problem statement as a testable claim",
+          "concept_ids": [
+            "problem_statement"
+          ],
+          "paragraphs": [
+            "Write the statement as: population S, place and period R, indicator I with value I₀ against target I*, and mechanism M with the evidence E that supports it. The statement is researchable if each element can be checked against a source and if some possible evidence would count against M.",
+            "Keep the solution out. A statement such as \"the town needs a water tax\" assumes the answer; \"unreliable school water supply lowers attendance in R because maintenance is a shared responsibility that no one funds (a public-good-style problem)\" leaves room to compare taxes, user fees, partnerships, or community maintenance in Lesson 2."
+          ]
+        }
+      ]
+    }
+  },
+  "worked_examples": [
+    {
+      "id": "c09-l1-we1",
+      "level": "beginner",
+      "title": "Percentage points or percent?",
+      "problem": "Hypothetical example: In District K, the share of households using safely managed drinking water rose from 60% to 69% in five years. How large is the change in percentage points, and what is the percent change?",
+      "steps": [
+        "Percentage-point change = new share − old share = 69 − 60 = 9 percentage points.",
+        "Percent change = change ÷ old share = 9 ÷ 60 = 0.15, which is 15%.",
+        "Both are correct descriptions, but they are different numbers. Say \"rose by 9 percentage points\" or \"rose by 15%\", not \"rose by 9%\"."
+      ],
+      "answer": "The share rose by 9 percentage points, which is a 15% increase over the starting level.",
+      "check": {
+        "type": "difference",
+        "a": 69,
+        "b": 60,
+        "expected": 9
+      }
+    },
+    {
+      "id": "c09-l1-we2",
+      "level": "beginner",
+      "title": "The opportunity cost of a budget choice",
+      "problem": "Hypothetical example: A town council has $36,000 left in its yearly budget. It can repair the water pumps at two rural schools for $36,000, or pay for after-school tutoring at $24 per tutor-hour. If it repairs the pumps, what is the opportunity cost in tutoring hours?",
+      "steps": [
+        "The next best alternative is tutoring, so measure what the $36,000 would have bought there.",
+        "Tutoring hours = $36,000 ÷ $24 per hour = 1,500 hours.",
+        "Repairing the pumps gives up 1,500 hours of tutoring. That is the opportunity cost."
+      ],
+      "answer": "The opportunity cost of repairing the pumps is 1,500 tutor-hours.",
+      "check": {
+        "type": "ratio",
+        "numerator": 36000,
+        "denominator": 24,
+        "expected": 1500
+      }
+    },
+    {
+      "id": "c09-l1-we3",
+      "level": "intermediate",
+      "title": "How far is the target?",
+      "problem": "Hypothetical example: In Region P, the lower-secondary completion rate was 74% in 2024. A regional plan linked to SDG target 4.1 aims for 92% by 2030. Over the last five years, the rate rose by about 1 percentage point per year. What average yearly increase is needed to reach the target, and is the region on track?",
+      "steps": [
+        "Gap = 92 − 74 = 18 percentage points.",
+        "Years available = 2030 − 2024 = 6.",
+        "Required increase = 18 ÷ 6 = 3 percentage points per year.",
+        "The recent trend is about 1 point per year, a third of what is needed, so the region is not on track at the current pace."
+      ],
+      "answer": "The region needs about 3 percentage points per year, three times its recent pace. A problem statement could say exactly that.",
+      "check": {
+        "type": "ratio",
+        "numerator": 18,
+        "denominator": 6,
+        "expected": 3
+      }
+    },
+    {
+      "id": "c09-l1-we4",
+      "level": "advanced",
+      "title": "Putting a number on an externality",
+      "problem": "Hypothetical example: Farms upstream of Town V use extra fertilizer on 2,500 acres. Each acre gives the farmer an extra private net benefit of $25 per season. Runoff raises the town's water-treatment costs by an estimated $18 per acre per season. What is the external cost per season, and what is the social net benefit?",
+      "steps": [
+        "External cost = $18 per acre × 2,500 acres = $45,000 per season.",
+        "Private net benefit = $25 × 2,500 = $62,500 per season.",
+        "Social net benefit = $62,500 − $45,000 = $17,500 per season, or (25 − 18) × 2,500.",
+        "Farmers decide based on $25 per acre and ignore the $18 borne by the town. The town's water customers are stakeholders with no say in the farmers' choice."
+      ],
+      "answer": "The external cost is $45,000 per season. The activity still has a positive social net benefit of $17,500, but farmers' private incentive overstates it, so they have no reason to consider cheaper ways to cut runoff.",
+      "check": {
+        "type": "product",
+        "factors": [
+          18,
+          2500
+        ],
+        "expected": 45000
+      }
+    }
+  ],
+  "graphs": [],
+  "real_world_examples": [
+    {
+      "title": "How the SDGs are measured",
+      "source_ids": [
+        "unstats-sdg-indicators",
+        "un-sdg-6"
+      ],
+      "paragraphs": [
+        "The UN tracks the SDGs with a global indicator framework developed by an inter-agency expert group, agreed by the UN Statistical Commission, and adopted by the UN General Assembly in July 2017. The framework is refined every year, with larger reviews from time to time. Under SDG 6, for example, target 6.1 on safe and affordable drinking water is tracked by indicator 6.1.1, the proportion of the population using safely managed drinking water services. When you cite an SDG in your capstone, cite the target and indicator, too."
+      ]
+    },
+    {
+      "title": "The hidden cost of airport security",
+      "source_ids": [
+        "openstax-pe3-2-1"
+      ],
+      "paragraphs": [
+        "The OpenStax textbook discusses tighter airport security in the United States. Beyond the budget cost of extra staff, it argues that a large part of the cost is passengers' extra waiting time, an opportunity cost that never appears in a government budget. The same logic applies to SDG problems: time spent fetching water or traveling to a distant clinic is a real cost even when no money changes hands."
+      ]
+    },
+    {
+      "title": "Why pollution persists",
+      "source_ids": [
+        "openstax-pe3-12-1"
+      ],
+      "paragraphs": [
+        "OpenStax explains pollution as a negative externality: a cost that a market exchange imposes on a third party who is neither the buyer nor the seller. In a market with no anti-pollution restrictions, firms can dispose of certain wastes for free, so the market produces more pollution than is efficient. Economists call this a market failure. Seeing pollution this way turns a symptom (dirty water) into an economic cause (a cost nobody pays)."
+      ]
+    }
+  ],
+  "sdg_case": {
+    "sdgs": [
+      4,
+      6
+    ],
+    "title": "Framing the problem in Town V",
+    "paragraphs": [
+      "SDG target 6.1 aims for universal and equitable access to safe and affordable drinking water by 2030, tracked by indicator 6.1.1. SDG target 4.1 aims for all girls and boys to complete free, equitable, good-quality primary and secondary education, and target 4.a calls for safe, inclusive, and effective learning environments.",
+      "Hypothetical situation: A student in Town V notices that classmates from two rural schools miss many school days. Their school pumps break often, nobody has a budget to repair them, and some students walk home to fetch water. The student must choose how to frame the problem for the Capstone project."
+    ],
+    "options": [
+      {
+        "name": "Frame it narrowly: unreliable school water supply lowers attendance at two rural schools",
+        "benefits": [
+          "Links clearly to targets 6.1 and 4.a and to measurable indicators such as days with working water and attendance rates.",
+          "Points to a specific economic cause (pump maintenance is a shared good that nobody funds) that can be researched."
+        ],
+        "costs": [
+          "Leaves out wider causes of absence, such as family income or distance to school.",
+          "Local data on pump breakdowns may not exist yet, so the student may need to collect it."
+        ],
+        "assumptions": [
+          "Water problems are a major reason for absence, which the evidence still has to show."
+        ]
+      },
+      {
+        "name": "Frame it broadly: poverty in Town V",
+        "benefits": [
+          "Captures many connected problems at once and links to several SDGs.",
+          "Official poverty data for the region may already exist."
+        ],
+        "costs": [
+          "Too broad to research well; the causes and the stakeholders are hard to pin down.",
+          "Makes it hard to compare specific, affordable solutions."
+        ],
+        "assumptions": [
+          "Regional poverty data describe the situation at the two schools, which may not be true."
+        ]
+      },
+      {
+        "name": "Frame it by the education outcome: low lower-secondary completion in Town V",
+        "benefits": [
+          "Uses a standard indicator for target 4.1 that is likely to be reported.",
+          "Leaves room to compare several causes, including water, cost, and distance."
+        ],
+        "costs": [
+          "Completion changes slowly, so effects of any local fix are hard to see within a short project.",
+          "The economic mechanism is not yet named, so the statement is still partly a symptom."
+        ],
+        "assumptions": [
+          "Completion data exist at the town level and are recent."
+        ]
+      }
+    ],
+    "discussion": [
+      "Which framing gives the most researchable problem statement? Which stakeholders appear in each framing, and whose incentives would you need to change? What is the opportunity cost of the time students now spend fetching water, and how could you estimate it without inventing numbers?"
+    ],
+    "source_ids": [
+      "un-sdg-6",
+      "un-sdg-4",
+      "openstax-pe3-13-3"
+    ]
+  },
+  "key_takeaways": [
+    "Link your problem to a specific SDG target and indicator, not only to a goal.",
+    "Separate what you can see (symptoms) from why it happens (economic causes such as externalities, public goods, incentives, and scarcity).",
+    "Map every stakeholder and the gains and costs that drive its behavior, including groups with no voice in the market.",
+    "Name the binding resource constraint and the opportunity cost of using it, including time costs.",
+    "Say whether a change is in percentage points or percent, and compare the needed pace with the recent trend.",
+    "A good problem statement says who, where, what (with an indicator), and why, and leaves the solution for later. It prepares Capstone steps 1 to 4."
+  ],
+  "source_ids": [
+    "un-sdg-4",
+    "un-sdg-6",
+    "unstats-sdg-indicators",
+    "openstax-pe3-1-1",
+    "openstax-pe3-2-1",
+    "openstax-pe3-5-1",
+    "openstax-pe3-12-1",
+    "openstax-pe3-12-3",
+    "openstax-pe3-13-3",
+    "openstax-pe3-15-4",
+    "openstax-pe3-17-3",
+    "openstax-pe3-19-2",
+    "openstax-pe3-21-1"
+  ]
+}

@@ -7,7 +7,7 @@
 > **English-only rule (2026-11-13, permanent):** all ECONOVA user-facing text — c04–c09 included — is written in English from the start.
 > See `docs/content/english-only-guidelines.md`. `tests/test_english_only.py` enforces it. (This planning document itself is internal.)
 
-## 0. 진행 상황 (2026-11-14, c01~c07 초안 · 모두 사람 승인 전 · 미공개)
+## 0. 진행 상황 (2026-11-14, c01~c09 초안 완료 · 모두 사람 승인 전 · 미공개)
 | 강좌 | 상태 | 검토 문서 |
 |---|---|---|
 | c02 Markets and Prices | 초안 v3 (영어로 재작성) | `docs/content/c02-review.md` |
@@ -17,7 +17,10 @@
 | c05 Labor & Employment | 초안 v1 (영어로 처음부터 작성), 시뮬레이션 없이 임금·고용 축 그래프, 독립 AI 정확성 검토 반영 | `docs/content/c05-review.md` |
 | c06 Inequality & Policy | 초안 v1 (영어), 분포표·로렌츠 곡선은 글과 계산으로, 독립 AI 정확성 검토 반영 | `docs/content/c06-review.md` |
 | c07 Personal Finance | 초안 v1 (영어), 복리는 연도별 표(글)로, 계산기 없음, 독립 AI 정확성 검토 반영 | `docs/content/c07-review.md` |
-| c08 ~ c09 | 아직 없음 (다음: c08, c09) | — |
+| c08 Global Economics | 초안 v1 (영어), 가상 통화로 환율 방향 명시, 독립 AI 정확성 검토 반영 | `docs/content/c08-review.md` |
+| c09 SDG Economic Challenge | 레슨 3·형성 퀴즈 3 초안 (영어), 기존 캡스톤 그대로 연결 (최종 평가 없음), 독립 AI 정확성 검토 반영 | `docs/content/c09-review.md` |
+
+**9개 강좌·27개 레슨 초안 완료 (2026-11-14). 모두 사람 승인 전·미공개.** 다음 단계는 `docs/content/final-review-plan.md` (검토·승인·공개·Render 교체 순서).
 
 검토 대기 항목과 정책 제안은 `docs/content/review-backlog.md` 에 모은다 (탄소세 단위, 출처 미지지 설명, 최저임금·수요독점, 허용 오차 정책, 사람 승인).
 

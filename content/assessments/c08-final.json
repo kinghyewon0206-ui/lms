@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "id": "c08-final",
+  "kind": "final",
+  "course_id": "c08",
+  "version": 1,
+  "title": "Global Economics: Final Assessment",
+  "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "Proposed: 7 of 10 questions (70%). Not approved by a teacher (admin); completion is not recognized until approved."
+  },
+  "questions": [
+    {
+      "id": "c08-final-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l1",
+      "objective": 2,
+      "concept_ids": [
+        "terms_of_trade",
+        "comparative_advantage"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In one week, a worker in Country E can make 3 tables or 12 lamps, and a worker in Country F can make 2 tables or 4 lamps. Country F exports tables to Country E. Which terms of trade would benefit both countries?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1 table traded for 1 lamp"
+        },
+        {
+          "id": "b",
+          "text": "1 table traded for 5 lamps"
+        },
+        {
+          "id": "c",
+          "text": "1 table traded for 4.5 lamps"
+        },
+        {
+          "id": "d",
+          "text": "1 table traded for 3 lamps"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-33-1",
+        "openstax-pe3-33-2"
+      ]
+    },
+    {
+      "id": "c08-final-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l1",
+      "objective": 1,
+      "concept_ids": [
+        "comparative_advantage"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "What does it mean for a country to have a comparative advantage in producing a good?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It gives up less of other goods to make it than other countries do"
+        },
+        {
+          "id": "b",
+          "text": "It can make more of the good per worker than other countries can"
+        },
+        {
+          "id": "c",
+          "text": "It exports more of the good than any other country in the world"
+        },
+        {
+          "id": "d",
+          "text": "It protects its producers of the good with a tariff on imports"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-33-1"
+      ]
+    },
+    {
+      "id": "c08-final-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l1",
+      "objective": 3,
+      "concept_ids": [
+        "tariff"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: In a small importing country, the world price of a good is $8. At $8, buyers want 500 and domestic firms supply 200 (thousands of units). A $2 tariff raises the domestic price to $10, where buyers want 460 and domestic firms supply 260. What is the deadweight loss of the tariff, in thousands of dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-34-1"
+      ]
+    },
+    {
+      "id": "c08-final-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l2",
+      "objective": 1,
+      "concept_ids": [
+        "exchange_rate",
+        "export_import_prices"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): The exchange rate is quoted as 1 DEN = 0.8 COR (coros per dena). A bicycle made in Country C sells for 400 COR. How many denas does a buyer in Country D pay, ignoring shipping and taxes? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ]
+    },
+    {
+      "id": "c08-final-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l2",
+      "objective": 2,
+      "concept_ids": [
+        "trade_balance"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): The coro depreciates sharply. Sellers keep their prices in their own currencies. For the first few months, the quantities Country C imports and exports barely change because orders were placed in advance. What is the most likely short-run effect on Country C's trade balance measured in coros?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "It improves right away, as export and import quantities adjust fully within days"
+        },
+        {
+          "id": "b",
+          "text": "It stays the same, as exchange rates affect just the prices of exported goods"
+        },
+        {
+          "id": "c",
+          "text": "It may worsen at first, as each import costs more coros while quantities change little"
+        },
+        {
+          "id": "d",
+          "text": "It improves at first and then worsens later, as buyers switch to new suppliers"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-29-3",
+        "openstax-pe3-5-1"
+      ]
+    },
+    {
+      "id": "c08-final-q6",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l2",
+      "objective": 2,
+      "concept_ids": [
+        "currency_winners_losers"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example (invented currencies): The dena appreciates against the coro. Which group in Country D is most likely to benefit?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Firms in Country D that export goods to Country C"
+        },
+        {
+          "id": "b",
+          "text": "Travelers from Country D on vacation in Country C"
+        },
+        {
+          "id": "c",
+          "text": "Hotels in Country D that host visitors from Country C"
+        },
+        {
+          "id": "d",
+          "text": "Farmers in Country D who compete with imports from Country C"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-29-1"
+      ]
+    },
+    {
+      "id": "c08-final-q7",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l3",
+      "objective": 1,
+      "concept_ids": [
+        "value_added",
+        "global_value_chain"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country G assembles phones from imported parts. Each phone is exported for $300, and the imported parts for it cost $260. Which statement is correct?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Country G adds $300 of value per phone, the full price at which it exports"
+        },
+        {
+          "id": "b",
+          "text": "Country G adds $560 of value per phone, the parts cost plus the export price"
+        },
+        {
+          "id": "c",
+          "text": "Country G adds $0 of value per phone, because the parts it uses are imported"
+        },
+        {
+          "id": "d",
+          "text": "Country G's gross exports overstate the value it adds, which is $40 per phone"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-33-3"
+      ]
+    },
+    {
+      "id": "c08-final-q8",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l3",
+      "objective": 3,
+      "concept_ids": [
+        "sustainable_production_partnership",
+        "decent_work_supply_chains"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: Country D bans imports from foreign factories that fail its environmental and safety standards. Which concern about this policy was discussed in this course?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Exporters in poorer countries may lose sales, and standards can be misused as hidden protection"
+        },
+        {
+          "id": "b",
+          "text": "Clothing in Country D will become cheaper, because the ban increases competition among sellers"
+        },
+        {
+          "id": "c",
+          "text": "Exports from developing countries will rise, because the ban makes clothing scarcer worldwide"
+        },
+        {
+          "id": "d",
+          "text": "The ban will remove external costs at no cost to producers, workers, or consumers anywhere"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-34-3",
+        "un-sdg-17"
+      ]
+    },
+    {
+      "id": "c08-final-q9",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c08-l3",
+      "objective": 3,
+      "concept_ids": [
+        "supply_chain_externalities"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Hypothetical example: A smartphone has a private production cost of $120. Its mining stage causes an assumed external cost of $6 per phone, and its assembly stage causes an assumed external cost of $4 per phone. What is the social cost of one phone, in dollars? (Enter a number only.)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-12-1"
+      ]
+    },
+    {
+      "id": "c08-final-q10",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c08-l3",
+      "objective": 2,
+      "concept_ids": [
+        "resilience_tradeoff",
+        "interdependence_disruption"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "Why might firms choose less supply chain resilience than would be best for society as a whole?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Resilience lowers a firm's costs in normal times, so firms tend to overuse it"
+        },
+        {
+          "id": "b",
+          "text": "Disruptions affect just the firm whose own supplier stops making deliveries"
+        },
+        {
+          "id": "c",
+          "text": "Some losses from a disruption fall on customers and workers outside the firm"
+        },
+        {
+          "id": "d",
+          "text": "Extra inventory costs a firm nothing, so it sees little reason to hold more"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-33-3"
+      ]
+    }
+  ]
+}
