@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "ECONOVA 출처 레지스트리. verification.status 가 verified 인 출처만 승인·공개된 레슨에서 인용할 수 있다. 레슨 본문은 출처 문장을 옮기지 않고 새로 쓴 설명이며, 출처는 근거와 더 읽을거리로만 연결한다.",
+  "note": "ECONOVA source registry. Only sources whose verification.status is verified may be cited in approved, published lessons. Lesson text is newly written explanation that does not copy source sentences; sources are linked only as evidence and further reading.",
   "sources": [
     {
       "id": "openstax-pe3-3-1",
@@ -23,12 +23,12 @@
         "c02-l1",
         "c02-l2"
       ],
-      "license": "CC BY-NC-SA 4.0. OpenStax 는 자사 콘텐츠를 대규모 언어모델 학습에 쓰는 것을 서면 허락 없이 금지한다고 고지한다. ECONOVA 는 본문을 복제하지 않고 링크와 인용 표시만 한다.",
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 제목·저자·CC BY-NC-SA·LLM 학습 금지 고지, 수요/수요량·공급/공급량·수요·공급 법칙·균형·잉여·부족 정의 있음. ('ceteris paribus' 라는 용어 자체는 쓰지 않고 '다른 조건 일정' 으로 설명)",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: title, authors, CC BY-NC-SA, and the no-LLM-training notice are present; defines demand/quantity demanded, supply/quantity supplied, the laws of demand and supply, equilibrium, surplus, and shortage. (The page does not use the term 'ceteris paribus' itself; it explains the idea as 'other things being equal'.)",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -46,12 +46,12 @@
       "lesson_ids": [
         "c02-l1"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 수요 이동 요인(소득·정상재/열등재·기호·인구·관련재 가격·기대)과 공급 이동 요인(투입 비용·날씨·기술·정부 정책) 목록 있음",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: lists factors that shift demand (income, normal/inferior goods, tastes, population, prices of related goods, expectations) and factors that shift supply (input costs, weather, technology, government policy).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -68,12 +68,12 @@
       "lesson_ids": [
         "c02-l2"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 4단계 분석과 수요·공급이 함께 이동하는 경우(가격 또는 거래량 중 하나만 확정) 설명 있음",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: explains the four-step analysis and the case where demand and supply shift together (only the price or the quantity change can be determined).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -92,12 +92,12 @@
       "lesson_ids": [
         "c02-l2"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 가격 상한(임대료 상한)→부족, 가격 하한(농산물 가격 지지)→잉여 설명 있음. 사중손실은 이 절에 없음 → 3.5 로 인용",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: explains price ceiling (rent control) → shortage and price floor (farm price supports) → surplus. Deadweight loss is not in this section → cite 3.5 for it.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -116,12 +116,12 @@
       "lesson_ids": [
         "c02-l3"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 수요의 가격 탄력성 정의, 탄력적·비탄력적·단위탄력적, 중간점 방법 있음",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: defines price elasticity of demand; covers elastic, inelastic, and unit elastic demand and the midpoint method.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -140,12 +140,12 @@
         "c02-l3",
         "c03-l3"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 탄력성과 총수입, 농산물 생산 급증 때 가격 급락, 덜 탄력적인 쪽이 세금을 더 부담(조세 귀착) 설명 있음",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: explains elasticity and total revenue, sharp price drops when farm output surges, and that the less elastic side bears more of a tax (tax incidence).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -165,12 +165,12 @@
         "c02-l2",
         "c02-l3"
       ],
-      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: Goal 2 제목, 세부목표 2.1(굶주림 종식·안전한 식량 접근), 2.c(식량 시장 기능·가격 변동 완화) 문구 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: confirmed the Goal 2 title and the wording of targets 2.1 (end hunger, access to safe food) and 2.c (functioning food markets, limiting price volatility).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -191,12 +191,12 @@
         "c02-l2",
         "c02-l3"
       ],
-      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: Goal 12 제목, 세부목표 12.2(천연자원의 효율적 이용), 12.3(음식물 쓰레기 절반·식량 손실 감소), 12.5(쓰레기 발생 감축), 12.8(지속가능한 생활에 대한 정보·인식) 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: confirmed the Goal 12 title and targets 12.2 (efficient use of natural resources), 12.3 (halve food waste, reduce food losses), 12.5 (reduce waste generation), and 12.8 (information and awareness for sustainable lifestyles).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -213,12 +213,12 @@
       "lesson_ids": [
         "c02-l3"
       ],
-      "license": "FAO 웹사이트 이용 약관을 따른다. 지수의 정의만 요약하고, 수치는 인용하지 않는다 (매달 갱신됨).",
+      "license": "Subject to the FAO website terms of use. Only the definition of the index is summarized; figures are not quoted (they are updated monthly).",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 곡물·식물성 유지·유제품·육류·설탕 5개 품목군 국제 가격의 월별 변화를 2014~2016 수출 비중으로 가중 평균한 지수",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: an index of monthly changes in international prices of five commodity groups (cereals, vegetable oils, dairy, meat, sugar), weighted by 2014–2016 export shares.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -235,12 +235,12 @@
       "lesson_ids": [
         "c02-l3"
       ],
-      "license": "World Bank 웹사이트 이용 약관을 따른다. 정기적으로 내용이 바뀌는 페이지이므로 수치는 인용하지 않는다.",
+      "license": "Subject to the World Bank website terms of use. The page is updated regularly, so figures are not quoted.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13 재확인: 정기 발간되는 Food Security Update, 각국 국내 식품 물가 상승을 점검 (수치는 매번 바뀌어 인용하지 않음)",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "Rechecked 2026-11-13: a regularly published Food Security Update that tracks domestic food price inflation by country (figures change with each edition, so none are quoted).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -258,12 +258,12 @@
       "lesson_ids": [
         "c02-l2"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 소비자·생산자·사회 잉여와 사중손실, 가격 상한·하한이 사중손실을 만든다는 설명 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains consumer, producer, and social (total) surplus, deadweight loss, and how price ceilings and price floors create deadweight loss.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -282,12 +282,12 @@
       "lesson_ids": [
         "c01-l1"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 경제학 정의(희소성 속의 선택), 희소성, 분업·특화(애덤 스미스) 설명 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains the definition of economics (choice under scarcity), scarcity, and division of labor and specialization (Adam Smith).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -306,12 +306,12 @@
       "lesson_ids": [
         "c01-l1"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 전통·명령·시장·혼합 경제 설명 확인 (가격으로 조정되는 원리 자체는 이 절에서 자세히 다루지 않음)",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains traditional, command, market, and mixed economies (this section does not go into detail on how prices coordinate the economy).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -333,12 +333,12 @@
         "c01-l2",
         "c01-l3"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 예산 제약, 기회비용, 매몰비용, 한계 분석, 효용 설명 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains the budget constraint, opportunity cost, sunk cost, marginal analysis, and utility.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -357,12 +357,12 @@
       "lesson_ids": [
         "c01-l2"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 생산 가능 곡선, 곡선 기울기 = 기회비용, 기회비용 체증(바깥으로 휜 모양), 생산·배분 효율 설명 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains the production possibilities frontier, slope = opportunity cost, increasing opportunity cost (the bowed-out shape), and productive and allocative efficiency.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -379,12 +379,12 @@
       "lesson_ids": [
         "c01-l3"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 '사람은 늘 합리적이지 않다'는 반론과 사람은 이기적이면서 이타적이고 가치(자선·가족·환경 등)도 고려한다는 설명 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it covers the objection that people are not always rational, and explains that people are both self-interested and altruistic and also weigh values (charity, family, the environment, etc.).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -404,12 +404,12 @@
         "c03-l1",
         "c03-l3"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 외부효과(제3자에게 미치는 영향), 사적 비용과 사회적 비용, 오염을 만드는 재화가 과다 생산된다는 설명 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains externalities (effects on third parties), private cost and social cost, and why goods that create pollution are overproduced.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -425,12 +425,12 @@
       "lesson_ids": [
         "c03-l3"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 허용 배출량·기술을 정하는 직접 규제, 기준을 넘어 줄일 유인이 없음, 모든 기업에 같은 기준을 적용하는 비유연성 설명 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains command-and-control regulation that sets allowable emissions or technology, the lack of incentive to cut beyond the standard, and the inflexibility of applying one standard to every firm.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -449,12 +449,12 @@
       "lesson_ids": [
         "c03-l3"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 오염세(세금보다 감축 비용이 쌀 때까지 감축), 배출권 거래(cap-and-trade, 1990 Clean Air Act 이산화황), 재산권(코스) 설명 확인. 'carbon tax' 라는 용어 자체는 이 절에 없음 → 탄소세 정의는 IMF 페이지로 보완",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it explains pollution taxes (firms cut emissions until cutting costs more than the tax), emissions trading (cap-and-trade; sulfur dioxide under the 1990 Clean Air Act), and property rights (Coase). The term 'carbon tax' itself is not in this section → the carbon tax definition comes from the IMF page.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -471,12 +471,12 @@
       "lesson_ids": [
         "c03-l2"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 지구 온난화·생물다양성을 국제적 외부효과로 설명, 소득 수준이 다른 나라 사이 협상의 어려움, 2015 파리 협정 언급 확인 ('free rider' 용어는 이 절에 없음)",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it treats global warming and biodiversity as international externalities, explains why negotiation between countries with different income levels is hard, and mentions the 2015 Paris Agreement (the term 'free rider' is not in this section).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -493,12 +493,12 @@
       "lesson_ids": [
         "c03-l1"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 긍정적 외부효과(제3자에게 가는 이익) 정의, 사회적 편익이 사적 편익보다 커서 시장 생산이 사회적 최적보다 적다는 설명, 독감 예방접종 예와 보조금 제안 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it defines positive externalities (benefits to third parties), explains that social benefit exceeds private benefit so the market produces less than the social optimum, and gives a flu vaccination example and a subsidy proposal.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -519,12 +519,12 @@
       "lesson_ids": [
         "c03-l2"
       ],
-      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 공공재(비배제·비경합), 무임승차(죄수의 딜레마 예), 세금으로 공급·광고 방송, 공유 자원(비배제·경합)과 공유지의 비극, 재산권·허가·어획 제한·어획 할당 해결책 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it covers public goods (non-excludable, non-rival), the free-rider problem (a prisoner's dilemma example), provision through taxes and ad-supported broadcasting, common resources (non-excludable, rival) and the tragedy of the commons, and solutions such as property rights, permits, fishing limits, and catch quotas.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -544,12 +544,12 @@
         "c03-l2",
         "c03-l3"
       ],
-      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 Goal 7 제목, 세부목표 7.1(현대적 에너지 접근), 7.2(재생에너지 비중 확대), 7.3(에너지 효율 개선 속도 2배) 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed the Goal 7 title and targets 7.1 (access to modern energy), 7.2 (increase the share of renewable energy), and 7.3 (double the rate of improvement in energy efficiency).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -568,12 +568,12 @@
         "c03-l2",
         "c03-l3"
       ],
-      "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
+      "license": "Subject to the UN website terms of use. Goal and target wording is quoted briefly or summarized, with a link.",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 Goal 13 제목, 세부목표 13.1(기후 재해 회복력), 13.2(기후 대응을 국가 정책·전략·계획에 반영), 13.3(기후 교육·인식·역량) 확인",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed the Goal 13 title and targets 13.1 (resilience to climate-related hazards), 13.2 (integrate climate measures into national policies, strategies, and planning), and 13.3 (climate education, awareness, and capacity).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
     {
@@ -592,12 +592,12 @@
       "lesson_ids": [
         "c03-l3"
       ],
-      "license": "IMF 웹사이트 이용 약관을 따른다. 내용을 요약하고 링크만 한다 (수치는 인용하지 않음).",
+      "license": "Subject to the IMF website terms of use. Content is summarized and linked only (figures are not quoted).",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: 페이지를 열어 탄소세·배출권 거래제를 기후 완화의 핵심 가격 수단으로 설명, 세수를 저소득 가계 지원과 친환경 전환 지원에 쓰는 방안(revenue recycling) 확인. 발행일은 페이지에 없음. (World Bank 탄소 가격 대시보드는 HTTP 403 으로 열지 못해 쓰지 않음)",
-        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+        "method": "2026-11-13: opened the page and confirmed it presents carbon taxes and emissions trading systems as the key pricing tools for climate mitigation, and describes using the revenue to support low-income households and the green transition (revenue recycling). No publication date on the page. (The World Bank carbon pricing dashboard returned HTTP 403, so it is not used.)",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     }
   ]

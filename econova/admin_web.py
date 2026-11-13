@@ -110,7 +110,7 @@ def admin_review(target_type, target_id):
         "decision": decision, "from_state": state["state"] if state["state"] != "published" else "approved",
         "to_state": to_state, "reviewer_user_id": g.user["id"], "reviewer_name": g.user["name"], "comment": comment,
         "refs": {**t.refs, "file": t.file, "course_id": t.course_id}})
-    flash(f"'{ac.DECISION_KO[decision]}' 결정을 기록했어요 (정본 파일은 바뀌지 않아요. 반영은 릴리스 준비에서).", "success")
+    flash(f"Recorded the decision: '{ac.DECISION_KO[decision]}'. The canonical files are unchanged; apply it from Release prep.", "success")
     return redirect(page, 303)
 
 

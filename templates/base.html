@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,27 +12,27 @@
 <body>
   <div id="topbar" aria-hidden="true"></div>
   <div id="busy" class="busy" hidden role="status" aria-live="polite">
-    <div class="busy-card"><span class="spinner big"></span><p id="busy-msg">잠시만 기다려 주세요</p><small id="busy-sub"></small></div>
+    <div class="busy-card"><span class="spinner big"></span><p id="busy-msg">Please wait a moment</p><small id="busy-sub"></small></div>
   </div>
   <header class="nav">
     <a class="brand" href="{{ url_for('index') }}"><span class="logo-mark">E</span>ECONOVA</a>
-    <nav aria-label="주 메뉴">
+    <nav aria-label="Main menu">
       {% if g.user %}
-        <a href="{{ url_for('dashboard') }}"{% if request.endpoint == 'dashboard' %} aria-current="page"{% endif %}>대시보드</a>
-        <a href="{{ url_for('econova.catalog') }}"{% if request.endpoint and request.endpoint.startswith('econova.') and 'diagnostic' not in request.endpoint and 'lab' not in request.endpoint and 'discuss' not in request.endpoint and request.endpoint not in ('econova.report',) and 'admin' not in request.endpoint %} aria-current="page"{% endif %}>강좌</a>
-        <a href="{{ url_for('econova.diagnostic_home') }}"{% if request.endpoint and 'diagnostic' in request.endpoint %} aria-current="page"{% endif %}>진단평가</a>
-        <a href="{{ url_for('econova.lab_home') }}"{% if request.endpoint and 'lab' in request.endpoint %} aria-current="page"{% endif %}>실험실</a>
-        <a href="{{ url_for('econova.discuss_home') }}"{% if request.endpoint and 'discuss' in request.endpoint %} aria-current="page"{% endif %}>토론</a>
-        <a href="{{ url_for('econova.report') }}"{% if request.endpoint == 'econova.report' %} aria-current="page"{% endif %}>내 보고서</a>
-        {% if is_admin_user() %}<a href="{{ url_for('econova.admin_content') }}"{% if request.endpoint and 'admin' in request.endpoint %} aria-current="page"{% endif %}>콘텐츠 관리</a>{% endif %}
-        <span class="who">{{ g.user['name'] }}님</span>
+        <a href="{{ url_for('dashboard') }}"{% if request.endpoint == 'dashboard' %} aria-current="page"{% endif %}>Dashboard</a>
+        <a href="{{ url_for('econova.catalog') }}"{% if request.endpoint and request.endpoint.startswith('econova.') and 'diagnostic' not in request.endpoint and 'lab' not in request.endpoint and 'discuss' not in request.endpoint and request.endpoint not in ('econova.report',) and 'admin' not in request.endpoint %} aria-current="page"{% endif %}>Courses</a>
+        <a href="{{ url_for('econova.diagnostic_home') }}"{% if request.endpoint and 'diagnostic' in request.endpoint %} aria-current="page"{% endif %}>Diagnostic assessment</a>
+        <a href="{{ url_for('econova.lab_home') }}"{% if request.endpoint and 'lab' in request.endpoint %} aria-current="page"{% endif %}>Economics Lab</a>
+        <a href="{{ url_for('econova.discuss_home') }}"{% if request.endpoint and 'discuss' in request.endpoint %} aria-current="page"{% endif %}>Debate</a>
+        <a href="{{ url_for('econova.report') }}"{% if request.endpoint == 'econova.report' %} aria-current="page"{% endif %}>My report</a>
+        {% if is_admin_user() %}<a href="{{ url_for('econova.admin_content') }}"{% if request.endpoint and 'admin' in request.endpoint %} aria-current="page"{% endif %}>Content admin</a>{% endif %}
+        <span class="who">{{ g.user['name'] }}</span>
         <form action="{{ url_for('logout') }}" method="post" class="inline">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-          <button type="submit" class="link">로그아웃</button>
+          <button type="submit" class="link">Log out</button>
         </form>
       {% else %}
-        <a href="{{ url_for('login') }}">로그인</a>
-        <a href="{{ url_for('signup') }}">회원가입</a>
+        <a href="{{ url_for('login') }}">Log in</a>
+        <a href="{{ url_for('signup') }}">Sign up</a>
       {% endif %}
     </nav>
   </header>
@@ -52,7 +52,7 @@
     bar.className = ""; bar.style.width = "0%"; busy.hidden = true;
     [].forEach.call(document.querySelectorAll(".is-loading"), function (b) { b.classList.remove("is-loading"); b.disabled = false; });
   }
-  // 같은 사이트 안에서 다른 페이지로 이동할 때
+  // Navigating to another page on the same site
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a[href]");
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -61,10 +61,10 @@
     if (u.origin !== location.origin || (u.pathname === location.pathname && u.search === location.search)) return;
     start();
   });
-  // 폼 제출: 막대 + 버튼 스피너(중복 클릭 방지) + (오래 걸리는 작업이면) 안내 화면
+  // Form submit: progress bar + button spinner (prevents double clicks) + overlay for slow actions
   document.addEventListener("submit", function (e) {
     var f = e.target;
-    if (e.defaultPrevented) return;                 // 확인창에서 취소했거나 직접 처리하는 폼
+    if (e.defaultPrevented) return;                 // form cancelled in a confirm dialog or handled by its own script
     start();
     var b = e.submitter || f.querySelector('button[type="submit"]');
     setTimeout(function () { if (b) { b.classList.add("is-loading"); b.disabled = true; } }, 0);
@@ -76,7 +76,7 @@
       if (steps.length) setInterval(function () { i = Math.min(i + 1, steps.length - 1); document.getElementById("busy-sub").textContent = steps[i]; }, 7000);
     }
   });
-  window.addEventListener("pageshow", reset);       // 뒤로가기로 돌아왔을 때 로딩 상태 초기화
+  window.addEventListener("pageshow", reset);       // reset loading state when returning via the back button
 })();
 </script>
 </body>

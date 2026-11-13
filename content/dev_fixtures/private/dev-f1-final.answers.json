@@ -2,32 +2,32 @@
   "schema_version": 1,
   "kind": "assessment_keys",
   "assessment_id": "dev-f1-final",
-  "assessment_version": 1,
+  "assessment_version": 2,
   "questions": {
     "dev-f1-final-q1mcq": {
-      "question_version": 1,
-      "public_sha256": "59f34706d0937aa631f9895b39940a993d5c123101f1f14e27758792df1b42d7",
+      "question_version": 2,
+      "public_sha256": "e13f3fa93c9077e3c10c5466df9155c370b975648b34ab08bfe819f6235bb7f7",
       "answer": "a",
-      "explanation": "개발용 테스트 문항이에요."
+      "explanation": "This is a dev test question."
     },
     "dev-f1-final-q2mcq": {
-      "question_version": 1,
-      "public_sha256": "32f5796c479bc1cf23682f61c6603426b1c948ef7896fbb42c57c873a68c2f5e",
+      "question_version": 2,
+      "public_sha256": "62c957d9ea412c6f3e47571864dd6098f096079b8faea58f0780402fc3b1c37e",
       "answer": "a",
-      "explanation": "개발용 테스트 문항이에요."
+      "explanation": "This is a dev test question."
     },
     "dev-f1-final-q3mcq": {
-      "question_version": 1,
-      "public_sha256": "e1f7f51642989189882d5a4b09d3cefa5f8af9cb0479d644d22db35b9ec43a1a",
+      "question_version": 2,
+      "public_sha256": "54d214fafb6f10fdbb0c7a1bbc588f18cb3152bb65dfc5c1ad48f0bfc6c2e496",
       "answer": "a",
-      "explanation": "개발용 테스트 문항이에요."
+      "explanation": "This is a dev test question."
     },
     "dev-f1-final-qn": {
-      "question_version": 1,
-      "public_sha256": "a02f37a49a549163e88754a1d3d1d1a683a20ef2e91653a68e4b568113fdf89b",
+      "question_version": 2,
+      "public_sha256": "5b2bf88a188f5d99fb1327c4129ce4ba2541210d3e62adc1f177ec956fd42616",
       "answer": 6,
       "tolerance": 0,
-      "explanation": "개발용 테스트 문항이에요.",
+      "explanation": "This is a dev test question.",
       "check": {
         "type": "difference",
         "a": 10,

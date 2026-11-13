@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l2",
-  "content_version": 1,
+  "content_version": 2,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -12,60 +12,66 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 초안. 사람(관리자) 검토 전이며 학생에게 공개하지 않는다."
+        "note": "AI-written draft. Not yet reviewed by a human (admin) and not to be published to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
   "objectives": [
-    "기회비용을 정의하고, 여러 선택지에서 기회비용을 찾아 계산한다.",
-    "매몰비용을 구분하고, 추가 편익과 추가 비용을 비교하는 한계적 사고로 결정을 분석한다.",
-    "생산 가능 곡선으로 사회의 선택, 효율, 기회비용 체증을 설명한다."
+    "Define opportunity cost, then identify and calculate it for a set of alternatives.",
+    "Identify sunk costs and analyze decisions with marginal thinking by comparing marginal benefit and marginal cost.",
+    "Use the production possibilities frontier to explain a society's choices, efficiency, and increasing opportunity cost."
   ],
   "concepts": [
     {
       "id": "opportunity_cost",
-      "term": "기회비용",
-      "definition": "어떤 선택을 할 때 포기한 대안들 가운데 가장 가치가 큰 것. 돈으로 내는 비용뿐 아니라 포기한 시간·소득·경험의 가치도 포함한다.",
+      "term": "Opportunity cost",
+      "definition": "The value of the best alternative given up when you make a choice. It includes not only money you pay but also the value of time, income, or experiences you give up.",
       "source_ids": [
         "openstax-pe3-2-1"
       ]
     },
     {
       "id": "budget_constraint",
-      "term": "예산 제약",
-      "definition": "가진 돈(또는 시간)과 가격으로 정해지는, 살 수 있는 조합의 한계. 한 재화를 더 사려면 다른 재화를 가격 비율만큼 포기해야 한다.",
+      "term": "Budget constraint",
+      "definition": "The limit on the combinations you can buy, set by the money (or time) you have and the prices you face. Buying more of one good means giving up the other good in proportion to their price ratio.",
       "source_ids": [
         "openstax-pe3-2-1"
       ]
     },
     {
       "id": "sunk_cost",
-      "term": "매몰비용",
-      "definition": "이미 써 버려서 어떤 선택을 해도 되돌릴 수 없는 비용. 앞으로의 결정에서는 고려하지 않는 것이 합리적이다.",
+      "term": "Sunk cost",
+      "definition": "A cost that has already been paid and cannot be recovered no matter what you choose. A rational decision about the future leaves it out.",
       "source_ids": [
         "openstax-pe3-2-1"
       ]
     },
     {
       "id": "marginal_thinking",
-      "term": "한계적 사고",
-      "definition": "'조금 더' 할 때 얻는 추가 편익과 드는 추가 비용을 비교해 결정하는 방법. 추가 편익이 추가 비용보다 크면 더 하고, 작으면 멈춘다.",
+      "term": "Marginal thinking",
+      "definition": "Deciding by comparing the marginal benefit of doing a little more with its marginal cost. If the marginal benefit is greater than the marginal cost, do more; if it is smaller, stop.",
       "source_ids": [
         "openstax-pe3-2-1"
       ]
     },
     {
       "id": "ppf",
-      "term": "생산 가능 곡선 (PPF)",
-      "definition": "주어진 자원과 기술로 최대한 생산할 수 있는 두 재화의 조합을 이은 곡선. 곡선 위는 효율적, 안쪽은 비효율적, 바깥은 지금은 불가능한 조합이다.",
+      "term": "Production possibilities frontier (PPF)",
+      "definition": "A curve showing the maximum combinations of two goods that can be produced with given resources and technology. Points on the curve are efficient, points inside it are inefficient, and points outside it are currently unattainable.",
       "source_ids": [
         "openstax-pe3-2-2"
       ]
     },
     {
       "id": "increasing_opportunity_cost",
-      "term": "기회비용 체증",
-      "definition": "한 재화를 계속 늘릴수록 그 재화에 덜 알맞은 자원까지 옮겨 써야 해서, 한 단위를 더 얻기 위해 포기하는 다른 재화의 양이 점점 커지는 현상. 그래서 생산 가능 곡선은 바깥으로 휜다.",
+      "term": "Increasing opportunity cost",
+      "definition": "As production of one good keeps rising, resources less suited to that good must be shifted into it, so the amount of the other good given up for each additional unit grows. This is why the production possibilities frontier bows outward.",
       "source_ids": [
         "openstax-pe3-2-2"
       ]
@@ -73,131 +79,131 @@
   ],
   "levels": {
     "beginner": {
-      "summary": "무언가를 고를 때 진짜 비용은 '포기한 것 중 가장 아까운 것'이에요. 이미 써 버린 돈은 잊고, '조금 더'의 득실을 따져 봐요.",
+      "summary": "When you choose something, the real cost is the most valuable thing you gave up. Forget the money you have already spent, and weigh the gains and losses of doing a little more.",
       "sections": [
         {
-          "heading": "진짜 비용은 포기한 것",
+          "heading": "The real cost is what you give up",
           "concept_ids": [
             "opportunity_cost"
           ],
           "paragraphs": [
-            "토요일 오후 3시간에 아르바이트를 하면 30,000원을 벌 수 있는데, 대신 친구와 영화를 보러 갔다고 해 봐요. 영화표 값만 비용일까요? 아니에요. 벌 수 있었던 30,000원도 포기했어요. 이렇게 선택 때문에 포기한 것 중 가장 가치가 큰 것을 '기회비용'이라고 해요."
+            "Suppose you could earn $30 at a part-time job on Saturday afternoon for 3 hours, but you go to the movies with a friend instead. Is the ticket price your only cost? No. You also gave up the $30 you could have earned. The most valuable thing you give up because of a choice is called its opportunity cost."
           ]
         },
         {
-          "heading": "가진 돈 안에서 고르기",
+          "heading": "Choosing within your budget",
           "concept_ids": [
             "budget_constraint"
           ],
           "paragraphs": [
-            "용돈이 정해져 있으면 살 수 있는 조합도 정해져요. 영화 한 편이 8,000원이고 떡볶이 한 접시가 4,000원이면, 영화를 한 편 더 보는 대신 떡볶이 두 접시를 포기해야 해요. 가격이 '무엇을 얼마나 포기하는지'를 알려 줘요."
+            "When your spending money is fixed, so are the combinations you can buy. Hypothetically, if a matinee movie ticket costs $8 and a slice of pizza costs $4, seeing one more movie means giving up two slices of pizza. Prices tell you what you give up, and how much."
           ]
         },
         {
-          "heading": "이미 쓴 돈은 잊어요",
+          "heading": "Forget the money you already spent",
           "concept_ids": [
             "sunk_cost"
           ],
           "paragraphs": [
-            "환불이 안 되는 공연표를 샀는데 당일에 몸이 아파요. '돈이 아까우니 억지로 가야지'라고 생각하기 쉽지만, 표값은 가든 안 가든 돌아오지 않아요. 이미 써서 되돌릴 수 없는 비용을 '매몰비용'이라고 해요. 앞으로의 결정은 '지금부터 가면 얻는 것과 잃는 것'만 비교하면 돼요."
+            "You bought a non-refundable concert ticket, and on the day of the show you feel sick. It's easy to think, \"I paid for it, so I have to go.\" But you won't get the ticket money back whether you go or not. A cost that is already spent and can't be recovered is called a sunk cost. For your decision, compare only what you would gain and lose by going from now on."
           ]
         },
         {
-          "heading": "조금 더 할까, 그만할까",
+          "heading": "A little more, or stop here?",
           "concept_ids": [
             "marginal_thinking"
           ],
           "paragraphs": [
-            "시험 전날 공부를 한 시간 더 할지 고민될 때, 지금까지 몇 시간 했는지보다 '한 시간 더 하면 얼마나 도움이 되고, 그 시간에 잠을 못 자는 손해는 얼마나 클까'를 비교해 봐요. 이렇게 '조금 더'의 이익과 비용을 따지는 것을 한계적 사고라고 해요."
+            "The night before a test, when you're deciding whether to study one more hour, don't focus on how many hours you've already studied. Instead, compare how much one more hour would help with how much you'd lose by sleeping less. Weighing the benefit and cost of a little more is called marginal thinking."
           ]
         },
         {
-          "heading": "나라 전체의 선택",
+          "heading": "Choices for a whole country",
           "concept_ids": [
             "ppf",
             "increasing_opportunity_cost"
           ],
           "paragraphs": [
-            "나라도 사람과 땅, 기계가 정해져 있어서 쌀을 더 많이 기르면 옷을 덜 만들게 돼요. 처음에는 농사에 잘 맞는 땅부터 쓰니까 옷을 조금만 줄여도 쌀이 많이 늘지만, 쌀을 계속 늘리면 공장 일에 더 잘 맞던 사람과 땅까지 농사에 써야 해서 옷을 훨씬 많이 포기해야 해요. 이 모든 가능한 조합을 이은 선이 '생산 가능 곡선'이에요."
+            "A country also has a limited number of workers, amount of land, and number of machines, so growing more rice means making less clothing. At first, the land best suited to farming is used, so giving up a little clothing adds a lot of rice. But as rice production keeps growing, workers and land better suited to factory work have to be moved into farming, and much more clothing must be given up. The curve connecting all these possible combinations is the production possibilities frontier."
           ]
         }
       ]
     },
     "intermediate": {
-      "summary": "기회비용은 포기한 최선의 대안의 가치다. 합리적 결정은 매몰비용을 무시하고 한계 편익과 한계 비용을 비교한다. 생산 가능 곡선은 사회 전체의 기회비용을 보여 준다.",
+      "summary": "Opportunity cost is the value of the best alternative forgone. Rational decisions ignore sunk costs and compare marginal benefit with marginal cost. The production possibilities frontier shows opportunity cost for society as a whole.",
       "sections": [
         {
-          "heading": "기회비용",
+          "heading": "Opportunity cost",
           "concept_ids": [
             "opportunity_cost"
           ],
           "paragraphs": [
-            "기회비용 = 명시적 비용(실제로 낸 돈) + 암묵적 비용(포기한 소득·시간의 가치). 대학 진학의 비용에는 등록금뿐 아니라 그 기간에 일했다면 벌었을 소득도 들어간다. 단, 기회비용은 포기한 대안을 모두 더한 것이 아니라 그중 가장 가치가 큰 하나다. 동시에 할 수 없는 대안들이기 때문이다."
+            "Opportunity cost = explicit costs (money actually paid) + implicit costs (the value of income and time given up). The cost of going to college includes not only tuition but also the income you would have earned by working during those years. Note that opportunity cost is not the sum of all the alternatives given up but only the single most valuable one, because you could not have done all of them at the same time."
           ]
         },
         {
-          "heading": "예산 제약과 가격 비율",
+          "heading": "Budget constraints and price ratios",
           "concept_ids": [
             "budget_constraint"
           ],
           "paragraphs": [
-            "예산 m 과 두 재화의 가격으로 살 수 있는 조합의 한계가 예산선이다. 한 재화를 한 단위 더 사려면 다른 재화를 '두 가격의 비율'만큼 포기해야 한다. 예를 들어 영화 8,000원, 떡볶이 4,000원이면 영화 1편의 기회비용은 떡볶이 2접시다."
+            "The budget line shows the limit on the combinations you can buy with a budget m at the prices of two goods. To buy one more unit of one good, you must give up the other good in an amount equal to the ratio of the two prices. Hypothetically, if a movie ticket costs $8 and a pizza slice costs $4, the opportunity cost of one movie is two pizza slices."
           ]
         },
         {
-          "heading": "매몰비용과 한계적 사고",
+          "heading": "Sunk costs and marginal thinking",
           "concept_ids": [
             "sunk_cost",
             "marginal_thinking"
           ],
           "paragraphs": [
-            "이미 지출해 되돌릴 수 없는 매몰비용은 어떤 선택을 해도 같으므로 결정에 영향을 주면 안 된다. 합리적인 결정은 '한 단위 더'의 한계 편익(MB)과 한계 비용(MC)을 비교해 MB ≥ MC 인 동안 늘리고 MB < MC 가 되면 멈추는 것이다. 많은 활동에서 한계 편익은 점점 줄어들기 때문에 적당한 지점에서 멈추게 된다.",
-            "다만 실제 사람들은 매몰비용에 매달리거나 습관대로 고르는 등 늘 합리적으로 행동하지는 않는다. 경제학의 합리성 가정은 현실을 단순화한 출발점이다."
+            "A sunk cost has already been spent and cannot be recovered; it is the same whichever option you choose, so it should not affect your decision. A rational decision compares the marginal benefit (MB) and marginal cost (MC) of one more unit: keep increasing the activity while MB ≥ MC, and stop once MB < MC. For many activities, marginal benefit declines as you do more, so there is a natural point to stop.",
+            "In reality, people do not always act rationally; they may cling to sunk costs or choose out of habit. The rationality assumption in economics is a simplified starting point for understanding behavior."
           ]
         },
         {
-          "heading": "생산 가능 곡선",
+          "heading": "The production possibilities frontier",
           "concept_ids": [
             "ppf",
             "increasing_opportunity_cost"
           ],
           "paragraphs": [
-            "생산 가능 곡선 위의 점들은 자원을 모두 효율적으로 쓰는 조합이고, 곡선 안쪽은 실업·낭비가 있는 조합, 바깥쪽은 지금 자원과 기술로는 불가능한 조합이다. 곡선을 따라 한 재화를 늘릴 때 포기하는 다른 재화의 양이 기회비용이며, 자원이 용도마다 적합성이 달라 기회비용이 점점 커지므로 곡선은 바깥으로 휜다. 기술 발전이나 자원 증가는 곡선 전체를 바깥으로 옮긴다."
+            "Points on the production possibilities frontier are combinations that use all resources efficiently. Points inside the curve involve unemployment or waste, and points outside it cannot be reached with current resources and technology. Moving along the curve, the amount of one good given up to produce more of the other is the opportunity cost. Because resources differ in how well suited they are to each use, this opportunity cost rises, so the curve bows outward. Technological progress or more resources shift the entire curve outward."
           ]
         }
       ]
     },
     "advanced": {
-      "summary": "합리적 선택은 제약 아래에서 순편익을 극대화하는 것이며, 그 조건은 한계 편익 = 한계 비용이다. 생산 가능 곡선의 기울기는 한계 기회비용이고, 효율에는 생산 효율과 배분 효율이 있다.",
+      "summary": "Rational choice means maximizing net benefit subject to constraints, which requires marginal benefit = marginal cost. The slope of the production possibilities frontier is the marginal opportunity cost, and efficiency comes in two forms: productive efficiency and allocative efficiency.",
       "sections": [
         {
-          "heading": "기회비용과 예산 제약의 수식화",
+          "heading": "Formalizing opportunity cost and the budget constraint",
           "concept_ids": [
             "opportunity_cost",
             "budget_constraint"
           ],
           "paragraphs": [
-            "예산 제약 p₁x₁ + p₂x₂ = m 에서 x₂ = m/p₂ − (p₁/p₂)x₁ 이므로 예산선의 기울기는 −p₁/p₂ 이다. 기울기의 절댓값 p₁/p₂ 가 재화 1 한 단위의 기회비용을 재화 2 로 잰 값이다. 소득이 늘면 예산선은 평행하게 바깥으로, 한 재화의 가격이 바뀌면 기울기가 바뀐다."
+            "From the budget constraint p₁x₁ + p₂x₂ = m, we get x₂ = m/p₂ − (p₁/p₂)x₁, so the slope of the budget line is −p₁/p₂. The absolute value of the slope, p₁/p₂, is the opportunity cost of one unit of good 1 measured in units of good 2. An increase in income shifts the budget line outward in parallel, while a change in one good's price changes its slope."
           ]
         },
         {
-          "heading": "순편익 극대화와 매몰비용",
+          "heading": "Maximizing net benefit and sunk costs",
           "concept_ids": [
             "marginal_thinking",
             "sunk_cost"
           ],
           "paragraphs": [
-            "활동량 q 의 총편익 B(q), 총비용 C(q) 에 대해 순편익 B(q) − C(q) 를 가장 크게 하는 q 에서는 한계 편익 = 한계 비용이 성립한다(이산적으로는 MB ≥ MC 인 마지막 단위까지). 매몰비용 F 는 C(q) = F + V(q) 의 상수항이라 MC 에 영향을 주지 않으므로 최적 q 를 바꾸지 않는다. '이미 많이 투자했으니 계속해야 한다'는 판단은 매몰비용 오류다."
+            "Let B(q) be the total benefit and C(q) the total cost of an activity level q. At the q that maximizes net benefit B(q) − C(q), marginal benefit equals marginal cost (in discrete terms, you continue up to the last unit for which MB ≥ MC). A sunk cost F is the constant term in C(q) = F + V(q); it does not affect MC and therefore does not change the optimal q. Reasoning that \"we have already invested so much that we must continue\" is the sunk cost fallacy."
           ]
         },
         {
-          "heading": "생산 가능 곡선과 효율",
+          "heading": "The production possibilities frontier and efficiency",
           "concept_ids": [
             "ppf",
             "increasing_opportunity_cost"
           ],
           "paragraphs": [
-            "생산 가능 곡선 위의 한 점에서 기울기의 절댓값은 한 재화를 한 단위 더 생산하는 한계 기회비용이다. 곡선 위의 모든 점은 생산 효율(낭비 없이 최대 생산)을 만족하지만, 그중 사회가 가장 원하는 조합 하나가 배분 효율을 만족한다. 따라서 '효율적인가'와 '바람직한가'는 다른 질문이고, 어느 점을 고를지는 사회의 선호와 가치 판단에 달려 있다."
+            "At any point on the production possibilities frontier, the absolute value of the slope is the marginal opportunity cost of producing one more unit of a good. Every point on the curve satisfies productive efficiency (maximum output with no waste), but only the combination society most prefers satisfies allocative efficiency. So \"Is it efficient?\" and \"Is it desirable?\" are different questions, and which point to choose depends on society's preferences and value judgments."
           ]
         }
       ]
@@ -207,68 +213,68 @@
     {
       "id": "c01-l2-we1",
       "level": "beginner",
-      "title": "토요일 오후의 기회비용",
-      "problem": "가상의 예: 토요일 오후 3시간 동안 할 수 있는 일은 ① 시급 10,000원 아르바이트 ② 친구와 영화 보기 ③ 집에서 쉬기 중 하나예요. 영화를 골랐고, 쉬기보다 아르바이트가 더 가치 있다고 생각해요. 영화를 볼 때 포기한 돈은 얼마인가요?",
+      "title": "The opportunity cost of a Saturday afternoon",
+      "problem": "Hypothetical example: On Saturday afternoon you have 3 hours, and you can do only one of these: (1) work a part-time job that pays $10 per hour, (2) see a movie with a friend, or (3) relax at home. You choose the movie, and you think the job is worth more than relaxing. How much money did you give up by seeing the movie?",
       "steps": [
-        "포기한 대안 중 가장 가치 있는 것은 아르바이트예요.",
-        "아르바이트로 벌 수 있었던 돈: 10,000 × 3 = 30,000원."
+        "The most valuable alternative you gave up is the part-time job.",
+        "Money you could have earned at the job: $10 × 3 = $30."
       ],
-      "answer": "30,000원(과 영화표 값). 쉬기는 아르바이트보다 덜 가치 있으므로 기회비용에 더하지 않아요.",
+      "answer": "$30 (plus the price of the movie ticket). Relaxing is worth less to you than the job, so it is not added to the opportunity cost.",
       "check": {
         "type": "product",
         "factors": [
-          10000,
+          10,
           3
         ],
-        "expected": 30000
+        "expected": 30
       }
     },
     {
       "id": "c01-l2-we2",
       "level": "intermediate",
-      "title": "가격 비율로 보는 기회비용",
-      "problem": "가상의 예: 한 달 문화비 24,000원으로 영화(8,000원)와 떡볶이(4,000원)를 산다. 영화 1편의 기회비용은 떡볶이 몇 접시인가? 영화 2편을 보면 떡볶이는 최대 몇 접시?",
+      "title": "Opportunity cost as a price ratio",
+      "problem": "Hypothetical example: You have $24 a month for entertainment, which you spend on movie tickets ($8 each) and pizza slices ($4 each). What is the opportunity cost of one movie in pizza slices? If you see two movies, what is the maximum number of pizza slices you can buy?",
       "steps": [
-        "영화 1편 = 8,000원 = 떡볶이 8,000 ÷ 4,000 = 2접시.",
-        "영화 2편 = 16,000원, 남은 8,000원 ÷ 4,000 = 2접시."
+        "One movie = $8 = $8 ÷ $4 = 2 pizza slices.",
+        "Two movies = $16; the remaining $8 ÷ $4 = 2 slices."
       ],
-      "answer": "영화 1편의 기회비용은 떡볶이 2접시. 영화 2편을 보면 떡볶이는 최대 2접시.",
+      "answer": "The opportunity cost of one movie is 2 pizza slices. If you see two movies, you can buy at most 2 pizza slices.",
       "check": {
         "type": "ratio",
-        "numerator": 8000,
-        "denominator": 4000,
+        "numerator": 8,
+        "denominator": 4,
         "expected": 2
       }
     },
     {
       "id": "c01-l2-we3",
       "level": "advanced",
-      "title": "공부를 몇 시간 할까: 한계 편익과 한계 비용",
-      "problem": "가상의 예: 한 학생이 시험 전날 공부 시간을 정한다. 1·2·3·4 번째 시간의 추가 편익(성적 향상의 가치를 돈으로 환산)은 각각 12,000원, 9,000원, 6,000원, 3,000원이다. 한 시간 공부하면 그 시간에 할 수 있던 일(쉬기·잠)의 가치 6,000원을 포기한다. 몇 시간 공부하는 것이 합리적이고, 그때 순편익은?",
+      "title": "How many hours to study: marginal benefit and marginal cost",
+      "problem": "Hypothetical example: A student is deciding how long to study the night before an exam. The marginal benefit of the 1st, 2nd, 3rd, and 4th hours (the value of the grade improvement, expressed in dollars) is $12, $9, $6, and $3, respectively. Each hour of study gives up $6 worth of other activities (rest or sleep). How many hours of study is rational, and what is the net benefit?",
       "steps": [
-        "1시간째: 12,000 > 6,000 → 한다. 2시간째: 9,000 > 6,000 → 한다.",
-        "3시간째: 6,000 = 6,000 → 해도 손해가 없다. 4시간째: 3,000 < 6,000 → 하지 않는다.",
-        "3시간 공부할 때 총편익 12,000 + 9,000 + 6,000 = 27,000원, 총비용 6,000 × 3 = 18,000원.",
-        "순편익 = 27,000 − 18,000 = 9,000원 (2시간이어도 9,000원으로 같다)."
+        "Hour 1: $12 > $6 → study. Hour 2: $9 > $6 → study.",
+        "Hour 3: $6 = $6 → studying causes no loss. Hour 4: $3 < $6 → don't study.",
+        "With 3 hours of study, total benefit = $12 + $9 + $6 = $27 and total cost = $6 × 3 = $18.",
+        "Net benefit = $27 − $18 = $9 (the same $9 as with 2 hours)."
       ],
-      "answer": "2~3시간이 합리적이며 순편익은 9,000원이다. 4시간째는 추가 편익이 추가 비용보다 작아 순편익을 줄인다.",
+      "answer": "Studying 2 or 3 hours is rational, with a net benefit of $9. In the 4th hour, the marginal benefit is smaller than the marginal cost, so it would reduce net benefit.",
       "check": {
         "type": "difference",
-        "a": 27000,
-        "b": 18000,
-        "expected": 9000
+        "a": 27,
+        "b": 18,
+        "expected": 9
       }
     },
     {
       "id": "c01-l2-we4",
       "level": "advanced",
-      "title": "생산 가능 곡선과 기회비용 체증",
-      "problem": "가상의 예: 한 섬마을이 1년에 생산할 수 있는 (쌀 톤, 옷감 필) 조합은 (0, 100), (10, 90), (20, 70), (30, 40), (40, 0) 이다. 쌀을 20톤에서 30톤으로 늘릴 때 포기하는 옷감은 몇 필이고, 기회비용은 어떻게 변하는가?",
+      "title": "The production possibilities frontier and increasing opportunity cost",
+      "problem": "Hypothetical example: An island community can produce the following combinations of (rice in tons, cloth in bolts) per year: (0, 100), (10, 90), (20, 70), (30, 40), (40, 0). How many bolts of cloth are given up when rice production rises from 20 to 30 tons, and how does the opportunity cost change along the curve?",
       "steps": [
-        "쌀 0→10: 옷감 100→90, 10필 포기. 10→20: 20필. 20→30: 70 − 40 = 30필. 30→40: 40필.",
-        "쌀 10톤을 더 얻을 때마다 포기하는 옷감이 10, 20, 30, 40 필로 커진다."
+        "Rice 0→10: cloth 100→90, so 10 bolts given up. 10→20: 20 bolts. 20→30: 70 − 40 = 30 bolts. 30→40: 40 bolts.",
+        "For each additional 10 tons of rice, the cloth given up grows: 10, 20, 30, 40 bolts."
       ],
-      "answer": "30필을 포기한다. 쌀을 늘릴수록 기회비용이 커지는(기회비용 체증) 바깥으로 휜 곡선이다.",
+      "answer": "30 bolts of cloth are given up. The opportunity cost of rice rises as more rice is produced (increasing opportunity cost), so the curve bows outward.",
       "check": {
         "type": "difference",
         "a": 70,
@@ -280,21 +286,21 @@
   "graphs": [],
   "real_world_examples": [
     {
-      "title": "진학의 진짜 비용",
+      "title": "The real cost of more education",
       "source_ids": [
         "openstax-pe3-2-1"
       ],
       "paragraphs": [
-        "대학이나 직업 훈련에 들어가는 비용을 따질 때는 등록금과 교재비 같은 지출뿐 아니라, 그 기간에 일했다면 벌었을 소득도 함께 생각해야 한다. 포기한 소득이 기회비용의 큰 부분을 차지할 수 있다."
+        "When weighing the cost of college or job training, you should count not only spending such as tuition and textbooks but also the income you would have earned by working during that time. This forgone income can make up a large share of the opportunity cost."
       ]
     },
     {
-      "title": "사회의 선택과 생산 가능 곡선",
+      "title": "Society's choices and the production possibilities frontier",
       "source_ids": [
         "openstax-pe3-2-2"
       ],
       "paragraphs": [
-        "한 사회가 보건, 교육, 국방, 환경 보호 등에 자원을 어떻게 나눌지도 생산 가능 곡선 위의 선택으로 볼 수 있다. 한쪽을 늘리면 다른 쪽을 줄여야 하고, 어느 조합이 바람직한지는 효율만으로 정해지지 않고 사회의 가치 판단이 필요하다."
+        "How a society divides its resources among health care, education, national defense, environmental protection, and other goals can also be seen as a choice of a point on a production possibilities frontier. Expanding one area means cutting another, and deciding which combination is desirable takes more than efficiency; it requires society's value judgments."
       ]
     }
   ],
@@ -302,63 +308,63 @@
     "sdgs": [
       12
     ],
-    "title": "학교 축제의 일회용품, 기회비용으로 따져 보기",
+    "title": "Single-use dishes at a school fair: weighing the opportunity costs",
     "paragraphs": [
-      "SDG 세부목표 12.5 는 예방·감축·재활용·재사용으로 쓰레기 발생을 크게 줄이자고 말한다.",
-      "가상의 상황: 학급 축제 준비 예산과 시간은 정해져 있다. 음식 판매에 쓸 그릇을 어떻게 준비할지 정해야 한다. 각 선택의 기회비용(돈·시간·노력)과 쓰레기 감소 효과를 함께 비교해 보자."
+      "SDG target 12.5 calls for substantially reducing waste generation through prevention, reduction, recycling, and reuse.",
+      "Hypothetical scenario: Your class has a fixed budget and limited time to prepare a food booth for the school fair. You need to decide what dishes to serve the food in. Compare the opportunity cost (money, time, and effort) of each option along with how much waste it would prevent."
     ],
     "options": [
       {
-        "name": "일회용 그릇 사용",
+        "name": "Use single-use plates and cups",
         "benefits": [
-          "준비와 정리 시간이 가장 짧아 그 시간을 판매·홍보에 쓸 수 있다."
+          "Setup and cleanup take the least time, so that time can go to selling and promotion."
         ],
         "costs": [
-          "쓰레기가 많이 나온다.",
-          "그릇을 계속 사야 한다."
+          "It creates a lot of waste.",
+          "New plates and cups have to be bought every time."
         ],
         "assumptions": [
-          "쓰레기 처리 비용과 환경 부담을 학급이 직접 내지 않는다."
+          "The class does not directly pay for waste disposal or the environmental burden."
         ]
       },
       {
-        "name": "다회용 그릇을 빌리고 직접 세척",
+        "name": "Borrow reusable dishes and wash them yourselves",
         "benefits": [
-          "쓰레기가 크게 준다.",
-          "그릇 구입비가 줄 수 있다."
+          "Waste drops sharply.",
+          "Spending on dishes may go down."
         ],
         "costs": [
-          "세척 인력과 시간이 들어 그 시간에 다른 준비를 못 한다(기회비용)."
+          "Washing takes people and time, which can't be used for other preparation (an opportunity cost)."
         ],
         "assumptions": [
-          "세척 장소와 물을 쓸 수 있고, 위생 기준을 지킬 수 있다."
+          "A place to wash and enough water are available, and hygiene standards can be met."
         ]
       },
       {
-        "name": "손님에게 개인 컵·그릇을 가져오면 할인",
+        "name": "Give a discount to customers who bring their own cup or container",
         "benefits": [
-          "쓰레기를 줄이면서 학급의 세척 부담은 적다."
+          "Waste goes down while the class has little washing to do."
         ],
         "costs": [
-          "할인만큼 수입이 줄어든다.",
-          "가져오지 않는 손님에게는 여전히 그릇이 필요하다."
+          "Revenue falls by the amount of the discount.",
+          "Customers who don't bring a container still need dishes."
         ],
         "assumptions": [
-          "할인이 충분히 커서 손님들이 실제로 개인 용기를 가져온다."
+          "The discount is large enough that customers actually bring their own containers."
         ]
       }
     ],
     "discussion": [
-      "세 방법의 기회비용을 시간과 돈으로 적어 보고, 쓰레기 감소 효과와 함께 비교하면 어떤 조합이 좋을까?"
+      "Write down the opportunity cost of each option in time and money. Comparing those costs with how much waste each option prevents, what combination of options would work best?"
     ],
     "source_ids": [
       "un-sdg-12"
     ]
   },
   "key_takeaways": [
-    "기회비용은 포기한 대안 중 가장 가치가 큰 것이며, 돈으로 낸 비용과 포기한 소득·시간의 가치를 모두 포함한다.",
-    "매몰비용은 앞으로의 결정에서 무시하고, 한계 편익과 한계 비용을 비교해 '조금 더'를 결정한다.",
-    "생산 가능 곡선은 사회의 선택과 기회비용을 보여 주며, 기회비용 체증 때문에 바깥으로 휜다."
+    "Opportunity cost is the value of the best alternative given up, including both money paid and the value of income and time forgone.",
+    "Ignore sunk costs when deciding about the future, and decide whether to do a little more by comparing marginal benefit and marginal cost.",
+    "The production possibilities frontier shows a society's choices and opportunity costs, and it bows outward because of increasing opportunity cost."
   ],
   "source_ids": [
     "openstax-pe3-2-1",

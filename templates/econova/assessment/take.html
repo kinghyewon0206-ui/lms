@@ -3,40 +3,40 @@
 {% block title %}{{ assessment.title }} · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로">
+  <nav class="crumbs" aria-label="Breadcrumb">
     <a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span>
-    {% if lesson %}<a href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=lesson.id) }}">레슨 {{ lesson.order }}</a> <span>/</span> 형성 퀴즈{% else %}최종 평가{% endif %}
+    {% if lesson %}<a href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=lesson.id) }}">Lesson {{ lesson.order }}</a> <span>/</span> Lesson quiz{% else %}Final assessment{% endif %}
   </nav>
   <header class="ec-head">
-    <span class="eyebrow">{{ '최종 평가' if assessment.is_final else '형성 퀴즈' }} · 버전 {{ assessment.version }}{% if course.fixture %} · <span class="pill pill-dev">개발용 테스트 평가</span>{% endif %}</span>
+    <span class="eyebrow">{{ 'Final assessment' if assessment.is_final else 'Lesson quiz' }} · Version {{ assessment.version }}{% if course.fixture %} · <span class="pill pill-dev">Development test assessment</span>{% endif %}</span>
     <h1>{{ assessment.title }}</h1>
     <p class="hint">{{ assessment.description }}</p>
   </header>
 
   {{ ex.rules(assessment, course, left) }}
 
-  <form method="post" action="{{ action }}" data-overlay="채점하고 있어요">
+  <form method="post" action="{{ action }}" data-overlay="Grading your answers">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <input type="hidden" name="submission_token" value="{{ token }}">
     {% for q in questions %}
     <fieldset class="dg-question" id="{{ q.id }}">
       <legend>{{ loop.index }}. {{ q.prompt }}</legend>
-      <p class="dg-cat">{{ difficulty_names[q.difficulty] }} · {{ q.points|round(1) }}점</p>
+      <p class="dg-cat">{{ difficulty_names[q.difficulty] }} · {{ q.points|round(1) }} {{ 'point' if q.points == 1 else 'points' }}</p>
       {% if q.type == 'mcq' %}
         {% for c in q.choices %}
         <label class="dg-choice"><input type="radio" name="q_{{ q.id }}" value="{{ c.id }}"> {{ c.text }}</label>
         {% endfor %}
       {% else %}
-        <label class="dg-numeric">답 <input type="text" name="q_{{ q.id }}" inputmode="decimal" autocomplete="off" maxlength="20"></label>
+        <label class="dg-numeric">Answer <input type="text" name="q_{{ q.id }}" inputmode="decimal" autocomplete="off" maxlength="20"></label>
       {% endif %}
     </fieldset>
     {% endfor %}
-    <button type="submit" class="btn">제출하고 결과 보기</button>
-    <p class="hint">제출한 답과 점수는 바꿀 수 없어요. 다시 보고 싶으면 재응시해 주세요.</p>
+    <button type="submit" class="btn">Submit and see results</button>
+    <p class="hint">Submitted answers and scores can't be changed. If you want another try, retake it.</p>
   </form>
 
   {% if attempts %}
-  <p class="hint">이전 응시 {{ attempts|length }}번 · <a href="{{ url_for('econova.assessment_history', course_id=course.id) }}">응시 기록 보기</a></p>
+  <p class="hint">{{ attempts|length }} previous {{ 'attempt' if attempts|length == 1 else 'attempts' }} · <a href="{{ url_for('econova.assessment_history', course_id=course.id) }}">View attempt history</a></p>
   {% endif %}
 </div>
 {% endblock %}

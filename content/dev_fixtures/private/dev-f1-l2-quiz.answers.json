@@ -2,20 +2,20 @@
   "schema_version": 1,
   "kind": "assessment_keys",
   "assessment_id": "dev-f1-l2-quiz",
-  "assessment_version": 1,
+  "assessment_version": 2,
   "questions": {
     "dev-f1-l2-q1": {
-      "question_version": 1,
-      "public_sha256": "124bf90f124c232987b03a8dc6a28f4d9cc4e1505e4600725ab24cd88ff431b1",
+      "question_version": 2,
+      "public_sha256": "c8cf998734c2fcb7fc884a25691d05e1fd0a886d2a96019414d3711028cfafd6",
       "answer": "a",
-      "explanation": "개발용 테스트 문항이에요."
+      "explanation": "This is a dev test question."
     },
     "dev-f1-l2-q2": {
-      "question_version": 1,
-      "public_sha256": "8948fd44c53967d1b3352fe9736790a31a52a33aac6471ad46c0d379f3d91616",
+      "question_version": 2,
+      "public_sha256": "1c6d8ef5476bf9af0d9b302b1ab55f0adb99c0316d2d4ec8d7a99c353b67d9ad",
       "answer": 6,
       "tolerance": 0,
-      "explanation": "개발용 테스트 문항이에요.",
+      "explanation": "This is a dev test question.",
       "check": {
         "type": "difference",
         "a": 10,

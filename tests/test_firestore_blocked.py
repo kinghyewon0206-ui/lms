@@ -31,7 +31,7 @@ def test_init_db_command_does_not_touch_firestore(monkeypatch, sqlite_app):
     monkeypatch.setenv("DB_BACKEND", "firestore")
     monkeypatch.setenv("FIREBASE_CREDENTIALS_JSON", FAKE_CREDENTIALS)
     result = sqlite_app.test_cli_runner().invoke(args=["init-db"])
-    assert result.exit_code == 0 and "아무것도 바꾸지 않았습니다" in result.output
+    assert result.exit_code == 0 and "Nothing was changed." in result.output
     assert FIREBASE_CALLS == []
 
 

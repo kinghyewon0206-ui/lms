@@ -3,12 +3,12 @@
   "id": "c07",
   "slug": "personal-finance",
   "title": "Personal Finance",
-  "title_ko": "개인 금융",
-  "description": "예산 세우기, 저축과 복리, 금융 위험을 배우고 금융 서비스 접근성 문제를 살펴봅니다.",
+  "title_ko": "Personal Finance",
+  "description": "Learn about budgeting, saving, compound interest, and financial risk, and look at who has access to financial services.",
   "objectives": [
-    "소득과 지출을 바탕으로 예산을 세운다.",
-    "단리와 복리를 계산하고 비교한다.",
-    "금융 위험의 종류와 금융 포용의 의미를 설명한다."
+    "Build a budget based on income and spending.",
+    "Calculate and compare simple and compound interest.",
+    "Explain the types of financial risk and what financial inclusion means."
   ],
   "sdgs": [
     1,
@@ -16,7 +16,7 @@
   ],
   "review": {
     "status": "draft",
-    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+    "note": "The course description and learning objectives are drafts awaiting teacher review."
   },
   "estimated_hours": 6,
   "difficulty_levels": [
@@ -39,7 +39,7 @@
       "id": "c07-l1",
       "order": 1,
       "title": "Income, Spending, and Budgeting",
-      "title_ko": "소득, 지출, 예산",
+      "title_ko": "Income, Spending, and Budgeting",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -58,7 +58,7 @@
       "id": "c07-l2",
       "order": 2,
       "title": "Saving, Interest, and Compound Growth",
-      "title_ko": "저축, 이자, 복리",
+      "title_ko": "Saving, Interest, and Compound Growth",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -77,7 +77,7 @@
       "id": "c07-l3",
       "order": 3,
       "title": "Financial Risk and Financial Inclusion",
-      "title_ko": "금융 위험과 금융 포용",
+      "title_ko": "Financial Risk and Financial Inclusion",
       "status": "draft",
       "objectives": [],
       "requirements": [

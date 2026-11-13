@@ -22,14 +22,14 @@ from econova import content, lesson_content, private_content
 from econova.capstone import capstone_digest
 from econova.lesson_content import ContentError
 
-TARGET_TYPES = {"course": "강좌 설명·학습목표", "material": "레슨 학습자료", "assessment": "형성 퀴즈·최종 평가",
-                "passing": "최종 평가 합격 기준", "diagnostic": "진단평가", "source": "출처", "debate": "토론 주제",
-                "capstone": "캡스톤 안내·루브릭"}
+TARGET_TYPES = {"course": "Course description and learning objectives", "material": "Lesson learning materials", "assessment": "Lesson quiz / final assessment",
+                "passing": "Final assessment passing criteria", "diagnostic": "Diagnostic assessment", "source": "Source", "debate": "Debate topic",
+                "capstone": "Capstone project guide and rubric"}
 TRANSITIONS = {("draft", "start_review"): "in_review", ("in_review", "approve"): "approved",
                ("in_review", "request_changes"): "draft", ("approved", "reopen"): "in_review"}
-DECISION_KO = {"start_review": "검토 시작", "approve": "승인", "request_changes": "수정 요청", "reopen": "다시 검토"}
-STATE_KO = {"draft": "초안", "in_review": "검토 중", "approved": "승인됨", "published": "공개됨", "missing": "없음",
-            "upcoming": "예정", "verified": "확인됨", "unverified": "미확인", "fixture": "개발용"}
+DECISION_KO = {"start_review": "Start review", "approve": "Approve", "request_changes": "Request changes", "reopen": "Reopen review"}
+STATE_KO = {"draft": "Draft", "in_review": "In review", "approved": "Approved", "published": "Published", "missing": "Missing",
+            "upcoming": "Upcoming", "verified": "Verified", "unverified": "Unverified", "fixture": "Dev only"}
 # 릴리스 계획으로 정본 파일에 반영할 수 있는 대상 (review 블록이 있고 검사기가 지문을 확인하는 것)
 RELEASABLE = ("material", "assessment", "passing", "debate", "capstone")
 
@@ -69,7 +69,7 @@ def _assessment_target(aid, course_id, fixture):
     try:
         public = _read(rel)
     except (OSError, ValueError):
-        return Target("assessment", aid, aid, course_id, rel, "?", "missing", problems=["평가 파일이 없거나 읽을 수 없어요."],
+        return Target("assessment", aid, aid, course_id, rel, "?", "missing", problems=["The assessment file is missing or unreadable."],
                       fixture=fixture)
     t = Target("assessment", aid, public.get("title") or aid, course_id, rel, str(public.get("version")),
                (public.get("review") or {}).get("status", "?"), fixture=fixture)
@@ -82,7 +82,7 @@ def _assessment_target(aid, course_id, fixture):
                                                            ensure_ascii=False).encode()).hexdigest()}
     except private_content.KeysUnavailable as exc:
         t.data = public
-        t.problems.append(f"정답 키 없음 — 검토·승인할 수 없어요 ({exc}).")
+        t.problems.append(f"No answer key — cannot be reviewed or approved ({exc}).")
     return t
 
 
@@ -90,13 +90,13 @@ def _passing_target(final):
     passing = {k: v for k, v in (final.data.get("passing") or {}).items() if k not in lesson_content.PASSING_POLICY_META}
     state = (final.data.get("passing") or {}).get("status", "?")
     digest = lesson_content.content_digest({"assessment_id": final.id, "passing": passing}) if passing else ""
-    t = Target("passing", final.id, f"{final.title} 합격 기준", final.course_id, final.file, final.version,
+    t = Target("passing", final.id, f"{final.title} passing criteria", final.course_id, final.file, final.version,
                "approved" if state == "approved" else ("draft" if state in ("proposed", "dev_provisional") else state),
                digest=digest, data={"passing": final.data.get("passing"), "assessment_id": final.id},
                fixture=final.fixture, refs={"assessment_digest": final.digest,
                                             "assessment_approved": final.file_state in ("approved", "published")})
     if state == "dev_provisional":
-        t.problems.append("개발용 임시 기준")
+        t.problems.append("Provisional dev-only criteria")
     return t
 
 
@@ -120,7 +120,7 @@ def course_targets(course_file, fixture=False):
                                   refs={"source_ids": doc.get("source_ids", [])}))
             except (OSError, ValueError):
                 out.append(Target("material", lesson["id"], lesson["id"], cid, mrel, "?", "missing",
-                                  problems=["학습자료 파일이 없거나 읽을 수 없어요."], fixture=fixture))
+                                  problems=["The learning materials file is missing or unreadable."], fixture=fixture))
         quiz = lesson.get("quiz") or {}
         if quiz.get("status") != "missing" and quiz.get("assessment_id"):
             out.append(_assessment_target(quiz["assessment_id"], cid, fixture))
@@ -139,7 +139,7 @@ def course_targets(course_file, fixture=False):
                               (doc.get("review") or {}).get("status", "?"), digest=capstone_digest(doc),
                               data=doc, fixture=fixture, refs={"rubric_version": (doc.get("rubric") or {}).get("version")}))
         except (OSError, ValueError):
-            out.append(Target("capstone", cid, cid, cid, crel, "?", "missing", problems=["캡스톤 정의 파일이 없어요."],
+            out.append(Target("capstone", cid, cid, cid, crel, "?", "missing", problems=["The capstone definition file is missing."],
                               fixture=fixture))
     drel = f"{_base(fixture)}debates/{cid}.json"
     if os.path.exists(os.path.join(content.CONTENT_DIR, drel)):
@@ -154,16 +154,16 @@ def global_targets():
     out = []
     try:
         public = _read("diagnostic.json")
-        t = Target("diagnostic", public.get("id", "diagnostic"), public.get("title") or "진단평가", "", "diagnostic.json",
+        t = Target("diagnostic", public.get("id", "diagnostic"), public.get("title") or "Diagnostic assessment", "", "diagnostic.json",
                    str(public.get("version")), (public.get("review") or {}).get("status", "?"))
         try:
             merged = private_content.merge(public, private_content.read_keys(public.get("id")), "diagnostic.json")
             t.data, t.digest = merged, lesson_content.content_digest(merged)
         except private_content.KeysUnavailable as exc:
             t.data = public
-            t.problems.append(f"정답 키 없음 — 검토·승인할 수 없어요 ({exc}).")
+            t.problems.append(f"No answer key — cannot be reviewed or approved ({exc}).")
         if (public.get("thresholds") or {}).get("provisional"):
-            t.problems.append("난이도 추천 기준은 임시(provisional) 값이에요.")
+            t.problems.append("The difficulty recommendation thresholds are provisional values.")
         out.append(t)
     except (OSError, ValueError):
         pass
@@ -172,7 +172,7 @@ def global_targets():
         t = Target("source", s.get("id"), s.get("title") or s.get("id"), "", "sources.json", "1", status,
                    digest=lesson_content.content_digest(s), data=s)
         if status != "verified":
-            t.problems.append("확인되지 않은 출처 — 학습자료에서 인용할 수 없어요.")
+            t.problems.append("Unverified source — learning materials cannot cite it.")
         out.append(t)
     return out
 
@@ -225,22 +225,22 @@ class ReviewRefused(Exception):
 def validate_decision(target, state, decision, posted_digest, comment, confirmed, reviewer_name):
     """검토 결정을 받아도 되는지 확인한다 (서버 규칙). 문제가 있으면 ReviewRefused(한국어 이유)."""
     if not target.digest:
-        raise ReviewRefused("이 대상은 지금 내용 지문을 계산할 수 없어 검토할 수 없어요 (정답 키 없음 등).")
+        raise ReviewRefused("This item cannot be reviewed because its content fingerprint cannot be computed right now (e.g., no answer key).")
     if posted_digest != target.digest:
-        raise ReviewRefused("화면을 연 뒤에 내용이 바뀌었어요. 새로 고친 내용을 다시 확인해 주세요.")
+        raise ReviewRefused("The content changed after you opened this page. Please review the updated content again.")
     if decision not in allowed_decisions(target, state["state"]):
-        raise ReviewRefused(f"지금 상태({STATE_KO.get(state['state'], state['state'])})에서는 "
-                            f"'{DECISION_KO.get(decision, decision)}' 을 할 수 없어요.")
+        raise ReviewRefused(f"'{DECISION_KO.get(decision, decision)}' is not allowed from the current state "
+                            f"({STATE_KO.get(state['state'], state['state'])}).")
     if lesson_content._AI_MARKERS.search(str(reviewer_name or "")):
-        raise ReviewRefused("AI 는 콘텐츠를 승인할 수 없어요. 사람 관리자 계정 이름으로 검토해 주세요.")
+        raise ReviewRefused("AI cannot approve content. Review it under a human admin account name.")
     if decision in ("approve", "request_changes") and len(str(comment or "").strip()) < 5:
-        raise ReviewRefused("승인·수정 요청에는 검토 의견을 5자 이상 남겨 주세요.")
+        raise ReviewRefused("Approvals and change requests need a review comment of at least 5 characters.")
     if decision == "approve" and not confirmed:
-        raise ReviewRefused("직접 내용을 검토했다는 확인란을 체크해 주세요.")
-    if decision == "approve" and any("정답 키 없음" in p for p in target.problems):
-        raise ReviewRefused("정답 키가 없는 평가는 승인할 수 없어요.")
+        raise ReviewRefused("Check the box confirming that you reviewed the content yourself.")
+    if decision == "approve" and any("No answer key" in p for p in target.problems):
+        raise ReviewRefused("An assessment without an answer key cannot be approved.")
     if decision == "approve" and target.type == "passing" and not target.refs.get("assessment_approved"):
-        raise ReviewRefused("합격 기준은 최종 평가 자체가 승인된 뒤에 승인할 수 있어요 (평가 → 합격 기준 순서).")
+        raise ReviewRefused("Passing criteria can be approved only after the final assessment itself is approved (assessment first, then passing criteria).")
 
 
 def new_state(state, decision):
@@ -266,7 +266,7 @@ def overview(include_fixtures=False):
                 row.update(id=data.get("id"), title=data.get("title_ko"), status=data.get("status"),
                            lessons=len(data.get("lessons") or []))
             except (OSError, ValueError) as exc:
-                row.update(id=name, title=name, error=f"강좌 파일을 읽을 수 없어요 ({type(exc).__name__}).")
+                row.update(id=name, title=name, error=f"Cannot read the course file ({type(exc).__name__}).")
                 rows.append(row)
                 continue
             base = os.path.join(content.CONTENT_DIR, "dev_fixtures") if fixture else content.CONTENT_DIR
@@ -286,26 +286,26 @@ def publication_blockers(data, targets, sources):
     for lesson in data.get("lessons") or []:
         lid = lesson.get("id")
         if (lesson.get("material") or {}).get("status") not in ("approved", "published"):
-            out.append(f"{lid}: 학습자료가 승인되지 않았어요 ({STATE_KO.get((lesson.get('material') or {}).get('status'), '?')}).")
+            out.append(f"{lid}: learning materials are not approved ({STATE_KO.get((lesson.get('material') or {}).get('status'), '?')}).")
         if "quiz" in (lesson.get("requirements") or []) and (lesson.get("quiz") or {}).get("status") not in ("approved", "published"):
-            out.append(f"{lid}: 필수 형성 퀴즈가 승인되지 않았어요 ({STATE_KO.get((lesson.get('quiz') or {}).get('status'), '?')}).")
+            out.append(f"{lid}: the required lesson quiz is not approved ({STATE_KO.get((lesson.get('quiz') or {}).get('status'), '?')}).")
     final = data.get("final_assessment") or {}
     cap = data.get("capstone") or {}
     if final.get("status", "upcoming") == "upcoming" and not cap:
-        out.append("최종 평가가 아직 없어요.")
+        out.append("There is no final assessment yet.")
     elif final.get("status", "upcoming") != "upcoming" and final.get("status") not in ("approved", "published"):
-        out.append("최종 평가가 승인되지 않았어요.")
+        out.append("The final assessment is not approved.")
     for t in targets:
         if t.type == "passing" and t.file_state != "approved" and not t.fixture:
-            out.append("최종 평가 합격 기준이 승인되지 않았어요 (제안값).")
+            out.append("The final assessment passing criteria are not approved (proposed values).")
         if t.type == "capstone" and t.file_state not in ("approved", "published"):
-            out.append("캡스톤 안내·루브릭이 승인되지 않았어요.")
-        if t.type in ("assessment",) and any("정답 키 없음" in p for p in t.problems):
-            out.append(f"{t.id}: 정답 키가 없어 평가를 열 수 없어요.")
+            out.append("The capstone project guide and rubric are not approved.")
+        if t.type in ("assessment",) and any("No answer key" in p for p in t.problems):
+            out.append(f"{t.id}: no answer key, so the assessment cannot be opened.")
         if t.type == "material":
             unverified = [s for s in t.data.get("source_ids", []) if s in sources and not sources[s].verified]
             if unverified:
-                out.append(f"{t.id}: 확인되지 않은 출처 인용 {unverified}.")
+                out.append(f"{t.id}: cites unverified sources {unverified}.")
     return out
 
 
@@ -332,13 +332,13 @@ def release_plan(targets, reviews_by_key, reviewer_active=None):
     return {"schema_version": 1, "kind": "econova_release_plan",
             "generated_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "items": items,
-            "note": "정본 JSON 의 review 블록에만 반영한다. 강좌 공개(status=published)와 배포는 사람이 따로 결정한다."}
+            "note": "Applies only to the review blocks of the canonical JSON. Publishing a course (status=published) and deploying are separate human decisions."}
 
 
 def _approved_review_block(old, item):
     history = list((old or {}).get("history") or [])
     history.append({"status": "approved", "at": item["approved_at"], "by": item["reviewer_name"],
-                    "note": f"플랫폼 관리자 승인 (검토 기록 #{item['review_id']})"})
+                    "note": f"Approved by a platform admin (review record #{item['review_id']})"})
     return {"status": "approved",
             "reviewer": {"name": item["reviewer_name"], "role": "admin", "review_id": str(item["review_id"])},
             "reviewed_at": item["approved_at"], "approved_at": item["approved_at"],
@@ -350,20 +350,20 @@ def apply_release(plan, verify_record=None, dry_run=False):
     항목마다 지금 파일의 지문을 다시 계산해 계획과 다르면 건너뛴다. verify_record(item) 가 있으면 DB 의 검토 기록과도 대조한다.
     반환: [(item, 결과 문자열)]"""
     if not isinstance(plan, dict) or plan.get("kind") != "econova_release_plan":
-        raise ValueError("릴리스 계획 파일이 아닙니다.")
+        raise ValueError("This is not a release plan file.")
     results = []
     for item in plan.get("items") or []:
         t = find_target(item["target_type"], item["target_id"], include_fixtures=True)
         if t is None:
-            results.append((item, "건너뜀: 대상을 찾을 수 없음"))
+            results.append((item, "Skipped: target not found"))
             continue
         if t.digest != item["content_digest"]:
-            results.append((item, "건너뜀: 승인 뒤 내용이 바뀜 (지문 불일치) — 다시 검토 필요"))
+            results.append((item, "Skipped: content changed after approval (fingerprint mismatch) — needs a new review"))
             continue
         if verify_record is not None:
             problem, authoritative = verify_record(item)
             if problem:
-                results.append((item, f"건너뜀: {problem}"))
+                results.append((item, f"Skipped: {problem}"))
                 continue
             item = {**item, **(authoritative or {})}   # 검토자·날짜·번호는 계획이 아니라 DB 기록을 따른다
         path = os.path.join(content.CONTENT_DIR, t.file)
@@ -375,19 +375,19 @@ def apply_release(plan, verify_record=None, dry_run=False):
         elif t.type == "passing":
             data["passing"]["status"] = "approved"
             data["passing"]["review_id"] = str(item["review_id"])
-            data["passing"]["note"] = (f"{item['approved_at']} 플랫폼 관리자 {item['reviewer_name']} 승인 "
-                                       f"(검토 기록 #{item['review_id']})")
+            data["passing"]["note"] = (f"Approved by platform admin {item['reviewer_name']} on {item['approved_at']} "
+                                       f"(review record #{item['review_id']})")
         else:
             data["review"] = _approved_review_block(data.get("review"), item)
             if t.type == "capstone" and isinstance(data.get("rubric"), dict):
                 data["rubric"]["status"] = "approved"   # 정의 승인 = 루브릭(기준·가중치) 승인
         if dry_run:
-            results.append((item, "확인됨 (dry-run, 파일은 그대로)"))
+            results.append((item, "Verified (dry run; files unchanged)"))
             continue
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             f.write("\n")
-        results.append((item, "반영함"))
+        results.append((item, "Applied"))
     return results
 
 
@@ -449,17 +449,17 @@ def verify_canonical_approvals(get_record, include_fixtures=False, list_reviews=
     for t, review_id in canonical_admin_approvals(include_fixtures):
         record = get_record(review_id) if review_id else None
         if record is None:
-            problems.append((t, f"검토 기록 #{review_id or '?'} 이 DB 에 없어요."))
+            problems.append((t, f"Review record #{review_id or '?'} is not in the DB."))
         elif (record["decision"], record["target_type"], record["target_id"]) != ("approve", t.type, t.id):
-            problems.append((t, f"검토 기록 #{review_id} 이 이 대상의 승인이 아니에요."))
+            problems.append((t, f"Review record #{review_id} is not an approval of this item."))
         elif record["content_digest"] != t.digest:
-            problems.append((t, f"검토 기록 #{review_id} 의 지문이 지금 내용과 달라요."))
+            problems.append((t, f"Review record #{review_id} has a fingerprint that does not match the current content."))
         elif reviewer_active is not None and not reviewer_active(record["reviewer_user_id"]):
-            problems.append((t, f"검토 기록 #{review_id} 을 남긴 관리자의 권한이 취소됐어요. 다시 검토하세요."))
+            problems.append((t, f"The admin who made review record #{review_id} no longer has access. Review it again."))
         elif list_reviews is not None and superseded_by(record, list_reviews(t.type, t.id)):
             later = superseded_by(record, list_reviews(t.type, t.id))
-            problems.append((t, f"검토 기록 #{review_id} 뒤에 '{DECISION_KO.get(later['decision'], later['decision'])}'"
-                                f"(#{later['id']}) 이 기록돼 이 승인은 더 이상 유효하지 않아요."))
+            problems.append((t, f"'{DECISION_KO.get(later['decision'], later['decision'])}' "
+                                f"(#{later['id']}) was recorded after review record #{review_id}, so this approval is no longer valid."))
     for fixture in (False, True) if include_fixtures else (False,):
         for name in course_files(fixture):
             try:
@@ -469,7 +469,7 @@ def verify_canonical_approvals(get_record, include_fixtures=False, list_reviews=
             for t in targets:
                 reviewer = (t.data.get("review") or {}).get("reviewer") or {}
                 if reviewer.get("role") == "teacher" and (t.data.get("review") or {}).get("status") in ("approved", "published"):
-                    problems.append((t, "예전 형식(role=teacher) 승인 — DB 검토 기록·내용 지문으로 확인할 수 없어요. 다시 검토하세요."))
+                    problems.append((t, "Old-format (role=teacher) approval — cannot be verified against DB review records or content fingerprints. Review it again."))
     return problems
 
 

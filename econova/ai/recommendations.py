@@ -24,6 +24,6 @@ def explain(user_id, analysis, provider=None):
 
     def check(data):
         if not all(safety.numbers_supported(t, allowed) for t in [data["message"]] + list(data["tips"])):
-            raise AIError("invalid_response", "분석에 없는 수치")
+            raise AIError("invalid_response", "number not in the analysis")
     data = usage.run(user_id, req, "recommendation", str([i["term"] for i in items]), provider=provider, s=s, check=check)
     return {"message": safety.clip(data["message"], 700), "tips": [safety.clip(t, 250) for t in data["tips"]]}

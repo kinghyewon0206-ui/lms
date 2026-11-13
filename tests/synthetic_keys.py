@@ -14,7 +14,7 @@ def synthetic_full(public):
     full = copy.deepcopy(public)
     for q in full["questions"]:
         h = int(hashlib.sha256(q["id"].encode()).hexdigest(), 16)
-        q["explanation"] = f"[합성 해설] {q['id']}"
+        q["explanation"] = f"[Synthetic explanation] {q['id']}"
         if q["type"] == "mcq":
             q["answer"] = q["choices"][h % len(q["choices"])]["id"]
         else:

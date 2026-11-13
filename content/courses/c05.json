@@ -3,19 +3,19 @@
   "id": "c05",
   "slug": "labor-and-employment",
   "title": "Labor & Employment",
-  "title_ko": "노동과 고용",
-  "description": "노동 시장에서 임금과 고용이 정해지는 원리를 배우고, 양질의 일자리를 위한 정책을 검토합니다.",
+  "title_ko": "Labor & Employment",
+  "description": "Learn how wages and employment are set in the labor market, and review policies that support decent work.",
   "objectives": [
-    "노동의 수요와 공급으로 임금 결정을 설명한다.",
-    "실업의 종류와 측정 방법을 구분한다.",
-    "최저임금 정책의 효과와 상충관계를 평가한다."
+    "Explain how labor demand and labor supply determine wages.",
+    "Distinguish the types of unemployment and how unemployment is measured.",
+    "Evaluate the effects and trade-offs of minimum wage policy."
   ],
   "sdgs": [
     8
   ],
   "review": {
     "status": "draft",
-    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+    "note": "The course description and learning objectives are drafts awaiting teacher review."
   },
   "estimated_hours": 6,
   "difficulty_levels": [
@@ -38,7 +38,7 @@
       "id": "c05-l1",
       "order": 1,
       "title": "Labor Supply and Demand",
-      "title_ko": "노동의 수요와 공급",
+      "title_ko": "Labor Supply and Demand",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -57,7 +57,7 @@
       "id": "c05-l2",
       "order": 2,
       "title": "Employment, Unemployment, and Productivity",
-      "title_ko": "고용, 실업, 생산성",
+      "title_ko": "Employment, Unemployment, and Productivity",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -76,7 +76,7 @@
       "id": "c05-l3",
       "order": 3,
       "title": "Wages, Minimum Wage, and Labor Policy",
-      "title_ko": "임금, 최저임금, 노동 정책",
+      "title_ko": "Wages, Minimum Wage, and Labor Policy",
       "status": "draft",
       "objectives": [],
       "requirements": [

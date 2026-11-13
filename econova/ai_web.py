@@ -54,7 +54,7 @@ def tutor_api():
         out = ai_tutor.ask(g.user["id"], course, lesson, _level(enrollment), request.form.get("message", ""),
                            learning.catalog().sources, conv_id=request.form.get("conversation_id") or None)
     except LookupError:
-        return jsonify({"ok": False, "code": "not_found", "error": "대화를 찾을 수 없어요."}), 404
+        return jsonify({"ok": False, "code": "not_found", "error": "We couldn't find that conversation."}), 404
     except quotas.QuotaExceeded as exc:
         return jsonify({"ok": False, "code": "quota", "error": exc.message}), 409
     except AIError as exc:
@@ -74,11 +74,11 @@ def explain_attempt(attempt_id):
     enrollment = storage.get_enrollment(g.user["id"], attempt["course_id"])
     level = enrollment["selected_difficulty"] if enrollment else "beginner"
     if not learning.answers_revealable(g.user["id"], attempt, assessment):   # 재응시가 남은 최종 평가: 정답을 보내지 않는다
-        flash("최종 평가는 합격하거나 응시 기회를 모두 쓴 뒤에 오답 설명을 볼 수 있어요.", "error")
+        flash("You can see explanations of wrong answers on the final assessment after you pass it or use all of your attempts.", "error")
         return redirect(url_for("econova.assessment_result", attempt_id=attempt["id"]), 303)
     try:
         ai_feedback.explain(g.user["id"], attempt, assessment, course, level)
-        flash("AI 오답 설명을 만들었어요. 점수와 진도는 바뀌지 않아요.", "success")
+        flash("AI explanation of your wrong answers is ready. Your score and progress do not change.", "success")
     except quotas.QuotaExceeded as exc:
         flash(exc.message, "error")
     except AIError as exc:
@@ -125,7 +125,7 @@ def _debate_course(course_id):
     if not course.published:
         abort(403)
     if storage.get_enrollment(g.user["id"], course.id) is None:
-        flash("먼저 수강 신청을 해 주세요.", "error")
+        flash("Please enroll in the course first.", "error")
         return None
     return course
 
@@ -193,13 +193,13 @@ def discuss_respond(course_id, topic_id):
         conv = ai_debate.conversation(g.user["id"], course, topic, request.form.get("conversation_id") or None, create=True)
         meta = ai_debate.respond(g.user["id"], course, topic, conv, request.form.get("message", ""))
         if meta.get("ai_error"):
-            flash(f"의견은 저장했어요. {meta['ai_error']} 대신 준비된 안내 질문으로 이어 갈게요.", "error")
+            flash(f"Your response was saved. {meta['ai_error']} We'll continue with a prepared guiding question instead.", "error")
     except LookupError:
         abort(404)
     except quotas.QuotaExceeded as exc:
         flash(exc.message, "error")
     except AIError as exc:
-        flash(exc.message if exc.code != "unavailable" else "이 토론은 이미 정리되었어요. 새 토론을 시작해 주세요.", "error")
+        flash(exc.message if exc.code != "unavailable" else "This debate has already been summarized. Please start a new debate.", "error")
     return redirect(page + "#latest", 303)
 
 
@@ -216,7 +216,7 @@ def discuss_summary(course_id, topic_id):
     try:
         summary = ai_debate.summarize(g.user["id"], course, topic, conv)
         if summary.get("ai_error"):
-            flash(f"{summary['ai_error']} 대신 자동 정리를 보여 드려요.", "error")
+            flash(f"{summary['ai_error']} Showing an automatic summary instead.", "error")
     except AIError as exc:
         flash(exc.message, "error")
     return redirect(url_for("econova.discuss_topic", course_id=course.id, topic_id=topic["id"]) + "#summary", 303)
@@ -247,7 +247,7 @@ def dashboard_recommendations(user_id):
 def recommendations_explain():
     analysis = dashboard_recommendations(g.user["id"])
     if not analysis["items"]:
-        return jsonify({"ok": False, "code": "unavailable", "error": "아직 설명할 추천이 없어요."}), 409
+        return jsonify({"ok": False, "code": "unavailable", "error": "There are no recommendations to explain yet."}), 409
     try:
         return jsonify({"ok": True, **ai_recs.explain(g.user["id"], analysis)})
     except AIError as exc:

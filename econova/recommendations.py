@@ -99,19 +99,19 @@ def analyze(user_id, catalog):
                 continue   # 근거는 적지만 맞혔다 — 추천하지 않는다
             status = "provisional" if provisional else "review"
             pct = round(ratio * 100)
-            reason = (f"최근 응시에서 이 개념 문항 {it['total']}개 중 {it['correct']}개를 맞혔어요 (정답률 {pct}%). "
-                      + ("아직 문항 수가 적어 확실한 진단은 아니에요." if provisional else
-                         f"정답률이 {round(REVIEW_BELOW * 100)}% 미만이라 복습을 권해요."))
+            reason = (f"On your recent attempts, you got {it['correct']} of {it['total']} questions on this concept right ({pct}%). "
+                      + ("There aren't enough questions yet for a firm diagnosis." if provisional else
+                         f"Your score is below {round(REVIEW_BELOW * 100)}%, so we suggest reviewing it."))
         elif (course_id, it["lesson_id"], cid) in seen_material and it["has_quiz"]:   # 확인할 퀴즈가 있는 레슨만
             ratio, pct, status = None, None, "unpracticed"
-            reason = "학습자료는 봤지만 아직 퀴즈로 확인한 적이 없어요."
+            reason = "You've looked at the learning materials but haven't checked yourself with a quiz yet."
         else:
             continue
-        actions = [{"kind": "lesson", "label": "레슨 자료 다시 보기"}]
+        actions = [{"kind": "lesson", "label": "Review the lesson materials"}]
         if it["has_quiz"]:
-            actions.append({"kind": "quiz", "label": "형성 퀴즈로 확인하기" if status == "unpracticed" else "형성 퀴즈 다시 풀어 보기"})
+            actions.append({"kind": "quiz", "label": "Check yourself with the lesson quiz" if status == "unpracticed" else "Retake the lesson quiz"})
         if it["simulations"]:
-            actions.append({"kind": "simulation", "label": "시뮬레이션으로 확인하기" + (" (해 본 적 있음)" if it["simulated"] else "")})
+            actions.append({"kind": "simulation", "label": "Explore it in a simulation" + (" (tried before)" if it["simulated"] else "")})
         items.append({**{k: it[k] for k in ("course_id", "course_title", "concept_id", "term", "lesson_id",
                                              "lesson_title", "correct", "total")},
                       "ratio": ratio, "percent": pct, "status": status, "provisional": status != "review",

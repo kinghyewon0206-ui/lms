@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% import "econova/_graph.html" as gr with context %}
-{% block title %}진단평가 응시 · ECONOVA{% endblock %}
+{% block title %}Take the diagnostic assessment · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
   <header class="ec-head">
-    <span class="eyebrow">경제 기초 진단평가</span>
+    <span class="eyebrow">Economics basics diagnostic assessment</span>
     <h1>{{ test.title }}</h1>
-    <p class="hint">모르는 문항은 비워 두어도 돼요(오답으로 처리돼요). 수치형 문항은 숫자만 입력하고, 소수점은 '.' 을 써 주세요.</p>
+    <p class="hint">You can leave a question blank if you don't know it (it will be marked incorrect). For numeric questions, type only the number and use "." for decimals.</p>
   </header>
-  <form method="post" action="{{ url_for('econova.diagnostic_take') }}" data-overlay="채점하고 있어요">
+  <form method="post" action="{{ url_for('econova.diagnostic_take') }}" data-overlay="Grading your answers">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     {% for q in questions %}
     <fieldset class="dg-question" id="{{ q.id }}">
@@ -20,11 +20,11 @@
         <label class="dg-choice"><input type="radio" name="q_{{ q.id }}" value="{{ c.id }}"> {{ c.text }}</label>
         {% endfor %}
       {% else %}
-        <label class="dg-numeric">답 <input type="text" name="q_{{ q.id }}" inputmode="decimal" autocomplete="off" maxlength="20"></label>
+        <label class="dg-numeric">Answer <input type="text" name="q_{{ q.id }}" inputmode="decimal" autocomplete="off" maxlength="20"></label>
       {% endif %}
     </fieldset>
     {% endfor %}
-    <button type="submit" class="btn">제출하고 결과 보기</button>
+    <button type="submit" class="btn">Submit and see results</button>
   </form>
 </div>
 {% endblock %}

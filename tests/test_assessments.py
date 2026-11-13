@@ -41,9 +41,9 @@ def _parse(raw, aid=None, lesson=None, fixture=False, course="c02"):
 
 def _approve(raw):
     raw = copy.deepcopy(raw)
-    raw["review"].update(status="approved", reviewer={"name": "김선생", "role": "teacher"}, reviewed_at="2026-11-10",
+    raw["review"].update(status="approved", reviewer={"name": "Teacher Kim", "role": "teacher"}, reviewed_at="2026-11-10",
                          approved_at="2026-11-10")
-    raw["review"]["history"].append({"status": "approved", "at": "2026-11-10", "by": "김선생"})
+    raw["review"]["history"].append({"status": "approved", "at": "2026-11-10", "by": "Teacher Kim"})
     for q in raw["questions"]:
         q["review_status"] = "approved"
     return raw
@@ -85,27 +85,27 @@ def test_question_ids_are_unique_and_stable():
 
 
 @pytest.mark.parametrize("aid, mutate, message", [
-    ("c02-l1-quiz", lambda d: d.update(id="c02-l9-quiz"), "id 가"),
+    ("c02-l1-quiz", lambda d: d.update(id="c02-l9-quiz"), "id does not match"),
     ("c02-l1-quiz", lambda d: d.update(kind="exam"), "kind"),
     ("c02-l1-quiz", lambda d: d.update(course_id="c03"), "course_id"),
-    ("c02-l1-quiz", lambda d: d["questions"][1].update(id=d["questions"][0]["id"]), "중복"),
+    ("c02-l1-quiz", lambda d: d["questions"][1].update(id=d["questions"][0]["id"]), "duplicate question id"),
     ("c02-l1-quiz", lambda d: d["questions"][0].update(objective=9), "objective"),
     ("c02-l1-quiz", lambda d: d["questions"][0].update(concept_ids=["ghost"]), "concept_ids"),
     ("c02-l1-quiz", lambda d: d["questions"][0].update(difficulty="expert"), "difficulty"),
-    ("c02-l1-quiz", lambda d: d["questions"][0].update(answer="z"), "정답이 선택지에 없습니다"),
+    ("c02-l1-quiz", lambda d: d["questions"][0].update(answer="z"), "the answer is not one of the choices"),
     ("c02-l1-quiz", lambda d: d["questions"][4].update(tolerance=-1), "tolerance"),
-    ("c02-l1-quiz", lambda d: d["questions"][4].update(answer=55), "계산 결과"),
-    ("c02-l2-quiz", lambda d: d["questions"][4].update(answer=21), "계산 결과"),
+    ("c02-l1-quiz", lambda d: d["questions"][4].update(answer=55), "does not match the calculated result"),
+    ("c02-l2-quiz", lambda d: d["questions"][4].update(answer=21), "does not match the calculated result"),
     ("c02-l1-quiz", lambda d: d["questions"][0].update(lesson_id="c02-l2"), "lesson_id"),
-    ("c02-l1-quiz", lambda d: d.update(passing={"score_ratio": 0.5, "status": "proposed"}), "합격 기준을 두지 않습니다"),
+    ("c02-l1-quiz", lambda d: d.update(passing={"score_ratio": 0.5, "status": "proposed"}), "lesson quizzes do not have a passing standard"),
     ("c02-l1-quiz", lambda d: d.update(retakes={"allowed": "yes"}), "retakes"),
-    ("c02-l1-quiz", lambda d: d["questions"][0].update(review_status="approved"), "따로 승인"),
-    ("c02-l1-quiz", lambda d: d.update(questions=[]), "하나 이상"),
+    ("c02-l1-quiz", lambda d: d["questions"][0].update(review_status="approved"), "cannot be approved on their own"),
+    ("c02-l1-quiz", lambda d: d.update(questions=[]), "at least one question"),
     ("c02-final", lambda d: d.pop("passing"), "passing.score_ratio"),
-    ("c02-final", lambda d: d["passing"].update(score_ratio=1.5), "1 이하"),
-    ("c02-final", lambda d: d["passing"].update(status="dev_provisional"), "실제 강좌에 쓸 수 없습니다"),
-    ("c02-final", lambda d: d["passing"].update(status="approved"), "평가 자체가 교사 승인"),
-    ("c02-final", lambda d: d.update(questions=[q for q in d["questions"] if q["lesson_id"] != "c02-l3"]), "다루지 않습니다"),
+    ("c02-final", lambda d: d["passing"].update(score_ratio=1.5), "at most 1"),
+    ("c02-final", lambda d: d["passing"].update(status="dev_provisional"), "cannot be used in a real course"),
+    ("c02-final", lambda d: d["passing"].update(status="approved"), "the assessment itself must be teacher-approved"),
+    ("c02-final", lambda d: d.update(questions=[q for q in d["questions"] if q["lesson_id"] != "c02-l3"]), "does not cover lessons"),
     ("c02-final", lambda d: d.update(lesson_id="c02-l1"), "lesson_id"),
 ])
 def test_invalid_assessment_is_rejected(aid, mutate, message):
@@ -117,10 +117,10 @@ def test_invalid_assessment_is_rejected(aid, mutate, message):
 
 
 @pytest.mark.parametrize("change, message", [
-    (lambda d: d["questions"][0].update(review_status="draft"), "승인되지 않은 문항"),
-    (lambda d: d["review"].update(reviewer=None), "사람 검토자"),
-    (lambda d: d["review"]["history"][-1].update(by="Claude Code (AI)"), "AI 는"),
-    (lambda d: d["review"]["reviewer"].update(role="fixture"), "사람 검토자"),
+    (lambda d: d["questions"][0].update(review_status="draft"), "cannot contain unapproved questions"),
+    (lambda d: d["review"].update(reviewer=None), "must have a human reviewer"),
+    (lambda d: d["review"]["history"][-1].update(by="Claude Code (AI)"), "AI cannot approve"),
+    (lambda d: d["review"]["reviewer"].update(role="fixture"), "must have a human reviewer"),
 ])
 def test_approval_metadata_cannot_be_fabricated(change, message):
     raw = _approve(_raw("c02-l1-quiz"))
@@ -138,19 +138,19 @@ def test_course_json_must_match_assessment_files(tmp_path):
         course = json.load(f)
     bad = copy.deepcopy(course)
     bad["lessons"][0]["quiz"]["status"] = "approved"
-    with pytest.raises(content.ContentError, match="퀴즈 파일의 검토 상태"):
+    with pytest.raises(content.ContentError, match="does not match the quiz file's review status"):
         content.parse_course(bad, base_dir=str(tmp_path))
     bad = copy.deepcopy(course)
     bad["lessons"][0]["quiz"]["assessment_id"] = "c02-l2-quiz"
-    with pytest.raises(content.ContentError, match="lesson_id 가 이 강좌의 레슨이 아닙니다|이 레슨의 형성 퀴즈가 아닙니다"):
+    with pytest.raises(content.ContentError, match="lesson_id is not a lesson in this course|is not this lesson's lesson quiz"):
         content.parse_course(bad, base_dir=str(tmp_path))
     bad = copy.deepcopy(course)
     bad["final_assessment"] = {"status": "approved", "assessment_id": "c02-final"}
-    with pytest.raises(content.ContentError, match="최종 평가 파일의 검토 상태"):
+    with pytest.raises(content.ContentError, match="does not match the final assessment file's review status"):
         content.parse_course(bad, base_dir=str(tmp_path))
     bad = copy.deepcopy(course)
     bad["final_assessment"] = {"status": "draft", "assessment_id": "c02-l1-quiz"}
-    with pytest.raises(content.ContentError, match="최종 평가가 아닙니다|이 레슨|lesson_id"):
+    with pytest.raises(content.ContentError, match="is not a final assessment|this lesson|lesson_id"):
         content.parse_course(bad, base_dir=str(tmp_path))
 
 
@@ -172,8 +172,8 @@ def test_publication_requires_approved_final_and_passing(tmp_path, monkeypatch):
     for lid in ("c02-l1", "c02-l2", "c02-l3"):
         with open(os.path.join(content.CONTENT_DIR, "lessons", f"{lid}.json"), encoding="utf-8") as f:
             doc = json.load(f)
-        doc["review"].update(status="approved", reviewer={"name": "김선생", "role": "teacher"}, approved_at="2026-11-10")
-        doc["review"]["history"].append({"status": "approved", "at": "2026-11-10", "by": "김선생"})
+        doc["review"].update(status="approved", reviewer={"name": "Teacher Kim", "role": "teacher"}, approved_at="2026-11-10")
+        doc["review"]["history"].append({"status": "approved", "at": "2026-11-10", "by": "Teacher Kim"})
         (lessons_dir / f"{lid}.json").write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
     for aid in C02_ASSESSMENTS:
         _write_split(assess_dir, keys_dir, _approve(_raw(aid)))
@@ -185,7 +185,7 @@ def test_publication_requires_approved_final_and_passing(tmp_path, monkeypatch):
         lesson["material"]["status"] = "approved"
         lesson["quiz"]["status"] = "approved"
     course["final_assessment"]["status"] = "approved"
-    with pytest.raises(content.ContentError, match="합격 기준이 승인되지 않아"):   # 합격 기준이 아직 proposed
+    with pytest.raises(content.ContentError, match="passing criteria are not approved"):   # 합격 기준이 아직 proposed
         content.parse_course(copy.deepcopy(course), base_dir=str(tmp_path))
     final = _approve(_raw("c02-final"))
     final["passing"]["status"] = "approved"
@@ -197,7 +197,7 @@ def test_publication_requires_approved_final_and_passing(tmp_path, monkeypatch):
     parsed = content.parse_course(copy.deepcopy(course), base_dir=str(tmp_path))
     assert parsed.published and parsed.final_ready and parsed.final.passing_usable(False)
     course["final_assessment"] = {"status": "upcoming"}
-    with pytest.raises(content.ContentError, match="승인된 최종 평가"):
+    with pytest.raises(content.ContentError, match="no approved final assessment"):
         content.parse_course(course, base_dir=str(tmp_path))
 
 
@@ -268,18 +268,18 @@ def _token(client, url):
 
 def test_quiz_submission_records_attempt_and_progress(app, logged_in):
     _enroll(logged_in, "dev-f1")
-    result_url = take(logged_in, "/learn/dev-f1/dev-f1-l1/quiz",
-                      content.get_catalog().course("dev-f1").lesson("dev-f1-l1").quiz_assessment, correct=False)
+    quiz = content.get_catalog().course("dev-f1").lesson("dev-f1-l1").quiz_assessment
+    result_url = take(logged_in, "/learn/dev-f1/dev-f1-l1/quiz", quiz, correct=False)
     html = logged_in.get(result_url).get_data(as_text=True)
-    assert "0 / 2.0점 (0%)" in html.replace("0.0", "0") or "(0%)" in html
-    assert "개발용 테스트 문항이에요." in html and "점수는 레슨 완료에 영향을 주지 않고" in html
+    assert "0 / 2.0 points (0%)" in html.replace("0.0", "0") or "(0%)" in html
+    assert "This is a dev test question." in html and "Your score does not affect lesson completion" in html
     with app.app_context():
         uid = _uid(app)
         [a] = storage.list_assessment_attempts(uid)
         rec = storage.list_lesson_progress(uid, "dev-f1")["dev-f1-l1"]
     assert (a["kind"], a["assessment_version"], a["course_content_version"], a["ratio"], a["passed"]) == \
-        ("lesson_quiz", 1, 1, 0.0, None)
-    assert a["results"][0]["version"] == 1 and a["status"] == "submitted"
+        ("lesson_quiz", quiz.version, 1, 0.0, None)
+    assert a["results"][0]["version"] == quiz.questions[0]["version"] and a["status"] == "submitted"
     # 자료를 안 봤으므로 진행 중. 0점이어도 '제출'은 완료 조건으로 인정
     assert (rec["status"], rec["quiz_submitted"], rec["quiz_score"], rec["quiz_submission_id"]) == \
         ("in_progress", True, 0.0, a["id"])
@@ -294,7 +294,7 @@ def test_submission_requires_valid_token(app, logged_in):
     assert logged_in.post(url, data={"csrf_token": CSRF}).status_code == 400            # 토큰 없음
     assert logged_in.post(url, data={"csrf_token": CSRF, "submission_token": "forged"}).status_code == 400   # 형식이 틀린 토큰
     res = logged_in.post(url, data={"csrf_token": CSRF, "submission_token": "forged-token-aaaaaaaa"})   # 발급하지 않은 토큰
-    assert res.status_code == 303 and "오래되어" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert res.status_code == 303 and "This page was out of date" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     with app.app_context():
         assert storage.list_assessment_attempts(_uid(app)) == []
 
@@ -347,12 +347,12 @@ def test_final_is_locked_until_all_lessons_completed(app, logged_in):
     assert logged_in.get("/courses/dev-f1/final").status_code == 303                   # 수강 전
     _enroll(logged_in, "dev-f1")
     res = logged_in.get("/courses/dev-f1/final")
-    assert res.status_code == 303 and "레슨을 모두 완료하면" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert res.status_code == 303 and "The final assessment opens once you complete all lessons" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     assert logged_in.post("/courses/dev-f1/final", data={"csrf_token": CSRF, "submission_token": "x"}).status_code == 303
-    assert "잠김" in logged_in.get("/courses/dev-f1").get_data(as_text=True)
+    assert "Locked</span>" in logged_in.get("/courses/dev-f1").get_data(as_text=True)
     _complete_lessons(logged_in, "dev-f1")
     html = logged_in.get("/courses/dev-f1/final").get_data(as_text=True)
-    assert "최종 평가 안내" in html and "개발용 임시 기준" in html and "최대 3번" in html
+    assert "About this final assessment" in html and "Temporary development standard" in html and "up to 3 attempts" in html
     assert logged_in.get("/courses/c02/final").status_code == 403                        # 공개 전 강좌
 
 
@@ -361,12 +361,12 @@ def test_failing_then_passing_final_completes_course_once(app, logged_in):
     _complete_lessons(logged_in, "dev-f2")
     final = content.get_catalog().course("dev-f2").final
     fail_url = take(logged_in, "/courses/dev-f2/final", final, correct=False)
-    assert "에 미치지 못했어요" in logged_in.get(fail_url).get_data(as_text=True)
+    assert "You did not reach" in logged_in.get(fail_url).get_data(as_text=True)
     with app.app_context():
         assert storage.get_enrollment(_uid(app), "dev-f2")["status"] == "active"
     pass_url = take(logged_in, "/courses/dev-f2/final", final, correct=True)
     html = logged_in.get(pass_url).get_data(as_text=True)
-    assert "넘었어요" in html and "개발용 임시 기준에 따른 테스트 수료" in html
+    assert "You <strong>reached</strong>" in html and "test completion under the temporary development standard" in html
     with app.app_context():
         e = storage.get_enrollment(_uid(app), "dev-f2")
         first_completed = e["completed_at"]
@@ -376,9 +376,9 @@ def test_failing_then_passing_final_completes_course_once(app, logged_in):
     with app.app_context():
         e2 = storage.get_enrollment(_uid(app), "dev-f2")
     assert e2["completed_at"] == first_completed and e2["completion_attempt_id"] == e["completion_attempt_id"]
-    assert "수료 (테스트)" in logged_in.get("/dashboard").get_data(as_text=True)
+    assert "Course completed (test)" in logged_in.get("/dashboard").get_data(as_text=True)
     summary = logged_in.get("/courses/dev-f2/completion").get_data(as_text=True)
-    assert "수료했어요" in summary and "최고 결과: 100% (합격) · 응시 3번" in summary
+    assert "Course completed ·" in summary and "Best result: 100% (Passed) · 3 attempts" in summary
 
 
 def test_final_attempt_limit(app, logged_in):
@@ -395,7 +395,7 @@ def test_final_attempt_limit(app, logged_in):
         uid = _uid(app)
         assert learning.attempts_left(uid, final) == 0
         course = content.get_catalog().course("dev-f2")
-        with pytest.raises(learning.LearningError, match="모두 사용"):
+        with pytest.raises(learning.LearningError, match="used all of your attempts"):
             learning.submit_assessment(uid, course, final, {}, "new-token")
         assert len(storage.list_assessment_attempts(uid, assessment_id=final.id)) == 3
 
@@ -426,7 +426,7 @@ def test_students_cannot_see_each_others_attempts(app, client):
     set_csrf(client)
     assert client.get(mine).status_code == 404
     _enroll(client, "dev-f1")
-    assert "아직 제출한 평가가 없어요" in client.get("/courses/dev-f1/assessments").get_data(as_text=True)
+    assert "You haven't submitted any assessments yet." in client.get("/courses/dev-f1/assessments").get_data(as_text=True)
     with app.app_context():
         assert storage.get_assessment_attempt(_uid(app, "other@example.com"), mine.rsplit("/", 1)[1]) is None
 
@@ -446,8 +446,9 @@ def test_results_keep_original_version(app, logged_in, monkeypatch):
     lesson = content.get_catalog().course("dev-f1").lesson("dev-f1-l1")
     url = take(logged_in, "/learn/dev-f1/dev-f1-l1/quiz", lesson.quiz_assessment)
     qs = list(lesson.quiz_assessment.questions)
-    qs[0] = {**qs[0], "version": 2, "prompt": "바뀐 문항"}
-    new_quiz = dataclasses.replace(lesson.quiz_assessment, version=2, questions=tuple(qs))
+    old_version = lesson.quiz_assessment.version
+    qs[0] = {**qs[0], "version": qs[0]["version"] + 1, "prompt": "Changed question"}
+    new_quiz = dataclasses.replace(lesson.quiz_assessment, version=old_version + 1, questions=tuple(qs))
     new_course = dataclasses.replace(content.get_catalog().course("dev-f1"), lessons=tuple(
         dataclasses.replace(l, quiz_assessment=new_quiz) if l.id == "dev-f1-l1" else l
         for l in content.get_catalog().course("dev-f1").lessons))
@@ -455,7 +456,7 @@ def test_results_keep_original_version(app, logged_in, monkeypatch):
     patched = dataclasses.replace(cat, courses=tuple(new_course if c.id == "dev-f1" else c for c in cat.courses))
     monkeypatch.setattr(learning, "catalog", lambda: patched)
     html = logged_in.get(url).get_data(as_text=True)
-    assert "평가 버전 1 기준" in html and "바뀐 문항" not in html and "문항이 바뀌었거나" in html
+    assert f"based on version {old_version} of the assessment" in html and "Changed question" not in html and "the question has changed" in html
     assert "100%" in html   # 저장된 점수는 다시 계산하지 않는다
 
 
@@ -525,10 +526,10 @@ def test_firestore_attempt_layout(firestore_app, fake_fs):
 def test_review_package_needs_keys_and_private_location(app, tmp_path):
     out = tmp_path / "review.md"
     res = app.test_cli_runner().invoke(args=["review-package", "c02", "--output", str(out)])
-    assert res.exit_code != 0 and "정답 키가 없는 평가" in res.output and not out.exists()   # 키 없이 만들지 않는다
+    assert res.exit_code != 0 and "some assessments have no answer key" in res.output and not out.exists()   # 키 없이 만들지 않는다
     inside = os.path.join(content.CONTENT_DIR, "review-package.md")                       # 저장소 안, 무시되지 않는 곳
     res = app.test_cli_runner().invoke(args=["review-package", "c02", "--output", inside])
-    assert res.exit_code != 0 and "커밋될 수 있는 위치" in res.output and not os.path.exists(inside)
+    assert res.exit_code != 0 and "where it could be committed" in res.output and not os.path.exists(inside)
 
 
 def test_review_package_is_generated_and_not_served(app, logged_in, tmp_path, monkeypatch):
@@ -550,7 +551,7 @@ def test_review_package_is_generated_and_not_served(app, logged_in, tmp_path, mo
         content.load_catalog.cache_clear()
     for aid in C02_ASSESSMENTS:
         assert aid in text
-    assert "승인되지 않은 제안값" in text and "검토 전 초안" in text and "정답" in text
+    assert "proposed, not approved" in text and "unreviewed drafts" in text and "Correct answer" in text
     course = content.load_catalog(False).course("c02")
     for a in [l.quiz_assessment for l in course.lessons] + [course.final]:
         for q in a.questions:

@@ -36,7 +36,7 @@ def lesson_context(course, lesson, level, sources, sim_run=None):
     """승인된 학습자료로만 만든 튜터 맥락. 승인되지 않았으면 AIError('unavailable')."""
     material = lesson.content
     if material is None or not material.approved:
-        raise AIError("unavailable", "승인된 학습자료 없음")
+        raise AIError("unavailable", "no approved learning materials")
     if level not in content.DIFFICULTIES:
         level = "beginner"
     src = allowed_sources(material, sources)
@@ -61,7 +61,7 @@ def lesson_context(course, lesson, level, sources, sim_run=None):
         ctx["simulation"] = {"simulation_id": sim_run["simulation_id"], "inputs": sim_run["inputs"],
                              "results": {k: v for k, v in sim_run["results"].items() if isinstance(v, (int, float, str))
                                          and k not in ("reason",)},
-                             "note": "학생이 저장한 결과를 서버가 다시 계산한 값. 가상의 모형 계산이며 실제 통계가 아님."}
+                             "note": "Values the server recalculated from the student's saved result. Hypothetical model calculation, not real statistics."}
     return ctx
 
 

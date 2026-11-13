@@ -3,12 +3,12 @@
   "id": "c02",
   "slug": "markets-and-prices",
   "title": "Markets & Prices",
-  "title_ko": "시장과 가격",
-  "description": "수요와 공급으로 가격이 정해지는 원리를 배우고, 식량 시장 사례로 가격 변화의 영향을 분석합니다.",
+  "title_ko": "Markets & Prices",
+  "description": "Learn how supply and demand set prices, and use food-market cases to analyze the effects of price changes.",
   "objectives": [
-    "수요·공급 곡선의 의미와 곡선을 이동시키는 요인을 설명한다.",
-    "균형 가격과 거래량이 정해지는 과정을 분석한다.",
-    "가격 탄력성으로 식량 가격 변화의 영향을 해석한다."
+    "Explain what demand and supply curves show, and tell a shift of a curve apart from a movement along it.",
+    "Analyze how the equilibrium price and equilibrium quantity are set, including the effects of price ceilings and price floors.",
+    "Use price elasticity of demand to interpret how food price changes affect revenue and food security."
   ],
   "sdgs": [
     2,
@@ -16,7 +16,7 @@
   ],
   "review": {
     "status": "draft",
-    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+    "note": "The course description and learning objectives are drafts awaiting teacher review."
   },
   "estimated_hours": 6,
   "difficulty_levels": [
@@ -40,7 +40,7 @@
       "id": "c02-l1",
       "order": 1,
       "title": "Supply and Demand",
-      "title_ko": "수요와 공급",
+      "title_ko": "Supply and Demand",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -63,7 +63,7 @@
       "id": "c02-l2",
       "order": 2,
       "title": "Market Equilibrium and Price Formation",
-      "title_ko": "시장 균형과 가격 결정",
+      "title_ko": "Market Equilibrium and Price Formation",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -86,7 +86,7 @@
       "id": "c02-l3",
       "order": 3,
       "title": "Price Elasticity and Food Markets",
-      "title_ko": "가격 탄력성과 식량 시장",
+      "title_ko": "Price Elasticity and Food Markets",
       "status": "draft",
       "objectives": [],
       "requirements": [

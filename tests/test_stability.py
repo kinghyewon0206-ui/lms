@@ -10,7 +10,7 @@ import pytest
 from econova import config, content, storage
 from tests.conftest import CSRF, FAKE_CREDENTIALS, ROOT, login, set_csrf, signup
 
-LEAK_MARKERS = ("Traceback", "c05.json", ".json", "content/", "ContentError", "JSON 문법", ROOT)
+LEAK_MARKERS = ("Traceback", "c05.json", ".json", "content/", "ContentError", "JSON syntax", ROOT)
 
 
 @pytest.fixture
@@ -55,9 +55,9 @@ def test_econova_pages_show_controlled_error(logged_in, broken_content, caplog, 
     res = getattr(logged_in, method)(path, **kwargs)
     html = res.get_data(as_text=True)
     assert res.status_code == 503
-    assert "강좌 정보를 불러올 수 없어요" in html and "이전 LMS" not in html
+    assert "Course information can't be loaded" in html and "legacy lms" not in html.lower()
     _no_leak(html)
-    assert "courses/c05.json" in caplog.text and "JSON 문법 오류" in caplog.text   # 원인은 서버 로그에만
+    assert "courses/c05.json" in caplog.text and "JSON syntax error" in caplog.text   # 원인은 서버 로그에만
 
 
 def test_missing_course_file_is_controlled(logged_in, content_copy):
@@ -116,7 +116,7 @@ def test_production_fixture_error_is_not_hidden_as_content_error(logged_in, monk
 def test_check_content_command_ok(sqlite_app, content_copy):
     res = sqlite_app.test_cli_runner().invoke(args=["check-content"])
     assert res.exit_code == 0, res.output
-    assert "실제 강좌 9개 (레슨 27개, 공개 0개), 개발용 테스트 강좌 3개" in res.output
+    assert "9 real course(s) (27 lesson(s), 0 published), 3 dev test course(s)" in res.output
 
 
 def test_check_content_command_reports_errors(sqlite_app, broken_content):
@@ -134,26 +134,26 @@ def test_check_content_also_checks_fixture_files(sqlite_app, content_copy):
 def test_404_page_anonymous(client):
     res = client.get("/no-such-page")
     html = res.get_data(as_text=True)
-    assert res.status_code == 404 and "페이지를 찾을 수 없어요" in html and 'href="/login"' in html
-    assert "Not Found" not in html and "<title>페이지를 찾을 수 없어요 · ECONOVA</title>" in html
+    assert res.status_code == 404 and "Page not found" in html and 'href="/login"' in html
+    assert "Not Found" not in html and "<title>Page not found · ECONOVA</title>" in html
 
 
 def test_404_page_logged_in(logged_in):
     for path in ("/no-such-page", "/courses/nope", "/learn/dev-x/l1", "/watch/cip"):
         html = logged_in.get(path).get_data(as_text=True)
-        assert "페이지를 찾을 수 없어요" in html and 'href="/dashboard"' in html and "/legacy" not in html, path
+        assert "Page not found" in html and 'href="/dashboard"' in html and "/legacy" not in html, path
 
 
 def test_403_page_links_back_to_course(logged_in):
     res = logged_in.get("/learn/c02/c02-l1")
     html = res.get_data(as_text=True)
-    assert res.status_code == 403 and "이 페이지에는 접근할 수 없어요" in html
+    assert res.status_code == 403 and "You can't access this page" in html
     assert 'href="/courses/c02"' in html and "Forbidden" not in html
 
 
 def test_error_pages_render_with_broken_content(logged_in, broken_content):
     res = logged_in.get("/no-such-page")
-    assert res.status_code == 404 and "페이지를 찾을 수 없어요" in res.get_data(as_text=True)
+    assert res.status_code == 404 and "Page not found" in res.get_data(as_text=True)
 
 
 def test_no_page_title_says_only_lms():
@@ -166,7 +166,7 @@ def test_no_page_title_says_only_lms():
 # ------------------------------------------------------------- ECONOVA 만 남음 (이전 LMS 는 없앰)
 def test_catalog_is_econova_only(logged_in):
     html = logged_in.get("/courses").get_data(as_text=True)
-    assert "SDG와 함께 배우는 경제 강좌" in html and "이전 LMS" not in html and "대학 공개 강의" not in html
+    assert "Economics courses built around the SDGs" in html and "legacy lms" not in html.lower() and "university open" not in html.lower()
 
 
 # ------------------------------------------------------------- sqlite 트랜잭션
@@ -177,7 +177,7 @@ def test_progress_refuses_pending_transaction_without_discarding_it(sqlite_app):
         storage.enroll_course(uid, "dev-f1", "beginner", 1)
         db = storage.get_db()
         db.execute("INSERT INTO econ_login_counters (key, count, expires_at) VALUES ('pending', 1, '2099-01-01 00:00:00')")   # 커밋하지 않은 쓰기
-        with pytest.raises(RuntimeError, match="커밋하지 않은 변경"):
+        with pytest.raises(RuntimeError, match="uncommitted changes"):
             storage.update_lesson_progress(uid, "dev-f1", "dev-f1-l1", ("material", "quiz"), material_reviewed=True)
         assert db.in_transaction   # 남의 변경을 지우지 않았다
         db.commit()

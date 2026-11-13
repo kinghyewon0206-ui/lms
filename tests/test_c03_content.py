@@ -60,20 +60,20 @@ def test_lesson_texts_name_only_real_simulator_outputs():
     """레슨이 안내하는 결과표 항목 이름은 실제 시뮬레이터 결과표에 있는 이름이어야 한다 (없는 기능을 지어내지 않기)."""
     labels = {label for _, label, _ in simulations.ROW_LABELS["carbon-tax"]}
     text = " ".join(p for lvl in _course().lesson("c03-l3").content.levels.values() for s in lvl["sections"] for p in s["paragraphs"])
-    quoted = {q for q in re.findall(r"'([^']+)'", text) if "(" in q or q in labels or "가격" in q or "배출" in q or "세수" in q}
-    assert quoted and quoted <= labels | {"인터랙티브 시뮬레이션"}, quoted - labels
+    quoted = {q for q in re.findall(r"'([^']+)'", text) if "(" in q or q in labels or any(w in q.lower() for w in ("price", "emission", "revenue", "tax", "burden", "quantity", "welfare", "damage", "loss"))}
+    assert quoted and quoted <= labels | {"Interactive simulation"}, quoted - labels
 
 
 def test_c03_lesson_3_preview_shows_the_simulation(logged_in, monkeypatch):
     monkeypatch.setenv("ECONOVA_CONTENT_PREVIEW", "1")
     res = logged_in.get("/preview/c03/c03-l3?level=advanced")
     html = res.get_data(as_text=True)
-    assert res.status_code == 200 and "검토 전 초안 (AI 작성)" in html
-    assert "탄소세와 시장" in html and "사회적 후생 변화 (가정)" in html and "피구세" in html
+    assert res.status_code == 200 and "Draft, not yet reviewed (AI-written)" in html
+    assert "Carbon Tax and the Market" in html and "Change in social welfare (assumed)" in html and "Pigouvian tax" in html
 
 
 @pytest.mark.parametrize("lesson_id", ["c03-l1", "c03-l2"])
 def test_c03_other_previews_render(logged_in, monkeypatch, lesson_id):
     monkeypatch.setenv("ECONOVA_CONTENT_PREVIEW", "1")
     res = logged_in.get(f"/preview/c03/{lesson_id}?level=beginner")
-    assert res.status_code == 200 and "이 레슨에는 시뮬레이션이 없어요" in res.get_data(as_text=True)
+    assert res.status_code == 200 and "This lesson has no simulation." in res.get_data(as_text=True)

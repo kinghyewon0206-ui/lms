@@ -1,9 +1,9 @@
 {# ECONOVA 공통 부품: SDG 배지, 상태 배지, 진도 막대, 강좌 카드 #}
 
 {% macro sdg_badges(course) %}
-<ul class="sdgs" aria-label="관련 SDG">
+<ul class="sdgs" aria-label="Related SDGs">
   {% if course.sdg_student_selected %}
-  <li class="sdg sdg-any">SDG 직접 선택</li>
+  <li class="sdg sdg-any">Choose your own SDG</li>
   {% else %}
   {% for n in course.sdgs %}
   <li class="sdg" style="--sdg: {{ sdg_info[n][1] }}" title="SDG {{ n }}: {{ sdg_info[n][0] }}"><b>SDG {{ n }}</b> {{ sdg_info[n][0] }}</li>
@@ -13,24 +13,24 @@
 {% endmacro %}
 
 {% macro course_badge(course, enrolled=false) %}
-{% if course.fixture %}<span class="pill pill-dev">개발용 테스트 강좌</span>{% endif %}
-{% if enrolled %}<span class="pill pill-on">수강 중</span>
-{% elif course.published %}<span class="pill pill-open">수강 가능</span>
-{% else %}<span class="pill pill-soon">준비 중</span>{% endif %}
+{% if course.fixture %}<span class="pill pill-dev">Development test course</span>{% endif %}
+{% if enrolled %}<span class="pill pill-on">Enrolled</span>
+{% elif course.published %}<span class="pill pill-open">Open for enrollment</span>
+{% else %}<span class="pill pill-soon">Coming soon</span>{% endif %}
 {% endmacro %}
 
 {% macro progress_bar(p, label) %}
 <div class="ec-progress">
   <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ p.percent }}"
        aria-label="{{ label }}"><span style="width: {{ p.percent }}%"></span></div>
-  <small>{{ p.percent }}% · 레슨 {{ p.completed }}/{{ p.total }} 완료</small>
+  <small>{{ p.percent }}% · {{ p.completed }}/{{ p.total }} lessons completed</small>
 </div>
 {% endmacro %}
 
 {% macro course_status_text(p) %}
-{%- if p.status == 'lessons_completed' -%}레슨 모두 완료 · 최종 평가 예정
-{%- elif p.status == 'in_progress' -%}학습 중
-{%- else -%}학습 전{%- endif -%}
+{%- if p.status == 'lessons_completed' -%}All lessons completed · Final assessment next
+{%- elif p.status == 'in_progress' -%}In progress
+{%- else -%}Not started{%- endif -%}
 {% endmacro %}
 
 {% macro catalog_card(course, enrolled=false) %}
@@ -40,30 +40,30 @@
     <span>{{ course_badge(course, enrolled) }}</span>
   </div>
   <h3><a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a></h3>
-  <p class="ec-en">{{ course.title }}</p>
+  {% if course.title != course.title_ko %}<p class="ec-en">{{ course.title }}</p>{% endif %}
   <p>{{ course.description }}</p>
   {{ sdg_badges(course) }}
   <details class="ec-obj">
-    <summary>학습 목표 {% if course.review_status == 'draft' %}<span class="pill pill-draft">검토 전 초안</span>{% endif %}</summary>
+    <summary>Learning objectives {% if course.review_status == 'draft' %}<span class="pill pill-draft">Draft (not yet reviewed)</span>{% endif %}</summary>
     <ul>{% for o in course.objectives %}<li>{{ o }}</li>{% endfor %}</ul>
   </details>
   <dl class="ec-facts">
-    <div><dt>레슨</dt><dd>{{ course.lessons|length }}개</dd></div>
-    <div><dt>예상 시간</dt><dd>약 {{ course.estimated_hours }}시간</dd></div>
-    <div><dt>난이도</dt><dd>하·중·상 선택</dd></div>
+    <div><dt>Lessons</dt><dd>{{ course.lessons|length }}</dd></div>
+    <div><dt>Estimated time</dt><dd>About {{ course.estimated_hours }} {{ 'hour' if course.estimated_hours == 1 else 'hours' }}</dd></div>
+    <div><dt>Level</dt><dd>Beginner, intermediate or advanced</dd></div>
   </dl>
   <div class="ec-card-actions">
     {% if enrolled %}
-      <a class="btn" href="{{ url_for('econova.continue_learning', course_id=course.id) }}">이어서 학습</a>
+      <a class="btn" href="{{ url_for('econova.continue_learning', course_id=course.id) }}">Continue learning</a>
     {% elif course.published %}
       <form method="post" action="{{ url_for('econova.enroll', course_id=course.id) }}" class="inline">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <button type="submit" class="btn">수강 신청</button>
+        <button type="submit" class="btn">Enroll</button>
       </form>
     {% else %}
-      <button type="button" class="btn" disabled aria-disabled="true">준비 중 · 신청 불가</button>
+      <button type="button" class="btn" disabled aria-disabled="true">Coming soon · Enrollment closed</button>
     {% endif %}
-    <a class="btn secondary" href="{{ url_for('econova.course_detail', course_id=course.id) }}">자세히</a>
+    <a class="btn secondary" href="{{ url_for('econova.course_detail', course_id=course.id) }}">Details</a>
   </div>
 </article>
 {% endmacro %}

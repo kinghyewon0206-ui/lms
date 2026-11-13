@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c02-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -12,74 +12,80 @@
         "status": "draft",
         "at": "2026-11-03",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 초안. 교사 검토 전이며 학생에게 공개하지 않는다."
+        "note": "AI-written draft. Not yet reviewed by a teacher; do not publish to students."
       },
       {
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "검토 의견(docs/content/c02-review.md) 반영 수정. 여전히 사람 검토 전 초안이다."
+        "note": "Revised based on review comments (docs/content/c02-review.md). Still a draft that has not been reviewed by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
   "objectives": [
-    "수요와 수요량, 공급과 공급량의 차이를 설명한다.",
-    "수요 법칙과 공급 법칙을 가격과 수량의 관계로 설명한다.",
-    "곡선 위의 이동(가격 변화)과 곡선 자체의 이동(다른 요인 변화)을 구분하고, 그 요인을 찾는다."
+    "Explain the difference between demand and quantity demanded, and between supply and quantity supplied.",
+    "Describe the law of demand and the law of supply as relationships between price and quantity.",
+    "Distinguish a movement along a curve (caused by a price change) from a shift of the curve itself (caused by other factors), and identify those factors."
   ],
   "concepts": [
     {
       "id": "demand",
-      "term": "수요 (demand)",
-      "definition": "여러 가격 수준마다 소비자가 사려고 하고 살 수 있는 양의 관계 전체. 표(수요표)나 곡선(수요곡선)으로 나타낸다.",
+      "term": "Demand",
+      "definition": "The whole relationship between each possible price and the amount consumers are willing and able to buy at that price. It can be shown as a table (demand schedule) or a graph (demand curve).",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
     },
     {
       "id": "quantity_demanded",
-      "term": "수요량 (quantity demanded)",
-      "definition": "어느 한 가격에서 소비자가 사려고 하는 양. 수요곡선 위의 한 점이다.",
+      "term": "Quantity demanded",
+      "definition": "The amount consumers want to buy at one specific price. It is a single point on the demand curve.",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
     },
     {
       "id": "law_of_demand",
-      "term": "수요 법칙",
-      "definition": "다른 조건이 같다면 가격이 오르면 수요량이 줄고, 가격이 내리면 수요량이 는다.",
+      "term": "Law of demand",
+      "definition": "Other things being equal, when the price rises, quantity demanded falls, and when the price falls, quantity demanded rises.",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
     },
     {
       "id": "supply",
-      "term": "공급 (supply) / 공급량",
-      "definition": "여러 가격 수준마다 생산자가 팔려고 하는 양의 관계 전체가 공급이고, 어느 한 가격에서 팔려고 하는 양이 공급량이다.",
+      "term": "Supply / quantity supplied",
+      "definition": "Supply is the whole relationship between each possible price and the amount producers are willing to sell. Quantity supplied is the amount they want to sell at one specific price.",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
     },
     {
       "id": "law_of_supply",
-      "term": "공급 법칙",
-      "definition": "다른 조건이 같다면 가격이 오르면 공급량이 늘고, 가격이 내리면 공급량이 준다.",
+      "term": "Law of supply",
+      "definition": "Other things being equal, when the price rises, quantity supplied rises, and when the price falls, quantity supplied falls.",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
     },
     {
       "id": "movement_vs_shift",
-      "term": "곡선 위의 이동과 곡선의 이동",
-      "definition": "그 상품의 가격이 바뀌면 같은 곡선 위에서 움직이고(수요량·공급량 변화), 가격 외의 요인이 바뀌면 곡선 자체가 옮겨 간다(수요·공급 변화).",
+      "term": "Movement along a curve vs. shift of the curve",
+      "definition": "A change in the good's own price moves you along the same curve (a change in quantity demanded or quantity supplied). A change in any other factor shifts the whole curve (a change in demand or supply).",
       "source_ids": [
         "openstax-pe3-3-2"
       ]
     },
     {
       "id": "shifters",
-      "term": "수요·공급 이동 요인",
-      "definition": "수요: 소득, 관련 상품(대체재·보완재)의 가격, 기호, 인구, 미래에 대한 기대. 공급: 생산 비용, 날씨 등 자연 조건, 기술, 세금·보조금·규제.",
+      "term": "Factors that shift demand and supply",
+      "definition": "Demand: income, prices of related goods (substitutes and complements), tastes, population, and expectations about the future. Supply: production costs, natural conditions such as weather, technology, and taxes, subsidies, and regulations.",
       "source_ids": [
         "openstax-pe3-3-2"
       ]
@@ -87,118 +93,118 @@
   ],
   "levels": {
     "beginner": {
-      "summary": "가격이 오르면 사는 사람은 덜 사고, 파는 사람은 더 팔고 싶어 해요. 그런데 날씨나 유행처럼 가격이 아닌 것이 바뀌면 '얼마나 사고 싶은지' 자체가 달라져요.",
+      "summary": "When a price goes up, buyers want to buy less and sellers want to sell more. But when something other than the price changes, like the weather or a new trend, how much people want to buy changes too.",
       "sections": [
         {
-          "heading": "수요: 사고 싶고, 살 수 있는 마음",
+          "heading": "Demand: wanting to buy and being able to",
           "concept_ids": [
             "demand",
             "quantity_demanded",
             "law_of_demand"
           ],
           "paragraphs": [
-            "학교 앞 분식집 떡볶이 한 접시가 3,000원일 때와 5,000원일 때를 떠올려 보세요. 값이 오르면 대부분은 덜 사 먹거나 다른 간식을 고를 거예요. 이렇게 가격이 오를수록 사려는 양이 줄어드는 것을 '수요 법칙'이라고 해요.",
-            "'수요'는 가격마다 얼마나 살지를 모두 모은 것이고, '수요량'은 그중 한 가격에서 사려는 양이에요. 예를 들어 '3,000원이면 반 전체가 30접시를 산다'가 수요량이에요."
+            "Picture a pizza place near your school. Would you buy a slice as often at $5 as you would at $3? Most people buy less, or pick a different snack, when the price goes up. The idea that people buy less as the price rises is called the law of demand.",
+            "Demand is the full list of how much people would buy at every price. Quantity demanded is the amount at just one of those prices. For example, \"At $3 a slice, your class would buy 30 slices\" describes a quantity demanded."
           ]
         },
         {
-          "heading": "공급: 팔고 싶은 마음",
+          "heading": "Supply: wanting to sell",
           "concept_ids": [
             "supply",
             "law_of_supply"
           ],
           "paragraphs": [
-            "파는 쪽은 반대예요. 떡볶이를 비싸게 팔 수 있다면 가게는 재료를 더 사서 더 많이 만들고 싶어 해요. 가격이 오를수록 팔려는 양(공급량)이 늘어나는 것을 '공급 법칙'이라고 해요."
+            "Sellers see things the other way around. If the pizza place can charge more per slice, it will want to buy more ingredients and bake more pizzas. The idea that the amount sellers offer (quantity supplied) rises as the price rises is called the law of supply."
           ]
         },
         {
-          "heading": "가격이 바뀔 때 vs 다른 것이 바뀔 때",
+          "heading": "When the price changes vs. when something else changes",
           "concept_ids": [
             "movement_vs_shift",
             "shifters"
           ],
           "paragraphs": [
-            "떡볶이 값만 바뀌면 사람들은 정해진 계획 안에서 '조금 더' 또는 '조금 덜' 살 뿐이에요.",
-            "하지만 시험이 끝나 친구들과 놀러 가는 날이 많아지거나(기호·상황 변화), 용돈이 늘거나(소득 변화), 근처에 새 햄버거 가게가 생기면(대체재) 같은 가격에서도 사고 싶은 양 자체가 달라져요. 이것을 '수요가 변했다'고 해요.",
-            "파는 쪽도 마찬가지예요. 고추장 값이 오르거나 가뭄으로 재료가 귀해지면, 같은 가격에서도 덜 만들게 돼요. 이것을 '공급이 변했다'고 해요."
+            "If only the price of a slice changes, people stick to their usual plans and just buy a little more or a little less.",
+            "But suppose exams end and you hang out with friends more often (a change in tastes or circumstances), your allowance goes up (a change in income), or a new burger place opens nearby (a substitute). Then the amount you want to buy changes even at the same price. We say that demand has changed.",
+            "The same goes for sellers. If cheese gets more expensive, or a drought makes ingredients scarce, the pizza place will make fewer pizzas even at the same price. We say that supply has changed."
           ]
         }
       ]
     },
     "intermediate": {
-      "summary": "수요곡선은 오른쪽 아래로, 공급곡선은 오른쪽 위로 기운다. 가격 변화는 곡선 위의 이동을, 가격 외 요인의 변화는 곡선 전체의 이동을 만든다.",
+      "summary": "The demand curve slopes down to the right, and the supply curve slopes up to the right. A price change causes a movement along a curve, while a change in any other factor shifts the entire curve.",
       "sections": [
         {
-          "heading": "수요표와 수요곡선",
+          "heading": "Demand schedules and demand curves",
           "concept_ids": [
             "demand",
             "quantity_demanded",
             "law_of_demand"
           ],
           "paragraphs": [
-            "수요는 가격과 수요량의 관계 전체이며, 이를 표로 정리한 것이 수요표, 그래프로 그린 것이 수요곡선이다. 경제학에서는 관례적으로 세로축에 가격(P), 가로축에 수량(Q)을 둔다.",
-            "수요 법칙에 따라 수요곡선은 오른쪽 아래로 기운다. 이때 '다른 조건이 일정하다(ceteris paribus)'는 가정이 중요하다. 한 번에 가격 하나만 바꿔 보아야 가격과 수요량의 관계를 따로 볼 수 있기 때문이다."
+            "Demand is the whole relationship between price and quantity demanded. A table of that relationship is a demand schedule, and a graph of it is a demand curve. By convention, economists put price (P) on the vertical axis and quantity (Q) on the horizontal axis.",
+            "Because of the law of demand, the demand curve slopes down to the right. The assumption that other things stay the same (ceteris paribus) matters here: only by changing the price alone can we isolate the relationship between price and quantity demanded."
           ]
         },
         {
-          "heading": "공급표와 공급곡선",
+          "heading": "Supply schedules and supply curves",
           "concept_ids": [
             "supply",
             "law_of_supply"
           ],
           "paragraphs": [
-            "공급곡선은 가격이 높을수록 공급량이 많아지는 관계를 보여 주므로 오른쪽 위로 기운다. 생산을 늘릴수록 한 단위를 더 만드는 데 드는 비용(재료를 더 비싸게 사거나, 일손을 더 들이거나, 덜 알맞은 땅·설비까지 쓰는 비용)이 대체로 커진다. 가격이 오르면 이렇게 비용이 더 드는 추가 생산도 수지가 맞게 되므로, 생산자는 공급량을 늘린다."
+            "The supply curve shows that quantity supplied is larger at higher prices, so it slopes up to the right. As production expands, the cost of making one more unit usually rises, because producers must pay more for materials, hire extra workers, or use less suitable land and equipment. A higher price makes this more costly extra output worth producing, so producers increase the quantity supplied."
           ]
         },
         {
-          "heading": "수요량의 변화와 수요의 변화",
+          "heading": "Change in quantity demanded vs. change in demand",
           "concept_ids": [
             "movement_vs_shift",
             "shifters"
           ],
           "paragraphs": [
-            "그 상품의 가격이 바뀌면 곡선 위의 점이 움직인다. 이것은 '수요량(공급량)의 변화'다. 가격 외의 요인이 바뀌면 곡선 전체가 오른쪽(증가) 또는 왼쪽(감소)으로 이동한다. 이것은 '수요(공급)의 변화'다.",
-            "수요를 이동시키는 요인: 소득(정상재는 소득이 늘면 수요 증가, 열등재는 감소), 대체재·보완재의 가격, 기호와 유행, 인구 규모와 구성, 미래 가격에 대한 기대.",
-            "공급을 이동시키는 요인: 원재료·인건비 같은 생산 비용, 날씨 등 자연 조건, 생산 기술, 세금·보조금·규제 같은 정부 정책."
+            "When the good's own price changes, the point moves along the curve. This is a change in quantity demanded (or quantity supplied). When a factor other than price changes, the whole curve shifts to the right (an increase) or to the left (a decrease). This is a change in demand (or supply).",
+            "Factors that shift demand: income (for a normal good, higher income increases demand; for an inferior good, it decreases demand), prices of substitutes and complements, tastes and trends, the size and makeup of the population, and expectations about future prices.",
+            "Factors that shift supply: production costs such as raw materials and wages, natural conditions such as weather, production technology, and government policies such as taxes, subsidies, and regulations."
           ]
         }
       ]
     },
     "advanced": {
-      "summary": "선형 수요함수 Qd = a − bP 와 선형 공급함수 Qs = c + dP 로 수요·공급을 수식화하면, 기울기는 가격에 대한 반응 정도를, 절편의 변화는 곡선의 이동을 나타낸다.",
+      "summary": "Writing demand and supply as linear functions, Qd = a − bP and Qs = c + dP, the slopes measure how strongly quantity responds to price, and a change in an intercept represents a shift of the curve.",
       "sections": [
         {
-          "heading": "수요함수",
+          "heading": "The demand function",
           "concept_ids": [
             "demand",
             "quantity_demanded",
             "law_of_demand"
           ],
           "paragraphs": [
-            "수요를 함수로 쓰면 Qd = a − bP (a > 0, b > 0) 와 같다. 수요 법칙은 b > 0, 즉 ΔQd/ΔP = −b < 0 이라는 조건으로 표현된다. 특정 가격 P₀ 를 대입해 얻는 Qd(P₀) 가 그 가격에서의 수요량이다.",
-            "시장 수요는 같은 가격에서 개별 소비자들의 수요량을 더한 것(수평 합)이다. 따라서 소비자 수가 늘면 시장 수요곡선이 오른쪽으로 이동한다."
+            "As a function, demand can be written Qd = a − bP (a > 0, b > 0). The law of demand is the condition b > 0, that is, ΔQd/ΔP = −b < 0. Plugging in a specific price P₀ gives Qd(P₀), the quantity demanded at that price.",
+            "Market demand is the sum of individual consumers' quantities demanded at each price (a horizontal sum). So when the number of consumers grows, the market demand curve shifts to the right."
           ]
         },
         {
-          "heading": "공급함수",
+          "heading": "The supply function",
           "concept_ids": [
             "supply",
             "law_of_supply"
           ],
           "paragraphs": [
-            "공급을 Qs = c + dP (d > 0) 로 쓰면, 공급 법칙은 ΔQs/ΔP = d > 0 으로 표현된다. 절편 c 는 가격 외 조건(비용, 기술 등)을 요약한 값으로 볼 수 있다."
+            "Writing supply as Qs = c + dP (d > 0), the law of supply is the condition ΔQs/ΔP = d > 0. The intercept c can be read as a summary of non-price conditions such as costs and technology."
           ]
         },
         {
-          "heading": "이동 요인과 함수의 변화",
+          "heading": "Shift factors and changes in the function",
           "concept_ids": [
             "movement_vs_shift",
             "shifters"
           ],
           "paragraphs": [
-            "가격이 바뀌면 함수는 그대로이고 함수 위의 다른 점을 읽을 뿐이다. 반면 소득·관련재 가격·기호·인구·기대가 바뀌면 a 가 바뀌어(경우에 따라 b 도) 수요곡선이 이동한다. 예를 들어 a 가 100 에서 130 으로 커지면 모든 가격에서 수요량이 30 씩 늘어난다.",
-            "공급 쪽에서는 생산 비용 상승, 나쁜 날씨, 세금 부과가 c 를 줄이고(왼쪽 이동), 기술 발전이나 보조금은 c 를 늘린다(오른쪽 이동).",
-            "현실의 함수가 정확히 직선이라는 보장은 없다. 선형 모형은 짧은 가격 구간에서 관계를 단순화해 보기 위한 근사라는 점을 기억해야 한다."
+            "When the price changes, the function stays the same; we simply read a different point on it. When income, prices of related goods, tastes, population, or expectations change, a changes (and sometimes b as well), so the demand curve shifts. For example, if a rises from 100 to 130, quantity demanded increases by 30 at every price.",
+            "On the supply side, higher production costs, bad weather, or a new tax reduce c (a leftward shift), while better technology or a subsidy increases c (a rightward shift).",
+            "Real-world demand and supply are not guaranteed to be straight lines. Keep in mind that a linear model is an approximation that simplifies the relationship over a narrow range of prices."
           ]
         }
       ]
@@ -208,14 +214,14 @@
     {
       "id": "c02-l1-we1",
       "level": "beginner",
-      "title": "수요표 읽기",
-      "problem": "가상의 예: 학교 매점 주스의 수요표가 1,000원일 때 50개, 1,500원일 때 40개, 2,000원일 때 30개다. 가격이 1,000원에서 2,000원으로 오르면 하루 수요량은 몇 개 줄어드는가?",
+      "title": "Reading a demand schedule",
+      "problem": "Hypothetical example: The demand schedule for juice at a school snack bar shows 50 bottles a day at $1.00, 40 bottles at $1.50, and 30 bottles at $2.00. If the price rises from $1.00 to $2.00, by how many bottles does the daily quantity demanded fall?",
       "steps": [
-        "1,000원일 때 수요량은 50개다.",
-        "2,000원일 때 수요량은 30개다.",
-        "50 − 30 = 20 이다."
+        "At $1.00, quantity demanded is 50 bottles.",
+        "At $2.00, quantity demanded is 30 bottles.",
+        "50 − 30 = 20."
       ],
-      "answer": "20개 줄어든다. 가격이 올라 수요량이 줄었으므로 수요 법칙과 맞다.",
+      "answer": "It falls by 20 bottles. The price rose and quantity demanded fell, which matches the law of demand.",
       "check": {
         "type": "difference",
         "a": 50,
@@ -226,26 +232,26 @@
     {
       "id": "c02-l1-we2",
       "level": "intermediate",
-      "title": "곡선 위의 이동인가, 곡선의 이동인가",
-      "problem": "가상의 예: (가) 딸기 값이 내려 딸기를 더 많이 산다. (나) 여름이 되어 같은 값에서도 아이스크림을 더 많이 산다. (다) 비료 값이 올라 같은 값에서도 농가가 배추를 덜 내놓는다. 각각 무엇의 변화인가?",
+      "title": "Movement along the curve, or a shift of the curve?",
+      "problem": "Hypothetical example: (A) Strawberries get cheaper, so people buy more strawberries. (B) Summer arrives, and people buy more ice cream even at the same price. (C) Fertilizer gets more expensive, so farmers bring less lettuce to market even at the same price. What kind of change is each one?",
       "steps": [
-        "(가) 그 상품의 가격이 바뀌었다 → 수요곡선 위의 이동(수요량 증가).",
-        "(나) 가격 외의 요인(계절·기호)이 바뀌었다 → 수요곡선이 오른쪽으로 이동(수요 증가).",
-        "(다) 생산 비용이 올랐다 → 공급곡선이 왼쪽으로 이동(공급 감소)."
+        "(A) The good's own price changed → a movement along the demand curve (an increase in quantity demanded).",
+        "(B) A non-price factor (the season, tastes) changed → the demand curve shifts to the right (an increase in demand).",
+        "(C) A production cost rose → the supply curve shifts to the left (a decrease in supply)."
       ],
-      "answer": "(가) 수요량의 변화, (나) 수요의 변화(증가), (다) 공급의 변화(감소)"
+      "answer": "(A) a change in quantity demanded, (B) a change in demand (an increase), (C) a change in supply (a decrease)"
     },
     {
       "id": "c02-l1-we3",
       "level": "advanced",
-      "title": "선형 수요함수로 수요량 계산",
-      "problem": "가상의 예: 어느 지역 쌀 시장의 수요함수가 Qd = 120 − 4P (P: 천 원/kg, Q: 톤) 라고 하자. 가격이 10 에서 15 로 오르면 수요량은 얼마가 되는가?",
+      "title": "Calculating quantity demanded from a linear demand function",
+      "problem": "Hypothetical example: Suppose demand in a regional rice market is Qd = 120 − 4P, where P is the price in dollars per 10-kg bag and Q is in thousands of bags. What is quantity demanded when the price rises from 10 to 15?",
       "steps": [
-        "P = 10 일 때 Qd = 120 − 4×10 = 80.",
-        "P = 15 일 때 Qd = 120 − 4×15 = 60.",
-        "가격이 5 오를 때 수요량은 20 줄었다. 기울기 −4 와 일치한다."
+        "At P = 10, Qd = 120 − 4×10 = 80.",
+        "At P = 15, Qd = 120 − 4×15 = 60.",
+        "A price increase of 5 lowered quantity demanded by 20. This matches the slope of −4."
       ],
-      "answer": "수요량은 60톤 (80톤에서 20톤 감소)",
+      "answer": "Quantity demanded is 60 thousand bags (down 20 thousand bags from 80 thousand).",
       "check": {
         "type": "linear",
         "intercept": 120,
@@ -258,13 +264,13 @@
   "graphs": [
     {
       "id": "c02-l1-g1",
-      "title": "수요의 증가: 수요곡선의 오른쪽 이동",
-      "caption": "가상의 예. 소득이 늘어 모든 가격에서 사려는 양이 30 씩 늘면 수요곡선이 D1 에서 D2 로 이동한다. 같은 가격 20 에서 수요량이 60 에서 90 으로 늘어난다(곡선 자체의 이동). 수요와 공급이 만나 가격이 정해지는 과정(균형)은 레슨 2 에서 배운다.",
+      "title": "An increase in demand: the demand curve shifts right",
+      "caption": "Hypothetical example. If higher incomes make people want to buy 30 more units at every price, the demand curve shifts from D1 to D2. At the same price of 20, quantity demanded rises from 60 to 90 (a shift of the curve itself). You will learn how demand and supply together set the price (equilibrium) in Lesson 2.",
       "axis": {
         "p_max": 70,
         "q_max": 140,
-        "p_label": "가격 P",
-        "q_label": "수량 Q"
+        "p_label": "Price P",
+        "q_label": "Quantity Q"
       },
       "demand": [
         {
@@ -281,7 +287,7 @@
       "supply": [],
       "price_lines": [
         {
-          "label": "가격 20",
+          "label": "Price 20",
           "price": 20
         }
       ],
@@ -289,13 +295,13 @@
     },
     {
       "id": "c02-l1-g2",
-      "title": "공급의 감소: 공급곡선의 왼쪽 이동",
-      "caption": "가상의 예. 원재료 값이 올라 모든 가격에서 팔려는 양이 20 씩 줄면 공급곡선이 S1 에서 S2 로 이동한다. 같은 가격 40 에서 공급량이 50 에서 30 으로 줄어든다.",
+      "title": "A decrease in supply: the supply curve shifts left",
+      "caption": "Hypothetical example. If higher raw-material costs make producers offer 20 fewer units at every price, the supply curve shifts from S1 to S2. At the same price of 40, quantity supplied falls from 50 to 30.",
       "axis": {
         "p_max": 70,
         "q_max": 100,
-        "p_label": "가격 P",
-        "q_label": "수량 Q"
+        "p_label": "Price P",
+        "q_label": "Quantity Q"
       },
       "demand": [],
       "supply": [
@@ -312,7 +318,7 @@
       ],
       "price_lines": [
         {
-          "label": "가격 40",
+          "label": "Price 40",
           "price": 40
         }
       ],
@@ -321,13 +327,13 @@
   ],
   "real_world_examples": [
     {
-      "title": "날씨와 농산물 공급",
+      "title": "Weather and the supply of farm products",
       "source_ids": [
         "openstax-pe3-3-2"
       ],
       "paragraphs": [
-        "가뭄·폭우·한파 같은 자연 조건은 농산물 공급을 이동시키는 대표적인 요인이다. 수확이 줄면 같은 가격에서 시장에 나오는 양이 줄어, 공급곡선이 왼쪽으로 이동한다.",
-        "반대로 새로운 재배 기술이나 품종 개량은 같은 비용으로 더 많이 생산하게 해 공급곡선을 오른쪽으로 옮긴다."
+        "Natural conditions such as droughts, heavy rain, and cold snaps are classic examples of factors that shift the supply of farm products. When harvests shrink, less reaches the market at every price, so the supply curve shifts to the left.",
+        "On the other hand, new farming techniques and improved crop varieties let farmers grow more at the same cost, which shifts the supply curve to the right."
       ]
     }
   ],
@@ -335,55 +341,55 @@
     "sdgs": [
       2
     ],
-    "title": "가뭄이 든 해, 곡물 시장과 식량 안보",
+    "title": "A drought year: grain markets and food security",
     "paragraphs": [
-      "SDG 2 는 기아를 끝내고 모든 사람이 일 년 내내 안전하고 영양가 있는 식량을 충분히 얻도록 하는 것을 목표로 한다. 세부목표 2.c 는 식량 시장이 제대로 작동하고, 식량 비축분을 포함한 시장 정보에 제때 접근할 수 있게 해 극단적인 가격 변동을 줄이자고 말한다.",
-      "가상의 상황: 가뭄으로 한 나라의 곡물 수확이 크게 줄었다. 공급곡선이 왼쪽으로 이동하므로 가격이 오르고, 소득에서 식비 비중이 큰 가구일수록 부담이 커진다. 이때 정부가 고를 수 있는 선택지와 그 근거를 비교해 보자."
+      "SDG 2 aims to end hunger and make sure everyone has enough safe, nutritious food all year round. SDG target 2.c calls for well-functioning food markets and timely access to market information, including information on food reserves, to help limit extreme price swings.",
+      "Hypothetical situation: A drought has sharply reduced a country's grain harvest. The supply curve shifts to the left, so the price rises, and households that spend a large share of their income on food are hit hardest. Compare the options the government could choose and the reasoning behind each."
     ],
     "options": [
       {
-        "name": "정부 비축 곡물을 시장에 풀기",
+        "name": "Release government grain reserves onto the market",
         "benefits": [
-          "공급을 늘려 가격 상승 폭을 줄일 수 있다."
+          "Adds to supply and can limit how much the price rises."
         ],
         "costs": [
-          "비축분을 미리 사서 보관하는 비용이 든다.",
-          "비축분을 다 쓰면 다음 충격에 대비하기 어렵다."
+          "Buying and storing reserves in advance costs money.",
+          "Once the reserves are used up, the country is less prepared for the next shock."
         ],
         "assumptions": [
-          "비축량이 충분하고, 풀어야 할 시점을 제때 판단할 수 있다."
+          "Reserves are large enough, and officials can judge the right time to release them."
         ]
       },
       {
-        "name": "시장 가격에 맡기고 정보를 투명하게 공개하기",
+        "name": "Let market prices adjust and publish information openly",
         "benefits": [
-          "높은 가격이 생산 확대와 수입을 끌어들이는 신호가 된다.",
-          "정부 지출이 적다."
+          "High prices signal farmers to grow more and traders to import more.",
+          "Requires little government spending."
         ],
         "costs": [
-          "가격이 오르는 동안 저소득 가구가 충분히 먹지 못할 위험이 있다."
+          "While prices are high, low-income households risk not getting enough to eat."
         ],
         "assumptions": [
-          "수입이나 다음 수확으로 공급이 비교적 빨리 늘 수 있다."
+          "Supply can recover fairly quickly through imports or the next harvest."
         ]
       },
       {
-        "name": "저소득 가구에 식비를 직접 지원하기",
+        "name": "Give low-income households direct help with food costs",
         "benefits": [
-          "가장 취약한 가구의 식량 접근을 지킨다.",
-          "시장 가격 신호는 유지된다."
+          "Protects food access for the most vulnerable households.",
+          "Keeps the market price signal in place."
         ],
         "costs": [
-          "재정이 들고, 지원 대상을 정확히 고르는 행정 비용이 든다.",
-          "공급이 그대로면 수요를 늘려 가격을 더 올릴 수 있다."
+          "Costs public money, plus administrative costs to target the right households.",
+          "If supply does not change, the extra demand can push prices even higher."
         ],
         "assumptions": [
-          "대상 가구를 정확히 파악하고 빠르게 지급할 수 있다."
+          "The government can identify eligible households accurately and pay them quickly."
         ]
       }
     ],
     "discussion": [
-      "세 선택지를 함께 쓴다면 어떤 순서와 조합이 좋을까? 그 판단은 어떤 가정에 기대고 있는가?"
+      "If the government used all three options together, what order and combination would work best? Which assumptions does your answer depend on?"
     ],
     "source_ids": [
       "un-sdg-2",
@@ -391,9 +397,9 @@
     ]
   },
   "key_takeaways": [
-    "수요는 가격과 수요량의 관계 전체, 수요량은 한 가격에서의 양이다. 공급과 공급량도 같은 구분을 한다.",
-    "다른 조건이 같다면 가격과 수요량은 반대로, 가격과 공급량은 같은 방향으로 움직인다.",
-    "가격 변화는 곡선 위의 이동, 가격 외 요인의 변화는 곡선 자체의 이동이다."
+    "Demand is the whole relationship between price and quantity demanded; quantity demanded is the amount at one price. Supply and quantity supplied follow the same distinction.",
+    "Other things being equal, price and quantity demanded move in opposite directions, while price and quantity supplied move in the same direction.",
+    "A price change causes a movement along a curve; a change in any non-price factor shifts the curve itself."
   ],
   "source_ids": [
     "openstax-pe3-3-1",

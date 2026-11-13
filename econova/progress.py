@@ -25,7 +25,7 @@ def activity_done(record, activity):
 def lesson_status(requirements, record):
     """필수 활동이 모두 끝났으면 completed, 하나라도 했으면 in_progress, 아니면 not_started."""
     if not requirements:
-        raise ValueError("레슨에는 필수 활동이 하나 이상 있어야 합니다.")
+        raise ValueError("A lesson must have at least one required activity.")
     done = [activity_done(record, a) for a in requirements]
     if all(done):
         return COMPLETED

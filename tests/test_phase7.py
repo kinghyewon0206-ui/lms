@@ -17,6 +17,7 @@ from econova import admin_content as ac
 from econova import capstone as cap
 from econova import config, content, lesson_content, roles, storage
 from econova.ai import client
+from econova.ai.safety import STUDENT_TAG
 from tests.conftest import CSRF, ROOT, login, set_csrf, signup
 from tests.test_econova_routes import _enroll, _post, _uid, take
 
@@ -84,7 +85,7 @@ def test_admin_access_and_revocation(app, client):
     res = client.get("/admin/content")
     html = res.get_data(as_text=True)
     assert res.status_code == 200 and res.headers["Cache-Control"] == "no-store"
-    assert "C02" in html and "C09" in html and "공개하려면 해결할 것" in html and "콘텐츠 관리" in html
+    assert "C02" in html and "C09" in html and "to resolve before publishing" in html and "Content admin" in html
     assert "student@example.com" not in html
     assert client.get("/preview/c02/c02-l1").status_code == 200        # 관리자는 검토용 미리보기 가능
     with app.app_context():
@@ -106,7 +107,7 @@ def test_admin_grant_cli_requires_explicit_verification(app, client, monkeypatch
     assert runner.invoke(args=["admin-grant", "nobody@example.com", "--operator", "운영자", "--verification", "대면 확인 완료함"],
                          input="nobody@example.com\n").exit_code != 0
     res = runner.invoke(args=base, input="wrong@example.com\n")
-    assert res.exit_code != 0 and "아무것도 바꾸지 않았습니다" in res.output
+    assert res.exit_code != 0 and "Nothing was changed." in res.output
     res = runner.invoke(args=base[:-1] + ["짧음"], input="future-admin@example.com\n")
     assert res.exit_code != 0
     with app.app_context():
@@ -128,9 +129,9 @@ def test_admin_grant_cli_requires_explicit_verification(app, client, monkeypatch
 def test_admin_sees_answer_keys_only_in_admin_pages(app, client):
     _make_admin(app, client)
     html = client.get("/admin/content/assessment/dev-f1-l1-quiz").get_data(as_text=True)
-    assert "← 정답" in html and "관리자 전용" in html
+    assert "← Correct answer" in html and "Admin-only page." in html
     html = client.get("/admin/content/assessment/c02-l1-quiz").get_data(as_text=True)
-    assert "정답 키 없음" in html and "← 정답" not in html            # 테스트에는 실제 키가 없다
+    assert "No answer key" in html and "← Correct answer" not in html            # 테스트에는 실제 키가 없다
     _switch(client, "plain@example.com")
     assert client.get("/admin/content/assessment/dev-f1-l1-quiz").status_code == 404
 
@@ -157,7 +158,7 @@ def test_review_transitions_are_audited_and_never_touch_files(app, client):
     _make_admin(app, client)
     before = _file_hash("dev_fixtures/debates/dev-f1.json")
     page = f"/admin/content/debate/{DRAFT_TOPIC}"
-    assert "검토 시작" in client.get(page).get_data(as_text=True)
+    assert "Start review" in client.get(page).get_data(as_text=True)
     _review(client, "approve")                                              # 초안에서 바로 승인 불가
     with app.app_context():
         assert storage.list_content_reviews("debate", DRAFT_TOPIC) == []
@@ -220,10 +221,10 @@ def test_release_apply_binds_approval_to_digest(app, client, content_copy, tmp_p
     plan_file.write_text(json.dumps(plan, ensure_ascii=False), encoding="utf-8")
     runner = app.test_cli_runner()
     res = runner.invoke(args=["content-release-apply", str(plan_file), "--dry-run"])
-    assert res.exit_code == 0 and "dry-run" in res.output
+    assert res.exit_code == 0 and "Verified (dry run; files unchanged)" in res.output
     assert json.loads((content_copy / "dev_fixtures/debates/dev-f1.json").read_text(encoding="utf-8"))["topics"][2]["review"]["status"] == "draft"
     res = runner.invoke(args=["content-release-apply", str(plan_file)])
-    assert res.exit_code == 0 and "반영함" in res.output, res.output
+    assert res.exit_code == 0 and "Applied" in res.output, res.output
     topic = json.loads((content_copy / "dev_fixtures/debates/dev-f1.json").read_text(encoding="utf-8"))["topics"][2]
     assert topic["review"]["status"] == "approved" and topic["review"]["reviewer"]["role"] == "admin"
     assert topic["review"]["reviewer"]["review_id"] == plan["items"][0]["review_id"]
@@ -232,12 +233,12 @@ def test_release_apply_binds_approval_to_digest(app, client, content_copy, tmp_p
     assert "draft-topic-hidden" in [t["id"] for t in debates.topics_for(cat.course("dev-f1"), cat.sources)]
     # 승인 뒤 내용을 고치면 검사기가 거부한다 (지문 불일치)
     data = json.loads((content_copy / "dev_fixtures/debates/dev-f1.json").read_text(encoding="utf-8"))
-    data["topics"][2]["policy_question"] = "바뀐 질문"
+    data["topics"][2]["policy_question"] = "A changed question"
     (content_copy / "dev_fixtures/debates/dev-f1.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-    with pytest.raises(content.ContentError, match="지문 불일치"):
+    with pytest.raises(content.ContentError, match="fingerprint mismatch"):
         debates.topics_for(cat.course("dev-f1"), cat.sources)
     # 다시 반영하려 해도 지문이 달라 건너뛴다
-    assert "건너뜀" in runner.invoke(args=["content-release-apply", str(plan_file)]).output
+    assert "Skipped: content changed after approval (fingerprint mismatch)" in runner.invoke(args=["content-release-apply", str(plan_file)]).output
 
 
 def test_release_apply_refuses_forged_or_production(app, client, content_copy, tmp_path, monkeypatch):
@@ -248,7 +249,7 @@ def test_release_apply_refuses_forged_or_production(app, client, content_copy, t
     plan_file = tmp_path / "forged.json"
     plan_file.write_text(json.dumps(forged), encoding="utf-8")
     runner = app.test_cli_runner()
-    assert "이 DB 에 검토 기록이 없음" in runner.invoke(args=["content-release-apply", str(plan_file)]).output
+    assert "Skipped: No review record in this DB" in runner.invoke(args=["content-release-apply", str(plan_file)]).output
     assert json.loads((content_copy / target.file).read_text(encoding="utf-8"))["topics"][2]["review"]["status"] == "draft"
     monkeypatch.setenv("RENDER", "1")
     monkeypatch.setenv("SECRET_KEY", "s" * 40)
@@ -260,7 +261,7 @@ def test_admin_review_schema_rules():
     digest = "a" * 64
     with pytest.raises(content.ContentError, match="review_id"):
         lesson_content._parse_review({**base, "reviewer": {"name": "관리자 김", "role": "admin"}}, "t", False, digest)
-    with pytest.raises(content.ContentError, match="지문 불일치"):
+    with pytest.raises(content.ContentError, match="fingerprint mismatch"):
         lesson_content._parse_review({**base, "reviewer": {"name": "관리자 김", "role": "admin", "review_id": "3"},
                                       "content_digest": "b" * 64}, "t", False, digest)
     ok = lesson_content._parse_review({**base, "reviewer": {"name": "관리자 김", "role": "admin", "review_id": "3"},
@@ -277,10 +278,10 @@ def test_admin_review_schema_rules():
 def test_overview_explains_why_courses_are_not_ready():
     rows = {r["id"]: r for r in ac.overview()}
     assert set(rows) == {f"c0{i}" for i in range(1, 10)} and all(r["status"] == "coming_soon" for r in rows.values())
-    assert any("학습자료가 승인되지 않았어요" in b for b in rows["c02"]["blockers"])
-    assert any("정답 키가 없어" in b for b in rows["c02"]["blockers"])
-    assert any("합격 기준이 승인되지 않았어요" in b for b in rows["c02"]["blockers"])
-    assert any("캡스톤 안내·루브릭이 승인되지 않았어요" in b for b in rows["c09"]["blockers"])
+    assert any("learning materials are not approved" in b for b in rows["c02"]["blockers"])
+    assert any("no answer key, so the assessment cannot be opened" in b for b in rows["c02"]["blockers"])
+    assert any("passing criteria are not approved" in b for b in rows["c02"]["blockers"])
+    assert any("The capstone project guide and rubric are not approved." in b for b in rows["c09"]["blockers"])
     assert not any(r["error"] for r in rows.values())
 
 
@@ -306,7 +307,8 @@ def test_report_is_accurate_and_private(app, client):
     login(client)
     set_csrf(client)
     html = client.get("/report").get_data(as_text=True)
-    assert "내 학습 보고서" in html and "아직 수강 중인 강좌가 없어요" in html and "AI 에게 추천 이유" not in html
+    assert "My learning report" in html and "You aren't enrolled in any courses yet." in html
+    assert "Ask AI to explain these recommendations" not in html
     _enroll(client, "dev-f1")
     _post(client, "/learn/dev-f1/dev-f1-l1/material-reviewed")
     quiz = content.get_catalog().course("dev-f1").lesson("dev-f1-l1").quiz_assessment
@@ -325,13 +327,14 @@ def test_report_is_accurate_and_private(app, client):
     assert m["correct"] == 2 and m["total"] == 2 and m["provisional"]      # 가장 최근 응시 기준, 2문항 → 잠정
     assert r["assessments"] == again["assessments"] and r["analysis"] == again["analysis"]
     kinds = [t[1] for t in r["timeline"]]
-    assert kinds.count("형성 퀴즈 제출") == 2 and kinds.count("학습자료 확인") == 2 and "수강 신청" in kinds
+    assert kinds.count("Submitted lesson quiz") == 2 and kinds.count("Reviewed learning materials") == 2 and "Enrolled" in kinds
     html = client.get("/report").get_data(as_text=True)
-    assert "처음 0% · 최고 100% · 마지막 100% · 변화 +100%p" in html and 'role="img"' in html and "잠정" in html
-    assert "숙달도" in html and "%</strong>" not in html
+    assert "First 0% · Best 100% · Latest 100% · Change +100 percentage points" in html and 'role="img"' in html
+    assert "Provisional" in html
+    assert '"mastery"' in html and "%</strong>" not in html
     _switch(client, "other@example.com")
     html = client.get("/report").get_data(as_text=True)
-    assert "아직 수강 중인 강좌가 없어요" in html and quiz.title not in html
+    assert "You aren't enrolled in any courses yet." in html and quiz.title not in html
 
 
 # ------------------------------------------------------------- SDG 캡스톤
@@ -363,25 +366,25 @@ def test_capstone_draft_edit_versions_and_ownership(app, client):
     _enroll(client, "dev-f3")
     defn = content.get_catalog().course("dev-f3").capstone
     page = "/capstone/dev-f3/edit"
-    assert "프로젝트 작성" in client.get(page).get_data(as_text=True)
-    res = client.post(page, data={"csrf_token": CSRF, "sdg": "7", "problem": "에너지 접근성 문제"})
+    assert "Write your project" in client.get(page).get_data(as_text=True)
+    res = client.post(page, data={"csrf_token": CSRF, "sdg": "7", "problem": "Energy access problem"})
     assert res.status_code == 303
-    client.post(page, data={"csrf_token": CSRF, "sdg": "7", "problem": "에너지 접근성 문제"})   # 바뀐 것 없음
+    client.post(page, data={"csrf_token": CSRF, "sdg": "7", "problem": "Energy access problem"})   # 바뀐 것 없음
     res = client.post(page, data={"csrf_token": CSRF, "sdg": "99", "problem": "x" * 3000})
     html = res.get_data(as_text=True)
-    assert res.status_code == 200 and "SDG 는 1~17" in html and "2000자 이하" in html and "x" * 50 in html   # 입력은 남아 있음
-    client.post(page, data={"csrf_token": CSRF, "sdg": "7", "problem": "에너지 접근성 문제를 더 구체적으로"})
+    assert res.status_code == 200 and "Please choose an SDG from 1 to 17." in html and "Please shorten this to 2000 characters or fewer" in html and "x" * 50 in html   # 입력은 남아 있음
+    client.post(page, data={"csrf_token": CSRF, "sdg": "7", "problem": "Energy access problem, described more specifically"})
     with app.app_context():
         uid = _uid(app)
         versions = storage.list_capstone_versions(uid, "dev-f3")
         project = storage.get_capstone(uid, "dev-f3")
-    assert [v["version"] for v in versions] == [1, 2] and versions[0]["sections"]["problem"] == "에너지 접근성 문제"
+    assert [v["version"] for v in versions] == [1, 2] and versions[0]["sections"]["problem"] == "Energy access problem"
     assert project["status"] == "draft" and project["current_version"] == 2
-    assert "에너지 접근성 문제" in client.get("/capstone/dev-f3/versions/1").get_data(as_text=True)
+    assert "Energy access problem" in client.get("/capstone/dev-f3/versions/1").get_data(as_text=True)
     _switch(client, "other@example.com")
     _enroll(client, "dev-f3")
     assert client.get("/capstone/dev-f3/versions/1").status_code == 404
-    assert "에너지 접근성" not in client.get("/capstone/dev-f3/edit").get_data(as_text=True)
+    assert "Energy access" not in client.get("/capstone/dev-f3/edit").get_data(as_text=True)
 
 
 def test_capstone_submission_self_assessment_and_completion(app, client):
@@ -400,7 +403,7 @@ def test_capstone_submission_self_assessment_and_completion(app, client):
     assert client.post(home + "/submit", data={"csrf_token": CSRF}).headers["Location"].endswith("/self-assessment")
     partial = {f"score_{c['id']}": "3" for c in defn.rubric["criteria"][:3]}
     res = client.post(home + "/self-assessment", data={"csrf_token": CSRF, "version": "2", **partial})
-    assert res.status_code == 200 and "수준을 골라 주세요" in res.get_data(as_text=True)
+    assert res.status_code == 200 and "Please choose a level" in res.get_data(as_text=True)
     scores = {f"score_{c['id']}": "2" if i == 0 else "4" for i, c in enumerate(defn.rubric["criteria"])}
     assert client.post(home + "/self-assessment", data={"csrf_token": CSRF, "version": "1", **scores}).status_code == 303
     with app.app_context():
@@ -413,14 +416,15 @@ def test_capstone_submission_self_assessment_and_completion(app, client):
         assert project["status"] == "submitted" and project["submitted_version"] == 3
         assert storage.get_enrollment(uid, "dev-f3")["status"] == "active"   # 레슨을 아직 안 끝냄
     html = client.get(home).get_data(as_text=True)
-    assert "○ 레슨 모두 완료" in html and "✔ 필수 칸을 모두 채운 버전 제출" in html and "공식 학업 성취·자격 인증이 아니고" in html
+    assert "○ All lessons completed" in html and "✔ A version with all required fields submitted" in html
+    assert "It is not an official academic achievement or certification" in html
     for lesson in course.lessons:
         _post(client, f"/learn/dev-f3/{lesson.id}/material-reviewed")
     html = client.get(home).get_data(as_text=True)                            # 다시 열면 결정적 규칙으로 수료 기록
     with app.app_context():
         enrollment = storage.get_enrollment(uid, "dev-f3")
     assert enrollment["status"] == "completed" and enrollment["completion_policy"] == "dev_capstone"
-    assert enrollment["completion_attempt_id"] == "capstone-v3" and "개발용 테스트" in html
+    assert enrollment["completion_attempt_id"] == "capstone-v3" and "(development test)" in html
     s = cap.weighted_summary(defn, {c["id"]: {"level": 2 if i == 0 else 4} for i, c in enumerate(defn.rubric["criteria"])})
     assert s["average_level"] == 3.7 and s["improve"] == [defn.rubric["criteria"][0]["name"]] and s["complete"]
 
@@ -437,10 +441,10 @@ def test_real_capstone_completion_needs_human_approved_rubric():
 
 
 @pytest.mark.parametrize("mutate, message", [
-    (lambda d: d["rubric"]["criteria"][0].update(weight=50), "가중치 합"),
-    (lambda d: d["rubric"].update(status="approved"), "루브릭만 따로"),
+    (lambda d: d["rubric"]["criteria"][0].update(weight=50), "weights must add up to 100"),
+    (lambda d: d["rubric"].update(status="approved"), "rubric cannot be approved on its own"),
     (lambda d: d["steps"][0].update(lesson_id="c01-l1"), "lesson_id"),
-    (lambda d: d["steps"].pop(), "되돌아보기"),
+    (lambda d: d["steps"].pop(), "reflection"),
     (lambda d: d["rubric"]["criteria"][0]["descriptors"].pop("4"), "descriptors"),
 ])
 def test_capstone_definition_validation(mutate, message):
@@ -458,17 +462,17 @@ def test_capstone_ai_coach_is_optional_and_isolated(app, client, monkeypatch):
     defn = content.get_catalog().course("dev-f3").capstone
     client.post("/capstone/dev-f3/edit", data={"csrf_token": CSRF, **_cap_form(defn)})
     client.post("/capstone/dev-f3/feedback", data={"csrf_token": CSRF})
-    assert "AI 기능이 지금은 꺼져 있어요" in client.get("/capstone/dev-f3").get_data(as_text=True)
+    assert "AI features are turned off right now." in client.get("/capstone/dev-f3").get_data(as_text=True)
     from econova.ai import client as ai_client
     monkeypatch.setenv("ECONOVA_AI_PROVIDER", "mock")
     mock = ai_client.MockProvider()
     monkeypatch.setattr(ai_client, "get_provider", lambda s=None: mock)
     assert client.post("/capstone/dev-f3/feedback", data={"csrf_token": CSRF, "step": "problem"}).status_code == 303
     html = client.get("/capstone/dev-f3").get_data(as_text=True)
-    assert "AI 생성" in html and "생각해 볼 질문" in html
+    assert "AI-generated" in html and "Questions to think about" in html
     req = mock.calls[-1]
-    assert "<학생_글>" in req.messages[-1]["content"] and "student@example.com" not in json.dumps(req.messages, ensure_ascii=False)
-    mock.responder = lambda r: {"strengths": ["좋아요 https://example.com/fake"], "questions": [], "missing_perspectives": [],
+    assert f"<{STUDENT_TAG}>" in req.messages[-1]["content"] and "student@example.com" not in json.dumps(req.messages, ensure_ascii=False)
+    mock.responder = lambda r: {"strengths": ["Nice work https://example.com/fake"], "questions": [], "missing_perspectives": [],
                                 "assumptions_to_check": [], "structure_suggestions": [], "limitations": ""}
     client.post("/capstone/dev-f3/feedback", data={"csrf_token": CSRF, "step": "sdg"})
     with app.app_context():
@@ -484,9 +488,9 @@ def test_lesson_and_course_pages_link_capstone(client):
     set_csrf(client)
     _enroll(client, "dev-f3")
     html = client.get("/learn/dev-f3/dev-f3-l2").get_data(as_text=True)
-    assert "이 레슨과 연결된 캡스톤 단계" in html and "5. 유인과 상충관계" in html
-    assert "캡스톤 보기" in client.get("/courses/dev-f3").get_data(as_text=True)
-    assert "검토를 마치면 열려요" in client.get("/courses/c09").get_data(as_text=True)
+    assert "Capstone project steps linked to this lesson" in html and "5. Incentives and trade-offs" in html
+    assert "View Capstone project" in client.get("/courses/dev-f3").get_data(as_text=True)
+    assert "The Capstone project opens once its guide and self-assessment criteria have been reviewed." in client.get("/courses/c09").get_data(as_text=True)
 
 
 # ------------------------------------------------------------- 보안 설정

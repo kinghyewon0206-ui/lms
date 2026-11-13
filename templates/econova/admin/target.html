@@ -1,78 +1,78 @@
 {% extends "base.html" %}
-{% block title %}검토: {{ t.title }} · ECONOVA{% endblock %}
+{% block title %}Review: {{ t.title }} · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page admin-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.admin_content') }}">콘텐츠 관리</a> <span>/</span> {{ type_ko[t.type] }}</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.admin_content') }}">Content admin</a> <span>/</span> {{ type_ko[t.type] }}</nav>
   <header class="ec-head">
-    <span class="eyebrow">{{ type_ko[t.type] }} · {{ t.id }} · 버전 {{ t.version }}{% if t.fixture %} · 개발용{% endif %}</span>
+    <span class="eyebrow">{{ type_ko[t.type] }} · {{ t.id }} · Version {{ t.version }}{% if t.fixture %} · Development{% endif %}</span>
     <h1>{{ t.title }}</h1>
-    <p>정본 파일 상태 <strong>{{ state_ko.get(t.file_state, t.file_state) }}</strong> · 현재 검토 상태 <strong>{{ state_ko.get(state.state, state.state) }}</strong>
-      {% if state.source == 'db' %}(검토 기록 #{{ state.latest.id }}){% else %}(정본 파일 기준){% endif %}</p>
-    <p class="hint">파일 {{ t.file }} · 내용 지문 <code>{{ t.digest[:16] if t.digest else '계산할 수 없음' }}</code>{% if state.stale %} · 지난 내용에 대한 검토 기록 {{ state.stale }}개(무효){% endif %}</p>
+    <p>Canonical file status <strong>{{ state_ko.get(t.file_state, t.file_state) }}</strong> · Current review status <strong>{{ state_ko.get(state.state, state.state) }}</strong>
+      {% if state.source == 'db' %}(review record #{{ state.latest.id }}){% else %}(from the canonical file){% endif %}</p>
+    <p class="hint">File {{ t.file }} · Content fingerprint <code>{{ t.digest[:16] if t.digest else 'cannot be calculated' }}</code>{% if state.stale %} · Review records for earlier content: {{ state.stale }} (void){% endif %}</p>
     {% for p in t.problems %}<p class="admin-error">{{ p }}</p>{% endfor %}
   </header>
 
   <section class="ec-section" aria-labelledby="h-body">
-    <h2 id="h-body">내용</h2>
+    <h2 id="h-body">Content</h2>
     {% if t.type == 'material' %}
-      <p><a class="btn secondary" href="{{ url_for('econova.preview', course_id=t.course_id, lesson_id=t.id) }}">학습자료 화면으로 보기 (난이도별·그래프·예제)</a></p>
-      <p class="hint">출처: {% for sid in t.data.source_ids or [] %}{% set src = sources.get(sid) %}{{ src.title if src else sid }} ({{ '확인됨' if src and src.verified else '미확인' }}){% if not loop.last %}; {% endif %}{% endfor %}</p>
+      <p><a class="btn secondary" href="{{ url_for('econova.preview', course_id=t.course_id, lesson_id=t.id) }}">View as learning materials (by level, graphs, examples)</a></p>
+      <p class="hint">Sources: {% for sid in t.data.source_ids or [] %}{% set src = sources.get(sid) %}{{ src.title if src else sid }} ({{ 'verified' if src and src.verified else 'unverified' }}){% if not loop.last %}; {% endif %}{% endfor %}</p>
     {% elif t.type in ('assessment', 'diagnostic') %}
-      <p class="hint">관리자 전용 화면이에요. 정답·해설이 함께 보여요 (학생 화면에는 보내지 않아요).</p>
+      <p class="hint">Admin-only page. Answers and explanations are shown here (they are never sent to student pages).</p>
       {% for q in t.data.questions or [] %}
-        <div class="admin-q"><p><strong>{{ q.id }}</strong>{% if q.version %} v{{ q.version }}{% endif %} · {{ q.type }}{% if q.difficulty %} · {{ q.difficulty }}{% endif %}{% if q.objective %} · 목표 {{ q.objective }}{% endif %}</p>
+        <div class="admin-q"><p><strong>{{ q.id }}</strong>{% if q.version %} v{{ q.version }}{% endif %} · {{ q.type }}{% if q.difficulty %} · {{ q.difficulty }}{% endif %}{% if q.objective %} · Objective {{ q.objective }}{% endif %}</p>
           <p>{{ q.prompt }}</p>
-          {% if q.choices %}<ul class="ec-list">{% for c in q.choices %}<li>({{ c.id }}) {{ c.text }}{% if q.answer is defined and c.id == q.answer %} <strong>← 정답</strong>{% endif %}</li>{% endfor %}</ul>
-          {% elif q.answer is defined %}<p>정답 {{ q.answer }} (허용 오차 ±{{ q.tolerance }})</p>{% endif %}
-          {% if q.explanation %}<p class="hint">해설: {{ q.explanation }}</p>{% endif %}</div>
+          {% if q.choices %}<ul class="ec-list">{% for c in q.choices %}<li>({{ c.id }}) {{ c.text }}{% if q.answer is defined and c.id == q.answer %} <strong>← Correct answer</strong>{% endif %}</li>{% endfor %}</ul>
+          {% elif q.answer is defined %}<p>Correct answer {{ q.answer }} (allowed margin ±{{ q.tolerance }})</p>{% endif %}
+          {% if q.explanation %}<p class="hint">Explanation: {{ q.explanation }}</p>{% endif %}</div>
       {% endfor %}
-      {% if t.data.passing %}<p>합격 기준(제안): 정답률 {{ (t.data.passing.score_ratio * 100)|round|int }}% · 상태 {{ t.data.passing.status }}</p>{% endif %}
+      {% if t.data.passing %}<p>Passing score (proposed): {{ (t.data.passing.score_ratio * 100)|round|int }}% correct · Status {{ t.data.passing.status }}</p>{% endif %}
     {% elif t.type == 'passing' %}
-      <p>정답률 <strong>{{ (t.data.passing.score_ratio * 100)|round|int }}%</strong> 이상 합격 · 현재 상태 {{ t.data.passing.status }}</p>
+      <p>Pass at <strong>{{ (t.data.passing.score_ratio * 100)|round|int }}%</strong> correct or higher · Current status {{ t.data.passing.status }}</p>
       <p class="hint">{{ t.data.passing.note }}</p>
-      <p class="hint">합격 기준 승인은 최종 평가 자체의 승인과 함께 반영돼야 수료 판단에 쓰여요.</p>
+      <p class="hint">An approved passing score is used for completion decisions only when it is applied together with the approval of the final assessment itself.</p>
     {% elif t.type == 'capstone' %}
       {% for p in t.data.intro or [] %}<p>{{ p }}</p>{% endfor %}
-      <h3>단계</h3>
+      <h3>Steps</h3>
       <ol class="ec-list">{% for s in t.data.steps %}<li><strong>{{ s.title }}</strong> ({{ s.lesson_id }}) — {{ s.guidance }}</li>{% endfor %}</ol>
-      <h3>자기평가 루브릭 (상태: {{ t.data.rubric.status }})</h3>
+      <h3>Self-assessment rubric (status: {{ t.data.rubric.status }})</h3>
       <p class="hint">{{ t.data.rubric.note }}</p>
-      <div class="table-scroll"><table class="ec-table"><thead><tr><th scope="col">기준</th><th scope="col">가중치</th><th scope="col">설명</th></tr></thead>
+      <div class="table-scroll"><table class="ec-table"><thead><tr><th scope="col">Criterion</th><th scope="col">Weight</th><th scope="col">Description</th></tr></thead>
         <tbody>{% for c in t.data.rubric.criteria %}<tr><th scope="row">{{ c.name }}</th><td>{{ c.weight }}</td><td>{{ c.description }}</td></tr>{% endfor %}</tbody></table></div>
     {% elif t.type == 'course' %}
       <p>{{ t.data.description }}</p>
       <ul class="ec-list">{% for o in t.data.objectives or [] %}<li>{{ o }}</li>{% endfor %}</ul>
-      <p class="hint">레슨: {% for l in t.data.lessons or [] %}{{ l.id }} {{ l.title_ko }} ({{ l.status }}){% if not loop.last %}, {% endif %}{% endfor %}</p>
+      <p class="hint">Lessons: {% for l in t.data.lessons or [] %}{{ l.id }} {{ l.title_ko }} ({{ l.status }}){% if not loop.last %}, {% endif %}{% endfor %}</p>
     {% endif %}
-    <details><summary>원본 JSON 보기</summary><pre class="admin-json">{{ raw }}</pre></details>
+    <details><summary>View raw JSON</summary><pre class="admin-json">{{ raw }}</pre></details>
   </section>
 
   <section class="ec-section" aria-labelledby="h-history">
-    <h2 id="h-history">검토 기록</h2>
-    {% if t.data.review and t.data.review.history %}<p class="hint">정본 파일 기록: {% for h in t.data.review.history %}{{ h.status }} {{ h.at }} · {{ h.by }}{% if not loop.last %} / {% endif %}{% endfor %}</p>{% endif %}
+    <h2 id="h-history">Review history</h2>
+    {% if t.data.review and t.data.review.history %}<p class="hint">Canonical file history: {% for h in t.data.review.history %}{{ h.status }} {{ h.at }} · {{ h.by }}{% if not loop.last %} / {% endif %}{% endfor %}</p>{% endif %}
     {% if reviews %}
-    <div class="table-scroll"><table class="ec-table"><thead><tr><th scope="col">#</th><th scope="col">결정</th><th scope="col">상태</th><th scope="col">검토자</th><th scope="col">시각 (UTC)</th><th scope="col">내용</th><th scope="col">의견</th></tr></thead>
+    <div class="table-scroll"><table class="ec-table"><thead><tr><th scope="col">#</th><th scope="col">Decision</th><th scope="col">Status</th><th scope="col">Reviewer</th><th scope="col">Time (UTC)</th><th scope="col">Content</th><th scope="col">Comment</th></tr></thead>
       <tbody>{% for r in reviews %}<tr><td>{{ r.id }}</td><td>{{ decision_ko.get(r.decision, r.decision) }}</td><td>{{ r.from_state }} → {{ r.to_state }}</td><td>{{ r.reviewer_name }}</td><td>{{ r.created_at }}</td>
-        <td>v{{ r.content_version }} · {{ '현재 내용' if r.content_digest == t.digest else '지난 내용(무효)' }}</td><td>{{ r.comment }}</td></tr>{% endfor %}</tbody></table></div>
-    {% else %}<p class="ec-placeholder-text">아직 검토 기록이 없어요.</p>{% endif %}
+        <td>v{{ r.content_version }} · {{ 'current content' if r.content_digest == t.digest else 'earlier content (void)' }}</td><td>{{ r.comment }}</td></tr>{% endfor %}</tbody></table></div>
+    {% else %}<p class="ec-placeholder-text">No review records yet.</p>{% endif %}
   </section>
 
   <section class="ec-section" aria-labelledby="h-decide">
-    <h2 id="h-decide">검토 결정 남기기</h2>
+    <h2 id="h-decide">Record a review decision</h2>
     {% if decisions and t.digest %}
     <form method="post" action="{{ url_for('econova.admin_review', target_type=t.type, target_id=t.id) }}" class="tutor-form">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <input type="hidden" name="content_digest" value="{{ t.digest }}">
-      <fieldset><legend>결정</legend>
+      <fieldset><legend>Decision</legend>
         {% for d in decisions %}<label class="radio-row"><input type="radio" name="decision" value="{{ d }}" required> {{ decision_ko[d] }}</label>{% endfor %}
       </fieldset>
-      <label for="review-comment">검토 의견 (승인·수정 요청은 필수)</label>
+      <label for="review-comment">Review comment (required for approval and change requests)</label>
       <textarea id="review-comment" name="comment" rows="3" maxlength="2000"></textarea>
-      <label class="radio-row"><input type="checkbox" name="confirm_reviewed" value="1"> 위 내용(현재 버전)을 제가 직접 검토했습니다. AI 의 판단으로 승인하지 않습니다.</label>
-      <p class="hint">검토자: {{ g.user.name }} (로그인한 관리자 계정). 기록은 현재 내용 지문에 묶이고, 내용이 바뀌면 다시 검토해야 해요.</p>
-      <button class="btn" type="submit">결정 기록하기</button>
+      <label class="radio-row"><input type="checkbox" name="confirm_reviewed" value="1"> I personally reviewed the content above (current version). I am not approving based on AI judgment.</label>
+      <p class="hint">Reviewer: {{ g.user.name }} (signed-in admin account). The record is tied to the current content fingerprint; if the content changes, it must be reviewed again.</p>
+      <button class="btn" type="submit">Record decision</button>
     </form>
-    {% else %}<p class="ec-placeholder-text">지금 남길 수 있는 결정이 없어요.</p>{% endif %}
+    {% else %}<p class="ec-placeholder-text">No decisions can be recorded right now.</p>{% endif %}
   </section>
 </div>
 {% endblock %}

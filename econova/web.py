@@ -31,14 +31,14 @@ def _view_level(default):
 @bp.app_errorhandler(private_content.KeysUnavailable)
 def _assessment_unavailable(exc):
     """정답 키가 없거나 맞지 않아 평가를 닫았을 때 (fail closed). 이유는 서버 로그에만 남긴다 (정답 값은 메시지에 없음)."""
-    current_app.logger.error("ECONOVA 평가를 열 수 없습니다 (%s): %s", request.path, exc)
+    current_app.logger.error("Cannot open ECONOVA assessment (%s): %s", request.path, exc)
     return render_template("errors/assessment_unavailable.html"), 503
 
 
 @bp.app_errorhandler(content.ContentError)
 def _content_unavailable(exc):
     """강좌 JSON 이 잘못돼 ECONOVA 화면을 만들 수 없을 때. 자세한 이유는 서버 로그에만 남긴다."""
-    current_app.logger.error("ECONOVA 강좌 콘텐츠를 불러오지 못했습니다 (%s): %s", request.path, exc)
+    current_app.logger.error("Failed to load ECONOVA course content (%s): %s", request.path, exc)
     return render_template("errors/content_unavailable.html"), 503
 
 
@@ -84,7 +84,7 @@ def enroll(course_id):
     except learning.LearningError as exc:
         flash(exc.message, "error")
         return redirect(url_for("econova.course_detail", course_id=course.id)), 303
-    flash("수강 신청이 완료되었어요." if created else "이미 수강 중인 강좌예요.", "success")
+    flash("You're enrolled!" if created else "You're already enrolled in this course.", "success")
     return redirect(url_for("econova.course_detail", course_id=course.id))
 
 
@@ -97,7 +97,7 @@ def set_difficulty(course_id):
     except learning.LearningError as exc:
         flash(exc.message, "error")
         return redirect(url_for("econova.course_detail", course_id=course.id)), 303
-    flash("난이도를 바꿨어요.", "success")
+    flash("Your level has been updated.", "success")
     return redirect(url_for("econova.course_detail", course_id=course.id))
 
 
@@ -215,7 +215,7 @@ def diagnostic_take():
     if not test["answer_keys"]:   # 정답 키 없이는 응시·채점하지 않는다
         raise private_content.KeysUnavailable(test["keys_problem"])
     if not diagnostic.servable(test):   # 운영에서는 사람 승인 전 진단평가를 열지 않는다
-        raise private_content.KeysUnavailable("진단평가가 아직 사람 검토(승인) 전입니다.")
+        raise private_content.KeysUnavailable("The diagnostic assessment has not been human-reviewed (approved) yet.")
     if request.method == "POST":
         try:
             quotas.check("DIAGNOSTIC_ATTEMPTS", len(storage.list_diagnostic_attempts(g.user["id"])))
@@ -287,7 +287,7 @@ def _handle_submission(course, assessment, lesson, page_url):
         learning.reconcile_attempt(g.user["id"], course, assessment, existing, lesson)
         return redirect(url_for("econova.assessment_result", attempt_id=existing["id"]))
     if (session.get("assess_tokens") or {}).get(assessment.id) != token:
-        flash("제출 화면이 오래되어 다시 열었어요. 답을 확인하고 다시 제출해 주세요.", "error")
+        flash("This page was out of date, so we reopened it. Please check your answers and submit again.", "error")
         return redirect(page_url), 303
     answers = {q["id"]: request.form.get(f"q_{q['id']}", "") for q in assessment.questions}
     try:
@@ -319,7 +319,7 @@ def lesson_quiz(course_id, lesson_id):
     if request.method == "POST":
         return _handle_submission(course, quiz, lesson_, page)
     if learning.attempts_left(g.user["id"], quiz) == 0:
-        flash("응시할 수 있는 횟수를 모두 사용했어요.", "error")
+        flash("You've used all of your attempts.", "error")
         return redirect(url_for("econova.assessment_history", course_id=course.id))
     return _render_take(course, quiz, lesson_, page)
 
@@ -335,7 +335,7 @@ def final_assessment(course_id):
     if request.method == "POST":
         return _handle_submission(course, final, None, page)
     if learning.attempts_left(g.user["id"], final) == 0:
-        flash("최종 평가 응시 횟수를 모두 사용했어요.", "error")
+        flash("You've used all of your final assessment attempts.", "error")
         return redirect(url_for("econova.assessment_history", course_id=course.id))
     return _render_take(course, final, None, page)
 
@@ -429,7 +429,7 @@ def lab_save(sim_id):
     try:
         inputs, results = simulations.run(sim_id, raw)
     except simulations.SimError as exc:
-        flash(f"저장하지 못했어요. {exc.message}", "error")
+        flash(f"We couldn't save it. {exc.message}", "error")
         return redirect(url_for("econova.lab_sim", sim_id=sim_id)), 303
     lesson_id, course_id = request.form.get("lesson_id") or None, request.form.get("course_id") or None
     if lesson_id or course_id:
@@ -446,7 +446,7 @@ def lab_save(sim_id):
         flash(exc.message, "error")
         return redirect(url_for("econova.lab_sim", sim_id=sim_id)), 303
     run_id = storage.save_simulation_run(g.user["id"], sim_id, lesson_id, inputs, results, simulations.CALC_VERSION)
-    flash("시뮬레이션 결과를 저장했어요. 결과는 서버가 다시 계산한 값이에요.", "success")
+    flash("Simulation result saved. The results were recalculated by the server.", "success")
     return redirect(url_for("econova.lab_run", run_id=run_id))
 
 

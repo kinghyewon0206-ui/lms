@@ -15,6 +15,7 @@ import threading
 import types
 import urllib.error
 
+from econova.ai.safety import MATERIAL_TAG
 from tests import fake_firestore as base
 
 
@@ -116,8 +117,8 @@ class FakeOpenAI:
         data = _fill(schema)
         if self.behaviour == "invalid_schema":
             data = {"unexpected": True}
-        material = next((m["content"] for m in body["messages"] if m["content"].startswith("<자료>")), "")
-        ctx = json.loads(material[len("<자료>\n"):-len("\n</자료>")]) if material else {}
+        material = next((m["content"] for m in body["messages"] if m["content"].startswith(f"<{MATERIAL_TAG}>")), "")
+        ctx = json.loads(material[len(f"<{MATERIAL_TAG}>\n"):-len(f"\n</{MATERIAL_TAG}>")]) if material else {}
         if isinstance(data.get("items"), list) and data["items"] and "question_id" in data["items"][0]:
             data["items"] = [dict(data["items"][0], question_id=q["id"]) for q in ctx.get("questions", [])]
         if "used_source_ids" in data:   # 서버가 <자료> 에 넣어 준 출처 목록에서만 고른다 (실제 공급자에게 기대하는 행동)
@@ -136,7 +137,7 @@ def _fill(schema):
     if kind == "array":
         return [_fill(schema["items"])]
     if kind == "string":
-        return schema["enum"][0] if "enum" in schema else "가짜 공급자 응답"
+        return schema["enum"][0] if "enum" in schema else "Fake reply"   # 10자 이하 (probe 스키마의 maxLength — 공급자에게는 전달되지 않음)
     if kind == "integer":
         return 1
     if kind == "boolean":

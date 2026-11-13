@@ -45,83 +45,83 @@ def _check_verify(q, graphs):
             ok = _is_number(answer_text) and math.isclose(float(answer_text), p)
         else:
             ceiling = g["price_lines"][0]["price"]
-            ok = ceiling < p and (a - b * ceiling) > (c + d * ceiling) and "부족" in answer_text
+            ok = ceiling < p and (a - b * ceiling) > (c + d * ceiling) and "shortage" in answer_text.lower()
     elif kind == "equilibrium_quantity":
         _, qty = _equilibrium(v["a"], v["b"], v["c"], v["d"])
         ok = math.isclose(qty, q["answer"])
     elif kind == "ratio":
         ok = math.isclose(v["numerator"] / v["denominator"], q["answer"])
     else:
-        _fail(f"{q['id']}: 알 수 없는 verify 형식 {kind!r}")
+        _fail(f"{q['id']}: unknown verify type {kind!r}")
     if not ok:
-        _fail(f"{q['id']}: 정답이 계산 결과와 맞지 않습니다.")
+        _fail(f"{q['id']}: the answer does not match the calculated result.")
 
 
 def parse(data, keys_problem=None):
     """data: 정답 키를 합친 서버 전용 데이터. keys_problem 이 있으면 공개 정의만 검사하고 응시할 수 없는 상태로 만든다."""
     has_keys = keys_problem is None
     if not isinstance(data, dict) or data.get("schema_version") != 1:
-        _fail("지원하지 않는 형식입니다.")
+        _fail("Unsupported format.")
     for key in ("id", "title", "description"):
         if not str(data.get(key) or "").strip():
-            _fail(f"'{key}' 가 없습니다.")
+            _fail(f"'{key}' is missing.")
     if not isinstance(data.get("version"), int) or isinstance(data.get("version"), bool) or data["version"] < 1:
-        _fail("version 은 1 이상의 정수여야 합니다.")
+        _fail("version must be an integer of 1 or greater.")
     th = data.get("thresholds") or {}
     try:
         lo, hi = float(th["intermediate"]), float(th["advanced"])
     except (KeyError, TypeError, ValueError):
-        _fail("thresholds 에 intermediate·advanced 값이 있어야 합니다.")
+        _fail("thresholds must include intermediate and advanced values.")
     if not 0 < lo < hi <= 1:
-        _fail("기준은 0 < intermediate < advanced ≤ 1 이어야 합니다.")
+        _fail("Thresholds must satisfy 0 < intermediate < advanced <= 1.")
     if th.get("provisional") is not True:
-        _fail("검증되지 않은 기준이므로 thresholds.provisional 은 true 여야 합니다.")
+        _fail("The thresholds are not validated yet, so thresholds.provisional must be true.")
     categories = data.get("categories") or []
     cat_ids = [c.get("id") for c in categories]
     if not cat_ids or len(set(cat_ids)) != len(cat_ids) or not all(c.get("name") for c in categories):
-        _fail("categories 는 id·name 이 있고 id 가 겹치지 않아야 합니다.")
-    graphs = {k: parse_graph(g, f"diagnostic.json 그래프 {k}") for k, g in (data.get("graphs") or {}).items()}
+        _fail("Each category must have an id and a name, and ids must be unique.")
+    graphs = {k: parse_graph(g, f"diagnostic.json graph {k}") for k, g in (data.get("graphs") or {}).items()}
     for k, g in graphs.items():
         if g.get("expected_equilibria"):
-            _fail(f"그래프 {k}: 진단평가 그래프에는 균형점을 표시하지 않습니다 (정답 노출).")
+            _fail(f"Graph {k}: diagnostic graphs must not show the equilibrium point (it would reveal the answer).")
 
     questions = data.get("questions") or []
     if not 10 <= len(questions) <= 12:
-        _fail("문항은 10~12개여야 합니다.")
+        _fail("There must be 10-12 questions.")
     seen = set()
     for q in questions:
         qid = q.get("id")
         if not qid or qid in seen:
-            _fail(f"문항 id {qid!r} 가 없거나 중복됐습니다.")
+            _fail(f"Question id {qid!r} is missing or duplicated.")
         seen.add(qid)
         if q.get("category") not in cat_ids:
-            _fail(f"{qid}: 알 수 없는 category 입니다.")
+            _fail(f"{qid}: unknown category.")
         if q.get("type") not in QUESTION_TYPES:
-            _fail(f"{qid}: type 은 mcq 또는 numeric 이어야 합니다.")
+            _fail(f"{qid}: type must be mcq or numeric.")
         if not str(q.get("prompt") or "").strip() or (has_keys and not str(q.get("explanation") or "").strip()):
-            _fail(f"{qid}: prompt 와 explanation 이 있어야 합니다.")
+            _fail(f"{qid}: prompt and explanation are required.")
         if "graph" in q and q["graph"] not in graphs:
-            _fail(f"{qid}: 없는 그래프 {q['graph']!r} 를 가리킵니다.")
+            _fail(f"{qid}: refers to a graph that does not exist: {q['graph']!r}.")
         if q["type"] == "mcq":
             ids = [c.get("id") for c in q.get("choices") or []]
             if len(ids) < 2 or len(set(ids)) != len(ids) or not all(c.get("text") for c in q["choices"]):
-                _fail(f"{qid}: 선택지는 2개 이상이고 id 가 겹치지 않아야 합니다.")
+                _fail(f"{qid}: there must be at least 2 choices with unique ids.")
             if not has_keys:
                 continue
             if q.get("answer") not in ids:
-                _fail(f"{qid}: 정답이 선택지에 없습니다.")
+                _fail(f"{qid}: the answer is not one of the choices.")
         elif not has_keys:
             continue
         else:
             if not isinstance(q.get("answer"), (int, float)) or isinstance(q.get("answer"), bool):
-                _fail(f"{qid}: 수치형 문항의 정답은 숫자여야 합니다.")
+                _fail(f"{qid}: the answer to a numeric question must be a number.")
             tol = q.get("tolerance")
             if not isinstance(tol, (int, float)) or isinstance(tol, bool) or tol < 0:
-                _fail(f"{qid}: tolerance 는 0 이상의 숫자여야 합니다.")
+                _fail(f"{qid}: tolerance must be a number of 0 or greater.")
         _check_verify(q, graphs)
     for cid in cat_ids:
         if not any(q["category"] == cid for q in questions):
-            _fail(f"영역 {cid!r} 에 문항이 없습니다.")
+            _fail(f"Category {cid!r} has no questions.")
     return {**data, "graphs": graphs, "category_names": {c["id"]: c["name"] for c in categories},
             "answer_keys": has_keys, "keys_problem": keys_problem or ""}
 
@@ -130,7 +130,7 @@ def _load(path, fixture=False):
     public = read_json(path, "diagnostic.json")
     leaked = private_content.public_violations(public)
     if leaked:
-        _fail(f"공개 진단평가 파일에 정답 정보가 들어 있습니다 ({', '.join(leaked[:5])}). 비공개 정답 키로 옮겨야 합니다.")
+        _fail(f"The public diagnostic assessment file contains answer information ({', '.join(leaked[:5])}). Move it to the private answer key.")
     try:
         merged = private_content.merge(public, private_content.read_keys(public.get("id"), fixture), "diagnostic.json")
     except private_content.KeysUnavailable as exc:
@@ -138,7 +138,7 @@ def _load(path, fixture=False):
     try:
         return parse(merged)
     except ContentError as exc:
-        return parse(public, keys_problem=f"정답 키 검사 실패: {exc}")
+        return parse(public, keys_problem=f"Answer key check failed: {exc}")
 
 
 @lru_cache(maxsize=4)
@@ -188,7 +188,7 @@ def score(answers, test=None):
     """answers = {문항 id: 학생 입력(문자열)}. 결정적 채점 결과(dict)를 돌려준다. 모르는 문항 id 는 무시한다."""
     test = test or load()
     if not test.get("answer_keys", True):
-        raise private_content.KeysUnavailable("진단평가 정답 키가 없어 채점할 수 없습니다.")
+        raise private_content.KeysUnavailable("The diagnostic assessment cannot be scored because its answer key is missing.")
     answers = {k: str(v)[:50] for k, v in (answers or {}).items()}
     results, by_cat = [], {cid: [0, 0] for cid in test["category_names"]}
     for q in test["questions"]:
@@ -215,16 +215,16 @@ def explain(attempt, test=None):
     th = attempt["thresholds"]
     pct = round(attempt["score"] * 100 / attempt["max_score"]) if attempt["max_score"] else 0
     lo, hi = round(th["intermediate"] * 100), round(th["advanced"] * 100)
-    rule = {"beginner": f"{lo}% 미만", "intermediate": f"{lo}% 이상 {hi}% 미만", "advanced": f"{hi}% 이상"}
+    rule = {"beginner": f"below {lo}%", "intermediate": f"{lo}% to below {hi}%", "advanced": f"{hi}% or higher"}
     level = attempt["recommended_level"]
-    reasons = [f"전체 정답률 {pct}% ({attempt['score']}/{attempt['max_score']}문항).",
-               f"기준: {rule[level]} → {DIFFICULTY_NAMES[level]} 추천. 이 기준은 아직 검증되지 않은 임시 값이에요."]
+    reasons = [f"Overall score: {pct}% ({attempt['score']}/{attempt['max_score']} questions correct).",
+               f"Rule: {rule[level]} → {DIFFICULTY_NAMES[level]} recommended. These cutoffs are provisional and have not been validated yet."]
     names = test["category_names"]
     weak = [names.get(c, c) for c, v in attempt["by_category"].items() if v["total"] and v["correct"] == 0]
     strong = [names.get(c, c) for c, v in attempt["by_category"].items() if v["total"] and v["correct"] == v["total"]]
     if strong:
-        reasons.append("모두 맞힌 영역: " + ", ".join(strong) + ".")
+        reasons.append("Areas you got fully right: " + ", ".join(strong) + ".")
     if weak:
-        reasons.append("복습을 권하는 영역(모두 틀림): " + ", ".join(weak) + ".")
+        reasons.append("Areas to review (all answers wrong): " + ", ".join(weak) + ".")
     return reasons
 

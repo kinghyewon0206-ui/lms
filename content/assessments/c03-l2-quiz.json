@@ -4,9 +4,9 @@
   "kind": "lesson_quiz",
   "course_id": "c03",
   "lesson_id": "c03-l2",
-  "version": 1,
-  "title": "레슨 2 형성 퀴즈: 공공재와 공유 자원",
-  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "version": 2,
+  "title": "Lesson 2 Quiz: Public Goods and Common Resources",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -17,7 +17,7 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
       }
     ]
   },
@@ -28,7 +28,7 @@
   "questions": [
     {
       "id": "c03-l2-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l2",
       "objective": 1,
@@ -40,23 +40,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "다음 중 공공재에 가장 가까운 것은?",
+      "prompt": "Which of the following is closest to a public good?",
       "choices": [
         {
           "id": "a",
-          "text": "나라를 지키는 국방"
+          "text": "National defense that protects the country"
         },
         {
           "id": "b",
-          "text": "편의점에서 파는 김밥"
+          "text": "A sandwich sold at a convenience store"
         },
         {
           "id": "c",
-          "text": "표를 사야 들어가는 영화관 좌석"
+          "text": "A movie theater seat that requires a ticket"
         },
         {
           "id": "d",
-          "text": "요금을 내야 쓰는 놀이공원 자유이용권"
+          "text": "An amusement park pass that you pay for"
         }
       ],
       "source_ids": [
@@ -65,7 +65,7 @@
     },
     {
       "id": "c03-l2-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l2",
       "objective": 1,
@@ -77,23 +77,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "어느 나라의 관할도 아닌 먼바다(공해)의 물고기는 어떤 재화로 분류하는 것이 가장 알맞을까요?",
+      "prompt": "How are fish on the high seas, waters outside any country's jurisdiction, best classified?",
       "choices": [
         {
           "id": "a",
-          "text": "공공재 — 막을 수 없고 함께 써도 줄지 않아서"
+          "text": "A public good, because no one can be kept out and sharing does not use it up"
         },
         {
           "id": "b",
-          "text": "사적재 — 잡은 사람이 가져가니까"
+          "text": "A private good, because whoever catches the fish gets to keep them"
         },
         {
           "id": "c",
-          "text": "외부효과가 없는 재화 — 잡는 사람끼리 거래하지 않으니까"
+          "text": "A good with no externality, because the people fishing do not trade with each other"
         },
         {
           "id": "d",
-          "text": "공유 자원 — 누구나 잡을 수 있지만 잡으면 남은 양이 줄어서"
+          "text": "A common resource, because anyone can fish but each catch leaves fewer fish for others"
         }
       ],
       "source_ids": [
@@ -102,7 +102,7 @@
     },
     {
       "id": "c03-l2-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c03-l2",
       "objective": 2,
@@ -113,7 +113,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "가상의 예: 50가구가 사는 마을의 공원을 정비하는 데 1,000만 원이 들어요. 공원은 모든 가구가 함께 쓰고, 각 가구가 얻는 가치는 25만 원어치예요. 공원 정비의 사회적 순편익(사회적 가치 − 비용)은 몇 만 원인가요? (숫자만 입력)",
+      "prompt": "Hypothetical example: Renovating the park in a neighborhood of 50 households costs $10,000. All households share the park, and each household values it at $250. What is the social net benefit of the renovation (social value − cost), in dollars? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-13-3"
@@ -121,7 +121,7 @@
     },
     {
       "id": "c03-l2-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l2",
       "objective": 2,
@@ -132,23 +132,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "공공재가 시장에서 충분히 공급되지 않기 쉬운 가장 큰 이유는?",
+      "prompt": "What is the main reason markets tend not to supply enough public goods?",
       "choices": [
         {
           "id": "a",
-          "text": "공공재는 만드는 데 비용이 들지 않기 때문에"
+          "text": "Because public goods cost nothing to produce"
         },
         {
           "id": "b",
-          "text": "값을 내지 않은 사람도 혜택을 누릴 수 있어 각자 비용을 피하려 하기 때문에"
+          "text": "Because nonpayers still benefit, so each person avoids paying"
         },
         {
           "id": "c",
-          "text": "공공재를 원하는 사람이 거의 없기 때문에"
+          "text": "Because very few people want public goods"
         },
         {
           "id": "d",
-          "text": "공공재는 한 사람이 쓰면 다른 사람이 쓸 수 없기 때문에"
+          "text": "Because when one person uses a public good, others cannot use it"
         }
       ],
       "source_ids": [
@@ -157,7 +157,7 @@
     },
     {
       "id": "c03-l2-q5",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c03-l2",
       "objective": 3,
@@ -168,7 +168,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "가상의 예: 마을 공동 목초지에 풀어 놓는 소의 수에 따른 하루 총수입은 1마리 20, 2마리 36, 3마리 48, 4마리 56, 5마리 60 이에요(단위: 천 원). 소 한 마리를 기르는 하루 비용은 10 이에요. 누구나 소를 풀어 놓을 수 있으면 평균 수입이 비용 이상인 한 소가 늘어나요. 이때 순수입(총수입 − 비용)은 효율적인 마릿수일 때보다 얼마나 적나요? (숫자만 입력, 단위 천 원)",
+      "prompt": "Hypothetical example: On a village's shared pasture, total daily income by number of cows grazing is $20 for 1 cow, $36 for 2, $48 for 3, $56 for 4, and $60 for 5. Keeping one cow costs $10 per day. If anyone can graze cows there, cows keep being added as long as the average income is at least the cost. How many dollars less is the net income (total income − cost) than at the efficient number of cows? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-13-3"

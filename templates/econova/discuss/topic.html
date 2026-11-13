@@ -1,71 +1,71 @@
 {% extends "base.html" %}
-{% block title %}{{ topic.title }} · 경제 토론 · ECONOVA{% endblock %}
+{% block title %}{{ topic.title }} · Economics Debate · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.discuss_home') }}">경제 토론</a> <span>/</span>
-    <a href="{{ url_for('econova.discuss_course', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> 주제</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.discuss_home') }}">Economics Debate</a> <span>/</span>
+    <a href="{{ url_for('econova.discuss_course', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> Topic</nav>
   <header class="ec-head">
-    <span class="eyebrow">경제 토론 · 의견 {{ turns }}/{{ topic.max_turns }}</span>
+    <span class="eyebrow">Economics Debate · Responses {{ turns }}/{{ topic.max_turns }}</span>
     <h1>{{ topic.title }}</h1>
   </header>
 
   <section class="ec-section" aria-labelledby="h-bg">
-    <h2 id="h-bg">배경</h2>
+    <h2 id="h-bg">Background</h2>
     {% for p in topic.background %}<p>{{ p }}</p>{% endfor %}
-    <p class="debate-question"><strong>정책 질문:</strong> {{ topic.policy_question }}</p>
-    <p class="hint">구분해서 생각해 봐요: <strong>경제 모형</strong>(단순화한 설명) · <strong>실증 근거</strong>(관찰·자료) · <strong>가정</strong> · <strong>가치 판단</strong>(무엇이 더 중요한가) · <strong>상충관계</strong>.
-      이 주제에는 정해진 정답이 없어요.</p>
+    <p class="debate-question"><strong>Policy question:</strong> {{ topic.policy_question }}</p>
+    <p class="hint">Try to separate: <strong>economic models</strong> (simplified explanations) · <strong>empirical evidence</strong> (observations and data) · <strong>assumptions</strong> · <strong>value judgments</strong> (what matters more) · <strong>trade-offs</strong>.
+      There is no single right answer to this topic.</p>
   </section>
 
   <section class="ec-section" aria-labelledby="h-persp">
-    <h2 id="h-persp">여러 관점</h2>
+    <h2 id="h-persp">Perspectives</h2>
     <div class="persp-grid">
       {% for p in topic.perspectives %}
       <article class="persp-card">
         <h3>{{ p.name }}</h3>
         <p>{{ p.summary }}</p>
-        <p class="hint">근거: {{ p.reasoning|join(' ') }}</p>
-        <p class="hint">가정: {{ p.assumptions|join(' ') }}</p>
+        <p class="hint">Reasoning: {{ p.reasoning|join(' ') }}</p>
+        <p class="hint">Assumptions: {{ p.assumptions|join(' ') }}</p>
       </article>
       {% endfor %}
     </div>
-    <p class="hint">상충관계: {{ topic.trade_offs|join(' / ') }}</p>
+    <p class="hint">Trade-offs: {{ topic.trade_offs|join(' / ') }}</p>
   </section>
 
   <section class="ec-section" aria-labelledby="h-talk">
-    <h2 id="h-talk">토론</h2>
-    {% if not ai_enabled %}<p class="hint">AI 진행자가 꺼져 있어 준비된 안내 질문으로 진행해요. 내 의견은 그대로 저장돼요.</p>{% endif %}
-    <div class="tutor-log" role="log" aria-label="토론 기록">
+    <h2 id="h-talk">Debate</h2>
+    {% if not ai_enabled %}<p class="hint">The AI moderator is off, so the debate uses prepared guiding questions. Your responses are still saved.</p>{% endif %}
+    <div class="tutor-log" role="log" aria-label="Debate log">
       {% set summary_meta = namespace(v=none) %}
       {% for m in messages %}
         {% if m.role == 'student' %}
-          <div class="tutor-msg tutor-me"{% if loop.last %} id="latest"{% endif %}><p class="tutor-label">내 의견</p><p>{{ m.content }}</p></div>
+          <div class="tutor-msg tutor-me"{% if loop.last %} id="latest"{% endif %}><p class="tutor-label">Your response</p><p>{{ m.content }}</p></div>
         {% elif m.meta.summary %}
           {% set summary_meta.v = m.meta.summary %}
         {% else %}
           <div class="tutor-msg tutor-ai"{% if loop.last %} id="latest"{% endif %}>
-            <p class="tutor-label">{% if m.meta.source == 'ai' %}<span class="pill pill-ai">AI 생성</span> 진행자{% else %}<span class="pill pill-soon">준비된 안내 질문</span> (AI 아님){% endif %}</p>
+            <p class="tutor-label">{% if m.meta.source == 'ai' %}<span class="pill pill-ai">AI-generated</span> Moderator{% else %}<span class="pill pill-soon">Prepared guiding question</span> (not AI){% endif %}</p>
             {% if m.meta.reflection %}<p>{{ m.meta.reflection }}</p>{% endif %}
             {% if m.meta.claim_types %}<ul class="claim-list">{% for c in m.meta.claim_types %}<li><span class="pill pill-claim">{{ c.type_label }}</span> {{ c.claim }}</li>{% endfor %}</ul>{% endif %}
-            {% if m.meta.perspectives_considered %}<p class="hint">함께 볼 관점: {% for pid in m.meta.perspectives_considered %}{{ perspective_names.get(pid, pid) }}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
-            <p><strong>질문:</strong> {{ m.meta.follow_up_question or m.content }}</p>
+            {% if m.meta.perspectives_considered %}<p class="hint">Perspectives to consider: {% for pid in m.meta.perspectives_considered %}{{ perspective_names.get(pid, pid) }}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+            <p><strong>Question:</strong> {{ m.meta.follow_up_question or m.content }}</p>
           </div>
         {% endif %}
       {% else %}
-        <p class="tutor-empty">정책 질문에 대한 내 생각과 그 이유를 적어 보세요. 근거와 가정을 함께 쓰면 더 좋아요.</p>
+        <p class="tutor-empty">Write what you think about the policy question and why. It's even better if you include your evidence and assumptions.</p>
       {% endfor %}
     </div>
 
     {% if summary_meta.v %}
     {% set s = summary_meta.v %}
     <div class="ai-box" id="summary">
-      <h3>{% if s.source == 'ai' %}<span class="pill pill-ai">AI 생성</span>{% else %}<span class="pill pill-soon">자동 정리 (AI 아님)</span>{% endif %} 토론 정리</h3>
+      <h3>{% if s.source == 'ai' %}<span class="pill pill-ai">AI-generated</span>{% else %}<span class="pill pill-soon">Automatic summary (not AI)</span>{% endif %} Debate summary</h3>
       <p>{{ s.summary }}</p>
-      {% if s.my_points %}<p><strong>내 의견:</strong></p><ul class="ec-list">{% for p in s.my_points %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
-      <p><strong>관점별 논거</strong></p>
+      {% if s.my_points %}<p><strong>Your points:</strong></p><ul class="ec-list">{% for p in s.my_points %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
+      <p><strong>Arguments by perspective</strong></p>
       <ul class="ec-list">{% for a in s.arguments %}<li>{{ a.perspective }}: {{ a.points|join(' / ') }}</li>{% endfor %}</ul>
-      <p><strong>상충관계</strong></p><ul class="ec-list">{% for t in s.trade_offs %}<li>{{ t }}</li>{% endfor %}</ul>
-      {% if s.open_questions %}<p><strong>남은 질문</strong></p><ul class="ec-list">{% for q in s.open_questions %}<li>{{ q }}</li>{% endfor %}</ul>{% endif %}
+      <p><strong>Trade-offs</strong></p><ul class="ec-list">{% for t in s.trade_offs %}<li>{{ t }}</li>{% endfor %}</ul>
+      {% if s.open_questions %}<p><strong>Open questions</strong></p><ul class="ec-list">{% for q in s.open_questions %}<li>{{ q }}</li>{% endfor %}</ul>{% endif %}
       {% if s.note %}<p class="hint">{{ s.note }}</p>{% endif %}
     </div>
     {% endif %}
@@ -73,22 +73,22 @@
     {% if conv and conv.stage != 'open' %}
       <form method="post" action="{{ url_for('econova.discuss_new', course_id=course.id, topic_id=topic.id) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <button class="btn" type="submit">새 토론 시작하기</button>
+        <button class="btn" type="submit">Start a new debate</button>
       </form>
     {% elif turns < topic.max_turns %}
       <form method="post" action="{{ url_for('econova.discuss_respond', course_id=course.id, topic_id=topic.id) }}" class="tutor-form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         {% if conv %}<input type="hidden" name="conversation_id" value="{{ conv.id }}">{% endif %}
-        <label for="debate-input">내 의견</label>
+        <label for="debate-input">Your response</label>
         <textarea id="debate-input" name="message" rows="4" maxlength="{{ max_chars }}" required></textarea>
-        <div class="tutor-actions"><span class="hint">최대 {{ max_chars }}자 · 개인정보는 쓰지 마세요.</span><button class="btn" type="submit">의견 보내기</button></div>
+        <div class="tutor-actions"><span class="hint">Up to {{ max_chars }} characters · Don't include personal information.</span><button class="btn" type="submit">Send response</button></div>
       </form>
     {% endif %}
     {% if conv and conv.stage == 'open' and turns %}
       <form method="post" action="{{ url_for('econova.discuss_summary', course_id=course.id, topic_id=topic.id) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <button class="btn secondary" type="submit">토론 정리하기</button>
-        <span class="hint">정리하면 이 토론은 끝나고, 새 토론을 시작할 수 있어요.</span>
+        <button class="btn secondary" type="submit">Wrap up the debate</button>
+        <span class="hint">Wrapping up ends this debate, and then you can start a new one.</span>
       </form>
     {% endif %}
   </section>

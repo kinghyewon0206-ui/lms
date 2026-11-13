@@ -1,42 +1,42 @@
 {% extends "base.html" %}
-{% block title %}진단평가 결과 · ECONOVA{% endblock %}
+{% block title %}Diagnostic assessment results · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
   <header class="ec-head">
-    <span class="eyebrow">경제 기초 진단평가 결과 · {{ attempt.created_at }} (UTC)</span>
-    <h1>추천 난이도: <span class="dg-rec">{{ difficulty_names[attempt.recommended_level] }}</span></h1>
-    <p class="hint">점수 {{ attempt.score }}/{{ attempt.max_score }} · 정해진 규칙으로 채점했어요 (AI 채점 없음).</p>
+    <span class="eyebrow">Economics basics diagnostic assessment results · {{ attempt.created_at }} (UTC)</span>
+    <h1>Recommended level: <span class="dg-rec">{{ difficulty_names[attempt.recommended_level] }}</span></h1>
+    <p class="hint">Score {{ attempt.score }}/{{ attempt.max_score }} · Graded by fixed rules (no AI grading).</p>
   </header>
 
   <section class="ec-section" aria-labelledby="h-why">
-    <h2 id="h-why">이렇게 추천했어요</h2>
+    <h2 id="h-why">Why we recommended this</h2>
     <ul class="ec-list">{% for r in reasons %}<li>{{ r }}</li>{% endfor %}</ul>
-    <p class="ec-discuss"><strong>추천일 뿐이에요.</strong> 강좌 상세 화면에서 하·중·상 중 원하는 난이도를 직접 고를 수 있고, 언제든 바꿀 수 있어요.</p>
+    <p class="ec-discuss"><strong>This is only a suggestion.</strong> On each course page you can choose beginner, intermediate or advanced yourself, and change it anytime.</p>
     {% if attempt.diagnostic_version != test.version %}
-    <p class="hint">이 결과는 진단평가 버전 {{ attempt.diagnostic_version }} 기준이에요. 지금 진단평가는 버전 {{ test.version }} 이라 문항이 다를 수 있어요. 예전 결과는 다시 계산하지 않고 그대로 보관해요.</p>
+    <p class="hint">This result is based on version {{ attempt.diagnostic_version }} of the diagnostic assessment. The current version is {{ test.version }}, so the questions may differ. Earlier results are kept as they are and are not recalculated.</p>
     {% endif %}
   </section>
 
   <section class="ec-section" aria-labelledby="h-cat">
-    <h2 id="h-cat">영역별 결과</h2>
+    <h2 id="h-cat">Results by area</h2>
     <table class="ec-table">
-      <thead><tr><th scope="col">영역</th><th scope="col">맞힌 문항</th></tr></thead>
+      <thead><tr><th scope="col">Area</th><th scope="col">Correct answers</th></tr></thead>
       <tbody>{% for cid, v in attempt.by_category.items() %}<tr><td>{{ test.category_names.get(cid, cid) }}</td><td>{{ v.correct }}/{{ v.total }}</td></tr>{% endfor %}</tbody>
     </table>
   </section>
 
   <section class="ec-section" aria-labelledby="h-q">
-    <h2 id="h-q">문항별 결과와 해설</h2>
+    <h2 id="h-q">Results and explanations by question</h2>
     {% for r in attempt.results %}{% set q = by_id.get(r.id) %}
     <div class="dg-result-q {{ 'ok' if r.correct else 'no' }}">
-      <p><strong>{{ loop.index }}. {{ '정답' if r.correct else '오답' }}</strong> {% if q %}{{ q.prompt }}{% else %}(현재 버전에 없는 문항 {{ r.id }}){% endif %}</p>
+      <p><strong>{{ loop.index }}. {{ 'Correct' if r.correct else 'Incorrect' }}</strong> {% if q %}{{ q.prompt }}{% else %}(Question {{ r.id }} is not in the current version){% endif %}</p>
       {% if q %}
         {% if q.type == 'mcq' %}
           {% set mine = (q.choices|selectattr('id', 'equalto', r.answer)|first) %}
           {% set right = (q.choices|selectattr('id', 'equalto', q.answer)|first) %}
-          <p class="hint">내 답: {{ mine.text if mine else '(응답 없음)' }} · 정답: {{ right.text }}</p>
+          <p class="hint">Your answer: {{ mine.text if mine else '(no answer)' }} · Correct answer: {{ right.text }}</p>
         {% else %}
-          <p class="hint">내 답: {{ r.answer or '(응답 없음)' }} · 정답: {{ q.answer }} (허용 오차 ±{{ q.tolerance }})</p>
+          <p class="hint">Your answer: {{ r.answer or '(no answer)' }} · Correct answer: {{ q.answer }} (allowed margin ±{{ q.tolerance }})</p>
         {% endif %}
         <p>{{ q.explanation }}</p>
       {% endif %}
@@ -45,8 +45,8 @@
   </section>
 
   <nav class="ec-lesson-nav">
-    <a class="btn" href="{{ url_for('econova.catalog') }}">강좌 고르기</a>
-    <a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">응시 기록 · 다시 응시</a>
+    <a class="btn" href="{{ url_for('econova.catalog') }}">Choose a course</a>
+    <a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">Attempt history · Retake</a>
   </nav>
 </div>
 {% endblock %}

@@ -21,10 +21,16 @@
   <p class="hint">{{ spec.caption }}</p>
   {% if g.points %}
   <table class="ec-table">
-    <caption class="sr-only">균형점</caption>
-    <thead><tr><th scope="col">수요·공급</th><th scope="col">균형 가격</th><th scope="col">균형 거래량</th></tr></thead>
+    <caption class="sr-only">Equilibrium points</caption>
+    <thead><tr><th scope="col">Demand · Supply</th><th scope="col">Equilibrium price</th><th scope="col">Equilibrium quantity</th></tr></thead>
     <tbody>{% for p in g.points %}<tr><td>{{ p.label }}</td><td>{{ p.price }}</td><td>{{ p.quantity }}</td></tr>{% endfor %}</tbody>
   </table>
   {% endif %}
 </figure>
 {% endmacro %}
+
+{# 값 + 단위 표시: "$" 로 시작하는 단위는 숫자 앞에 ($30, -$5, $6 per unit), 나머지는 뒤에 (40 units, 12 kg) #}
+{% macro with_unit(value, unit) -%}
+{%- if unit and unit[:1] == '$' -%}{{ '-$' if value < 0 else '$' }}{{ '%g' % (value|abs) }}{{ unit[1:] }}
+{%- else -%}{%- set u = ('unit' ~ unit[5:]) if (unit and unit[:5] == 'units' and value in (1, -1)) else unit -%}{{ '%g' % value }}{% if u %} {{ u }}{% endif %}{%- endif -%}
+{%- endmacro %}

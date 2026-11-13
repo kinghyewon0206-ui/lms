@@ -1,14 +1,14 @@
-/* ECONOVA 경제 시뮬레이션 계산 (econova/simulations.py 와 같은 공식·같은 반올림).
-   브라우저에서는 window.EconovaSim, Node 테스트에서는 module.exports 로 쓴다.
-   가상의 교육용 모형이며 실제 통계가 아니다. */
+/* ECONOVA economics simulation math (same formulas and rounding as econova/simulations.py).
+   Exposed as window.EconovaSim in the browser and module.exports in Node tests.
+   A hypothetical teaching model, not real statistics. */
 (function (root) {
   "use strict";
   var CALC_VERSION = "sim-1";
-  // 설명 문구는 econova/simulations.py LIMITS 와 같아야 한다 (오류 문구 일치 테스트)
+  // Labels must match econova/simulations.py LIMITS (a test compares the error messages)
   var LIMITS = {
-    a: [0, 1000, false, "수요 절편 a (가격이 0일 때의 수요량)"], b: [0, 100, false, "수요 기울기 b (가격이 1 오를 때 줄어드는 수요량)"],
-    c: [-1000, 1000, true, "공급 절편 c (가격이 0일 때의 공급량, 음수 가능)"], d: [0, 100, false, "공급 기울기 d (가격이 1 오를 때 늘어나는 공급량)"],
-    t: [0, 1000, true, "단위당 탄소세 t"], md: [0, 1000, true, "단위당 외부 피해 md (가정값)"], e: [0, 1000, true, "단위당 배출량 e (가정값)"]
+    a: [0, 1000, false, "Demand intercept a (quantity demanded when the price is 0)"], b: [0, 100, false, "Demand slope b (drop in quantity demanded when the price rises by 1)"],
+    c: [-1000, 1000, true, "Supply intercept c (quantity supplied when the price is 0; may be negative)"], d: [0, 100, false, "Supply slope d (rise in quantity supplied when the price rises by 1)"],
+    t: [0, 1000, true, "Carbon tax per unit t"], md: [0, 1000, true, "External damage per unit md (assumed)"], e: [0, 1000, true, "Emissions per unit e (assumed)"]
   };
   var INPUTS = { "supply-demand": ["a", "b", "c", "d"], "carbon-tax": ["a", "b", "c", "d", "t", "md", "e"] };
   var NUM_RE = /^[+-]?(\d+(\.\d*)?|\.\d+)$/;
@@ -29,18 +29,18 @@
     return isFinite(v) ? v : null;
   }
 
-  /* 입력 검사. 반환: {ok: true, inputs} 또는 {ok: false, field, message} */
+  /* Input validation. Returns {ok: true, inputs} or {ok: false, field, message} */
   function parseInputs(simId, raw) {
     var names = INPUTS[simId];
-    if (!names) return { ok: false, field: "simulation", message: "알 수 없는 시뮬레이션입니다." };
+    if (!names) return { ok: false, field: "simulation", message: "Unknown simulation." };
     var out = {};
     for (var i = 0; i < names.length; i++) {
       var name = names[i], lim = LIMITS[name], value = raw[name];
       if (name === "md" && (value === undefined || value === null || String(value).trim() === "")) continue;
       var n = parseNumber(value);
-      if (n === null) return { ok: false, field: name, message: lim[3] + ": 숫자를 입력해 주세요." };
+      if (n === null) return { ok: false, field: name, message: lim[3] + ": enter a number." };
       if (n > lim[1] || n < lim[0] || (n === lim[0] && !lim[2])) {
-        return { ok: false, field: name, message: lim[3] + ": " + (lim[2] ? lim[0] + " 이상" : lim[0] + " 보다 크고") + " " + lim[1] + " 이하여야 합니다." };
+        return { ok: false, field: name, message: lim[3] + ": must be " + (lim[2] ? "at least " + lim[0] : "greater than " + lim[0]) + " and at most " + lim[1] + "." };
       }
       out[name] = n;
     }
@@ -52,12 +52,12 @@
     var res = { model: "supply-demand", demand_choke_price: r6(choke), supply_start_price: r6(start) };
     if (a <= c) {
       res.status = "no_positive_equilibrium";
-      res.reason = "가격이 0일 때도 공급량이 수요량보다 많거나 같아서, 양(+)의 균형 가격이 없어요.";
+      res.reason = "Even at a price of 0, quantity supplied is at least as large as quantity demanded, so there is no positive equilibrium price.";
       return res;
     }
     if (q <= 1e-12 || p <= 0) {
       res.status = "no_positive_equilibrium";
-      res.reason = "공급이 시작되는 가격이 수요가 0이 되는 가격보다 높아서, 거래가 일어나지 않아요.";
+      res.reason = "Supply only starts at a price above the price where quantity demanded drops to 0, so no trade takes place.";
       return res;
     }
     var cs = 0.5 * (choke - p) * q;
@@ -73,19 +73,19 @@
     var base = supplyDemand(a, b, c, d);
     var res = { model: "carbon-tax", baseline: base };
     if (base.status !== "interior") {
-      res.status = "invalid_baseline"; res.reason = "세금이 없을 때도 양(+)의 균형이 없어 세금 효과를 계산할 수 없어요.";
+      res.status = "invalid_baseline"; res.reason = "There is no positive equilibrium even without the tax, so the effect of the tax cannot be calculated.";
       return res;
     }
     var p0 = (a - c) / (b + d), q0 = a - b * p0;
     var pc = (a - c + d * t) / (b + d), pp = pc - t, qt = a - b * pc;
     if (qt <= 1e-12) {
-      res.status = "no_trade_after_tax"; res.reason = "세금이 너무 커서 거래가 사라져요 (거래량 0).";
+      res.status = "no_trade_after_tax"; res.reason = "The tax is so large that trade disappears (quantity 0).";
       res.quantity = 0; res.revenue = 0;
       return res;
     }
     if (pp < 0) {
       res.status = "producer_price_negative";
-      res.reason = "세금이 너무 커서 생산자가 받는 가격이 0 아래로 내려가요. 이 단순 모형으로는 해석하기 어려워요.";
+      res.reason = "The tax is so large that the price producers receive falls below 0. This simple model cannot interpret that case.";
       return res;
     }
     var dq = qt - q0, dwl = 0.5 * t * (q0 - qt);
@@ -105,17 +105,17 @@
 
   function interpret(base, now) {
     var notes = [];
-    if (now.a > base.a) notes.push("수요 증가: 같은 가격에서 더 많이 사려 해요. 수요곡선이 오른쪽으로 이동해요.");
-    else if (now.a < base.a) notes.push("수요 감소: 같은 가격에서 덜 사려 해요. 수요곡선이 왼쪽으로 이동해요.");
-    if (now.b !== base.b) notes.push("수요 기울기 변화: 소비자가 가격에 " + (now.b > base.b ? "더" : "덜") + " 민감하게 반응해요.");
-    if (now.c > base.c) notes.push("공급 증가: 같은 가격에서 더 많이 팔려 해요. 공급곡선이 오른쪽으로 이동해요.");
-    else if (now.c < base.c) notes.push("공급 감소: 같은 가격에서 덜 팔려 해요. 공급곡선이 왼쪽으로 이동해요.");
-    if (now.d !== base.d) notes.push("공급 기울기 변화: 생산자가 가격에 " + (now.d > base.d ? "더" : "덜") + " 민감하게 반응해요.");
+    if (now.a > base.a) notes.push("Demand increases: buyers want to buy more at every price. The demand curve shifts right.");
+    else if (now.a < base.a) notes.push("Demand decreases: buyers want to buy less at every price. The demand curve shifts left.");
+    if (now.b !== base.b) notes.push("Demand slope changes: consumers react " + (now.b > base.b ? "more" : "less") + " strongly to price.");
+    if (now.c > base.c) notes.push("Supply increases: sellers want to sell more at every price. The supply curve shifts right.");
+    else if (now.c < base.c) notes.push("Supply decreases: sellers want to sell less at every price. The supply curve shifts left.");
+    if (now.d !== base.d) notes.push("Supply slope changes: producers react " + (now.d > base.d ? "more" : "less") + " strongly to price.");
     var r0 = supplyDemand(base.a, base.b, base.c, base.d), r1 = supplyDemand(now.a, now.b, now.c, now.d);
     if (r0.status === "interior" && r1.status === "interior" && notes.length) {
       var dp = r1.price - r0.price, dq = r1.quantity - r0.quantity;
-      var word = function (v, up, down) { return v > 1e-9 ? up : (v < -1e-9 ? down : "변화 없음"); };
-      notes.push("결과: 균형 가격 " + word(dp, "상승", "하락") + ", 균형 거래량 " + word(dq, "증가", "감소") + ".");
+      var word = function (v, up, down) { return v > 1e-9 ? up : (v < -1e-9 ? down : "does not change"); };
+      notes.push("Result: the equilibrium price " + word(dp, "rises", "falls") + " and the equilibrium quantity " + word(dq, "increases", "decreases") + ".");
     }
     return notes;
   }

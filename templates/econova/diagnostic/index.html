@@ -1,38 +1,38 @@
 {% extends "base.html" %}
-{% block title %}진단평가 · ECONOVA{% endblock %}
+{% block title %}Diagnostic assessment · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
   <header class="ec-head">
-    <span class="eyebrow">경제 기초 진단평가</span>
+    <span class="eyebrow">Economics basics diagnostic assessment</span>
     <h1>{{ test.title }}</h1>
     <p class="hint">{{ test.description }}</p>
   </header>
 
   <section class="ec-section">
-    <h2>어떻게 쓰이나요?</h2>
+    <h2>How is it used?</h2>
     <ul class="ec-list">
-      <li>{{ test.questions|length }}문항, 정해진 규칙으로만 채점해요. AI 가 점수를 매기지 않아요.</li>
-      <li>결과로 하·중·상 중 알맞은 난이도를 <strong>추천</strong>해요. 강좌마다 난이도는 언제든 직접 바꿀 수 있어요.</li>
-      <li>추천 기준(정답률 {{ (test.thresholds.intermediate * 100)|round|int }}% · {{ (test.thresholds.advanced * 100)|round|int }}%)은 아직 검증되지 않은 <strong>임시 기준</strong>이에요.</li>
-      <li>여러 번 볼 수 있고, 지난 결과는 지우지 않고 모두 남아요.</li>
+      <li>{{ test.questions|length }} questions, graded only by fixed rules. AI never scores your answers.</li>
+      <li>Based on your results, we <strong>recommend</strong> a level: beginner, intermediate or advanced. You can change the level for each course yourself at any time.</li>
+      <li>The recommendation cutoffs ({{ (test.thresholds.intermediate * 100)|round|int }}% and {{ (test.thresholds.advanced * 100)|round|int }}% correct) are a <strong>temporary standard</strong> that has not been validated yet.</li>
+      <li>You can take it more than once, and all past results are kept.</li>
     </ul>
-    <a class="btn" href="{{ url_for('econova.diagnostic_take') }}">{{ '다시 응시하기' if attempts else '진단평가 시작하기' }}</a>
+    <a class="btn" href="{{ url_for('econova.diagnostic_take') }}">{{ 'Take it again' if attempts else 'Start the diagnostic assessment' }}</a>
   </section>
 
   <section class="ec-section" aria-labelledby="h-hist">
-    <h2 id="h-hist">내 응시 기록</h2>
+    <h2 id="h-hist">My attempts</h2>
     {% if attempts %}
     <table class="ec-table">
-      <thead><tr><th scope="col">응시 시각 (UTC)</th><th scope="col">점수</th><th scope="col">추천 난이도</th><th scope="col"></th></tr></thead>
+      <thead><tr><th scope="col">Taken at (UTC)</th><th scope="col">Score</th><th scope="col">Recommended level</th><th scope="col"></th></tr></thead>
       <tbody>
       {% for a in attempts %}
         <tr><td>{{ a.created_at }}</td><td>{{ a.score }}/{{ a.max_score }}</td><td>{{ difficulty_names[a.recommended_level] }}</td>
-          <td><a href="{{ url_for('econova.diagnostic_result', attempt_id=a.id) }}">결과 보기</a></td></tr>
+          <td><a href="{{ url_for('econova.diagnostic_result', attempt_id=a.id) }}">View results</a></td></tr>
       {% endfor %}
       </tbody>
     </table>
     {% else %}
-    <p class="ec-placeholder-text">아직 응시한 기록이 없어요.</p>
+    <p class="ec-placeholder-text">You haven't taken it yet.</p>
     {% endif %}
   </section>
 </div>

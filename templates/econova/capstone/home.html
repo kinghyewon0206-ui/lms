@@ -2,81 +2,81 @@
 {% block title %}{{ defn.title }} · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> 캡스톤</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> Capstone project</nav>
   <header class="ec-head">
-    <span class="eyebrow">자기주도 SDG 경제 캡스톤{% if course.fixture %} · 개발용{% endif %}</span>
+    <span class="eyebrow">Self-directed SDG economics Capstone project{% if course.fixture %} · Development{% endif %}</span>
     <h1>{{ defn.title }}</h1>
     {% for p in defn.intro %}<p>{{ p }}</p>{% endfor %}
-    <p class="hint">상태: {% if project %}{{ '제출함' if project.status == 'submitted' else '작성 중' }} · 버전 {{ project.current_version }}{% else %}아직 시작하지 않았어요{% endif %}</p>
-    <p><a class="btn" href="{{ url_for('econova.capstone_edit', course_id=course.id) }}">{{ '이어서 작성하기' if project else '프로젝트 시작하기' }}</a></p>
+    <p class="hint">Status: {% if project %}{{ 'Submitted' if project.status == 'submitted' else 'In progress' }} · Version {{ project.current_version }}{% else %}Not started yet{% endif %}</p>
+    <p><a class="btn" href="{{ url_for('econova.capstone_edit', course_id=course.id) }}">{{ 'Continue writing' if project else 'Start your project' }}</a></p>
   </header>
 
   <section class="ec-section" aria-labelledby="h-steps">
-    <h2 id="h-steps">9단계</h2>
+    <h2 id="h-steps">9 steps</h2>
     <ol class="cap-steps">{% for s in defn.steps %}
       <li class="cap-{{ steps[s.id] }}"><a href="{{ url_for('econova.capstone_edit', course_id=course.id) }}#step-{{ s.id }}">{{ s.title }}</a>
-        <span class="hint">· {{ {'done': '완료', 'partial': '작성 중', 'empty': '시작 전'}[steps[s.id]] }} · 레슨 <a href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=s.lesson_id) }}">{{ course.lesson(s.lesson_id).title_ko }}</a></span></li>
+        <span class="hint">· {{ {'done': 'Done', 'partial': 'In progress', 'empty': 'Not started'}[steps[s.id]] }} · Lesson <a href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=s.lesson_id) }}">{{ course.lesson(s.lesson_id).title_ko }}</a></span></li>
     {% endfor %}</ol>
   </section>
 
   <section class="ec-section" id="checklist" aria-labelledby="h-check">
-    <h2 id="h-check">완료 점검표 (정해진 규칙)</h2>
+    <h2 id="h-check">Completion checklist (fixed rules)</h2>
     <ul class="ec-list cap-check">
-      <li>{{ '✔' if state.lessons else '○' }} 레슨 모두 완료</li>
-      <li>{{ '✔' if state.submitted else '○' }} 필수 칸을 모두 채운 버전 제출</li>
-      <li>{{ '✔' if state.self_assessment else '○' }} 제출한 버전의 자기평가</li>
-      <li>{{ '✔' if state.reflection else '○' }} 되돌아보기 작성</li>
+      <li>{{ '✔' if state.lessons else '○' }} All lessons completed</li>
+      <li>{{ '✔' if state.submitted else '○' }} A version with all required fields submitted</li>
+      <li>{{ '✔' if state.self_assessment else '○' }} Self-assessment of the submitted version</li>
+      <li>{{ '✔' if state.reflection else '○' }} Reflection written</li>
     </ul>
     {% if enrollment and enrollment.status == 'completed' %}
-      <p class="ec-done-note">이 강좌를 마쳤어요{% if enrollment.completion_policy == 'dev_capstone' %} (개발용 테스트){% endif %}.</p>
+      <p class="ec-done-note">You have completed this course{% if enrollment.completion_policy == 'dev_capstone' %} (development test){% endif %}.</p>
     {% elif state.complete and not state.policy %}
-      <p class="hint">조건은 모두 채웠지만, 캡스톤 기준이 아직 사람 검토 전이라 강좌 완료로 기록하지 않아요.</p>
+      <p class="hint">You met every requirement, but the Capstone project criteria have not been reviewed by a person yet, so this is not recorded as a course completion.</p>
     {% endif %}
-    <p class="hint">캡스톤 완료는 내가 스스로 프로젝트를 끝까지 제출했다는 기록이에요. 공식 학업 성취·자격 인증이 아니고, AI 의견은 완료 여부에 영향을 주지 않아요.</p>
-    {% if missing %}<details><summary>제출 전에 채울 칸 {{ missing|length }}개</summary><ul class="ec-list">{% for f, why in missing %}<li>{{ f.label }} — {{ why }}</li>{% endfor %}</ul></details>{% endif %}
+    <p class="hint">Completing the Capstone project records that you finished and submitted your own project. It is not an official academic achievement or certification, and AI feedback does not affect completion.</p>
+    {% if missing %}<details><summary>{{ missing|length }} {{ 'field' if missing|length == 1 else 'fields' }} to fill in before submitting</summary><ul class="ec-list">{% for f, why in missing %}<li>{{ f.label }} — {{ why }}</li>{% endfor %}</ul></details>{% endif %}
     {% if versions and versions[-1].kind != 'submitted' %}
     <form method="post" action="{{ url_for('econova.capstone_submit', course_id=course.id) }}">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-      <button class="btn" type="submit"{% if missing %} aria-describedby="submit-hint"{% endif %}>버전 {{ versions[-1].version }} 제출하기</button>
-      <span class="hint" id="submit-hint">제출하려면 필수 칸과 이 버전의 자기평가가 있어야 해요. 제출한 뒤에도 고쳐서 다시 제출할 수 있어요.</span>
+      <button class="btn" type="submit"{% if missing %} aria-describedby="submit-hint"{% endif %}>Submit version {{ versions[-1].version }}</button>
+      <span class="hint" id="submit-hint">To submit, fill in all required fields and complete the self-assessment for this version. You can still edit and resubmit after submitting.</span>
     </form>
     {% endif %}
   </section>
 
   <section class="ec-section" id="self-assessment" aria-labelledby="h-sa">
-    <h2 id="h-sa">자기평가 루브릭</h2>
-    <p class="hint"><span class="pill pill-soon">{{ '승인된 기준' if defn.rubric.status == 'approved' else '임시 기준' }}</span> {{ defn.rubric.note }}</p>
-    {% if sa_summary %}<p>최근 버전 자기평가: 가중 평균 수준 <strong>{{ sa_summary.average_level }}</strong> / {{ sa_summary.max_level }} (공식 점수 아님){% if sa_summary.improve %} · 보완할 기준: {{ sa_summary.improve|join(', ') }}{% endif %}</p>{% endif %}
-    <p><a class="btn secondary" href="{{ url_for('econova.capstone_self_assessment', course_id=course.id) }}">{{ '자기평가 다시 하기' if latest_sa else '자기평가 하기' }}</a></p>
-    <details><summary>기준과 가중치 보기</summary>
-      <table class="ec-table"><thead><tr><th scope="col">기준</th><th scope="col">가중치</th><th scope="col">설명</th></tr></thead>
+    <h2 id="h-sa">Self-assessment rubric</h2>
+    <p class="hint"><span class="pill pill-soon">{{ 'Approved criteria' if defn.rubric.status == 'approved' else 'Temporary criteria' }}</span> {{ defn.rubric.note }}</p>
+    {% if sa_summary %}<p>Latest version self-assessment: weighted average level <strong>{{ sa_summary.average_level }}</strong> / {{ sa_summary.max_level }} (not an official score){% if sa_summary.improve %} · Criteria to improve: {{ sa_summary.improve|join(', ') }}{% endif %}</p>{% endif %}
+    <p><a class="btn secondary" href="{{ url_for('econova.capstone_self_assessment', course_id=course.id) }}">{{ 'Redo self-assessment' if latest_sa else 'Do self-assessment' }}</a></p>
+    <details><summary>View criteria and weights</summary>
+      <table class="ec-table"><thead><tr><th scope="col">Criterion</th><th scope="col">Weight</th><th scope="col">Description</th></tr></thead>
         <tbody>{% for c in defn.rubric.criteria %}<tr><th scope="row">{{ c.name }}</th><td>{{ c.weight }}</td><td>{{ c.description }}</td></tr>{% endfor %}</tbody></table></details>
   </section>
 
   <section class="ec-section" id="ai-coach" aria-labelledby="h-ai">
-    <h2 id="h-ai">AI 코치 (선택)</h2>
+    <h2 id="h-ai">AI coach (optional)</h2>
     {% if ai_enabled %}
       <form method="post" action="{{ url_for('econova.capstone_feedback', course_id=course.id) }}" class="tutor-form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <label for="coach-step">어느 단계에 대해 물어볼까요?</label>
-        <select id="coach-step" name="step"><option value="">전체</option>{% for s in defn.steps %}<option value="{{ s.id }}">{{ s.title }}</option>{% endfor %}</select>
-        <button class="btn secondary" type="submit"{% if not versions %} disabled{% endif %}>AI 코치에게 질문 받기</button>
-        <p class="hint">AI 는 질문과 제안만 해요. 점수를 매기거나 출처·통계를 만들어 주지 않아요. 근거는 직접 확인해 주세요.</p>
+        <label for="coach-step">Which step do you want feedback on?</label>
+        <select id="coach-step" name="step"><option value="">All steps</option>{% for s in defn.steps %}<option value="{{ s.id }}">{{ s.title }}</option>{% endfor %}</select>
+        <button class="btn secondary" type="submit"{% if not versions %} disabled{% endif %}>Get questions from the AI coach</button>
+        <p class="hint">The AI only asks questions and makes suggestions. It does not score your work or make up sources or statistics. Check your evidence yourself.</p>
       </form>
-    {% else %}<p class="ec-placeholder-text">AI 기능이 꺼져 있어요. 단계별 안내와 자기평가 루브릭만으로도 캡스톤을 끝까지 할 수 있어요.</p>{% endif %}
+    {% else %}<p class="ec-placeholder-text">AI features are turned off. You can still finish the Capstone project with the step-by-step guide and the self-assessment rubric.</p>{% endif %}
     {% for fb in feedback|reverse %}
-      <div class="ai-box"><p class="tutor-label"><span class="pill pill-ai">AI 생성</span> 버전 {{ fb.version }}{% if fb.feedback.focus_step %} · {{ fb.feedback.focus_step }}{% endif %} · {{ fb.created_at }}</p>
-        {% for key, label in [('strengths', '잘한 점'), ('questions', '생각해 볼 질문'), ('missing_perspectives', '빠진 관점'), ('assumptions_to_check', '점검할 가정'), ('structure_suggestions', '구성 제안')] %}
+      <div class="ai-box"><p class="tutor-label"><span class="pill pill-ai">AI-generated</span> Version {{ fb.version }}{% if fb.feedback.focus_step %} · {{ fb.feedback.focus_step }}{% endif %} · {{ fb.created_at }}</p>
+        {% for key, label in [('strengths', 'Strengths'), ('questions', 'Questions to think about'), ('missing_perspectives', 'Missing perspectives'), ('assumptions_to_check', 'Assumptions to check'), ('structure_suggestions', 'Structure suggestions')] %}
           {% if fb.feedback[key] %}<p><strong>{{ label }}</strong></p><ul class="ec-list">{% for x in fb.feedback[key] %}<li>{{ x }}</li>{% endfor %}</ul>{% endif %}
         {% endfor %}
-        {% if fb.feedback.limitations %}<p class="tutor-limits">한계: {{ fb.feedback.limitations }}</p>{% endif %}</div>
+        {% if fb.feedback.limitations %}<p class="tutor-limits">Limitations: {{ fb.feedback.limitations }}</p>{% endif %}</div>
     {% endfor %}
   </section>
 
   <section class="ec-section" aria-labelledby="h-versions">
-    <h2 id="h-versions">버전 기록</h2>
-    {% if versions %}<ul class="ec-list">{% for v in versions|reverse %}<li><a href="{{ url_for('econova.capstone_version', course_id=course.id, version=v.version) }}">버전 {{ v.version }}</a> · {{ '제출본' if v.kind == 'submitted' else '저장본' }} · {{ v.created_at }} (UTC)</li>{% endfor %}</ul>
-    {% else %}<p class="ec-placeholder-text">아직 저장한 버전이 없어요.</p>{% endif %}
+    <h2 id="h-versions">Version history</h2>
+    {% if versions %}<ul class="ec-list">{% for v in versions|reverse %}<li><a href="{{ url_for('econova.capstone_version', course_id=course.id, version=v.version) }}">Version {{ v.version }}</a> · {{ 'Submitted' if v.kind == 'submitted' else 'Saved' }} · {{ v.created_at }} (UTC)</li>{% endfor %}</ul>
+    {% else %}<p class="ec-placeholder-text">No saved versions yet.</p>{% endif %}
   </section>
 </div>
 {% endblock %}

@@ -1,26 +1,26 @@
 {% extends "base.html" %}
-{% block title %}경제 실험실 · ECONOVA{% endblock %}
+{% block title %}Economics Lab · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
   <header class="ec-head">
-    <span class="eyebrow">경제 실험실</span>
-    <h1>값을 바꿔 보며 시장을 실험해요</h1>
-    <p class="hint">시뮬레이션은 정해진 수학 공식으로 계산해요(AI 사용 안 함). 숫자는 가상의 교육용 예이고 실제 통계가 아니에요.</p>
+    <span class="eyebrow">Economics Lab</span>
+    <h1>Experiment with markets by changing the numbers</h1>
+    <p class="hint">Simulations use fixed math formulas (no AI). Hypothetical example: the numbers are for learning only and are not real statistics.</p>
   </header>
   <div class="ec-grid">
     {% for sid, s in sims.items() %}
     <article class="ec-card">
       <h3><a href="{{ url_for('econova.lab_sim', sim_id=sid) }}">{{ s.title }}</a></h3>
-      <p>{% if sid == 'supply-demand' %}수요·공급의 절편과 기울기를 바꾸며 균형 가격과 거래량이 어떻게 움직이는지 봐요.{% else %}단위당 탄소세가 소비자 가격·생산자 가격·거래량·세수·배출량을 어떻게 바꾸는지 봐요.{% endif %}</p>
-      <div class="ec-card-actions"><a class="btn" href="{{ url_for('econova.lab_sim', sim_id=sid) }}">실험하기</a></div>
+      <p>{% if sid == 'supply-demand' %}Change the intercepts and slopes of demand and supply and watch how the equilibrium price and quantity move.{% else %}See how a per-unit carbon tax changes the consumer price, producer price, quantity, tax revenue and emissions.{% endif %}</p>
+      <div class="ec-card-actions"><a class="btn" href="{{ url_for('econova.lab_sim', sim_id=sid) }}">Start experimenting</a></div>
     </article>
     {% endfor %}
   </div>
   <section class="block">
-    <div class="browse-head"><h2>최근 저장한 실험</h2><a class="hint" href="{{ url_for('econova.lab_saved') }}">전체 보기 →</a></div>
+    <div class="browse-head"><h2>Recently saved experiments</h2><a class="hint" href="{{ url_for('econova.lab_saved') }}">View all →</a></div>
     {% if runs %}
-    <ul class="ec-list">{% for r in runs %}<li><a href="{{ url_for('econova.lab_run', run_id=r.id) }}">{{ sims[r.simulation_id].title }}</a> · {{ r.created_at }} (UTC){% if r.lesson_id %} · 레슨 {{ r.lesson_id }}{% endif %}</li>{% endfor %}</ul>
-    {% else %}<p class="ec-placeholder-text">아직 저장한 실험이 없어요.</p>{% endif %}
+    <ul class="ec-list">{% for r in runs %}<li><a href="{{ url_for('econova.lab_run', run_id=r.id) }}">{{ sims[r.simulation_id].title }}</a> · {{ r.created_at }} (UTC){% if r.lesson_id %} · Lesson {{ r.lesson_id }}{% endif %}</li>{% endfor %}</ul>
+    {% else %}<p class="ec-placeholder-text">You haven't saved any experiments yet.</p>{% endif %}
   </section>
 </div>
 {% endblock %}

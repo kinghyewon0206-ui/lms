@@ -3,12 +3,12 @@
   "id": "c03",
   "slug": "market-failure",
   "title": "Market Failure",
-  "title_ko": "시장 실패",
-  "description": "시장이 효율적인 결과를 내지 못하는 경우를 살펴보고, 에너지·기후 문제에 대한 정부 개입을 평가합니다.",
+  "title_ko": "Market Failure",
+  "description": "Explore cases where markets fail to produce efficient outcomes, and evaluate government intervention in energy and climate problems.",
   "objectives": [
-    "외부효과가 시장 실패를 일으키는 과정을 설명한다.",
-    "공공재와 공유 자원의 특성을 구분한다.",
-    "탄소세의 사회적 편익과 비용을 비교한다."
+    "Explain how externalities cause market failure by separating private cost from social cost.",
+    "Distinguish public goods from common resources using excludability and rivalry.",
+    "Compare the social benefits and costs of a carbon tax with other government policy tools."
   ],
   "sdgs": [
     7,
@@ -16,7 +16,7 @@
   ],
   "review": {
     "status": "draft",
-    "note": "강좌 설명·학습목표와 레슨 자료·퀴즈·최종 평가는 AI 가 작성한 초안이며 교사 검토 전이다."
+    "note": "The course description, learning objectives, lesson materials, quizzes, and final assessment are AI-written drafts awaiting teacher review."
   },
   "estimated_hours": 6,
   "difficulty_levels": [
@@ -40,7 +40,7 @@
       "id": "c03-l1",
       "order": 1,
       "title": "Externalities and Market Failure",
-      "title_ko": "외부효과와 시장 실패",
+      "title_ko": "Externalities and Market Failure",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -60,7 +60,7 @@
       "id": "c03-l2",
       "order": 2,
       "title": "Public Goods and Common Resources",
-      "title_ko": "공공재와 공유 자원",
+      "title_ko": "Public Goods and Common Resources",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -80,7 +80,7 @@
       "id": "c03-l3",
       "order": 3,
       "title": "Carbon Taxes and Government Intervention",
-      "title_ko": "탄소세와 정부 개입",
+      "title_ko": "Carbon Taxes and Government Intervention",
       "status": "draft",
       "objectives": [],
       "requirements": [

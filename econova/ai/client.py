@@ -23,18 +23,18 @@ PROVIDERS = ("off", "mock", "openai")
 OPENAI_URL = "https://api.openai.com/v1/chat/completions"
 
 MESSAGES_KO = {
-    "disabled": "AI 기능이 지금은 꺼져 있어요. 학습자료·퀴즈·시뮬레이션은 그대로 이용할 수 있어요.",
-    "rate_limited": "오늘 사용할 수 있는 AI 요청 횟수를 모두 썼어요. 내일 다시 이용해 주세요.",
-    "global_limit": "오늘은 AI 사용량이 많아 잠시 멈췄어요. 학습자료와 퀴즈는 계속 이용할 수 있어요.",
-    "duplicate": "방금 같은 내용을 보냈어요. 조금 뒤에 다시 보내거나 질문을 바꿔 주세요.",
-    "busy": "이전 요청에 답하는 중이에요. 잠시 후 다시 보내 주세요.",
-    "empty": "내용을 입력해 주세요.",
-    "too_long": "글이 너무 길어요. 조금 줄여서 보내 주세요.",
-    "timeout": "AI 응답이 늦어져 멈췄어요. 잠시 후 다시 시도해 주세요. 지금까지의 학습 기록은 그대로예요.",
-    "provider_error": "AI 서비스에 연결하지 못했어요. 잠시 후 다시 시도해 주세요. 지금까지의 학습 기록은 그대로예요.",
-    "invalid_response": "AI 답변을 확인할 수 없어 표시하지 않았어요. 다시 시도해 주세요.",
-    "unavailable": "이 내용에는 AI 도움을 쓸 수 없어요 (승인된 학습자료가 없어요).",
-    "feedback_off": "AI 오답 설명은 지금 꺼져 있어요 (정답·해설을 외부 AI 로 보내지 않기 위해). 위의 해설과 학습자료로 복습해 주세요.",
+    "disabled": "AI features are turned off right now. You can still use the learning materials, quizzes, and simulations.",
+    "rate_limited": "You've used all of your AI requests for today. Please try again tomorrow.",
+    "global_limit": "AI help is paused for today because of high demand. You can keep using the learning materials and quizzes.",
+    "duplicate": "You just sent the same message. Wait a moment before sending it again, or try rewording your question.",
+    "busy": "Still working on your previous request. Please try again in a moment.",
+    "empty": "Please type a message first.",
+    "too_long": "Your message is too long. Please shorten it and try again.",
+    "timeout": "The AI took too long to respond, so the request was stopped. Please try again in a moment. Your learning progress is safe.",
+    "provider_error": "We couldn't connect to the AI service. Please try again in a moment. Your learning progress is safe.",
+    "invalid_response": "The AI response couldn't be verified, so it wasn't shown. Please try again.",
+    "unavailable": "AI help isn't available for this content (there are no approved learning materials yet).",
+    "feedback_off": "AI explanations of wrong answers are turned off right now (so answer keys and explanations are not sent to an outside AI service). Please review with the explanations above and the learning materials.",
 }
 
 
@@ -54,9 +54,9 @@ def _int(name, default, lo, hi):
     try:
         value = int(config.env(name) or default)
     except ValueError:
-        raise config.ConfigError(f"{name} 는 정수여야 합니다.")
+        raise config.ConfigError(f"{name} must be an integer.")
     if not lo <= value <= hi:
-        raise config.ConfigError(f"{name} 는 {lo}~{hi} 사이여야 합니다.")
+        raise config.ConfigError(f"{name} must be between {lo} and {hi}.")
     return value
 
 
@@ -83,11 +83,11 @@ def settings():
     """보수적인 기본값. 모두 ECONOVA_AI_* 환경변수로 바꿀 수 있다."""
     provider = (config.env("ECONOVA_AI_PROVIDER") or "off").strip().lower()
     if provider not in PROVIDERS:
-        raise config.ConfigError(f"ECONOVA_AI_PROVIDER 는 {' / '.join(PROVIDERS)} 중 하나여야 합니다.")
+        raise config.ConfigError(f"ECONOVA_AI_PROVIDER must be one of: {' / '.join(PROVIDERS)}.")
     if provider == "mock" and config.is_production():
-        raise config.ConfigError("운영 환경에서는 모의 AI(ECONOVA_AI_PROVIDER=mock)를 켤 수 없습니다.")
+        raise config.ConfigError("The mock AI provider (ECONOVA_AI_PROVIDER=mock) cannot be enabled in production.")
     if provider == "openai" and not config.env("OPENAI_API_KEY"):
-        raise config.ConfigError("ECONOVA_AI_PROVIDER=openai 인데 OPENAI_API_KEY 가 없습니다.")
+        raise config.ConfigError("ECONOVA_AI_PROVIDER=openai is set, but OPENAI_API_KEY is missing.")
     timeout = _int("ECONOVA_AI_TIMEOUT_SECONDS", 20, 3, 120)
     return Settings(
         provider=provider,
@@ -129,33 +129,33 @@ def validate(data, schema, path="$"):
     kind = schema.get("type")
     if kind == "object":
         if not isinstance(data, dict):
-            raise AIError("invalid_response", f"{path}: object 아님")
+            raise AIError("invalid_response", f"{path}: not an object")
         props = schema.get("properties", {})
         extra = set(data) - set(props)
         missing = set(schema.get("required", props)) - set(data)
         if extra or missing:
-            raise AIError("invalid_response", f"{path}: 항목 불일치 extra={sorted(extra)} missing={sorted(missing)}")
+            raise AIError("invalid_response", f"{path}: field mismatch extra={sorted(extra)} missing={sorted(missing)}")
         for k, sub in props.items():
             if k in data:
                 validate(data[k], sub, f"{path}.{k}")
     elif kind == "array":
         if not isinstance(data, list) or len(data) > schema.get("maxItems", 50):
-            raise AIError("invalid_response", f"{path}: array 형식·길이")
+            raise AIError("invalid_response", f"{path}: invalid array type or length")
         for i, item in enumerate(data):
             validate(item, schema["items"], f"{path}[{i}]")
     elif kind == "string":
         if not isinstance(data, str) or len(data) > schema.get("maxLength", 4000):
-            raise AIError("invalid_response", f"{path}: string 형식·길이")
+            raise AIError("invalid_response", f"{path}: invalid string type or length")
         if "enum" in schema and data not in schema["enum"]:
-            raise AIError("invalid_response", f"{path}: 허용되지 않은 값")
+            raise AIError("invalid_response", f"{path}: value not allowed")
     elif kind == "integer":
         if not isinstance(data, int) or isinstance(data, bool):
-            raise AIError("invalid_response", f"{path}: integer 아님")
+            raise AIError("invalid_response", f"{path}: not an integer")
     elif kind == "boolean":
         if not isinstance(data, bool):
-            raise AIError("invalid_response", f"{path}: boolean 아님")
+            raise AIError("invalid_response", f"{path}: not a boolean")
     else:
-        raise AIError("invalid_response", f"{path}: 알 수 없는 스키마 형식")
+        raise AIError("invalid_response", f"{path}: unknown schema type")
     return data
 
 
@@ -182,7 +182,7 @@ class OpenAIProvider:
     def complete(self, req):
         api_key = config.env("OPENAI_API_KEY")
         if not api_key:
-            raise AIError("disabled", "키 없음")
+            raise AIError("disabled", "missing key")
         body = {
             "model": self.s.model,
             "messages": [{"role": "system", "content": req.system}] + req.messages,
@@ -212,7 +212,7 @@ class OpenAIProvider:
                 raise AIError("invalid_response", f"finish_reason={choice.get('finish_reason')}")
             data = json.loads(choice["message"]["content"])
         except (KeyError, IndexError, TypeError, ValueError):
-            raise AIError("invalid_response", "응답 형식")
+            raise AIError("invalid_response", "response format")
         usage = raw.get("usage") or {}
         return AIResult(data=data, input_tokens=int(usage.get("prompt_tokens") or 0),
                         output_tokens=int(usage.get("completion_tokens") or 0), model=str(raw.get("model") or ""))
@@ -251,47 +251,49 @@ def _mock_answer(req):
         first = concepts[0] if concepts else None
         sources = [s["id"] for s in p.get("sources", [])][:1]
         return {
-            "answer": (f"[모의 AI 답변] '{p.get('lesson', '')}' 레슨의 {p.get('level_name', '')} 설명이에요. "
-                       + (f"핵심 개념 '{first['term']}': {first['definition']}" if first else "승인된 개념 설명이 없어요.")),
+            "answer": (f"[Mock AI answer] Here is a {p.get('level_name', '')} explanation for the lesson '{p.get('lesson', '')}'. "
+                       + (f"Key concept '{first['term']}': {first['definition']}" if first else "There is no approved concept explanation.")),
             "grounding": "grounded" if first else "insufficient",
             "used_source_ids": sources,
-            "beyond_sources": "모의 공급자가 만든 연습용 추가 설명이에요. 실제 AI 답변이 아니에요.",
-            "follow_up_questions": [f"'{o}' 를 내 말로 설명해 볼까요?" for o in (p.get("objectives") or [])[:2]],
-            "limitations": "모의 응답이라 실제 질문 내용을 이해하지 않아요." + ("" if sources else " 이 레슨에는 확인된 출처가 연결되어 있지 않아요."),
+            "beyond_sources": "This is a practice explanation from the mock provider. It is not a real AI answer.",
+            "follow_up_questions": [f"Can you explain '{o}' in your own words?" for o in (p.get("objectives") or [])[:2]],
+            "limitations": "This is a mock response, so it does not understand your actual question."
+                           + ("" if sources else " No verified sources are linked to this lesson."),
         }
     if req.task == "feedback":
         return {"items": [{"question_id": q["id"],
-                           "why_incorrect": f"[모의 AI] 고른 답({q['student_answer'] or '응답 없음'})은 정답과 달라요.",
+                           "why_incorrect": f"[Mock AI] Your answer ({q['student_answer'] or 'no answer'}) is different from the correct answer.",
                            "concept_explanation": q.get("approved_explanation", ""),
-                           "simpler_example": "모의 공급자가 만든 연습용 예시예요.",
+                           "simpler_example": "This is a practice example from the mock provider.",
                            "review_topic": q.get("objective_text", "")} for q in p.get("questions", [])],
-                "follow_up_questions": ["이 개념을 친구에게 설명한다면 어떻게 말할까요?"],
-                "limitations": "모의 응답이에요. 점수는 바뀌지 않아요."}
+                "follow_up_questions": ["How would you explain this concept to a friend?"],
+                "limitations": "This is a mock response. Your score does not change."}
     if req.task == "debate_turn":
         perspectives = [x["id"] for x in p.get("perspectives", [])]
-        return {"reflection": "[모의 AI] 의견을 잘 들었어요. 근거와 가정을 나눠서 생각해 봐요.",
-                "follow_up_question": (p.get("guiding_questions") or ["다른 관점에서는 어떻게 볼까요?"])[0],
+        return {"reflection": "[Mock AI] Thanks for sharing your view. Let's separate your evidence from your assumptions.",
+                "follow_up_question": (p.get("guiding_questions") or ["How might someone with a different perspective see this?"])[0],
                 "perspectives_considered": perspectives[:2],
-                "claim_types": [{"claim": "학생 의견의 핵심 주장", "type": "value_judgment"}]}
+                "claim_types": [{"claim": "The main claim in your opinion", "type": "value_judgment"}]}
     if req.task == "debate_summary":
-        return {"summary": "[모의 AI] 토론에서 나온 주장과 상충관계를 정리했어요.",
+        return {"summary": "[Mock AI] Here is a summary of the claims and trade-offs from the debate.",
                 "arguments": [{"perspective_id": x["id"], "points": [x["summary"]]} for x in p.get("perspectives", [])][:4],
-                "trade_offs": list(p.get("trade_offs") or [])[:3] or ["효율과 형평 사이의 선택"],
-                "open_questions": ["어떤 근거가 더 있으면 결론이 달라질까요?"],
-                "note": "모의 응답이에요. 정해진 정답이 있는 문제가 아니에요."}
+                "trade_offs": list(p.get("trade_offs") or [])[:3] or ["Choosing between efficiency and equity"],
+                "open_questions": ["What additional evidence might change your conclusion?"],
+                "note": "This is a mock response. This question does not have a single correct answer."}
     if req.task == "capstone":
         steps = [s["title"] for s in p.get("steps", [])]
-        return {"strengths": ["[모의 AI] 단계별로 내용을 채워 가고 있어요."],
-                "questions": [f"'{t}' 에서 가장 중요한 근거는 무엇인가요?" for t in steps[:2]],
-                "missing_perspectives": ["이 해결책으로 손해를 볼 수 있는 집단의 입장도 적어 볼까요?"],
-                "assumptions_to_check": ["비용이 예상대로 나올 것이라는 가정을 어떻게 확인할 수 있을까요?"],
-                "structure_suggestions": ["문제 → 근거 → 해결책 → 한계 순서로 정리해 보세요."],
-                "limitations": "모의 응답이에요. 점수나 평가가 아니에요."}
+        return {"strengths": ["[Mock AI] You are filling in your project step by step."],
+                "questions": [f"What is the most important evidence for '{t}'?" for t in steps[:2]],
+                "missing_perspectives": ["Could you add the view of groups that might lose out under this solution?"],
+                "assumptions_to_check": ["How could you check the assumption that costs will turn out as expected?"],
+                "structure_suggestions": ["Try organizing it as problem, evidence, solution, then limitations."],
+                "limitations": "This is a mock response. It is not a score or an evaluation."}
     if req.task == "recommendation":
         items = p.get("items") or []
-        return {"message": "[모의 AI] " + (f"'{items[0]['term']}' 부터 다시 보면 좋겠어요." if items else "지금은 근거가 부족해요."),
+        return {"message": "[Mock AI] " + (f"It would help to review '{items[0]['term']}' first." if items
+                                            else "There isn't enough evidence yet."),
                 "tips": [f"{it['term']}: {it['reason']}" for it in items[:3]]}
-    raise AIError("invalid_response", "알 수 없는 작업")
+    raise AIError("invalid_response", "unknown task")
 
 
 def feedback_enabled():
@@ -300,7 +302,7 @@ def feedback_enabled():
     (2026-11 결정: 운영에서는 꺼 둔다). AI 공급자 자체가 off 이면 이 값과 상관없이 꺼진다."""
     value = (config.env("ECONOVA_AI_FEEDBACK") or "off").strip().lower()
     if value not in ("on", "off"):
-        raise config.ConfigError("ECONOVA_AI_FEEDBACK 는 on 또는 off 여야 합니다.")
+        raise config.ConfigError("ECONOVA_AI_FEEDBACK must be on or off.")
     return value == "on" and settings().enabled
 
 
@@ -324,4 +326,4 @@ _SECRETISH = re.compile(r"sk-[A-Za-z0-9_\-]{10,}|AIza[0-9A-Za-z_\-]{20,}")
 
 def redact(text):
     """로그에 남기기 전에 키처럼 보이는 문자열을 지운다."""
-    return _SECRETISH.sub("[가림]", str(text))
+    return _SECRETISH.sub("[redacted]", str(text))

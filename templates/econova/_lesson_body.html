@@ -10,43 +10,43 @@
   {% if key == 'simulation' %}
     {% if sim_widgets %}
       {% for w in sim_widgets %}{{ sw.widget(w, compact=true) }}{% endfor %}
-      <p class="hint">시뮬레이션 숫자는 수학 모형의 계산 결과예요. 검증된 실제 통계가 아니에요. <a href="{{ url_for('econova.lab_home') }}">경제 실험실</a>에서 더 자세히 실험할 수 있어요.</p>
+      <p class="hint">Simulation numbers are results from a math model. They are not verified real-world statistics. You can experiment in more detail in the <a href="{{ url_for('econova.lab_home') }}">Economics Lab</a>.</p>
     {% else %}
-      <p class="ec-placeholder-text">이 레슨에는 시뮬레이션이 없어요.</p>
+      <p class="ec-placeholder-text">This lesson has no simulation.</p>
     {% endif %}
 
   {% elif key == 'quiz' %}
     {% if 'quiz' not in lesson.requirements %}
-      <p class="ec-placeholder-text">이 레슨은 필수 퀴즈가 없어요.</p>
+      <p class="ec-placeholder-text">This lesson has no required quiz.</p>
     {% elif allow_review and lesson.quiz_approved %}
       {% set best = (quiz_attempts|map(attribute='ratio')|max) if quiz_attempts else none %}
       <div class="ec-quiz-box">
-        <p><strong>{{ lesson.quiz_assessment.title }}</strong> · {{ lesson.quiz_assessment.questions|length }}문항</p>
-        <p class="hint">제출하면 레슨 완료 조건 중 '필수 퀴즈 제출'이 채워져요. 점수는 레슨 완료에 영향을 주지 않고 따로 기록돼요.</p>
-        <p class="hint">퀴즈 상태: {% if record and record.quiz_submitted %}제출함 · 최고 점수 {{ (best * 100)|round|int if best is not none else '–' }}% · 응시 {{ quiz_attempts|length }}번{% else %}제출 전{% endif %}</p>
-        <a class="btn" href="{{ url_for('econova.lesson_quiz', course_id=course.id, lesson_id=lesson.id) }}">{{ '다시 풀기' if quiz_attempts else '퀴즈 풀기' }}</a>
+        <p><strong>{{ lesson.quiz_assessment.title }}</strong> · {{ lesson.quiz_assessment.questions|length }} {{ 'question' if lesson.quiz_assessment.questions|length == 1 else 'questions' }}</p>
+        <p class="hint">Submitting meets the "Submit the required quiz" step for completing the lesson. Your score is recorded separately and does not affect lesson completion.</p>
+        <p class="hint">Quiz status: {% if record and record.quiz_submitted %}Submitted · Best score {{ (best * 100)|round|int if best is not none else '–' }}% · {{ quiz_attempts|length }} {{ 'attempt' if quiz_attempts|length == 1 else 'attempts' }}{% else %}Not submitted{% endif %}</p>
+        <a class="btn" href="{{ url_for('econova.lesson_quiz', course_id=course.id, lesson_id=lesson.id) }}">{{ 'Retake quiz' if quiz_attempts else 'Take quiz' }}</a>
       </div>
     {% else %}
-      <div class="ec-placeholder"><span class="pill pill-soon">준비 중</span>
-        <p>필수 형성 퀴즈가 아직 교사 검토 전이에요. 검토가 끝나면 여기서 풀 수 있어요. 제출하기 전에는 레슨이 완료되지 않아요.</p></div>
+      <div class="ec-placeholder"><span class="pill pill-soon">Coming soon</span>
+        <p>The required lesson quiz has not been reviewed by a teacher yet. Once it is, you can take it here. The lesson is not complete until you submit it.</p></div>
     {% endif %}
 
   {% elif key == 'tutor' %}
     {% if tutor %}
       {% include "econova/ai/_tutor.html" %}
     {% elif allow_review %}
-      <p class="ec-placeholder-text">승인된 학습자료가 있는 레슨에서만 AI 튜터를 쓸 수 있어요.</p>
+      <p class="ec-placeholder-text">The AI Tutor is available only in lessons with approved learning materials.</p>
     {% else %}
-      <p class="ec-placeholder-text">교사용 미리보기에서는 AI 튜터를 쓰지 않아요. 검토 전 초안은 AI 에 보내지 않아요.</p>
+      <p class="ec-placeholder-text">The AI Tutor is off in teacher preview. Unreviewed drafts are never sent to the AI.</p>
     {% endif %}
 
   {% elif phase %}
     <div class="ec-placeholder">
-      <span class="pill pill-soon">{{ phase }} 예정</span>
+      <span class="pill pill-soon">{{ phase }}</span>
       {% if key == 'tutor' %}
-      <p>AI 튜터는 다음 단계에서 추가돼요. AI가 만든 설명은 위의 검증 자료와 분리해 'AI 설명' 표시와 함께 보여줄 예정이에요.</p>
+      <p>The AI Tutor will be added in a later phase. AI-generated explanations will be shown separately from the verified material above, labeled "AI explanation".</p>
       {% else %}
-      <p>이 부분은 아직 준비 중이에요.</p>
+      <p>This part is coming soon.</p>
       {% endif %}
     </div>
 
@@ -54,8 +54,8 @@
     {% if key == 'objectives' and lesson.objectives %}
     <ul class="ec-list">{% for o in lesson.objectives %}<li>{{ o }}</li>{% endfor %}</ul>
     {% else %}
-    <div class="ec-placeholder"><span class="pill pill-soon">준비 중</span>
-      <p>검증된 학습 내용만 보여줄 예정이라, 그 전까지는 비워 둡니다.</p></div>
+    <div class="ec-placeholder"><span class="pill pill-soon">Coming soon</span>
+      <p>Only verified learning content will appear here, so this stays empty until then.</p></div>
     {% endif %}
 
   {% elif key == 'objectives' %}
@@ -65,11 +65,11 @@
     {{ mat.leveled(doc, level) }}
     {% if allow_review and 'material' in lesson.requirements %}
       {% if record and record.material_reviewed %}
-      <p class="ec-done-note">학습자료 확인 완료</p>
+      <p class="ec-done-note">Learning materials reviewed</p>
       {% else %}
       <form method="post" action="{{ url_for('econova.material_reviewed', course_id=course.id, lesson_id=lesson.id) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <button type="submit" class="btn">학습자료를 끝까지 확인했어요</button>
+        <button type="submit" class="btn">I have read all the learning materials</button>
       </form>
       {% endif %}
     {% endif %}

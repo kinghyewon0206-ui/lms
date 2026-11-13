@@ -17,19 +17,19 @@ class LearningError(Exception):
 
 # 레슨 페이지의 구역. 검증 자료가 있는 구역과, 이후 단계에서 들어올 구역(단계 표시)을 구분한다.
 LESSON_SECTIONS = (
-    ("objectives", "학습 목표", None),
-    ("concept", "검증된 개념 설명", None),
-    ("leveled", "난이도별 학습 내용", None),
-    ("examples", "풀이 예제", None),
-    ("visual", "경제 그래프", None),
-    ("real_world", "실제 경제 사례", None),
-    ("sdg_case", "SDG 사례와 정책 상충관계", None),
-    ("simulation", "인터랙티브 시뮬레이션", None),
-    ("tutor", "AI 튜터", None),
-    ("quiz", "형성 퀴즈", None),
-    ("reflection", "되돌아보기와 피드백", "이후 단계"),
-    ("takeaways", "핵심 정리", None),
-    ("sources", "출처", None),
+    ("objectives", "Learning objectives", None),
+    ("concept", "Key concepts", None),
+    ("leveled", "Learning materials by level", None),
+    ("examples", "Worked examples", None),
+    ("visual", "Economic graphs", None),
+    ("real_world", "Real-world examples", None),
+    ("sdg_case", "SDG case and policy trade-offs", None),
+    ("simulation", "Interactive simulation", None),
+    ("tutor", "AI Tutor", None),
+    ("quiz", "Lesson quiz", None),
+    ("reflection", "Reflection and feedback", "Coming later"),
+    ("takeaways", "Key takeaways", None),
+    ("sources", "Sources", None),
 )
 
 
@@ -53,18 +53,18 @@ def enroll(user_id, course, difficulty=DEFAULT_DIFFICULTY, recommended=None):
     """수강 신청. 공개된 강좌만 가능. 새로 신청했으면 True, 이미 수강 중이면 False.
     학생이 고른 난이도가 진단평가 추천과 같으면 출처를 diagnostic 으로, 다르면 manual 로 기록한다 (추천은 강제가 아니다)."""
     if not course.published:
-        raise LearningError("not_published", "아직 공개되지 않은 강좌라 수강 신청할 수 없어요.")
+        raise LearningError("not_published", "This course isn't published yet, so you can't enroll.")
     if difficulty not in content.DIFFICULTIES:
-        raise LearningError("bad_difficulty", "난이도를 다시 골라 주세요.")
+        raise LearningError("bad_difficulty", "Please choose a level again.")
     source = "diagnostic" if recommended and difficulty == recommended else "manual"
     return storage.enroll_course(user_id, course.id, difficulty, course.content_version, difficulty_source=source)
 
 
 def change_difficulty(user_id, course, difficulty):
     if difficulty not in content.DIFFICULTIES:
-        raise LearningError("bad_difficulty", "난이도를 다시 골라 주세요.")
+        raise LearningError("bad_difficulty", "Please choose a level again.")
     if not storage.set_enrollment_difficulty(user_id, course.id, difficulty):
-        raise LearningError("not_enrolled", "수강 중인 강좌만 난이도를 바꿀 수 있어요.")
+        raise LearningError("not_enrolled", "You can only change the level for a course you're enrolled in.")
 
 
 def course_state(user_id, course):
@@ -80,19 +80,19 @@ def lesson_access(user_id, course_id, lesson_id):
     course = visible_course(course_id)
     lesson = course.lesson(lesson_id) if course else None
     if lesson is None:
-        raise LearningError("not_found", "레슨을 찾을 수 없어요.")
+        raise LearningError("not_found", "We couldn't find that lesson.")
     if not course.published or lesson.status != "published":
-        raise LearningError("not_published", "아직 공개되지 않은 레슨이에요.")
+        raise LearningError("not_published", "This lesson isn't published yet.")
     enrollment = storage.get_enrollment(user_id, course.id)
     if enrollment is None:
-        raise LearningError("not_enrolled", "먼저 수강 신청을 해 주세요.")
+        raise LearningError("not_enrolled", "Please enroll in the course first.")
     return course, lesson, enrollment
 
 
 def mark_material_reviewed(user_id, course, lesson):
     """필수 학습자료 확인. 승인된 자료가 있는 레슨에서만 기록한다."""
     if "material" not in lesson.requirements or not lesson.material_approved:
-        raise LearningError("unavailable", "확인할 승인된 학습자료가 없어요.")
+        raise LearningError("unavailable", "There are no approved learning materials to review.")
     return storage.update_lesson_progress(user_id, course.id, lesson.id, lesson.requirements, material_reviewed=True)
 
 
@@ -103,13 +103,13 @@ def record_quiz_submission(user_id, course, lesson, attempt_id):
     점수(ratio)는 완료 판정과 별개로 최고 점수만 남긴다.
     """
     if "quiz" not in lesson.requirements or not lesson.quiz_approved:
-        raise LearningError("unavailable", "이 레슨에는 제출할 수 있는 필수 퀴즈가 없어요.")
+        raise LearningError("unavailable", "This lesson has no required quiz to submit.")
     attempt = storage.get_assessment_attempt(user_id, attempt_id)
     if attempt is None:
-        raise LearningError("invalid_submission", "퀴즈 제출 기록을 찾을 수 없어요.")
+        raise LearningError("invalid_submission", "We couldn't find your quiz submission.")
     if (attempt["kind"] != "lesson_quiz" or attempt["assessment_id"] != lesson.quiz_assessment.id
             or attempt["lesson_id"] != lesson.id or attempt["course_id"] != course.id):
-        raise LearningError("wrong_assessment", "이 레슨의 퀴즈가 아니에요.")
+        raise LearningError("wrong_assessment", "That quiz doesn't belong to this lesson.")
     return storage.update_lesson_progress(user_id, course.id, lesson.id, lesson.requirements,
                                           quiz_submission_id=attempt["id"], quiz_score=attempt["ratio"],
                                           event_time=attempt["created_at"])
@@ -120,7 +120,7 @@ def quiz_access(user_id, course_id, lesson_id):
     """형성 퀴즈를 볼 수 있는지: 레슨 접근 규칙 + 승인된 퀴즈가 있는가."""
     course, lesson, enrollment = lesson_access(user_id, course_id, lesson_id)
     if "quiz" not in lesson.requirements or not lesson.quiz_approved:
-        raise LearningError("not_found", "이 레슨에는 형성 퀴즈가 없어요.")
+        raise LearningError("not_found", "This lesson doesn't have a lesson quiz.")
     return course, lesson, enrollment, lesson.quiz_assessment
 
 
@@ -128,15 +128,15 @@ def final_access(user_id, course_id):
     """최종 평가: 공개된 강좌, 본인 수강, 승인된 최종 평가, 그리고 모든 레슨 완료 후에만 열린다."""
     course = visible_course(course_id)
     if course is None:
-        raise LearningError("not_found", "강좌를 찾을 수 없어요.")
+        raise LearningError("not_found", "We couldn't find that course.")
     if not course.published or not course.final_ready:
-        raise LearningError("not_published", "아직 공개되지 않은 최종 평가예요.")
+        raise LearningError("not_published", "This final assessment isn't published yet.")
     enrollment = storage.get_enrollment(user_id, course.id)
     if enrollment is None:
-        raise LearningError("not_enrolled", "먼저 수강 신청을 해 주세요.")
+        raise LearningError("not_enrolled", "Please enroll in the course first.")
     prog = progress.course_progress(course, storage.list_lesson_progress(user_id, course.id))
     if prog["completed"] < prog["total"]:
-        raise LearningError("locked", f"레슨을 모두 완료하면 최종 평가가 열려요. (현재 {prog['completed']}/{prog['total']})")
+        raise LearningError("locked", f"The final assessment opens once you complete all lessons. (Completed: {prog['completed']}/{prog['total']})")
     return course, enrollment, course.final
 
 
@@ -197,7 +197,7 @@ def submit_assessment(user_id, course, assessment, answers, token, lesson=None):
         return existing["id"], False
     left = attempts_left(user_id, assessment)
     if left == 0:
-        raise LearningError("no_attempts", "응시할 수 있는 횟수를 모두 사용했어요.")
+        raise LearningError("no_attempts", "You've used all of your attempts.")
     if not assessment.max_attempts:   # 재응시 무제한 형성 퀴즈: 아주 넉넉한 저장 한도만 둔다 (기존 기록은 지우지 않음)
         try:
             quotas.check("QUIZ_ATTEMPTS", len(storage.list_assessment_attempts(user_id, assessment_id=assessment.id)))
@@ -219,7 +219,7 @@ def submit_assessment(user_id, course, assessment, answers, token, lesson=None):
     except storage.DuplicateSubmission as dup:   # 동시에 같은 토큰으로 두 번 저장하려 한 경우
         attempt_id, created = dup.attempt_id, False
     except storage.AttemptLimitReached:          # 다른 토큰으로 동시에 제출해 횟수를 넘으려 한 경우
-        raise LearningError("no_attempts", "응시할 수 있는 횟수를 모두 사용했어요.")
+        raise LearningError("no_attempts", "You've used all of your attempts.")
     reconcile_attempt(user_id, course, assessment, storage.get_assessment_attempt(user_id, attempt_id), lesson)
     return attempt_id, created
 

@@ -63,11 +63,11 @@ def test_provider_mock_stays_local_and_dev_only(app, logged_in, network_spy, mon
     monkeypatch.setenv("ECONOVA_AI_PROVIDER", "mock")
     monkeypatch.setenv("ECONOVA_AI_DUPLICATE_SECONDS", "0")
     out = _all_ai_entry_points(logged_in)
-    assert out["tutor"].status_code == 200 and out["tutor"].get_json()["message"]["answer"].startswith("[모의 AI 답변]")
+    assert out["tutor"].status_code == 200 and out["tutor"].get_json()["message"]["answer"].startswith("[Mock AI answer]")
     assert network_spy == []
     monkeypatch.setenv("RENDER", "1")
     monkeypatch.setenv("SECRET_KEY", "s" * 40)
-    with pytest.raises(config.ConfigError, match="모의 AI"):
+    with pytest.raises(config.ConfigError, match="mock AI provider"):
         ai_client.settings()
 
 
@@ -81,10 +81,10 @@ def test_ai_feedback_is_off_by_default_and_sends_nothing(app, logged_in, network
     quiz = content.get_catalog().course("dev-f1").lesson("dev-f1-l1").quiz_assessment
     url = take(logged_in, "/learn/dev-f1/dev-f1-l1/quiz", quiz, correct=False)
     html = logged_in.get(url).get_data(as_text=True)
-    assert "AI 에게 내 오답 설명 듣기" not in html and "AI 오답 설명은 지금 꺼져 있어요" in html
+    assert "Ask AI to explain my mistakes" not in html and "AI explanations of mistakes are turned off right now" in html
     res = logged_in.post(url + "/explain", data={"csrf_token": CSRF})
     assert res.status_code == 303 and network_spy == []
-    assert "정답·해설을 외부 AI 로 보내지 않기 위해" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert "so answer keys and explanations are not sent to an outside AI service" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     with app.app_context():
         from econova.ai import usage
         assert storage.get_ai_usage(_uid(app), usage.today())["global"]["requests"] == 0
@@ -201,7 +201,7 @@ def test_simulation_and_diagnostic_quotas(app, logged_in, tiny_quotas):
     for _ in range(3):
         logged_in.post("/lab/supply-demand/save", data={"csrf_token": CSRF, "a": "100", "b": "2", "c": "10", "d": "1"})
     res = logged_in.post("/lab/supply-demand/save", data={"csrf_token": CSRF, "a": "100", "b": "2", "c": "10", "d": "1"})
-    assert "저장 한도(2개)" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert "reached the limit for saved simulations (2)" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     for _ in range(3):
         logged_in.post("/diagnostic/take", data={"csrf_token": CSRF})
     with app.app_context():
@@ -219,7 +219,7 @@ def test_quiz_quota_only_for_unlimited_quizzes(app, logged_in, tiny_quotas):
     html = logged_in.get("/learn/dev-f1/dev-f1-l1/quiz").get_data(as_text=True)
     token = html.split('name="submission_token" value="')[1].split('"')[0]
     res = logged_in.post("/learn/dev-f1/dev-f1-l1/quiz", data={"csrf_token": CSRF, "submission_token": token})
-    assert res.status_code == 303 and "저장 한도(2개)" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert res.status_code == 303 and "reached the limit for attempts on this quiz (2)" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     with app.app_context():
         uid = _uid(app)
         assert len(storage.list_assessment_attempts(uid, assessment_id=quiz.id)) == 2   # 기존 기록은 그대로
@@ -231,12 +231,12 @@ def test_ai_quotas(app, logged_in, tiny_quotas):
     data = {"csrf_token": CSRF, "course_id": "dev-f1", "lesson_id": "dev-f1-l1", "message": "질문"}
     assert logged_in.post("/api/tutor", data=data).status_code == 200          # 메시지 2개
     res = logged_in.post("/api/tutor", data=data)
-    assert res.status_code == 409 and "저장 한도(2개)" in res.get_json()["error"]
+    assert res.status_code == 409 and "reached the limit for AI Tutor messages for this lesson (2)" in res.get_json()["error"]
     page = "/discuss/dev-f1/price-ceiling-food"
     logged_in.post(page + "/respond", data={"csrf_token": CSRF, "message": "의견"})
     logged_in.post(page + "/new", data={"csrf_token": CSRF})
     res = logged_in.post(page + "/new", data={"csrf_token": CSRF})
-    assert "이 주제의 토론 저장 한도" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert "reached the limit for debates on this topic (" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     with app.app_context():
         assert len(storage.find_ai_conversations(_uid(app), "debate")) == 2
 
@@ -247,7 +247,7 @@ def test_capstone_quota_keeps_student_text(app, logged_in, tiny_quotas):
         logged_in.post("/capstone/dev-f3/edit", data={"csrf_token": CSRF, "sdg": "7", "problem": f"버전 {i}"})
     res = logged_in.post("/capstone/dev-f3/edit", data={"csrf_token": CSRF, "sdg": "7", "problem": "지우면 안 되는 학생 글"})
     html = res.get_data(as_text=True)
-    assert res.status_code == 200 and "저장 한도(2개)" in html and "지우면 안 되는 학생 글" in html
+    assert res.status_code == 200 and "reached the limit for saved Capstone project versions (2)" in html and "지우면 안 되는 학생 글" in html
     with app.app_context():
         assert len(storage.list_capstone_versions(_uid(app), "dev-f3")) == 2
 
@@ -271,7 +271,7 @@ def test_revoked_reviewer_approval_is_not_releasable(app, client, content_copy, 
     with app.app_context():
         storage.revoke_admin(_uid(app, "admin@example.test"))
     res = app.test_cli_runner().invoke(args=["content-release-apply", str(path)])
-    assert "권한이 취소됨" in res.output and "반영함" not in res.output
+    assert "access was revoked" in res.output and "→ Applied" not in res.output
     with app.app_context():
         reviews = {}
         for r in storage.list_content_reviews():

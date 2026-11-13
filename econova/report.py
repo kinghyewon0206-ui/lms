@@ -47,7 +47,7 @@ def build(user_id, catalog):
     courses, timeline = [], []
     for e in enrollments:
         course = catalog.course(e["course_id"])
-        timeline.append((e["enrolled_at"], "수강 신청", course.title_ko if course else e["course_id"]))
+        timeline.append((e["enrolled_at"], "Enrolled", course.title_ko if course else e["course_id"]))
         if course is None:
             courses.append({"enrollment": e, "course": None})
             continue
@@ -58,11 +58,11 @@ def build(user_id, catalog):
             r = recs.get(lesson.id) or {}
             lessons.append({"lesson": lesson, "status": prog["statuses"][lesson.id], "record": r})
             if r.get("material_reviewed_at"):
-                timeline.append((r["material_reviewed_at"], "학습자료 확인", f"{course.title_ko} · {lesson.title_ko}"))
+                timeline.append((r["material_reviewed_at"], "Reviewed learning materials", f"{course.title_ko} · {lesson.title_ko}"))
             if r.get("completed_at"):
-                timeline.append((r["completed_at"], "레슨 완료", f"{course.title_ko} · {lesson.title_ko}"))
+                timeline.append((r["completed_at"], "Completed lesson", f"{course.title_ko} · {lesson.title_ko}"))
         if e.get("completed_at"):
-            timeline.append((e["completed_at"], "강좌 수료", course.title_ko))
+            timeline.append((e["completed_at"], "Course completed", course.title_ko))
         courses.append({"enrollment": e, "course": course, "progress": prog, "lessons": lessons,
                         "completed": e["status"] == "completed", "policy": e.get("completion_policy"),
                         "capstone": capstones.get(course.id)})
@@ -72,7 +72,7 @@ def build(user_id, catalog):
     for a in sorted(attempts, key=lambda a: (a["created_at"], a["id"])):
         groups.setdefault(a["assessment_id"], []).append(a)
         title = lookup.get(a["assessment_id"], (None, None))[1]
-        timeline.append((a["created_at"], "최종 평가 응시" if a["kind"] == "final" else "형성 퀴즈 제출",
+        timeline.append((a["created_at"], "Took final assessment" if a["kind"] == "final" else "Submitted lesson quiz",
                          f"{title.title if title else a['assessment_id']} · {_pct(a['ratio'])}%"))
     assessments = []
     for aid, rows in groups.items():
@@ -94,18 +94,18 @@ def build(user_id, catalog):
     diag = [{"id": d["id"], "created_at": d["created_at"], "score": d["score"], "max_score": d["max_score"],
              "level": d["recommended_level"], "version": d.get("diagnostic_version")} for d in diag_attempts]
     for d in diag_attempts:
-        timeline.append((d["created_at"], "진단평가", f"{d['score']}/{d['max_score']}"))
+        timeline.append((d["created_at"], "Diagnostic assessment", f"{d['score']}/{d['max_score']}"))
     diag_areas = []
     if diag_attempts:
         for area, v in sorted(diag_attempts[0]["by_category"].items()):
             diag_areas.append({"area": names.get(area, area), "correct": v["correct"], "total": v["total"],
                                "review": bool(v["total"]) and v["correct"] / v["total"] < recommendations.REVIEW_BELOW})
     for s in sims:
-        timeline.append((s["created_at"], "시뮬레이션 저장", s["simulation_id"]))
+        timeline.append((s["created_at"], "Saved simulation", s["simulation_id"]))
     for course_id in capstones:
         for v in storage.list_capstone_versions(user_id, course_id):
-            timeline.append((v["created_at"], "캡스톤 제출" if v["kind"] == "submitted" else "캡스톤 저장",
-                             f"{course_id} 버전 {v['version']}"))
+            timeline.append((v["created_at"], "Submitted Capstone project" if v["kind"] == "submitted" else "Saved Capstone project",
+                             f"{course_id} version {v['version']}"))
 
     analysis = recommendations.analyze(user_id, catalog)
     timeline = [t for t in timeline if t[0] is not None]

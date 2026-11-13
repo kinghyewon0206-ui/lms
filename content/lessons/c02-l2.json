@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c02-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -12,50 +12,56 @@
         "status": "draft",
         "at": "2026-11-03",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 초안. 교사 검토 전이며 학생에게 공개하지 않는다."
+        "note": "AI-written draft. Not yet reviewed by a teacher; do not publish to students."
       },
       {
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "검토 의견(docs/content/c02-review.md) 반영 수정. 여전히 사람 검토 전 초안이다."
+        "note": "Revised based on review comments (docs/content/c02-review.md). Still a draft that has not been reviewed by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
   "objectives": [
-    "균형 가격과 균형 거래량이 정해지는 과정을 설명한다.",
-    "초과공급(잉여)과 초과수요(부족)가 가격을 균형 쪽으로 움직이는 이유를 설명한다.",
-    "수요·공급이 바뀔 때 새 균형을 4단계로 분석하고, 가격 상한·하한의 효과를 평가한다."
+    "Explain how the equilibrium price and equilibrium quantity are determined.",
+    "Explain why a surplus (excess supply) or a shortage (excess demand) pushes the price toward equilibrium.",
+    "Use a four-step analysis to find the new equilibrium when demand or supply changes, and evaluate the effects of price ceilings and price floors."
   ],
   "concepts": [
     {
       "id": "equilibrium",
-      "term": "균형 (equilibrium)",
-      "definition": "수요량과 공급량이 같아지는 상태. 그때의 가격이 균형 가격, 수량이 균형 거래량이다.",
+      "term": "Equilibrium",
+      "definition": "The situation in which quantity demanded equals quantity supplied. The price at that point is the equilibrium price, and the quantity is the equilibrium quantity.",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
     },
     {
       "id": "surplus_shortage",
-      "term": "초과공급(잉여)과 초과수요(부족)",
-      "definition": "가격이 균형보다 높으면 공급량이 수요량보다 많아 잉여가, 낮으면 수요량이 공급량보다 많아 부족이 생긴다.",
+      "term": "Surplus (excess supply) and shortage (excess demand)",
+      "definition": "If the price is above equilibrium, quantity supplied exceeds quantity demanded and there is a surplus. If the price is below equilibrium, quantity demanded exceeds quantity supplied and there is a shortage.",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
     },
     {
       "id": "four_step",
-      "term": "균형 변화의 4단계 분석",
-      "definition": "① 원래 시장을 그린다 ② 수요와 공급 중 무엇이 바뀌었는지 찾는다 ③ 이동 방향을 정한다 ④ 새 균형과 원래 균형을 비교한다.",
+      "term": "Four-step analysis of a change in equilibrium",
+      "definition": "(1) Draw the original market. (2) Decide whether demand or supply changed. (3) Decide which direction the curve shifts. (4) Compare the new equilibrium with the original one.",
       "source_ids": [
         "openstax-pe3-3-3"
       ]
     },
     {
       "id": "price_controls",
-      "term": "가격 상한과 가격 하한",
-      "definition": "가격 상한은 법으로 정한 최고 가격, 가격 하한은 최저 가격이다. 상한이 균형보다 낮으면 부족이, 하한이 균형보다 높으면 잉여가 생긴다.",
+      "term": "Price ceiling and price floor",
+      "definition": "A price ceiling is a legal maximum price; a price floor is a legal minimum price. A ceiling set below equilibrium creates a shortage, and a floor set above equilibrium creates a surplus.",
       "source_ids": [
         "openstax-pe3-3-4",
         "openstax-pe3-3-5"
@@ -64,128 +70,128 @@
   ],
   "levels": {
     "beginner": {
-      "summary": "사려는 양과 팔려는 양이 딱 맞는 가격이 시장 가격이에요. 물건이 남으면 값이 내려가고, 모자라면 값이 올라가면서 그 가격을 찾아가요.",
+      "summary": "The market price is the price where the amount people want to buy matches the amount sellers want to sell. When goods are left over, the price falls; when there is not enough, the price rises, until the market finds that price.",
       "sections": [
         {
-          "heading": "딱 맞는 가격 찾기",
+          "heading": "Finding the price that fits",
           "concept_ids": [
             "equilibrium"
           ],
           "paragraphs": [
-            "축제에서 붕어빵을 판다고 해 봐요. 너무 비싸게 부르면 손님이 적고, 너무 싸게 부르면 줄이 길게 서요. 사려는 양과 팔려는 양이 같아지는 가격에서는 남지도 모자라지도 않아요. 이 가격을 '균형 가격'이라고 해요."
+            "Imagine you are selling fresh donuts at a school festival. If you charge too much, few customers come. If you charge too little, a long line forms. At the price where the amount people want to buy equals the amount you want to sell, nothing is left over and no one goes without. This price is called the equilibrium price."
           ]
         },
         {
-          "heading": "남으면 내리고, 모자라면 오르고",
+          "heading": "Leftovers push prices down; shortfalls push them up",
           "concept_ids": [
             "surplus_shortage"
           ],
           "paragraphs": [
-            "붕어빵이 잔뜩 남으면 가게는 값을 깎아서라도 팔려고 해요. 반대로 금방 다 팔리고 손님이 줄을 서면 값을 올려도 팔려요. 이렇게 '남음(잉여)'과 '모자람(부족)'이 가격을 균형 쪽으로 밀어요."
+            "If lots of donuts are left over, the seller will cut the price to sell them. If the donuts sell out fast and customers are still lining up, the seller can raise the price and still sell them all. In this way, leftovers (a surplus) and shortfalls (a shortage) push the price toward equilibrium."
           ]
         },
         {
-          "heading": "상황이 바뀌면 시장 가격도 바뀐다",
+          "heading": "When conditions change, the market price changes",
           "concept_ids": [
             "four_step"
           ],
           "paragraphs": [
-            "추운 날 손님이 몰리면(수요 증가) 값이 오르고 더 많이 팔려요. 밀가루 값이 오르면(공급 감소) 값은 오르고 덜 팔려요. 무엇이 바뀌었는지 먼저 찾고, 그다음 가격과 양이 어떻게 바뀌는지 차례로 생각하면 돼요."
+            "On a cold day, more people want a warm donut (an increase in demand), so the price rises and more donuts are sold. If flour gets more expensive (a decrease in supply), the price rises and fewer donuts are sold. First figure out what changed, then work out step by step how the price and quantity change."
           ]
         },
         {
-          "heading": "정부가 가격을 정하면?",
+          "heading": "What if the government sets the price?",
           "concept_ids": [
             "price_controls"
           ],
           "paragraphs": [
-            "정부가 '붕어빵은 500원 넘게 받으면 안 돼요'처럼 시장 가격보다 낮게 최고 가격을 정하면, 사려는 사람은 많은데 만들려는 가게는 줄어서 붕어빵이 모자라요. 반대로 시장 가격보다 높게 최저 가격을 정하면 팔리지 않는 물건이 남아요. 좋은 뜻의 정책도 이런 부작용을 함께 따져 봐야 해요."
+            "Suppose the government says, \"No one may charge more than 50 cents for a donut,\" setting a maximum price below the market price. More people want to buy, but fewer sellers want to bake, so there are not enough donuts. If the government instead sets a minimum price above the market price, unsold goods pile up. Even well-meaning policies can have side effects like these, so we need to weigh them."
           ]
         }
       ]
     },
     "intermediate": {
-      "summary": "균형은 수요곡선과 공급곡선의 교점이다. 균형이 아닌 가격에서는 잉여나 부족이 가격 조정 압력을 만들고, 수요·공급의 이동은 4단계 분석으로 새 균형을 찾는다.",
+      "summary": "Equilibrium is where the demand and supply curves intersect. At any other price, a surplus or shortage puts pressure on the price to adjust, and a four-step analysis finds the new equilibrium after demand or supply shifts.",
       "sections": [
         {
-          "heading": "균형 가격과 균형 거래량",
+          "heading": "Equilibrium price and equilibrium quantity",
           "concept_ids": [
             "equilibrium"
           ],
           "paragraphs": [
-            "수요곡선과 공급곡선이 만나는 점에서 수요량 = 공급량이 된다. 이 점의 가격과 수량이 균형 가격(P*)과 균형 거래량(Q*)이다. 균형에서는 그 가격에 사고 싶은 사람은 모두 살 수 있고, 팔고 싶은 사람은 모두 팔 수 있다."
+            "Where the demand curve and the supply curve cross, quantity demanded equals quantity supplied. The price and quantity at that point are the equilibrium price (P*) and the equilibrium quantity (Q*). At equilibrium, everyone who wants to buy at that price can buy, and everyone who wants to sell at that price can sell."
           ]
         },
         {
-          "heading": "잉여·부족과 가격 조정",
+          "heading": "Surpluses, shortages, and price adjustment",
           "concept_ids": [
             "surplus_shortage"
           ],
           "paragraphs": [
-            "P > P* 이면 공급량 > 수요량, 즉 초과공급(잉여)이 생겨 판매자들이 가격을 낮춘다. P < P* 이면 수요량 > 공급량, 즉 초과수요(부족)가 생겨 구매자들이 더 높은 가격을 받아들이고 판매자는 가격을 올린다. 이 압력은 가격이 균형에 이를 때까지 이어진다."
+            "If P > P*, quantity supplied is greater than quantity demanded, creating a surplus (excess supply), and sellers lower their prices. If P < P*, quantity demanded is greater than quantity supplied, creating a shortage (excess demand); buyers accept higher prices and sellers raise them. This pressure continues until the price reaches equilibrium."
           ]
         },
         {
-          "heading": "4단계 분석",
+          "heading": "The four-step analysis",
           "concept_ids": [
             "four_step"
           ],
           "paragraphs": [
-            "① 원래 시장을 그린다 → ② 사건이 수요를 바꾸는지 공급을 바꾸는지 찾는다 → ③ 오른쪽(증가)인지 왼쪽(감소)인지 정한다 → ④ 새 교점을 원래 교점과 비교한다.",
-            "정리: 수요 증가 → 가격↑, 거래량↑ / 수요 감소 → 가격↓, 거래량↓ / 공급 증가 → 가격↓, 거래량↑ / 공급 감소 → 가격↑, 거래량↓. 수요와 공급이 동시에 바뀌면 둘 중 하나(가격 또는 거래량)의 방향은 두 이동의 크기에 따라 달라진다. (예제 4)"
+            "(1) Draw the original market → (2) decide whether the event changes demand or supply → (3) decide whether the curve shifts right (an increase) or left (a decrease) → (4) compare the new intersection with the original one.",
+            "Summary: demand increases → price↑, quantity↑ / demand decreases → price↓, quantity↓ / supply increases → price↓, quantity↑ / supply decreases → price↑, quantity↓. When demand and supply change at the same time, the direction of one of the two (price or quantity) depends on the sizes of the two shifts. (See Example 4.)"
           ]
         },
         {
-          "heading": "가격 상한과 가격 하한",
+          "heading": "Price ceilings and price floors",
           "concept_ids": [
             "price_controls"
           ],
           "paragraphs": [
-            "균형보다 낮은 가격 상한은 수요량을 늘리고 공급량을 줄여 부족을 만든다. 부족이 생기면 줄서기, 품질 저하, 암시장 같은 다른 방식의 배분이 나타날 수 있다.",
-            "균형보다 높은 가격 하한은 잉여를 만든다. 농산물 가격 지지처럼 정부가 남는 양을 사들이면, 그 비용은 납세자와 소비자에게 돌아간다."
+            "A price ceiling below equilibrium raises quantity demanded and lowers quantity supplied, creating a shortage. A shortage can lead to other ways of rationing the good, such as waiting in line, lower quality, or black markets.",
+            "A price floor above equilibrium creates a surplus. When the government buys up the extra output, as with farm price supports, the cost falls on taxpayers and consumers."
           ]
         }
       ]
     },
     "advanced": {
-      "summary": "선형 모형에서 균형은 연립방정식의 해 P* = (a − c)/(b + d) 이며, 비교정학으로 매개변수 변화의 효과를, 가격 통제 아래에서는 부족·잉여의 크기를 계산할 수 있다.",
+      "summary": "In a linear model, equilibrium is the solution of a system of equations, P* = (a − c)/(b + d). Comparative statics shows how parameter changes affect the outcome, and under price controls you can calculate the size of a shortage or surplus.",
       "sections": [
         {
-          "heading": "균형의 계산",
+          "heading": "Calculating equilibrium",
           "concept_ids": [
             "equilibrium"
           ],
           "paragraphs": [
-            "Qd = a − bP, Qs = c + dP 일 때 균형 조건 Qd = Qs 에서 a − bP = c + dP 이므로 P* = (a − c)/(b + d), Q* = a − bP* 이다. 양의 균형이 존재하려면 a > c 이고 Q* > 0 이어야 한다."
+            "With Qd = a − bP and Qs = c + dP, the equilibrium condition Qd = Qs gives a − bP = c + dP, so P* = (a − c)/(b + d) and Q* = a − bP*. A positive equilibrium requires a > c and Q* > 0."
           ]
         },
         {
-          "heading": "불균형과 조정",
+          "heading": "Disequilibrium and adjustment",
           "concept_ids": [
             "surplus_shortage"
           ],
           "paragraphs": [
-            "임의의 가격 P 에서 초과수요는 ED(P) = Qd − Qs = (a − c) − (b + d)P 이다. ED > 0 이면 부족, ED < 0 이면 잉여이고, ED 는 P 가 커질수록 줄어들어 P* 에서 0 이 된다. 가격이 초과수요의 부호에 따라 움직인다고 가정하면 가격은 P* 로 수렴한다."
+            "At any price P, excess demand is ED(P) = Qd − Qs = (a − c) − (b + d)P. If ED > 0 there is a shortage, and if ED < 0 there is a surplus. ED falls as P rises and equals 0 at P*. If we assume the price moves in the direction of the sign of excess demand, the price converges to P*."
           ]
         },
         {
-          "heading": "비교정학",
+          "heading": "Comparative statics",
           "concept_ids": [
             "four_step"
           ],
           "paragraphs": [
-            "∂P*/∂a = 1/(b + d) > 0 이므로 수요가 늘면(a 증가) 균형 가격이 오르고, ∂P*/∂c = −1/(b + d) < 0 이므로 공급이 늘면(c 증가) 균형 가격이 내린다. b 와 d 가 클수록(가격에 민감할수록) 같은 충격에 대한 가격 변화가 작다.",
-            "이 결과는 4단계 분석을 수식으로 바꾼 것이다. 수식은 방향뿐 아니라 크기까지 비교하게 해 준다."
+            "Since ∂P*/∂a = 1/(b + d) > 0, an increase in demand (higher a) raises the equilibrium price. Since ∂P*/∂c = −1/(b + d) < 0, an increase in supply (higher c) lowers the equilibrium price. The larger b and d are (the more price-sensitive buyers and sellers are), the smaller the price change caused by the same shock.",
+            "These results are the four-step analysis written in equations. The equations let you compare not only the direction of a change but also its size."
           ]
         },
         {
-          "heading": "가격 통제의 정량 분석",
+          "heading": "Quantitative analysis of price controls",
           "concept_ids": [
             "price_controls"
           ],
           "paragraphs": [
-            "가격 상한 P̄ < P* 이면 실제 거래량은 공급량 Qs(P̄) 로 줄고, 부족량은 Qd(P̄) − Qs(P̄) 이다. 거래량이 균형보다 줄어든 만큼 사회 전체의 거래 이익이 사라지는데, 이를 사중손실이라고 한다. 선형 모형에서는 균형 거래량과 실제 거래량 사이에서 수요곡선(소비자가 낼 의향이 있는 가격)과 공급곡선(생산자가 받아야 하는 최소 가격) 사이의 삼각형 넓이로 계산한다 (예제 5).",
-            "정책 평가에서는 '누가 이득을 보고 누가 손해를 보는가', '그 크기는 얼마인가', '목표(예: 저소득층의 식량 접근)를 더 적은 부작용으로 이룰 다른 수단은 없는가'를 함께 따져야 한다."
+            "With a price ceiling P̄ < P*, the quantity actually traded falls to the quantity supplied, Qs(P̄), and the shortage is Qd(P̄) − Qs(P̄). Because fewer units are traded than at equilibrium, some gains from trade are lost to society as a whole; this loss is called deadweight loss. In a linear model, it is the area of the triangle between the equilibrium quantity and the quantity actually traded, bounded by the demand curve (the price consumers are willing to pay) and the supply curve (the minimum price producers must receive). (See Example 5.)",
+            "When evaluating a policy, ask together: Who gains and who loses? By how much? Is there another tool that could reach the same goal (for example, food access for low-income households) with fewer side effects?"
           ]
         }
       ]
@@ -195,14 +201,14 @@
     {
       "id": "c02-l2-we1",
       "level": "beginner",
-      "title": "표에서 균형 가격 찾기",
-      "problem": "가상의 예: 김밥 가격이 2,000원일 때 수요량 60줄·공급량 20줄, 3,000원일 때 수요량 40줄·공급량 40줄, 4,000원일 때 수요량 20줄·공급량 60줄이다. 균형 가격은 얼마인가?",
+      "title": "Finding the equilibrium price from a table",
+      "problem": "Hypothetical example: When a sandwich costs $2, quantity demanded is 60 and quantity supplied is 20. At $3, quantity demanded is 40 and quantity supplied is 40. At $4, quantity demanded is 20 and quantity supplied is 60. What is the equilibrium price?",
       "steps": [
-        "수요량과 공급량이 같은 가격을 찾는다.",
-        "3,000원에서 둘 다 40줄로 같다.",
-        "2,000원에서는 40줄이 모자라고, 4,000원에서는 40줄이 남는다."
+        "Look for the price at which quantity demanded equals quantity supplied.",
+        "At $3, both are 40 sandwiches.",
+        "At $2 there is a shortage of 40 sandwiches, and at $4 there is a surplus of 40 sandwiches."
       ],
-      "answer": "균형 가격은 3,000원, 균형 거래량은 40줄이다.",
+      "answer": "The equilibrium price is $3, and the equilibrium quantity is 40 sandwiches.",
       "check": {
         "type": "difference",
         "a": 40,
@@ -213,27 +219,27 @@
     {
       "id": "c02-l2-we2",
       "level": "intermediate",
-      "title": "4단계 분석: 비료 값 상승",
-      "problem": "가상의 예: 비료 값이 크게 올랐다. 쌀 시장의 균형 가격과 거래량은 어떻게 바뀌는가?",
+      "title": "Four-step analysis: fertilizer prices rise",
+      "problem": "Hypothetical example: The price of fertilizer has risen sharply. How do the equilibrium price and quantity in the rice market change?",
       "steps": [
-        "① 원래 쌀 시장의 수요·공급과 균형을 그린다.",
-        "② 비료는 생산 비용이므로 공급이 바뀐다.",
-        "③ 비용 상승 → 같은 가격에서 덜 생산 → 공급곡선 왼쪽 이동.",
-        "④ 새 교점은 원래보다 위·왼쪽: 가격↑, 거래량↓."
+        "(1) Draw demand, supply, and the equilibrium in the original rice market.",
+        "(2) Fertilizer is a production cost, so supply changes.",
+        "(3) Higher costs → farmers produce less at every price → the supply curve shifts left.",
+        "(4) The new intersection is up and to the left of the original: price↑, quantity↓."
       ],
-      "answer": "균형 가격은 오르고 균형 거래량은 줄어든다."
+      "answer": "The equilibrium price rises and the equilibrium quantity falls."
     },
     {
       "id": "c02-l2-we3",
       "level": "advanced",
-      "title": "균형과 가격 상한의 부족량",
-      "problem": "가상의 예: 밀가루 시장이 Qd = 100 − 2P, Qs = 10 + P 이다. (1) 균형 가격과 거래량을 구하라. (2) 정부가 가격 상한을 24 로 정하면 부족량은 얼마인가?",
+      "title": "Equilibrium and the shortage under a price ceiling",
+      "problem": "Hypothetical example: In a flour market, Qd = 100 − 2P and Qs = 10 + P. (1) Find the equilibrium price and quantity. (2) If the government sets a price ceiling of 24, how large is the shortage?",
       "steps": [
         "(1) 100 − 2P = 10 + P → 3P = 90 → P* = 30, Q* = 100 − 60 = 40.",
-        "(2) P = 24 에서 Qd = 100 − 48 = 52, Qs = 10 + 24 = 34.",
-        "부족량 = 52 − 34 = 18. 실제 거래량은 공급량인 34 로 균형보다 6 줄었다."
+        "(2) At P = 24, Qd = 100 − 48 = 52 and Qs = 10 + 24 = 34.",
+        "Shortage = 52 − 34 = 18. The quantity actually traded is the quantity supplied, 34, which is 6 less than at equilibrium."
       ],
-      "answer": "(1) P* = 30, Q* = 40  (2) 부족량 18",
+      "answer": "(1) P* = 30, Q* = 40  (2) a shortage of 18",
       "check": {
         "type": "equilibrium",
         "a": 100,
@@ -249,28 +255,28 @@
     {
       "id": "c02-l2-we4",
       "level": "intermediate",
-      "title": "수요와 공급이 함께 바뀔 때",
-      "problem": "가상의 예: 여름 축제 기간에 빙수를 찾는 사람이 늘었는데(수요 증가), 같은 때 우유 값이 올라 가게들이 빙수를 덜 만든다(공급 감소). 빙수 시장의 균형 가격과 거래량에 대해 확실히 말할 수 있는 것은 무엇인가?",
+      "title": "When demand and supply change together",
+      "problem": "Hypothetical example: During a summer festival, more people want milkshakes (an increase in demand). At the same time, the price of milk rises, so shops make fewer milkshakes (a decrease in supply). What can you say for sure about the equilibrium price and quantity of milkshakes?",
       "steps": [
-        "수요 증가만 보면: 가격↑, 거래량↑.",
-        "공급 감소만 보면: 가격↑, 거래량↓.",
-        "두 변화가 모두 가격을 올리므로 가격은 확실히 오른다.",
-        "거래량은 한쪽은 늘리고 한쪽은 줄이므로, 수요가 더 많이 늘었는지 공급이 더 많이 줄었는지에 따라 달라진다."
+        "The increase in demand alone: price↑, quantity↑.",
+        "The decrease in supply alone: price↑, quantity↓.",
+        "Both changes push the price up, so the price definitely rises.",
+        "One change raises quantity and the other lowers it, so the effect on quantity depends on whether demand rose by more or supply fell by more."
       ],
-      "answer": "균형 가격은 오른다. 균형 거래량은 두 이동의 크기에 따라 늘 수도, 줄 수도 있다."
+      "answer": "The equilibrium price rises. The equilibrium quantity could rise or fall, depending on the sizes of the two shifts."
     },
     {
       "id": "c02-l2-we5",
       "level": "advanced",
-      "title": "가격 상한의 사중손실 계산",
-      "problem": "가상의 예: 예제 3 의 밀가루 시장(Qd = 100 − 2P, Qs = 10 + P, 균형 P* = 30, Q* = 40)에 가격 상한 24 를 두었다. 거래가 줄어 사라지는 거래 이익(사중손실)은 얼마인가?",
+      "title": "Calculating the deadweight loss of a price ceiling",
+      "problem": "Hypothetical example: A price ceiling of 24 is placed on the flour market from Example 3 (Qd = 100 − 2P, Qs = 10 + P, equilibrium P* = 30, Q* = 40). How large are the gains from trade lost because fewer units are traded (the deadweight loss)?",
       "steps": [
-        "상한 24 에서 실제 거래량은 공급량 Qs = 10 + 24 = 34 이다 (균형 40 보다 6 적다).",
-        "34 번째 단위에 소비자가 낼 의향이 있는 가격: 수요함수를 P 로 풀면 P = (100 − Q)/2 → (100 − 34)/2 = 33.",
-        "34 번째 단위를 만드는 데 필요한 최소 가격: 공급함수를 P 로 풀면 P = Q − 10 → 34 − 10 = 24.",
-        "사중손실은 거래량 34 와 40 사이의 삼각형 넓이 = ½ × (40 − 34) × (33 − 24) = ½ × 6 × 9 = 27."
+        "At the ceiling of 24, the quantity actually traded is the quantity supplied, Qs = 10 + 24 = 34 (6 less than the equilibrium quantity of 40).",
+        "The price consumers are willing to pay for the 34th unit: solve the demand function for P, P = (100 − Q)/2 → (100 − 34)/2 = 33.",
+        "The minimum price needed to produce the 34th unit: solve the supply function for P, P = Q − 10 → 34 − 10 = 24.",
+        "The deadweight loss is the area of the triangle between quantities 34 and 40 = ½ × (40 − 34) × (33 − 24) = ½ × 6 × 9 = 27."
       ],
-      "answer": "사중손실은 27 (가격 단위 × 수량 단위)이다.",
+      "answer": "The deadweight loss is 27 (price units × quantity units).",
       "check": {
         "type": "product",
         "factors": [
@@ -285,13 +291,13 @@
   "graphs": [
     {
       "id": "c02-l2-g1",
-      "title": "균형과 가격 상한",
-      "caption": "가상의 예. 균형은 P = 30, Q = 40 이다. 가격 상한 24 에서는 수요량 52, 공급량 34 로 18 만큼 부족하다.",
+      "title": "Equilibrium and a price ceiling",
+      "caption": "Hypothetical example. Equilibrium is at P = 30, Q = 40. At a price ceiling of 24, quantity demanded is 52 and quantity supplied is 34, a shortage of 18.",
       "axis": {
         "p_max": 60,
         "q_max": 110,
-        "p_label": "가격 P",
-        "q_label": "수량 Q"
+        "p_label": "Price P",
+        "q_label": "Quantity Q"
       },
       "demand": [
         {
@@ -309,7 +315,7 @@
       ],
       "price_lines": [
         {
-          "label": "가격 상한 24",
+          "label": "Price ceiling 24",
           "price": 24
         }
       ],
@@ -325,21 +331,21 @@
   ],
   "real_world_examples": [
     {
-      "title": "임대료 상한과 주택 부족",
+      "title": "Rent control and housing shortages",
       "source_ids": [
         "openstax-pe3-3-4"
       ],
       "paragraphs": [
-        "임대료를 시장 수준보다 낮게 묶으면 집을 구하려는 사람은 늘고 임대를 내놓으려는 사람은 줄어 부족이 생길 수 있다. 집주인이 수리·관리에 덜 투자해 주거의 질이 떨어지는 문제도 함께 지적된다."
+        "If rents are held below the market level, more people look for apartments while fewer landlords offer them, which can cause a shortage. Critics also point out that landlords may spend less on repairs and upkeep, so housing quality can decline."
       ]
     },
     {
-      "title": "농산물 가격 지지와 잉여",
+      "title": "Farm price supports and surpluses",
       "source_ids": [
         "openstax-pe3-3-4"
       ],
       "paragraphs": [
-        "여러 고소득 국가는 농가 소득을 지키려고 농산물 가격을 균형보다 높게 지지해 왔다. 가격이 높으면 생산은 늘고 소비는 줄어 잉여가 생기고, 정부가 이를 사들이는 비용은 납세자와 소비자가 부담한다."
+        "Many high-income countries have supported farm prices above equilibrium to protect farmers' incomes. Higher prices increase production and reduce consumption, creating a surplus, and the cost of the government buying that surplus is borne by taxpayers and consumers."
       ]
     }
   ],
@@ -348,56 +354,56 @@
       2,
       12
     ],
-    "title": "식량 가격이 급등할 때: 가격 상한인가, 직접 지원인가",
+    "title": "When food prices spike: a price ceiling or direct support?",
     "paragraphs": [
-      "SDG 2 는 모든 사람의 안정적인 식량 접근을, SDG 12 는 지속가능한 소비와 생산을 목표로 한다. 가상의 상황: 국제 곡물 가격 상승으로 빵과 국수 값이 크게 올라 저소득 가구의 부담이 커졌다.",
-      "같은 목표(취약 가구의 식량 접근)를 이루는 수단이 여러 가지이고, 수단마다 시장에 미치는 부작용이 다르다는 점을 수요·공급 모형으로 비교해 보자."
+      "SDG 2 aims for stable access to food for everyone, and SDG 12 aims for sustainable consumption and production. Hypothetical situation: Rising world grain prices have pushed up the prices of bread and noodles sharply, putting pressure on low-income households.",
+      "There are several tools for reaching the same goal (food access for vulnerable households), and each has different side effects on the market. Use the demand and supply model to compare them."
     ],
     "options": [
       {
-        "name": "빵·국수에 가격 상한 두기",
+        "name": "Put a price ceiling on bread and noodles",
         "benefits": [
-          "모든 소비자가 당장 낮은 가격으로 살 수 있다.",
-          "행정이 단순해 보인다."
+          "Every consumer can buy at a lower price right away.",
+          "It looks simple to administer."
         ],
         "costs": [
-          "상한이 균형보다 낮으면 공급이 줄어 부족·줄서기·품질 저하가 생길 수 있다.",
-          "형편이 넉넉한 가구도 같은 혜택을 받는다."
+          "If the ceiling is below equilibrium, supply falls, which can cause shortages, lines, and lower quality.",
+          "Better-off households get the same benefit."
         ],
         "assumptions": [
-          "상한 가격이 생산 비용을 크게 밑돌지 않는다는 가정이 맞아야 부작용이 작다."
+          "Side effects stay small only if the ceiling is not far below production costs."
         ]
       },
       {
-        "name": "저소득 가구에 식품 바우처·현금 지원",
+        "name": "Give food vouchers or cash to low-income households",
         "benefits": [
-          "도움이 필요한 가구에 집중할 수 있다.",
-          "시장 가격이 유지되어 공급 감소를 피한다."
+          "Help can be focused on the households that need it.",
+          "Market prices stay in place, so supply does not shrink."
         ],
         "costs": [
-          "재정 부담과 대상 선정·지급 행정 비용이 든다.",
-          "공급이 늘지 않으면 수요가 늘어 가격이 조금 더 오를 수 있다."
+          "It costs public money, plus administrative costs to select recipients and make payments.",
+          "If supply does not increase, the extra demand may push prices up a bit more."
         ],
         "assumptions": [
-          "대상 가구를 정확히 파악할 수 있고, 지원이 빠르게 전달된다."
+          "The government can identify eligible households accurately and deliver support quickly."
         ]
       },
       {
-        "name": "공급 쪽 지원(수입 확대·생산 비용 지원)",
+        "name": "Support the supply side (more imports, help with production costs)",
         "benefits": [
-          "공급곡선을 오른쪽으로 옮겨 가격 자체를 낮출 수 있다."
+          "Shifts the supply curve to the right, which can bring the price itself down."
         ],
         "costs": [
-          "효과가 나타나기까지 시간이 걸린다.",
-          "보조금은 재정 부담이 되고, 과잉 생산이나 낭비를 부를 수도 있다(SDG 12 와 긴장)."
+          "It takes time for the effects to show up.",
+          "Subsidies cost public money and can encourage overproduction or waste (a tension with SDG 12)."
         ],
         "assumptions": [
-          "수입처가 있고, 비용 지원이 실제 생산 증가로 이어진다."
+          "Import sources are available, and cost support actually leads to more production."
         ]
       }
     ],
     "discussion": [
-      "단기(몇 주)와 장기(몇 년)에 가장 알맞은 수단은 각각 무엇일까? 그렇게 판단한 근거와 가정을 적어 보자."
+      "Which tool fits best in the short run (a few weeks), and which in the long run (several years)? Write down your reasoning and the assumptions behind it."
     ],
     "source_ids": [
       "un-sdg-2",
@@ -406,9 +412,9 @@
     ]
   },
   "key_takeaways": [
-    "균형은 수요량과 공급량이 같아지는 점이며, 잉여와 부족이 가격을 균형 쪽으로 움직인다.",
-    "수요·공급이 바뀌면 4단계 분석으로 새 균형의 가격과 거래량 변화를 찾는다.",
-    "가격 상한·하한은 의도와 달리 부족·잉여를 만들 수 있으므로, 같은 목표를 이루는 다른 수단과 비용·편익을 비교해야 한다."
+    "Equilibrium is the point where quantity demanded equals quantity supplied; surpluses and shortages push the price toward equilibrium.",
+    "When demand or supply changes, use the four-step analysis to find how the equilibrium price and quantity change.",
+    "Price ceilings and floors can create shortages and surpluses their designers did not intend, so compare their costs and benefits with other tools that pursue the same goal."
   ],
   "source_ids": [
     "openstax-pe3-3-1",

@@ -4,12 +4,15 @@
 > 기존 구조(`content/courses`, `content/lessons`, `content/assessments` + 비공개 정답 키, `content/sources.json`)를 그대로 쓴다.
 > **AI 는 초안만 쓴다. 승인·공개는 사람이 한다.** 출처는 실제로 열어 확인한 것만 `verified` 후보로 올리고, 사람이 다시 확인한다.
 
+> **English-only rule (2026-11-13, permanent):** all ECONOVA user-facing text — c04–c09 included — is written in English from the start.
+> See `docs/content/english-only-guidelines.md`. `tests/test_english_only.py` enforces it. (This planning document itself is internal.)
+
 ## 0. 진행 상황 (2026-11-13, 모두 AI 초안 · 사람 승인 전 · 미공개)
 | 강좌 | 상태 | 검토 문서 |
 |---|---|---|
-| c02 시장과 가격 | 초안 v2 (검토 의견 반영) | `docs/content/c02-review.md` |
-| c01 경제학과 선택 | 초안 v1 | `docs/content/c01-review.md` |
-| c03 시장 실패 | 초안 v1, 탄소세 시뮬레이션 연결 | `docs/content/c03-review.md` |
+| c02 Markets and Prices | 초안 v3 (영어로 재작성) | `docs/content/c02-review.md` |
+| c01 Economics and Choice | 초안 v2 (영어로 재작성) | `docs/content/c01-review.md` |
+| c03 Market Failure | 초안 v2 (영어로 재작성), 탄소세 시뮬레이션 연결 | `docs/content/c03-review.md` |
 | c04 ~ c09 | 아직 없음 (다음: c04, c05) | — |
 
 ## 1. 강좌별 범위 (강좌 JSON 에 이미 정한 제목·학습목표·SDG)

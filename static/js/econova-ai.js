@@ -1,5 +1,5 @@
-/* ECONOVA AI 화면 (튜터 대화, 추천 설명). 서버가 검사한 JSON 만 받아 textContent 로만 그린다 (HTML 로 해석하지 않음).
-   브라우저는 질문 글과 본인 대화 id 만 보낸다. 키·자료·시스템 지시문은 서버에만 있다. */
+/* ECONOVA AI UI (tutor chat, recommendation explanations). Renders only server-validated JSON, via textContent (never as HTML).
+   The browser sends only the question text and its own conversation id. Keys, materials and system prompts stay on the server. */
 (function () {
   "use strict";
 
@@ -18,25 +18,25 @@
   function renderAnswer(m) {
     var box = el("div", "tutor-msg tutor-ai");
     var label = el("p", "tutor-label");
-    label.appendChild(el("span", "pill pill-ai", "AI 생성"));
+    label.appendChild(el("span", "pill pill-ai", "AI-generated"));
     label.appendChild(document.createTextNode(" "));
     label.appendChild(el("span", "tutor-grounding g-" + m.grounding, m.grounding_label));
     box.appendChild(label);
     box.appendChild(el("p", "tutor-answer", m.answer));
     if (m.beyond_sources) {
       var b = el("p", "tutor-beyond");
-      b.appendChild(el("strong", null, "자료 밖 AI 추가 설명: "));
+      b.appendChild(el("strong", null, "Extra AI explanation beyond the sources: "));
       b.appendChild(document.createTextNode(m.beyond_sources));
       box.appendChild(b);
     }
     if (m.sources && m.sources.length) {
-      var s = el("p", "tutor-sources", "근거로 쓴 확인된 출처: ");
+      var s = el("p", "tutor-sources", "Verified sources used: ");
       m.sources.forEach(function (src) {
         s.appendChild(el("span", "src-chip", src.title + (src.container ? " · " + src.container : "")));
       });
       box.appendChild(s);
     }
-    if (m.limitations) box.appendChild(el("p", "tutor-limits", "한계: " + m.limitations));
+    if (m.limitations) box.appendChild(el("p", "tutor-limits", "Limitations: " + m.limitations));
     if (m.follow_up_questions && m.follow_up_questions.length) {
       var ul = el("ul", "tutor-follow");
       m.follow_up_questions.forEach(function (q) { ul.appendChild(el("li", null, q)); });
@@ -56,7 +56,7 @@
     var max = parseInt(panel.getAttribute("data-max"), 10) || 600;
     var busy = false;
 
-    function updateCount() { if (count) count.textContent = input.value.length + " / " + max + "자"; }
+    function updateCount() { if (count) count.textContent = input.value.length + " / " + max + " characters"; }
     input.addEventListener("input", updateCount);
     panel.querySelectorAll("[data-suggest]").forEach(function (b) {
       b.addEventListener("click", function () { input.value = b.textContent; updateCount(); input.focus(); });
@@ -66,10 +66,10 @@
       ev.preventDefault();
       if (busy) return;
       var text = input.value.trim();
-      if (!text) { status.textContent = "질문을 입력해 주세요."; return; }
+      if (!text) { status.textContent = "Please type a question."; return; }
       busy = true;
       button.disabled = true;
-      status.textContent = "AI 튜터가 답을 준비하고 있어요…";
+      status.textContent = "The AI Tutor is preparing an answer…";
       panel.setAttribute("aria-busy", "true");
       var body = new FormData();
       body.append("csrf_token", csrf(form));
@@ -83,16 +83,16 @@
         method: "POST", body: body, credentials: "same-origin",
         headers: { "X-CSRF-Token": csrf(form), "Accept": "application/json" }
       }).then(function (res) {
-        return res.json().catch(function () { return { ok: false, error: "응답을 읽을 수 없어요. 잠시 후 다시 시도해 주세요." }; });
+        return res.json().catch(function () { return { ok: false, error: "Could not read the response. Please try again in a moment." }; });
       }).then(function (data) {
-        if (!data.ok) {   // 실패해도 학생이 쓴 질문은 입력칸에 그대로 둔다
-          status.textContent = data.error || "AI 답변을 받지 못했어요.";
+        if (!data.ok) {   // keep the student's question in the input box even on failure
+          status.textContent = data.error || "Could not get an AI answer.";
           return;
         }
         var empty = log.querySelector(".tutor-empty");
         if (empty) empty.remove();
         var mine = el("div", "tutor-msg tutor-me");
-        mine.appendChild(el("p", "tutor-label", "나"));
+        mine.appendChild(el("p", "tutor-label", "You"));
         mine.appendChild(el("p", null, text));
         log.appendChild(mine);
         log.appendChild(renderAnswer(data.message));
@@ -100,9 +100,9 @@
         panel.setAttribute("data-conversation", data.conversation_id);
         input.value = "";
         updateCount();
-        status.textContent = "답변을 받았어요.";
+        status.textContent = "Answer received.";
       }).catch(function () {
-        status.textContent = "네트워크 오류로 보내지 못했어요. 입력한 질문은 그대로 있어요.";
+        status.textContent = "A network error stopped your question from being sent. Your question is still in the box.";
       }).then(function () {
         busy = false;
         button.disabled = false;
@@ -117,7 +117,7 @@
     if (!button) return;
     button.addEventListener("click", function () {
       button.disabled = true;
-      out.textContent = "AI 설명을 준비하고 있어요…";
+      out.textContent = "Preparing an AI explanation…";
       var body = new FormData();
       body.append("csrf_token", button.getAttribute("data-csrf"));
       fetch(button.getAttribute("data-endpoint"), {
@@ -125,9 +125,9 @@
         headers: { "X-CSRF-Token": button.getAttribute("data-csrf"), "Accept": "application/json" }
       }).then(function (res) { return res.json(); }).then(function (data) {
         out.textContent = "";
-        if (!data.ok) { out.textContent = data.error || "AI 설명을 받지 못했어요."; return; }
+        if (!data.ok) { out.textContent = data.error || "Could not get an AI explanation."; return; }
         var label = el("p", "tutor-label");
-        label.appendChild(el("span", "pill pill-ai", "AI 조언 (참고)"));
+        label.appendChild(el("span", "pill pill-ai", "AI advice (for reference)"));
         out.appendChild(label);
         out.appendChild(el("p", null, data.message));
         if (data.tips && data.tips.length) {
@@ -135,7 +135,7 @@
           data.tips.forEach(function (t) { ul.appendChild(el("li", null, t)); });
           out.appendChild(ul);
         }
-      }).catch(function () { out.textContent = "네트워크 오류로 AI 설명을 받지 못했어요."; })
+      }).catch(function () { out.textContent = "A network error prevented the AI explanation from loading."; })
         .then(function () { button.disabled = false; });
     });
   }

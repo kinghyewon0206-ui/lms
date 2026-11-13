@@ -4,9 +4,9 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l2",
-  "version": 1,
-  "title": "레슨 2 형성 퀴즈: 기회비용과 합리적 의사결정",
-  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "version": 2,
+  "title": "Lesson 2 Quiz: Opportunity Cost and Rational Decision-Making",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -17,7 +17,13 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+        "note": "AI-written question draft. Not yet reviewed by a human (admin) and not to be given to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c01-l2-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 1,
@@ -38,23 +44,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "방과 후 2시간 동안 ① 시급 9,000원 아르바이트 ② 동아리 활동 ③ 낮잠 가운데 동아리 활동을 골랐어요. 낮잠보다 아르바이트가 더 가치 있다면, 동아리 활동의 기회비용은 무엇인가요?",
+      "prompt": "For 2 hours after school, you could (1) work a part-time job that pays $9 per hour, (2) go to a club activity, or (3) take a nap. You choose the club activity. If the job is worth more to you than the nap, what is the opportunity cost of the club activity?",
       "choices": [
         {
           "id": "a",
-          "text": "낮잠"
+          "text": "The rest you would have gotten from the nap"
         },
         {
           "id": "b",
-          "text": "아르바이트로 벌 수 있었던 18,000원"
+          "text": "The $18 you could have earned at the job"
         },
         {
           "id": "c",
-          "text": "낮잠과 18,000원을 모두 더한 것"
+          "text": "The nap and the $18 from the job combined"
         },
         {
           "id": "d",
-          "text": "돈을 쓰지 않았으므로 기회비용은 없다"
+          "text": "Nothing, because you didn't spend any money"
         }
       ],
       "source_ids": [
@@ -64,7 +70,7 @@
     },
     {
       "id": "c01-l2-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 2,
@@ -75,23 +81,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "환불이 안 되는 30,000원짜리 놀이공원 자유이용권을 샀는데, 당일 비가 오고 감기 기운이 있어요. 갈지 말지를 정하는 가장 합리적인 기준은?",
+      "prompt": "You bought a non-refundable $60 amusement park day pass, but on the day of your visit it is raining and you feel a cold coming on. What is the most rational way to decide whether to go?",
       "choices": [
         {
           "id": "a",
-          "text": "이미 낸 30,000원이 아까우니 가야 손해를 줄일 수 있다"
+          "text": "Go, since using the $60 pass is the way to keep from wasting the money."
         },
         {
           "id": "b",
-          "text": "표값 30,000원과 교통비를 더한 비용이 즐거움보다 큰지 따진다"
+          "text": "Check whether the $60 pass plus bus fare would be more than the fun of going."
         },
         {
           "id": "c",
-          "text": "같이 가기로 한 친구가 몇 명인지에 따라 정한다"
+          "text": "Decide based on how many of your friends have already agreed to go along."
         },
         {
           "id": "d",
-          "text": "오늘 가서 얻을 즐거움과 아플 위험·불편만 비교하고, 표값은 판단에서 뺀다"
+          "text": "Compare today's fun with the risk of getting sick, leaving the pass price out."
         }
       ],
       "source_ids": [
@@ -101,7 +107,7 @@
     },
     {
       "id": "c01-l2-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c01-l2",
       "objective": 2,
@@ -111,7 +117,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "농구 연습을 1·2·3·4 시간째 할 때 실력 향상의 가치(추가 편익)가 각각 10, 8, 5, 2 (천 원)이고, 한 시간 연습할 때마다 포기하는 다른 일의 가치(추가 비용)는 6 (천 원)이에요. 추가 편익이 추가 비용보다 작아지기 전까지만 연습한다면 몇 시간 연습하나요? (숫자만 입력)",
+      "prompt": "The value of the skill you gain from the 1st, 2nd, 3rd, and 4th hours of basketball practice (the marginal benefit) is $10, $8, $5, and $2, respectively. Each hour of practice gives up $6 worth of other activities (the marginal cost). If you practice only until the marginal benefit falls below the marginal cost, how many hours do you practice? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",
@@ -120,7 +126,7 @@
     },
     {
       "id": "c01-l2-q4",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c01-l2",
       "objective": 3,
@@ -131,7 +137,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "한 마을이 만들 수 있는 (빵, 케이크) 조합이 (0, 60), (10, 52), (20, 40), (30, 22), (40, 0) 이에요. 빵을 20 에서 30 으로 늘릴 때 포기하는 케이크는 몇 개인가요? (숫자만 입력)",
+      "prompt": "A town can produce the following combinations of (loaves of bread, cakes): (0, 60), (10, 52), (20, 40), (30, 22), (40, 0). How many cakes are given up when bread production rises from 20 to 30 loaves? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",
@@ -140,7 +146,7 @@
     },
     {
       "id": "c01-l2-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 3,
@@ -150,23 +156,23 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "생산 가능 곡선의 안쪽에 있는 점이 뜻하는 것으로 가장 알맞은 것은?",
+      "prompt": "What does a point inside the production possibilities frontier represent?",
       "choices": [
         {
           "id": "a",
-          "text": "지금 자원과 기술로는 만들 수 없는 조합"
+          "text": "A combination that current resources and technology cannot produce"
         },
         {
           "id": "b",
-          "text": "사회가 가장 바라는 조합"
+          "text": "The combination of goods that society prefers over the others"
         },
         {
           "id": "c",
-          "text": "일하지 않는 사람이 있거나 자원이 낭비되는 비효율적인 조합"
+          "text": "An inefficient combination with idle workers or wasted resources"
         },
         {
           "id": "d",
-          "text": "기회비용이 0 인 조합"
+          "text": "A combination at which the opportunity cost is equal to zero"
         }
       ],
       "source_ids": [

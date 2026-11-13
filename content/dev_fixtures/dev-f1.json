@@ -3,18 +3,18 @@
   "id": "dev-f1",
   "slug": "dev-fixture-a",
   "title": "Fixture Course A",
-  "title_ko": "개발용 테스트 강좌 A",
+  "title_ko": "Dev Test Course A",
   "fixture": true,
-  "description": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다.",
+  "description": "Fake material for development and automated tests only. Not real economics content.",
   "objectives": [
-    "수강 신청과 진도 기능을 시험한다. (개발용)"
+    "Tests enrollment and progress tracking. (Dev)"
   ],
   "sdgs": [
     2
   ],
   "review": {
     "status": "fixture",
-    "note": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+    "note": "Fake material for development and automated tests only. Not real economics content."
   },
   "estimated_hours": 1,
   "difficulty_levels": [
@@ -38,7 +38,7 @@
       "id": "dev-f1-l1",
       "order": 1,
       "title": "Test Lesson 1",
-      "title_ko": "테스트 레슨 1",
+      "title_ko": "Test Lesson 1",
       "status": "published",
       "objectives": [],
       "requirements": [
@@ -61,7 +61,7 @@
       "id": "dev-f1-l2",
       "order": 2,
       "title": "Test Lesson 2",
-      "title_ko": "테스트 레슨 2",
+      "title_ko": "Test Lesson 2",
       "status": "published",
       "objectives": [],
       "requirements": [
@@ -84,7 +84,7 @@
       "id": "dev-f1-l3",
       "order": 3,
       "title": "Test Lesson 3",
-      "title_ko": "테스트 레슨 3",
+      "title_ko": "Test Lesson 3",
       "status": "published",
       "objectives": [],
       "requirements": [

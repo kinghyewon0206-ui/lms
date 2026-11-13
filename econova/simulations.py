@@ -23,19 +23,19 @@ from econova import grading
 
 CALC_VERSION = "sim-1"
 SIMULATIONS = {
-    "supply-demand": {"title": "수요와 공급의 균형", "inputs": ("a", "b", "c", "d")},
-    "carbon-tax": {"title": "탄소세와 시장", "inputs": ("a", "b", "c", "d", "t", "md", "e")},
+    "supply-demand": {"title": "Supply and Demand Equilibrium", "inputs": ("a", "b", "c", "d")},
+    "carbon-tax": {"title": "Carbon Tax and the Market", "inputs": ("a", "b", "c", "d", "t", "md", "e")},
 }
 
 # (최솟값, 최댓값, 최솟값 포함?, 설명, 단위)
 LIMITS = {
-    "a": (0, 1000, False, "수요 절편 a (가격이 0일 때의 수요량)", "개"),
-    "b": (0, 100, False, "수요 기울기 b (가격이 1 오를 때 줄어드는 수요량)", "개/원"),
-    "c": (-1000, 1000, True, "공급 절편 c (가격이 0일 때의 공급량, 음수 가능)", "개"),
-    "d": (0, 100, False, "공급 기울기 d (가격이 1 오를 때 늘어나는 공급량)", "개/원"),
-    "t": (0, 1000, True, "단위당 탄소세 t", "원/개"),
-    "md": (0, 1000, True, "단위당 외부 피해 md (가정값)", "원/개"),
-    "e": (0, 1000, True, "단위당 배출량 e (가정값)", "kg/개"),
+    "a": (0, 1000, False, "Demand intercept a (quantity demanded when the price is 0)", "units"),
+    "b": (0, 100, False, "Demand slope b (drop in quantity demanded when the price rises by 1)", "units per $1"),
+    "c": (-1000, 1000, True, "Supply intercept c (quantity supplied when the price is 0; may be negative)", "units"),
+    "d": (0, 100, False, "Supply slope d (rise in quantity supplied when the price rises by 1)", "units per $1"),
+    "t": (0, 1000, True, "Carbon tax per unit t", "$ per unit"),
+    "md": (0, 1000, True, "External damage per unit md (assumed)", "$ per unit"),
+    "e": (0, 1000, True, "Emissions per unit e (assumed)", "kg per unit"),
 }
 DEFAULTS = {
     "supply-demand": {"a": 100, "b": 2, "c": 10, "d": 1},
@@ -61,14 +61,14 @@ def r6(x):
 def parse_inputs(sim_id, raw):
     """폼·JSON 입력을 검사해 숫자 dict 로. 문제가 있으면 SimError(field, 이유)."""
     if sim_id not in SIMULATIONS:
-        raise SimError("simulation", "알 수 없는 시뮬레이션입니다.")
+        raise SimError("simulation", "Unknown simulation.")
     out = {}
     for name in SIMULATIONS[sim_id]["inputs"]:
         value = raw.get(name, "")
         if value is None:
             value = ""
         if isinstance(value, bool):
-            raise SimError(name, f"{LIMITS[name][3]}: 숫자를 입력해 주세요.")
+            raise SimError(name, f"{LIMITS[name][3]}: enter a number.")
         if isinstance(value, (int, float)):
             number = float(value)
         else:
@@ -77,13 +77,13 @@ def parse_inputs(sim_id, raw):
                 continue   # 외부 피해는 비워 둘 수 있다 (모를 때)
             number = grading.parse_number(text)   # 채점과 같은 숫자 규칙 (지수 표기·inf·nan 거절)
             if number is None:
-                raise SimError(name, f"{LIMITS[name][3]}: 숫자를 입력해 주세요.")
+                raise SimError(name, f"{LIMITS[name][3]}: enter a number.")
         if not math.isfinite(number):
-            raise SimError(name, f"{LIMITS[name][3]}: 유한한 숫자여야 합니다.")
+            raise SimError(name, f"{LIMITS[name][3]}: must be a finite number.")
         lo, hi, inclusive, label, _ = LIMITS[name]
         if number > hi or number < lo or (number == lo and not inclusive):
-            rule = f"{lo} 이상" if inclusive else f"{lo} 보다 크고"
-            raise SimError(name, f"{label}: {rule} {hi} 이하여야 합니다.")
+            rule = f"at least {lo}" if inclusive else f"greater than {lo}"
+            raise SimError(name, f"{label}: must be {rule} and at most {hi}.")
         out[name] = number
     return out
 
@@ -98,10 +98,10 @@ def supply_demand(a, b, c, d):
               "demand_choke_price": r6(choke), "supply_start_price": r6(start)}
     if a <= c:
         return {**result, "status": "no_positive_equilibrium",
-                "reason": "가격이 0일 때도 공급량이 수요량보다 많거나 같아서, 양(+)의 균형 가격이 없어요."}
+                "reason": "Even at a price of 0, quantity supplied is at least as large as quantity demanded, so there is no positive equilibrium price."}
     if q <= 1e-12 or p <= 0:
         return {**result, "status": "no_positive_equilibrium",
-                "reason": "공급이 시작되는 가격이 수요가 0이 되는 가격보다 높아서, 거래가 일어나지 않아요."}
+                "reason": "Supply only starts at a price above the price where quantity demanded drops to 0, so no trade takes place."}
     cs = 0.5 * (choke - p) * q
     ps = c * p + 0.5 * d * p * p if c >= 0 else 0.5 * (p - start) * q
     return {**result, "status": "interior", "reason": "",
@@ -113,22 +113,22 @@ def interpret(base, new):
     """두 입력(dict)의 차이를 경제적 의미로 설명하는 문장들 (결정적 규칙)."""
     notes = []
     if new["a"] > base["a"]:
-        notes.append("수요 증가: 같은 가격에서 더 많이 사려 해요. 수요곡선이 오른쪽으로 이동해요.")
+        notes.append("Demand increases: buyers want to buy more at every price. The demand curve shifts right.")
     elif new["a"] < base["a"]:
-        notes.append("수요 감소: 같은 가격에서 덜 사려 해요. 수요곡선이 왼쪽으로 이동해요.")
+        notes.append("Demand decreases: buyers want to buy less at every price. The demand curve shifts left.")
     if new["b"] != base["b"]:
-        notes.append("수요 기울기 변화: 소비자가 가격에 " + ("더" if new["b"] > base["b"] else "덜") + " 민감하게 반응해요.")
+        notes.append("Demand slope changes: consumers react " + ("more" if new["b"] > base["b"] else "less") + " strongly to price.")
     if new["c"] > base["c"]:
-        notes.append("공급 증가: 같은 가격에서 더 많이 팔려 해요. 공급곡선이 오른쪽으로 이동해요.")
+        notes.append("Supply increases: sellers want to sell more at every price. The supply curve shifts right.")
     elif new["c"] < base["c"]:
-        notes.append("공급 감소: 같은 가격에서 덜 팔려 해요. 공급곡선이 왼쪽으로 이동해요.")
+        notes.append("Supply decreases: sellers want to sell less at every price. The supply curve shifts left.")
     if new["d"] != base["d"]:
-        notes.append("공급 기울기 변화: 생산자가 가격에 " + ("더" if new["d"] > base["d"] else "덜") + " 민감하게 반응해요.")
+        notes.append("Supply slope changes: producers react " + ("more" if new["d"] > base["d"] else "less") + " strongly to price.")
     r0, r1 = supply_demand(**{k: base[k] for k in "abcd"}), supply_demand(**{k: new[k] for k in "abcd"})
     if r0["status"] == r1["status"] == "interior" and notes:
         dp, dq = r1["price"] - r0["price"], r1["quantity"] - r0["quantity"]
-        word = lambda v, up, down: up if v > 1e-9 else down if v < -1e-9 else "변화 없음"
-        notes.append(f"결과: 균형 가격 {word(dp, '상승', '하락')}, 균형 거래량 {word(dq, '증가', '감소')}.")
+        word = lambda v, up, down: up if v > 1e-9 else down if v < -1e-9 else "does not change"
+        notes.append(f"Result: the equilibrium price {word(dp, 'rises', 'falls')} and the equilibrium quantity {word(dq, 'increases', 'decreases')}.")
     return notes
 
 
@@ -138,17 +138,17 @@ def carbon_tax(a, b, c, d, t, md=None, e=1.0):
     result = {"model": "carbon-tax", "inputs": {"a": a, "b": b, "c": c, "d": d, "t": t, "md": md, "e": e},
               "baseline": base}
     if base["status"] != "interior":
-        return {**result, "status": "invalid_baseline", "reason": "세금이 없을 때도 양(+)의 균형이 없어 세금 효과를 계산할 수 없어요."}
+        return {**result, "status": "invalid_baseline", "reason": "There is no positive equilibrium even without the tax, so the effect of the tax cannot be calculated."}
     p0, q0 = (a - c) / (b + d), a - b * (a - c) / (b + d)
     pc = (a - c + d * t) / (b + d)
     pp = pc - t
     qt = a - b * pc
     if qt <= 1e-12:
-        return {**result, "status": "no_trade_after_tax", "reason": "세금이 너무 커서 거래가 사라져요 (거래량 0).",
+        return {**result, "status": "no_trade_after_tax", "reason": "The tax is so large that trade disappears (quantity 0).",
                 "quantity": 0.0, "revenue": 0.0}
     if pp < 0:
         return {**result, "status": "producer_price_negative",
-                "reason": "세금이 너무 커서 생산자가 받는 가격이 0 아래로 내려가요. 이 단순 모형으로는 해석하기 어려워요."}
+                "reason": "The tax is so large that the price producers receive falls below 0. This simple model cannot interpret that case."}
     dq = qt - q0
     dwl = 0.5 * t * (q0 - qt)
     out = {**result, "status": "interior", "reason": "",
@@ -188,12 +188,12 @@ def graph_spec(sim_id, inputs, results):
             eq.append({"demand": "D", "supply": "S", "price": base["price"], "quantity": base["quantity"]})
         if results["status"] == "interior":
             eq.append({"demand": "D", "supply": "S+t", "price": results["consumer_price"], "quantity": results["quantity"]})
-            lines = [{"label": "소비자 가격", "price": results["consumer_price"]},
-                     {"label": "생산자 가격", "price": results["producer_price"]}]
+            lines = [{"label": "Consumer price", "price": results["consumer_price"]},
+                     {"label": "Producer price", "price": results["producer_price"]}]
     p_top = max(a / b, 1.0)
-    return {"id": f"sim-{sim_id}", "title": SIMULATIONS[sim_id]["title"], "caption": "가상의 모형 계산 결과예요. 실제 통계가 아니에요.",
+    return {"id": f"sim-{sim_id}", "title": SIMULATIONS[sim_id]["title"], "caption": "Hypothetical model results. These are not real statistics.",
             "axis": {"p_max": nice_max(p_top * 1.1), "q_max": nice_max(max(a, c + d * p_top, 1.0) * 1.1),
-                     "p_label": "가격 P (원)", "q_label": "수량 Q (개)"},
+                     "p_label": "Price P ($)", "q_label": "Quantity Q (units)"},
             "demand": demand, "supply": supply, "price_lines": lines, "expected_equilibria": eq}
 
 
@@ -209,14 +209,14 @@ def nice_max(x):
 
 
 ROW_LABELS = {
-    "supply-demand": (("price", "균형 가격", "원"), ("quantity", "균형 거래량", "개"), ("consumer_surplus", "소비자 잉여", "원"),
-                      ("producer_surplus", "생산자 잉여", "원"), ("total_surplus", "총잉여", "원")),
-    "carbon-tax": (("consumer_price", "소비자가 내는 가격", "원/개"), ("producer_price", "생산자가 받는 가격", "원/개"),
-                   ("quantity", "세금 뒤 거래량", "개"), ("quantity_change", "거래량 변화", "개"), ("revenue", "세수", "원"),
-                   ("consumer_burden_per_unit", "소비자 부담 (단위당)", "원/개"), ("producer_burden_per_unit", "생산자 부담 (단위당)", "원/개"),
-                   ("consumer_share", "소비자 부담 비율", ""), ("deadweight_loss_private", "시장 내부 손실 (외부효과 없다고 가정)", "원"),
-                   ("emissions_before", "배출량 (세금 전)", "kg"), ("emissions_after", "배출량 (세금 뒤)", "kg"),
-                   ("avoided_damage", "피한 외부 피해 (가정)", "원"), ("social_welfare_change", "사회적 후생 변화 (가정)", "원")),
+    "supply-demand": (("price", "Equilibrium price", "$"), ("quantity", "Equilibrium quantity", "units"), ("consumer_surplus", "Consumer surplus", "$"),
+                      ("producer_surplus", "Producer surplus", "$"), ("total_surplus", "Total surplus", "$")),
+    "carbon-tax": (("consumer_price", "Price paid by consumers", "$ per unit"), ("producer_price", "Price received by producers", "$ per unit"),
+                   ("quantity", "Quantity after tax", "units"), ("quantity_change", "Change in quantity", "units"), ("revenue", "Tax revenue", "$"),
+                   ("consumer_burden_per_unit", "Consumer burden (per unit)", "$ per unit"), ("producer_burden_per_unit", "Producer burden (per unit)", "$ per unit"),
+                   ("consumer_share", "Consumer share of the tax", ""), ("deadweight_loss_private", "Deadweight loss (assuming no external damage)", "$"),
+                   ("emissions_before", "Emissions (before tax)", "kg"), ("emissions_after", "Emissions (after tax)", "kg"),
+                   ("avoided_damage", "Avoided external damage (assumed)", "$"), ("social_welfare_change", "Change in social welfare (assumed)", "$")),
 }
 
 

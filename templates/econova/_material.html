@@ -3,19 +3,19 @@
 {% import "econova/_graph.html" as gr with context %}
 
 {% macro cite(ids, doc) -%}
-{%- for sid in ids %}<sup class="ec-cite"><a href="#src-{{ sid }}" title="출처 {{ doc.source_ids.index(sid) + 1 }}">[{{ doc.source_ids.index(sid) + 1 }}]</a></sup>{% endfor -%}
+{%- for sid in ids %}<sup class="ec-cite"><a href="#src-{{ sid }}" title="Source {{ doc.source_ids.index(sid) + 1 }}">[{{ doc.source_ids.index(sid) + 1 }}]</a></sup>{% endfor -%}
 {%- endmacro %}
 
 {% macro review_badge(doc) %}
 {% set r = doc.review %}
-{% if doc.fixture %}<span class="pill pill-dev">개발용 테스트 자료</span>
-{% elif r.status == 'published' or r.status == 'approved' %}<span class="pill pill-done">교사 검토 완료 · {{ r.reviewer.name }} · {{ r.approved_at }}</span>
-{% elif r.status == 'in_review' %}<span class="pill pill-draft">교사 검토 중</span>
-{% else %}<span class="pill pill-draft">검토 전 초안 (AI 작성)</span>{% endif %}
+{% if doc.fixture %}<span class="pill pill-dev">Development test material</span>
+{% elif r.status == 'published' or r.status == 'approved' %}<span class="pill pill-done">Teacher-reviewed · {{ r.reviewer.name }} · {{ r.approved_at }}</span>
+{% elif r.status == 'in_review' %}<span class="pill pill-draft">Under teacher review</span>
+{% else %}<span class="pill pill-draft">Draft, not yet reviewed (AI-written)</span>{% endif %}
 {% endmacro %}
 
 {% macro concepts(doc) %}
-<p class="ec-layer">검증 자료 · 핵심 개념</p>
+<p class="ec-layer">Verified material · Key concepts</p>
 <dl class="ec-concepts">
   {% for c in doc.concepts %}
   <div><dt>{{ c.term }}</dt><dd>{{ c.definition }}{{ cite(c.source_ids, doc) }}</dd></div>
@@ -24,7 +24,7 @@
 {% endmacro %}
 
 {% macro leveled(doc, level) %}
-<nav class="ec-level-tabs" aria-label="난이도">
+<nav class="ec-level-tabs" aria-label="Level">
   {% for lv in ['beginner', 'intermediate', 'advanced'] %}
   <a href="?level={{ lv }}#sec-leveled"{% if lv == level %} aria-current="true"{% endif %}>{{ difficulty_names[lv] }}</a>
   {% endfor %}
@@ -35,7 +35,7 @@
 <h3>{{ s.heading }}</h3>
 {% for para in s.paragraphs %}<p>{{ para }}</p>{% endfor %}
 {% endfor %}
-<p class="hint">세 난이도는 같은 개념을 다루고 설명의 깊이와 수학만 달라요. 다른 난이도도 언제든 읽어 볼 수 있어요.</p>
+<p class="hint">All three levels cover the same ideas; only the depth of explanation and the math differ. You can read the other levels anytime.</p>
 {% endmacro %}
 
 {% macro examples(doc, level) %}
@@ -43,9 +43,9 @@
 <article class="ec-example">
   <h3>{{ ex.title }}</h3>
   <p>{{ ex.problem }}</p>
-  <details><summary>풀이 보기</summary>
+  <details><summary>Show solution</summary>
     <ol>{% for step in ex.steps %}<li>{{ step }}</li>{% endfor %}</ol>
-    <p class="ec-answer"><strong>답</strong> {{ ex.answer }}</p>
+    <p class="ec-answer"><strong>Answer</strong> {{ ex.answer }}</p>
   </details>
 </article>
 {% endfor %}
@@ -53,7 +53,7 @@
 
 {% macro graphs(doc) %}
 {% if doc.graphs %}{% for g in doc.graphs %}{{ gr.supply_demand(g) }}{% endfor %}
-{% else %}<p class="ec-placeholder-text">이 레슨에는 그래프가 없어요.</p>{% endif %}
+{% else %}<p class="ec-placeholder-text">This lesson has no graphs.</p>{% endif %}
 {% endmacro %}
 
 {% macro real_world(doc) %}
@@ -62,7 +62,7 @@
   <h3>{{ r.title }}{{ cite(r.source_ids, doc) }}</h3>
   {% for para in r.paragraphs %}<p>{{ para }}</p>{% endfor %}
 </article>
-{% else %}<p class="ec-placeholder-text">실제 사례는 아직 없어요.</p>{% endfor %}
+{% else %}<p class="ec-placeholder-text">No real-world examples yet.</p>{% endfor %}
 {% endmacro %}
 
 {% macro sdg_case(doc) %}
@@ -74,13 +74,13 @@
   {% for o in case.options %}
   <section class="ec-option">
     <h4>{{ o.name }}</h4>
-    <p class="ec-opt-k">기대 효과</p><ul>{% for b in o.benefits %}<li>{{ b }}</li>{% endfor %}</ul>
-    <p class="ec-opt-k">비용·위험</p><ul>{% for c in o.costs %}<li>{{ c }}</li>{% endfor %}</ul>
-    <p class="ec-opt-k">전제가 되는 가정</p><ul>{% for a in o.assumptions %}<li>{{ a }}</li>{% endfor %}</ul>
+    <p class="ec-opt-k">Expected benefits</p><ul>{% for b in o.benefits %}<li>{{ b }}</li>{% endfor %}</ul>
+    <p class="ec-opt-k">Costs and risks</p><ul>{% for c in o.costs %}<li>{{ c }}</li>{% endfor %}</ul>
+    <p class="ec-opt-k">Key assumptions</p><ul>{% for a in o.assumptions %}<li>{{ a }}</li>{% endfor %}</ul>
   </section>
   {% endfor %}
 </div>
-{% for q in case.discussion %}<p class="ec-discuss"><strong>생각해 보기</strong> {{ q }}</p>{% endfor %}
+{% for q in case.discussion %}<p class="ec-discuss"><strong>Think about it</strong> {{ q }}</p>{% endfor %}
 {% endmacro %}
 
 {% macro takeaways(doc) %}
@@ -94,12 +94,12 @@
   <li id="src-{{ sid }}">
     <a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.title }}</a>{% if s.container %} — {{ s.container }}{% endif %}.
     {{ s.author }}{% if s.published %} ({{ s.published }}){% endif %}.
-    {% if s.verified %}<span class="pill pill-done">출처 확인됨 · {{ s.checked_at }}</span>
-    {% else %}<span class="pill pill-draft">확인되지 않은 출처</span>{% endif %}
-    <small class="hint">이용 조건: {{ s.license }}</small>
+    {% if s.verified %}<span class="pill pill-done">Source verified · {{ s.checked_at }}</span>
+    {% else %}<span class="pill pill-draft">Unverified source</span>{% endif %}
+    <small class="hint">Terms of use: {{ s.license }}</small>
   </li>
   {% endfor %}
 </ol>
-<p class="hint">본문은 위 자료를 참고해 새로 쓴 설명이에요. 원문을 옮겨 적지 않았어요.</p>
-{% else %}<p class="ec-placeholder-text">인용한 출처가 없어요.</p>{% endif %}
+<p class="hint">The text above is an original explanation written with these sources as references. It does not copy the original wording.</p>
+{% else %}<p class="ec-placeholder-text">No sources cited.</p>{% endif %}
 {% endmacro %}

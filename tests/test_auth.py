@@ -21,7 +21,7 @@ def test_signup_then_login(app, client):
     assert res.status_code == 302 and res.headers["Location"].endswith("/dashboard")
     with client.session_transaction() as s:
         assert s["user_id"] == user["id"]
-    assert "학생님" in client.get("/dashboard").get_data(as_text=True)
+    assert "Hi, 학생" in client.get("/dashboard").get_data(as_text=True)
 
 
 def test_email_is_normalized(app, client):
@@ -32,17 +32,17 @@ def test_email_is_normalized(app, client):
 
 def test_duplicate_email_rejected(app, client):
     signup(client)
-    res = signup(client, name="다른 사람")
+    res = signup(client, name="Someone Else")
     assert res.status_code == 400
-    assert "이미 가입된 이메일" in res.get_data(as_text=True)
+    assert "An account with this email already exists." in res.get_data(as_text=True)
     assert _user(app, "student@example.com")["name"] == "학생"
 
 
 @pytest.mark.parametrize("kwargs, message", [
-    ({"name": ""}, "이름을 입력"),
-    ({"email": "not-an-email"}, "올바른 이메일"),
-    ({"password": "short"}, "8자 이상"),
-    ({"confirm": "different123"}, "일치하지 않습니다"),
+    ({"name": ""}, "Please enter your name."),
+    ({"email": "not-an-email"}, "Please enter a valid email address."),
+    ({"password": "short"}, "Your password must be at least 8 characters."),
+    ({"confirm": "different123"}, "The passwords don&#39;t match."),
 ])
 def test_signup_validation(app, client, kwargs, message):
     res = signup(client, **kwargs)
@@ -56,7 +56,7 @@ def test_login_failure(client, email, password):
     signup(client)
     res = login(client, email=email, password=password)
     assert res.status_code == 401
-    assert "올바르지 않습니다" in res.get_data(as_text=True)
+    assert "Incorrect email or password." in res.get_data(as_text=True)
     with client.session_transaction() as s:
         assert "user_id" not in s
 

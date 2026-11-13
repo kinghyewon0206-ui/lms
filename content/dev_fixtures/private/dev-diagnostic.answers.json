@@ -2,68 +2,68 @@
   "schema_version": 1,
   "kind": "assessment_keys",
   "assessment_id": "dev-diagnostic",
-  "assessment_version": 1,
+  "assessment_version": 2,
   "questions": {
     "q01": {
       "question_version": null,
-      "public_sha256": "826ccd5f6c955f6f0c62c54c5a18de071566834f7f0850dc091211fa4193d277",
+      "public_sha256": "767bfa4660585660785e5e331a4ca3b6c1c87fe3d7f8a4441d9d9dfbe4964fa4",
       "answer": "b",
-      "explanation": "[개발용] 합성 해설 1."
+      "explanation": "[Dev] Synthetic explanation 1."
     },
     "q02": {
       "question_version": null,
-      "public_sha256": "b01b8910ea10a50d4ca9124aef7c304d241fcb409971f0cf78db818becd9c513",
+      "public_sha256": "b57eb4b8413ebe19798a2eef2497853e209b0e68838a95968cc014a3ec271bbc",
       "answer": "d",
-      "explanation": "[개발용] 합성 해설 2."
+      "explanation": "[Dev] Synthetic explanation 2."
     },
     "q03": {
       "question_version": null,
-      "public_sha256": "a170adbdfaf9f91aa2a6675007bb6a5691e1a07112263079455312efbdab93ea",
+      "public_sha256": "696ff1ba47743862734a4020fbcd1c0d6227f76b269b4202a85849576ac53ce6",
       "answer": "a",
-      "explanation": "[개발용] 합성 해설 3."
+      "explanation": "[Dev] Synthetic explanation 3."
     },
     "q04": {
       "question_version": null,
-      "public_sha256": "61f4e2b059f0c719196896df2cc2d5656084727aeccce596b895289d9ee73303",
+      "public_sha256": "3e769ae319da75af0157a14ccbcabf06148169a4e5f4e93569a7cd685aebc776",
       "answer": "c",
-      "explanation": "[개발용] 합성 해설 4."
+      "explanation": "[Dev] Synthetic explanation 4."
     },
     "q05": {
       "question_version": null,
-      "public_sha256": "1267fda985420c178cdd43bd479883bbc6b22842e244506fe757ded8a21d7280",
+      "public_sha256": "502b585e5823b49515898491986a2f7684fbbeac20841ea606b5d9e9412156ba",
       "answer": "b",
-      "explanation": "[개발용] 합성 해설 5."
+      "explanation": "[Dev] Synthetic explanation 5."
     },
     "q06": {
       "question_version": null,
-      "public_sha256": "52d89c8ac90c2a95589ecbfe03f406404ef5313d66e47a97b75c32420b7b6bf2",
+      "public_sha256": "d7eeec1f34a538de5a4054904017e49f934f34c9615537be5febb37c639147b5",
       "answer": "a",
-      "explanation": "[개발용] 합성 해설 6."
+      "explanation": "[Dev] Synthetic explanation 6."
     },
     "q07": {
       "question_version": null,
-      "public_sha256": "9cd592b51fdfd761b6ecad7b0ca0871113d99bb154423ecac2bcbec57b1840ee",
+      "public_sha256": "e411f54d0f15562eade9d6d36a74e6c4ba1f23aa6f39d127b2099a9b3c3b0750",
       "answer": "b",
-      "explanation": "[개발용] 합성 해설 7.",
+      "explanation": "[Dev] Synthetic explanation 7.",
       "verify": {
         "type": "equilibrium_price"
       }
     },
     "q08": {
       "question_version": null,
-      "public_sha256": "792f8813d827c606abc6940e39ea2dcec7feaf4b014484196dc374295ba1b7ad",
+      "public_sha256": "990829a8d8e6cd78e035b37bd850ca629a3835c31681bcb9a8baf1901adc7846",
       "answer": "d",
-      "explanation": "[개발용] 합성 해설 8.",
+      "explanation": "[Dev] Synthetic explanation 8.",
       "verify": {
         "type": "ceiling_shortage"
       }
     },
     "q09": {
       "question_version": null,
-      "public_sha256": "6762b254d0018ff8f5f5b964484cf417da560c280604b77ba868f59167b92438",
+      "public_sha256": "7382d2753b7fd45a913db37c8b408e9703ee53e6ad0ddb0203c776f041c6b725",
       "answer": 60,
       "tolerance": 0.01,
-      "explanation": "[개발용] 합성 해설 9.",
+      "explanation": "[Dev] Synthetic explanation 9.",
       "verify": {
         "type": "equilibrium_quantity",
         "a": 120,
@@ -74,10 +74,10 @@
     },
     "q10": {
       "question_version": null,
-      "public_sha256": "01ac9221edfa80a32522bd91e4de3f9302458a6abd7e5723b0d77ea804b89b31",
+      "public_sha256": "493f4bd6653f988ea5d3905b6812a69b190bfbc65ba06b834441368a6e3f60d8",
       "answer": 0.25,
       "tolerance": 0.01,
-      "explanation": "[개발용] 합성 해설 10.",
+      "explanation": "[Dev] Synthetic explanation 10.",
       "verify": {
         "type": "ratio",
         "numerator": 1,
@@ -86,15 +86,15 @@
     },
     "q11": {
       "question_version": null,
-      "public_sha256": "29906cfba6198aa99ef67c61cb5a12fc1d17f0b0c54d434ff2891ad91fa4e650",
+      "public_sha256": "bc99effdfc0cfc8a00592fe29e6235744596313e52eb6ff195ba0fed92493e6b",
       "answer": "c",
-      "explanation": "[개발용] 합성 해설 11."
+      "explanation": "[Dev] Synthetic explanation 11."
     },
     "q12": {
       "question_version": null,
-      "public_sha256": "ed86aab9b487cc698b47c27246658bcccbcb3715300c49153d403b7e5449ffe7",
+      "public_sha256": "84d43b9281a8278b53eb3d1613aa38e9cc3ac86b44516fdcf2a61d5c0f878223",
       "answer": "a",
-      "explanation": "[개발용] 합성 해설 12."
+      "explanation": "[Dev] Synthetic explanation 12."
     }
   },
   "synthetic": true

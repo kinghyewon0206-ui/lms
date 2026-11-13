@@ -1,73 +1,73 @@
 {
   "schema_version": 1,
-  "note": "UN SDG 번호, 한국어 이름, 공식 색상",
+  "note": "UN SDG numbers, official English short titles, and official colors",
   "goals": {
     "1": [
-      "빈곤 퇴치",
+      "No Poverty",
       "#E5243B"
     ],
     "2": [
-      "기아 종식",
+      "Zero Hunger",
       "#DDA63A"
     ],
     "3": [
-      "건강과 웰빙",
+      "Good Health and Well-being",
       "#4C9F38"
     ],
     "4": [
-      "양질의 교육",
+      "Quality Education",
       "#C5192D"
     ],
     "5": [
-      "성평등",
+      "Gender Equality",
       "#FF3A21"
     ],
     "6": [
-      "깨끗한 물과 위생",
+      "Clean Water and Sanitation",
       "#26BDE2"
     ],
     "7": [
-      "깨끗한 에너지",
+      "Affordable and Clean Energy",
       "#FCC30B"
     ],
     "8": [
-      "양질의 일자리와 경제성장",
+      "Decent Work and Economic Growth",
       "#A21942"
     ],
     "9": [
-      "산업·혁신·인프라",
+      "Industry, Innovation and Infrastructure",
       "#FD6925"
     ],
     "10": [
-      "불평등 감소",
+      "Reduced Inequalities",
       "#DD1367"
     ],
     "11": [
-      "지속가능한 도시와 공동체",
+      "Sustainable Cities and Communities",
       "#FD9D24"
     ],
     "12": [
-      "책임 있는 소비와 생산",
+      "Responsible Consumption and Production",
       "#BF8B2E"
     ],
     "13": [
-      "기후 행동",
+      "Climate Action",
       "#3F7E44"
     ],
     "14": [
-      "해양 생태계",
+      "Life Below Water",
       "#0A97D9"
     ],
     "15": [
-      "육상 생태계",
+      "Life on Land",
       "#56C02B"
     ],
     "16": [
-      "평화·정의·제도",
+      "Peace, Justice and Strong Institutions",
       "#00689D"
     ],
     "17": [
-      "글로벌 파트너십",
+      "Partnerships for the Goals",
       "#19486A"
     ]
   }

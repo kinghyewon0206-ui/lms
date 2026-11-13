@@ -1,55 +1,55 @@
 {% extends "base.html" %}
-{% block title %}콘텐츠 관리 · ECONOVA{% endblock %}
+{% block title %}Content admin · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page admin-page">
   <header class="ec-head">
-    <span class="eyebrow">플랫폼 관리자 · 콘텐츠 관리</span>
-    <h1>교육 콘텐츠 검토와 공개 준비</h1>
-    <p class="hint">이 화면은 교육 콘텐츠의 품질을 관리하는 곳이에요. 학생 개인의 학습 기록은 보여주지 않아요.
-      여기서 남기는 검토 결정은 감사 기록으로 저장되고, 정본 JSON 은 바뀌지 않아요. 반영은 <a href="{{ url_for('econova.admin_release') }}">릴리스 준비</a>에서 계획을 내려받아 개발 환경에서 해요.</p>
+    <span class="eyebrow">Platform admin · Content admin</span>
+    <h1>Content review and publishing readiness</h1>
+    <p class="hint">This page is for managing the quality of learning content. It does not show individual students' learning records.
+      Review decisions made here are stored as audit records; the canonical JSON files are not changed. To apply them, download the plan from <a href="{{ url_for('econova.admin_release') }}">Release prep</a> and apply it in the development environment.</p>
   </header>
 
   <section class="ec-section" aria-labelledby="h-metrics">
-    <h2 id="h-metrics">운영 집계 (숫자만)</h2>
-    <p>가입 계정 {{ metrics.users }}개 · 오늘 AI 요청 {{ metrics.ai_requests_today }}건 ·
-      강좌별 수강 신청: {% for cid, n in metrics.enrollments|dictsort %}{{ cid }} {{ n }}{% if not loop.last %}, {% endif %}{% else %}없음{% endfor %}</p>
+    <h2 id="h-metrics">Usage totals (counts only)</h2>
+    <p>Accounts: {{ metrics.users }} · AI requests today: {{ metrics.ai_requests_today }} ·
+      Enrollments by course: {% for cid, n in metrics.enrollments|dictsort %}{{ cid }} {{ n }}{% if not loop.last %}, {% endif %}{% else %}none{% endfor %}</p>
   </section>
 
   {% if unverified %}
   <section class="ec-section" aria-labelledby="h-unverified">
-    <h2 id="h-unverified" class="admin-error">DB 검토 기록으로 확인되지 않은 정본 승인 ({{ unverified|length }})</h2>
-    <p class="hint">정본 JSON 에는 관리자 승인으로 적혀 있지만 이 서버의 검토 기록과 맞지 않아요. 내용을 확인하기 전에는 공개하지 마세요.</p>
+    <h2 id="h-unverified" class="admin-error">Canonical approvals not confirmed by DB review records ({{ unverified|length }})</h2>
+    <p class="hint">The canonical JSON says these were approved by an admin, but that does not match this server's review records. Do not publish them until the content has been checked.</p>
     <ul class="ec-list">{% for t, why in unverified %}<li>{{ type_ko[t.type] }} {{ t.id }} — {{ why }}</li>{% endfor %}</ul>
   </section>
   {% endif %}
 
   <section class="ec-section" aria-labelledby="h-pending">
-    <h2 id="h-pending">검토 중인 항목 ({{ pending|length }})</h2>
+    <h2 id="h-pending">Items under review ({{ pending|length }})</h2>
     {% if pending %}<ul class="ec-list">{% for t, s in pending %}<li><a href="{{ url_for('econova.admin_target', target_type=t.type, target_id=t.id) }}">{{ type_ko[t.type] }} · {{ t.title }}</a> ({{ t.id }})</li>{% endfor %}</ul>
-    {% else %}<p class="ec-placeholder-text">검토 중인 항목이 없어요.</p>{% endif %}
-    {% if stale %}<p class="hint">내용이 바뀌어 예전 검토 기록이 무효가 된 항목: {% for t, s in stale %}<a href="{{ url_for('econova.admin_target', target_type=t.type, target_id=t.id) }}">{{ t.id }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+    {% else %}<p class="ec-placeholder-text">No items under review.</p>{% endif %}
+    {% if stale %}<p class="hint">Items whose earlier review records are void because the content changed: {% for t, s in stale %}<a href="{{ url_for('econova.admin_target', target_type=t.type, target_id=t.id) }}">{{ t.id }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
   </section>
 
   {% for row in rows %}
   <section class="ec-section admin-course" aria-labelledby="h-{{ row.id }}">
-    <h2 id="h-{{ row.id }}">{{ row.id|upper }} {{ row.title }} {% if row.fixture %}<span class="pill pill-dev">개발용</span>{% endif %}</h2>
-    <p class="hint">강좌 상태 <strong>{{ row.status }}</strong> · 레슨 {{ row.lessons }}개 · 파일 {{ row.file }}</p>
-    {% if row.error %}<p class="admin-error" role="alert">검사 오류: {{ row.error }}</p>{% endif %}
+    <h2 id="h-{{ row.id }}">{{ row.id|upper }} {{ row.title }} {% if row.fixture %}<span class="pill pill-dev">Development</span>{% endif %}</h2>
+    <p class="hint">Course status <strong>{{ row.status }}</strong> · Lessons: {{ row.lessons }} · File {{ row.file }}</p>
+    {% if row.error %}<p class="admin-error" role="alert">Check error: {{ row.error }}</p>{% endif %}
     {% if row.blockers %}
-      <details{% if row.blockers|length < 6 %} open{% endif %}><summary>공개하려면 해결할 것 {{ row.blockers|length }}개</summary>
+      <details{% if row.blockers|length < 6 %} open{% endif %}><summary>{{ row.blockers|length }} {{ 'issue' if row.blockers|length == 1 else 'issues' }} to resolve before publishing</summary>
         <ul class="ec-list">{% for b in row.blockers %}<li>{{ b }}</li>{% endfor %}</ul></details>
-    {% elif row.targets %}<p class="ec-done-note">공개 조건을 모두 갖췄어요 (공개는 정본 파일·배포 절차로).</p>{% endif %}
+    {% elif row.targets %}<p class="ec-done-note">All publishing requirements are met (publish through the canonical files and the deployment process).</p>{% endif %}
     {% if row.targets %}
     <div class="table-scroll"><table class="ec-table">
-      <thead><tr><th scope="col">종류</th><th scope="col">대상</th><th scope="col">정본 파일 상태</th><th scope="col">현재 검토 상태</th><th scope="col">메모</th></tr></thead>
+      <thead><tr><th scope="col">Type</th><th scope="col">Target</th><th scope="col">Canonical file status</th><th scope="col">Current review status</th><th scope="col">Notes</th></tr></thead>
       <tbody>
       {% for t in row.targets %}{% set s = row.states[t.key] %}
         <tr>
           <td>{{ type_ko[t.type] }}</td>
           <td><a href="{{ url_for('econova.admin_target', target_type=t.type, target_id=t.id) }}">{{ t.title }}</a><div class="hint">{{ t.id }} · v{{ t.version }}</div></td>
           <td>{{ state_ko.get(t.file_state, t.file_state) }}</td>
-          <td>{{ state_ko.get(s.state, s.state) }}{% if s.source == 'db' %} <span class="hint">(검토 기록)</span>{% endif %}</td>
-          <td>{% for p in t.problems %}<div class="hint">{{ p }}</div>{% endfor %}{% if s.stale %}<div class="hint">예전 내용에 대한 기록 {{ s.stale }}개</div>{% endif %}</td>
+          <td>{{ state_ko.get(s.state, s.state) }}{% if s.source == 'db' %} <span class="hint">(review record)</span>{% endif %}</td>
+          <td>{% for p in t.problems %}<div class="hint">{{ p }}</div>{% endfor %}{% if s.stale %}<div class="hint">Records for earlier content: {{ s.stale }}</div>{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>
@@ -59,9 +59,9 @@
   {% endfor %}
 
   <section class="ec-section" aria-labelledby="h-global">
-    <h2 id="h-global">진단평가와 출처</h2>
+    <h2 id="h-global">Diagnostic assessment and sources</h2>
     <div class="table-scroll"><table class="ec-table">
-      <thead><tr><th scope="col">종류</th><th scope="col">대상</th><th scope="col">정본 상태</th><th scope="col">검토 상태</th><th scope="col">메모</th></tr></thead>
+      <thead><tr><th scope="col">Type</th><th scope="col">Target</th><th scope="col">Canonical status</th><th scope="col">Review status</th><th scope="col">Notes</th></tr></thead>
       <tbody>{% for t in globals_ %}{% set s = gstates[t.key] %}
         <tr><td>{{ type_ko[t.type] }}</td><td><a href="{{ url_for('econova.admin_target', target_type=t.type, target_id=t.id) }}">{{ t.title }}</a></td>
           <td>{{ state_ko.get(t.file_state, t.file_state) }}</td><td>{{ state_ko.get(s.state, s.state) }}</td>

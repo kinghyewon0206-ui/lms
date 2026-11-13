@@ -4,9 +4,9 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l1",
-  "version": 1,
-  "title": "레슨 1 형성 퀴즈: 희소성과 경제적 선택",
-  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "version": 2,
+  "title": "Lesson 1 Quiz: Scarcity and Economic Choices",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -17,7 +17,13 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+        "note": "AI-written question draft. Not yet reviewed by a human (admin) and not to be given to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c01-l1-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l1",
       "objective": 1,
@@ -38,23 +44,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "경제학에서 말하는 '희소성'의 뜻으로 가장 알맞은 것은?",
+      "prompt": "Which statement best describes what economists mean by scarcity?",
       "choices": [
         {
           "id": "a",
-          "text": "물건의 양 자체가 적은 상태"
+          "text": "Very little of the good exists anywhere in the world."
         },
         {
           "id": "b",
-          "text": "물건의 가격이 비싼 상태"
+          "text": "The price of a good is higher than most people expect."
         },
         {
           "id": "c",
-          "text": "원하는 것에 비해 그것을 얻는 데 쓸 자원이 부족한 상태"
+          "text": "The resources to get what people want fall short of their wants."
         },
         {
           "id": "d",
-          "text": "소득이 낮은 사람만 겪는 문제"
+          "text": "People with low incomes cannot afford the goods they want."
         }
       ],
       "source_ids": [
@@ -65,7 +71,7 @@
     },
     {
       "id": "c01-l1-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l1",
       "objective": 1,
@@ -76,23 +82,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "시골의 맑은 공기는 사고팔지 않지만, 대도시에서는 공기청정기와 필터를 사고팔아요. 이 차이를 가장 잘 설명하는 것은?",
+      "prompt": "Nobody buys or sells clean air in the countryside, but in big cities people buy and sell air purifiers and filters. Which statement best explains this difference?",
       "choices": [
         {
           "id": "a",
-          "text": "대도시 사람들의 소득이 더 높기 때문이다"
+          "text": "People in big cities tend to earn higher incomes than rural residents."
         },
         {
           "id": "b",
-          "text": "시골에서는 맑은 공기가 원하는 만큼 충분하지만, 대도시에서는 원하는 양에 비해 부족하기 때문이다"
+          "text": "Clean air is plentiful relative to wants in the countryside but not in big cities."
         },
         {
           "id": "c",
-          "text": "공기청정기는 정부가 생산량을 정하는 상품이기 때문이다"
+          "text": "Air purifiers are goods whose output is usually set by the government."
         },
         {
           "id": "d",
-          "text": "시골에는 시장이 없기 때문이다"
+          "text": "Rural areas usually have fewer stores and markets than big cities."
         }
       ],
       "source_ids": [
@@ -103,7 +109,7 @@
     },
     {
       "id": "c01-l1-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l1",
       "objective": 2,
@@ -113,23 +119,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "정부가 계획을 세워 무엇을 얼마나 생산하고 누구에게 나눌지 정하는 경제 체제는?",
+      "prompt": "In which economic system does the government make a plan that decides what to produce, how much to produce, and who gets it?",
       "choices": [
         {
           "id": "a",
-          "text": "전통 경제"
+          "text": "A traditional economy"
         },
         {
           "id": "b",
-          "text": "시장 경제"
+          "text": "A market economy"
         },
         {
           "id": "c",
-          "text": "혼합 경제"
+          "text": "A mixed economy"
         },
         {
           "id": "d",
-          "text": "명령 경제"
+          "text": "A command economy"
         }
       ],
       "source_ids": [
@@ -140,7 +146,7 @@
     },
     {
       "id": "c01-l1-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l1",
       "objective": 2,
@@ -150,23 +156,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "'마을에서 수확한 쌀을 어느 집이 얼마나 가져갈지 정하는 일'은 경제의 기본 문제 가운데 무엇에 가장 가까운가요?",
+      "prompt": "A village decides how much of its rice harvest each household gets. Which basic economic question is this closest to?",
       "choices": [
         {
           "id": "a",
-          "text": "누구를 위해 생산할까 (누가 얼마나 갖는가)"
+          "text": "For whom to produce (who gets how much)"
         },
         {
           "id": "b",
-          "text": "무엇을 생산할까"
+          "text": "What to produce (which goods to make)"
         },
         {
           "id": "c",
-          "text": "어떻게 생산할까"
+          "text": "How to produce (which methods to use)"
         },
         {
           "id": "d",
-          "text": "얼마나 빨리 생산할까"
+          "text": "How fast to produce (how quickly to work)"
         }
       ],
       "source_ids": [
@@ -177,7 +183,7 @@
     },
     {
       "id": "c01-l1-q5",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c01-l1",
       "objective": 3,
@@ -187,7 +193,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "학생 4명이 각자 혼자 처음부터 끝까지 만들면 한 사람이 1시간에 5개를 만들고, 일을 나누어 맡으면 넷이 함께 1시간에 32개를 만들어요. 분업으로 1시간 생산량은 몇 % 늘어나나요? (숫자만 입력)",
+      "prompt": "Four students are making sandwiches. If each works alone from start to finish, each one makes 5 per hour. If they divide the work, the four of them together make 32 per hour. By what percentage does the division of labor increase hourly output? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-1-1",

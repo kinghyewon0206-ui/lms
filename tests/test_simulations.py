@@ -38,7 +38,7 @@ def test_shift_directions():
         r = sim.supply_demand(a, 2, c, 1)
         assert math.copysign(1, r["price"] - base["price"]) == dp and math.copysign(1, r["quantity"] - base["quantity"]) == dq
     notes = sim.interpret({"a": 100, "b": 2, "c": 10, "d": 1}, {"a": 130, "b": 2, "c": 10, "d": 1})
-    assert notes[0].startswith("수요 증가") and notes[-1] == "결과: 균형 가격 상승, 균형 거래량 증가."
+    assert notes[0].startswith("Demand increases") and notes[-1] == "Result: the equilibrium price rises and the equilibrium quantity increases."
     assert sim.interpret({"a": 100, "b": 2, "c": 10, "d": 1}, {"a": 100, "b": 2, "c": 10, "d": 1}) == []
 
 
@@ -175,16 +175,16 @@ def test_python_and_javascript_validate_the_same_way(tmp_path):
 # ------------------------------------------------------------- 화면 (SVG·접근성)
 def test_lab_pages_render_accessible_svg(logged_in):
     html = logged_in.get("/lab").get_data(as_text=True)
-    assert "경제 실험실" in html and "/lab/supply-demand" in html and "/lab/carbon-tax" in html
+    assert "Economics Lab" in html and "/lab/supply-demand" in html and "/lab/carbon-tax" in html
     html = logged_in.get("/lab/supply-demand").get_data(as_text=True)
-    assert 'role="img"' in html and "<desc" in html and "균형 가격 30원, 균형 거래량 40개." in html
-    assert 'aria-live="polite"' in html and "<th scope=\"row\">균형 가격</th><td>30 원</td>" in html
+    assert 'role="img"' in html and "<desc" in html and "Equilibrium price $30, equilibrium quantity 40 units." in html
+    assert 'aria-live="polite"' in html and "<th scope=\"row\">Equilibrium price</th><td>$30</td>" in html
     for name in "abcd":
         assert f'for="supply-demand-{name}"' in html and f'id="supply-demand-{name}"' in html
-    assert "실제 통계가 아니에요" in html and "econova-sim-ui.js" in html
+    assert "These are not real statistics." in html and "econova-sim-ui.js" in html
     html = logged_in.get("/lab/carbon-tax").get_data(as_text=True)
-    assert "소비자 가격 32원, 생산자 가격 26원" in html and "모형의 가정과 해석 주의" in html
-    assert "탄소세가 항상 후생을 줄이는 것은 아니에요" in html
+    assert "consumer price $32, producer price $26" in html and "Model assumptions and how to read the results" in html
+    assert "A carbon tax does not always reduce welfare." in html
     assert 'text-anchor="end" y="42.0">S+t</text>' in html   # 세금 붙은 공급곡선 이름표가 원래 S 이름표와 겹치지 않게
     assert logged_in.get("/lab/unknown").status_code == 404
 
@@ -223,13 +223,13 @@ def test_saved_results_are_recalculated_on_server(app, logged_in):
     assert "price" not in run["inputs"] and run["inputs"] == {"a": 100, "b": 2, "c": 10, "d": 1, "t": 6, "md": 6, "e": 1}
     assert run["calc_version"] == sim.CALC_VERSION and run["lesson_id"] is None and run["created_at"] is not None
     html = logged_in.get(res.headers["Location"]).get_data(as_text=True)
-    assert "세수" in html and "216 원" in html and "999" not in html
+    assert "<th scope=\"row\">Tax revenue</th><td>$216</td>" in html and "999" not in html
 
 
 def test_invalid_inputs_are_not_saved(app, logged_in):
     res = _save(logged_in, "supply-demand", a="100", b="0", c="10", d="1")
     assert res.status_code == 303
-    assert "저장하지 못했어요" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert "We couldn&#39;t save it." in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     assert _save(logged_in, "nope", a="1").status_code == 404
     with app.app_context():
         assert storage.list_simulation_runs(_uid(app)) == []
@@ -245,7 +245,7 @@ def test_students_cannot_see_each_others_runs(app, client):
     login(client, email="other@example.com")
     set_csrf(client)
     assert client.get(mine).status_code == 404 and client.get("/lab/saved/not-an-id").status_code == 404
-    assert "아직 저장한 실험이 없어요" in client.get("/lab/saved").get_data(as_text=True)
+    assert "You haven't saved any experiments yet." in client.get("/lab/saved").get_data(as_text=True)
 
 
 def test_lesson_scoped_save_respects_access(app, logged_in, fixtures_on):
@@ -267,10 +267,10 @@ def test_lesson_embeds_simulation_only_when_accessible(logged_in, fixtures_on):
     _enroll(logged_in, "dev-f1")
     html = logged_in.get("/learn/dev-f1/dev-f1-l1").get_data(as_text=True)
     assert 'class="sim-widget compact"' in html and 'name="lesson_id" value="dev-f1-l1"' in html
-    assert "검증된 실제 통계가 아니에요" in html and "econova-sim-ui.js" in html
+    assert "They are not verified real-world statistics." in html and "econova-sim-ui.js" in html
     html = logged_in.get("/learn/dev-f1/dev-f1-l2").get_data(as_text=True)
     assert 'data-sim="carbon-tax"' in html
-    assert "이 레슨에는 시뮬레이션이 없어요" in logged_in.get("/learn/dev-f1/dev-f1-l3").get_data(as_text=True)
+    assert "This lesson has no simulation." in logged_in.get("/learn/dev-f1/dev-f1-l3").get_data(as_text=True)
     assert logged_in.get("/learn/c02/c02-l1").status_code == 403
 
 

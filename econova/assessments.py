@@ -88,22 +88,22 @@ def parse_assessment(data, expected_id, course, lessons, fixture=False, where=No
     has_keys = keys_problem is None
     where = where or f"assessments/{expected_id}.json"
     if not isinstance(data, dict) or data.get("schema_version") != 1:
-        raise ContentError(f"{where}: 지원하지 않는 schema_version 입니다.")
+        raise ContentError(f"{where}: unsupported schema_version.")
     if data.get("id") != expected_id:
-        raise ContentError(f"{where}: id 가 강좌 JSON 이 가리키는 {expected_id!r} 와 다릅니다.")
+        raise ContentError(f"{where}: id does not match {expected_id!r} referenced by the course JSON.")
     kind = data.get("kind")
     if kind not in KINDS:
-        raise ContentError(f"{where}: kind 는 lesson_quiz 또는 final 이어야 합니다.")
+        raise ContentError(f"{where}: kind must be lesson_quiz or final.")
     if data.get("course_id") != course:
-        raise ContentError(f"{where}: course_id 가 {course!r} 와 다릅니다.")
+        raise ContentError(f"{where}: course_id does not match {course!r}.")
     lesson_id = str(data.get("lesson_id") or "")
     if kind == "lesson_quiz" and lesson_id not in lessons:
-        raise ContentError(f"{where}: 레슨 퀴즈의 lesson_id 가 이 강좌의 레슨이 아닙니다.")
+        raise ContentError(f"{where}: the lesson quiz's lesson_id is not a lesson in this course.")
     if kind == "final" and lesson_id:
-        raise ContentError(f"{where}: 최종 평가에는 lesson_id 를 두지 않습니다.")
+        raise ContentError(f"{where}: a final assessment must not have a lesson_id.")
     version = _need(data, "version", int, where)
     if version < 1:
-        raise ContentError(f"{where}: version 은 1 이상이어야 합니다.")
+        raise ContentError(f"{where}: version must be 1 or greater.")
     # 승인 지문은 정답 키를 합친 내용 기준이다 (정답·해설이 바뀌어도 승인이 무효가 되게). 키가 없으면 검사할 수 없고 평가도 닫힌다.
     review = lesson_content._parse_review(_need(data, "review", dict, where), where, fixture,
                                           digest=lesson_content.assessment_digest(data) if has_keys else None)
@@ -112,7 +112,7 @@ def parse_assessment(data, expected_id, course, lessons, fixture=False, where=No
     allowed = retakes.get("allowed")
     max_attempts = retakes.get("max_attempts") or 0
     if not isinstance(allowed, bool) or not isinstance(max_attempts, int) or isinstance(max_attempts, bool) or max_attempts < 0:
-        raise ContentError(f"{where}: retakes 는 allowed(true/false)와 max_attempts(0=제한 없음)가 있어야 합니다.")
+        raise ContentError(f"{where}: retakes must include allowed (true/false) and max_attempts (0 = unlimited).")
     if not allowed:
         max_attempts = 1
 
@@ -121,60 +121,60 @@ def parse_assessment(data, expected_id, course, lessons, fixture=False, where=No
         try:
             ratio = float(passing["score_ratio"])
         except (KeyError, TypeError, ValueError):
-            raise ContentError(f"{where}: 최종 평가에는 passing.score_ratio 가 있어야 합니다.")
+            raise ContentError(f"{where}: a final assessment must have passing.score_ratio.")
         if not 0 < ratio <= 1:
-            raise ContentError(f"{where}: passing.score_ratio 는 0 보다 크고 1 이하여야 합니다.")
+            raise ContentError(f"{where}: passing.score_ratio must be greater than 0 and at most 1.")
         status = passing.get("status")
         if status not in PASSING_STATUSES:
-            raise ContentError(f"{where}: passing.status 는 {', '.join(PASSING_STATUSES)} 중 하나여야 합니다.")
+            raise ContentError(f"{where}: passing.status must be one of {', '.join(PASSING_STATUSES)}.")
         if status == "dev_provisional" and not fixture:
-            raise ContentError(f"{where}: 개발용 임시 합격 기준(dev_provisional)은 실제 강좌에 쓸 수 없습니다.")
+            raise ContentError(f"{where}: the development-only provisional passing standard (dev_provisional) cannot be used in a real course.")
         if status == "approved" and review["status"] not in APPROVED_STATUSES:
-            raise ContentError(f"{where}: 합격 기준을 승인하려면 평가 자체가 교사 승인을 받아야 합니다.")
+            raise ContentError(f"{where}: the assessment itself must be teacher-approved before its passing standard can be approved.")
         if status == "approved" and not fixture and not str(passing.get("review_id") or "").strip():
-            raise ContentError(f"{where}: 승인된 합격 기준에는 관리자 검토 기록 번호(passing.review_id)가 있어야 합니다.")
+            raise ContentError(f"{where}: an approved passing standard must include an admin review record ID (passing.review_id).")
         review_ref = str(passing.get("review_id") or "")
         passing = {"score_ratio": ratio, "status": status, "note": str(passing.get("note") or "")}
         if review_ref:
             passing["review_id"] = review_ref
     elif passing:
-        raise ContentError(f"{where}: 레슨 퀴즈에는 합격 기준을 두지 않습니다 (제출이 완료 조건이고 점수는 따로 기록).")
+        raise ContentError(f"{where}: lesson quizzes do not have a passing standard (submitting completes the quiz; the score is recorded separately).")
 
     questions, seen = [], set()
     for q in _need(data, "questions", list, where):
         qid = _text(q, "id", where)
-        w = f"{where} 문항 {qid}"
+        w = f"{where} question {qid}"
         if qid in seen:
-            raise ContentError(f"{w}: 문항 id 가 중복됐습니다.")
+            raise ContentError(f"{w}: duplicate question id.")
         seen.add(qid)
         qv = _need(q, "version", int, w)
         if qv < 1:
-            raise ContentError(f"{w}: version 은 1 이상이어야 합니다.")
+            raise ContentError(f"{w}: version must be 1 or greater.")
         qtype = q.get("type")
         if qtype not in QUESTION_TYPES:
-            raise ContentError(f"{w}: type 은 mcq 또는 numeric 이어야 합니다.")
+            raise ContentError(f"{w}: type must be mcq or numeric.")
         qlesson = str(q.get("lesson_id") or "")
         if qlesson not in lessons or (kind == "lesson_quiz" and qlesson != lesson_id):
-            raise ContentError(f"{w}: lesson_id 가 이 평가의 레슨이 아닙니다.")
+            raise ContentError(f"{w}: lesson_id is not a lesson covered by this assessment.")
         objectives, concept_ids = lessons[qlesson]
         objective = q.get("objective")
         if not isinstance(objective, int) or isinstance(objective, bool) or not 1 <= objective <= len(objectives):
-            raise ContentError(f"{w}: objective 는 레슨 학습목표 번호(1~{len(objectives)})여야 합니다.")
+            raise ContentError(f"{w}: objective must be a lesson learning objective number (1-{len(objectives)}).")
         concepts = tuple(q.get("concept_ids") or ())
         if not concepts or set(concepts) - set(concept_ids):
-            raise ContentError(f"{w}: concept_ids 가 레슨의 핵심 개념을 가리켜야 합니다.")
+            raise ContentError(f"{w}: concept_ids must refer to the lesson's key concepts.")
         if q.get("difficulty") not in LEVELS:
-            raise ContentError(f"{w}: difficulty 는 beginner·intermediate·advanced 중 하나여야 합니다.")
+            raise ContentError(f"{w}: difficulty must be beginner, intermediate, or advanced.")
         status = q.get("review_status")
         if status not in QUESTION_STATUSES:
-            raise ContentError(f"{w}: review_status 는 draft 또는 approved 여야 합니다.")
+            raise ContentError(f"{w}: review_status must be draft or approved.")
         if review["status"] in APPROVED_STATUSES and status != "approved":
-            raise ContentError(f"{w}: 승인된 평가에는 승인되지 않은 문항을 넣을 수 없습니다.")
+            raise ContentError(f"{w}: an approved assessment cannot contain unapproved questions.")
         if review["status"] not in APPROVED_STATUSES and status == "approved":
-            raise ContentError(f"{w}: 평가가 승인되기 전에는 문항만 따로 승인할 수 없습니다.")
+            raise ContentError(f"{w}: questions cannot be approved on their own before the assessment is approved.")
         points = q.get("points", 1)
         if not isinstance(points, (int, float)) or isinstance(points, bool) or points <= 0:
-            raise ContentError(f"{w}: points 는 0 보다 커야 합니다.")
+            raise ContentError(f"{w}: points must be greater than 0.")
         item = {"id": qid, "version": qv, "type": qtype, "prompt": _text(q, "prompt", w), "lesson_id": qlesson,
                 "objective": objective, "objective_text": objectives[objective - 1], "concept_ids": concepts,
                 "difficulty": q["difficulty"], "points": points,
@@ -184,13 +184,13 @@ def parse_assessment(data, expected_id, course, lessons, fixture=False, where=No
             choices = q.get("choices") or []
             ids = [c.get("id") for c in choices]
             if len(ids) < 2 or len(set(ids)) != len(ids) or not all(str(c.get("text") or "").strip() for c in choices):
-                raise ContentError(f"{w}: 선택지는 2개 이상, id 가 겹치지 않고 내용이 있어야 합니다.")
+                raise ContentError(f"{w}: there must be at least 2 choices, each with a unique id and non-empty text.")
             item["choices"] = tuple({"id": c["id"], "text": c["text"]} for c in choices)
             if not has_keys:
                 questions.append(item)
                 continue
             if q.get("answer") not in ids:
-                raise ContentError(f"{w}: 정답이 선택지에 없습니다.")
+                raise ContentError(f"{w}: the answer is not one of the choices.")
             item["answer"] = q["answer"]
         elif not has_keys:
             item["unit"] = str(q.get("unit") or "")
@@ -199,23 +199,23 @@ def parse_assessment(data, expected_id, course, lessons, fixture=False, where=No
         else:
             answer, tol = q.get("answer"), q.get("tolerance")
             if not isinstance(answer, (int, float)) or isinstance(answer, bool):
-                raise ContentError(f"{w}: 수치형 문항의 정답은 숫자여야 합니다.")
+                raise ContentError(f"{w}: the answer to a numeric question must be a number.")
             if not isinstance(tol, (int, float)) or isinstance(tol, bool) or tol < 0:
-                raise ContentError(f"{w}: tolerance 는 0 이상의 숫자여야 합니다.")
+                raise ContentError(f"{w}: tolerance must be a number of 0 or greater.")
             item.update(answer=float(answer), tolerance=float(tol), unit=str(q.get("unit") or ""))
         check = q.get("check")
         if check:
             lesson_content.check_example(check, w)
             field = check.get("answer_field")
             if qtype == "numeric" and field and abs(float(check[field]) - item["answer"]) > 1e-9:
-                raise ContentError(f"{w}: 정답이 계산 결과({field})와 다릅니다.")
+                raise ContentError(f"{w}: the answer does not match the calculated result ({field}).")
         questions.append(item)
     if not questions:
-        raise ContentError(f"{where}: 문항이 하나 이상 있어야 합니다.")
+        raise ContentError(f"{where}: there must be at least one question.")
     if kind == "final":
         missing = [lid for lid in lessons if not any(q["lesson_id"] == lid for q in questions)]
         if missing:
-            raise ContentError(f"{where}: 최종 평가가 레슨 {missing} 을 다루지 않습니다.")
+            raise ContentError(f"{where}: the final assessment does not cover lessons {missing}.")
 
     return Assessment(
         id=expected_id, kind=kind, course_id=course, lesson_id=lesson_id, version=version,

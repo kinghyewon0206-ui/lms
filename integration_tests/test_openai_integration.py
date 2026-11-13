@@ -22,6 +22,7 @@ from econova import content, storage
 from econova.ai import client as ai_client
 from econova.ai import context as ai_context
 from econova.ai import usage
+from econova.ai.safety import MATERIAL_TAG
 from integration_tests import fake_backends
 from integration_tests.conftest import AI_LIVE, CSRF, ROOT, post, take
 
@@ -112,13 +113,13 @@ def test_tutor_grounding_rejects_fabricated_citation_and_counts_tokens(ai_user, 
     with app.app_context():
         before = storage.get_ai_usage(ai_user.id, usage.today())["user"]
     res = ai_user.client.post("/api/tutor", data={"csrf_token": CSRF, "course_id": "dev-f1", "lesson_id": "dev-f1-l1",
-                                                  "message": "수요와 공급이 만나는 점을 쉽게 설명해 주세요."})
+                                                  "message": "Please explain simply where supply and demand meet."})
     assert res.status_code == 200, res.get_json()
     msg = res.get_json()["message"]
     assert FABRICATED not in json.dumps(msg) and msg["dropped_sources"] >= 1      # 지어낸 출처는 화면에 없음
     assert all(s["id"] == SYNTHETIC_SOURCE["id"] for s in msg["sources"])
     assert msg["grounding"] in ("partial", "insufficient")                         # grounded 로 표시하지 않음
-    assert "확인할 수 없는 출처" in msg["limitations"]
+    assert "could not be verified" in msg["limitations"]
     with app.app_context():
         after = storage.get_ai_usage(ai_user.id, usage.today())["user"]
     reported = openai_transport.usage[-1]
@@ -135,7 +136,7 @@ def test_debate_recommendation_and_capstone_responses_validate(ai_user, openai_t
     c = ai_user.client
     post(c, "/courses/dev-f1/enroll")
     sent = openai_transport.sent
-    c.post("/discuss/dev-f1/price-ceiling-food/respond", data={"csrf_token": CSRF, "message": "가격 상한은 소비자에게 좋아요."})
+    c.post("/discuss/dev-f1/price-ceiling-food/respond", data={"csrf_token": CSRF, "message": "A price ceiling is good for consumers."})
     assert _flash_errors(c) == [] and openai_transport.sent == sent + 1
     lesson = content.get_catalog().course("dev-f1").lesson("dev-f1-l1")
     post(c, "/learn/dev-f1/dev-f1-l1/material-reviewed")
@@ -144,7 +145,7 @@ def test_debate_recommendation_and_capstone_responses_validate(ai_user, openai_t
     assert res.status_code == 200, res.get_json()
     assert openai_transport.sent == sent + 2
     post(c, "/courses/dev-f3/enroll")
-    post(c, "/capstone/dev-f3/edit", sdg="7", problem="우리 지역 에너지 비용 문제")
+    post(c, "/capstone/dev-f3/edit", sdg="7", problem="Energy costs in our area")
     post(c, "/capstone/dev-f3/feedback")
     assert _flash_errors(c) == [] and openai_transport.sent == sent + 3
     with app.app_context():
@@ -169,8 +170,8 @@ def test_feedback_sends_only_the_students_wrong_items(ai_user, openai_transport,
     url = c.post("/learn/dev-f1/dev-f1-l1/quiz", data={"csrf_token": CSRF, "submission_token": token, **answers}).headers["Location"]
     c.post(url + "/explain", data={"csrf_token": CSRF})
     assert _flash_errors(c) == []
-    material = next(m["content"] for m in openai_transport.bodies[-1]["messages"] if m["content"].startswith("<자료>"))
-    sent = json.loads(material[len("<자료>\n"):-len("\n</자료>")])["questions"]
+    material = next(m["content"] for m in openai_transport.bodies[-1]["messages"] if m["content"].startswith(f"<{MATERIAL_TAG}>"))
+    sent = json.loads(material[len(f"<{MATERIAL_TAG}>\n"):-len(f"\n</{MATERIAL_TAG}>")])["questions"]
     assert sorted(q["id"] for q in sent) == sorted(q["id"] for q in rest)   # 맞힌 문항은 정답·해설 모두 보내지 않음
     assert first["prompt"] not in material
 
@@ -200,7 +201,7 @@ def test_invalid_key_is_reported_without_leaking(ai_user, openai_transport, app,
     if AI_LIVE is None:
         openai_transport.behaviour = "http_401"
     res = ai_user.client.post("/api/tutor", data={"csrf_token": CSRF, "course_id": "dev-f1", "lesson_id": "dev-f1-l1",
-                                                  "message": "잘못된 키 시험"})
+                                                  "message": "invalid key test"})
     assert res.status_code == 502 and res.get_json()["code"] == "provider_error"
     assert bad not in res.get_data(as_text=True)
     if AI_LIVE is not None:

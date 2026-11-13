@@ -54,7 +54,7 @@ def _fs():
     """Firestore 클라이언트. Firebase 앱은 프로세스당 한 번만 초기화해야 해서 전역에 캐시한다."""
     global _fb_app
     if not using_firestore():  # 운영 키가 .env 에 있어도 DB_BACKEND=firestore 가 아니면 절대 접속하지 않는다
-        raise config.ConfigError("DB_BACKEND 가 firestore 가 아닌데 Firestore 에 접속하려고 했습니다.")
+        raise config.ConfigError("Tried to connect to Firestore while DB_BACKEND is not firestore.")
     if _fb_app is None:
         cred = fb_credentials.Certificate(json.loads(config.env("FIREBASE_CREDENTIALS_JSON")))
         _fb_app = firebase_admin.initialize_app(cred)
@@ -453,15 +453,15 @@ def _migrate_9_drop_legacy_lms(db):
 
 # (번호, 설명, 함수). 새 테이블은 다음 번호로 추가한다.
 SQLITE_MIGRATIONS = [
-    (1, "기존 LMS 스키마", _migrate_1_legacy_lms),
-    (2, "ECONOVA 수강 신청·레슨 진도", _migrate_2_econova_enrollment),
-    (3, "ECONOVA 진단평가·난이도 출처", _migrate_3_econova_diagnostic),
-    (4, "ECONOVA 퀴즈·최종 평가 응시와 수료", _migrate_4_econova_assessments),
-    (5, "ECONOVA 시뮬레이션 저장", _migrate_5_econova_simulations),
-    (6, "ECONOVA AI 대화·사용량", _migrate_6_econova_ai),
-    (7, "ECONOVA 관리자·콘텐츠 검토·캡스톤·로그인 제한", _migrate_7_econova_platform),
-    (8, "ECONOVA 로그인 실패 카운터", _migrate_8_econova_login_counters),
-    (9, "이전 LMS 테이블 삭제", _migrate_9_drop_legacy_lms),
+    (1, "Legacy LMS schema", _migrate_1_legacy_lms),
+    (2, "ECONOVA enrollment and lesson progress", _migrate_2_econova_enrollment),
+    (3, "ECONOVA diagnostic assessment and difficulty source", _migrate_3_econova_diagnostic),
+    (4, "ECONOVA quiz and final assessment attempts and completion", _migrate_4_econova_assessments),
+    (5, "ECONOVA saved simulations", _migrate_5_econova_simulations),
+    (6, "ECONOVA AI conversations and usage", _migrate_6_econova_ai),
+    (7, "ECONOVA admins, content review, capstone, and login limits", _migrate_7_econova_platform),
+    (8, "ECONOVA login failure counters", _migrate_8_econova_login_counters),
+    (9, "Drop legacy LMS tables", _migrate_9_drop_legacy_lms),
 ]
 
 
@@ -557,7 +557,7 @@ def enroll_course(user_id, course_id, difficulty, content_version, difficulty_so
     """수강 신청. 새로 신청했으면 True, 이미 수강 중이면 아무것도 바꾸지 않고 False.
     difficulty_source: 난이도를 학생이 직접 골랐으면 manual, 진단평가 추천을 그대로 썼으면 diagnostic."""
     if difficulty_source not in DIFFICULTY_SOURCES:
-        raise ValueError("difficulty_source 가 잘못됐습니다.")
+        raise ValueError("Invalid difficulty_source.")
     now = _utcnow()
     if using_firestore():
         db = _fs()
@@ -680,7 +680,7 @@ def update_lesson_progress(user_id, course_id, lesson_id, requirements, *, mater
     if db.in_transaction:
         # 이 연결에 커밋하지 않은 다른 쓰기가 남아 있으면 BEGIN 이 실패하고, 아래 rollback 이 그 쓰기까지 지운다.
         # 지금 지원하는 흐름에서는 생기지 않지만, 남의 변경을 조용히 지우지 않도록 시작 전에 멈춘다.
-        raise RuntimeError("커밋하지 않은 변경이 남아 있는 DB 연결에서는 레슨 진도를 저장할 수 없습니다.")
+        raise RuntimeError("Cannot save lesson progress on a DB connection that has uncommitted changes.")
     try:
         db.execute("BEGIN IMMEDIATE")   # 같은 레슨을 동시에 바꿔도 마지막 계산이 앞의 변경을 덮지 않게 잠근다
         row = db.execute("SELECT id FROM econ_enrollments WHERE user_id = ? AND course_id = ?",

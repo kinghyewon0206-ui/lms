@@ -12,9 +12,10 @@ SCHEMA = {"type": "object", "properties": {
     "follow_up_questions": {"type": "array", "maxItems": 3, "items": {"type": "string", "maxLength": 200}},
     "limitations": {"type": "string", "maxLength": 500},
 }}
-GROUNDING_KO = {"grounded": "승인된 학습자료에 근거", "partial": "일부만 학습자료에 근거", "insufficient": "학습자료에 근거가 부족"}
-SUGGESTED = ("이 개념을 더 쉬운 예로 설명해 줄래요?", "그래프에서 무엇이 움직이는지 설명해 줄래요?",
-             "이 내용이 SDG 와 어떻게 연결돼요?")
+GROUNDING_KO = {"grounded": "Based on approved learning materials", "partial": "Partly based on learning materials",
+                "insufficient": "Not enough support in the learning materials"}
+SUGGESTED = ("Can you explain this concept with a simpler example?", "Can you explain what moves on the graph?",
+             "How does this connect to the SDGs?")
 
 
 def conversation_for(user_id, lesson, conv_id=None, create=False):
@@ -67,8 +68,8 @@ def ask(user_id, course, lesson, level, text, sources, conv_id=None, provider=No
     if dropped:
         grounding = "partial" if grounding == "grounded" else grounding
         limitations = (limitations + " " if limitations else "") + \
-            f"확인할 수 없는 출처 표시 {len(dropped)}개는 지웠어요 (승인된 출처 목록에 없음)."
-    no_source_note = "이 레슨에는 확인된 출처가 연결되어 있지 않아요."
+            f"Removed {len(dropped)} source reference(s) that could not be verified (not in the approved source list)."
+    no_source_note = "No verified sources are linked to this lesson."
     if not ctx["sources"] and no_source_note not in limitations:
         limitations = (limitations + " " if limitations else "") + no_source_note
     message = {"answer": safety.clip(data["answer"], 2000), "grounding": grounding,

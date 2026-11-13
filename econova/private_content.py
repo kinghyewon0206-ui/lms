@@ -61,42 +61,42 @@ def read_keys(assessment_id, fixture=False):
     """키 파일을 읽는다. 없으면 KeysUnavailable. (읽은 내용은 로그·오류 메시지에 넣지 않는다)"""
     path = keys_path(assessment_id, fixture)
     if path is None:
-        raise KeysUnavailable(f"{assessment_id}: 비공개 정답 키 폴더(ECONOVA_PRIVATE_CONTENT_DIR)가 설정되지 않았습니다.")
+        raise KeysUnavailable(f"{assessment_id}: the private answer key folder (ECONOVA_PRIVATE_CONTENT_DIR) is not set.")
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
     except FileNotFoundError:
-        raise KeysUnavailable(f"{assessment_id}: 정답 키 파일이 없습니다.")
+        raise KeysUnavailable(f"{assessment_id}: the answer key file does not exist.")
     except (OSError, json.JSONDecodeError):
-        raise KeysUnavailable(f"{assessment_id}: 정답 키 파일을 읽을 수 없습니다.")
+        raise KeysUnavailable(f"{assessment_id}: the answer key file cannot be read.")
     if not isinstance(data, dict) or data.get("schema_version") != 1 or data.get("kind") != "assessment_keys":
-        raise KeysUnavailable(f"{assessment_id}: 정답 키 파일 형식이 잘못됐습니다.")
+        raise KeysUnavailable(f"{assessment_id}: the answer key file has an invalid format.")
     if data.get("assessment_id") != assessment_id:
-        raise KeysUnavailable(f"{assessment_id}: 정답 키 파일의 assessment_id 가 다릅니다.")
+        raise KeysUnavailable(f"{assessment_id}: the answer key file's assessment_id does not match.")
     if fixture and data.get("synthetic") is not True:
-        raise KeysUnavailable(f"{assessment_id}: 개발용 fixture 키에는 \"synthetic\": true 가 있어야 합니다.")
+        raise KeysUnavailable(f"{assessment_id}: dev fixture keys must include \"synthetic\": true.")
     return data
 
 
 def merge(public, keys, where):
     """공개 정의 + 정답 키 → 서버 전용 전체 데이터(복사본). 하나라도 맞지 않으면 KeysUnavailable."""
     if keys.get("assessment_version") != public.get("version"):
-        raise KeysUnavailable(f"{where}: 정답 키의 평가 버전({keys.get('assessment_version')})이 "
-                              f"공개 파일 버전({public.get('version')})과 다릅니다.")
+        raise KeysUnavailable(f"{where}: the answer key's assessment version ({keys.get('assessment_version')}) does not match "
+                              f"the public file version ({public.get('version')}).")
     entries = keys.get("questions")
     public_ids = [q.get("id") for q in public.get("questions") or []]
     if not isinstance(entries, dict) or set(entries) != set(public_ids):
-        raise KeysUnavailable(f"{where}: 정답 키의 문항 목록이 공개 문항과 다릅니다.")
+        raise KeysUnavailable(f"{where}: the answer key's question list does not match the public questions.")
     full = copy.deepcopy(public)
     for q in full["questions"]:
         entry = entries[q["id"]]
         if not isinstance(entry, dict) or entry.get("question_version") != q.get("version"):
-            raise KeysUnavailable(f"{where} 문항 {q['id']}: 정답 키의 문항 버전이 다릅니다.")
+            raise KeysUnavailable(f"{where} question {q['id']}: the answer key's question version does not match.")
         if entry.get("public_sha256") != question_fingerprint(q):
-            raise KeysUnavailable(f"{where} 문항 {q['id']}: 공개 문항이 바뀌어 정답 키를 다시 확인해야 합니다.")
+            raise KeysUnavailable(f"{where} question {q['id']}: the public question changed, so the answer key must be re-checked.")
         unknown = set(entry) - {"question_version", "public_sha256"} - set(PRIVATE_QUESTION_KEYS)
         if unknown:
-            raise KeysUnavailable(f"{where} 문항 {q['id']}: 정답 키에 알 수 없는 항목 {sorted(unknown)} 이 있습니다.")
+            raise KeysUnavailable(f"{where} question {q['id']}: the answer key has unknown fields {sorted(unknown)}.")
         q.update({k: copy.deepcopy(entry[k]) for k in PRIVATE_QUESTION_KEYS if k in entry})
     return full
 

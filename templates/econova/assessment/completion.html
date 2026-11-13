@@ -1,50 +1,50 @@
 {% extends "base.html" %}
 {% import "econova/_macros.html" as m with context %}
-{% block title %}수료 현황 · {{ course.title_ko }} · ECONOVA{% endblock %}
+{% block title %}Completion status · {{ course.title_ko }} · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> 수료 현황</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> Completion status</nav>
   <header class="ec-head">
-    <span class="eyebrow">수료 현황</span>
+    <span class="eyebrow">Completion status</span>
     <h1>{{ course.title_ko }}</h1>
     {% if completed %}
-      <p class="ec-done-note">수료했어요 · {{ enrollment.completed_at }} (UTC)
-        {% if enrollment.completion_policy == 'dev_provisional' %}<span class="pill pill-dev">개발용 임시 기준에 따른 테스트 수료</span>{% endif %}</p>
+      <p class="ec-done-note">Course completed · {{ enrollment.completed_at }} (UTC)
+        {% if enrollment.completion_policy == 'dev_provisional' %}<span class="pill pill-dev">Test completion under the temporary development standard</span>{% endif %}</p>
     {% else %}
-      <p class="hint">레슨을 모두 완료하고 최종 평가의 합격 기준을 넘으면 수료해요. 합격 기준이 교사 승인을 받기 전에는 수료로 인정하지 않아요.</p>
+      <p class="hint">Complete all lessons and reach the passing score on the final assessment to complete the course. Until a teacher approves the passing score, passing does not count as completion.</p>
     {% endif %}
   </header>
 
   <section class="ec-section" aria-labelledby="h-lessons">
-    <h2 id="h-lessons">레슨</h2>
-    {{ m.progress_bar(progress, course.title_ko ~ ' 진도') }}
+    <h2 id="h-lessons">Lessons</h2>
+    {{ m.progress_bar(progress, course.title_ko ~ ' progress') }}
     <table class="ec-table ec-table-wide">
-      <thead><tr><th scope="col">레슨</th><th scope="col">자료 확인</th><th scope="col">퀴즈 제출</th><th scope="col">퀴즈 최고 점수</th><th scope="col">상태</th></tr></thead>
+      <thead><tr><th scope="col">Lesson</th><th scope="col">Materials reviewed</th><th scope="col">Quiz submitted</th><th scope="col">Best quiz score</th><th scope="col">Status</th></tr></thead>
       <tbody>
       {% for lesson in course.lessons %}{% set r = records.get(lesson.id) %}
         <tr>
           <td>{{ lesson.order }}. {{ lesson.title_ko }}</td>
           <td>{{ '✓' if r and r.material_reviewed else '–' }}</td>
-          <td>{% if 'quiz' not in lesson.requirements %}필요 없음{% elif r and r.quiz_submitted %}✓{% else %}–{% endif %}</td>
+          <td>{% if 'quiz' not in lesson.requirements %}Not required{% elif r and r.quiz_submitted %}✓{% else %}–{% endif %}</td>
           <td>{% if r and r.quiz_score is not none %}{{ (r.quiz_score * 100)|round|int }}%{% else %}–{% endif %}</td>
-          <td>{% set st = progress.statuses[lesson.id] %}{% if st == 'completed' %}완료{% elif st == 'in_progress' %}진행 중{% else %}시작 전{% endif %}</td>
+          <td>{% set st = progress.statuses[lesson.id] %}{% if st == 'completed' %}Completed{% elif st == 'in_progress' %}In progress{% else %}Not started{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
-    <p class="hint">퀴즈 점수는 레슨 완료와 따로 기록돼요.</p>
+    <p class="hint">Quiz scores are recorded separately from lesson completion.</p>
   </section>
 
   <section class="ec-section" aria-labelledby="h-final">
-    <h2 id="h-final">최종 평가</h2>
+    <h2 id="h-final">Final assessment</h2>
     {% if not course.final_ready %}
-      <p class="ec-placeholder-text">아직 공개된 최종 평가가 없어요.</p>
+      <p class="ec-placeholder-text">No final assessment has been published yet.</p>
     {% elif final_best %}
-      <p>최고 결과: {{ (final_best.ratio * 100)|round|int }}% ({{ '합격' if final_best.passed else '불합격' }}) · 응시 {{ final_attempts|length }}번</p>
-      <p class="hint">합격 기준 {{ (course.final.passing.score_ratio * 100)|round|int }}%
-        {% if course.final.passing.status == 'dev_provisional' %}<span class="pill pill-dev">개발용 임시 기준</span>{% elif course.final.passing.status != 'approved' %}<span class="pill pill-draft">승인 전 제안값</span>{% endif %}</p>
+      <p>Best result: {{ (final_best.ratio * 100)|round|int }}% ({{ 'Passed' if final_best.passed else 'Not passed' }}) · {{ final_attempts|length }} {{ 'attempt' if final_attempts|length == 1 else 'attempts' }}</p>
+      <p class="hint">Passing score {{ (course.final.passing.score_ratio * 100)|round|int }}%
+        {% if course.final.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% elif course.final.passing.status != 'approved' %}<span class="pill pill-draft">Proposed value, not approved</span>{% endif %}</p>
     {% else %}
-      <p class="ec-placeholder-text">아직 응시하지 않았어요.</p>
+      <p class="ec-placeholder-text">You haven't taken it yet.</p>
     {% endif %}
   </section>
 </div>

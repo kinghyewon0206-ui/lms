@@ -1,17 +1,17 @@
 {% extends "base.html" %}
-{% block title %}페이지를 찾을 수 없어요 · ECONOVA{% endblock %}
+{% block title %}Page not found · ECONOVA{% endblock %}
 {% block content %}
 <section class="err-page" aria-labelledby="err-title">
   <p class="err-code">404</p>
-  <h1 id="err-title">페이지를 찾을 수 없어요</h1>
-  <p>주소가 바뀌었거나 없는 페이지예요.</p>
+  <h1 id="err-title">Page not found</h1>
+  <p>The address may have changed, or the page doesn't exist.</p>
   <div class="actions">
     {% if g.user %}
-    <a class="btn" href="{{ url_for('dashboard') }}">대시보드로</a>
-    <a class="btn secondary" href="{{ url_for('econova.catalog') }}">강좌 카탈로그</a>
+    <a class="btn" href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+    <a class="btn secondary" href="{{ url_for('econova.catalog') }}">Course catalog</a>
     {% else %}
-    <a class="btn" href="{{ url_for('index') }}">처음 화면으로</a>
-    <a class="btn secondary" href="{{ url_for('login') }}">로그인</a>
+    <a class="btn" href="{{ url_for('index') }}">Go to the home page</a>
+    <a class="btn secondary" href="{{ url_for('login') }}">Log in</a>
     {% endif %}
   </div>
 </section>

@@ -3,19 +3,19 @@
   "id": "c04",
   "slug": "growth-and-stability",
   "title": "Growth & Stability",
-  "title_ko": "성장과 안정",
-  "description": "한 나라의 경제 규모와 성장, 물가 변화를 측정하는 방법을 배우고 생활 수준과의 관계를 이해합니다.",
+  "title_ko": "Growth & Stability",
+  "description": "Learn how to measure the size and growth of an economy and changes in prices, and how they relate to living standards.",
   "objectives": [
-    "GDP가 무엇을 측정하고 무엇을 놓치는지 설명한다.",
-    "생산성이 장기 성장에 미치는 영향을 설명한다.",
-    "인플레이션이 구매력과 생활 수준에 미치는 영향을 해석한다."
+    "Explain what GDP measures and what it leaves out.",
+    "Explain how productivity drives long-run growth.",
+    "Interpret how inflation affects purchasing power and living standards."
   ],
   "sdgs": [
     8
   ],
   "review": {
     "status": "draft",
-    "note": "강좌 설명과 학습목표는 교사 검토 전 초안이다."
+    "note": "The course description and learning objectives are drafts awaiting teacher review."
   },
   "estimated_hours": 6,
   "difficulty_levels": [
@@ -38,7 +38,7 @@
       "id": "c04-l1",
       "order": 1,
       "title": "GDP and Measuring Economic Activity",
-      "title_ko": "GDP와 경제 활동 측정",
+      "title_ko": "GDP and Measuring Economic Activity",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -57,7 +57,7 @@
       "id": "c04-l2",
       "order": 2,
       "title": "Economic Growth and Productivity",
-      "title_ko": "경제 성장과 생산성",
+      "title_ko": "Economic Growth and Productivity",
       "status": "draft",
       "objectives": [],
       "requirements": [
@@ -76,7 +76,7 @@
       "id": "c04-l3",
       "order": 3,
       "title": "Inflation, Purchasing Power, and Living Standards",
-      "title_ko": "인플레이션, 구매력, 생활 수준",
+      "title_ko": "Inflation, Purchasing Power, and Living Standards",
       "status": "draft",
       "objectives": [],
       "requirements": [

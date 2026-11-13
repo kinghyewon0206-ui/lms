@@ -1,27 +1,27 @@
 {% extends "base.html" %}
 {% import "econova/_graph.html" as gr with context %}
-{% block title %}저장한 실험 · {{ sim.title }} · ECONOVA{% endblock %}
+{% block title %}Saved experiment · {{ sim.title }} · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.lab_saved') }}">저장한 실험</a> <span>/</span> {{ sim.title }}</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.lab_saved') }}">Saved experiments</a> <span>/</span> {{ sim.title }}</nav>
   <header class="ec-head">
-    <span class="eyebrow">저장 시각 {{ run.created_at }} (UTC) · 계산 버전 {{ run.calc_version }}{% if run.lesson_id %} · 레슨 {{ run.lesson_id }}{% endif %}</span>
+    <span class="eyebrow">Saved {{ run.created_at }} (UTC) · Calculation version {{ run.calc_version }}{% if run.lesson_id %} · Lesson {{ run.lesson_id }}{% endif %}</span>
     <h1>{{ sim.title }}</h1>
-    <p class="hint">서버가 저장할 때 다시 계산한 결과예요. 가상의 모형 계산이며 실제 통계가 아니에요.</p>
+    <p class="hint">The server recalculated these results when you saved. They come from a hypothetical model and are not real statistics.</p>
   </header>
   <section class="ec-section">
-    <h2>입력</h2>
-    <table class="ec-table"><tbody>{% for k, v in run.inputs.items() %}<tr><th scope="row">{{ limits[k][3] }}</th><td>{{ '%g' % v }} {{ limits[k][4] }}</td></tr>{% endfor %}</tbody></table>
+    <h2>Inputs</h2>
+    <table class="ec-table"><tbody>{% for k, v in run.inputs.items() %}<tr><th scope="row">{{ limits[k][3] }}</th><td>{{ gr.with_unit(v, limits[k][4]) }}</td></tr>{% endfor %}</tbody></table>
   </section>
   <section class="ec-section">
-    <h2>결과</h2>
+    <h2>Results</h2>
     {{ gr.supply_demand(spec) }}
     {% if results.status != 'interior' %}<p class="ec-discuss">{{ results.reason }}</p>{% endif %}
     <table class="ec-table"><tbody>
-      {% for label, value, unit in rows %}<tr><th scope="row">{{ label }}</th><td>{{ '%g' % value }} {{ unit }}</td></tr>{% endfor %}
+      {% for label, value, unit in rows %}<tr><th scope="row">{{ label }}</th><td>{{ gr.with_unit(value, unit) }}</td></tr>{% endfor %}
     </tbody></table>
     {% if notes %}<ul class="ec-list">{% for n in notes %}<li>{{ n }}</li>{% endfor %}</ul>{% endif %}
   </section>
-  <p><a class="btn secondary" href="{{ url_for('econova.lab_sim', sim_id=sim_id) }}">같은 시뮬레이션 다시 열기</a></p>
+  <p><a class="btn secondary" href="{{ url_for('econova.lab_sim', sim_id=sim_id) }}">Open this simulation again</a></p>
 </div>
 {% endblock %}

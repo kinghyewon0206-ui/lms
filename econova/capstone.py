@@ -56,43 +56,43 @@ def capstone_digest(data):
 
 def parse_definition(data, course_id, lesson_ids, fixture=False, where="capstone"):
     if not isinstance(data, dict) or data.get("schema_version") != 1 or data.get("course_id") != course_id:
-        raise ContentError(f"{where}: 형식(schema_version 1, course_id={course_id})이 잘못됐습니다.")
+        raise ContentError(f"{where}: invalid format (expected schema_version 1, course_id={course_id}).")
     if bool(data.get("fixture")) != fixture:
-        raise ContentError(f"{where}: 개발용 캡스톤만 'fixture': true 를 쓴다.")
+        raise ContentError(f"{where}: only a development capstone may use 'fixture': true.")
     version = lesson_content._need(data, "version", int, where)
     digest = capstone_digest(data)
     review = lesson_content._parse_review(lesson_content._need(data, "review", dict, where), where, fixture, digest=digest)
     steps, step_ids, field_ids = [], set(), set()
     for s in lesson_content._need(data, "steps", list, where):
         sid = lesson_content._text(s, "id", where)
-        w = f"{where} 단계 {sid}"
+        w = f"{where} step {sid}"
         if sid in step_ids:
-            raise ContentError(f"{w}: 단계 id 가 중복됐습니다.")
+            raise ContentError(f"{w}: duplicate step id.")
         step_ids.add(sid)
         if s.get("lesson_id") not in lesson_ids:
-            raise ContentError(f"{w}: lesson_id 가 이 강좌의 레슨이 아닙니다.")
+            raise ContentError(f"{w}: lesson_id is not a lesson in this course.")
         fields = []
         for f in lesson_content._need(s, "fields", list, w):
             fid = lesson_content._text(f, "id", w)
             if fid in field_ids:
-                raise ContentError(f"{w}: 입력 칸 id {fid!r} 가 중복됐습니다.")
+                raise ContentError(f"{w}: duplicate field id {fid!r}.")
             field_ids.add(fid)
             if f.get("type") not in FIELD_TYPES:
-                raise ContentError(f"{w} 칸 {fid}: type 은 {', '.join(FIELD_TYPES)} 중 하나여야 합니다.")
+                raise ContentError(f"{w} field {fid}: type must be one of {', '.join(FIELD_TYPES)}.")
             mn, mx = int(f.get("min_chars") or 0), int(f.get("max_chars") or 0)
             if f["type"] != "sdg" and not 0 <= mn < mx <= 10000:
-                raise ContentError(f"{w} 칸 {fid}: 0 ≤ min_chars < max_chars ≤ 10000 이어야 합니다.")
+                raise ContentError(f"{w} field {fid}: must satisfy 0 <= min_chars < max_chars <= 10000.")
             fields.append({"id": fid, "label": lesson_content._text(f, "label", w), "help": str(f.get("help") or ""),
                            "type": f["type"], "min_chars": mn, "max_chars": mx, "required": bool(f.get("required"))})
         if not fields:
-            raise ContentError(f"{w}: 입력 칸이 하나 이상 있어야 합니다.")
+            raise ContentError(f"{w}: there must be at least one field.")
         steps.append({"id": sid, "lesson_id": s["lesson_id"], "title": lesson_content._text(s, "title", w),
                       "guidance": lesson_content._text(s, "guidance", w), "fields": tuple(fields)})
     if not any(f["type"] == "sdg" for st in steps for f in st["fields"]) or "reflection" not in field_ids:
-        raise ContentError(f"{where}: SDG 선택 칸(type=sdg)과 되돌아보기 칸(id=reflection)이 있어야 합니다.")
+        raise ContentError(f"{where}: an SDG choice field (type=sdg) and a reflection field (id=reflection) are required.")
     missing_lessons = [lid for lid in lesson_ids if not any(st["lesson_id"] == lid for st in steps)]
     if missing_lessons:
-        raise ContentError(f"{where}: 레슨 {missing_lessons} 에 연결된 단계가 없습니다.")
+        raise ContentError(f"{where}: no step is linked to lessons {missing_lessons}.")
     rubric = _parse_rubric(lesson_content._need(data, "rubric", dict, where), step_ids, review, where)
     return Capstone(course_id=course_id, version=version, review=review, title=lesson_content._text(data, "title", where),
                     intro=lesson_content._texts(data, "intro", where), steps=tuple(steps), rubric=rubric,
@@ -100,34 +100,34 @@ def parse_definition(data, course_id, lesson_ids, fixture=False, where="capstone
 
 
 def _parse_rubric(r, step_ids, review, where):
-    w = f"{where} 루브릭"
+    w = f"{where} rubric"
     if r.get("status") not in RUBRIC_STATUSES:
-        raise ContentError(f"{w}: status 는 provisional 또는 approved 여야 합니다.")
+        raise ContentError(f"{w}: status must be provisional or approved.")
     if r["status"] == "approved" and review["status"] not in APPROVED_STATUSES:
-        raise ContentError(f"{w}: 캡스톤 정의가 사람 승인을 받기 전에는 루브릭만 따로 승인할 수 없습니다.")
+        raise ContentError(f"{w}: the rubric cannot be approved on its own before the capstone definition is human-approved.")
     levels = lesson_content._need(r, "levels", list, w)
     scores = [lv.get("score") for lv in levels]
     if scores != list(range(1, len(levels) + 1)) or len(levels) < 2:
-        raise ContentError(f"{w}: levels 의 score 는 1 부터 차례대로여야 합니다.")
+        raise ContentError(f"{w}: level scores must run in order starting from 1.")
     criteria, seen = [], set()
     for c in lesson_content._need(r, "criteria", list, w):
         cid = lesson_content._text(c, "id", w)
         if cid in seen:
-            raise ContentError(f"{w}: 기준 id 가 중복됐습니다.")
+            raise ContentError(f"{w}: duplicate criterion id.")
         seen.add(cid)
         weight = c.get("weight")
         if not isinstance(weight, int) or isinstance(weight, bool) or weight <= 0:
-            raise ContentError(f"{w} 기준 {cid}: weight 는 양의 정수여야 합니다.")
+            raise ContentError(f"{w} criterion {cid}: weight must be a positive integer.")
         if set(c.get("related_steps") or ()) - step_ids:
-            raise ContentError(f"{w} 기준 {cid}: related_steps 에 없는 단계가 있습니다.")
+            raise ContentError(f"{w} criterion {cid}: related_steps includes a step that does not exist.")
         desc = c.get("descriptors") or {}
         if set(desc) != {str(s) for s in scores} or not all(str(v).strip() for v in desc.values()):
-            raise ContentError(f"{w} 기준 {cid}: 수준마다 설명(descriptors)이 있어야 합니다.")
+            raise ContentError(f"{w} criterion {cid}: every level needs a description (descriptors).")
         criteria.append({"id": cid, "name": lesson_content._text(c, "name", w),
                          "description": lesson_content._text(c, "description", w), "weight": weight,
                          "related_steps": tuple(c.get("related_steps") or ()), "descriptors": dict(desc)})
     if sum(c["weight"] for c in criteria) != 100:
-        raise ContentError(f"{w}: 가중치 합이 100 이어야 합니다.")
+        raise ContentError(f"{w}: weights must add up to 100.")
     return {"version": lesson_content._need(r, "version", int, w), "status": r["status"], "note": str(r.get("note") or ""),
             "levels": tuple({"score": lv["score"], "label": str(lv.get("label") or lv["score"])} for lv in levels),
             "criteria": tuple(criteria)}
@@ -142,12 +142,12 @@ def clean_sections(defn, form):
         raw = str(form.get(f["id"], "") or "").replace("\r\n", "\n").strip()
         if f["type"] == "sdg":
             if raw and not (raw.isdigit() and 1 <= int(raw) <= 17):
-                errors[f["id"]] = "SDG 는 1~17 중에서 골라 주세요."
+                errors[f["id"]] = "Please choose an SDG from 1 to 17."
                 continue
             sections[f["id"]] = raw
             continue
         if len(raw) > f["max_chars"]:
-            errors[f["id"]] = f"{f['max_chars']}자 이하로 줄여 주세요 (지금 {len(raw)}자)."
+            errors[f["id"]] = f"Please shorten this to {f['max_chars']} characters or fewer (currently {len(raw)})."
             continue
         sections[f["id"]] = raw
     return sections, errors
@@ -161,9 +161,9 @@ def missing_fields(defn, sections):
             continue
         value = str((sections or {}).get(f["id"], "") or "").strip()
         if not value:
-            out.append((f, "비어 있어요"))
+            out.append((f, "It's empty"))
         elif f["type"] != "sdg" and len(value) < f["min_chars"]:
-            out.append((f, f"{f['min_chars']}자 이상 필요해요 (지금 {len(value)}자)"))
+            out.append((f, f"Needs at least {f['min_chars']} characters (currently {len(value)})"))
     return out
 
 
@@ -184,11 +184,11 @@ def clean_self_assessment(defn, form):
     for c in defn.rubric["criteria"]:
         raw = str(form.get(f"score_{c['id']}", "") or "")
         if not (raw.isdigit() and 1 <= int(raw) <= max_score):
-            errors[c["id"]] = "수준을 골라 주세요."
+            errors[c["id"]] = "Please choose a level."
             continue
         note = str(form.get(f"note_{c['id']}", "") or "").strip()
         if len(note) > 500:
-            errors[c["id"]] = "메모는 500자 이하로 써 주세요."
+            errors[c["id"]] = "Please keep your note to 500 characters or fewer."
             continue
         scores[c["id"]] = {"level": int(raw), "note": note}
     return scores, errors

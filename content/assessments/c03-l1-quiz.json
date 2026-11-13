@@ -4,9 +4,9 @@
   "kind": "lesson_quiz",
   "course_id": "c03",
   "lesson_id": "c03-l1",
-  "version": 1,
-  "title": "레슨 1 형성 퀴즈: 외부효과와 시장 실패",
-  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "version": 2,
+  "title": "Lesson 1 Quiz: Externalities and Market Failure",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -17,7 +17,7 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
       }
     ]
   },
@@ -28,7 +28,7 @@
   "questions": [
     {
       "id": "c03-l1-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l1",
       "objective": 1,
@@ -39,23 +39,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "다음 중 부정적 외부효과의 예로 가장 알맞은 것은?",
+      "prompt": "Which of the following is the best example of a negative externality?",
       "choices": [
         {
           "id": "a",
-          "text": "빵집이 빵 값을 올려 손님이 돈을 더 냈다"
+          "text": "A bakery raises its bread prices, so customers pay more"
         },
         {
           "id": "b",
-          "text": "이웃집의 밤샘 파티 소음 때문에 옆집 학생이 잠을 못 잤다"
+          "text": "A neighbor's all-night party keeps the student next door awake"
         },
         {
           "id": "c",
-          "text": "비싼 운동화를 사서 내 용돈이 줄었다"
+          "text": "Buying expensive sneakers shrinks your own allowance"
         },
         {
           "id": "d",
-          "text": "회사가 직원에게 월급을 주었다"
+          "text": "A company pays its employees their monthly salaries"
         }
       ],
       "source_ids": [
@@ -65,7 +65,7 @@
     },
     {
       "id": "c03-l1-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l1",
       "objective": 1,
@@ -76,23 +76,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "양봉업자가 기르는 벌이 근처 과수원의 꽃가루받이를 도와 과일 수확이 늘었어요. 과수원 주인은 양봉업자에게 아무 대가도 내지 않아요. 이 상황에 대한 설명으로 가장 알맞은 것은?",
+      "prompt": "A beekeeper's bees pollinate a nearby orchard, and the orchard's fruit harvest grows. The orchard owner pays the beekeeper nothing. Which statement best describes this situation?",
       "choices": [
         {
           "id": "a",
-          "text": "부정적 외부효과라서 꿀이 사회적으로 바람직한 양보다 많이 생산되기 쉽다"
+          "text": "It is a negative externality, so honey tends to be produced above the socially optimal amount"
         },
         {
           "id": "b",
-          "text": "과수원이 대가를 내지 않았으므로 외부효과가 아니다"
+          "text": "It is not an externality, because the orchard owner did not pay anything for it"
         },
         {
           "id": "c",
-          "text": "긍정적 외부효과라서 양봉이 사회적으로 바람직한 양보다 적게 이루어지기 쉽다"
+          "text": "It is a positive externality, so beekeeping tends to fall below the socially optimal amount"
         },
         {
           "id": "d",
-          "text": "벌은 공유 자원이므로 과다 이용된다"
+          "text": "The bees are a common resource, so they tend to be overused by nearby farms"
         }
       ],
       "source_ids": [
@@ -102,7 +102,7 @@
     },
     {
       "id": "c03-l1-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c03-l1",
       "objective": 2,
@@ -112,7 +112,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "가상의 예: 화력 발전소가 전기 1MWh 를 만드는 데 연료비·인건비 등으로 8만 원이 들고, 대기오염으로 주변 주민이 입는 피해가 1MWh 당 3만 원이에요. 전기 1MWh 의 사회적 비용은 몇 만 원인가요? (숫자만 입력)",
+      "prompt": "Hypothetical example: A coal-fired power plant spends $80 on fuel, labor, and other costs to generate 1 MWh of electricity, and its air pollution causes $30 of harm per MWh to nearby residents. What is the social cost of 1 MWh of electricity, in dollars? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-12-1",
@@ -121,7 +121,7 @@
     },
     {
       "id": "c03-l1-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l1",
       "objective": 3,
@@ -132,23 +132,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "어떤 상품을 만들 때 부정적 외부효과가 생겨요. 정부 개입이 없을 때 시장 결과에 대한 설명으로 가장 알맞은 것은?",
+      "prompt": "Producing a certain good creates a negative externality. Without government intervention, which statement best describes the market outcome?",
       "choices": [
         {
           "id": "a",
-          "text": "시장 거래량이 사회적 최적 거래량보다 적다"
+          "text": "The market quantity is smaller than the socially optimal quantity"
         },
         {
           "id": "b",
-          "text": "시장 거래량과 사회적 최적 거래량이 같고 가격만 다르다"
+          "text": "The market quantity equals the socially optimal quantity; just the prices differ"
         },
         {
           "id": "c",
-          "text": "사회적 비용 곡선이 공급곡선보다 아래에 있다"
+          "text": "The social-cost curve lies below the supply curve"
         },
         {
           "id": "d",
-          "text": "시장 거래량이 사회적 최적 거래량보다 많다"
+          "text": "The market quantity is larger than the socially optimal quantity"
         }
       ],
       "source_ids": [
@@ -158,7 +158,7 @@
     },
     {
       "id": "c03-l1-q5",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c03-l1",
       "objective": 3,
@@ -169,7 +169,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "가상의 예: 수요 Qd = 80 − P, 공급 Qs = P 인 시장에서 생산 1단위마다 외부 비용이 10 생겨요. 시장 거래량은 사회적 최적 거래량보다 몇 단위 많나요? (숫자만 입력)",
+      "prompt": "Hypothetical example: In a market with demand Qd = 80 − P and supply Qs = P, every unit produced creates an external cost of $10. By how many units does the market quantity exceed the socially optimal quantity? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-12-1",

@@ -1,56 +1,56 @@
 {
   "schema_version": 1,
   "id": "dev-diagnostic",
-  "version": 1,
-  "title": "[개발용] 합성 진단평가",
-  "description": "개발·자동 테스트 전용 가짜 진단평가입니다. 실제 경제학 학습 내용이 아닙니다.",
+  "version": 2,
+  "title": "[Dev] Synthetic diagnostic assessment",
+  "description": "Fake diagnostic assessment for development and automated tests only. Not real economics content.",
   "review": {
     "status": "draft",
-    "note": "개발용 합성 데이터"
+    "note": "Synthetic dev data"
   },
   "thresholds": {
     "intermediate": 0.4,
     "advanced": 0.75,
     "provisional": true,
-    "note": "개발용"
+    "note": "Dev"
   },
   "categories": [
     {
       "id": "terminology",
-      "name": "경제 용어"
+      "name": "Economic terms"
     },
     {
       "id": "scarcity",
-      "name": "희소성과 기회비용"
+      "name": "Scarcity and opportunity cost"
     },
     {
       "id": "supply_demand",
-      "name": "수요와 공급"
+      "name": "Supply and Demand"
     },
     {
       "id": "graph",
-      "name": "그래프 해석"
+      "name": "Reading graphs"
     },
     {
       "id": "calculation",
-      "name": "간단한 계산"
+      "name": "Simple calculations"
     },
     {
       "id": "policy",
-      "name": "정책과 상충관계"
+      "name": "Policies and trade-offs"
     }
   ],
   "graphs": {
     "market": {
       "id": "dev-dg-market",
-      "title": "[개발용] 가상 시장의 수요(D)와 공급(S)",
-      "caption": "개발·자동 테스트 전용 가짜 그래프.",
+      "title": "[Dev] Demand (D) and supply (S) in a hypothetical market",
+      "caption": "Fake graph for development and automated tests only.",
       "price_lines": [],
       "axis": {
         "p_max": 70,
         "q_max": 130,
-        "p_label": "가격 P",
-        "q_label": "수량 Q"
+        "p_label": "Price P",
+        "q_label": "Quantity Q"
       },
       "demand": [
         {
@@ -70,19 +70,19 @@
     },
     "market_ceiling": {
       "id": "dev-dg-ceiling",
-      "title": "[개발용] 같은 시장의 가격 상한",
-      "caption": "개발·자동 테스트 전용 가짜 그래프.",
+      "title": "[Dev] A price ceiling in the same market",
+      "caption": "Fake graph for development and automated tests only.",
       "price_lines": [
         {
-          "label": "가격 상한",
+          "label": "Price ceiling",
           "price": 20
         }
       ],
       "axis": {
         "p_max": 70,
         "q_max": 130,
-        "p_label": "가격 P",
-        "q_label": "수량 Q"
+        "p_label": "Price P",
+        "q_label": "Quantity Q"
       },
       "demand": [
         {
@@ -106,23 +106,23 @@
       "id": "q01",
       "category": "terminology",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 1: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 1: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     },
@@ -130,23 +130,23 @@
       "id": "q02",
       "category": "terminology",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 2: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 2: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     },
@@ -154,23 +154,23 @@
       "id": "q03",
       "category": "scarcity",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 3: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 3: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     },
@@ -178,23 +178,23 @@
       "id": "q04",
       "category": "scarcity",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 4: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 4: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     },
@@ -202,23 +202,23 @@
       "id": "q05",
       "category": "supply_demand",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 5: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 5: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     },
@@ -226,23 +226,23 @@
       "id": "q06",
       "category": "supply_demand",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 6: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 6: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     },
@@ -250,7 +250,7 @@
       "id": "q07",
       "category": "graph",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 7: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 7: not real economics content.",
       "choices": [
         {
           "id": "a",
@@ -275,23 +275,23 @@
       "id": "q08",
       "category": "graph",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 8: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 8: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 초과 공급"
+          "text": "[Dev] A surplus of goods"
         },
         {
           "id": "b",
-          "text": "[개발용] 변화 없음"
+          "text": "[Dev] No change in quantity"
         },
         {
           "id": "c",
-          "text": "[개발용] 균형"
+          "text": "[Dev] Market equilibrium"
         },
         {
           "id": "d",
-          "text": "[개발용] 물량 부족"
+          "text": "[Dev] A shortage of goods"
         }
       ],
       "graph": "market_ceiling"
@@ -300,37 +300,37 @@
       "id": "q09",
       "category": "calculation",
       "type": "numeric",
-      "prompt": "[개발용] 합성 계산 문항: Qd = 120 − 2P, Qs = 2P 일 때 균형 거래량은?",
-      "unit": "개"
+      "prompt": "[Dev] Synthetic calculation item: If Qd = 120 − 2P and Qs = 2P, what is the equilibrium quantity?",
+      "unit": "units"
     },
     {
       "id": "q10",
       "category": "calculation",
       "type": "numeric",
-      "prompt": "[개발용] 합성 계산 문항: 1을 4로 나누면?",
+      "prompt": "[Dev] Synthetic calculation item: What is 1 divided by 4?",
       "unit": ""
     },
     {
       "id": "q11",
       "category": "policy",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 11: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 11: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     },
@@ -338,23 +338,23 @@
       "id": "q12",
       "category": "policy",
       "type": "mcq",
-      "prompt": "[개발용] 합성 문항 12: 실제 경제 내용이 아닙니다.",
+      "prompt": "[Dev] Synthetic item 12: not real economics content.",
       "choices": [
         {
           "id": "a",
-          "text": "[개발용] 선택지 가"
+          "text": "[Dev] Option A"
         },
         {
           "id": "b",
-          "text": "[개발용] 선택지 나"
+          "text": "[Dev] Option B"
         },
         {
           "id": "c",
-          "text": "[개발용] 선택지 다"
+          "text": "[Dev] Option C"
         },
         {
           "id": "d",
-          "text": "[개발용] 선택지 라"
+          "text": "[Dev] Option D"
         }
       ]
     }

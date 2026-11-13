@@ -1,55 +1,55 @@
 {
   "schema_version": 1,
   "id": "econ-diagnostic",
-  "version": 2,
-  "title": "경제 기초 진단평가",
-  "description": "경제 용어, 희소성과 기회비용, 수요와 공급, 그래프 해석, 간단한 계산, 정책 상충관계를 확인하는 12문항이에요. 점수는 정해진 규칙으로만 매기고(AI 채점 없음), 결과는 난이도를 고를 때 참고하는 추천일 뿐이에요.",
+  "version": 3,
+  "title": "Economics Basics Diagnostic Assessment",
+  "description": "These 12 questions check economic terms, scarcity and opportunity cost, supply and demand, reading graphs, basic calculations, and policy trade-offs. Scoring follows fixed rules only (no AI grading), and the result is only a suggestion to help you choose a difficulty level.",
   "review": {
     "status": "draft",
-    "note": "AI 가 작성한 문항 초안(v2: 레슨 예제와 다른 수치, 정답 위치 균형, 태도 문항 교체). 교사 검토 전이며, 난이도 기준은 검증되지 않은 임시 값이다."
+    "note": "AI-written question draft (v2: numbers differ from the lesson examples, answer positions balanced, attitude question replaced). Not yet reviewed by a teacher; the difficulty thresholds are provisional and have not been validated."
   },
   "thresholds": {
     "intermediate": 0.4,
     "advanced": 0.75,
     "provisional": true,
-    "note": "정답률 40% 미만은 하, 40% 이상 75% 미만은 중, 75% 이상은 상을 추천한다. 학생 데이터로 검증하지 않은 임시 기준이다."
+    "note": "Below 40% correct suggests beginner, 40% to under 75% suggests intermediate, and 75% or higher suggests advanced. These are provisional thresholds that have not been validated with student data."
   },
   "categories": [
     {
       "id": "terminology",
-      "name": "경제 용어"
+      "name": "Economic terms"
     },
     {
       "id": "scarcity",
-      "name": "희소성과 기회비용"
+      "name": "Scarcity and opportunity cost"
     },
     {
       "id": "supply_demand",
-      "name": "수요와 공급"
+      "name": "Supply and demand"
     },
     {
       "id": "graph",
-      "name": "그래프 해석"
+      "name": "Reading graphs"
     },
     {
       "id": "calculation",
-      "name": "간단한 계산"
+      "name": "Basic calculations"
     },
     {
       "id": "policy",
-      "name": "정책과 상충관계"
+      "name": "Policy and trade-offs"
     }
   ],
   "graphs": {
     "market": {
       "id": "dg-market",
-      "title": "어느 상품 시장의 수요(D)와 공급(S)",
-      "caption": "가상의 시장. 세로축은 가격, 가로축은 수량이다.",
+      "title": "Demand (D) and supply (S) in a market for one good",
+      "caption": "A hypothetical market. The vertical axis shows price, and the horizontal axis shows quantity.",
       "axis": {
         "p_max": 50,
         "q_max": 90,
-        "p_label": "가격 P",
-        "q_label": "수량 Q"
+        "p_label": "Price P",
+        "q_label": "Quantity Q"
       },
       "demand": [
         {
@@ -70,13 +70,13 @@
     },
     "market_ceiling": {
       "id": "dg-market-ceiling",
-      "title": "같은 시장에 가격 상한을 둔 경우",
-      "caption": "가상의 시장. 점선은 정부가 정한 가격 상한이다.",
+      "title": "The same market with a price ceiling",
+      "caption": "A hypothetical market. The dashed line is the price ceiling set by the government.",
       "axis": {
         "p_max": 50,
         "q_max": 90,
-        "p_label": "가격 P",
-        "q_label": "수량 Q"
+        "p_label": "Price P",
+        "q_label": "Quantity Q"
       },
       "demand": [
         {
@@ -94,7 +94,7 @@
       ],
       "price_lines": [
         {
-          "label": "가격 상한",
+          "label": "Price ceiling",
           "price": 20
         }
       ],
@@ -106,23 +106,23 @@
       "id": "q01",
       "category": "terminology",
       "type": "mcq",
-      "prompt": "다른 조건이 같을 때, 어떤 상품의 가격이 오르면 그 상품을 사려는 양이 줄어드는 관계를 무엇이라고 하나요?",
+      "prompt": "Other things being equal, when the price of a good rises, people want to buy less of it. What is this relationship called?",
       "choices": [
         {
           "id": "a",
-          "text": "공급 법칙"
+          "text": "Law of supply"
         },
         {
           "id": "b",
-          "text": "기회비용"
+          "text": "Opportunity cost"
         },
         {
           "id": "c",
-          "text": "수요 법칙"
+          "text": "Law of demand"
         },
         {
           "id": "d",
-          "text": "시장 균형"
+          "text": "Market equilibrium"
         }
       ]
     },
@@ -130,23 +130,23 @@
       "id": "q02",
       "category": "terminology",
       "type": "mcq",
-      "prompt": "'라면 한 봉지가 1,000원일 때 이 동네 사람들은 하루 500봉지를 사려 한다'에서 500봉지는 무엇에 해당하나요?",
+      "prompt": "\"When a pack of instant noodles costs $1, people in this neighborhood want to buy 500 packs a day.\" What does the 500 packs describe?",
       "choices": [
         {
           "id": "a",
-          "text": "수요"
+          "text": "Demand"
         },
         {
           "id": "b",
-          "text": "공급량"
+          "text": "Quantity supplied"
         },
         {
           "id": "c",
-          "text": "총수입"
+          "text": "Total revenue"
         },
         {
           "id": "d",
-          "text": "수요량"
+          "text": "Quantity demanded"
         }
       ]
     },
@@ -154,23 +154,23 @@
       "id": "q03",
       "category": "scarcity",
       "type": "mcq",
-      "prompt": "경제 문제(무엇을, 얼마나, 누구를 위해 생산할지)가 생기는 가장 근본적인 이유는 무엇인가요?",
+      "prompt": "What is the most basic reason economic questions (what to produce, how much, and for whom) arise?",
       "choices": [
         {
           "id": "a",
-          "text": "원하는 것에 비해 쓸 수 있는 자원이 한정되어 있기 때문에"
+          "text": "Resources are limited compared with what people want"
         },
         {
           "id": "b",
-          "text": "정부가 가격을 정하기 때문에"
+          "text": "Governments set the prices of most goods"
         },
         {
           "id": "c",
-          "text": "돈이 충분히 발행되지 않기 때문에"
+          "text": "Not enough money has been printed yet"
         },
         {
           "id": "d",
-          "text": "생산 기술이 아직 충분히 발전하지 않았기 때문에"
+          "text": "Production technology is not advanced enough yet"
         }
       ]
     },
@@ -178,23 +178,23 @@
       "id": "q04",
       "category": "scarcity",
       "type": "mcq",
-      "prompt": "토요일 오후에 3만 원을 버는 아르바이트와 도서관 공부 중 하나만 할 수 있어 공부를 골랐어요. 공부의 기회비용으로 가장 알맞은 것은?",
+      "prompt": "On Saturday afternoon you can either work a part-time job that pays $30 or study at the library, but not both. You choose to study. What is the best description of the opportunity cost of studying?",
       "choices": [
         {
           "id": "a",
-          "text": "도서관까지 가는 버스비"
+          "text": "The bus fare to get to the library"
         },
         {
           "id": "b",
-          "text": "공부해서 얻는 성적 향상"
+          "text": "The better grades you earn by studying"
         },
         {
           "id": "c",
-          "text": "포기한 아르바이트로 벌 수 있었던 3만 원"
+          "text": "The $30 you could have earned at the job"
         },
         {
           "id": "d",
-          "text": "지난주에 이미 사 둔 문제집 값"
+          "text": "The cost of the workbook you bought last week"
         }
       ]
     },
@@ -202,23 +202,23 @@
       "id": "q05",
       "category": "supply_demand",
       "type": "mcq",
-      "prompt": "여름이 되어 같은 가격에서도 사람들이 아이스크림을 더 많이 사려고 해요. 다른 조건이 같다면 아이스크림 시장은 어떻게 될까요?",
+      "prompt": "Summer arrives, and people want to buy more ice cream even at the same price. Other things being equal, what happens in the ice cream market?",
       "choices": [
         {
           "id": "a",
-          "text": "공급이 늘어 균형 가격은 내리고 거래량은 는다"
+          "text": "Supply rises, so the equilibrium price falls and quantity rises"
         },
         {
           "id": "b",
-          "text": "수요가 늘어 균형 가격은 오르고 거래량은 는다"
+          "text": "Demand rises, so the equilibrium price rises and quantity rises"
         },
         {
           "id": "c",
-          "text": "수요가 늘어 균형 가격은 내리고 거래량은 준다"
+          "text": "Demand rises, so the equilibrium price falls and quantity falls"
         },
         {
           "id": "d",
-          "text": "수요량만 늘고 균형 가격과 거래량은 그대로다"
+          "text": "Quantity demanded rises, but equilibrium price and quantity stay put"
         }
       ]
     },
@@ -226,23 +226,23 @@
       "id": "q06",
       "category": "supply_demand",
       "type": "mcq",
-      "prompt": "비료 값이 크게 올라 배추를 기르는 비용이 늘었어요. 다른 조건이 같다면 배추 시장의 균형은 어떻게 바뀔까요?",
+      "prompt": "Fertilizer prices rise sharply, making lettuce more expensive to grow. Other things being equal, how does equilibrium in the lettuce market change?",
       "choices": [
         {
           "id": "a",
-          "text": "가격↓, 거래량↑"
+          "text": "Price↓, quantity↑"
         },
         {
           "id": "b",
-          "text": "가격↑, 거래량↑"
+          "text": "Price↑, quantity↑"
         },
         {
           "id": "c",
-          "text": "가격↓, 거래량↓"
+          "text": "Price↓, quantity↓"
         },
         {
           "id": "d",
-          "text": "가격↑, 거래량↓"
+          "text": "Price↑, quantity↓"
         }
       ]
     },
@@ -251,7 +251,7 @@
       "category": "graph",
       "type": "mcq",
       "graph": "market",
-      "prompt": "그래프에서 이 시장의 균형 가격은 얼마인가요?",
+      "prompt": "According to the graph, what is the equilibrium price in this market?",
       "choices": [
         {
           "id": "a",
@@ -276,23 +276,23 @@
       "category": "graph",
       "type": "mcq",
       "graph": "market_ceiling",
-      "prompt": "정부가 그래프의 점선처럼 균형보다 낮은 가격 상한을 정하면 어떤 일이 생길까요?",
+      "prompt": "Suppose the government sets a price ceiling below equilibrium, as shown by the dashed line in the graph. What happens?",
       "choices": [
         {
           "id": "a",
-          "text": "공급량이 수요량보다 많아 잉여(초과공급)가 생긴다"
+          "text": "Quantity supplied exceeds quantity demanded, causing a surplus (excess supply)"
         },
         {
           "id": "b",
-          "text": "거래량이 균형보다 늘어난다"
+          "text": "The quantity traded rises above the equilibrium quantity"
         },
         {
           "id": "c",
-          "text": "수요량이 공급량보다 많아 부족(초과수요)이 생긴다"
+          "text": "Quantity demanded exceeds quantity supplied, causing a shortage (excess demand)"
         },
         {
           "id": "d",
-          "text": "상한 때문에 수요곡선이 왼쪽으로 이동한다"
+          "text": "The ceiling causes the demand curve to shift to the left"
         }
       ]
     },
@@ -300,37 +300,37 @@
       "id": "q09",
       "category": "calculation",
       "type": "numeric",
-      "prompt": "수요함수가 Qd = 80 − 2P 일 때, 가격이 15 이면 수요량은 얼마인가요? (숫자만 입력)",
+      "prompt": "The demand function is Qd = 80 − 2P. If the price is 15, what is the quantity demanded? (Enter a number only.)",
       "unit": ""
     },
     {
       "id": "q10",
       "category": "calculation",
       "type": "numeric",
-      "prompt": "어떤 상품의 가격이 10% 오르자 수요량이 5% 줄었어요. 수요의 가격 탄력성(절댓값)은 얼마인가요? (소수로 입력, 예: 1.2)",
+      "prompt": "When the price of a good rose by 10%, quantity demanded fell by 5%. What is the price elasticity of demand (absolute value)? (Enter a decimal, e.g., 1.2.)",
       "unit": ""
     },
     {
       "id": "q11",
       "category": "policy",
       "type": "mcq",
-      "prompt": "빵 값이 크게 오르자 정부가 시장 가격보다 낮은 가격 상한을 정했어요. 나타나기 쉬운 부작용은?",
+      "prompt": "After bread prices rise sharply, the government sets a price ceiling below the market price. What side effect is likely?",
       "choices": [
         {
           "id": "a",
-          "text": "팔리지 않은 빵이 남아돈다"
+          "text": "Unsold loaves pile up on store shelves at closing time"
         },
         {
           "id": "b",
-          "text": "사려는 양보다 파는 양이 적어 줄서기와 품귀가 생긴다"
+          "text": "Sellers offer less bread than buyers want, so lines form"
         },
         {
           "id": "c",
-          "text": "판매자들이 빵을 더 많이 만든다"
+          "text": "Bakeries decide to bake more bread than before"
         },
         {
           "id": "d",
-          "text": "빵의 균형 가격이 상한보다 낮아진다"
+          "text": "The equilibrium price of bread drops below the ceiling"
         }
       ]
     },
@@ -338,23 +338,23 @@
       "id": "q12",
       "category": "policy",
       "type": "mcq",
-      "prompt": "어느 시가 100억 원으로 전기버스를 도입하기로 했어요. 이 결정의 기회비용으로 가장 알맞은 것은?",
+      "prompt": "A city decides to spend $10 million on electric buses. What is the best description of the opportunity cost of this decision?",
       "choices": [
         {
           "id": "a",
-          "text": "같은 100억 원으로 할 수 있었던 다른 사업 중 가장 가치 있는 것"
+          "text": "The best alternative project the $10 million could fund"
         },
         {
           "id": "b",
-          "text": "전기버스가 줄여 줄 배출가스"
+          "text": "The reduction in exhaust emissions the electric buses will bring"
         },
         {
           "id": "c",
-          "text": "버스 회사의 수입 증가"
+          "text": "The increase in ticket revenue the bus company will earn"
         },
         {
           "id": "d",
-          "text": "지난해 이미 쓴 버스 연구비"
+          "text": "The research money for buses already spent last year"
         }
       ]
     }

@@ -50,6 +50,10 @@ AI 기능은 기본으로 꺼져 있다 (`ECONOVA_AI_PROVIDER=off`). 로컬에�
 
 ## ECONOVA 강좌 콘텐츠
 
+> **English-only:** ECONOVA's user-facing text (UI, admin screens, course content, assessments, simulations, AI prompts and output)
+> must be English. New courses (c04–c09) and features are written in English from the start. Rules:
+> `docs/content/english-only-guidelines.md`; enforced by `tests/test_english_only.py`.
+
 강좌·레슨의 정본은 Git 으로 관리하는 JSON 이다. 앱은 시작할 때 한 번 읽고 형식을 검사한다
 (잘못되면 파일 이름과 이유가 담긴 `ContentError`). JSON 을 고친 뒤에는 서버를 다시 시작한다.
 

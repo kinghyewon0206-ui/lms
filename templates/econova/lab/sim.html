@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% import "econova/lab/_widget.html" as sw with context %}
-{% block title %}{{ sim.title }} · 경제 실험실 · ECONOVA{% endblock %}
+{% block title %}{{ sim.title }} · Economics Lab · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.lab_home') }}">경제 실험실</a> <span>/</span> {{ sim.title }}</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.lab_home') }}">Economics Lab</a> <span>/</span> {{ sim.title }}</nav>
   {{ sw.widget({"sim_id": sim_id, "sim": sim, "limits": limits, "defaults": defaults, "inputs": inputs, "results": results,
                 "spec": spec, "lesson": lesson, "course": course, "rows": rows}) }}
 </div>

@@ -44,22 +44,22 @@ def test_synthetic_diagnostic_is_valid():
 
 @pytest.mark.parametrize("mutate, message", [
     (lambda d: d["questions"].pop(), None),                                         # 11문항도 허용
-    (lambda d: d.update(questions=d["questions"][:9]), "10~12"),
-    (lambda d: d["questions"].append(copy.deepcopy(d["questions"][0])), "10~12"),
-    (lambda d: d["questions"][1].update(id="q01"), "중복"),
-    (lambda d: d["questions"][0].update(answer="z"), "정답이 선택지에 없습니다"),
+    (lambda d: d.update(questions=d["questions"][:9]), "10-12 questions"),
+    (lambda d: d["questions"].append(copy.deepcopy(d["questions"][0])), "10-12 questions"),
+    (lambda d: d["questions"][1].update(id="q01"), "missing or duplicated"),
+    (lambda d: d["questions"][0].update(answer="z"), "the answer is not one of the choices"),
     (lambda d: d["questions"][0].update(category="art"), "category"),
     (lambda d: d["questions"][0].update(type="essay"), "type"),
     (lambda d: d["questions"][8].update(tolerance=-1), "tolerance"),
-    (lambda d: d["questions"][8].update(answer="40"), "숫자"),
-    (lambda d: d["questions"][8].update(answer=41), "계산 결과"),                  # 균형 거래량 검증
-    (lambda d: d["questions"][6].update(answer="c"), "계산 결과"),                 # 그래프 균형 가격 검증
-    (lambda d: d["questions"][9].update(answer=0.6), "계산 결과"),
+    (lambda d: d["questions"][8].update(answer="40"), "must be a number"),
+    (lambda d: d["questions"][8].update(answer=41), "does not match the calculated result"),                  # 균형 거래량 검증
+    (lambda d: d["questions"][6].update(answer="c"), "does not match the calculated result"),                 # 그래프 균형 가격 검증
+    (lambda d: d["questions"][9].update(answer=0.6), "does not match the calculated result"),
     (lambda d: d["questions"][0].update(explanation=""), "explanation"),
     (lambda d: d["thresholds"].update(provisional=False), "provisional"),
     (lambda d: d["thresholds"].update(intermediate=0.8), "intermediate < advanced"),
-    (lambda d: d["graphs"]["market"].update(expected_equilibria=[{"demand": "D", "supply": "S", "price": 30, "quantity": 60}]), "정답 노출"),
-    (lambda d: d["categories"].append({"id": "extra", "name": "빈 영역"}), "문항이 없습니다"),
+    (lambda d: d["graphs"]["market"].update(expected_equilibria=[{"demand": "D", "supply": "S", "price": 30, "quantity": 60}]), "would reveal the answer"),
+    (lambda d: d["categories"].append({"id": "extra", "name": "Empty area"}), "has no questions"),
 ])
 def test_invalid_diagnostic_is_rejected(mutate, message):
     data = _raw()
@@ -82,8 +82,11 @@ def test_take_page_does_not_leak_answers(logged_in):
     assert html.count('class="dg-question"') == 12 and html.count('type="radio"') > 20
     for q in TEST["questions"]:
         assert q["explanation"] not in html
-    assert "answer" not in html.lower().replace("name=\"q_", "")   # 정답 속성·값이 없다
-    assert "균형 가격</th>" not in html   # 그래프 문항에 균형점 표를 띄우지 않는다
+    page = html.lower().replace("name=\"q_", "")
+    for ui_text in ('data-overlay="grading your answers"', '<label class="dg-numeric">answer <input'):   # 화면 문구(영어)는 제외
+        page = page.replace(ui_text, "")
+    assert "answer" not in page   # 정답 속성·값이 없다
+    assert "Equilibrium price</th>" not in html   # 그래프 문항에 균형점 표를 띄우지 않는다
 
 
 # ------------------------------------------------------------- 채점
@@ -134,7 +137,7 @@ def test_threshold_boundaries_are_inclusive():
 
 def test_explanation_mentions_rule_and_provisional():
     reasons = diagnostic.explain(diagnostic.score(_answers(5)))
-    assert reasons[0].startswith("전체 정답률 42% (5/12") and "임시" in reasons[1] and "중 (Intermediate)" in reasons[1]
+    assert reasons[0].startswith("Overall score: 42% (5/12") and "provisional" in reasons[1] and "→ Intermediate recommended" in reasons[1]
 
 
 # ------------------------------------------------------------- 저장·재응시·분리 (양쪽 저장소)
@@ -146,13 +149,13 @@ def test_submit_persists_and_shows_result(app, logged_in):
     res = _submit(logged_in, _answers(5))
     assert res.status_code == 302 and "/diagnostic/attempts/" in res.headers["Location"]
     html = logged_in.get(res.headers["Location"]).get_data(as_text=True)
-    assert "추천 난이도" in html and "중 (Intermediate)" in html and "5/12" in html and "임시" in html
+    assert "Recommended level" in html and '<span class="dg-rec">Intermediate</span>' in html and "5/12" in html and "provisional" in html
     assert TEST["questions"][0]["explanation"] in html   # 제출 뒤에는 해설을 보여준다
     with app.app_context():
         uid = storage.get_user_by_email("student@example.com")["id"]
         [attempt] = storage.list_diagnostic_attempts(uid)
     assert (attempt["score"], attempt["max_score"], attempt["recommended_level"]) == (5, 12, "intermediate")
-    assert attempt["diagnostic_version"] == 1 and attempt["thresholds"]["provisional"] is True
+    assert attempt["diagnostic_version"] == TEST["version"] and attempt["thresholds"]["provisional"] is True
     assert attempt["results"][0] == {"id": "q01", "answer": TEST["questions"][0]["answer"], "correct": True}
 
 
@@ -165,7 +168,7 @@ def test_retake_keeps_history(app, logged_in):
         attempts = storage.list_diagnostic_attempts(uid)
     assert [a["score"] for a in attempts] == [12, 2]   # 최신순, 예전 기록은 그대로
     html = logged_in.get("/diagnostic").get_data(as_text=True)
-    assert html.count("결과 보기") == 2 and "다시 응시하기" in html
+    assert html.count("View results") == 2 and "Take it again" in html
     assert logged_in.get(first).status_code == 200
 
 
@@ -179,7 +182,7 @@ def test_students_cannot_see_each_others_results(app, client):
     login(client, email="other@example.com")
     set_csrf(client)
     assert client.get(mine).status_code == 404
-    assert "아직 응시한 기록이 없어요" in client.get("/diagnostic").get_data(as_text=True)
+    assert "You haven't taken it yet." in client.get("/diagnostic").get_data(as_text=True)
     assert client.get("/diagnostic/attempts/not-a-real-id").status_code == 404
     with app.app_context():
         assert storage.list_diagnostic_attempts(storage.get_user_by_email("other@example.com")["id"]) == []
@@ -194,19 +197,19 @@ def test_unanswered_and_garbage_input_are_wrong_not_errors(logged_in):
 def test_old_results_are_not_recomputed_when_test_changes(app, logged_in, monkeypatch):
     url = _submit(logged_in, _answers(5)).headers["Location"]
     changed = copy.deepcopy(TEST)
-    changed["version"] = 2
+    changed["version"] = TEST["version"] + 1
     changed["thresholds"] = {**changed["thresholds"], "intermediate": 0.6}
     monkeypatch.setattr(diagnostic, "load", lambda: changed)
     html = logged_in.get(url).get_data(as_text=True)
-    assert "5/12" in html and "중 (Intermediate)" in html and "버전 1 기준" in html   # 당시 기준(40%) 그대로
+    assert "5/12" in html and '<span class="dg-rec">Intermediate</span>' in html and f"based on version {TEST['version']} of the diagnostic assessment" in html   # 당시 기준(40%) 그대로
 
 
 # ------------------------------------------------------------- 수강 난이도 추천 (강제 아님)
 def test_recommendation_preselects_but_is_not_mandatory(app, logged_in, fixtures_on):
-    assert "진단평가</a>를 보면" in logged_in.get("/courses/dev-f1").get_data(as_text=True)
+    assert "diagnostic assessment</a> to get a recommended level" in logged_in.get("/courses/dev-f1").get_data(as_text=True)
     _submit(logged_in, ANSWERS)   # 상(advanced) 추천
     html = logged_in.get("/courses/dev-f1").get_data(as_text=True)
-    assert '<option value="advanced" selected>' in html and "진단평가 추천(상 (Advanced))" in html
+    assert '<option value="advanced" selected>' in html and "the level your diagnostic assessment recommended (Advanced)" in html
     logged_in.post("/courses/dev-f1/enroll", data={"csrf_token": CSRF, "difficulty": "advanced"})
     logged_in.post("/courses/dev-f2/enroll", data={"csrf_token": CSRF, "difficulty": "beginner"})   # 추천과 다르게
     with app.app_context():
@@ -218,14 +221,14 @@ def test_recommendation_preselects_but_is_not_mandatory(app, logged_in, fixtures
     with app.app_context():
         a = storage.get_enrollment(uid, "dev-f1")
     assert (a["selected_difficulty"], a["difficulty_source"]) == ("intermediate", "manual")
-    assert "직접 선택" in logged_in.get("/courses/dev-f1").get_data(as_text=True)
+    assert "chosen by you" in logged_in.get("/courses/dev-f1").get_data(as_text=True)
 
 
 def test_dashboard_shows_latest_recommendation(logged_in):
-    assert "진단평가 보기" in logged_in.get("/dashboard").get_data(as_text=True)
+    assert "Take the diagnostic assessment" in logged_in.get("/dashboard").get_data(as_text=True)
     _submit(logged_in, _answers(2))
     html = logged_in.get("/dashboard").get_data(as_text=True)
-    assert "최근 진단평가 추천 난이도: <strong>하 (Beginner)</strong>" in html
+    assert "Level recommended by your latest diagnostic assessment: <strong>Beginner</strong>" in html
 
 
 def test_diagnostic_works_when_catalog_is_broken(logged_in, tmp_path, monkeypatch):

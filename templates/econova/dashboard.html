@@ -1,116 +1,116 @@
 {% extends "base.html" %}
 {% import "econova/_macros.html" as m with context %}
-{% block title %}대시보드 · ECONOVA{% endblock %}
+{% block title %}Dashboard · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page">
   <section class="dash-hero">
     <div>
-      <span class="eyebrow">ECONOVA 대시보드</span>
-      <h1>안녕하세요, {{ g.user['name'] }}님</h1>
-      <p>수강 중인 강좌의 진도를 확인하고 이어서 학습하세요.</p>
+      <span class="eyebrow">ECONOVA Dashboard</span>
+      <h1>Hi, {{ g.user['name'] }}</h1>
+      <p>Check your progress in your courses and pick up where you left off.</p>
     </div>
     <dl class="ec-stats">
-      <div><dt>수강 중인 강좌</dt><dd>{{ enrolled }}개</dd></div>
-      <div><dt>완료한 레슨</dt><dd>{{ completed_lessons }}개{% if total_lessons %} <small>/ {{ total_lessons }}</small>{% endif %}</dd></div>
+      <div><dt>Courses enrolled</dt><dd>{{ enrolled }}</dd></div>
+      <div><dt>Lessons completed</dt><dd>{{ completed_lessons }}{% if total_lessons %} <small>/ {{ total_lessons }}</small>{% endif %}</dd></div>
     </dl>
   </section>
 
   <aside class="ec-legacy-notice ec-diag-notice" role="note">
     {% if diagnostic %}
-    <p>최근 진단평가 추천 난이도: <strong>{{ difficulty_names[diagnostic.recommended_level] }}</strong> ({{ diagnostic.score }}/{{ diagnostic.max_score }}). 추천은 참고용이고, 강좌마다 직접 바꿀 수 있어요.</p>
-    <a class="btn secondary" href="{{ url_for('econova.diagnostic_result', attempt_id=diagnostic.id) }}">결과 보기</a>
+    <p>Level recommended by your latest diagnostic assessment: <strong>{{ difficulty_names[diagnostic.recommended_level] }}</strong> ({{ diagnostic.score }}/{{ diagnostic.max_score }}). This is only a suggestion; you can change the level for each course yourself.</p>
+    <a class="btn secondary" href="{{ url_for('econova.diagnostic_result', attempt_id=diagnostic.id) }}">View results</a>
     {% else %}
-    <p>경제 기초 진단평가(12문항)를 보면 나에게 맞는 난이도를 추천받을 수 있어요.</p>
-    <a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">진단평가 보기</a>
+    <p>Take the economics basics diagnostic assessment (12 questions) to get a recommended level.</p>
+    <a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">Take the diagnostic assessment</a>
     {% endif %}
   </aside>
 
   {% if recs and (recs['items'] or recs.next_lessons or recs.weak_areas) %}
   <section class="block recs" aria-labelledby="h-recs" data-recs>
-    <div class="browse-head"><h2 id="h-recs">나를 위한 학습 추천</h2></div>
-    <p class="hint"><span class="pill pill-measure">측정 결과</span> 아래 표는 내 퀴즈·평가 기록으로 <strong>정해진 규칙</strong>에 따라 계산했어요 (AI 아님).
-      개념 문항을 {{ recs.rules.min_evidence }}개 미만 확인했으면 '잠정'으로 표시해요. 수강·난이도는 자동으로 바뀌지 않아요.</p>
-    {% if recs.insufficient %}<p class="ec-placeholder-text">아직 퀴즈·평가 기록이 없어 개념별 추천의 근거가 부족해요. 레슨과 퀴즈를 진행하면 더 정확해져요.</p>{% endif %}
+    <div class="browse-head"><h2 id="h-recs">Recommended for you</h2></div>
+    <p class="hint"><span class="pill pill-measure">Measured result</span> The table below is calculated from your quiz and assessment records using <strong>fixed rules</strong> (not AI).
+      If fewer than {{ recs.rules.min_evidence }} questions on a concept have been checked, it is marked "provisional". Your enrollment and level never change automatically.</p>
+    {% if recs.insufficient %}<p class="ec-placeholder-text">You don't have any quiz or assessment records yet, so there isn't enough evidence for concept recommendations. They will get more accurate as you work through lessons and quizzes.</p>{% endif %}
     {% if recs['items'] %}
     <div class="table-scroll"><table class="ec-table recs-table">
-      <thead><tr><th scope="col">개념</th><th scope="col">레슨</th><th scope="col">확인 결과</th><th scope="col">상태</th><th scope="col">추천 활동</th></tr></thead>
+      <thead><tr><th scope="col">Concept</th><th scope="col">Lesson</th><th scope="col">Checked</th><th scope="col">Status</th><th scope="col">Suggested activity</th></tr></thead>
       <tbody>
       {% for it in recs['items'] %}
         <tr>
           <th scope="row">{{ it.term }}</th>
           <td>{{ it.course_title }} · {{ it.lesson_title }}</td>
-          <td>{% if it.total %}{{ it.correct }}/{{ it.total }} ({{ it.percent }}%){% else %}확인 안 함{% endif %}</td>
-          <td><span class="pill {{ 'pill-review' if it.status == 'review' else 'pill-soon' }}">{{ {'review': '복습 권장', 'provisional': '잠정 · 근거 부족', 'unpracticed': '아직 확인 안 함'}[it.status] }}</span></td>
+          <td>{% if it.total %}{{ it.correct }}/{{ it.total }} ({{ it.percent }}%){% else %}Not checked{% endif %}</td>
+          <td><span class="pill {{ 'pill-review' if it.status == 'review' else 'pill-soon' }}">{{ {'review': 'Review suggested', 'provisional': 'Provisional · Not enough evidence', 'unpracticed': 'Not checked yet'}[it.status] }}</span></td>
           <td>
-            <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-concept">자료 다시 보기</a>
-            {% for x in it.actions if x.kind == 'quiz' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-quiz">퀴즈</a>{% endfor %}
-            {% for a in it.actions if a.kind == 'simulation' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-simulation">시뮬레이션</a>{% endfor %}
+            <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-concept">Review the material</a>
+            {% for x in it.actions if x.kind == 'quiz' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-quiz">Quiz</a>{% endfor %}
+            {% for a in it.actions if a.kind == 'simulation' %} · <a href="{{ url_for('econova.lesson', course_id=it.course_id, lesson_id=it.lesson_id) }}#sec-simulation">Simulation</a>{% endfor %}
             <div class="hint">{{ it.reason }}</div>
           </td>
         </tr>
       {% endfor %}
       </tbody>
     </table></div>
-    {% if recs.more %}<p class="hint">이 밖에 {{ recs.more }}개 개념이 더 있어요.</p>{% endif %}
+    {% if recs.more %}<p class="hint">{{ recs.more }} more {{ 'concept' if recs.more == 1 else 'concepts' }} not shown.</p>{% endif %}
     {% endif %}
     {% if recs.next_lessons %}
-    <p><strong>다음 레슨:</strong>
-      {% for n in recs.next_lessons %}<a href="{{ url_for('econova.lesson', course_id=n.course_id, lesson_id=n.lesson_id) }}">{{ n.course_title }} · 레슨 {{ n.order }} {{ n.lesson_title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    <p><strong>Next lessons:</strong>
+      {% for n in recs.next_lessons %}<a href="{{ url_for('econova.lesson', course_id=n.course_id, lesson_id=n.lesson_id) }}">{{ n.course_title }} · Lesson {{ n.order }} {{ n.lesson_title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
     {% endif %}
     {% if recs.weak_areas %}
-    <p><strong>진단평가에서 다시 보면 좋은 기초 영역:</strong>
-      {% for a in recs.weak_areas %}{{ area_names.get(a.area, a.area) }} ({{ a.correct }}/{{ a.total }}{% if a.provisional %}, 잠정{% endif %}){% if not loop.last %}, {% endif %}{% endfor %}</p>
+    <p><strong>Basic areas worth revisiting from your diagnostic assessment:</strong>
+      {% for a in recs.weak_areas %}{{ area_names.get(a.area, a.area) }} ({{ a.correct }}/{{ a.total }}{% if a.provisional %}, provisional{% endif %}){% if not loop.last %}, {% endif %}{% endfor %}</p>
     {% endif %}
     {% if recs['items'] and ai_enabled %}
     <div class="ai-box">
-      <button type="button" class="btn secondary" data-recs-explain data-endpoint="{{ url_for('econova.recommendations_explain') }}" data-csrf="{{ csrf_token() }}">AI 에게 추천 이유 쉽게 설명 듣기</button>
+      <button type="button" class="btn secondary" data-recs-explain data-endpoint="{{ url_for('econova.recommendations_explain') }}" data-csrf="{{ csrf_token() }}">Ask AI to explain these recommendations simply</button>
       <div data-recs-out aria-live="polite"></div>
-      <p class="hint">AI 설명은 위 측정 결과를 풀어 쓴 참고용 조언이에요. 순위와 수치는 바꾸지 않아요.</p>
+      <p class="hint">The AI explanation is advice for reference that restates the measured results above. It does not change any rankings or numbers.</p>
     </div>
     {% endif %}
   </section>
   {% endif %}
 
   <section class="block" aria-labelledby="h-mine">
-    <div class="browse-head"><h2 id="h-mine">내 강좌</h2><a class="hint" href="{{ url_for('econova.catalog') }}">강좌 카탈로그 →</a></div>
+    <div class="browse-head"><h2 id="h-mine">My courses</h2><a class="hint" href="{{ url_for('econova.catalog') }}">Course catalog →</a></div>
     {% if cards %}
     <div class="ec-grid">
       {% for card in cards %}
       {% set c = card.course %}
       {% if c %}
       <article class="ec-card ec-mine">
-        <a class="ec-cover-link" href="{{ url_for('econova.course_detail', course_id=c.id) }}" aria-label="{{ c.title_ko }} 강좌 상세"></a>
+        <a class="ec-cover-link" href="{{ url_for('econova.course_detail', course_id=c.id) }}" aria-label="{{ c.title_ko }} course details"></a>
         <div class="ec-card-top">
           <span class="ec-code">{{ c.id|upper }}</span>
-          <span>{% if c.fixture %}<span class="pill pill-dev">개발용 테스트 강좌</span> {% endif %}{% if card.enrollment.status == 'completed' %}<span class="pill pill-done">수료{% if card.enrollment.completion_policy == 'dev_provisional' %} (테스트){% endif %}</span>{% else %}<span class="pill {{ 'pill-done' if card.progress.status == 'lessons_completed' else 'pill-on' }}">{{ m.course_status_text(card.progress) }}</span>{% endif %}</span>
+          <span>{% if c.fixture %}<span class="pill pill-dev">Development test course</span> {% endif %}{% if card.enrollment.status == 'completed' %}<span class="pill pill-done">Course completed{% if card.enrollment.completion_policy == 'dev_provisional' %} (test){% endif %}</span>{% else %}<span class="pill {{ 'pill-done' if card.progress.status == 'lessons_completed' else 'pill-on' }}">{{ m.course_status_text(card.progress) }}</span>{% endif %}</span>
         </div>
         <h3>{{ c.title_ko }}</h3>
         <p>{{ c.description }}</p>
         {{ m.sdg_badges(c) }}
-        {{ m.progress_bar(card.progress, c.title_ko ~ ' 진도') }}
-        <p class="hint">난이도 {{ difficulty_names[card.enrollment.selected_difficulty] }}</p>
+        {{ m.progress_bar(card.progress, c.title_ko ~ ' progress') }}
+        <p class="hint">Level: {{ difficulty_names[card.enrollment.selected_difficulty] }}</p>
         <div class="ec-card-actions">
           {% if card.available and card.progress.next_lesson %}
-          <a class="btn" href="{{ url_for('econova.continue_learning', course_id=c.id) }}">이어서 학습</a>
+          <a class="btn" href="{{ url_for('econova.continue_learning', course_id=c.id) }}">Continue learning</a>
           {% elif not card.available %}
-          <span class="hint">지금은 학습할 수 없는 강좌예요.</span>
+          <span class="hint">This course isn't available right now.</span>
           {% else %}
-          <a class="btn secondary" href="{{ url_for('econova.course_detail', course_id=c.id) }}">강좌 보기</a>
+          <a class="btn secondary" href="{{ url_for('econova.course_detail', course_id=c.id) }}">View course</a>
           {% endif %}
         </div>
       </article>
       {% else %}
       <article class="ec-card is-soon">
         <h3>{{ card.enrollment.course_id }}</h3>
-        <p class="hint">이 강좌 정보는 지금 이용할 수 없어요. 학습 기록은 그대로 보관돼요.</p>
+        <p class="hint">This course's information isn't available right now. Your learning history is kept safe.</p>
       </article>
       {% endif %}
       {% endfor %}
     </div>
     {% else %}
     <div class="ec-empty">
-      <p>아직 수강 중인 강좌가 없어요. 강좌 카탈로그에서 관심 있는 경제 강좌를 골라 보세요.</p>
-      <a class="btn" href="{{ url_for('econova.catalog') }}">강좌 둘러보기</a>
+      <p>You aren't enrolled in any courses yet. Pick an economics course that interests you from the course catalog.</p>
+      <a class="btn" href="{{ url_for('econova.catalog') }}">Browse courses</a>
     </div>
     {% endif %}
   </section>

@@ -23,10 +23,10 @@ from econova import config
 DEFAULTS = {"SIMULATION_RUNS": 200, "TUTOR_MESSAGES": 200, "FEEDBACK_REQUESTS": 10, "DEBATES_PER_TOPIC": 20,
             "DEBATES_TOTAL": 100, "CAPSTONE_VERSIONS": 100, "CAPSTONE_FEEDBACK": 50, "DIAGNOSTIC_ATTEMPTS": 50,
             "QUIZ_ATTEMPTS": 100}
-LABELS = {"SIMULATION_RUNS": "저장한 시뮬레이션", "TUTOR_MESSAGES": "이 레슨의 AI 튜터 대화",
-          "FEEDBACK_REQUESTS": "이 결과에 대한 AI 오답 설명", "DEBATES_PER_TOPIC": "이 주제의 토론",
-          "DEBATES_TOTAL": "토론 대화", "CAPSTONE_VERSIONS": "캡스톤 저장 버전", "CAPSTONE_FEEDBACK": "캡스톤 AI 코치 기록",
-          "DIAGNOSTIC_ATTEMPTS": "진단평가 응시", "QUIZ_ATTEMPTS": "이 퀴즈의 응시"}
+LABELS = {"SIMULATION_RUNS": "saved simulations", "TUTOR_MESSAGES": "AI Tutor messages for this lesson",
+          "FEEDBACK_REQUESTS": "AI explanations of mistakes for this result", "DEBATES_PER_TOPIC": "debates on this topic",
+          "DEBATES_TOTAL": "debate conversations", "CAPSTONE_VERSIONS": "saved Capstone project versions", "CAPSTONE_FEEDBACK": "Capstone AI coach records",
+          "DIAGNOSTIC_ATTEMPTS": "diagnostic assessment attempts", "QUIZ_ATTEMPTS": "attempts on this quiz"}
 
 
 class QuotaExceeded(Exception):
@@ -36,17 +36,17 @@ class QuotaExceeded(Exception):
 
     @property
     def message(self):
-        return (f"{LABELS[self.name]} 저장 한도({self.limit}개)에 닿았어요. 지금까지의 기록은 그대로 남아 있어요. "
-                "한도를 늘려야 하면 운영자에게 문의해 주세요.")
+        return (f"You've reached the limit for {LABELS[self.name]} ({self.limit}). Everything you've saved so far is still kept. "
+                "If you need a higher limit, please contact the site administrator.")
 
 
 def limit(name):
     try:
         value = int(config.env(f"ECONOVA_QUOTA_{name}") or DEFAULTS[name])
     except ValueError:
-        raise config.ConfigError(f"ECONOVA_QUOTA_{name} 는 정수여야 합니다.")
+        raise config.ConfigError(f"ECONOVA_QUOTA_{name} must be an integer.")
     if not 1 <= value <= 100000:
-        raise config.ConfigError(f"ECONOVA_QUOTA_{name} 는 1~100000 사이여야 합니다.")
+        raise config.ConfigError(f"ECONOVA_QUOTA_{name} must be between 1 and 100000.")
     return value
 
 

@@ -194,7 +194,7 @@ def test_request_diagnostics_is_off_by_default_and_admin_only(app, client, monke
                     environ_base={"REMOTE_ADDR": "10.0.0.1"})
     html = res.get_data(as_text=True)
     assert res.status_code == 200 and res.headers["Cache-Control"] == "no-store"
-    assert "10.0.0.1" in html and "203.0.113.9" in html and "1.2.3.4" in html and "항목 3개" in html
+    assert "10.0.0.1" in html and "203.0.113.9" in html and "1.2.3.4" in html and "X-Forwarded-For entries: 3" in html
 
 
 def test_ip_candidates_follow_the_right_end_of_the_chain(app):

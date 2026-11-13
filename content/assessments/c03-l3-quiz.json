@@ -4,9 +4,9 @@
   "kind": "lesson_quiz",
   "course_id": "c03",
   "lesson_id": "c03-l3",
-  "version": 1,
-  "title": "레슨 3 형성 퀴즈: 탄소세와 정부 개입",
-  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "version": 2,
+  "title": "Lesson 3 Quiz: Carbon Taxes and Government Intervention",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -17,7 +17,7 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+        "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
       }
     ]
   },
@@ -28,7 +28,7 @@
   "questions": [
     {
       "id": "c03-l3-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l3",
       "objective": 1,
@@ -39,23 +39,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "모든 공장에 같은 배출 기준을 정하는 직접 규제와 비교한 오염세의 장점으로 가장 알맞은 것은?",
+      "prompt": "Compared with command-and-control regulation that sets the same emission standard for every factory, what is the main advantage of a pollution tax?",
       "choices": [
         {
           "id": "a",
-          "text": "줄이는 비용이 낮은 기업이 더 많이 줄이게 되어 같은 감축을 더 적은 비용으로 이룰 수 있다"
+          "text": "Firms that can cut cheaply cut more, so the same reduction costs less overall"
         },
         {
           "id": "b",
-          "text": "정부가 전체 감축량을 미리 정확히 정할 수 있다"
+          "text": "The government can set the total amount of reduction precisely in advance"
         },
         {
           "id": "c",
-          "text": "세금을 내면 오염 피해가 그 자리에서 사라진다"
+          "text": "Paying the tax makes the pollution damage disappear on the spot"
         },
         {
           "id": "d",
-          "text": "기업마다 같은 양을 줄이도록 정해진다"
+          "text": "Each firm is assigned the same amount of pollution to cut"
         }
       ],
       "source_ids": [
@@ -67,7 +67,7 @@
     },
     {
       "id": "c03-l3-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l3",
       "objective": 1,
@@ -77,23 +77,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "배출권 거래제에서 정부가 직접 정하는 것으로 가장 알맞은 것은?",
+      "prompt": "In an emissions trading system (cap-and-trade), what does the government set directly?",
       "choices": [
         {
           "id": "a",
-          "text": "배출권 한 장의 가격"
+          "text": "The price of a single emissions permit"
         },
         {
           "id": "b",
-          "text": "기업마다 써야 할 감축 기술"
+          "text": "The abatement technology each firm has to use"
         },
         {
           "id": "c",
-          "text": "각 기업이 줄여야 할 양"
+          "text": "The amount each individual firm has to cut"
         },
         {
           "id": "d",
-          "text": "전체 배출 한도(총량)"
+          "text": "The cap on total emissions"
         }
       ],
       "source_ids": [
@@ -105,7 +105,7 @@
     },
     {
       "id": "c03-l3-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c03-l3",
       "objective": 2,
@@ -116,7 +116,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "가상의 예: 수요 Qd = 150 − 3P, 공급 Qs = 10 + 2P 이고 세금이 없을 때 균형 가격은 28 이에요. 생산자에게 1개당 탄소세 10 을 매기면 소비자가 내는 가격은 얼마인가요? (숫자만 입력)",
+      "prompt": "Hypothetical example: Demand is Qd = 150 − 3P and supply is Qs = 10 + 2P, and with no tax the equilibrium price is $28. If producers are charged a carbon tax of $10 per unit, what price do consumers pay, in dollars? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-12-2",
@@ -127,7 +127,7 @@
     },
     {
       "id": "c03-l3-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c03-l3",
       "objective": 2,
@@ -138,23 +138,23 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "휘발유처럼 가격이 올라도 사람들이 쓰는 양을 쉽게 줄이지 못하는(수요가 가격에 매우 둔감한) 상품에 생산자 대상 탄소세를 매겼어요. 세금 부담에 대한 설명으로 가장 알맞은 것은?",
+      "prompt": "A carbon tax charged to producers is placed on a product like gasoline, where people cannot easily cut back even when the price rises (demand is very insensitive to price). Which statement best describes the tax burden?",
       "choices": [
         {
           "id": "a",
-          "text": "생산자가 대부분 부담한다"
+          "text": "Producers bear most of the burden"
         },
         {
           "id": "b",
-          "text": "법적으로 세금을 내는 생산자가 부담 전체를 진다"
+          "text": "Producers, who legally pay the tax, bear the entire burden"
         },
         {
           "id": "c",
-          "text": "소비자가 대부분 부담한다"
+          "text": "Consumers bear most of the burden"
         },
         {
           "id": "d",
-          "text": "소비자와 생산자가 정확히 반씩 나누어 부담한다"
+          "text": "Consumers and producers split the burden exactly in half"
         }
       ],
       "source_ids": [
@@ -166,7 +166,7 @@
     },
     {
       "id": "c03-l3-q5",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c03-l3",
       "objective": 3,
@@ -176,7 +176,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "q3 과 같은 시장에서 생산 1개당 외부 피해가 10 이라고 가정해요. 탄소세 10 을 매겼을 때 사회적 후생 변화(피한 외부 피해 − 시장 내부 손실)는 얼마인가요? (숫자만 입력)",
+      "prompt": "In the same market as q3, assume each unit produced causes $10 of external damage. With a carbon tax of $10, what is the change in social welfare (avoided external damage − loss within the market), in dollars? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-12-2",

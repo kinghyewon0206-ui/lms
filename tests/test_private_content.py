@@ -65,12 +65,12 @@ def test_merge_restores_server_data():
 
 
 @pytest.mark.parametrize("tamper, message", [
-    (lambda p, k: k.update(assessment_version=99), "평가 버전"),
-    (lambda p, k: p["questions"][0].update(prompt=p["questions"][0]["prompt"] + " (수정)"), "공개 문항이 바뀌어"),
-    (lambda p, k: p["questions"][0]["choices"].reverse(), "공개 문항이 바뀌어"),
-    (lambda p, k: k["questions"].popitem(), "문항 목록"),
-    (lambda p, k: next(iter(k["questions"].values())).update(question_version=7), "문항 버전"),
-    (lambda p, k: next(iter(k["questions"].values())).update(score_override=1), "알 수 없는 항목"),
+    (lambda p, k: k.update(assessment_version=99), "assessment version"),
+    (lambda p, k: p["questions"][0].update(prompt=p["questions"][0]["prompt"] + " (edited)"), "public question changed"),
+    (lambda p, k: p["questions"][0]["choices"].reverse(), "public question changed"),
+    (lambda p, k: k["questions"].popitem(), "question list"),
+    (lambda p, k: next(iter(k["questions"].values())).update(question_version=7), "question version"),
+    (lambda p, k: next(iter(k["questions"].values())).update(score_override=1), "unknown fields"),
 ])
 def test_mismatched_keys_fail_closed(tamper, message):
     public, keys = _fixture_pair()
@@ -83,7 +83,7 @@ def test_public_file_with_answers_is_rejected(tmp_path):
     public, keys = _fixture_pair()
     full = private_content.merge(public, keys, "t")
     assert private_content.public_violations(full)
-    with pytest.raises(content.ContentError, match="정답 정보"):
+    with pytest.raises(content.ContentError, match="contains answer information"):
         diagnostic_like = dict(_load(diagnostic.FIXTURE_PATH))
         diagnostic_like["questions"][0]["answer"] = "a"
         path = tmp_path / "diag.json"
@@ -116,7 +116,7 @@ def test_quiz_without_keys_fails_closed(app, logged_in, no_fixture_keys):
     _enroll(logged_in, "dev-f1")
     _post(logged_in, "/learn/dev-f1/dev-f1-l1/material-reviewed")
     res = logged_in.get("/learn/dev-f1/dev-f1-l1/quiz")
-    assert res.status_code == 503 and "평가를 지금 열 수 없어요" in res.get_data(as_text=True)
+    assert res.status_code == 503 and "This assessment can't be opened right now" in res.get_data(as_text=True)
     with logged_in.session_transaction() as s:
         s["assess_tokens"] = {"dev-f1-l1-quiz": "tok-1-aaaaaaaaaaaaaa"}
     res = logged_in.post("/learn/dev-f1/dev-f1-l1/quiz", data={"csrf_token": CSRF, "submission_token": "tok-1-aaaaaaaaaaaaaa", "q_x": "a"})
@@ -182,7 +182,7 @@ def test_wrong_keys_close_only_that_assessment(tmp_path, monkeypatch):
     try:
         course = content.load_catalog(True).course("dev-f1")
         assert course.lesson("dev-f1-l1").quiz_assessment.answer_keys is False
-        assert "정답 키 검사 실패" in course.lesson("dev-f1-l1").quiz_assessment.keys_problem
+        assert "Answer key check failed" in course.lesson("dev-f1-l1").quiz_assessment.keys_problem
         assert course.lesson("dev-f1-l2").quiz_assessment.answer_keys is True
     finally:
         content.load_catalog.cache_clear()
@@ -202,7 +202,7 @@ def test_fixture_keys_must_be_marked_synthetic(tmp_path, monkeypatch):
 # ------------------------------------------------------------- 설정
 def test_private_dir_configuration(monkeypatch, tmp_path):
     monkeypatch.setenv("ECONOVA_PRIVATE_CONTENT_DIR", os.path.join(ROOT, "content"))
-    with pytest.raises(config.ConfigError, match="저장소 밖"):
+    with pytest.raises(config.ConfigError, match="outside the repository"):
         config.private_content_dir()
     monkeypatch.setenv("ECONOVA_PRIVATE_CONTENT_DIR", str(tmp_path))
     assert config.private_content_dir() == os.path.realpath(str(tmp_path))
@@ -211,20 +211,21 @@ def test_private_dir_configuration(monkeypatch, tmp_path):
     monkeypatch.setenv("RENDER", "1")
     assert config.private_content_dir() is None                              # 운영: 기본값 없음 → 평가는 닫힌다
     assert private_content.keys_path("c02-final") is None
-    with pytest.raises(private_content.KeysUnavailable, match="설정되지 않았습니다"):
+    with pytest.raises(private_content.KeysUnavailable, match="is not set"):
         private_content.read_keys("c02-final")
 
 
 # ------------------------------------------------------------- 커밋 전 점검
 @pytest.mark.parametrize("rel, text, expect", [
-    ("content/assessments/x.json", json.dumps({"questions": [{"id": "q1", "answer": "a"}]}), "정답 정보"),
-    ("content/assessments/x.json", json.dumps({"questions": [{"id": "q1", "choices": [{"id": "a", "correct": True}]}]}), "정답 정보"),
-    ("content/x.answers.json", json.dumps({"synthetic": True}), "비공개 폴더"),
+    ("content/assessments/x.json", json.dumps({"questions": [{"id": "q1", "answer": "a"}]}), "contains answer information"),
+    ("content/assessments/x.json", json.dumps({"questions": [{"id": "q1", "choices": [{"id": "a", "correct": True}]}]}), "contains answer information"),
+    ("content/x.answers.json", json.dumps({"synthetic": True}), "private folder"),
     ("content/dev_fixtures/private/x.answers.json", json.dumps({"kind": "assessment_keys"}), "synthetic"),
-    ("docs/review/c02.md", "# 검토", "docs/review"),
-    ("notes/anything.md", f"<!-- {public_safety.REVIEW_MARKER} -->", "교사용 검토 문서"),
+    ("docs/review/c02.md", "# Review", "docs/review"),
+    ("notes/anything.md", f"<!-- {public_safety.REVIEW_MARKER} -->", "teacher review document"),
+    ("notes/legacy.md", f"<!-- {public_safety.LEGACY_REVIEW_MARKERS[0]} -->", "teacher review document"),
     ("app.py", "KEY = 'sk-" + "a" * 30 + "'", "OpenAI"),
-    ("cred.json", '{"type": "service_account", "private_key": "x"}', "서비스 계정"),
+    ("cred.json", '{"type": "service_account", "private_key": "x"}', "Service account"),
 ])
 def test_scanner_finds_restricted_data(rel, text, expect):
     issues = public_safety.scan_text(rel, text)
@@ -257,7 +258,7 @@ def test_gitignore_blocks_private_material():
 REAL_DIR = os.environ.get("ECONOVA_REAL_PRIVATE_CONTENT_DIR")
 
 
-@pytest.mark.skipif(not REAL_DIR, reason="실제 정답 키 폴더(ECONOVA_REAL_PRIVATE_CONTENT_DIR)가 없어 건너뜀")
+@pytest.mark.skipif(not REAL_DIR, reason="Skipped: no real answer key folder (ECONOVA_REAL_PRIVATE_CONTENT_DIR)")
 def test_real_keys_match_public_definitions(monkeypatch):
     monkeypatch.setenv("ECONOVA_PRIVATE_CONTENT_DIR", REAL_DIR)
     monkeypatch.setattr(diagnostic, "PATH", os.path.join(ROOT, "content", "diagnostic.json"))
@@ -278,8 +279,8 @@ def test_cli_reports_closed_assessments_and_public_scan(sqlite_app):
     runner = sqlite_app.test_cli_runner()
     res = runner.invoke(args=["check-content"])
     assert res.exit_code == 0, res.output                     # 초안 평가에 키가 없는 것은 오류가 아니다 (응시 불가로 닫힘)
-    assert "[정답 키 없음 → 응시 불가] c02-final" in res.output and "[정답 키 없음 → 응시 불가] c01-final" in res.output
+    assert "[No answer key -> cannot be taken] c02-final" in res.output and "[No answer key -> cannot be taken] c01-final" in res.output
     n_real = len([f for f in os.listdir(os.path.join(ROOT, "content", "assessments")) if f.endswith(".json")])
-    assert f"열 수 없는 평가 {n_real}개" in res.output   # 강좌마다 퀴즈 3 + 최종 1. 진단평가는 테스트에서 합성 키 사용
+    assert f"Answer key check: {n_real} assessment(s) cannot be opened" in res.output   # 강좌마다 퀴즈 3 + 최종 1. 진단평가는 테스트에서 합성 키 사용
     res = runner.invoke(args=["check-public-files"])
-    assert res.exit_code == 0 and "공개 저장소 점검 통과" in res.output
+    assert res.exit_code == 0 and "Public repository check passed" in res.output

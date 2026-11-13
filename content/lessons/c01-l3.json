@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l3",
-  "content_version": 1,
+  "content_version": 2,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -12,28 +12,34 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 초안. 사람(관리자) 검토 전이며 학생에게 공개하지 않는다."
+        "note": "AI-written draft. Not yet reviewed by a human (admin) and not to be published to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
   "objectives": [
-    "소비 선택이 자원 사용과 쓰레기에 미치는 영향을 기회비용과 연결해 설명한다.",
-    "개인이 내는 비용(사적 비용)과 사회 전체가 부담하는 비용(사회적 비용)이 다를 수 있음을 설명한다.",
-    "지속가능한 소비를 돕는 방법(정보 제공, 가격·보증금, 재사용)의 효과와 한계를 비교한다."
+    "Explain how consumption choices affect resource use and waste, and connect this to opportunity cost.",
+    "Explain why the cost an individual pays (private cost) can differ from the cost borne by society as a whole (social cost).",
+    "Compare the effects and limits of tools that encourage sustainable consumption (information, prices and deposits, and reuse)."
   ],
   "concepts": [
     {
       "id": "sustainable_consumption",
-      "term": "지속가능한 소비",
-      "definition": "지금의 필요를 채우면서도 자원을 효율적으로 쓰고 쓰레기를 줄여, 미래 세대가 쓸 자원을 남기는 소비. SDG 12 의 목표다.",
+      "term": "Sustainable consumption",
+      "definition": "Consumption that meets today's needs while using resources efficiently and reducing waste, so that resources remain for future generations. It is the goal of SDG 12.",
       "source_ids": [
         "un-sdg-12"
       ]
     },
     {
       "id": "consumption_tradeoff",
-      "term": "소비 선택의 기회비용",
-      "definition": "무언가를 사거나 버리는 선택에는 그 돈·자원으로 할 수 있었던 다른 쓰임을 포기하는 기회비용이 따른다. 버려지는 음식에도 쓰인 자원의 기회비용이 있다.",
+      "term": "Opportunity cost of consumption choices",
+      "definition": "Every choice to buy or throw something away carries an opportunity cost: the other uses of that money or those resources that are given up. Even wasted food has an opportunity cost, because of the resources that went into it.",
       "source_ids": [
         "openstax-pe3-2-1",
         "un-sdg-12"
@@ -41,16 +47,16 @@
     },
     {
       "id": "social_cost",
-      "term": "사적 비용과 사회적 비용",
-      "definition": "사적 비용은 소비자나 생산자가 직접 내는 비용, 사회적 비용은 여기에 다른 사람이나 미래 세대가 떠안는 비용(쓰레기 처리, 오염)을 더한 것이다. 둘이 다르면 사람들이 사회적으로 바람직한 것보다 더 많이 쓰게 된다.",
+      "term": "Private cost and social cost",
+      "definition": "Private cost is the cost a consumer or producer pays directly. Social cost adds the costs that other people or future generations must bear (such as waste disposal and pollution). When the two differ, people use more than is socially desirable.",
       "source_ids": [
         "openstax-pe3-12-1"
       ]
     },
     {
       "id": "incentives",
-      "term": "유인",
-      "definition": "사람들의 선택을 바꾸는 이익이나 비용. 가격, 보증금, 할인, 벌금, 정보, 사회적 평판 등이 유인이 될 수 있다.",
+      "term": "Incentives",
+      "definition": "Benefits or costs that change people's choices. Prices, deposits, discounts, fines, information, and social reputation can all act as incentives.",
       "source_ids": [
         "openstax-pe3-2-1",
         "openstax-pe3-2-3"
@@ -58,8 +64,8 @@
     },
     {
       "id": "values_and_information",
-      "term": "가치와 정보",
-      "definition": "사람은 돈만 따지지 않고 환경·타인에 대한 가치도 고려하며, 습관 때문에 늘 합리적으로 고르지는 않는다. 정확한 정보와 인식이 더 지속가능한 선택을 돕는다.",
+      "term": "Values and information",
+      "definition": "People care about more than money; they also value the environment and other people, and because of habits they do not always choose rationally. Accurate information and awareness help people make more sustainable choices.",
       "source_ids": [
         "openstax-pe3-2-3",
         "un-sdg-12"
@@ -68,104 +74,104 @@
   ],
   "levels": {
     "beginner": {
-      "summary": "우리가 사고 쓰고 버리는 선택은 자원과 쓰레기에 영향을 줘요. 내가 내지 않는 비용도 있다는 걸 알면 더 좋은 선택을 할 수 있어요.",
+      "summary": "What we buy, use, and throw away affects resources and waste. Knowing that some costs are paid by someone other than you can help you make better choices.",
       "sections": [
         {
-          "heading": "버리는 것에도 비용이 있어요",
+          "heading": "Throwing things away has a cost, too",
           "concept_ids": [
             "sustainable_consumption",
             "consumption_tradeoff"
           ],
           "paragraphs": [
-            "급식을 남기면 음식만 버리는 게 아니에요. 그 음식을 기르고, 옮기고, 요리하는 데 쓴 물·전기·사람의 일도 함께 버려져요. 그 자원으로 다른 사람이 먹을 음식을 만들 수도 있었으니, 버린 음식에도 기회비용이 있어요. 필요한 만큼 사고, 오래 쓰고, 다시 쓰는 소비를 '지속가능한 소비'라고 해요."
+            "When you leave part of your school cafeteria lunch uneaten, you're not just throwing away food. The water, electricity, and work used to grow, transport, and cook that food are thrown away with it. Those resources could have made food for someone else, so wasted food has an opportunity cost. Buying only what you need, using things for a long time, and reusing them is called sustainable consumption."
           ]
         },
         {
-          "heading": "내가 내지 않는 비용",
+          "heading": "Costs you don't pay",
           "concept_ids": [
             "social_cost"
           ],
           "paragraphs": [
-            "편의점에서 일회용 비닐봉지를 공짜로 받으면 나는 돈을 내지 않아요. 하지만 그 봉지를 모아 처리하고, 바다로 흘러가면 치우는 비용은 다른 사람과 미래 세대가 내요. 내가 내는 비용과 사회 전체가 내는 비용이 다르면, 사람들은 그 물건을 필요보다 많이 쓰게 돼요."
+            "When a store gives you a free plastic bag, you don't pay anything. But someone has to collect and dispose of that bag, and if it ends up in the ocean, other people and future generations pay to clean it up. When the cost you pay is different from the cost society pays, people end up using more of that item than they need."
           ]
         },
         {
-          "heading": "선택을 바꾸는 작은 이유들",
+          "heading": "Small reasons that change choices",
           "concept_ids": [
             "incentives",
             "values_and_information"
           ],
           "paragraphs": [
-            "봉지값을 받거나, 컵을 반납하면 돈을 돌려주거나(보증금), 개인 컵을 가져오면 할인해 주면 사람들의 선택이 달라져요. 이런 것을 '유인'이라고 해요. 또 사람들은 돈만 생각하지 않아요. 환경을 아끼고 싶은 마음, 친구들의 시선, 정확한 정보도 선택을 바꿔요."
+            "Charging for bags, giving money back when you return a cup (a deposit), or offering a discount when you bring your own cup all change people's choices. These are called incentives. And people don't think only about money. Caring about the environment, what friends think, and accurate information can change choices, too."
           ]
         }
       ]
     },
     "intermediate": {
-      "summary": "소비 선택에는 자원의 기회비용이 있고, 사적 비용과 사회적 비용이 다르면 과다 소비가 생긴다. 가격·보증금·정보 같은 유인과 사람들의 가치가 선택을 바꾼다.",
+      "summary": "Consumption choices carry the opportunity cost of resources, and when private cost differs from social cost, people overconsume. Incentives such as prices, deposits, and information, along with people's values, change their choices.",
       "sections": [
         {
-          "heading": "소비와 자원",
+          "heading": "Consumption and resources",
           "concept_ids": [
             "sustainable_consumption",
             "consumption_tradeoff"
           ],
           "paragraphs": [
-            "지속가능한 소비는 덜 쓰는 것만이 아니라 같은 만족을 더 적은 자원으로 얻는 것이다. SDG 12 의 세부목표는 천연자원의 효율적 이용(12.2), 소매·소비 단계의 1인당 음식물 쓰레기 절반 감축과 생산·유통 단계의 식량 손실 감소(12.3), 쓰레기 발생 감축(12.5), 지속가능한 생활에 대한 정보와 인식(12.8)을 포함한다. 버려지는 음식·물건은 그 생산에 쓰인 자원의 다른 쓰임을 포기한 것이므로 사회 전체의 기회비용이다."
+            "Sustainable consumption is not just about using less; it is about getting the same satisfaction from fewer resources. The targets of SDG 12 include the efficient use of natural resources (12.2), halving per capita food waste at the retail and consumer levels and reducing food losses along production and supply chains (12.3), reducing waste generation (12.5), and information and awareness for sustainable lifestyles (12.8). Wasted food and goods represent other uses of the resources that went into producing them, so they are an opportunity cost for society as a whole."
           ]
         },
         {
-          "heading": "사적 비용과 사회적 비용",
+          "heading": "Private cost and social cost",
           "concept_ids": [
             "social_cost"
           ],
           "paragraphs": [
-            "어떤 거래가 거래 당사자가 아닌 제3자에게 비용을 지우면(쓰레기, 오염) 그 비용은 가격에 들어가지 않는다. 그러면 소비자는 사적 비용만 보고 결정해 사회적으로 바람직한 양보다 더 많이 쓰게 된다. 이런 제3자 효과를 외부효과라고 하며, 시장 실패(c03)에서 자세히 배운다."
+            "When a transaction imposes costs (such as waste or pollution) on third parties who are not part of the transaction, those costs are not included in the price. Consumers then decide based only on private cost and use more than the socially desirable amount. This kind of third-party effect is called an externality, and you will study it in detail in the market failure course (c03)."
           ]
         },
         {
-          "heading": "유인과 정책 수단",
+          "heading": "Incentives and policy tools",
           "concept_ids": [
             "incentives",
             "values_and_information"
           ],
           "paragraphs": [
-            "정책은 유인을 바꿔 선택을 바꾼다. 봉투 유료화·부담금은 사적 비용을 사회적 비용에 가깝게 올리고, 보증금 제도는 반납하면 돈을 돌려줘 재사용·회수를 늘리며, 정보 공개와 표시(예: 음식물 쓰레기 배출량 공개)는 사람들이 결과를 알고 선택하게 한다. 사람들은 돈만큼 환경·타인에 대한 가치도 고려하고 습관의 영향도 크므로, 가격 수단과 정보·규범 수단을 함께 쓰는 경우가 많다."
+            "Policies change choices by changing incentives. Bag fees and similar charges raise private cost closer to social cost. Deposit-return systems pay people back when they return containers, increasing reuse and collection. Disclosure and labeling (for example, publishing how much food waste is generated) let people choose knowing the consequences. Because people weigh environmental and social values alongside money, and habits matter a great deal, price tools are often combined with information and social-norm tools."
           ]
         }
       ]
     },
     "advanced": {
-      "summary": "사적 비용과 사회적 비용의 차이가 과다 소비를 만들며, 그 차이를 메우는 가격 수단(부담금·보증금)과 정보·규범 수단은 각각 효과와 한계가 다르다. 재사용의 이득은 사용 횟수에 달려 있다.",
+      "summary": "The gap between private cost and social cost leads to overconsumption. Price tools (fees and deposits) and information and norm-based tools that close this gap each have different effects and limits. Whether reuse pays off depends on how many times an item is used.",
       "sections": [
         {
-          "heading": "자원 사용의 효율과 지속가능성",
+          "heading": "Efficiency and sustainability in resource use",
           "concept_ids": [
             "sustainable_consumption",
             "consumption_tradeoff"
           ],
           "paragraphs": [
-            "같은 효용을 더 적은 자원으로 얻는 것이 효율 향상이고, 지속가능성은 여기에 '미래 세대의 선택 가능성을 줄이지 않는가'라는 기준을 더한다. 음식물 쓰레기 감축은 이미 생산된 식량을 더 많이 활용하게 해, 생산을 늘리지 않고도 공급이 늘어난 것과 비슷한 효과를 낸다 (c02 L3 의 SDG 사례와 연결)."
+            "Getting the same utility from fewer resources is an efficiency gain; sustainability adds a further criterion: whether the choice narrows the options available to future generations. Reducing food waste lets us make fuller use of food already produced, which has an effect similar to increasing supply without increasing production (this connects to the SDG case in c02 Lesson 3)."
           ]
         },
         {
-          "heading": "사적 비용과 사회적 비용의 차이",
+          "heading": "The gap between private cost and social cost",
           "concept_ids": [
             "social_cost"
           ],
           "paragraphs": [
-            "한 단위의 사회적 비용 = 사적 비용 + 외부 비용 이다. 소비자는 사적 비용까지만 고려해 '사적 편익 = 사적 비용'인 양을 고르므로, 외부 비용이 있으면 사회적으로 바람직한 양보다 많이 쓴다. 외부 비용만큼 부담금을 매기면 소비자가 마주하는 가격이 사회적 비용에 가까워져 사용량이 줄어든다. 다만 외부 비용을 정확히 재기 어렵고, 저소득층의 부담이 상대적으로 클 수 있다는 형평의 문제가 남는다."
+            "Social cost per unit = private cost + external cost. Consumers consider only private cost and choose the quantity at which private benefit equals private cost, so when there is an external cost they use more than the socially desirable quantity. A fee equal to the external cost brings the price consumers face closer to the social cost, which reduces use. However, external costs are hard to measure precisely, and an equity concern remains: such fees can weigh relatively more heavily on low-income households."
           ]
         },
         {
-          "heading": "수단의 비교와 행동의 현실",
+          "heading": "Comparing tools and the reality of behavior",
           "concept_ids": [
             "incentives",
             "values_and_information"
           ],
           "paragraphs": [
-            "보증금은 반납하면 돌려받으므로 회수율을 높이면서 최종 부담은 작게 할 수 있지만, 반납 시설과 관리 비용이 든다. 정보·표시는 비용이 낮지만 효과가 작을 수 있고, 습관과 편리함을 이기지 못하기도 한다. 사람들은 이기적이면서도 이타적이고, 늘 합리적으로 계산하지는 않는다는 점을 고려하면 기본값 바꾸기(예: 요청할 때만 수저 제공) 같은 설계도 대안이 된다.",
-            "다회용품은 만드는 데 일회용품보다 자원이 많이 들어 충분히 여러 번 써야 이득이다. 손익분기 사용 횟수는 '다회용품의 추가 비용 ÷ 1회당 아끼는 비용'으로 볼 수 있다."
+            "Because a deposit is refunded on return, it can raise collection rates while keeping the final burden on consumers small, but return facilities and administration are costly. Information and labeling are inexpensive but may have small effects and can lose out to habit and convenience. Since people are both self-interested and altruistic and do not always calculate rationally, changing the default (for example, providing disposable cutlery only on request) is another design option.",
+            "Reusable items take more resources to make than single-use ones, so they pay off only if used enough times. The break-even number of uses can be estimated as the extra cost of the reusable item ÷ the cost saved per use."
           ]
         }
       ]
@@ -175,77 +181,77 @@
     {
       "id": "c01-l3-we1",
       "level": "beginner",
-      "title": "남긴 급식의 값",
-      "problem": "가상의 예: 급식 한 끼의 재료비가 3,000원이고, 한 학생이 평소 30% 를 남긴다면 한 끼에 몇 원어치 재료가 버려질까요?",
+      "title": "The value of a wasted cafeteria lunch",
+      "problem": "Hypothetical example: The ingredients for one school cafeteria lunch cost $3, and a student usually leaves 30% of it uneaten. How much money's worth of ingredients is thrown away per meal?",
       "steps": [
-        "3,000원의 30% = 3,000 × 0.3.",
-        "= 900원."
+        "30% of $3 = $3 × 0.3.",
+        "= $0.90."
       ],
-      "answer": "900원어치예요. 재료를 기르고 옮기고 요리하는 데 쓴 물·전기·노동도 함께 버려져요.",
+      "answer": "$0.90 worth (90 cents). The water, electricity, and labor used to grow, transport, and cook the ingredients are thrown away, too.",
       "check": {
         "type": "product",
         "factors": [
-          3000,
+          3,
           0.3
         ],
-        "expected": 900
+        "expected": 0.9
       }
     },
     {
       "id": "c01-l3-we2",
       "level": "intermediate",
-      "title": "다회용 컵은 몇 번 써야 이득일까",
-      "problem": "가상의 예: 카페에서 일회용 컵을 쓸 때마다 컵값 100원이 음료값에 들어간다고 하자. 12,000원짜리 다회용 컵을 사서 쓰면 그 100원을 아낀다. 다회용 컵을 몇 번 써야 컵값을 되찾는가?",
+      "title": "How many uses until a reusable cup pays off?",
+      "problem": "Hypothetical example: Suppose that every time a café uses a disposable cup, 10 cents for the cup is built into the price of the drink. If you buy a $12 reusable cup, you save those 10 cents each time. How many times must you use the reusable cup to earn back its price?",
       "steps": [
-        "한 번 쓸 때 아끼는 돈: 100원.",
-        "다회용 컵의 비용: 12,000원.",
-        "손익분기 횟수 = 12,000 ÷ 100 = 120번."
+        "Money saved per use: 10 cents.",
+        "Cost of the reusable cup: $12 = 1,200 cents.",
+        "Break-even number of uses = 1,200 ÷ 10 = 120 uses."
       ],
-      "answer": "120번. 그보다 적게 쓰면 돈으로는 손해이고, 환경 이득도 충분히 여러 번 써야 생긴다.",
+      "answer": "120 uses. If you use it fewer times, you lose money, and the environmental benefit also appears only after enough uses.",
       "check": {
         "type": "ratio",
-        "numerator": 12000,
-        "denominator": 100,
+        "numerator": 1200,
+        "denominator": 10,
         "expected": 120
       }
     },
     {
       "id": "c01-l3-we3",
       "level": "advanced",
-      "title": "사회적 비용과 봉투 부담금",
-      "problem": "가상의 예: 비닐봉지 한 장을 만드는 데 20원(사적 비용)이 들고, 쓰고 난 뒤 수거·처리와 환경 피해로 사회가 30원을 더 부담한다(외부 비용, 가정값). 가게가 봉지를 공짜로 준다면, 한 장의 사회적 비용과 소비자가 느끼는 비용의 차이는 얼마이며, 부담금을 얼마로 하면 그 차이를 메울 수 있는가?",
+      "title": "Social cost and a bag fee",
+      "problem": "Hypothetical example: Making one plastic bag costs 2 cents (private cost), and after use, collection, disposal, and environmental damage cost society another 3 cents (external cost, assumed value). If stores give bags away for free, what is the gap between the social cost of one bag and the cost the consumer faces, and what fee would close that gap?",
       "steps": [
-        "사회적 비용 = 사적 비용 20원 + 외부 비용 30원 = 50원.",
-        "공짜로 받으면 소비자가 느끼는 비용은 0원 → 차이 50원.",
-        "가게가 생산비 20원을 받고 외부 비용 30원만큼 부담금을 더하면 소비자 가격이 50원이 되어 사회적 비용과 같아진다."
+        "Social cost = private cost of 2 cents + external cost of 3 cents = 5 cents.",
+        "If the bag is free, the cost the consumer faces is 0 cents → a gap of 5 cents.",
+        "If the store charges the 2-cent production cost and adds a fee equal to the 3-cent external cost, the consumer price becomes 5 cents, equal to the social cost."
       ],
-      "answer": "차이는 50원. 생산비 20원에 외부 비용 30원의 부담금을 더해 봉지값을 50원으로 하면 사적 비용과 사회적 비용이 같아진다.",
+      "answer": "The gap is 5 cents. Charging the 2-cent production cost plus a 3-cent fee for the external cost, for a bag price of 5 cents, makes the private cost equal to the social cost.",
       "check": {
         "type": "difference",
-        "a": 50,
-        "b": 20,
-        "expected": 30
+        "a": 5,
+        "b": 2,
+        "expected": 3
       }
     }
   ],
   "graphs": [],
   "real_world_examples": [
     {
-      "title": "오염과 사회적 비용",
+      "title": "Pollution and social cost",
       "source_ids": [
         "openstax-pe3-12-1"
       ],
       "paragraphs": [
-        "공장이 오염 물질을 내보낼 때 공장이 직접 내는 비용(사적 비용)에는 주변 사람들이 겪는 피해가 들어가지 않는다. 피해까지 더한 사회적 비용이 사적 비용보다 크면 시장은 그 상품을 사회적으로 바람직한 양보다 많이 생산하게 된다."
+        "When a factory releases pollution, the costs the factory pays directly (its private costs) do not include the harm suffered by people nearby. If the social cost, which includes that harm, is greater than the private cost, the market produces more of the product than is socially desirable."
       ]
     },
     {
-      "title": "돈만으로 설명되지 않는 선택",
+      "title": "Choices that money alone can't explain",
       "source_ids": [
         "openstax-pe3-2-3"
       ],
       "paragraphs": [
-        "경제학의 선택 모형은 사람들이 늘 계산적이고 이기적이라고 보지 않는다. 사람들은 가족, 자선, 환경 같은 가치도 중요하게 여기며, 이런 가치도 선택의 편익과 비용에 들어간다."
+        "Economic models of choice do not assume that people are always calculating and selfish. People also value things like family, charity, and the environment, and these values enter into the benefits and costs of their choices."
       ]
     }
   ],
@@ -253,65 +259,65 @@
     "sdgs": [
       12
     ],
-    "title": "우리 학교 급식의 음식물 쓰레기 줄이기",
+    "title": "Reducing food waste in our school cafeteria",
     "paragraphs": [
-      "SDG 세부목표 12.3 은 소매·소비 단계의 1인당 음식물 쓰레기를 절반으로 줄이고 생산·유통 과정의 식량 손실도 줄이자고 말한다.",
-      "가상의 상황: 우리 학교 급식실에서 매일 많은 음식이 남는다. 학생회와 영양 선생님이 음식물 쓰레기를 줄일 방법을 고르려 한다. 각 방법이 학생들의 유인과 정보를 어떻게 바꾸는지, 어떤 비용이 드는지 비교해 보자."
+      "SDG target 12.3 calls for halving per capita food waste at the retail and consumer levels and reducing food losses along production and supply chains.",
+      "Hypothetical scenario: A lot of food is left uneaten in your school cafeteria every day. The student council and the school's nutrition staff want to choose a way to reduce food waste. Compare how each option changes students' incentives and information, and what costs it involves."
     ],
     "options": [
       {
-        "name": "학급별 잔반량을 매주 공개하기",
+        "name": "Publish each class's food waste every week",
         "benefits": [
-          "비용이 거의 들지 않는다.",
-          "결과를 알게 되어 스스로 남기지 않으려는 동기가 생긴다(정보·규범)."
+          "It costs very little.",
+          "Seeing the results motivates students to waste less on their own (information and social norms)."
         ],
         "costs": [
-          "측정하고 기록하는 일손이 든다.",
-          "효과가 작거나 금방 사라질 수 있다."
+          "Measuring and recording the waste takes staff time.",
+          "The effect may be small or fade quickly."
         ],
         "assumptions": [
-          "학생들이 공개된 결과에 관심을 갖고 반응한다."
+          "Students pay attention to the published results and respond to them."
         ]
       },
       {
-        "name": "배식량을 스스로 고르게 하기(적게·보통·많이)",
+        "name": "Let students choose their portion size (small, regular, or large)",
         "benefits": [
-          "먹을 만큼만 받아 남는 양이 줄어든다.",
-          "선택권이 늘어난다."
+          "Students take only what they will eat, so less is left over.",
+          "Students get more choice."
         ],
         "costs": [
-          "배식 시간이 길어진다.",
-          "영양 균형을 덜 챙길 수 있다."
+          "Serving takes longer.",
+          "Nutritional balance may get less attention."
         ],
         "assumptions": [
-          "학생들이 자기에게 맞는 양을 잘 안다."
+          "Students know how much food is right for them."
         ]
       },
       {
-        "name": "잔반이 기준보다 적은 학급에 보상하기",
+        "name": "Reward classes whose food waste falls below a target",
         "benefits": [
-          "줄이려는 유인이 분명해진다."
+          "It creates a clear incentive to reduce waste."
         ],
         "costs": [
-          "보상 비용이 든다.",
-          "억지로 먹거나 몰래 버리는 부작용이 생길 수 있다."
+          "The rewards cost money.",
+          "It may cause side effects, such as students forcing themselves to eat or secretly throwing food away."
         ],
         "assumptions": [
-          "보상이 충분히 매력적이고, 측정이 공정하다."
+          "The rewards are attractive enough, and measurement is fair."
         ]
       }
     ],
     "discussion": [
-      "세 방법은 각각 정보, 선택권, 금전적 유인을 바꾼다. 우리 학교에 가장 효과적인 조합은 무엇이고, 그 판단은 어떤 가정에 기대는가?"
+      "The three options change information, choice, and financial incentives, respectively. What combination would be most effective at your school, and what assumptions does that judgment rely on?"
     ],
     "source_ids": [
       "un-sdg-12"
     ]
   },
   "key_takeaways": [
-    "소비하고 버리는 선택에는 자원의 기회비용이 있으며, 지속가능한 소비는 같은 만족을 더 적은 자원과 쓰레기로 얻는 것이다.",
-    "사적 비용과 사회적 비용이 다르면 사람들은 사회적으로 바람직한 양보다 많이 쓰게 된다.",
-    "가격·보증금 같은 금전적 유인과 정보·가치·습관 설계는 각각 효과와 한계가 있어 함께 쓰는 경우가 많다."
+    "Choices to consume and throw things away carry the opportunity cost of resources; sustainable consumption means getting the same satisfaction with fewer resources and less waste.",
+    "When private cost differs from social cost, people use more than the socially desirable amount.",
+    "Financial incentives such as prices and deposits, and approaches based on information, values, and habit design, each have strengths and limits, so they are often used together."
   ],
   "source_ids": [
     "openstax-pe3-2-1",

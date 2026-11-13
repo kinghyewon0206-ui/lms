@@ -1,17 +1,17 @@
 {% extends "base.html" %}
-{% block title %}접근할 수 없어요 · ECONOVA{% endblock %}
+{% block title %}Access denied · ECONOVA{% endblock %}
 {% block content %}
 <section class="err-page" aria-labelledby="err-title">
   <p class="err-code">403</p>
-  <h1 id="err-title">이 페이지에는 접근할 수 없어요</h1>
-  <p>아직 공개되지 않은 강좌·레슨이거나, 볼 수 있는 권한이 없는 페이지예요. 공개된 강좌는 카탈로그에서 수강 신청할 수 있어요.</p>
+  <h1 id="err-title">You can't access this page</h1>
+  <p>This course or lesson is not published yet, or you don't have permission to view this page. You can enroll in published courses from the catalog.</p>
   <div class="actions">
     {% if g.user %}
-    {% if course_id %}<a class="btn" href="{{ url_for('econova.course_detail', course_id=course_id) }}">강좌 페이지로</a>{% endif %}
-    <a class="btn{{ ' secondary' if course_id }}" href="{{ url_for('econova.catalog') }}">강좌 카탈로그</a>
-    <a class="btn secondary" href="{{ url_for('dashboard') }}">대시보드로</a>
+    {% if course_id %}<a class="btn" href="{{ url_for('econova.course_detail', course_id=course_id) }}">Go to the course page</a>{% endif %}
+    <a class="btn{{ ' secondary' if course_id }}" href="{{ url_for('econova.catalog') }}">Course catalog</a>
+    <a class="btn secondary" href="{{ url_for('dashboard') }}">Go to Dashboard</a>
     {% else %}
-    <a class="btn" href="{{ url_for('login') }}">로그인</a>
+    <a class="btn" href="{{ url_for('login') }}">Log in</a>
     {% endif %}
   </div>
 </section>

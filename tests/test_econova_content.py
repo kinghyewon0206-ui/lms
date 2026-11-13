@@ -141,27 +141,27 @@ def test_valid_course_parses():
 
 
 @pytest.mark.parametrize("mutate, message", [
-    (lambda d: d.pop("title"), "'title' 항목이 없습니다"),
-    (lambda d: d.update(title="  "), "비어 있습니다"),
-    (lambda d: d.update(id="C 02"), "소문자"),
+    (lambda d: d.pop("title"), "'title' is missing"),
+    (lambda d: d.update(title="  "), "is empty"),
+    (lambda d: d.update(id="C 02"), "lowercase letters"),
     (lambda d: d.update(schema_version=2), "schema_version"),
     (lambda d: d.update(status="live"), "'status'"),
     (lambda d: d.update(sdgs=[18]), "sdgs"),
-    (lambda d: d.update(sdgs=[2, 2]), "중복"),
+    (lambda d: d.update(sdgs=[2, 2]), "sdgs contains duplicates"),
     (lambda d: d.update(sdgs=[]), "sdgs"),
-    (lambda d: d.update(content_version=0), "1 이상"),
-    (lambda d: d.update(content_version=True), "형식"),
+    (lambda d: d.update(content_version=0), "1 or greater"),
+    (lambda d: d.update(content_version=True), "wrong type"),
     (lambda d: d.update(difficulty_levels=["beginner"]), "difficulty_levels"),
-    (lambda d: d.update(lesson_ids=["c02-l1", "c02-l1", "c02-l3"]), "중복"),
+    (lambda d: d.update(lesson_ids=["c02-l1", "c02-l1", "c02-l3"]), "lesson_ids contains duplicates"),
     (lambda d: d.update(lesson_ids=["c02-l2", "c02-l1", "c02-l3"]), "lesson_ids"),
     (lambda d: d["lessons"][1].update(order=3), "order"),
     (lambda d: d["lessons"][0].update(id="c03-l1"), "'c02-'"),
     (lambda d: d["lessons"][0].update(requirements=["quiz"]), "material"),
     (lambda d: d["lessons"][0].update(requirements=["material", "essay"]), "requirements"),
-    (lambda d: d["lessons"][0].update(requirements=["material", "material"]), "중복"),
+    (lambda d: d["lessons"][0].update(requirements=["material", "material"]), "no duplicates"),
     (lambda d: d["lessons"][0]["quiz"].update(status="approved", assessment_id=None), "assessment_id"),
     # 강좌 JSON 의 상태만 approved 로 바꿔도 학습자료 파일(draft)과 달라 거절된다 (Phase 2 의 '실제 자료 승인 금지'를 대체)
-    (lambda d: d["lessons"][0]["material"].update(status="approved"), "학습자료 파일의 검토 상태"),
+    (lambda d: d["lessons"][0]["material"].update(status="approved"), "review status of the learning materials file"),
     (lambda d: d["lessons"][0]["material"].pop("file"), "material.file"),
     (lambda d: d["lessons"][0]["material"].update(file="../../etc/passwd"), "material.file"),
     (lambda d: d["lessons"][0]["material"].update(status="ok"), "material.status"),
@@ -192,7 +192,7 @@ def test_fixture_file_must_be_marked():
 def test_catalog_level_duplicates_are_rejected():
     base = content.load_catalog(False)
     c02 = content.parse_course(_raw("c02"))
-    with pytest.raises(content.ContentError, match="강좌 id"):
+    with pytest.raises(content.ContentError, match="Duplicate course id"):
         content.build_catalog(list(base.courses) + [c02], base.sdgs)
 
     same_slug = copy.deepcopy(_raw("c01"))
@@ -215,7 +215,7 @@ def test_unknown_sdg_reference_is_rejected():
 def test_broken_json_reports_the_file(tmp_path):
     bad = tmp_path / "broken.json"
     bad.write_text('{"id": "c02",', encoding="utf-8")
-    with pytest.raises(content.ContentError, match="JSON 문법 오류"):
+    with pytest.raises(content.ContentError, match="JSON syntax error"):
         content._read_json(str(bad))
-    with pytest.raises(content.ContentError, match="파일이 없습니다"):
+    with pytest.raises(content.ContentError, match="file not found"):
         content._read_json(str(tmp_path / "missing.json"))

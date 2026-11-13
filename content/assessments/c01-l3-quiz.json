@@ -4,9 +4,9 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l3",
-  "version": 1,
-  "title": "레슨 3 형성 퀴즈: 지속가능한 소비와 자원 배분",
-  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "version": 2,
+  "title": "Lesson 3 Quiz: Sustainable Consumption and Resource Allocation",
+  "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -17,7 +17,13 @@
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+        "note": "AI-written question draft. Not yet reviewed by a human (admin) and not to be given to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c01-l3-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 1,
@@ -39,23 +45,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "급식을 남길 때 함께 버려지는 것으로 가장 알맞은 것은?",
+      "prompt": "When you leave part of your school cafeteria lunch uneaten, what is wasted along with it?",
       "choices": [
         {
           "id": "a",
-          "text": "음식과 그 음식을 기르고 옮기고 요리하는 데 쓴 물·전기·노동 같은 자원"
+          "text": "The food plus the water, power, and labor used to grow, ship, and cook it"
         },
         {
           "id": "b",
-          "text": "남긴 음식만"
+          "text": "Just the food left on the tray at the end of the meal"
         },
         {
           "id": "c",
-          "text": "급식비를 이미 냈으므로 아무것도 없다"
+          "text": "Very little, because the price of the lunch was already paid"
         },
         {
           "id": "d",
-          "text": "급식비 가운데 남긴 비율만큼의 돈만"
+          "text": "The part of the lunch price that matches the share left uneaten"
         }
       ],
       "source_ids": [
@@ -67,7 +73,7 @@
     },
     {
       "id": "c01-l3-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 2,
@@ -77,23 +83,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "가게가 비닐봉지를 공짜로 주면 사람들이 봉지를 필요보다 많이 쓰기 쉬운 이유로 가장 알맞은 것은?",
+      "prompt": "When stores give out plastic bags for free, people tend to use more bags than they need. Which statement best explains why?",
       "choices": [
         {
           "id": "a",
-          "text": "봉지의 사회적 비용이 0 이기 때문이다"
+          "text": "The social cost of a plastic bag is zero once it has been made."
         },
         {
           "id": "b",
-          "text": "소비자가 마주하는 비용(0원)이 수거·처리·환경 피해까지 더한 사회적 비용보다 작기 때문이다"
+          "text": "The cost shoppers face ($0) is below the social cost, including disposal and harm."
         },
         {
           "id": "c",
-          "text": "봉지를 만드는 비용이 매우 높기 때문이다"
+          "text": "The cost of producing each plastic bag is very high for the store."
         },
         {
           "id": "d",
-          "text": "봉지가 생활에 꼭 필요한 물건이기 때문이다"
+          "text": "Plastic bags are a necessity that people need for daily life."
         }
       ],
       "source_ids": [
@@ -105,7 +111,7 @@
     },
     {
       "id": "c01-l3-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 2,
@@ -115,8 +121,8 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "어떤 일회용품 한 개를 만드는 데 30원이 들고, 쓰고 난 뒤 처리와 환경 피해로 사회가 45원을 더 부담한다고 해요(가정값). 한 개의 사회적 비용은 몇 원인가요? (숫자만 입력)",
-      "unit": "",
+      "prompt": "Making one disposable takeout container costs 30 cents, and after it is used, disposal and environmental damage cost society another 45 cents (assumed values). What is the social cost of one container, in cents? (Enter a number only.)",
+      "unit": "cents",
       "source_ids": [
         "openstax-pe3-2-1",
         "openstax-pe3-2-3",
@@ -126,7 +132,7 @@
     },
     {
       "id": "c01-l3-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 3,
@@ -136,23 +142,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "일회용 컵 보증금 제도(반납하면 돈을 돌려줌)의 특징으로 가장 알맞은 것은?",
+      "prompt": "Which statement best describes a deposit-return system for disposable cups (you get money back when you return the cup)?",
       "choices": [
         {
           "id": "a",
-          "text": "컵값이 계속 올라 소비자 부담이 영구히 커진다"
+          "text": "Cup prices keep rising, so the burden on consumers grows over time."
         },
         {
           "id": "b",
-          "text": "정보만 제공하므로 행동은 바뀌지 않는다"
+          "text": "It mainly provides information, so behavior tends to change little."
         },
         {
           "id": "c",
-          "text": "반납하면 돌려받으므로 회수·재사용이 늘지만, 반납 시설과 관리 비용이 든다"
+          "text": "Refunds raise returns and reuse, but return sites and upkeep cost money."
         },
         {
           "id": "d",
-          "text": "컵을 만드는 비용을 없앤다"
+          "text": "It removes most of the cost of producing the cups in the first place."
         }
       ],
       "source_ids": [
@@ -164,7 +170,7 @@
     },
     {
       "id": "c01-l3-q5",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 3,
@@ -175,7 +181,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "3,000원짜리 장바구니를 사면 장을 볼 때마다 비닐봉지 값 50원을 아껴요. 장바구니를 몇 번 써야 장바구니 값을 되찾나요? (숫자만 입력)",
+      "prompt": "A reusable shopping bag costs $3, and each time you use it for shopping, you avoid a 5-cent plastic bag fee. How many times must you use the reusable bag to earn back its price? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",

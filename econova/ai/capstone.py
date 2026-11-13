@@ -21,12 +21,12 @@ def feedback(user_id, course, defn, version, sections, sdg_names, focus_step=Non
     for lesson in course.lessons:
         concepts += [{"term": t, "definition": d} for t, d in context.concept_terms(course, lesson.id).values()]
     sdg = str(sections.get("sdg") or "")
-    facts = {"project": "학생의 자기주도 SDG 경제 캡스톤 (공식 과제·평가 아님)",
+    facts = {"project": "Student's self-directed SDG economics capstone project (not an official assignment or assessment)",
              "sdg": {"number": sdg, "name": sdg_names.get(int(sdg), ("", ""))[0] if sdg.isdigit() else ""},
              "steps": [{"id": st["id"], "title": st["title"], "guidance": st["guidance"]} for st in steps],
              "rubric_criteria": [{"name": c["name"], "description": c["description"]} for c in defn.rubric["criteria"]],
              "approved_concepts": concepts[:20],
-             "rule": "점수·등급을 매기지 말 것. 출처·통계·인용을 만들지 말 것. 학생에게 근거를 직접 확인하라고 안내할 것."}
+             "rule": "Do not give a score or grade. Do not invent sources, statistics, or quotations. Tell the student to check evidence themselves."}
     student_text = "\n\n".join(f"[{f['label']}]\n{sections.get(f['id'], '')}" for st in steps for f in st["fields"]
                                if f["type"] != "sdg")[:8000]
     req = AIRequest(task="capstone", system=safety.system_prompt("capstone"),
@@ -37,7 +37,7 @@ def feedback(user_id, course, defn, version, sections, sdg_names, focus_step=Non
     def check(data):
         texts = [x for k in SCHEMA["properties"] if k != "limitations" for x in data[k]] + [data["limitations"]]
         if any(_URL.search(t) for t in texts):
-            raise AIError("invalid_response", "링크 포함")
+            raise AIError("invalid_response", "contains a link")
     data = usage.run(user_id, req, f"capstone:{course.id}:{version}:{focus_step or ''}", str(version), provider=provider,
                      s=s, check=check)
     out = {k: [safety.clip(x, 300) for x in data[k]] for k in SCHEMA["properties"] if k != "limitations"}

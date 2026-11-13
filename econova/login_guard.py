@@ -29,9 +29,9 @@ def _limit(name, default, lo=1, hi=100000):
     try:
         value = int(config.env(name) or default)
     except ValueError:
-        raise config.ConfigError(f"{name} 는 정수여야 합니다.")
+        raise config.ConfigError(f"{name} must be an integer.")
     if not lo <= value <= hi:
-        raise config.ConfigError(f"{name} 는 {lo}~{hi} 사이여야 합니다.")
+        raise config.ConfigError(f"{name} must be between {lo} and {hi}.")
     return value
 
 
@@ -65,15 +65,15 @@ def ip_candidates(max_hops=3):
     추측하지 않고, 사람이 알고 있는 자기 공인 IP 와 비교해 맞는 홉 수를 고르게 한다."""
     remote = request.remote_addr or "unknown"
     chain = [p.strip() for p in request.headers.get("X-Forwarded-For", "").split(",") if p.strip()]
-    out = [{"hops": 0, "ip": remote, "note": "직접 연결 주소 (X-Forwarded-For 무시)"}]
+    out = [{"hops": 0, "ip": remote, "note": "Direct connection address (X-Forwarded-For ignored)"}]
     for hops in range(1, max_hops + 1):
         if len(chain) < hops:
-            out.append({"hops": hops, "ip": remote, "note": "목록이 짧아 직접 연결 주소로 대체"})
+            out.append({"hops": hops, "ip": remote, "note": "List too short; using the direct connection address"})
             continue
         try:
-            out.append({"hops": hops, "ip": str(ipaddress.ip_address(chain[-hops])), "note": f"오른쪽에서 {hops}번째"})
+            out.append({"hops": hops, "ip": str(ipaddress.ip_address(chain[-hops])), "note": f"Entry {hops} from the right"})
         except ValueError:
-            out.append({"hops": hops, "ip": remote, "note": "IP 형식이 아니어서 직접 연결 주소로 대체"})
+            out.append({"hops": hops, "ip": remote, "note": "Not a valid IP; using the direct connection address"})
     return {"remote_addr": remote, "chain": chain, "candidates": out, "configured": trusted_proxy_hops()}
 
 

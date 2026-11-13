@@ -4,34 +4,34 @@
 {% block title %}{{ lesson.title_ko }} · {{ course.title_ko }} · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로">
-    <a href="{{ url_for('econova.catalog') }}">강좌</a> <span>/</span>
-    <a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> 레슨 {{ lesson.order }}
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="{{ url_for('econova.catalog') }}">Courses</a> <span>/</span>
+    <a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> Lesson {{ lesson.order }}
   </nav>
 
   <header class="ec-lesson-head">
     <div>
-      <span class="eyebrow">레슨 {{ lesson.order }} / {{ course.lessons|length }}{% if course.fixture %} · <span class="pill pill-dev">개발용 테스트 강좌</span>{% endif %}</span>
+      <span class="eyebrow">Lesson {{ lesson.order }} of {{ course.lessons|length }}{% if course.fixture %} · <span class="pill pill-dev">Development test course</span>{% endif %}</span>
       <h1>{{ lesson.title_ko }}</h1>
-      <p class="ec-en">{{ lesson.title }}</p>
+      {% if lesson.title != lesson.title_ko %}<p class="ec-en">{{ lesson.title }}</p>{% endif %}
     </div>
     <div class="ec-lesson-meta">
-      <span class="pill pill-{{ status }}">{% if status == 'completed' %}레슨 완료{% elif status == 'in_progress' %}진행 중{% else %}시작 전{% endif %}</span>
-      <span class="hint">난이도 {{ difficulty_names[enrollment.selected_difficulty] }}{% if level != enrollment.selected_difficulty %} · 지금 보는 설명: {{ difficulty_names[level] }}{% endif %}</span>
+      <span class="pill pill-{{ status }}">{% if status == 'completed' %}Lesson completed{% elif status == 'in_progress' %}In progress{% else %}Not started{% endif %}</span>
+      <span class="hint">Level: {{ difficulty_names[enrollment.selected_difficulty] }}{% if level != enrollment.selected_difficulty %} · Now reading: {{ difficulty_names[level] }}{% endif %}</span>
       {% if doc %}{{ mat.review_badge(doc) }}{% endif %}
     </div>
   </header>
 
   <section class="ec-checklist" aria-labelledby="h-req">
-    <h2 id="h-req">레슨 완료 조건</h2>
-    <p class="hint">아래 필수 활동을 모두 마치면 레슨이 완료돼요. 퀴즈 점수는 진도와 따로 기록돼요.</p>
+    <h2 id="h-req">How to complete this lesson</h2>
+    <p class="hint">Finish all the required activities below to complete the lesson. Quiz scores are recorded separately from progress.</p>
     <ul>
       {% for req in lesson.requirements %}
       {% set done = record and (record.material_reviewed if req == 'material' else record.quiz_submitted) %}
       <li class="{{ 'done' if done }}">
         <span class="ec-check" aria-hidden="true">{{ '✓' if done else '' }}</span>
-        {% if req == 'material' %}필수 학습자료 확인{% else %}필수 형성 퀴즈 제출{% endif %}
-        <small>{% if done %}완료{% elif req == 'quiz' %}제출 전{% else %}아직 안 함{% endif %}</small>
+        {% if req == 'material' %}Review the required learning materials{% else %}Submit the required lesson quiz{% endif %}
+        <small>{% if done %}Done{% elif req == 'quiz' %}Not submitted{% else %}Not done yet{% endif %}</small>
       </li>
       {% endfor %}
     </ul>
@@ -42,15 +42,15 @@
 
   {% if course.capstone_ready and course.capstone.steps_for_lesson(lesson.id) %}
   <aside class="ec-section cap-lesson" aria-labelledby="h-cap-steps">
-    <h2 id="h-cap-steps">이 레슨과 연결된 캡스톤 단계</h2>
+    <h2 id="h-cap-steps">Capstone project steps linked to this lesson</h2>
     <ul class="ec-list">{% for s in course.capstone.steps_for_lesson(lesson.id) %}<li><a href="{{ url_for('econova.capstone_edit', course_id=course.id) }}#step-{{ s.id }}">{{ s.title }}</a> — {{ s.guidance }}</li>{% endfor %}</ul>
-    <p><a class="btn secondary" href="{{ url_for('econova.capstone_home', course_id=course.id) }}">캡스톤 홈</a></p>
+    <p><a class="btn secondary" href="{{ url_for('econova.capstone_home', course_id=course.id) }}">Capstone project home</a></p>
   </aside>
   {% endif %}
-  <nav class="ec-lesson-nav" aria-label="레슨 이동">
-    {% if prev_lesson %}<a class="btn secondary" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=prev_lesson.id) }}">← 이전 레슨</a>{% else %}<span></span>{% endif %}
-    <a class="hint" href="{{ url_for('econova.course_detail', course_id=course.id) }}">강좌로 돌아가기 · {{ progress.percent }}%</a>
-    {% if next_lesson %}<a class="btn secondary" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=next_lesson.id) }}">다음 레슨 →</a>{% else %}<span></span>{% endif %}
+  <nav class="ec-lesson-nav" aria-label="Lesson navigation">
+    {% if prev_lesson %}<a class="btn secondary" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=prev_lesson.id) }}">← Previous lesson</a>{% else %}<span></span>{% endif %}
+    <a class="hint" href="{{ url_for('econova.course_detail', course_id=course.id) }}">Back to course · {{ progress.percent }}%</a>
+    {% if next_lesson %}<a class="btn secondary" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=next_lesson.id) }}">Next lesson →</a>{% else %}<span></span>{% endif %}
   </nav>
 </div>
 {% if sim_widgets %}

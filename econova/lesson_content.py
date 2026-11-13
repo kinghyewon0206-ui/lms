@@ -17,7 +17,7 @@ REVIEW_STATUSES = ("draft", "in_review", "approved", "published")
 APPROVED_STATUSES = ("approved", "published")
 LEVELS = ("beginner", "intermediate", "advanced")
 SOURCE_STATUSES = ("verified", "unverified", "rejected")
-_AI_MARKERS = re.compile(r"claude|\(ai\)|\bai\b|chatgpt|\bgpt|openai|인공지능", re.I)
+_AI_MARKERS = re.compile(r"claude|\(ai\)|\bai\b|chatgpt|\bgpt|openai|artificial intelligence|인공지능", re.I)  # i18n-allow
 _DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}([T ]\d{2}:\d{2}(:\d{2})?)?$")
 
 
@@ -76,24 +76,24 @@ class LessonMaterial:
 # ------------------------------------------------------------------ 도우미
 def _need(data, key, kind, where):
     if not isinstance(data, dict) or key not in data:
-        raise ContentError(f"{where}: '{key}' 항목이 없습니다.")
+        raise ContentError(f"{where}: '{key}' is missing.")
     value = data[key]
     if kind in (int, float) and isinstance(value, bool) or not isinstance(value, kind):
-        raise ContentError(f"{where}: '{key}' 의 형식이 잘못됐습니다.")
+        raise ContentError(f"{where}: '{key}' has the wrong type.")
     return value
 
 
 def _text(data, key, where):
     value = _need(data, key, str, where).strip()
     if not value:
-        raise ContentError(f"{where}: '{key}' 가 비어 있습니다.")
+        raise ContentError(f"{where}: '{key}' is empty.")
     return value
 
 
 def _texts(data, key, where, allow_empty=False):
     values = _need(data, key, list, where)
     if (not allow_empty and not values) or not all(isinstance(v, str) and v.strip() for v in values):
-        raise ContentError(f"{where}: '{key}' 는 비어 있지 않은 문자열 목록이어야 합니다.")
+        raise ContentError(f"{where}: '{key}' must be a list of non-empty strings.")
     return tuple(v.strip() for v in values)
 
 
@@ -108,23 +108,23 @@ def _close(actual, expected, tol=1e-6):
 # ------------------------------------------------------------------ 출처 레지스트리
 def parse_sources(data, where="sources.json"):
     if not isinstance(data, dict) or data.get("schema_version") != 1:
-        raise ContentError(f"{where}: 지원하지 않는 형식입니다.")
+        raise ContentError(f"{where}: unsupported format.")
     out = {}
     for item in _need(data, "sources", list, where):
         sid = _text(item, "id", where)
         w = f"{where} ({sid})"
         if sid in out:
-            raise ContentError(f"{where}: 출처 id {sid!r} 가 중복됐습니다.")
+            raise ContentError(f"{where}: duplicate source id {sid!r}.")
         url = _text(item, "url", w)
         if not url.startswith("https://"):
-            raise ContentError(f"{w}: url 은 https 주소여야 합니다.")
+            raise ContentError(f"{w}: url must be an https address.")
         ver = _need(item, "verification", dict, w)
         status = ver.get("status")
         if status not in SOURCE_STATUSES:
-            raise ContentError(f"{w}: verification.status 는 {', '.join(SOURCE_STATUSES)} 중 하나여야 합니다.")
+            raise ContentError(f"{w}: verification.status must be one of {', '.join(SOURCE_STATUSES)}.")
         checked = str(ver.get("checked_at") or "")
         if status == "verified" and not (_DATE_RE.match(checked) and str(ver.get("method") or "").strip()):
-            raise ContentError(f"{w}: 확인된 출처에는 확인 날짜(checked_at)와 확인 방법(method)이 있어야 합니다.")
+            raise ContentError(f"{w}: a verified source must have a check date (checked_at) and a verification method (method).")
         out[sid] = Source(
             id=sid, title=_text(item, "title", w), container=str(item.get("container") or ""),
             author=_text(item, "author", w), published=str(item.get("published") or ""), url=url,
@@ -138,7 +138,7 @@ def parse_sources(data, where="sources.json"):
 # ------------------------------------------------------------------ 계산 검증
 def _equilibrium(a, b, c, d):
     if b + d <= 0:
-        raise ValueError("b + d 는 0 보다 커야 합니다.")
+        raise ValueError("b + d must be greater than 0.")
     p = (a - c) / (b + d)
     return p, a - b * p
 
@@ -166,44 +166,44 @@ def check_example(check, where):
                 pc = check["ceiling"]
                 ok = _close((check["a"] - check["b"] * pc) - (check["c"] + check["d"] * pc), check["shortage"])
         else:
-            raise ContentError(f"{where}: 알 수 없는 check 형식 {kind!r} 입니다.")
+            raise ContentError(f"{where}: unknown check type {kind!r}.")
     except (KeyError, TypeError, ZeroDivisionError, ValueError) as exc:
         if isinstance(exc, ContentError):
             raise
-        raise ContentError(f"{where}: check 값이 잘못됐습니다 ({type(exc).__name__}).")
+        raise ContentError(f"{where}: invalid check value ({type(exc).__name__}).")
     if not ok:
-        raise ContentError(f"{where}: 예제의 계산 결과가 맞지 않습니다.")
+        raise ContentError(f"{where}: the example's calculated result is incorrect.")
 
 
 def parse_graph(g, where):
     """수요·공급 그래프 명세. 선형 수요 Q = a − bP, 공급 Q = c + dP. 적어 둔 균형점이 실제 계산과 같은지 확인한다."""
     gid = _text(g, "id", where)
-    w = f"{where} 그래프 {gid}"
+    w = f"{where} graph {gid}"
     axis = _need(g, "axis", dict, w)
     p_max, q_max = _num(axis, "p_max", w), _num(axis, "q_max", w)
     if p_max <= 0 or q_max <= 0:
-        raise ContentError(f"{w}: 축 범위는 0 보다 커야 합니다.")
+        raise ContentError(f"{w}: axis ranges must be greater than 0.")
     demand = {}
     for d in _need(g, "demand", list, w):
         if _num(d, "b", w) <= 0:
-            raise ContentError(f"{w}: 수요곡선의 b 는 0 보다 커야 합니다 (수요 법칙).")
+            raise ContentError(f"{w}: the demand curve's b must be greater than 0 (law of demand).")
         demand[_text(d, "label", w)] = (_num(d, "a", w), _num(d, "b", w))
     supply = {}
     for s in _need(g, "supply", list, w):
         if _num(s, "d", w) <= 0:
-            raise ContentError(f"{w}: 공급곡선의 d 는 0 보다 커야 합니다 (공급 법칙).")
+            raise ContentError(f"{w}: the supply curve's d must be greater than 0 (law of supply).")
         supply[_text(s, "label", w)] = (_num(s, "c", w), _num(s, "d", w))
     # 곡선 이동만 보여 주는 그래프(균형을 배우기 전 레슨)는 수요곡선 또는 공급곡선만 둘 수 있다. 균형점은 둘 다 있어야 한다.
     if not demand and not supply:
-        raise ContentError(f"{w}: 수요곡선이나 공급곡선이 하나 이상 있어야 합니다.")
+        raise ContentError(f"{w}: there must be at least one demand curve or supply curve.")
     for e in _need(g, "expected_equilibria", list, w):
         if e.get("demand") not in demand or e.get("supply") not in supply:
-            raise ContentError(f"{w}: 균형점이 없는 곡선 이름을 가리킵니다.")
+            raise ContentError(f"{w}: the equilibrium refers to a curve name that does not exist.")
         a, b = demand[e["demand"]]
         c, d = supply[e["supply"]]
         p, q = _equilibrium(a, b, c, d)
         if not (_close(p, _num(e, "price", w), 1e-6) and _close(q, _num(e, "quantity", w), 1e-6)):
-            raise ContentError(f"{w}: 적어 둔 균형점이 계산 결과와 다릅니다.")
+            raise ContentError(f"{w}: the stated equilibrium does not match the calculated result.")
     for line in g.get("price_lines", []):
         _text(line, "label", w)
         _num(line, "price", w)
@@ -241,32 +241,30 @@ def _parse_review(review, where, fixture, digest=None):
     - role=fixture: 개발용 fixture 만."""
     status = review.get("status")
     if status not in REVIEW_STATUSES:
-        raise ContentError(f"{where}: review.status 는 {' → '.join(REVIEW_STATUSES)} 중 하나여야 합니다.")
+        raise ContentError(f"{where}: review.status must be one of {' → '.join(REVIEW_STATUSES)}.")
     history = _need(review, "history", list, where)
     if not history or history[-1].get("status") != status:
-        raise ContentError(f"{where}: 검토 기록(history)의 마지막 상태가 현재 상태와 같아야 합니다.")
+        raise ContentError(f"{where}: the last status in the review history must match the current status.")
     for h in history:
         if h.get("status") not in REVIEW_STATUSES or not _DATE_RE.match(str(h.get("at") or "")) \
                 or not str(h.get("by") or "").strip():
-            raise ContentError(f"{where}: 검토 기록마다 상태·시각(at)·작성자(by)가 있어야 합니다.")
+            raise ContentError(f"{where}: every review history entry must have a status, a time (at), and an author (by).")
         if h["status"] in APPROVED_STATUSES and _AI_MARKERS.search(h["by"]):
-            raise ContentError(f"{where}: AI 는 학습자료를 승인하거나 공개할 수 없습니다.")
+            raise ContentError(f"{where}: AI cannot approve or publish learning materials.")
     if status in APPROVED_STATUSES:
         reviewer = review.get("reviewer")
         allowed_roles = REVIEWER_ROLES + (("fixture",) if fixture else ())
         if not isinstance(reviewer, dict) or not str(reviewer.get("name") or "").strip() \
                 or reviewer.get("role") not in allowed_roles or _AI_MARKERS.search(str(reviewer.get("name"))):
-            raise ContentError(f"{where}: 승인된 자료에는 사람 검토자(reviewer: 이름, role=admin 또는 예전 기록의 teacher)가 "
-                               "있어야 합니다.")
+            raise ContentError(f"{where}: approved materials must have a human reviewer (reviewer: name, role=admin, or teacher in older records).")
         if not _DATE_RE.match(str(review.get("approved_at") or "")):
-            raise ContentError(f"{where}: 승인된 자료에는 승인 시각(approved_at)이 있어야 합니다.")
+            raise ContentError(f"{where}: approved materials must have an approval time (approved_at).")
         if reviewer["role"] == "admin":
             if not str(reviewer.get("review_id") or "").strip() or not re.fullmatch(r"[0-9a-f]{64}",
                                                                                    str(review.get("content_digest") or "")):
-                raise ContentError(f"{where}: 관리자 승인에는 검토 기록 번호(reviewer.review_id)와 내용 지문(content_digest)이 "
-                                   "있어야 합니다.")
+                raise ContentError(f"{where}: an admin approval must have a review record number (reviewer.review_id) and a content fingerprint (content_digest).")
             if digest is not None and review["content_digest"] != digest:
-                raise ContentError(f"{where}: 승인 뒤에 내용이 바뀌었습니다 (지문 불일치). 다시 검토해야 합니다.")
+                raise ContentError(f"{where}: the content changed after approval (fingerprint mismatch). It must be reviewed again.")
     return dict(review)
 
 
@@ -274,12 +272,12 @@ def _parse_review(review, where, fixture, digest=None):
 def parse_material(data, lesson_id, sources, fixture=False, where=None):
     where = where or f"lessons/{lesson_id}.json"
     if not isinstance(data, dict) or data.get("schema_version") != 1:
-        raise ContentError(f"{where}: 지원하지 않는 schema_version 입니다.")
+        raise ContentError(f"{where}: unsupported schema_version.")
     if data.get("lesson_id") != lesson_id:
-        raise ContentError(f"{where}: lesson_id 가 강좌 JSON 의 레슨({lesson_id})과 다릅니다.")
+        raise ContentError(f"{where}: lesson_id does not match the lesson in the course JSON ({lesson_id}).")
     version = _need(data, "content_version", int, where)
     if version < 1:
-        raise ContentError(f"{where}: content_version 은 1 이상이어야 합니다.")
+        raise ContentError(f"{where}: content_version must be 1 or greater.")
     review = _parse_review(_need(data, "review", dict, where), where, fixture, digest=content_digest(data))
 
     cited = set()
@@ -288,7 +286,7 @@ def parse_material(data, lesson_id, sources, fixture=False, where=None):
         ids = tuple(ids)
         for sid in ids:
             if sid not in sources:
-                raise ContentError(f"{w}: 출처 레지스트리에 없는 출처 {sid!r} 를 인용했습니다.")
+                raise ContentError(f"{w}: cites source {sid!r}, which is not in the source registry.")
         cited.update(ids)
         return ids
 
@@ -296,17 +294,17 @@ def parse_material(data, lesson_id, sources, fixture=False, where=None):
     for c in _need(data, "concepts", list, where):
         cid = _text(c, "id", where)
         if cid in concept_ids:
-            raise ContentError(f"{where}: 개념 id {cid!r} 가 중복됐습니다.")
+            raise ContentError(f"{where}: duplicate concept id {cid!r}.")
         concept_ids.append(cid)
-        srcs = cite(_texts(c, "source_ids", f"{where} 개념 {cid}", allow_empty=fixture), f"{where} 개념 {cid}")
+        srcs = cite(_texts(c, "source_ids", f"{where} concept {cid}", allow_empty=fixture), f"{where} concept {cid}")
         concepts.append({"id": cid, "term": _text(c, "term", where), "definition": _text(c, "definition", where),
                          "source_ids": srcs})
     if not concepts:
-        raise ContentError(f"{where}: 핵심 개념(concepts)이 하나 이상 있어야 합니다.")
+        raise ContentError(f"{where}: there must be at least one key concept (concepts).")
 
     levels_raw = _need(data, "levels", dict, where)
     if set(levels_raw) != set(LEVELS):
-        raise ContentError(f"{where}: levels 에는 beginner·intermediate·advanced 세 난이도가 모두 있어야 합니다.")
+        raise ContentError(f"{where}: levels must include all three difficulty levels: beginner, intermediate, and advanced.")
     levels = {}
     for level in LEVELS:
         lv = levels_raw[level]
@@ -316,21 +314,21 @@ def parse_material(data, lesson_id, sources, fixture=False, where=None):
             ids = _texts(s, "concept_ids", w)
             unknown = set(ids) - set(concept_ids)
             if unknown:
-                raise ContentError(f"{w}: 정의되지 않은 개념 {sorted(unknown)} 을 가리킵니다.")
+                raise ContentError(f"{w}: refers to undefined concepts {sorted(unknown)}.")
             covered.update(ids)
             sections.append({"heading": _text(s, "heading", w), "concept_ids": ids,
                              "paragraphs": _texts(s, "paragraphs", w)})
         missing = [c for c in concept_ids if c not in covered]
         if missing:
-            raise ContentError(f"{w}: 핵심 개념 {missing} 을 다루지 않습니다. 세 난이도는 같은 개념을 모두 다뤄야 합니다.")
+            raise ContentError(f"{w}: does not cover key concepts {missing}. All three difficulty levels must cover the same concepts.")
         levels[level] = {"summary": _text(lv, "summary", w), "sections": sections}
 
     examples = []
     for ex in _need(data, "worked_examples", list, where):
         eid = _text(ex, "id", where)
-        w = f"{where} 예제 {eid}"
+        w = f"{where} example {eid}"
         if ex.get("level") not in LEVELS + ("all",):
-            raise ContentError(f"{w}: level 이 잘못됐습니다.")
+            raise ContentError(f"{w}: invalid level.")
         if "check" in ex:
             check_example(_need(ex, "check", dict, w), w)
         examples.append({"id": eid, "level": ex["level"], "title": _text(ex, "title", w),
@@ -338,38 +336,38 @@ def parse_material(data, lesson_id, sources, fixture=False, where=None):
                          "answer": _text(ex, "answer", w)})
     for level in LEVELS:
         if not any(ex["level"] in (level, "all") for ex in examples):
-            raise ContentError(f"{where}: {level} 난이도의 풀이 예제가 없습니다.")
+            raise ContentError(f"{where}: there is no worked example for the {level} level.")
 
     graphs = tuple(parse_graph(g, where) for g in data.get("graphs", []))
 
     rwe = []
     for r in data.get("real_world_examples", []):
-        w = f"{where} 실제 사례"
+        w = f"{where} real-world example"
         rwe.append({"title": _text(r, "title", w), "paragraphs": _texts(r, "paragraphs", w),
                     "source_ids": cite(_texts(r, "source_ids", w, allow_empty=fixture), w)})
 
     sdg = _need(data, "sdg_case", dict, where)
-    w = f"{where} SDG 사례"
+    w = f"{where} SDG case"
     sdg_numbers = _need(sdg, "sdgs", list, w)
     if not sdg_numbers or not all(isinstance(n, int) and not isinstance(n, bool) and 1 <= n <= 17 for n in sdg_numbers):
-        raise ContentError(f"{w}: sdgs 는 1~17 번호 목록이어야 합니다.")
+        raise ContentError(f"{w}: sdgs must be a list of numbers 1-17.")
     options = []
     for o in _need(sdg, "options", list, w):
         options.append({"name": _text(o, "name", w), "benefits": _texts(o, "benefits", w),
                         "costs": _texts(o, "costs", w), "assumptions": _texts(o, "assumptions", w)})
     if len(options) < 2:
-        raise ContentError(f"{w}: 정책 선택지는 둘 이상이어야 합니다 (상충관계를 비교하기 위해).")
+        raise ContentError(f"{w}: there must be at least two policy options (to compare trade-offs).")
     sdg_case = {"sdgs": tuple(sdg_numbers), "title": _text(sdg, "title", w), "paragraphs": _texts(sdg, "paragraphs", w),
                 "options": options, "discussion": _texts(sdg, "discussion", w, allow_empty=True),
                 "source_ids": cite(_texts(sdg, "source_ids", w, allow_empty=fixture), w)}
 
     source_ids = cite(_texts(data, "source_ids", where, allow_empty=fixture), where)
     if not cited <= set(source_ids):
-        raise ContentError(f"{where}: 본문에서 인용한 출처 {sorted(cited - set(source_ids))} 가 source_ids 목록에 없습니다.")
+        raise ContentError(f"{where}: sources cited in the text {sorted(cited - set(source_ids))} are missing from source_ids.")
     if review["status"] in APPROVED_STATUSES:
         unverified = [sid for sid in source_ids if not sources[sid].verified]
         if unverified:
-            raise ContentError(f"{where}: 승인·공개된 자료는 확인된 출처만 인용할 수 있습니다 (미확인: {unverified}).")
+            raise ContentError(f"{where}: approved or published materials may cite only verified sources (unverified: {unverified}).")
 
     return LessonMaterial(
         lesson_id=lesson_id, content_version=version, review=review,
@@ -384,7 +382,7 @@ def read_json(path, rel):
         with open(path, encoding="utf-8") as f:
             return json.load(f)
     except FileNotFoundError:
-        raise ContentError(f"{rel}: 파일이 없습니다.")
+        raise ContentError(f"{rel}: file not found.")
     except json.JSONDecodeError as exc:
-        raise ContentError(f"{rel}: JSON 문법 오류 ({exc.msg}, {exc.lineno}행)")
+        raise ContentError(f"{rel}: JSON syntax error ({exc.msg}, line {exc.lineno})")
 

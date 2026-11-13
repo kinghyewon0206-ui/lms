@@ -28,7 +28,7 @@ def test_staged_scan_reads_index_not_worktree(tmp_path):
                    cwd=ROOT, env=env, check=True)
     assert not os.path.exists(os.path.join(ROOT, "content/assessments/zz-planted.json"))
     res = subprocess.run([os.path.join(ROOT, "tools/git-hooks/pre-commit")], cwd=ROOT, env=env, capture_output=True, text=True)
-    assert res.returncode == 1 and "zz-planted.json" in res.stdout and "정답 정보" in res.stdout
+    assert res.returncode == 1 and "zz-planted.json" in res.stdout and "answer information" in res.stdout
     clean = tmp_path / "clean"
     env["GIT_INDEX_FILE"] = str(clean)
     subprocess.run(["git", "read-tree", "HEAD"], cwd=ROOT, env=env, check=True)
@@ -62,17 +62,17 @@ def test_trust_plan_requires_valid_signature(app, client, content_copy, tmp_path
     path = tmp_path / "plan.json"
     path.write_text(json.dumps(plan), encoding="utf-8")
     res = runner.invoke(args=["content-release-apply", str(path), "--trust-plan"])
-    assert "서명이 없거나 맞지 않음" in res.output                      # 서명 없는 계획 + --trust-plan → 거부
+    assert "Plan signature missing or invalid" in res.output                      # 서명 없는 계획 + --trust-plan → 거부
     monkeypatch.setenv("ECONOVA_RELEASE_SIGNING_KEY", KEY)
     tampered = ac.sign_plan(plan, KEY)
     tampered["items"][0]["reviewer_name"] = "바꾼 이름"
     path.write_text(json.dumps(tampered), encoding="utf-8")
-    assert "서명이 없거나 맞지 않음" in runner.invoke(args=["content-release-apply", str(path), "--trust-plan"]).output
+    assert "Plan signature missing or invalid" in runner.invoke(args=["content-release-apply", str(path), "--trust-plan"]).output
     topic = json.loads((content_copy / "dev_fixtures/debates/dev-f1.json").read_text(encoding="utf-8"))["topics"][2]
     assert topic["review"]["status"] == "draft"
     path.write_text(json.dumps(ac.sign_plan(plan, KEY)), encoding="utf-8")   # 운영 서버가 서명한 계획 (키 공유)
     res = runner.invoke(args=["content-release-apply", str(path), "--trust-plan"])
-    assert "반영함" in res.output, res.output
+    assert "→ Applied" in res.output, res.output
 
 
 def test_apply_uses_db_reviewer_not_plan_fields(app, client, content_copy, tmp_path):  # noqa: F811
@@ -85,7 +85,7 @@ def test_apply_uses_db_reviewer_not_plan_fields(app, client, content_copy, tmp_p
     path = tmp_path / "plan.json"
     path.write_text(json.dumps(plan, ensure_ascii=False), encoding="utf-8")
     res = app.test_cli_runner().invoke(args=["content-release-apply", str(path)])
-    assert "반영함" in res.output, res.output
+    assert "→ Applied" in res.output, res.output
     review = json.loads((content_copy / "dev_fixtures/debates/dev-f1.json").read_text(encoding="utf-8"))["topics"][2]["review"]
     assert review["reviewer"]["name"] == "관리자 김" and review["approved_at"] != "2020-01-01"
 
@@ -101,14 +101,14 @@ def test_verify_canonical_approvals(app, client, content_copy, tmp_path):  # noq
     path.write_text(json.dumps(plan, ensure_ascii=False), encoding="utf-8")
     runner.invoke(args=["content-release-apply", str(path)])
     res = runner.invoke(args=["content-verify-approvals", "--include-fixtures"])
-    assert res.exit_code == 0 and "1개 모두" in res.output
+    assert res.exit_code == 0 and "All 1 canonical admin approval(s) match" in res.output
     # 다른 DB(기록 없음)나 위조된 번호면 실패
     data = json.loads((content_copy / "dev_fixtures/debates/dev-f1.json").read_text(encoding="utf-8"))
     data["topics"][2]["review"]["reviewer"]["review_id"] = "424242"
     (content_copy / "dev_fixtures/debates/dev-f1.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     res = runner.invoke(args=["content-verify-approvals", "--include-fixtures"])
-    assert res.exit_code != 0 and "#424242 이 DB 에 없어요" in res.output
-    assert "DB 검토 기록으로 확인되지 않은 정본 승인" in client.get("/admin/content").get_data(as_text=True)
+    assert res.exit_code != 0 and "Review record #424242 is not in the DB." in res.output
+    assert "Canonical approvals not confirmed by DB review records" in client.get("/admin/content").get_data(as_text=True)
 
 
 def test_passing_approval_does_not_invalidate_assessment_approval():
@@ -137,7 +137,7 @@ def test_reopened_approval_cannot_be_released_or_verified(app, client, content_c
     path = tmp_path / "plan.json"
     path.write_text(json.dumps(plan, ensure_ascii=False), encoding="utf-8")
     res = app.test_cli_runner().invoke(args=["content-release-apply", str(path)])
-    assert "승인 뒤에 '다시 검토'" in res.output and "반영함" not in res.output
+    assert "'Reopen review' (#" in res.output and "was recorded after the approval" in res.output and "→ Applied" not in res.output
     topic = json.loads((content_copy / "dev_fixtures/debates/dev-f1.json").read_text(encoding="utf-8"))["topics"][2]
     assert topic["review"]["status"] == "draft"
     assert client.get("/admin/content/release?download=1").get_json()["items"] == []   # 새 계획에도 없다
@@ -155,7 +155,7 @@ def test_superseded_canonical_approval_is_flagged(app, client, content_copy, tmp
     assert runner.invoke(args=["content-verify-approvals", "--include-fixtures"]).exit_code == 0
     _review(client, "reopen")                                          # 정본 반영 뒤 '다시 검토'
     res = runner.invoke(args=["content-verify-approvals", "--include-fixtures"])
-    assert res.exit_code != 0 and "더 이상 유효하지 않아요" in res.output
+    assert res.exit_code != 0 and "this approval is no longer valid" in res.output
 
 
 def test_legacy_teacher_approval_is_flagged(content_copy):  # noqa: F811
@@ -226,10 +226,10 @@ def test_final_answers_hidden_while_retakes_remain(app, logged_in):
             take(logged_in, f"/learn/dev-f2/{lesson.id}/quiz", lesson.quiz_assessment)
     url = take(logged_in, "/courses/dev-f2/final", course.final, correct=False)
     html = logged_in.get(url).get_data(as_text=True)
-    assert "합격하거나 응시 기회를 모두 쓴 뒤에" in html
+    assert "shown only after you pass or use all your attempts" in html
     assert all(q["explanation"] not in html for q in course.final.questions)
     res = logged_in.post(url + "/explain", data={"csrf_token": CSRF})
-    assert "합격하거나 응시 기회를 모두 쓴 뒤에" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert "after you pass it or use all of your attempts" in logged_in.get(res.headers["Location"]).get_data(as_text=True)
     take(logged_in, "/courses/dev-f2/final", course.final, correct=True)
     html = logged_in.get(url).get_data(as_text=True)                    # 합격한 뒤에는 첫 응시의 해설도 볼 수 있다
     assert any(q["explanation"] in html for q in course.final.questions)
@@ -258,10 +258,10 @@ def test_input_size_limits(client):
     set_csrf(client)
     res = client.post("/signup", data={"csrf_token": CSRF, "name": "가" * 51, "email": "n@example.com",
                                        "password": "password123", "confirm": "password123"})
-    assert "50자 이하" in res.get_data(as_text=True)
+    assert "Your name must be 50 characters or fewer." in res.get_data(as_text=True)
     res = client.post("/signup", data={"csrf_token": CSRF, "name": "x", "email": "n@example.com",
                                        "password": "p" * 300, "confirm": "p" * 300})
-    assert "256자 이하" in res.get_data(as_text=True)
+    assert "256 characters max" in res.get_data(as_text=True)
     assert client.post("/login", data={"csrf_token": CSRF, "email": "a@b.c", "password": "x" * (1024 * 1024 + 10)}).status_code == 413
 
 
@@ -272,7 +272,7 @@ def test_passing_threshold_needs_approved_assessment_first(app, client):
     assert t.refs["assessment_approved"]          # fixture 평가는 이미 승인 (순서 조건 충족)
     blocked = dataclasses_replace_refs(t, assessment_approved=False)
     state = {"state": "in_review"}
-    with pytest.raises(ac.ReviewRefused, match="평가 → 합격 기준"):
+    with pytest.raises(ac.ReviewRefused, match=r"assessment first, then passing criteria"):
         ac.validate_decision(blocked, state, "approve", blocked.digest, "직접 확인했습니다", True, "관리자 김")
 
 

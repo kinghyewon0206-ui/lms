@@ -23,15 +23,17 @@ import sys
 from econova import config
 from econova.private_content import KEYS_SUFFIX, public_violations
 
-REVIEW_MARKER = "ECONOVA-TEACHER-ONLY: 정답 포함 교사용 문서"
+REVIEW_MARKER = "ECONOVA-TEACHER-ONLY: teacher document with answer keys"
+# 이전(한국어) 표시 문구로 만든 검토 문서도 계속 찾아낸다
+LEGACY_REVIEW_MARKERS = ("ECONOVA-TEACHER-ONLY: 정답 포함 교사용 문서",)  # i18n-allow
 SYNTHETIC_KEY_DIRS = ("content/dev_fixtures/private/",)
 TEACHER_ONLY_DIRS = ("docs/review/",)
 SECRET_PATTERNS = (
-    ("OpenAI API 키", re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_\-]{20,}")),
-    ("Google API 키", re.compile(r"\bAIza[0-9A-Za-z_\-]{30,}")),
-    ("개인 키", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
-    ("서비스 계정 키", re.compile(r'"private_key"\s*:\s*"')),
-    ("GitHub 토큰", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{30,}")),
+    ("OpenAI API key", re.compile(r"\bsk-(?:proj-)?[A-Za-z0-9_\-]{20,}")),
+    ("Google API key", re.compile(r"\bAIza[0-9A-Za-z_\-]{30,}")),
+    ("Private key", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
+    ("Service account key", re.compile(r'"private_key"\s*:\s*"')),
+    ("GitHub token", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{30,}")),
 )
 SKIP_SECRET_SCAN = ("econova/public_safety.py", "tests/test_private_content.py")   # 검사 규칙 자체·그 테스트
 
@@ -41,9 +43,9 @@ def scan_text(rel, text):
     rel = rel.replace(os.sep, "/")
     issues = []
     if any(rel.startswith(d) for d in TEACHER_ONLY_DIRS):
-        issues.append("교사용 검토 문서 폴더(docs/review/)의 파일은 공개 저장소에 올리지 않습니다.")
-    if REVIEW_MARKER in text and rel != "econova/public_safety.py" and not rel.startswith("econova/review_package"):
-        issues.append("정답이 들어 있는 교사용 검토 문서입니다.")
+        issues.append("Files in the teacher review folder (docs/review/) must not go into the public repository.")
+    if any(m in text for m in (REVIEW_MARKER,) + LEGACY_REVIEW_MARKERS) and rel != "econova/public_safety.py" and not rel.startswith("econova/review_package"):
+        issues.append("This is a teacher review document that contains answer keys.")
     data = None
     if rel.endswith(".json"):
         try:
@@ -53,17 +55,17 @@ def scan_text(rel, text):
     synthetic = isinstance(data, dict) and data.get("synthetic") is True
     if rel.endswith(KEYS_SUFFIX):
         if not any(rel.startswith(d) for d in SYNTHETIC_KEY_DIRS):
-            issues.append("정답 키 파일은 비공개 폴더(ECONOVA_PRIVATE_CONTENT_DIR)에만 둡니다.")
+            issues.append("Answer key files belong only in the private folder (ECONOVA_PRIVATE_CONTENT_DIR).")
         elif not synthetic:
-            issues.append("개발용 키 폴더의 파일인데 \"synthetic\": true 가 없습니다 (실제 정답일 수 있음).")
+            issues.append("This file is in the dev key folder but lacks \"synthetic\": true (it may contain real answers).")
     elif isinstance(data, dict) and isinstance(data.get("questions"), list) and not synthetic:
         leaked = public_violations(data)
         if leaked:
-            issues.append(f"평가 파일에 정답 정보가 있습니다 ({len(leaked)}곳, 예: {leaked[0]}).")
+            issues.append(f"The assessment file contains answer information ({len(leaked)} place(s), e.g., {leaked[0]}).")
     if rel not in SKIP_SECRET_SCAN:
         for name, pattern in SECRET_PATTERNS:
             if pattern.search(text):
-                issues.append(f"{name}처럼 보이는 문자열이 있습니다.")
+                issues.append(f"Found a string that looks like a(n) {name}.")
     return issues
 
 
@@ -125,11 +127,11 @@ def main(argv=None):
     found = scan(paths, staged=staged)
     for rel, issues in found.items():
         for issue in issues:
-            print(f"[차단] {rel}: {issue}")
+            print(f"[BLOCKED] {rel}: {issue}")
     if found:
-        print(f"공개 저장소에 올리면 안 되는 내용이 {len(found)}개 파일에 있습니다. 커밋하지 마세요.")
+        print(f"{len(found)} file(s) contain content that must not go into the public repository. Do not commit.")
         return 1
-    print(f"공개 저장소 점검 통과: {len(paths)}개 파일")
+    print(f"Public repository check passed: {len(paths)} file(s)")
     return 0
 
 

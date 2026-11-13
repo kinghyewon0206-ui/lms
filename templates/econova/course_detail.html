@@ -3,70 +3,70 @@
 {% block title %}{{ course.title_ko }} · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.catalog') }}">강좌</a> <span>/</span> {{ course.id|upper }}</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.catalog') }}">Courses</a> <span>/</span> {{ course.id|upper }}</nav>
 
   <section class="ec-course-hero">
     <div>
       <div class="ec-card-top"><span class="ec-code">{{ course.id|upper }}</span><span>{{ m.course_badge(course, enrollment is not none) }}</span></div>
       <h1>{{ course.title_ko }}</h1>
-      <p class="ec-en">{{ course.title }}</p>
+      {% if course.title != course.title_ko %}<p class="ec-en">{{ course.title }}</p>{% endif %}
       <p>{{ course.description }}</p>
       {{ m.sdg_badges(course) }}
-      {% if course.sdg_student_selected %}<p class="hint">이 강좌에서는 탐구할 SDG를 학생이 직접 고릅니다.</p>{% endif %}
+      {% if course.sdg_student_selected %}<p class="hint">In this course, you choose the SDG you want to explore.</p>{% endif %}
     </div>
-    <aside class="ec-side" aria-label="수강 정보">
+    <aside class="ec-side" aria-label="Enrollment">
       {% if enrollment %}
-        <p class="ec-side-title">내 진도</p>
-        {{ m.progress_bar(progress, course.title_ko ~ ' 진도') }}
+        <p class="ec-side-title">My progress</p>
+        {{ m.progress_bar(progress, course.title_ko ~ ' progress') }}
         <p class="hint">{{ m.course_status_text(progress) }}</p>
         {% if course.published and progress.next_lesson %}
-        <a class="btn" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=progress.next_lesson.id) }}">이어서 학습</a>
+        <a class="btn" href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=progress.next_lesson.id) }}">Continue learning</a>
         {% endif %}
         <form method="post" action="{{ url_for('econova.set_difficulty', course_id=course.id) }}" class="ec-level">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-          <label for="difficulty">내 난이도</label>
+          <label for="difficulty">My level</label>
           <select id="difficulty" name="difficulty">
             {% for d in course.difficulty_levels %}
             <option value="{{ d }}"{% if d == enrollment.selected_difficulty %} selected{% endif %}>{{ difficulty_names[d] }}</option>
             {% endfor %}
           </select>
-          <button type="submit" class="btn secondary">난이도 변경</button>
-          <small class="hint">지금 난이도: {{ '진단평가 추천을 따름' if enrollment.difficulty_source == 'diagnostic' else '직접 선택' }}.
-            {% if diagnostic %}최근 진단평가 추천은 {{ difficulty_names[diagnostic.recommended_level] }}이에요 (참고용).
-            {% else %}<a href="{{ url_for('econova.diagnostic_home') }}">진단평가</a>로 추천을 받아 볼 수 있어요.{% endif %}</small>
+          <button type="submit" class="btn secondary">Change level</button>
+          <small class="hint">Current level: {{ 'following the diagnostic assessment recommendation' if enrollment.difficulty_source == 'diagnostic' else 'chosen by you' }}.
+            {% if diagnostic %}Your latest diagnostic assessment recommends {{ difficulty_names[diagnostic.recommended_level] }} (just a suggestion).
+            {% else %}You can get a recommendation from the <a href="{{ url_for('econova.diagnostic_home') }}">diagnostic assessment</a>.{% endif %}</small>
         </form>
       {% elif course.published %}
-        <p class="ec-side-title">수강 신청</p>
+        <p class="ec-side-title">Enroll</p>
         <form method="post" action="{{ url_for('econova.enroll', course_id=course.id) }}" class="ec-level">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-          <label for="difficulty">시작 난이도</label>
+          <label for="difficulty">Starting level</label>
           <select id="difficulty" name="difficulty">
-            {% for d in course.difficulty_levels %}<option value="{{ d }}"{% if diagnostic and d == diagnostic.recommended_level %} selected{% endif %}>{{ difficulty_names[d] }}{% if diagnostic and d == diagnostic.recommended_level %} · 진단평가 추천{% endif %}</option>{% endfor %}
+            {% for d in course.difficulty_levels %}<option value="{{ d }}"{% if diagnostic and d == diagnostic.recommended_level %} selected{% endif %}>{{ difficulty_names[d] }}{% if diagnostic and d == diagnostic.recommended_level %} · Recommended by diagnostic{% endif %}</option>{% endfor %}
           </select>
-          {% if diagnostic %}<small class="hint">진단평가 추천({{ difficulty_names[diagnostic.recommended_level] }})을 미리 골라 두었어요. 다른 난이도를 골라도 돼요.</small>
-          {% else %}<small class="hint"><a href="{{ url_for('econova.diagnostic_home') }}">진단평가</a>를 보면 알맞은 난이도를 추천받을 수 있어요.</small>{% endif %}
-          <button type="submit" class="btn">수강 신청</button>
+          {% if diagnostic %}<small class="hint">We pre-selected the level your diagnostic assessment recommended ({{ difficulty_names[diagnostic.recommended_level] }}). You can pick a different one.</small>
+          {% else %}<small class="hint">Take the <a href="{{ url_for('econova.diagnostic_home') }}">diagnostic assessment</a> to get a recommended level.</small>{% endif %}
+          <button type="submit" class="btn">Enroll</button>
         </form>
       {% else %}
-        <p class="ec-side-title">준비 중인 강좌</p>
-        <p class="hint">검증된 학습자료와 평가가 준비되면 공개돼요. 지금은 수강 신청할 수 없어요.</p>
-        <button type="button" class="btn" disabled aria-disabled="true">수강 신청 불가</button>
+        <p class="ec-side-title">Coming soon</p>
+        <p class="hint">This course will be published once its verified learning materials and assessments are ready. You can't enroll yet.</p>
+        <button type="button" class="btn" disabled aria-disabled="true">Enrollment closed</button>
       {% endif %}
     </aside>
   </section>
 
   <section class="block" aria-labelledby="h-obj">
-    <h2 id="h-obj">학습 목표 {% if course.review_status == 'draft' %}<span class="pill pill-draft">검토 전 초안</span>{% endif %}</h2>
+    <h2 id="h-obj">Learning objectives {% if course.review_status == 'draft' %}<span class="pill pill-draft">Draft (not yet reviewed)</span>{% endif %}</h2>
     <ul class="ec-list">{% for o in course.objectives %}<li>{{ o }}</li>{% endfor %}</ul>
     <dl class="ec-facts">
-      <div><dt>레슨</dt><dd>{{ course.lessons|length }}개</dd></div>
-      <div><dt>예상 학습 시간</dt><dd>약 {{ course.estimated_hours }}시간</dd></div>
-      <div><dt>난이도</dt><dd>하·중·상</dd></div>
+      <div><dt>Lessons</dt><dd>{{ course.lessons|length }}</dd></div>
+      <div><dt>Estimated study time</dt><dd>About {{ course.estimated_hours }} {{ 'hour' if course.estimated_hours == 1 else 'hours' }}</dd></div>
+      <div><dt>Levels</dt><dd>Beginner · Intermediate · Advanced</dd></div>
     </dl>
   </section>
 
   <section class="block" aria-labelledby="h-lessons">
-    <h2 id="h-lessons">레슨</h2>
+    <h2 id="h-lessons">Lessons</h2>
     <ol class="ec-lessons">
       {% for lesson in course.lessons %}
       {% set st = progress.statuses[lesson.id] %}
@@ -78,9 +78,9 @@
           {% else %}
           <strong>{{ lesson.title_ko }}</strong>
           {% endif %}
-          <small>{{ lesson.title }}</small>
+          {% if lesson.title != lesson.title_ko %}<small>{{ lesson.title }}</small>{% endif %}
         </div>
-        <span class="pill pill-{{ st }}">{% if st == 'completed' %}완료{% elif st == 'in_progress' %}진행 중{% else %}시작 전{% endif %}</span>
+        <span class="pill pill-{{ st }}">{% if st == 'completed' %}Completed{% elif st == 'in_progress' %}In progress{% else %}Not started{% endif %}</span>
       </li>
       {% endfor %}
     </ol>
@@ -88,40 +88,40 @@
 
   {% if course.capstone %}
   <section class="block" aria-labelledby="h-capstone">
-    <h2 id="h-capstone">SDG 캡스톤 프로젝트</h2>
+    <h2 id="h-capstone">SDG Capstone project</h2>
     {% if course.published and course.capstone_ready %}
-      <p>최종 평가 대신 스스로 SDG 경제 프로젝트를 완성해 제출하면 강좌를 마쳐요 (공식 학업 성취·자격 인증 아님).</p>
-      <a class="btn" href="{{ url_for('econova.capstone_home', course_id=course.id) }}">캡스톤 보기</a>
+      <p>Instead of a final assessment, you complete the course by finishing and submitting your own SDG economics project (this is not an official academic achievement or certification).</p>
+      <a class="btn" href="{{ url_for('econova.capstone_home', course_id=course.id) }}">View Capstone project</a>
     {% else %}
-      <p>캡스톤 안내와 자기평가 기준이 검토를 마치면 열려요.</p>
+      <p>The Capstone project opens once its guide and self-assessment criteria have been reviewed.</p>
     {% endif %}
   </section>
   {% endif %}
   <section class="block" aria-labelledby="h-final">
-    <h2 id="h-final">최종 평가</h2>
+    <h2 id="h-final">Final assessment</h2>
     {% set fi = final_info %}
     {% if fi.state == 'upcoming' %}
     <div class="ec-placeholder">
-      <span class="pill pill-soon">준비 중</span>
-      <p>최종 평가는 교사 검토를 마친 뒤 공개돼요. 레슨을 모두 완료하고 최종 평가의 합격 기준을 넘으면 강좌를 수료해요.</p>
+      <span class="pill pill-soon">Coming soon</span>
+      <p>The final assessment will be published after teacher review. Complete all lessons and pass the final assessment to complete the course.</p>
     </div>
     {% else %}
     <div class="ec-quiz-box">
-      <p><strong>{{ fi.assessment.title }}</strong> · {{ fi.assessment.questions|length }}문항 · 합격 기준 {{ (fi.assessment.passing.score_ratio * 100)|round|int }}%
-        {% if fi.assessment.passing.status == 'dev_provisional' %}<span class="pill pill-dev">개발용 임시 기준</span>{% elif fi.assessment.passing.status != 'approved' %}<span class="pill pill-draft">승인 전 제안값</span>{% endif %}</p>
+      <p><strong>{{ fi.assessment.title }}</strong> · {{ fi.assessment.questions|length }} {{ 'question' if fi.assessment.questions|length == 1 else 'questions' }} · Passing score {{ (fi.assessment.passing.score_ratio * 100)|round|int }}%
+        {% if fi.assessment.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% elif fi.assessment.passing.status != 'approved' %}<span class="pill pill-draft">Proposed value, not approved</span>{% endif %}</p>
       {% if fi.state == 'not_enrolled' %}
-        <p class="hint">수강 신청 후 레슨을 모두 완료하면 열려요.</p>
+        <p class="hint">Opens after you enroll and complete all lessons.</p>
       {% elif fi.state == 'locked' %}
-        <p class="hint"><span class="pill pill-soon">잠김</span> 레슨을 모두 완료하면 열려요 (현재 {{ progress.completed }}/{{ progress.total }}).</p>
+        <p class="hint"><span class="pill pill-soon">Locked</span> Opens when you complete all lessons (currently {{ progress.completed }}/{{ progress.total }}).</p>
       {% elif fi.state == 'completed' %}
-        <p class="ec-done-note">수료 완료{% if enrollment.completion_policy == 'dev_provisional' %} (개발용 임시 기준에 따른 테스트 수료){% endif %}</p>
+        <p class="ec-done-note">Course completed{% if enrollment.completion_policy == 'dev_provisional' %} (test completion under the temporary development standard){% endif %}</p>
       {% endif %}
-      {% if fi.best %}<p class="hint">최고 결과 {{ (fi.best.ratio * 100)|round|int }}% ({{ '합격' if fi.best.passed else '불합격' }}) · 응시 {{ fi.attempts|length }}번{% if fi.left is not none %} · 남은 횟수 {{ fi.left }}번{% endif %}</p>{% endif %}
+      {% if fi.best %}<p class="hint">Best result {{ (fi.best.ratio * 100)|round|int }}% ({{ 'Passed' if fi.best.passed else 'Not passed' }}) · {{ fi.attempts|length }} {{ 'attempt' if fi.attempts|length == 1 else 'attempts' }}{% if fi.left is not none %} · {{ fi.left }} {{ 'attempt' if fi.left == 1 else 'attempts' }} left{% endif %}</p>{% endif %}
       {% if fi.state == 'open' %}
-        {% if fi.left == 0 %}<p class="hint">응시 횟수를 모두 사용했어요.</p>
-        {% else %}<a class="btn" href="{{ url_for('econova.final_assessment', course_id=course.id) }}">{{ '다시 응시하기' if fi.attempts else '최종 평가 보기' }}</a>{% endif %}
+        {% if fi.left == 0 %}<p class="hint">You have used all your attempts.</p>
+        {% else %}<a class="btn" href="{{ url_for('econova.final_assessment', course_id=course.id) }}">{{ 'Try again' if fi.attempts else 'Take the final assessment' }}</a>{% endif %}
       {% endif %}
-      {% if enrollment %}<p class="hint"><a href="{{ url_for('econova.completion', course_id=course.id) }}">수료 현황</a> · <a href="{{ url_for('econova.assessment_history', course_id=course.id) }}">응시 기록</a></p>{% endif %}
+      {% if enrollment %}<p class="hint"><a href="{{ url_for('econova.completion', course_id=course.id) }}">Completion status</a> · <a href="{{ url_for('econova.assessment_history', course_id=course.id) }}">Attempt history</a></p>{% endif %}
     </div>
     {% endif %}
   </section>

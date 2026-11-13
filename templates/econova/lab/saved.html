@@ -1,20 +1,20 @@
 {% extends "base.html" %}
-{% block title %}저장한 실험 · ECONOVA{% endblock %}
+{% block title %}Saved experiments · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.lab_home') }}">경제 실험실</a> <span>/</span> 저장한 실험</nav>
-  <header class="ec-head"><h1>저장한 실험</h1><p class="hint">내가 저장한 실험만 보여요. 결과는 저장할 때 서버가 다시 계산한 값이에요.</p></header>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.lab_home') }}">Economics Lab</a> <span>/</span> Saved experiments</nav>
+  <header class="ec-head"><h1>Saved experiments</h1><p class="hint">Only experiments you saved are shown. Results are the values the server recalculated when you saved.</p></header>
   {% if runs %}
   <table class="ec-table ec-table-wide">
-    <thead><tr><th scope="col">저장 시각 (UTC)</th><th scope="col">시뮬레이션</th><th scope="col">입력</th><th scope="col">레슨</th><th scope="col"></th></tr></thead>
+    <thead><tr><th scope="col">Saved at (UTC)</th><th scope="col">Simulation</th><th scope="col">Inputs</th><th scope="col">Lesson</th><th scope="col"></th></tr></thead>
     <tbody>
     {% for r in runs %}
       <tr><td>{{ r.created_at }}</td><td>{{ sims[r.simulation_id].title }}</td>
         <td>{% for k, v in r.inputs.items() %}{{ k }}={{ '%g' % v }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
-        <td>{{ r.lesson_id or '–' }}</td><td><a href="{{ url_for('econova.lab_run', run_id=r.id) }}">보기</a></td></tr>
+        <td>{{ r.lesson_id or '–' }}</td><td><a href="{{ url_for('econova.lab_run', run_id=r.id) }}">View</a></td></tr>
     {% endfor %}
     </tbody>
   </table>
-  {% else %}<p class="ec-placeholder-text">아직 저장한 실험이 없어요.</p>{% endif %}
+  {% else %}<p class="ec-placeholder-text">You haven't saved any experiments yet.</p>{% endif %}
 </div>
 {% endblock %}

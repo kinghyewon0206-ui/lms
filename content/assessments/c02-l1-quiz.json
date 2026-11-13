@@ -4,9 +4,9 @@
   "kind": "lesson_quiz",
   "course_id": "c02",
   "lesson_id": "c02-l1",
-  "version": 2,
-  "title": "레슨 1 형성 퀴즈: 수요와 공급",
-  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "version": 3,
+  "title": "Lesson 1 Quiz: Demand and Supply",
+  "description": "This lesson quiz checks what you learned in the lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -17,13 +17,19 @@
         "status": "draft",
         "at": "2026-11-03",
         "by": "Claude Code (AI)",
-        "note": "AI 가 작성한 문항 초안. 교사 검토 전이며 학생에게 출제하지 않는다."
+        "note": "AI-written question draft. Not yet reviewed by a teacher; do not give to students."
       },
       {
         "status": "draft",
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
-        "note": "v2: 검토 의견(docs/content/c02-review.md) 반영 — 정답 위치 균형, 약한 오답 교체, 예제 복사 가능 문항 교체. 사람 검토 전."
+        "note": "v2: Revised based on review comments (docs/content/c02-review.md): balanced answer positions, replaced weak distractors, replaced questions that could be copied from worked examples. Not yet reviewed by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
       }
     ]
   },
@@ -34,7 +40,7 @@
   "questions": [
     {
       "id": "c02-l1-q1",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 1,
@@ -45,23 +51,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "'급식실 우유가 한 팩에 500원일 때 학생들은 하루 200팩을 사려 한다'에서 200팩은 무엇에 해당하나요?",
+      "prompt": "\"When a carton of milk in the school cafeteria costs 50 cents, students want to buy 200 cartons a day.\" What does the 200 cartons describe?",
       "choices": [
         {
           "id": "a",
-          "text": "수요"
+          "text": "Demand"
         },
         {
           "id": "b",
-          "text": "공급량"
+          "text": "Quantity supplied"
         },
         {
           "id": "c",
-          "text": "수요량"
+          "text": "Quantity demanded"
         },
         {
           "id": "d",
-          "text": "균형 거래량"
+          "text": "Equilibrium quantity"
         }
       ],
       "source_ids": [
@@ -71,7 +77,7 @@
     },
     {
       "id": "c02-l1-q2",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 2,
@@ -82,23 +88,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "다른 조건이 같을 때 마스크 가격이 오르면 마스크 시장의 공급 쪽에서는 어떤 일이 일어나나요?",
+      "prompt": "Other things being equal, the price of face masks rises. What happens on the supply side of the face mask market?",
       "choices": [
         {
           "id": "a",
-          "text": "공급량이 줄어든다"
+          "text": "Quantity supplied falls along the curve"
         },
         {
           "id": "b",
-          "text": "공급량이 변하지 않는다"
+          "text": "Quantity supplied stays the same"
         },
         {
           "id": "c",
-          "text": "공급곡선 자체가 오른쪽으로 이동한다"
+          "text": "The supply curve itself shifts right"
         },
         {
           "id": "d",
-          "text": "같은 공급곡선을 따라 공급량이 늘어난다"
+          "text": "Quantity supplied rises along the curve"
         }
       ],
       "source_ids": [
@@ -108,7 +114,7 @@
     },
     {
       "id": "c02-l1-q3",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 3,
@@ -119,23 +125,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "소득이 늘어 같은 가격에서도 운동화(정상재)를 더 사려고 해요. 운동화 시장에서 일어나는 일로 알맞은 것은?",
+      "prompt": "Incomes rise, and people now want to buy more sneakers (a normal good) even at the same price. What happens in the sneaker market?",
       "choices": [
         {
           "id": "a",
-          "text": "수요곡선을 따라 아래쪽으로 이동한다"
+          "text": "There is a movement down along the demand curve"
         },
         {
           "id": "b",
-          "text": "수요곡선 자체가 오른쪽으로 이동한다"
+          "text": "The demand curve itself shifts to the right"
         },
         {
           "id": "c",
-          "text": "공급곡선이 오른쪽으로 이동한다"
+          "text": "The supply curve shifts to the right"
         },
         {
           "id": "d",
-          "text": "수요곡선이 왼쪽으로 이동한다"
+          "text": "The demand curve shifts to the left"
         }
       ],
       "source_ids": [
@@ -145,7 +151,7 @@
     },
     {
       "id": "c02-l1-q4",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 3,
@@ -155,23 +161,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "다음 중 어떤 상품의 공급곡선을 왼쪽으로 이동시키는 요인은 무엇인가요?",
+      "prompt": "Which of the following shifts a good's supply curve to the left?",
       "choices": [
         {
           "id": "a",
-          "text": "원재료 값과 인건비가 오른다"
+          "text": "Raw material and labor costs rise"
         },
         {
           "id": "b",
-          "text": "생산 기술이 좋아진다"
+          "text": "Production technology improves"
         },
         {
           "id": "c",
-          "text": "그 상품의 가격이 내린다"
+          "text": "The good's own price falls"
         },
         {
           "id": "d",
-          "text": "소비자들의 소득이 줄어든다"
+          "text": "Consumers' incomes fall"
         }
       ],
       "source_ids": [
@@ -181,7 +187,7 @@
     },
     {
       "id": "c02-l1-q5",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c02-l1",
       "objective": 3,
@@ -192,7 +198,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "어느 상품의 수요함수가 Qd = 90 − 3P 였는데, 소득이 늘어 모든 가격에서 수요량이 15 씩 늘었어요. P = 12 에서 새 수요량은 얼마인가요? (숫자만 입력)",
+      "prompt": "The demand function for a good was Qd = 90 − 3P. Then incomes rose, and quantity demanded increased by 15 at every price. What is the new quantity demanded at P = 12? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",

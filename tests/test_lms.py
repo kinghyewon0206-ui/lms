@@ -6,7 +6,7 @@ from tests.conftest import CSRF
 
 def test_index(client):
     html = client.get("/").get_data(as_text=True)
-    assert "ECONOVA" in html and "지속가능발전목표(SDG)로 배우는 경제" in html
+    assert "ECONOVA" in html and "Learn economics through the UN Sustainable Development Goals (SDGs)" in html
 
 
 def test_index_redirects_when_logged_in(logged_in):
@@ -28,4 +28,5 @@ def test_removed_legacy_actions_are_gone(logged_in, path):
 def test_pages_do_not_link_to_the_old_lms(logged_in):
     for path in ("/dashboard", "/courses", "/does-not-exist"):
         html = logged_in.get(path).get_data(as_text=True)
-        assert "이전 LMS" not in html and "/legacy" not in html and "/curriculum" not in html
+        assert "이전 LMS" not in html and "previous lms" not in html.lower() and "legacy lms" not in html.lower()
+        assert "/legacy" not in html and "/curriculum" not in html

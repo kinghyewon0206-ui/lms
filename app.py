@@ -95,25 +95,25 @@ def signup():
 
         error = None
         if not name:
-            error = "이름을 입력해주세요."
+            error = "Please enter your name."
         elif len(name) > 50:
-            error = "이름은 50자 이하로 입력해주세요."
+            error = "Your name must be 50 characters or fewer."
         elif len(email) > 254 or not EMAIL_RE.match(email):
-            error = "올바른 이메일을 입력해주세요."
+            error = "Please enter a valid email address."
         elif len(password) < 8:
-            error = "비밀번호는 8자 이상이어야 합니다."
+            error = "Your password must be at least 8 characters."
         elif len(password) > 256:
-            error = "비밀번호가 너무 길어요 (256자 이하)."
+            error = "Your password is too long (256 characters max)."
         elif password != confirm:
-            error = "비밀번호가 일치하지 않습니다."
+            error = "The passwords don't match."
 
         if error is None:
             try:
                 create_user(email, name, generate_password_hash(password, method="pbkdf2:sha256"))
             except DuplicateEmailError:
-                error = "이미 가입된 이메일입니다."
+                error = "An account with this email already exists."
             else:
-                flash("회원가입이 완료되었습니다. 로그인해주세요.", "success")
+                flash("Your account has been created. Please log in.", "success")
                 return redirect(url_for("login"))
 
         flash(error, "error")
@@ -131,12 +131,12 @@ def login():
         # 로그인 시도 제한 (econova/login_guard.py): 계정+IP·계정·IP 별 실패 수. 저장소 기록이라 워커 사이에 공유된다.
         if login_guard.blocked(email):
             # 어느 제한에 걸렸는지는 알리지 않는다 (계정 존재 여부 등을 추측할 수 없게)
-            flash("로그인 시도가 많아 잠시 막았어요. 15분쯤 뒤에 다시 시도해 주세요.", "error")
+            flash("Too many login attempts. Please wait about 15 minutes and try again.", "error")
             return render_template("login.html", email=email), 429
         user = get_user_by_email(email)
         if user is None or not check_password_hash(user["password_hash"], password):
             login_guard.record_failure(email)
-            flash("이메일 또는 비밀번호가 올바르지 않습니다.", "error")
+            flash("Incorrect email or password.", "error")
             return render_template("login.html", email=email), 401
 
         login_guard.record_success(email)
@@ -186,10 +186,10 @@ def init_db_command():
     """로컬 sqlite 테이블을 만든다(마이그레이션): flask --app app init-db
     Firestore 는 스키마가 없어 할 일이 없다 (문서를 처음 쓸 때 만들어진다). 앱 import 때는 실행되지 않는다."""
     if using_firestore():
-        click.echo("DB_BACKEND=firestore: 미리 만들 테이블이 없습니다. 아무것도 바꾸지 않았습니다.")
+        click.echo("DB_BACKEND=firestore: there are no tables to create. Nothing was changed.")
         return
     init_db()
-    click.echo(f"{config.db_backend()} 저장소를 초기화했습니다.")
+    click.echo(f"Initialized the {config.db_backend()} storage.")
 
 
 @app.cli.command("check-content")
@@ -200,10 +200,10 @@ def check_content_command():
         real = content.load_catalog(include_fixtures=False)
         with_fixtures = content.load_catalog(include_fixtures=True)
     except content.ContentError as exc:
-        raise click.ClickException(f"강좌 콘텐츠 오류: {exc}")
+        raise click.ClickException(f"Course content error: {exc}")
     fixtures = [c for c in with_fixtures.courses if c.fixture]
-    click.echo(f"강좌 콘텐츠 정상: 실제 강좌 {len(real.courses)}개 (레슨 {sum(len(c.lessons) for c in real.courses)}개, "
-               f"공개 {len(real.published())}개), 개발용 테스트 강좌 {len(fixtures)}개")
+    click.echo(f"Course content OK: {len(real.courses)} real course(s) ({sum(len(c.lessons) for c in real.courses)} lesson(s), "
+               f"{len(real.published())} published), {len(fixtures)} dev test course(s)")
     # 정답 키 확인: 키가 없거나 맞지 않는 평가는 열리지 않는다(fail closed). 공개(승인)된 평가에 키가 없으면 오류.
     from econova import diagnostic
     closed, blocking = [], []
@@ -215,12 +215,12 @@ def check_content_command():
                     blocking.append(a.id)
     test = diagnostic.load()
     if not test["answer_keys"]:
-        closed.append(f"진단평가: {test['keys_problem']}")
+        closed.append(f"Diagnostic assessment: {test['keys_problem']}")
     for line in closed:
-        click.echo(f"  [정답 키 없음 → 응시 불가] {line}")
-    click.echo(f"정답 키 확인: 열 수 없는 평가 {len(closed)}개" if closed else "정답 키 확인: 모든 평가에 정답 키가 있습니다.")
+        click.echo(f"  [No answer key -> cannot be taken] {line}")
+    click.echo(f"Answer key check: {len(closed)} assessment(s) cannot be opened" if closed else "Answer key check: every assessment has an answer key.")
     if blocking:
-        raise click.ClickException(f"승인된 평가에 정답 키가 없습니다: {', '.join(blocking)}")
+        raise click.ClickException(f"Approved assessments are missing answer keys: {', '.join(blocking)}")
 
 
 # ---------------------------------------------------------------- 플랫폼 관리자 (Phase 7)
@@ -228,25 +228,25 @@ def check_content_command():
 # 가입 이메일은 소유 확인을 하지 않으므로 "이 이메일이면 관리자" 같은 자동 부여는 하지 않는다.
 @app.cli.command("admin-grant")
 @click.argument("email")
-@click.option("--operator", required=True, help="권한을 부여하는 운영자 이름 (감사 기록에 남음)")
+@click.option("--operator", required=True, help="Name of the operator granting access (recorded in the audit log)")
 @click.option("--verification", required=True,
-              help="이 계정 주인이 맞는지 확인한 방법 (예: '대면 확인 2026-11-05, 계정 로그인 화면 확인')")
-@click.option("--note", default="", help="메모")
+              help="How you confirmed the account owner's identity (e.g., 'Verified in person 2026-11-05; saw the account's logged-in screen')")
+@click.option("--note", default="", help="Note")
 def admin_grant_command(email, operator, verification, note):
     """이미 가입한 계정에 플랫폼 관리자 권한을 준다. 확인 문구를 직접 입력해야 한다."""
     email = email.strip().lower()
     if len(verification.strip()) < 10 or len(operator.strip()) < 2:
-        raise click.ClickException("운영자 이름과 본인 확인 방법(10자 이상)을 구체적으로 적어야 합니다.")
+        raise click.ClickException("Give a specific operator name and identity-verification method (at least 10 characters).")
     if config.is_production() and config.env("ECONOVA_ALLOW_ADMIN_BOOTSTRAP").strip() != "1":
-        raise click.ClickException("운영 환경에서는 ECONOVA_ALLOW_ADMIN_BOOTSTRAP=1 을 이 명령에만 잠시 설정해야 합니다.")
+        raise click.ClickException("In production, ECONOVA_ALLOW_ADMIN_BOOTSTRAP=1 must be set temporarily for this command only.")
     user = get_user_by_email(email)
     if user is None:
-        raise click.ClickException("그 이메일로 가입한 계정이 없습니다. 본인이 먼저 가입해야 합니다.")
-    typed = click.prompt(f"관리자 권한을 줄 계정의 이메일을 다시 입력하세요 ({email})", default="", show_default=False)
+        raise click.ClickException("No account is registered with that email. The user must sign up first.")
+    typed = click.prompt(f"Re-enter the email of the account to make an admin ({email})", default="", show_default=False)
     if typed.strip().lower() != email:
-        raise click.ClickException("확인 이메일이 다릅니다. 아무것도 바꾸지 않았습니다.")
+        raise click.ClickException("The confirmation email does not match. Nothing was changed.")
     storage.grant_admin(user["id"], operator.strip(), verification.strip(), note.strip())
-    click.echo(f"관리자 권한을 부여했습니다: {email} (부여자 {operator.strip()})")
+    click.echo(f"Granted admin access: {email} (granted by {operator.strip()})")
 
 
 @app.cli.command("admin-revoke")
@@ -255,9 +255,9 @@ def admin_revoke_command(email):
     """관리자 권한을 취소한다 (계정은 학생으로 돌아간다. 부여 기록은 취소 시각과 함께 남는다)."""
     user = get_user_by_email(email.strip().lower())
     if user is None:
-        raise click.ClickException("그 이메일로 가입한 계정이 없습니다.")
+        raise click.ClickException("No account is registered with that email.")
     storage.revoke_admin(user["id"])
-    click.echo(f"관리자 권한을 취소했습니다: {email}")
+    click.echo(f"Revoked admin access: {email}")
 
 
 @app.cli.command("admin-list")
@@ -267,15 +267,15 @@ def admin_list_command():
     for uid in ids:
         user = get_user_by_id(uid)
         grant = storage.get_admin_grant(uid)
-        click.echo(f"- {user['email'] if user else uid} · 부여 {grant['granted_at']} by {grant['granted_by']}")
-    click.echo(f"관리자 {len(ids)}명")
+        click.echo(f"- {user['email'] if user else uid} · granted {grant['granted_at']} by {grant['granted_by']}")
+    click.echo(f"{len(ids)} admin(s)")
 
 
 @app.cli.command("content-release-apply")
 @click.argument("plan_file", type=click.Path(exists=True, dir_okay=False))
-@click.option("--dry-run", is_flag=True, help="파일을 바꾸지 않고 확인만")
+@click.option("--dry-run", is_flag=True, help="Check only; do not change any files")
 @click.option("--trust-plan", is_flag=True,
-              help="이 DB 에 검토 기록이 없을 때(운영에서 내보낸 계획): ECONOVA_RELEASE_SIGNING_KEY 로 서명이 확인된 계획만 반영")
+              help="When this DB has no review records (a plan exported from production): apply only plans whose signature verifies with ECONOVA_RELEASE_SIGNING_KEY")
 def content_release_apply_command(plan_file, dry_run, trust_plan):
     """관리 화면에서 내려받은 릴리스 계획을 정본 JSON 의 review 블록에 반영한다 (개발 환경 전용, 웹에서는 불가).
     항목마다 지금 파일의 내용 지문이 승인 때와 같은지 다시 확인하고, 다르면 건너뛴다. 반영 뒤에는 check-content 와
@@ -283,7 +283,7 @@ def content_release_apply_command(plan_file, dry_run, trust_plan):
     import json as _json
     from econova import admin_content
     if config.is_production():
-        raise click.ClickException("운영 환경에서는 정본 콘텐츠 파일을 바꾸지 않습니다. 개발 환경에서 반영하고 Git 으로 배포하세요.")
+        raise click.ClickException("Canonical content files are never changed in production. Apply the plan in development and deploy with Git.")
     with open(plan_file, encoding="utf-8") as f:
         plan = _json.load(f)
     signed_ok = admin_content.plan_signature_ok(plan, config.env("ECONOVA_RELEASE_SIGNING_KEY"))
@@ -294,18 +294,18 @@ def content_release_apply_command(plan_file, dry_run, trust_plan):
         record = storage.get_content_review(item["review_id"])
         if record is None:
             if not trust_plan:
-                return "이 DB 에 검토 기록이 없음 (운영에서 내보낸 서명된 계획이면 --trust-plan)", None
+                return "No review record in this DB (use --trust-plan for a signed plan exported from production)", None
             if not signed_ok:
-                return "계획 서명이 없거나 맞지 않음 (ECONOVA_RELEASE_SIGNING_KEY 확인) — 반영하지 않음", None
+                return "Plan signature missing or invalid (check ECONOVA_RELEASE_SIGNING_KEY) — not applied", None
             return None, None
         if (record["decision"], record["content_digest"], record["target_type"], record["target_id"]) != \
                 ("approve", item["content_digest"], item["target_type"], item["target_id"]):
-            return "검토 기록과 계획 내용이 다름", None
+            return "Plan does not match the review record", None
         if storage.get_admin_grant(record["reviewer_user_id"]) is None:
-            return "승인한 관리자의 권한이 취소됨 — 다시 검토 필요", None
+            return "The approving admin's access was revoked — needs a new review", None
         later = admin_content.superseded_by(record, storage.list_content_reviews(item["target_type"], item["target_id"]))
         if later is not None:   # 승인 뒤에 '다시 검토'·'수정 요청' 이 기록됐다면 이 승인은 반영하지 않는다
-            return f"승인 뒤에 '{admin_content.DECISION_KO.get(later['decision'], later['decision'])}'(#{later['id']}) 이 기록됨", None
+            return f"'{admin_content.DECISION_KO.get(later['decision'], later['decision'])}' (#{later['id']}) was recorded after the approval", None
         return None, {"review_id": record["id"], "reviewer_name": record["reviewer_name"],
                       "approved_at": record["created_at"].strftime("%Y-%m-%d") if record["created_at"] else ""}
     try:
@@ -315,11 +315,11 @@ def content_release_apply_command(plan_file, dry_run, trust_plan):
     for item, result in results:
         click.echo(f"- {item['target_type']}:{item['target_id']} → {result}")
     content.load_catalog.cache_clear()
-    click.echo("반영 뒤에는 flask --app app check-content 와 테스트를 실행하고 diff 를 확인하세요.")
+    click.echo("After applying, run flask --app app check-content and the tests, then review the diff.")
 
 
 @app.cli.command("content-verify-approvals")
-@click.option("--include-fixtures", is_flag=True, help="개발용 fixture 도 검사")
+@click.option("--include-fixtures", is_flag=True, help="Also check dev fixtures")
 def content_verify_approvals_command(include_fixtures):
     """정본 JSON 의 관리자 승인(합격 기준 포함)이 모두 DB 의 검토 기록으로 뒷받침되는지 확인한다 (읽기만 함).
     배포 직후 운영 환경에서 실행한다. 기록이 없거나 지문이 다르면 종료 코드 1."""
@@ -329,10 +329,10 @@ def content_verify_approvals_command(include_fixtures):
         storage.get_content_review, include_fixtures, list_reviews=storage.list_content_reviews,
         reviewer_active=lambda uid: storage.get_admin_grant(uid) is not None)
     for t, why in problems:
-        click.echo(f"  [검증 실패] {t.type}:{t.id} — {why}")
+        click.echo(f"  [Verification failed] {t.type}:{t.id} — {why}")
     if problems:
-        raise click.ClickException(f"검증되지 않은 정본 승인 {len(problems)}개")
-    click.echo(f"정본 관리자 승인 {len(approvals)}개 모두 DB 검토 기록과 일치합니다.")
+        raise click.ClickException(f"{len(problems)} canonical approval(s) could not be verified")
+    click.echo(f"All {len(approvals)} canonical admin approval(s) match the DB review records.")
 
 
 @app.cli.command("ai-purge")
@@ -344,24 +344,24 @@ def ai_purge_command():
     days = ai_client.settings().retention_days
     before = storage._utcnow() - datetime.timedelta(days=days)
     msgs, convs = storage.purge_ai_data(before, usage_before=storage._utcnow() - datetime.timedelta(days=max(days, 90)))
-    click.echo(f"AI 기록 정리: {days}일 지난 메시지 {msgs}개, 빈 대화 {convs}개를 지웠습니다.")
+    click.echo(f"AI data cleanup: deleted {msgs} message(s) older than {days} days and {convs} empty conversation(s).")
     n = storage.purge_login_counters(storage._utcnow())
-    click.echo(f"로그인 실패 기록 정리: 만료된 기록 {n}개를 지웠습니다.")
+    click.echo(f"Login failure cleanup: deleted {n} expired record(s).")
 
 
 @app.cli.command("check-public-files")
-@click.option("--staged", is_flag=True, help="이미 스테이지한 파일만 검사 (pre-commit 훅과 같음)")
+@click.option("--staged", is_flag=True, help="Check only staged files (same as the pre-commit hook)")
 def check_public_files_command(staged):
     """공개 저장소에 올리면 안 되는 내용(정답 키·교사용 검토 문서·API 키)이 커밋 대상에 있는지 검사한다."""
     from econova import public_safety
     if public_safety.main(["--staged"] if staged else []):
-        raise click.ClickException("커밋하면 안 되는 내용이 있습니다.")
+        raise click.ClickException("Found content that must not be committed.")
 
 
 @app.cli.command("review-package")
 @click.argument("course_id")
 @click.option("--output", "-o", default=None, type=click.Path(dir_okay=False),
-              help="만들 Markdown 파일 경로. 기본: <비공개 폴더>/review/<강좌>-review-package.md")
+              help="Path of the Markdown file to create. Default: <private folder>/review/<course>-review-package.md")
 def review_package_command(course_id, output):
     """교사용 교육 검토 문서(정답 포함)를 만든다. 학생 화면으로는 제공하지 않는다. 어떤 자료도 승인하지 않는다.
     정답이 들어 있으므로 저장소 밖(비공개 폴더)이나, 저장소 안이라면 git 이 무시하는 곳에만 쓴다."""
@@ -370,16 +370,16 @@ def review_package_command(course_id, output):
     if output is None:
         private_dir = config.private_content_dir()
         if not private_dir:
-            raise click.ClickException("비공개 폴더(ECONOVA_PRIVATE_CONTENT_DIR)가 없어 기본 위치를 정할 수 없습니다. -o 로 지정하세요.")
+            raise click.ClickException("No private folder (ECONOVA_PRIVATE_CONTENT_DIR) is set, so there is no default location. Use -o to choose one.")
         output = os.path.join(private_dir, "review", f"{course_id}-review-package.md")
     inside, ignored = public_safety.is_ignored_inside_repo(output)
     if inside and not ignored:
-        raise click.ClickException(f"{output} 는 저장소 안의 커밋될 수 있는 위치입니다. 정답이 공개될 수 있어 쓰지 않습니다. "
-                                   "비공개 폴더나 git 이 무시하는 폴더(docs/review/)를 지정하세요.")
+        raise click.ClickException(f"{output} is inside the repository where it could be committed. Not writing it, because the answers could become public. "
+                                   "Choose the private folder or a folder git ignores (docs/review/).")
     catalog = content.load_catalog(include_fixtures=False)
     course = catalog.course(course_id)
     if course is None:
-        raise click.ClickException(f"강좌 {course_id!r} 가 없습니다.")
+        raise click.ClickException(f"Course {course_id!r} does not exist.")
     try:
         text = review_package.build(course, catalog.sources, datetime.date.today().isoformat())
     except review_package.KeysMissing as exc:
@@ -387,7 +387,7 @@ def review_package_command(course_id, output):
     os.makedirs(os.path.dirname(os.path.abspath(output)), exist_ok=True)
     with open(output, "w", encoding="utf-8") as f:
         f.write(text + "\n")
-    click.echo(f"검토 문서를 만들었습니다: {output}")
+    click.echo(f"Created the review document: {output}")
 
 
 if __name__ == "__main__":

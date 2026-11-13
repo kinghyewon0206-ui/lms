@@ -5,7 +5,7 @@
   "review": {
     "status": "approved",
     "reviewer": {
-      "name": "테스트용 검토자 (fixture)",
+      "name": "Test reviewer (fixture)",
       "role": "fixture"
     },
     "reviewed_at": "2026-11-03",
@@ -14,67 +14,67 @@
       {
         "status": "draft",
         "at": "2026-11-03",
-        "by": "개발용 fixture 생성",
-        "note": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+        "by": "Dev fixture generator",
+        "note": "Fake material for development and automated tests only. Not real economics content."
       },
       {
         "status": "approved",
         "at": "2026-11-03",
-        "by": "테스트용 검토자 (fixture)",
-        "note": "화면·진도 시험용"
+        "by": "Test reviewer (fixture)",
+        "note": "For testing screens and progress"
       }
     ]
   },
   "objectives": [
-    "테스트 학습목표 3 (개발용)"
+    "Test learning objective 3 (Dev)"
   ],
   "concepts": [
     {
       "id": "fixture-concept",
-      "term": "테스트 개념 3",
-      "definition": "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다.",
+      "term": "Test concept 3",
+      "definition": "Fake material for development and automated tests only. Not real economics content.",
       "source_ids": []
     }
   ],
   "levels": {
     "beginner": {
-      "summary": "[하] 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 3)",
+      "summary": "[Beginner] Fake material for development and automated tests only. Not real economics content. (Lesson 3)",
       "sections": [
         {
-          "heading": "하 테스트 본문",
+          "heading": "Beginner test text",
           "concept_ids": [
             "fixture-concept"
           ],
           "paragraphs": [
-            "하 난이도 테스트 문단입니다. 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+            "Beginner-level test paragraph. Fake material for development and automated tests only. Not real economics content."
           ]
         }
       ]
     },
     "intermediate": {
-      "summary": "[중] 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 3)",
+      "summary": "[Intermediate] Fake material for development and automated tests only. Not real economics content. (Lesson 3)",
       "sections": [
         {
-          "heading": "중 테스트 본문",
+          "heading": "Intermediate test text",
           "concept_ids": [
             "fixture-concept"
           ],
           "paragraphs": [
-            "중 난이도 테스트 문단입니다. 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+            "Intermediate-level test paragraph. Fake material for development and automated tests only. Not real economics content."
           ]
         }
       ]
     },
     "advanced": {
-      "summary": "[상] 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다. (레슨 3)",
+      "summary": "[Advanced] Fake material for development and automated tests only. Not real economics content. (Lesson 3)",
       "sections": [
         {
-          "heading": "상 테스트 본문",
+          "heading": "Advanced test text",
           "concept_ids": [
             "fixture-concept"
           ],
           "paragraphs": [
-            "상 난이도 테스트 문단입니다. 개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+            "Advanced-level test paragraph. Fake material for development and automated tests only. Not real economics content."
           ]
         }
       ]
@@ -84,10 +84,10 @@
     {
       "id": "dev-f1-l3-we1",
       "level": "all",
-      "title": "테스트 예제",
-      "problem": "가상의 테스트 문제: 5 − 3 은?",
+      "title": "Test example",
+      "problem": "Hypothetical test problem: What is 5 − 3?",
       "steps": [
-        "5 에서 3 을 뺀다."
+        "Subtract 3 from 5."
       ],
       "answer": "2",
       "check": {
@@ -104,33 +104,33 @@
     "sdgs": [
       2
     ],
-    "title": "테스트 SDG 사례",
+    "title": "Test SDG case",
     "paragraphs": [
-      "개발·자동 테스트 전용 가짜 자료입니다. 실제 경제학 학습 내용이 아닙니다."
+      "Fake material for development and automated tests only. Not real economics content."
     ],
     "options": [
       {
-        "name": "선택지 A",
+        "name": "Option A",
         "benefits": [
-          "테스트 편익"
+          "Test benefit"
         ],
         "costs": [
-          "테스트 비용"
+          "Test cost"
         ],
         "assumptions": [
-          "테스트 가정"
+          "Test assumption"
         ]
       },
       {
-        "name": "선택지 B",
+        "name": "Option B",
         "benefits": [
-          "테스트 편익"
+          "Test benefit"
         ],
         "costs": [
-          "테스트 비용"
+          "Test cost"
         ],
         "assumptions": [
-          "테스트 가정"
+          "Test assumption"
         ]
       }
     ],
@@ -138,7 +138,7 @@
     "source_ids": []
   },
   "key_takeaways": [
-    "테스트 요점 (개발용)"
+    "Test takeaway (Dev)"
   ],
   "source_ids": []
 }

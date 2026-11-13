@@ -78,7 +78,7 @@ def respond(user_id, course, topic, conv, text, provider=None):
     text = safety.clean_student_text(text, s.max_input_chars)
     messages = storage.list_ai_messages(user_id, conv["id"])
     if conv["stage"] != "open" or student_turns(messages) >= topic["max_turns"]:
-        raise AIError("unavailable", "토론이 끝남")
+        raise AIError("unavailable", "debate has ended")
     storage.add_ai_message(user_id, conv["id"], "student", text)
     turn = student_turns(messages) + 1
     material = _topic_material(course, topic)
@@ -128,10 +128,10 @@ def summarize(user_id, course, topic, conv, provider=None):
                    "note": safety.clip(data["note"], 300)}
     except AIError as exc:
         summary = {"source": "guide", "ai_error": exc.message,
-                   "summary": f"내가 낸 의견 {len(mine)}개와 이 주제의 관점·상충관계를 정리했어요 (자동 정리, AI 아님).",
+                   "summary": f"Here is a summary of your {len(mine)} response(s) and the perspectives and trade-offs for this topic (automatic summary, not AI).",
                    "arguments": [{"perspective": p["name"], "points": [p["summary"]]} for p in topic["perspectives"]],
                    "my_points": mine, "trade_offs": topic["trade_offs"], "open_questions": topic["guiding_questions"][:2],
-                   "note": "정해진 정답이 있는 문제가 아니에요."}
-    storage.add_ai_message(user_id, conv["id"], "assistant", "토론 정리", meta={"summary": summary})
+                   "note": "This question does not have a single correct answer."}
+    storage.add_ai_message(user_id, conv["id"], "assistant", "Debate summary", meta={"summary": summary})
     storage.set_ai_conversation_stage(user_id, conv["id"], "summarized")
     return summary

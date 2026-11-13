@@ -4,13 +4,13 @@
   "kind": "lesson_quiz",
   "course_id": "dev-f1",
   "lesson_id": "dev-f1-l1",
-  "version": 1,
-  "title": "[개발용] dev-f1-l1 퀴즈",
-  "description": "개발·자동 테스트 전용 가짜 퀴즈입니다.",
+  "version": 2,
+  "title": "[Dev] dev-f1-l1 quiz",
+  "description": "Fake quiz for development and automated tests only.",
   "review": {
     "status": "approved",
     "reviewer": {
-      "name": "테스트용 검토자 (fixture)",
+      "name": "Test reviewer (fixture)",
       "role": "fixture"
     },
     "reviewed_at": "2026-11-03",
@@ -19,13 +19,13 @@
       {
         "status": "draft",
         "at": "2026-11-03",
-        "by": "개발용 fixture 생성"
+        "by": "Dev fixture generator"
       },
       {
         "status": "approved",
         "at": "2026-11-03",
-        "by": "테스트용 검토자 (fixture)",
-        "note": "평가 흐름 시험용"
+        "by": "Test reviewer (fixture)",
+        "note": "For testing the assessment flow"
       }
     ]
   },
@@ -36,7 +36,7 @@
   "questions": [
     {
       "id": "dev-f1-l1-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "dev-f1-l1",
       "objective": 1,
@@ -46,21 +46,21 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "approved",
-      "prompt": "[개발용] dev-f1-l1-q1: 정답은 '맞음'이에요.",
+      "prompt": "[Dev] dev-f1-l1-q1: The answer is 'Correct'.",
       "choices": [
         {
           "id": "a",
-          "text": "맞음"
+          "text": "Correct"
         },
         {
           "id": "b",
-          "text": "틀림"
+          "text": "Incorrect"
         }
       ]
     },
     {
       "id": "dev-f1-l1-q2",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "dev-f1-l1",
       "objective": 1,
@@ -70,7 +70,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "approved",
-      "prompt": "[개발용] dev-f1-l1-q2: 10 − 4 = ?",
+      "prompt": "[Dev] dev-f1-l1-q2: 10 − 4 = ?",
       "unit": ""
     }
   ]

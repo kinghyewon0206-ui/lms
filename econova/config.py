@@ -44,12 +44,12 @@ def db_backend():
     value = env("DB_BACKEND").strip().lower()
     if not value:
         if is_production():
-            raise ConfigError("운영 환경에서는 DB_BACKEND 를 반드시 설정해야 합니다. (예: DB_BACKEND=firestore)")
+            raise ConfigError("DB_BACKEND must be set in production (e.g., DB_BACKEND=firestore).")
         return "sqlite"
     if value not in BACKENDS:
-        raise ConfigError(f"DB_BACKEND 는 {' / '.join(BACKENDS)} 중 하나여야 합니다. (현재: {value!r})")
+        raise ConfigError(f"DB_BACKEND must be one of {' / '.join(BACKENDS)} (current: {value!r}).")
     if value == "firestore" and not env("FIREBASE_CREDENTIALS_JSON"):
-        raise ConfigError("DB_BACKEND=firestore 인데 FIREBASE_CREDENTIALS_JSON 이 없습니다.")
+        raise ConfigError("DB_BACKEND=firestore but FIREBASE_CREDENTIALS_JSON is not set.")
     return value
 
 
@@ -59,7 +59,7 @@ def dev_fixtures_enabled():
     if env("ECONOVA_DEV_FIXTURES").strip() != "1":
         return False
     if is_production():
-        raise ConfigError("운영 환경에서는 ECONOVA_DEV_FIXTURES 를 켤 수 없습니다.")
+        raise ConfigError("ECONOVA_DEV_FIXTURES cannot be enabled in production.")
     return True
 
 
@@ -69,7 +69,7 @@ def content_preview_enabled():
     if env("ECONOVA_CONTENT_PREVIEW").strip() != "1":
         return False
     if is_production():
-        raise ConfigError("운영 환경에서는 ECONOVA_CONTENT_PREVIEW 를 켤 수 없습니다.")
+        raise ConfigError("ECONOVA_CONTENT_PREVIEW cannot be enabled in production.")
     return True
 
 
@@ -85,7 +85,7 @@ def private_content_dir():
         return None if is_production() else os.path.join(os.path.expanduser("~"), "econova-private")
     path = os.path.realpath(os.path.expanduser(value))
     if path == os.path.realpath(BASE_DIR) or path.startswith(os.path.realpath(BASE_DIR) + os.sep):
-        raise ConfigError("ECONOVA_PRIVATE_CONTENT_DIR 는 저장소 밖 폴더여야 합니다 (정답 키가 커밋되지 않도록).")
+        raise ConfigError("ECONOVA_PRIVATE_CONTENT_DIR must be a folder outside the repository (so answer keys are never committed).")
     return path
 
 
@@ -96,7 +96,7 @@ def secret_key():
     """세션 서명 키. 운영에서는 32자 이상의 SECRET_KEY 가 반드시 있어야 한다 (기본값이면 세션 위조가 가능)."""
     value = os.environ.get("SECRET_KEY") or env("SECRET_KEY")
     if is_production() and (not value or value == DEFAULT_SECRET_KEY or len(value) < 32):
-        raise ConfigError("운영 환경에서는 32자 이상의 SECRET_KEY 를 설정해야 합니다.")
+        raise ConfigError("In production, SECRET_KEY must be set to at least 32 characters.")
     return value or DEFAULT_SECRET_KEY
 
 

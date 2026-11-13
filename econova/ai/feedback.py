@@ -49,7 +49,7 @@ def wrong_questions(attempt, assessment, course):
             "id": q["id"], "prompt": q["prompt"], "type": q["type"],
             "choices": [c["text"] for c in q.get("choices", ())],
             "student_answer": _answer_text(q, r.get("answer")),
-            "correct_answer": _answer_text(q, q["answer"]) if q["type"] == "mcq" else f"{q['answer']:g} (허용 오차 ±{q['tolerance']:g})",
+            "correct_answer": _answer_text(q, q["answer"]) if q["type"] == "mcq" else f"{q['answer']:g} (tolerance ±{q['tolerance']:g})",
             "approved_explanation": q["explanation"], "objective_text": q["objective_text"],
             "concepts": [{"term": terms[c][0], "definition": terms[c][1]} for c in q["concept_ids"] if c in terms],
             "lesson_id": q["lesson_id"], "lesson_title": lesson.title_ko if lesson else q["lesson_id"],
@@ -70,16 +70,16 @@ def explain(user_id, attempt, assessment, course, level, provider=None):
     if not client.feedback_enabled():   # 정답·해설을 공급자에게 보내지 않는다 (공급자를 부르기 전에 멈춤)
         raise AIError("feedback_off")
     if not eligible(attempt, assessment):
-        raise AIError("unavailable", "해설을 보여줄 수 없는 응시 기록")
+        raise AIError("unavailable", "explanations cannot be shown for this attempt")
     wrong = wrong_questions(attempt, assessment, course)
     if not wrong:
-        raise AIError("unavailable", "틀린 문항 없음")
+        raise AIError("unavailable", "no incorrect questions")
     convs = storage.find_ai_conversations(user_id, "feedback", attempt_id=attempt["id"])
     done = sum(1 for m in storage.list_ai_messages(user_id, convs[0]["id"]) if m["role"] == "student") if convs else 0
     quotas.check("FEEDBACK_REQUESTS", done)
     s = client.settings()
     facts = {"assessment": assessment.title, "level": level, "score": attempt["score"], "max_score": attempt["max_score"],
-             "note": "점수는 이미 결정적으로 채점되어 저장됨. 바꿀 수 없음.",
+             "note": "The score has already been graded deterministically and saved. It cannot be changed.",
              "questions": [{k: v for k, v in q.items() if k not in ("lesson_id",)} for q in wrong]}
     req = AIRequest(task="feedback", system=safety.system_prompt("feedback"),
                     messages=[{"role": "user", "content": safety.material_block(facts)}], schema=SCHEMA,
@@ -88,7 +88,7 @@ def explain(user_id, attempt, assessment, course, level, provider=None):
 
     def check(data):   # 틀린 문항에 대한 설명이 하나도 없으면 실패로 본다
         if not any(it["question_id"] in by_id for it in data["items"]):
-            raise AIError("invalid_response", "유효한 문항 설명 없음")
+            raise AIError("invalid_response", "no valid question explanations")
     data = usage.run(user_id, req, f"feedback:{attempt['id']}", "explain", provider=provider, s=s, check=check)
     items, seen = [], set()
     for it in data["items"]:
@@ -101,13 +101,13 @@ def explain(user_id, attempt, assessment, course, level, provider=None):
                       **{k: safety.clip(it[k], SCHEMA["properties"]["items"]["items"]["properties"][k]["maxLength"])
                          for k in ("why_incorrect", "concept_explanation", "simpler_example", "review_topic")}})
     if not items:
-        raise AIError("invalid_response", "유효한 문항 설명 없음")
+        raise AIError("invalid_response", "no valid question explanations")
     result = {"items": items, "follow_up_questions": [safety.clip(q, 200) for q in data["follow_up_questions"]][:3],
               "limitations": safety.clip(data["limitations"], 400), "missing": len(by_id) - len(items),
               "assessment_version": assessment.version}
     convs = storage.find_ai_conversations(user_id, "feedback", attempt_id=attempt["id"])
     conv_id = convs[0]["id"] if convs else storage.create_ai_conversation(
         user_id, "feedback", course_id=attempt["course_id"], lesson_id=attempt.get("lesson_id"), attempt_id=attempt["id"])
-    storage.add_ai_message(user_id, conv_id, "student", "오답 설명 요청")
-    storage.add_ai_message(user_id, conv_id, "assistant", "AI 오답 설명", meta=result)
+    storage.add_ai_message(user_id, conv_id, "student", "Request for wrong-answer explanation")
+    storage.add_ai_message(user_id, conv_id, "assistant", "AI explanation of wrong answers", meta=result)
     return result

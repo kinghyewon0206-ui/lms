@@ -4,11 +4,11 @@
   "topics": [
     {
       "id": "price-ceiling-food",
-      "title": "[개발용] 식료품 가격 상한제, 도움이 될까?",
+      "title": "[Dev] Would a price ceiling on groceries help?",
       "review": {
         "status": "approved",
         "reviewer": {
-          "name": "테스트용 검토자 (fixture)",
+          "name": "Test reviewer (fixture)",
           "role": "fixture"
         },
         "reviewed_at": "2026-11-03",
@@ -17,75 +17,75 @@
           {
             "status": "draft",
             "at": "2026-11-03",
-            "by": "개발용 fixture 생성",
-            "note": "개발·자동 테스트 전용 토론 주제입니다. 검토된 실제 수업 자료가 아닙니다."
+            "by": "Dev fixture generator",
+            "note": "Debate topic for development and automated tests only. Not reviewed, real course material."
           },
           {
             "status": "approved",
             "at": "2026-11-03",
-            "by": "테스트용 검토자 (fixture)",
-            "note": "토론 화면 시험용"
+            "by": "Test reviewer (fixture)",
+            "note": "For testing the debate screen"
           }
         ]
       },
       "background": [
-        "[개발용 예시] 어느 가상의 나라에서 주식 곡물 가격이 크게 올라 저소득 가구의 부담이 커졌다는 상황을 가정해요.",
-        "수요·공급 모형에서는 균형 가격보다 낮은 가격 상한이 정해지면 수요량은 늘고 공급량은 줄어 부족이 생길 수 있어요. 실제 결과는 시장 구조, 정부의 보완 정책, 공급자의 반응에 따라 달라질 수 있어요."
+        "[Dev example] Imagine a hypothetical country where the price of a staple grain has risen sharply, putting heavy pressure on low-income households.",
+        "In the supply and demand model, a price ceiling set below the equilibrium price raises quantity demanded and lowers quantity supplied, which can cause a shortage. Real outcomes can depend on market structure, supporting government policies, and how suppliers respond."
       ],
-      "policy_question": "주식 곡물에 가격 상한을 두는 것이 저소득 가구를 돕는 좋은 방법일까요?",
+      "policy_question": "Is a price ceiling on a staple grain a good way to help low-income households?",
       "perspectives": [
         {
           "id": "affordability",
-          "name": "가격 부담 완화를 먼저",
-          "summary": "당장 먹거리를 사기 어려운 가구를 보호하는 것이 우선이라는 관점",
+          "name": "Ease the price burden first",
+          "summary": "The view that protecting households who can't afford food right now comes first",
           "reasoning": [
-            "가격이 오르면 소득에서 식비 비중이 큰 가구가 가장 큰 타격을 받는다."
+            "When prices rise, households that spend a large share of income on food are hit hardest."
           ],
           "assumptions": [
-            "단기적으로 공급이 크게 줄지 않는다고 가정한다."
+            "Assumes supply does not drop much in the short run."
           ]
         },
         {
           "id": "market-supply",
-          "name": "공급과 부족을 걱정",
-          "summary": "가격 상한이 공급을 줄여 오히려 구하기 어려워질 수 있다는 관점",
+          "name": "Worried about supply and shortages",
+          "summary": "The view that a price ceiling may cut supply and make the grain harder to find",
           "reasoning": [
-            "모형상 균형보다 낮은 가격 상한은 초과 수요(부족)를 만든다."
+            "In the model, a price ceiling below equilibrium creates excess demand (a shortage)."
           ],
           "assumptions": [
-            "공급자가 가격에 반응해 생산·판매를 줄인다고 가정한다."
+            "Assumes suppliers respond to the price by producing and selling less."
           ]
         },
         {
           "id": "targeted-support",
-          "name": "대상 지원으로 대신",
-          "summary": "가격은 두고 필요한 가구에 직접 지원하자는 관점",
+          "name": "Use targeted support instead",
+          "summary": "The view that prices should be left alone and households in need should get direct support",
           "reasoning": [
-            "가격 신호를 유지하면서 도움이 필요한 사람에게 지원을 모을 수 있다."
+            "It keeps the price signal while focusing support on the people who need it."
           ],
           "assumptions": [
-            "지원 대상을 정확히 고를 행정 능력이 있다고 가정한다."
+            "Assumes the government can accurately identify who should get support."
           ]
         }
       ],
       "guiding_questions": [
-        "가격 상한으로 이득을 보는 사람과 손해를 보는 사람은 누구일까요?",
-        "부족이 생긴다면 물건은 어떤 방식으로 나눠지게 될까요?",
-        "직접 지원과 가격 상한을 비교할 때 어떤 기준(효율, 형평, 실행 가능성)이 중요할까요?"
+        "Who gains and who loses from a price ceiling?",
+        "If a shortage happens, how will the grain end up being divided?",
+        "When comparing direct support with a price ceiling, which criteria (efficiency, equity, feasibility) matter most?"
       ],
       "trade_offs": [
-        "당장의 가격 부담 완화 vs 공급 감소와 부족 가능성",
-        "모두에게 같은 혜택 vs 필요한 가구에 집중된 지원"
+        "Immediate price relief vs. lower supply and possible shortages",
+        "The same benefit for everyone vs. support focused on households in need"
       ],
       "source_ids": []
     },
     {
       "id": "carbon-tax-choice",
-      "title": "[개발용] 탄소세를 도입해야 할까?",
+      "title": "[Dev] Should we introduce a carbon tax?",
       "review": {
         "status": "approved",
         "reviewer": {
-          "name": "테스트용 검토자 (fixture)",
+          "name": "Test reviewer (fixture)",
           "role": "fixture"
         },
         "reviewed_at": "2026-11-03",
@@ -94,115 +94,115 @@
           {
             "status": "draft",
             "at": "2026-11-03",
-            "by": "개발용 fixture 생성",
-            "note": "개발·자동 테스트 전용 토론 주제입니다. 검토된 실제 수업 자료가 아닙니다."
+            "by": "Dev fixture generator",
+            "note": "Debate topic for development and automated tests only. Not reviewed, real course material."
           },
           {
             "status": "approved",
             "at": "2026-11-03",
-            "by": "테스트용 검토자 (fixture)",
-            "note": "토론 화면 시험용"
+            "by": "Test reviewer (fixture)",
+            "note": "For testing the debate screen"
           }
         ]
       },
       "background": [
-        "[개발용 예시] 탄소세는 배출이 많은 상품의 생산·소비에 세금을 매겨 배출을 줄이려는 정책이에요.",
-        "모형에서는 세금이 소비자 가격을 올리고 생산자가 받는 가격을 낮춰 거래량을 줄여요. 사회 전체에 이로운지는 배출이 끼치는 피해를 얼마로 보느냐(가정)와 세수를 어떻게 쓰느냐에 따라 달라져요."
+        "[Dev example] A carbon tax is a policy that taxes the production and consumption of high-emission goods to reduce emissions.",
+        "In the model, the tax raises the price consumers pay, lowers the price producers receive, and reduces the quantity traded. Whether society as a whole gains depends on how large you assume the damage from emissions is and how the tax revenue is used."
       ],
-      "policy_question": "탄소세를 도입한다면 세율과 세수 사용을 어떻게 정해야 할까요?",
+      "policy_question": "If we introduce a carbon tax, how should we set the tax rate and use the revenue?",
       "perspectives": [
         {
           "id": "price-signal",
-          "name": "가격 신호로 배출 줄이기",
-          "summary": "배출 비용을 가격에 반영하면 각자 줄이기 쉬운 곳에서 줄인다는 관점",
+          "name": "Cut emissions with a price signal",
+          "summary": "The view that putting the cost of emissions into prices lets everyone cut where cutting is cheapest",
           "reasoning": [
-            "외부 피해를 가격에 반영하면 시장 거래량이 사회적으로 바람직한 수준에 가까워질 수 있다."
+            "Putting external damage into prices can move the market quantity closer to the socially optimal quantity."
           ],
           "assumptions": [
-            "외부 피해의 크기를 어느 정도 추정할 수 있다고 가정한다."
+            "Assumes the size of the external damage can be roughly estimated."
           ]
         },
         {
           "id": "burden-fairness",
-          "name": "부담의 형평성 걱정",
-          "summary": "에너지 지출 비중이 큰 가구의 부담이 커질 수 있다는 관점",
+          "name": "Worried about a fair burden",
+          "summary": "The view that households spending a large share on energy could be hit hard",
           "reasoning": [
-            "세금 부담은 소비자와 생산자에게 나뉘며, 소득에 비해 부담이 큰 가구가 생길 수 있다."
+            "The tax burden is split between consumers and producers, and some households may bear a large burden relative to income."
           ],
           "assumptions": [
-            "세수를 되돌려주지 않는 경우를 가정한다."
+            "Assumes the revenue is not returned to households."
           ]
         },
         {
           "id": "revenue-recycling",
-          "name": "세수 환원으로 보완",
-          "summary": "세수를 가구에 돌려주거나 다른 세금을 줄여 부담을 덜자는 관점",
+          "name": "Offset it by returning the revenue",
+          "summary": "The view that returning revenue to households or cutting other taxes can ease the burden",
           "reasoning": [
-            "세수 사용 방식에 따라 가구별 순부담이 달라진다."
+            "Each household's net burden depends on how the revenue is used."
           ],
           "assumptions": [
-            "환원 제도를 설계·운영할 수 있다고 가정한다."
+            "Assumes a rebate program can be designed and run."
           ]
         }
       ],
       "guiding_questions": [
-        "외부 피해(md)를 얼마로 가정하느냐에 따라 결론이 어떻게 달라질까요?",
-        "세금 부담은 소비자와 생산자 중 누구에게 더 돌아갈까요? 무엇이 그것을 정할까요?",
-        "세수를 어떻게 쓰면 형평성 문제를 줄일 수 있을까요?"
+        "How does the conclusion change depending on the external damage (md) you assume?",
+        "Who bears more of the tax, consumers or producers? What decides that?",
+        "How could the revenue be used to reduce fairness concerns?"
       ],
       "trade_offs": [
-        "배출 감소 vs 가격 상승과 거래량 감소",
-        "효율적인 감축 vs 가구별 부담의 형평"
+        "Lower emissions vs. higher prices and a smaller quantity traded",
+        "Efficient emission cuts vs. a fair burden across households"
       ],
       "source_ids": []
     },
     {
       "id": "draft-topic-hidden",
-      "title": "[개발용] 승인 전 주제 (학생에게 보이면 안 됨)",
+      "title": "[Dev] Unapproved topic (must not be shown to students)",
       "review": {
         "status": "draft",
         "history": [
           {
             "status": "draft",
             "at": "2026-11-03",
-            "by": "개발용 fixture 생성",
-            "note": "승인 전 주제는 학생에게 보이면 안 된다 (시험용)"
+            "by": "Dev fixture generator",
+            "note": "Unapproved topics must not be shown to students (for testing)"
           }
         ]
       },
       "background": [
-        "승인 전 주제입니다."
+        "This topic is not approved yet."
       ],
-      "policy_question": "보이면 안 되는 질문",
+      "policy_question": "A question that must not be shown",
       "perspectives": [
         {
           "id": "a",
-          "name": "관점 A",
-          "summary": "요약 A",
+          "name": "Perspective A",
+          "summary": "Summary A",
           "reasoning": [
-            "근거 A"
+            "Reasoning A"
           ],
           "assumptions": [
-            "가정 A"
+            "Assumption A"
           ]
         },
         {
           "id": "b",
-          "name": "관점 B",
-          "summary": "요약 B",
+          "name": "Perspective B",
+          "summary": "Summary B",
           "reasoning": [
-            "근거 B"
+            "Reasoning B"
           ],
           "assumptions": [
-            "가정 B"
+            "Assumption B"
           ]
         }
       ],
       "guiding_questions": [
-        "질문"
+        "Question"
       ],
       "trade_offs": [
-        "상충"
+        "Trade-off"
       ],
       "source_ids": []
     }

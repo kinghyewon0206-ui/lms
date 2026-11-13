@@ -1,21 +1,21 @@
 {% extends "base.html" %}
-{% block title %}캡스톤 작성 · ECONOVA{% endblock %}
+{% block title %}Write your Capstone project · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="경로"><a href="{{ url_for('econova.capstone_home', course_id=course.id) }}">캡스톤</a> <span>/</span> 작성</nav>
-  <header class="ec-head"><h1>프로젝트 작성</h1>
-    <p class="hint">저장할 때마다 새 버전으로 남아요 (지금 버전 {{ version }}). 개인정보(이름·연락처·학교)는 쓰지 마세요. 확인하지 못한 수치·출처는 쓰지 않아요.</p></header>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.capstone_home', course_id=course.id) }}">Capstone project</a> <span>/</span> Write</nav>
+  <header class="ec-head"><h1>Write your project</h1>
+    <p class="hint">Every save is kept as a new version (current version {{ version }}). Don't include personal information (name, contact details, school). Don't use numbers or sources you haven't checked.</p></header>
   <form method="post" action="{{ url_for('econova.capstone_edit', course_id=course.id) }}" class="cap-form">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     {% for s in defn.steps %}
     <fieldset class="ec-section" id="step-{{ s.id }}">
       <legend><h2>{{ s.title }}</h2></legend>
-      <p class="hint">{{ s.guidance }} · 관련 레슨: <a href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=s.lesson_id) }}">{{ course.lesson(s.lesson_id).title_ko }}</a></p>
+      <p class="hint">{{ s.guidance }} · Related lesson: <a href="{{ url_for('econova.lesson', course_id=course.id, lesson_id=s.lesson_id) }}">{{ course.lesson(s.lesson_id).title_ko }}</a></p>
       {% for f in s.fields %}
-        <label for="f-{{ f.id }}">{{ f.label }}{% if f.required %} <span class="hint">(필수{% if f.type != 'sdg' %}, {{ f.min_chars }}자 이상{% endif %})</span>{% endif %}</label>
+        <label for="f-{{ f.id }}">{{ f.label }}{% if f.required %} <span class="hint">(required{% if f.type != 'sdg' %}, at least {{ f.min_chars }} characters{% endif %})</span>{% endif %}</label>
         {% if f.help %}<p class="hint" id="h-{{ f.id }}">{{ f.help }}</p>{% endif %}
         {% if f.type == 'sdg' %}
-          <select id="f-{{ f.id }}" name="{{ f.id }}" aria-describedby="h-{{ f.id }}"><option value="">고르기</option>
+          <select id="f-{{ f.id }}" name="{{ f.id }}" aria-describedby="h-{{ f.id }}"><option value="">Choose</option>
             {% for n in range(1, 18) %}<option value="{{ n }}"{% if (sections.get(f.id) or '')|string == n|string %} selected{% endif %}>SDG {{ n }} {{ sdg_names[n][0] if n in sdg_names else '' }}</option>{% endfor %}</select>
         {% elif f.type == 'text' %}
           <input id="f-{{ f.id }}" name="{{ f.id }}" value="{{ sections.get(f.id, '') }}" maxlength="{{ f.max_chars }}" aria-describedby="h-{{ f.id }}">
@@ -23,12 +23,12 @@
           <textarea id="f-{{ f.id }}" name="{{ f.id }}" rows="{{ 10 if f.max_chars > 3000 else 5 }}" maxlength="{{ f.max_chars }}" aria-describedby="h-{{ f.id }}"{% if errors.get(f.id) %} aria-invalid="true"{% endif %}>{{ sections.get(f.id, '') }}</textarea>
         {% endif %}
         {% if errors.get(f.id) %}<p class="admin-error" role="alert">{{ errors[f.id] }}</p>{% endif %}
-        <p class="hint">{{ (sections.get(f.id) or '')|length }}{% if f.type != 'sdg' %} / {{ f.max_chars }}자{% endif %}</p>
+        <p class="hint">{{ (sections.get(f.id) or '')|length }}{% if f.type != 'sdg' %} / {{ f.max_chars }} characters{% endif %}</p>
       {% endfor %}
     </fieldset>
     {% endfor %}
-    <div class="cap-save"><button class="btn" type="submit">저장하기 (새 버전)</button>
-      <a class="btn secondary" href="{{ url_for('econova.capstone_home', course_id=course.id) }}">캡스톤 홈</a></div>
+    <div class="cap-save"><button class="btn" type="submit">Save (new version)</button>
+      <a class="btn secondary" href="{{ url_for('econova.capstone_home', course_id=course.id) }}">Capstone project home</a></div>
   </form>
 </div>
 {% endblock %}
