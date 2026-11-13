@@ -3,7 +3,7 @@
   "id": "c02-final",
   "kind": "final",
   "course_id": "c02",
-  "version": 1,
+  "version": 2,
   "title": "시장과 가격 최종 평가",
   "description": "세 레슨의 핵심 개념을 확인하는 최종 평가예요. 합격 기준을 넘으면 강좌를 수료해요.",
   "review": {
@@ -17,6 +17,12 @@
         "at": "2026-11-03",
         "by": "Claude Code (AI)",
         "note": "AI 가 작성한 문항 초안. 교사 검토 전이며 학생에게 출제하지 않는다."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "v2: 검토 의견(docs/content/c02-review.md) 반영 — 정답 위치 균형, 약한 오답 교체, 예제 복사 가능 문항 교체. 사람 검토 전."
       }
     ]
   },
@@ -27,12 +33,12 @@
   "passing": {
     "score_ratio": 0.7,
     "status": "proposed",
-    "note": "제안값(70%)이며 교사 승인 전이다. 승인 전에는 수료를 인정하지 않는다."
+    "note": "제안값: 10문항 중 7개 이상(70%). 교사(관리자) 승인 전이며, 승인 전에는 수료를 인정하지 않는다."
   },
   "questions": [
     {
       "id": "c02-final-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 3,
@@ -47,28 +53,29 @@
       "choices": [
         {
           "id": "a",
-          "text": "공급곡선이 왼쪽으로 이동한다"
-        },
-        {
-          "id": "b",
           "text": "수요곡선이 오른쪽으로 이동한다"
         },
         {
+          "id": "b",
+          "text": "공급곡선 위에서 위쪽으로 이동한다"
+        },
+        {
           "id": "c",
-          "text": "공급곡선 위에서 위로 이동한다"
+          "text": "공급곡선이 왼쪽으로 이동한다"
         },
         {
           "id": "d",
-          "text": "아무 변화도 없다"
+          "text": "수요곡선이 왼쪽으로 이동한다"
         }
       ],
       "source_ids": [
+        "openstax-pe3-3-1",
         "openstax-pe3-3-2"
       ]
     },
     {
       "id": "c02-final-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 1,
@@ -87,15 +94,15 @@
         },
         {
           "id": "b",
-          "text": "가격이 내려 더 많이 산다"
-        },
-        {
-          "id": "c",
           "text": "인구가 늘어 같은 가격에서도 더 산다"
         },
         {
-          "id": "d",
+          "id": "c",
           "text": "소득이 줄어 같은 가격에서도 덜 산다"
+        },
+        {
+          "id": "d",
+          "text": "그 상품의 가격이 내려 더 많이 산다"
         }
       ],
       "source_ids": [
@@ -106,6 +113,26 @@
     {
       "id": "c02-final-q3",
       "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l1",
+      "objective": 3,
+      "concept_ids": [
+        "shifters",
+        "movement_vs_shift"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "공급함수가 Qs = 10 + 2P 인 시장에서 생산 비용이 올라 모든 가격에서 공급량이 6 씩 줄었어요. P = 20 에서 새 공급량은 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-3-1",
+        "openstax-pe3-3-2"
+      ]
+    },
+    {
+      "id": "c02-final-q4",
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c02-l2",
       "objective": 2,
@@ -119,46 +146,51 @@
       "choices": [
         {
           "id": "a",
-          "text": "더 내려간다"
+          "text": "구매자가 더 높은 가격을 받아들여 균형 쪽으로 오른다"
         },
         {
           "id": "b",
-          "text": "균형 쪽으로 오른다"
+          "text": "부족을 줄이려고 판매자가 가격을 더 내린다"
         },
         {
           "id": "c",
-          "text": "그대로 머문다"
+          "text": "부족이 계속되어도 가격은 그대로 머문다"
         },
         {
           "id": "d",
-          "text": "0 이 된다"
+          "text": "공급곡선이 오른쪽으로 이동해 부족이 저절로 사라진다"
         }
       ],
       "source_ids": [
-        "openstax-pe3-3-1"
-      ]
-    },
-    {
-      "id": "c02-final-q4",
-      "version": 1,
-      "type": "numeric",
-      "lesson_id": "c02-l2",
-      "objective": 1,
-      "concept_ids": [
-        "equilibrium"
-      ],
-      "difficulty": "advanced",
-      "points": 1,
-      "review_status": "draft",
-      "prompt": "수요함수 Qd = 200 − 4P, 공급함수 Qs = 50 + 2P 일 때 균형 거래량은 얼마인가요? (숫자만 입력)",
-      "unit": "",
-      "source_ids": [
-        "openstax-pe3-3-1"
+        "openstax-pe3-3-1",
+        "openstax-pe3-3-3",
+        "openstax-pe3-3-4"
       ]
     },
     {
       "id": "c02-final-q5",
-      "version": 1,
+      "version": 2,
+      "type": "numeric",
+      "lesson_id": "c02-l2",
+      "objective": 1,
+      "concept_ids": [
+        "equilibrium",
+        "surplus_shortage"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "어느 시장의 가격별 수요량·공급량이 다음과 같아요. 가격 15: 수요량 75, 공급량 35 / 가격 20: 수요량 70, 공급량 50 / 가격 25: 수요량 60, 공급량 60 / 가격 30: 수요량 50, 공급량 70. 균형 가격은 얼마인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-3-1",
+        "openstax-pe3-3-3",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "c02-final-q6",
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c02-l2",
       "objective": 3,
@@ -172,28 +204,50 @@
       "choices": [
         {
           "id": "a",
-          "text": "부족(초과수요)"
+          "text": "수요량이 공급량보다 많아 부족이 생긴다"
         },
         {
           "id": "b",
-          "text": "잉여(초과공급)"
+          "text": "공급량이 수요량보다 많아 잉여가 생긴다"
         },
         {
           "id": "c",
-          "text": "균형 거래량 증가"
+          "text": "거래량이 균형보다 늘어난다"
         },
         {
           "id": "d",
-          "text": "변화 없음"
+          "text": "균형 가격이 하한 수준까지 내려간다"
         }
       ],
       "source_ids": [
+        "openstax-pe3-3-1",
+        "openstax-pe3-3-3",
         "openstax-pe3-3-4"
       ]
     },
     {
-      "id": "c02-final-q6",
+      "id": "c02-final-q7",
       "version": 1,
+      "type": "numeric",
+      "lesson_id": "c02-l2",
+      "objective": 3,
+      "concept_ids": [
+        "price_controls"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "수요함수 Qd = 110 − 2P, 공급함수 Qs = 20 + P 인 시장(균형 P = 30, Q = 50)에 가격 상한 27 을 두었어요. 사중손실은 얼마인가요? (소수로 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-3-1",
+        "openstax-pe3-3-3",
+        "openstax-pe3-3-4"
+      ]
+    },
+    {
+      "id": "c02-final-q8",
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c02-l3",
       "objective": 2,
@@ -203,14 +257,15 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "가격이 10 에서 12 로 오르자 수요량이 100 에서 90 으로 줄었어요. 중간점 방법으로 구한 탄력성(절댓값)을 소수 둘째 자리까지 쓰세요.",
+      "prompt": "어느 공연의 표 가격이 8만 원에서 10만 원으로 오르자 하루 판매량이 200장에서 170장으로 줄었어요. 중간점 방법으로 구한 수요의 가격 탄력성(절댓값)을 소수 둘째 자리까지 쓰세요.",
       "unit": "",
       "source_ids": [
-        "openstax-pe3-5-1"
+        "openstax-pe3-5-1",
+        "openstax-pe3-5-3"
       ]
     },
     {
-      "id": "c02-final-q7",
+      "id": "c02-final-q9",
       "version": 1,
       "type": "mcq",
       "lesson_id": "c02-l3",
@@ -222,31 +277,32 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "수요가 탄력적인 상품의 가격을 내리면 판매자의 총수입은 어떻게 되기 쉬운가요?",
+      "prompt": "어느 놀이공원이 입장료를 내렸더니 입장객이 내린 비율보다 훨씬 큰 비율로 늘었어요(수요가 탄력적). 놀이공원의 입장료 총수입은 어떻게 되었을까요?",
       "choices": [
         {
           "id": "a",
-          "text": "늘어난다"
+          "text": "가격이 내렸으므로 총수입이 줄어든다"
         },
         {
           "id": "b",
-          "text": "줄어든다"
+          "text": "가격과 판매량이 같은 비율로 바뀌어 총수입은 그대로다"
         },
         {
           "id": "c",
-          "text": "변하지 않는다"
+          "text": "판매량은 늘지만 단가가 낮아져 총수입이 줄어든다"
         },
         {
           "id": "d",
-          "text": "반드시 0 이 된다"
+          "text": "수요량이 늘어나는 비율이 가격이 내린 비율보다 커서 총수입이 늘어난다"
         }
       ],
       "source_ids": [
+        "openstax-pe3-5-1",
         "openstax-pe3-5-3"
       ]
     },
     {
-      "id": "c02-final-q8",
+      "id": "c02-final-q10",
       "version": 1,
       "type": "mcq",
       "lesson_id": "c02-l3",
@@ -261,22 +317,23 @@
       "choices": [
         {
           "id": "a",
-          "text": "재정 비용이 들지 않는다"
+          "text": "도움이 필요한 가구에 집중할 수 있지만, 공급이 그대로면 가격 상승 압력이 생기고 재정·행정 비용이 든다"
         },
         {
           "id": "b",
-          "text": "도움이 필요한 가구에 집중할 수 있지만, 공급이 그대로면 가격을 더 올릴 수 있고 재정·행정 비용이 든다"
+          "text": "지원받은 가구의 구매가 늘어나므로 시장 가격이 내려간다"
         },
         {
           "id": "c",
-          "text": "시장 가격을 반드시 낮춘다"
+          "text": "공급곡선을 오른쪽으로 옮겨 흉작의 영향을 없앤다"
         },
         {
           "id": "d",
-          "text": "모든 가구에 똑같은 효과를 준다"
+          "text": "가격 상한과 같은 효과를 내 시장에 부족을 만든다"
         }
       ],
       "source_ids": [
+        "openstax-pe3-5-1",
         "openstax-pe3-5-3"
       ]
     }

@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "id": "c01-final",
+  "kind": "final",
+  "course_id": "c01",
+  "version": 1,
+  "title": "경제학과 선택 최종 평가",
+  "description": "세 레슨의 핵심 개념을 확인하는 최종 평가예요. 합격 기준을 넘으면 강좌를 수료해요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 3
+  },
+  "passing": {
+    "score_ratio": 0.7,
+    "status": "proposed",
+    "note": "제안값: 10문항 중 7개 이상(70%). 교사(관리자) 승인 전이며, 승인 전에는 수료를 인정하지 않는다."
+  },
+  "questions": [
+    {
+      "id": "c01-final-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l1",
+      "objective": 1,
+      "concept_ids": [
+        "scarcity"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "'부자도 희소성 문제를 겪는다'는 말의 근거로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "부자도 세금을 내기 때문이다"
+        },
+        {
+          "id": "b",
+          "text": "부자도 시간 같은 자원이 한정되어 있어 무엇을 할지 골라야 하기 때문이다"
+        },
+        {
+          "id": "c",
+          "text": "부자는 같은 물건을 더 비싸게 사기 때문이다"
+        },
+        {
+          "id": "d",
+          "text": "희소성은 정부가 정하는 것이기 때문이다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c01-final-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l1",
+      "objective": 2,
+      "concept_ids": [
+        "economic_systems"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "오늘날 대부분의 나라가 가진 경제 체제에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "관습과 이전 세대의 방식에 따라 생산과 분배를 정하는 전통 경제"
+        },
+        {
+          "id": "b",
+          "text": "정부가 생산 계획을 세워 무엇을 얼마나 만들지 정하는 명령 경제"
+        },
+        {
+          "id": "c",
+          "text": "정부의 규칙이나 공공 서비스 없이 거래만으로 정하는 시장 경제"
+        },
+        {
+          "id": "d",
+          "text": "시장 거래를 기본으로 하면서 정부가 규칙과 공공 서비스로 개입하는 혼합 경제"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c01-final-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l1",
+      "objective": 3,
+      "concept_ids": [
+        "specialization"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "분업과 특화의 한계나 비용으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "같은 자원으로 만드는 양이 줄어든다"
+        },
+        {
+          "id": "b",
+          "text": "서로 교환할 필요가 없어진다"
+        },
+        {
+          "id": "c",
+          "text": "특정 공정이나 지역에 의존하게 되어 교환이 막히면 생산이 흔들릴 수 있다"
+        },
+        {
+          "id": "d",
+          "text": "일이 익숙해져 숙련도가 떨어진다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c01-final-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c01-l2",
+      "objective": 1,
+      "concept_ids": [
+        "opportunity_cost"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "주말 4시간 동안 시급 11,000원 아르바이트 대신 자원봉사를 했어요(쉬는 것보다 아르바이트가 더 가치 있어요). 자원봉사 때문에 포기한 소득은 몇 원인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-final-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c01-l2",
+      "objective": 1,
+      "concept_ids": [
+        "budget_constraint",
+        "opportunity_cost"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "문화비 30,000원으로 연극표(12,000원)와 김밥(3,000원)을 사려고 해요. 연극표 1장의 기회비용은 김밥 몇 줄인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-final-q6",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l2",
+      "objective": 2,
+      "concept_ids": [
+        "sunk_cost",
+        "marginal_thinking"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "학교가 체육관 공사에 이미 5천만 원을 썼어요. 공사를 끝내려면 3천만 원이 더 드는데, 완공해서 얻을 편익은 2천만 원으로 예상돼요(다른 쓰임은 없다고 가정). 가장 합리적인 판단은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "앞으로 들 3천만 원이 앞으로 얻을 2천만 원보다 크므로 공사를 멈추는 것을 검토한다"
+        },
+        {
+          "id": "b",
+          "text": "이미 5천만 원을 썼으니 끝까지 공사해야 손해를 줄인다"
+        },
+        {
+          "id": "c",
+          "text": "총비용 8천만 원과 편익 2천만 원을 비교해 이미 손해이니 계속한다"
+        },
+        {
+          "id": "d",
+          "text": "이미 쓴 5천만 원을 편익에 더해 7천만 원과 3천만 원을 비교한다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-final-q7",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l2",
+      "objective": 3,
+      "concept_ids": [
+        "increasing_opportunity_cost",
+        "ppf"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "생산 가능 곡선이 바깥으로 휜 모양인 이유로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "자원마다 알맞은 용도가 달라서, 한 재화를 늘릴수록 포기하는 다른 재화가 점점 많아지기 때문이다"
+        },
+        {
+          "id": "b",
+          "text": "기술이 해마다 발전하기 때문이다"
+        },
+        {
+          "id": "c",
+          "text": "두 재화의 가격이 같기 때문이다"
+        },
+        {
+          "id": "d",
+          "text": "사회가 한 재화를 더 좋아하기 때문이다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-final-q8",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c01-l3",
+      "objective": 2,
+      "concept_ids": [
+        "social_cost"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "어떤 제품 한 개의 사적 비용이 40원이고 사회적 비용이 100원이에요. 사적 비용과 사회적 비용이 같아지도록 매기는 부담금은 한 개에 몇 원인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-3",
+        "openstax-pe3-12-1",
+        "un-sdg-12"
+      ]
+    },
+    {
+      "id": "c01-final-q9",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l3",
+      "objective": 3,
+      "concept_ids": [
+        "values_and_information",
+        "incentives"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "학급별 음식물 쓰레기 배출량을 공개하는 방법의 특징으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "사적 비용을 사회적 비용과 같게 만든다"
+        },
+        {
+          "id": "b",
+          "text": "배식량을 직접 줄인다"
+        },
+        {
+          "id": "c",
+          "text": "사람들은 금전적 이익에만 반응하므로 효과가 없다"
+        },
+        {
+          "id": "d",
+          "text": "비용은 낮지만 효과가 작거나 오래가지 않을 수 있어 다른 방법과 함께 쓰기도 한다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-3",
+        "openstax-pe3-12-1",
+        "un-sdg-12"
+      ]
+    },
+    {
+      "id": "c01-final-q10",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l3",
+      "objective": 1,
+      "concept_ids": [
+        "sustainable_consumption"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "지속가능한 소비에 대한 설명으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "무엇이든 되도록 적게 사는 것"
+        },
+        {
+          "id": "b",
+          "text": "가장 값싼 물건만 사는 것"
+        },
+        {
+          "id": "c",
+          "text": "같은 만족을 더 적은 자원과 쓰레기로 얻고, 미래 세대가 쓸 자원을 남기는 소비"
+        },
+        {
+          "id": "d",
+          "text": "환경에 좋은 상품이라면 얼마든지 많이 사는 것"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-3",
+        "openstax-pe3-12-1",
+        "un-sdg-12"
+      ]
+    }
+  ]
+}

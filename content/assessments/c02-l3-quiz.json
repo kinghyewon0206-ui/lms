@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c02",
   "lesson_id": "c02-l3",
-  "version": 1,
+  "version": 2,
   "title": "레슨 3 형성 퀴즈: 가격 탄력성과 식량 시장",
   "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-03",
         "by": "Claude Code (AI)",
         "note": "AI 가 작성한 문항 초안. 교사 검토 전이며 학생에게 출제하지 않는다."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "v2: 검토 의견(docs/content/c02-review.md) 반영 — 정답 위치 균형, 약한 오답 교체, 예제 복사 가능 문항 교체. 사람 검토 전."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c02-l3-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c02-l3",
       "objective": 1,
@@ -46,19 +52,20 @@
         },
         {
           "id": "b",
-          "text": "비탄력적"
-        },
-        {
-          "id": "c",
           "text": "단위탄력적"
         },
         {
-          "id": "d",
+          "id": "c",
           "text": "완전탄력적"
+        },
+        {
+          "id": "d",
+          "text": "비탄력적"
         }
       ],
       "source_ids": [
-        "openstax-pe3-5-1"
+        "openstax-pe3-5-1",
+        "openstax-pe3-5-3"
       ]
     },
     {
@@ -77,12 +84,13 @@
       "prompt": "가격이 4 에서 6 으로 오르자 수요량이 120 에서 80 으로 줄었어요. 중간점 방법으로 구한 탄력성(절댓값)은? (소수로 입력)",
       "unit": "",
       "source_ids": [
-        "openstax-pe3-5-1"
+        "openstax-pe3-5-1",
+        "openstax-pe3-5-3"
       ]
     },
     {
       "id": "c02-l3-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c02-l3",
       "objective": 2,
@@ -96,28 +104,29 @@
       "choices": [
         {
           "id": "a",
-          "text": "늘어난다"
+          "text": "판매량이 줄어드므로 총수입도 줄어든다"
         },
         {
           "id": "b",
-          "text": "줄어든다"
+          "text": "수요량이 줄어드는 비율이 가격이 오른 비율보다 작아 총수입이 늘어난다"
         },
         {
           "id": "c",
-          "text": "변하지 않는다"
+          "text": "가격과 판매량이 같은 비율로 바뀌어 총수입은 그대로다"
         },
         {
           "id": "d",
-          "text": "0 이 된다"
+          "text": "수요곡선이 오른쪽으로 이동해 판매량과 총수입이 함께 늘어난다"
         }
       ],
       "source_ids": [
+        "openstax-pe3-5-1",
         "openstax-pe3-5-3"
       ]
     },
     {
       "id": "c02-l3-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c02-l3",
       "objective": 3,
@@ -131,40 +140,43 @@
       "choices": [
         {
           "id": "a",
-          "text": "가격이 조금만 내리고 농가 총수입이 크게 는다"
+          "text": "가격이 크게 떨어져 농가 총수입이 줄어들 수 있다"
         },
         {
           "id": "b",
-          "text": "가격이 크게 떨어지고 농가 총수입이 줄 수 있다"
+          "text": "가격이 조금만 내리고 농가 총수입이 크게 늘어난다"
         },
         {
           "id": "c",
-          "text": "가격과 거래량이 모두 줄어든다"
+          "text": "판매량이 늘었으므로 농가 총수입도 늘어난다"
         },
         {
           "id": "d",
-          "text": "수요곡선이 오른쪽으로 이동한다"
+          "text": "수요곡선이 오른쪽으로 이동해 가격이 오른다"
         }
       ],
       "source_ids": [
+        "openstax-pe3-5-1",
         "openstax-pe3-5-3"
       ]
     },
     {
       "id": "c02-l3-q5",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c02-l3",
       "objective": 2,
       "concept_ids": [
-        "total_revenue"
+        "total_revenue",
+        "price_elasticity_demand"
       ],
-      "difficulty": "beginner",
+      "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "음료 한 병 2,000원에 하루 300병이 팔렸어요. 이날 판매자의 총수입은 몇 원인가요? (숫자만 입력)",
+      "prompt": "수요가 Q = 80 − 2P 인 상품에서 총수입(P × Q)이 가장 커지는 가격은 얼마인가요? (숫자만 입력)",
       "unit": "",
       "source_ids": [
+        "openstax-pe3-5-1",
         "openstax-pe3-5-3"
       ]
     }

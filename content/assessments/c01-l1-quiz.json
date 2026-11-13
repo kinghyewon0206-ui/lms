@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "c01-l1-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c01",
+  "lesson_id": "c01-l1",
+  "version": 1,
+  "title": "레슨 1 형성 퀴즈: 희소성과 경제적 선택",
+  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c01-l1-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l1",
+      "objective": 1,
+      "concept_ids": [
+        "scarcity"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "경제학에서 말하는 '희소성'의 뜻으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "물건의 양 자체가 적은 상태"
+        },
+        {
+          "id": "b",
+          "text": "물건의 가격이 비싼 상태"
+        },
+        {
+          "id": "c",
+          "text": "원하는 것에 비해 그것을 얻는 데 쓸 자원이 부족한 상태"
+        },
+        {
+          "id": "d",
+          "text": "소득이 낮은 사람만 겪는 문제"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c01-l1-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l1",
+      "objective": 1,
+      "concept_ids": [
+        "scarcity",
+        "economics"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "시골의 맑은 공기는 사고팔지 않지만, 대도시에서는 공기청정기와 필터를 사고팔아요. 이 차이를 가장 잘 설명하는 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "대도시 사람들의 소득이 더 높기 때문이다"
+        },
+        {
+          "id": "b",
+          "text": "시골에서는 맑은 공기가 원하는 만큼 충분하지만, 대도시에서는 원하는 양에 비해 부족하기 때문이다"
+        },
+        {
+          "id": "c",
+          "text": "공기청정기는 정부가 생산량을 정하는 상품이기 때문이다"
+        },
+        {
+          "id": "d",
+          "text": "시골에는 시장이 없기 때문이다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c01-l1-q3",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l1",
+      "objective": 2,
+      "concept_ids": [
+        "economic_systems"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "정부가 계획을 세워 무엇을 얼마나 생산하고 누구에게 나눌지 정하는 경제 체제는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "전통 경제"
+        },
+        {
+          "id": "b",
+          "text": "시장 경제"
+        },
+        {
+          "id": "c",
+          "text": "혼합 경제"
+        },
+        {
+          "id": "d",
+          "text": "명령 경제"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c01-l1-q4",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l1",
+      "objective": 2,
+      "concept_ids": [
+        "economic_questions"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "'마을에서 수확한 쌀을 어느 집이 얼마나 가져갈지 정하는 일'은 경제의 기본 문제 가운데 무엇에 가장 가까운가요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "누구를 위해 생산할까 (누가 얼마나 갖는가)"
+        },
+        {
+          "id": "b",
+          "text": "무엇을 생산할까"
+        },
+        {
+          "id": "c",
+          "text": "어떻게 생산할까"
+        },
+        {
+          "id": "d",
+          "text": "얼마나 빨리 생산할까"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    },
+    {
+      "id": "c01-l1-q5",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c01-l1",
+      "objective": 3,
+      "concept_ids": [
+        "specialization"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "학생 4명이 각자 혼자 처음부터 끝까지 만들면 한 사람이 1시간에 5개를 만들고, 일을 나누어 맡으면 넷이 함께 1시간에 32개를 만들어요. 분업으로 1시간 생산량은 몇 % 늘어나나요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-1-1",
+        "openstax-pe3-1-4",
+        "openstax-pe3-2-1"
+      ]
+    }
+  ]
+}

@@ -22,6 +22,19 @@ def _sources():
     return content.read_sources()
 
 
+UNVERIFIED = "test-unverified-source"
+
+
+def _sources_with_unverified():
+    """실제 레지스트리에는 미확인 출처가 없으므로(확인 못 한 출처는 삭제) 검사용 미확인 출처 하나를 더한다."""
+    with open(os.path.join(content.CONTENT_DIR, "sources.json"), encoding="utf-8") as f:
+        data = json.load(f)
+    data["sources"].append({"id": UNVERIFIED, "title": "Unverified test source", "author": "Test", "url": "https://example.org/x",
+                            "concepts": ["food_waste"], "lesson_ids": [], "license": "확인하지 못함",
+                            "verification": {"status": "unverified", "checked_at": "2026-11-13", "method": "테스트용"}})
+    return lesson_content.parse_sources(data)
+
+
 def _parse(raw, lesson_id="c02-l1", fixture=False):
     return lesson_content.parse_material(raw, lesson_id, _sources(), fixture=fixture)
 
@@ -37,7 +50,7 @@ def _approve(raw, by="김선생", role="teacher"):
 # ------------------------------------------------------------- c02 초안 구조
 def test_c02_lessons_have_complete_draft_material():
     course = content.load_catalog(False).course("c02")
-    assert course.status == "coming_soon" and not course.published and course.content_version == 2
+    assert course.status == "coming_soon" and not course.published and course.content_version >= 2
     for lesson in course.lessons:
         doc = lesson.content
         assert doc is not None and doc.lesson_id == lesson.id
@@ -78,14 +91,32 @@ def test_numbers_in_content_are_machine_checked():
     raw["worked_examples"][2]["check"]["shortage"] = 17
     with pytest.raises(content.ContentError, match="계산 결과"):
         _parse(raw, "c02-l2")
-    raw = _doc_raw("c02-l1")
-    raw["graphs"][0]["expected_equilibria"][1]["price"] = 41
+    raw = _doc_raw("c02-l2")
+    raw["graphs"][0]["expected_equilibria"][0]["price"] = 31
     with pytest.raises(content.ContentError, match="균형점"):
-        _parse(raw)
+        _parse(raw, "c02-l2")
     raw = _doc_raw("c02-l3")
     raw["worked_examples"][1]["check"]["expected"] = 0.7
     with pytest.raises(content.ContentError, match="계산 결과"):
         _parse(raw, "c02-l3")
+    raw = _doc_raw("c02-l2")   # 사중손실 예제
+    next(e for e in raw["worked_examples"] if e["id"] == "c02-l2-we5")["check"]["expected"] = 28
+    with pytest.raises(content.ContentError, match="계산 결과"):
+        _parse(raw, "c02-l2")
+
+
+def test_shift_only_graphs_cannot_claim_an_equilibrium():
+    """균형을 배우기 전 레슨(L1)은 곡선 이동만 보여 준다. 한쪽 곡선만 있는 그래프에 균형점을 적으면 거절한다."""
+    raw = _doc_raw("c02-l1")
+    assert all(not g["expected_equilibria"] for g in raw["graphs"])
+    assert {bool(g["demand"]) for g in raw["graphs"]} == {True, False}   # 수요 이동 그림, 공급 이동 그림
+    raw["graphs"][0]["expected_equilibria"] = [{"demand": "D1", "supply": "S", "price": 30, "quantity": 40}]
+    with pytest.raises(content.ContentError, match="없는 곡선"):
+        _parse(raw)
+    raw = _doc_raw("c02-l1")
+    raw["graphs"][0]["demand"] = []
+    with pytest.raises(content.ContentError, match="하나 이상"):
+        _parse(raw)
 
 
 # ------------------------------------------------------------- 출처
@@ -93,10 +124,10 @@ def test_source_registry_integrity():
     sources = _sources()
     assert len(sources) >= 10 and all(s.url.startswith("https://") for s in sources.values())
     unverified = [s.id for s in sources.values() if not s.verified]
-    assert unverified == ["unep-food-waste-index-2024"]
-    cited = {sid for lid in C02_LESSONS for sid in content.load_catalog(False).course("c02").lesson(lid).content.source_ids}
-    assert cited and all(sources[sid].verified for sid in cited)   # c02 는 확인된 출처만 인용
-    assert "unep-food-waste-index-2024" not in cited
+    assert unverified == []                    # 확인하지 못한 출처(UNEP 보고서)는 레지스트리에서 뺐다
+    cat = content.load_catalog(False)
+    cited = {sid for cid in ("c01", "c02") for lesson in cat.course(cid).lessons for sid in lesson.content.source_ids}
+    assert cited and all(sources[sid].verified for sid in cited)   # c01·c02 는 확인된 출처만 인용
     for s in sources.values():
         if s.verified:
             assert s.checked_at and s.method and s.license
@@ -119,13 +150,13 @@ def test_invalid_source_registry(mutate, message):
 @pytest.mark.parametrize("mutate, message", [
     (lambda d: d["concepts"][0].update(source_ids=["no-such-source"]), "레지스트리에 없는 출처"),
     (lambda d: d["real_world_examples"][0].update(source_ids=["un-sdg-12"]), "source_ids 목록에 없습니다"),
-    (lambda d: d.update(source_ids=d["source_ids"] + ["unep-food-waste-index-2024"]), None),   # 초안은 미확인 출처 허용
+    (lambda d: d.update(source_ids=d["source_ids"] + [UNVERIFIED]), None),   # 초안은 미확인 출처 허용
 ])
 def test_source_references(mutate, message):
     raw = _doc_raw()
     mutate(raw)
     if message is None:
-        assert _parse(raw).source_ids[-1] == "unep-food-waste-index-2024"
+        assert lesson_content.parse_material(raw, "c02-l1", _sources_with_unverified()).source_ids[-1] == UNVERIFIED
     else:
         with pytest.raises(content.ContentError, match=message):
             _parse(raw)
@@ -186,9 +217,9 @@ def test_ai_or_incomplete_approval_is_rejected(change, message):
 
 def test_approved_material_cannot_cite_unverified_source():
     raw = _approve(_doc_raw())
-    raw["source_ids"].append("unep-food-waste-index-2024")
+    raw["source_ids"].append(UNVERIFIED)
     with pytest.raises(content.ContentError, match="확인된 출처만"):
-        _parse(raw)
+        lesson_content.parse_material(raw, "c02-l1", _sources_with_unverified())
 
 
 def test_course_publication_still_requires_approved_quiz(tmp_path, monkeypatch):
@@ -255,7 +286,7 @@ def test_preview_shows_draft_when_enabled(logged_in, monkeypatch):
     assert res.status_code == 200 and res.headers["X-Robots-Tag"] == "noindex" and "no-store" in res.headers["Cache-Control"]
     assert "학생에게 공개되지 않은 화면" in html and "검토 전 초안 (AI 작성)" in html
     assert "P* = (a − c)/(b + d)" in html and "가격 상한 24" in html
-    assert "출처 확인됨 · 2026-11-03" in html and "openstax.org/books/principles-economics-3e" in html
+    assert "출처 확인됨 · 2026-11-13" in html and "openstax.org/books/principles-economics-3e" in html
     assert "학습자료를 끝까지 확인했어요" not in html   # 미리보기에서는 진도를 남기지 않는다
     assert logged_in.get("/preview/c02/c02-l9").status_code == 404
     assert logged_in.get("/preview/c05/c05-l1").status_code == 404   # 자료가 없는 레슨

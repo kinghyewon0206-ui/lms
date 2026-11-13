@@ -101,16 +101,25 @@ def test_fixtures_can_never_be_enabled_in_production(monkeypatch, fixtures_on, n
         content.get_catalog()
 
 
+def _drop_materials(lesson):
+    """c01 레슨 JSON 은 자기 lesson_id 에 묶여 있으므로, id 를 바꾼 복사본에서는 자료·퀴즈를 뗀다."""
+    lesson["material"] = {"status": "missing"}
+    lesson["quiz"] = {"status": "missing", "assessment_id": None}
+
+
 def test_visible_and_published_filtering():
     base = content.load_catalog(True)
     draft = copy.deepcopy(_raw("c01"))
+    draft["final_assessment"] = {"status": "upcoming"}
     draft.update(id="zz-draft", slug="zz-draft", status="draft", lesson_ids=[f"zz-draft-l{i}" for i in (1, 2, 3)])
     for i, lesson in enumerate(draft["lessons"], start=1):
         lesson["id"] = f"zz-draft-l{i}"
+        _drop_materials(lesson)
     archived = copy.deepcopy(draft)
     archived.update(id="zz-old", slug="zz-old", status="archived", lesson_ids=[f"zz-old-l{i}" for i in (1, 2, 3)])
     for i, lesson in enumerate(archived["lessons"], start=1):
         lesson["id"] = f"zz-old-l{i}"
+        _drop_materials(lesson)
     cat = content.build_catalog(list(base.courses) + [content.parse_course(draft), content.parse_course(archived)], base.sdgs)
     visible = [c.id for c in cat.visible()]
     assert "zz-draft" not in visible and "zz-old" not in visible
@@ -187,9 +196,11 @@ def test_catalog_level_duplicates_are_rejected():
         content.build_catalog(list(base.courses) + [c02], base.sdgs)
 
     same_slug = copy.deepcopy(_raw("c01"))
+    same_slug["final_assessment"] = {"status": "upcoming"}
     same_slug.update(id="c99", lesson_ids=[f"c99-l{i}" for i in (1, 2, 3)])
     for i, lesson in enumerate(same_slug["lessons"], start=1):
         lesson["id"] = f"c99-l{i}"
+        _drop_materials(lesson)
     with pytest.raises(content.ContentError, match="slug"):
         content.build_catalog(list(base.courses) + [content.parse_course(same_slug)], base.sdgs)
 

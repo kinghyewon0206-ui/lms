@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "id": "c01-l2-quiz",
+  "kind": "lesson_quiz",
+  "course_id": "c01",
+  "lesson_id": "c01-l2",
+  "version": 1,
+  "title": "레슨 2 형성 퀴즈: 기회비용과 합리적 의사결정",
+  "description": "레슨에서 배운 내용을 확인하는 형성 퀴즈예요. 제출하면 레슨 완료 조건(퀴즈 제출)을 채우고, 점수는 따로 기록돼요.",
+  "review": {
+    "status": "draft",
+    "reviewer": null,
+    "reviewed_at": null,
+    "approved_at": null,
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-13",
+        "by": "Claude Code (AI)",
+        "note": "AI 가 작성한 문항 초안. 사람(관리자) 검토 전이며 학생에게 출제하지 않는다."
+      }
+    ]
+  },
+  "retakes": {
+    "allowed": true,
+    "max_attempts": 0
+  },
+  "questions": [
+    {
+      "id": "c01-l2-q1",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l2",
+      "objective": 1,
+      "concept_ids": [
+        "opportunity_cost"
+      ],
+      "difficulty": "beginner",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "방과 후 2시간 동안 ① 시급 9,000원 아르바이트 ② 동아리 활동 ③ 낮잠 가운데 동아리 활동을 골랐어요. 낮잠보다 아르바이트가 더 가치 있다면, 동아리 활동의 기회비용은 무엇인가요?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "낮잠"
+        },
+        {
+          "id": "b",
+          "text": "아르바이트로 벌 수 있었던 18,000원"
+        },
+        {
+          "id": "c",
+          "text": "낮잠과 18,000원을 모두 더한 것"
+        },
+        {
+          "id": "d",
+          "text": "돈을 쓰지 않았으므로 기회비용은 없다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-l2-q2",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l2",
+      "objective": 2,
+      "concept_ids": [
+        "sunk_cost",
+        "marginal_thinking"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "환불이 안 되는 30,000원짜리 놀이공원 자유이용권을 샀는데, 당일 비가 오고 감기 기운이 있어요. 갈지 말지를 정하는 가장 합리적인 기준은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "이미 낸 30,000원이 아까우니 가야 손해를 줄일 수 있다"
+        },
+        {
+          "id": "b",
+          "text": "표값 30,000원과 교통비를 더한 비용이 즐거움보다 큰지 따진다"
+        },
+        {
+          "id": "c",
+          "text": "같이 가기로 한 친구가 몇 명인지에 따라 정한다"
+        },
+        {
+          "id": "d",
+          "text": "오늘 가서 얻을 즐거움과 아플 위험·불편만 비교하고, 표값은 판단에서 뺀다"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-l2-q3",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c01-l2",
+      "objective": 2,
+      "concept_ids": [
+        "marginal_thinking"
+      ],
+      "difficulty": "intermediate",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "농구 연습을 1·2·3·4 시간째 할 때 실력 향상의 가치(추가 편익)가 각각 10, 8, 5, 2 (천 원)이고, 한 시간 연습할 때마다 포기하는 다른 일의 가치(추가 비용)는 6 (천 원)이에요. 추가 편익이 추가 비용보다 작아지기 전까지만 연습한다면 몇 시간 연습하나요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-l2-q4",
+      "version": 1,
+      "type": "numeric",
+      "lesson_id": "c01-l2",
+      "objective": 3,
+      "concept_ids": [
+        "ppf",
+        "increasing_opportunity_cost"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "한 마을이 만들 수 있는 (빵, 케이크) 조합이 (0, 60), (10, 52), (20, 40), (30, 22), (40, 0) 이에요. 빵을 20 에서 30 으로 늘릴 때 포기하는 케이크는 몇 개인가요? (숫자만 입력)",
+      "unit": "",
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    },
+    {
+      "id": "c01-l2-q5",
+      "version": 1,
+      "type": "mcq",
+      "lesson_id": "c01-l2",
+      "objective": 3,
+      "concept_ids": [
+        "ppf"
+      ],
+      "difficulty": "advanced",
+      "points": 1,
+      "review_status": "draft",
+      "prompt": "생산 가능 곡선의 안쪽에 있는 점이 뜻하는 것으로 가장 알맞은 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "지금 자원과 기술로는 만들 수 없는 조합"
+        },
+        {
+          "id": "b",
+          "text": "사회가 가장 바라는 조합"
+        },
+        {
+          "id": "c",
+          "text": "일하지 않는 사람이 있거나 자원이 낭비되는 비효율적인 조합"
+        },
+        {
+          "id": "d",
+          "text": "기회비용이 0 인 조합"
+        }
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-2-2"
+      ]
+    }
+  ]
+}

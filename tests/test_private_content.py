@@ -278,6 +278,7 @@ def test_cli_reports_closed_assessments_and_public_scan(sqlite_app):
     runner = sqlite_app.test_cli_runner()
     res = runner.invoke(args=["check-content"])
     assert res.exit_code == 0, res.output                     # 초안 평가에 키가 없는 것은 오류가 아니다 (응시 불가로 닫힘)
-    assert "[정답 키 없음 → 응시 불가] c02-final" in res.output and "열 수 없는 평가 4개" in res.output   # 진단평가는 테스트에서 합성 키 사용
+    assert "[정답 키 없음 → 응시 불가] c02-final" in res.output and "[정답 키 없음 → 응시 불가] c01-final" in res.output
+    assert "열 수 없는 평가 8개" in res.output   # c01·c02 각 4개. 진단평가는 테스트에서 합성 키 사용
     res = runner.invoke(args=["check-public-files"])
     assert res.exit_code == 0 and "공개 저장소 점검 통과" in res.output

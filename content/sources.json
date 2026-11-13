@@ -9,10 +9,27 @@
       "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
       "published": "2022-12-14",
       "url": "https://openstax.org/books/principles-economics-3e/pages/3-1-demand-supply-and-equilibrium-in-markets-for-goods-and-services",
-      "concepts": ["demand", "quantity_demanded", "law_of_demand", "supply", "law_of_supply", "equilibrium", "surplus", "shortage"],
-      "lesson_ids": ["c02-l1", "c02-l2"],
+      "concepts": [
+        "demand",
+        "quantity_demanded",
+        "law_of_demand",
+        "supply",
+        "law_of_supply",
+        "equilibrium",
+        "surplus",
+        "shortage"
+      ],
+      "lesson_ids": [
+        "c02-l1",
+        "c02-l2"
+      ],
       "license": "CC BY-NC-SA 4.0. OpenStax 는 자사 콘텐츠를 대규모 언어모델 학습에 쓰는 것을 서면 허락 없이 금지한다고 고지한다. ECONOVA 는 본문을 복제하지 않고 링크와 인용 표시만 한다.",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 제목·저자·발행일·라이선스와 수요·공급·균형·초과공급·초과수요 정의가 있는지 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 제목·저자·CC BY-NC-SA·LLM 학습 금지 고지, 수요/수요량·공급/공급량·수요·공급 법칙·균형·잉여·부족 정의 있음. ('ceteris paribus' 라는 용어 자체는 쓰지 않고 '다른 조건 일정' 으로 설명)",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "openstax-pe3-3-2",
@@ -21,10 +38,21 @@
       "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
       "published": "2022-12-14",
       "url": "https://openstax.org/books/principles-economics-3e/pages/3-2-shifts-in-demand-and-supply-for-goods-and-services",
-      "concepts": ["demand_shifters", "supply_shifters", "movement_vs_shift"],
-      "lesson_ids": ["c02-l1"],
+      "concepts": [
+        "demand_shifters",
+        "supply_shifters",
+        "movement_vs_shift"
+      ],
+      "lesson_ids": [
+        "c02-l1"
+      ],
       "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 수요 이동 요인(소득·기호·인구·관련재 가격·기대)과 공급 이동 요인(투입 비용·날씨·기술·정부 정책) 목록 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 수요 이동 요인(소득·정상재/열등재·기호·인구·관련재 가격·기대)과 공급 이동 요인(투입 비용·날씨·기술·정부 정책) 목록 있음",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "openstax-pe3-3-3",
@@ -33,10 +61,20 @@
       "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
       "published": "2022-12-14",
       "url": "https://openstax.org/books/principles-economics-3e/pages/3-3-changes-in-equilibrium-price-and-quantity-the-four-step-process",
-      "concepts": ["equilibrium", "four_step"],
-      "lesson_ids": ["c02-l2"],
+      "concepts": [
+        "equilibrium",
+        "four_step"
+      ],
+      "lesson_ids": [
+        "c02-l2"
+      ],
       "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 4단계 분석법(원래 시장 그리기 → 수요/공급 중 무엇 → 이동 방향 → 새 균형 비교) 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 4단계 분석과 수요·공급이 함께 이동하는 경우(가격 또는 거래량 중 하나만 확정) 설명 있음",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "openstax-pe3-3-4",
@@ -45,10 +83,22 @@
       "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
       "published": "2022-12-14",
       "url": "https://openstax.org/books/principles-economics-3e/pages/3-4-price-ceilings-and-price-floors",
-      "concepts": ["price_ceiling", "price_floor", "shortage", "surplus"],
-      "lesson_ids": ["c02-l2"],
+      "concepts": [
+        "price_ceiling",
+        "price_floor",
+        "shortage",
+        "surplus"
+      ],
+      "lesson_ids": [
+        "c02-l2"
+      ],
       "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 가격 상한→부족, 가격 하한→잉여, 농산물 가격 지지 사례 서술 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 가격 상한(임대료 상한)→부족, 가격 하한(농산물 가격 지지)→잉여 설명 있음. 사중손실은 이 절에 없음 → 3.5 로 인용",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "openstax-pe3-5-1",
@@ -57,10 +107,22 @@
       "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
       "published": "2022-12-14",
       "url": "https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply",
-      "concepts": ["price_elasticity_demand", "midpoint_method", "elasticity_categories", "price_elasticity_supply"],
-      "lesson_ids": ["c02-l3"],
+      "concepts": [
+        "price_elasticity_demand",
+        "midpoint_method",
+        "elasticity_categories",
+        "price_elasticity_supply"
+      ],
+      "lesson_ids": [
+        "c02-l3"
+      ],
       "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 중간점 공식과 탄력적·비탄력적·단위탄력적 구분 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 수요의 가격 탄력성 정의, 탄력적·비탄력적·단위탄력적, 중간점 방법 있음",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "openstax-pe3-5-3",
@@ -69,10 +131,21 @@
       "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
       "published": "2022-12-14",
       "url": "https://openstax.org/books/principles-economics-3e/pages/5-3-elasticity-and-pricing",
-      "concepts": ["total_revenue", "food_demand_inelastic", "tax_incidence"],
-      "lesson_ids": ["c02-l3"],
+      "concepts": [
+        "total_revenue",
+        "food_demand_inelastic",
+        "tax_incidence"
+      ],
+      "lesson_ids": [
+        "c02-l3"
+      ],
       "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 탄력성과 총수입의 관계, 조세 부담 귀착, 식량 수요가 대체로 비탄력적이라 풍작 때 농가 수입이 줄 수 있다는 서술 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 탄력성과 총수입, 농산물 생산 급증 때 가격 급락, 덜 탄력적인 쪽이 세금을 더 부담(조세 귀착) 설명 있음",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "un-sdg-2",
@@ -81,10 +154,23 @@
       "author": "United Nations",
       "published": null,
       "url": "https://sdgs.un.org/goals/goal2",
-      "concepts": ["food_security", "food_price_volatility", "food_reserves"],
-      "lesson_ids": ["c02-l1", "c02-l2", "c02-l3"],
+      "concepts": [
+        "food_security",
+        "food_price_volatility",
+        "food_reserves"
+      ],
+      "lesson_ids": [
+        "c02-l1",
+        "c02-l2",
+        "c02-l3"
+      ],
       "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 목표 2 제목, 세부목표 2.1(식량 접근)과 2.c(식량 시장 기능, 식량 비축 정보, 가격 변동성 완화) 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: Goal 2 제목, 세부목표 2.1(굶주림 종식·안전한 식량 접근), 2.c(식량 시장 기능·가격 변동 완화) 문구 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "un-sdg-12",
@@ -93,10 +179,24 @@
       "author": "United Nations",
       "published": null,
       "url": "https://sdgs.un.org/goals/goal12",
-      "concepts": ["food_waste", "sustainable_consumption"],
-      "lesson_ids": ["c02-l2", "c02-l3"],
+      "concepts": [
+        "food_waste",
+        "sustainable_consumption"
+      ],
+      "lesson_ids": [
+        "c01-l1",
+        "c01-l2",
+        "c01-l3",
+        "c02-l2",
+        "c02-l3"
+      ],
       "license": "UN 웹사이트 이용 약관을 따른다. 목표·세부목표 문구는 짧게 인용하거나 요약하고 링크한다.",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 목표 12 제목과 세부목표 12.3(1인당 음식물 쓰레기 절반 감축, 식량 손실 감축) 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: Goal 12 제목, 세부목표 12.2(천연자원의 효율적 이용), 12.3(음식물 쓰레기 절반·식량 손실 감소), 12.5(쓰레기 발생 감축), 12.8(지속가능한 생활에 대한 정보·인식) 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "fao-food-price-index",
@@ -105,10 +205,20 @@
       "author": "Food and Agriculture Organization of the United Nations (FAO)",
       "published": null,
       "url": "https://www.fao.org/worldfoodsituation/foodpricesindex/en/",
-      "concepts": ["food_price_volatility", "price_index"],
-      "lesson_ids": ["c02-l3"],
+      "concepts": [
+        "food_price_volatility",
+        "price_index"
+      ],
+      "lesson_ids": [
+        "c02-l3"
+      ],
       "license": "FAO 웹사이트 이용 약관을 따른다. 지수의 정의만 요약하고, 수치는 인용하지 않는다 (매달 갱신됨).",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 지수가 곡물·식물성 유지·유제품·육류·설탕 5개 품목군의 국제 가격 변화를 수출 비중 가중 평균으로 측정한다는 설명 확인"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 곡물·식물성 유지·유제품·육류·설탕 5개 품목군 국제 가격의 월별 변화를 2014~2016 수출 비중으로 가중 평균한 지수",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
       "id": "worldbank-food-security-update",
@@ -117,22 +227,187 @@
       "author": "World Bank Group",
       "published": null,
       "url": "https://www.worldbank.org/en/topic/agriculture/brief/food-security-update",
-      "concepts": ["food_price_inflation", "food_security"],
-      "lesson_ids": ["c02-l3"],
+      "concepts": [
+        "food_price_inflation",
+        "food_security"
+      ],
+      "lesson_ids": [
+        "c02-l3"
+      ],
       "license": "World Bank 웹사이트 이용 약관을 따른다. 정기적으로 내용이 바뀌는 페이지이므로 수치는 인용하지 않는다.",
-      "verification": {"status": "verified", "checked_at": "2026-11-03", "method": "페이지를 직접 열어 국가별 식품 물가 상승을 정기적으로 점검하는 세계은행 자료임을 확인 (확인 시점 제목: Food Security Update – October 2026)"}
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13 재확인: 정기 발간되는 Food Security Update, 각국 국내 식품 물가 상승을 점검 (수치는 매번 바뀌어 인용하지 않음)",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     },
     {
-      "id": "unep-food-waste-index-2024",
-      "title": "Food Waste Index Report 2024",
-      "container": "United Nations Environment Programme",
-      "author": "United Nations Environment Programme (UNEP)",
-      "published": null,
-      "url": "https://www.unep.org/resources/publication/food-waste-index-report-2024",
-      "concepts": ["food_waste"],
-      "lesson_ids": [],
-      "license": "확인하지 못함",
-      "verification": {"status": "unverified", "checked_at": "2026-11-03", "method": "페이지 접속이 HTTP 403 으로 거부되어 제목·발행일·내용을 확인하지 못함. 확인 전까지 레슨에서 인용하지 않는다."}
+      "id": "openstax-pe3-3-5",
+      "title": "3.5 Demand, Supply, and Efficiency",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/3-5-demand-supply-and-efficiency",
+      "concepts": [
+        "consumer_surplus",
+        "producer_surplus",
+        "deadweight_loss"
+      ],
+      "lesson_ids": [
+        "c02-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 소비자·생산자·사회 잉여와 사중손실, 가격 상한·하한이 사중손실을 만든다는 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-1-1",
+      "title": "1.1 What Is Economics, and Why Is It Important?",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/1-1-what-is-economics-and-why-is-it-important",
+      "concepts": [
+        "scarcity",
+        "economics",
+        "division_of_labor",
+        "specialization"
+      ],
+      "lesson_ids": [
+        "c01-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 경제학 정의(희소성 속의 선택), 희소성, 분업·특화(애덤 스미스) 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-1-4",
+      "title": "1.4 How To Organize Economies: An Overview of Economic Systems",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/1-4-how-to-organize-economies-an-overview-of-economic-systems",
+      "concepts": [
+        "traditional_economy",
+        "command_economy",
+        "market_economy",
+        "mixed_economy"
+      ],
+      "lesson_ids": [
+        "c01-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 전통·명령·시장·혼합 경제 설명 확인 (가격으로 조정되는 원리 자체는 이 절에서 자세히 다루지 않음)",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-2-1",
+      "title": "2.1 How Individuals Make Choices Based on Their Budget Constraint",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/2-1-how-individuals-make-choices-based-on-their-budget-constraint",
+      "concepts": [
+        "budget_constraint",
+        "opportunity_cost",
+        "sunk_cost",
+        "marginal_analysis",
+        "utility"
+      ],
+      "lesson_ids": [
+        "c01-l1",
+        "c01-l2",
+        "c01-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 예산 제약, 기회비용, 매몰비용, 한계 분석, 효용 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-2-2",
+      "title": "2.2 The Production Possibilities Frontier and Social Choices",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/2-2-the-production-possibilities-frontier-and-social-choices",
+      "concepts": [
+        "production_possibilities_frontier",
+        "increasing_opportunity_cost",
+        "productive_efficiency",
+        "allocative_efficiency"
+      ],
+      "lesson_ids": [
+        "c01-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 생산 가능 곡선, 곡선 기울기 = 기회비용, 기회비용 체증(바깥으로 휜 모양), 생산·배분 효율 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-2-3",
+      "title": "2.3 Confronting Objections to the Economic Approach",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/2-3-confronting-objections-to-the-economic-approach",
+      "concepts": [
+        "rationality",
+        "self_interest_and_values"
+      ],
+      "lesson_ids": [
+        "c01-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 '사람은 늘 합리적이지 않다'는 반론과 사람은 이기적이면서 이타적이고 가치(자선·가족·환경 등)도 고려한다는 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
+    },
+    {
+      "id": "openstax-pe3-12-1",
+      "title": "12.1 The Economics of Pollution",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/12-1-the-economics-of-pollution",
+      "concepts": [
+        "externality",
+        "private_cost",
+        "social_cost"
+      ],
+      "lesson_ids": [
+        "c01-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0 (위 OpenStax 고지와 같음)",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-13",
+        "method": "2026-11-13: 페이지를 열어 외부효과(제3자에게 미치는 영향), 사적 비용과 사회적 비용, 오염을 만드는 재화가 과다 생산된다는 설명 확인",
+        "checked_by": "Claude Code (AI) 가 페이지를 열어 확인. 사람 확인 전 (승인 아님)"
+      }
     }
   ]
 }

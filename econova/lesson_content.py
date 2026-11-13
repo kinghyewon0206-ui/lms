@@ -193,8 +193,9 @@ def parse_graph(g, where):
         if _num(s, "d", w) <= 0:
             raise ContentError(f"{w}: 공급곡선의 d 는 0 보다 커야 합니다 (공급 법칙).")
         supply[_text(s, "label", w)] = (_num(s, "c", w), _num(s, "d", w))
-    if not demand or not supply:
-        raise ContentError(f"{w}: 수요곡선과 공급곡선이 각각 하나 이상 있어야 합니다.")
+    # 곡선 이동만 보여 주는 그래프(균형을 배우기 전 레슨)는 수요곡선 또는 공급곡선만 둘 수 있다. 균형점은 둘 다 있어야 한다.
+    if not demand and not supply:
+        raise ContentError(f"{w}: 수요곡선이나 공급곡선이 하나 이상 있어야 합니다.")
     for e in _need(g, "expected_equilibria", list, w):
         if e.get("demand") not in demand or e.get("supply") not in supply:
             raise ContentError(f"{w}: 균형점이 없는 곡선 이름을 가리킵니다.")
