@@ -86,11 +86,13 @@
 - 새 Firebase 프로젝트 1개 (예: `econova-dev-20261110` — id 에 dev/test/it/qa/sandbox/staging 구간 필요), Firestore **Native 모드**,
   운영과 결제 계정·IAM 공유 없음. 무료(Spark) 등급으로 충분 (아래 7장).
 - 서비스 계정 1개, 역할 **Cloud Datastore User** 만. JSON 키 1개 → 저장소 밖 `~/econova-dev-secrets/`, `chmod 600`.
-- 운영 프로젝트 id (비교용으로 적기만 함. 이 코드는 `.env` 를 읽지 않는다).
+- (2026-11-13 결정) 예전 LMS 데이터는 버려도 되므로 **예전 운영 프로젝트 id 는 받지 않는다.** 사람이 지정한 ECONOVA 프로젝트
+  (`econova-dev`) 한 곳만 쓰고, 다른 프로젝트는 키의 `project_id`·서비스 계정 소속·접속한 프로젝트·표식 문서 확인에서 거부된다.
+  예전 데이터 이전·호환 확인은 시험 범위에 없다. 이 코드는 `.env` 를 읽지 않는다.
 - 실행 (승인 뒤, 셸에 `FIREBASE_CREDENTIALS_JSON` 이 없어야 함):
 
 ```bash
-export ECONOVA_IT_FIRESTORE=live ECONOVA_IT_FIREBASE_PROJECT_ID=<개발 id> ECONOVA_IT_PRODUCTION_PROJECT_ID=<운영 id>
+export ECONOVA_IT_FIRESTORE=live ECONOVA_IT_FIREBASE_PROJECT_ID=<개발 id>
 ```
 
 ```bash
@@ -133,7 +135,8 @@ export ECONOVA_IT_OPENAI_MODEL=<모델> ECONOVA_IT_OPENAI_MAX_REQUESTS=8 ECONOVA
 - 운영과 분리된 서비스 1개, 이 브랜치 배포 권한, 확인 기간 동안만 `ECONOVA_PROXY_DIAGNOSTICS=1`. 운영 서비스는 건드리지 않는다.
 
 ## 6. 정리
-- Firestore: 실행이 끝나면 자동 정리 (남은 문서 0 확인). 시험 전체가 끝나면 서비스 계정 키 폐기 또는 프로젝트 삭제.
+- Firestore: 실행이 끝나면 이번 실행이 만든 문서만 자동 정리 (남은 문서 0 확인, 표식·기존 문서는 그대로). `econova-dev` 는 나중에
+  운영에도 쓸 수 있으므로 **프로젝트·데이터베이스를 지우지 않는다.** 운영 전환 전에 시험용 로컬 키를 폐기하고, 운영용은 최소 권한 키를 새로 만든다.
 - OpenAI: 키 폐기, 사용량 화면에서 실제 비용 확인 → 운영 한도(`ECONOVA_AI_*`) 결정에 반영.
 - Render 확인용 서비스: 진단 설정 제거 후 서비스 삭제.
 

@@ -722,7 +722,12 @@ def _as_dt(value):
     if value is None or value == "":
         return None
     if isinstance(value, datetime.datetime):
-        return value.astimezone(datetime.timezone.utc).replace(tzinfo=None) if value.tzinfo else value
+        if value.tzinfo:
+            value = value.astimezone(datetime.timezone.utc)
+        # Firestore 는 datetime 의 하위 클래스(DatetimeWithNanoseconds)를 돌려준다. 그 값에 .replace() 를 한 뒤 다시 쓰면
+        # Firestore 라이브러리가 인코딩하지 못하므로(실제 연동 시험에서 확인) 표준 datetime 으로 새로 만든다.
+        return datetime.datetime(value.year, value.month, value.day, value.hour, value.minute, value.second,
+                                 value.microsecond)
     return datetime.datetime.strptime(value, _TS_FORMAT)
 
 

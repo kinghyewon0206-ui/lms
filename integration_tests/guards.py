@@ -4,8 +4,8 @@
 이 모듈은 파일 내용(키 값)을 출력하지 않는다. 오류 메시지에는 어떤 조건이 어긋났는지만 적는다.
 
 Firestore live 조건 (ECONOVA_IT_FIRESTORE=live)
-- ECONOVA_IT_FIREBASE_PROJECT_ID      개발 프로젝트 id. 이름에 dev/test/it/qa/sandbox/staging 구간이 있어야 한다
-- ECONOVA_IT_PRODUCTION_PROJECT_ID    운영 프로젝트 id (사람이 직접 적는다. 이 코드는 .env 를 읽지 않는다). 같으면 거부
+- ECONOVA_IT_FIREBASE_PROJECT_ID      사람이 지정한 ECONOVA 프로젝트 id (예: econova-dev). 이름에 dev/test/it/qa/sandbox/staging
+                                      구간이 있어야 한다. 이 id 한 곳에만 접속한다 (다른 프로젝트는 키·접속 확인에서 거부)
 - ECONOVA_IT_FIREBASE_CREDENTIALS_FILE 저장소 밖 절대 경로, 소유자만 읽을 수 있는 권한(600), 그 키의 project_id 가 위와 같아야 함
 - ECONOVA_IT_FIRESTORE_APPROVAL        위 프로젝트 id 를 한 번 더 그대로 적는다 (승인 확인)
 - 셸에 FIREBASE_CREDENTIALS_JSON 이 있으면 거부 (운영 키가 섞이지 않게), 운영 환경 표시(RENDER/APP_ENV)가 있으면 거부
@@ -72,17 +72,13 @@ def _secret_file(path, label):
     return real
 
 
-def check_project_ids(expected, production):
+def check_project_id(expected):
     if not expected:
         raise IntegrationRefused("ECONOVA_IT_FIREBASE_PROJECT_ID (개발 프로젝트 id)가 없습니다.")
     if not PROJECT_ID.match(expected):
         raise IntegrationRefused("ECONOVA_IT_FIREBASE_PROJECT_ID 형식이 Firebase 프로젝트 id 가 아닙니다.")
     if not DEV_LABELS & set(expected.split("-")):
-        raise IntegrationRefused("개발 프로젝트 id 에 dev/test/it/qa/sandbox/staging 구간이 없습니다 (예: econova-dev-20261110).")
-    if not production:
-        raise IntegrationRefused("ECONOVA_IT_PRODUCTION_PROJECT_ID (운영 프로젝트 id)를 적어 주세요. 같은 프로젝트인지 비교합니다.")
-    if production.strip() == expected:
-        raise IntegrationRefused("개발 프로젝트 id 가 운영 프로젝트 id 와 같습니다.")
+        raise IntegrationRefused("개발 프로젝트 id 에 dev/test/it/qa/sandbox/staging 구간이 없습니다 (예: econova-dev).")
 
 
 @dataclass(frozen=True)
@@ -98,7 +94,7 @@ def firestore_live(environ=None):
     if environ.get("FIREBASE_CREDENTIALS_JSON"):
         raise IntegrationRefused("셸에 FIREBASE_CREDENTIALS_JSON 이 있습니다 (운영 키일 수 있음). unset 한 뒤 다시 실행하세요.")
     expected = (environ.get("ECONOVA_IT_FIREBASE_PROJECT_ID") or "").strip()
-    check_project_ids(expected, (environ.get("ECONOVA_IT_PRODUCTION_PROJECT_ID") or "").strip())
+    check_project_id(expected)
     if (environ.get("ECONOVA_IT_FIRESTORE_APPROVAL") or "").strip() != expected:
         raise IntegrationRefused("ECONOVA_IT_FIRESTORE_APPROVAL 에 승인한 개발 프로젝트 id 를 그대로 적어 주세요.")
     path = _secret_file(environ.get("ECONOVA_IT_FIREBASE_CREDENTIALS_FILE"), "ECONOVA_IT_FIREBASE_CREDENTIALS_FILE")

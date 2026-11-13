@@ -17,7 +17,7 @@ from integration_tests.transport import GuardedTransport, inspect_body
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEV = "econova-dev-20261110"
-PROD = "econova-prod"
+OTHER = "lms-legacy-other"   # 승인하지 않은 다른 프로젝트 (예: 예전 LMS 프로젝트)
 
 
 def _key_file(tmp_path, project=DEV, mode=0o600, **extra):
@@ -31,7 +31,7 @@ def _key_file(tmp_path, project=DEV, mode=0o600, **extra):
 
 def _fs_env(tmp_path, **over):
     env = {"ECONOVA_IT_FIRESTORE": "live", "ECONOVA_IT_FIREBASE_PROJECT_ID": DEV,
-           "ECONOVA_IT_PRODUCTION_PROJECT_ID": PROD, "ECONOVA_IT_FIRESTORE_APPROVAL": DEV,
+           "ECONOVA_IT_FIRESTORE_APPROVAL": DEV,
            "ECONOVA_IT_FIREBASE_CREDENTIALS_FILE": _key_file(tmp_path)}
     env.update(over)
     return {k: v for k, v in env.items() if v is not None}
@@ -47,8 +47,6 @@ def test_firestore_live_accepts_only_a_fully_identified_dev_project(tmp_path):
     ({"ECONOVA_IT_FIREBASE_PROJECT_ID": "econova-20261110", "ECONOVA_IT_FIRESTORE_APPROVAL": "econova-20261110"},
      "dev/test"),
     ({"ECONOVA_IT_FIREBASE_PROJECT_ID": "Bad_Id!"}, "형식"),
-    ({"ECONOVA_IT_PRODUCTION_PROJECT_ID": None}, "운영 프로젝트 id"),
-    ({"ECONOVA_IT_PRODUCTION_PROJECT_ID": DEV}, "운영 프로젝트 id 와 같습니다"),
     ({"ECONOVA_IT_FIRESTORE_APPROVAL": None}, "APPROVAL"),
     ({"ECONOVA_IT_FIRESTORE_APPROVAL": "econova-dev-other"}, "APPROVAL"),
     ({"FIREBASE_CREDENTIALS_JSON": "{}"}, "FIREBASE_CREDENTIALS_JSON"),
@@ -64,7 +62,7 @@ def test_firestore_live_refusals(tmp_path, over, why):
 
 
 def test_firestore_key_file_contents_must_match(tmp_path):
-    cases = [(dict(mode=0o644), "권한"), (dict(project=PROD), "project_id"),
+    cases = [(dict(mode=0o644), "권한"), (dict(project=OTHER), "project_id"),
              (dict(type="user"), "service_account"), (dict(client_email="x@other-dev.iam.gserviceaccount.com"), "소속")]
     for kw, why in cases:
         d = tmp_path / why
@@ -83,11 +81,11 @@ def test_connected_project_marker_and_users_are_checked():
     ok_users = [f"it-1-1@{guards.IT_EMAIL_DOMAIN}"]
     guards.check_connected(DEV, marker, ok_users, DEV)
     with pytest.raises(guards.IntegrationRefused, match="프로젝트"):
-        guards.check_connected(PROD, marker, ok_users, DEV)
+        guards.check_connected(OTHER, marker, ok_users, DEV)
     with pytest.raises(guards.IntegrationRefused, match="표식"):
         guards.check_connected(DEV, None, ok_users, DEV)
     with pytest.raises(guards.IntegrationRefused, match="표식"):
-        guards.check_connected(DEV, {**marker, "project_id": PROD}, ok_users, DEV)
+        guards.check_connected(DEV, {**marker, "project_id": OTHER}, ok_users, DEV)
     with pytest.raises(guards.IntegrationRefused, match="시험 계정이 아닌"):
         guards.check_connected(DEV, marker, ok_users + ["real.student@school.kr"], DEV)
 

@@ -2,11 +2,30 @@
 
 storage.py 가 쓰는 기능만 흉내 낸다: collection/document/get/set(merge)/update/delete/stream,
 where("==") 쿼리, 하위 컬렉션, batch, transaction, SERVER_TIMESTAMP, Increment.
+시각 값은 실제 Firestore 처럼 다룬다: 쓸 때는 라이브러리와 같은 인코딩 검사(timestamp_pb)를 하고, 읽으면 UTC 의
+DatetimeWithNanoseconds 를 돌려준다 (실제 연동 시험에서 이 차이 때문에 생긴 결함을 가짜에서도 잡기 위해).
 """
 import copy
 import datetime
 import types
 import uuid
+
+from google.api_core.datetime_helpers import DatetimeWithNanoseconds
+
+
+def _stored(value):
+    """실제 Firestore 가 저장했다가 돌려줄 모양으로 바꾼다."""
+    if isinstance(value, datetime.datetime):
+        if isinstance(value, DatetimeWithNanoseconds):
+            value.timestamp_pb()   # 실제 라이브러리가 쓰기 전에 하는 인코딩 (깨진 값이면 여기서 같은 오류)
+        aware = value.astimezone(datetime.timezone.utc) if value.tzinfo else value.replace(tzinfo=datetime.timezone.utc)
+        return DatetimeWithNanoseconds(aware.year, aware.month, aware.day, aware.hour, aware.minute, aware.second,
+                                       aware.microsecond, tzinfo=datetime.timezone.utc)
+    if isinstance(value, list):
+        return [_stored(v) for v in value]
+    if isinstance(value, dict):
+        return {k: _stored(v) for k, v in value.items()}
+    return value
 
 
 class _ServerTimestamp:
@@ -94,7 +113,7 @@ class FakeDocRef:
                 v = datetime.datetime.now(datetime.timezone.utc)
             elif isinstance(v, Increment):
                 v = old.get(k, 0) + v.value
-            new[k] = v
+            new[k] = _stored(v)
         self.db.docs[self.path] = new
 
     def update(self, data):
