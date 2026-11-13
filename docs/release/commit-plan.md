@@ -1,6 +1,18 @@
 # Phase 3~8B-2 안전 체크포인트 커밋 계획
 
-> **아직 커밋하지 않았다.** 학생이 `docs/release/student-review-guide.md` 로 검토를 실제로 마치고 명시적으로 승인한 뒤에만 실행한다.
+## 상태: 완료 (2026-11-13)
+- 체크포인트 커밋 `327f3397958f0c4e230621d51f53005eac97ee1b` (부모 `231cab5`), 작성자 `kimminjune` (저장소 설정의 학생 계정)
+- 162개 파일 (새 파일 133, 수정 29, 삭제 0). 아래 2장의 파일 목록과 같다.
+- 커밋 직전 확인: 작업 트리가 학생이 검토한 스냅샷과 바이트 단위로 같음, 전체 pytest 869 통과·1 건너뜀, `integration_tests` 27 통과,
+  실제 정답 키 정합성 시험 3 통과, `check-public-files --staged`·pre-commit 훅 통과, 실제 정답 해설 34개·키 파일 5개와 대조 일치 0.
+- 학생 검토: 선생님이 학생과 함께 검토·승인을 확인한 뒤 커밋했다.
+- 실제 커밋 메시지는 아래 4장의 초안이 아니라 승인 때 정한 문구를 썼다 (제목 `feat(econova): expand self-directed economics
+  learning platform`, 본문에 학생 검토·승인과 Claude Code 도움 표기, `Co-Authored-By` 한 줄).
+- 푸시: 이 문서를 고친 시점에는 하지 않았다 (별도 승인).
+
+> 아래는 커밋 전에 쓴 **계획 기록**이다. 내용은 고치지 않고 그대로 남긴다 ("아직 커밋하지 않았다" 등은 그때의 상태).
+
+> (당시) **아직 커밋하지 않았다.** 학생이 `docs/release/student-review-guide.md` 로 검토를 실제로 마치고 명시적으로 승인한 뒤에만 실행한다.
 > 푸시·PR 은 별도 승인. 학생용 요약: `docs/release/student-summary.md`
 
 ## 1. 방식: 정리된 현재 파일로 만드는 단일 체크포인트 커밋
@@ -200,7 +212,7 @@
 - **학생 검토 기록을 지어내지 않는다.** 아래 메시지의 "reviewed by the student" 문장은 학생이 검토를 실제로 마쳤을 때만 남기고,
   아니면 지우거나 커밋하지 않는다. 학생이 직접 고친 부분이 있으면 본문에 따로 적는다.
 
-### 커밋 메시지 초안
+### 커밋 메시지 초안 (계획 당시 — 실제로는 쓰지 않음, 맨 위 상태 참고)
 ```
 feat(econova): add assessments, simulations, AI learning, admin review and capstone (Phase 3-8B-2)
 
