@@ -29,7 +29,7 @@ TRANSITIONS = {("draft", "start_review"): "in_review", ("in_review", "approve"):
                ("in_review", "request_changes"): "draft", ("approved", "reopen"): "in_review"}
 DECISION_KO = {"start_review": "Start review", "approve": "Approve", "request_changes": "Request changes", "reopen": "Reopen review"}
 STATE_KO = {"draft": "Draft", "in_review": "In review", "approved": "Approved", "published": "Published", "missing": "Missing",
-            "upcoming": "Upcoming", "verified": "Verified", "unverified": "Unverified", "fixture": "Dev only"}
+            "upcoming": "Upcoming", "verified": "AI-checked (not human-approved)", "unverified": "Unverified", "fixture": "Dev only"}
 # 릴리스 계획으로 정본 파일에 반영할 수 있는 대상 (review 블록이 있고 검사기가 지문을 확인하는 것)
 RELEASABLE = ("material", "assessment", "passing", "debate", "capstone")
 
@@ -209,7 +209,9 @@ def review_state(target, reviews):
         return {"state": current[-1]["to_state"], "source": "db", "latest": current[-1], "stale": len(stale)}
     base = file_state if file_state in ("draft", "in_review", "approved", "published") else "draft"
     if target.type == "source":
-        base = "approved" if file_state == "verified" else "draft"
+        # 'verified' in sources.json only means an AI (or author) opened the page. Human approval exists only as a DB review
+        # record, so a source starts in draft for human review until an admin approves it here.
+        base = "draft"
     return {"state": base, "source": "file", "latest": None, "stale": len(stale)}
 
 

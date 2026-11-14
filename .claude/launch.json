@@ -4,8 +4,20 @@
     {
       "name": "lms",
       "runtimeExecutable": "env",
-      "runtimeArgs": ["PORT=5001", ".venv/bin/python", "app.py"],
+      "runtimeArgs": [
+        "PORT=5001",
+        ".venv/bin/python",
+        "app.py"
+      ],
       "port": 5001
+    },
+    {
+      "name": "econova-review",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "tools/review-server.sh"
+      ],
+      "port": 5070
     }
   ]
 }

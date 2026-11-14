@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l3",
-  "content_version": 1,
+  "content_version": 2,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -13,6 +13,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Added a note that the U.S. examples of financial rules differ by country (source review). Not reviewed or approved by a human."
       }
     ]
   },
@@ -349,7 +355,7 @@
         "ftc-avoid-scam"
       ],
       "paragraphs": [
-        "The U.S. Federal Trade Commission describes four common signs of a scam: impersonation of a trusted organization, a claimed problem or prize, pressure to act immediately, and a demand for payment by an unusual method such as gift cards, wire transfers, payment apps, or cryptocurrency."
+        "The U.S. Federal Trade Commission describes four common signs of a scam: impersonation of a trusted organization, a claimed problem or prize, pressure to act immediately, and a demand for payment by an unusual method such as gift cards, wire transfers, payment apps, or cryptocurrency. These are U.S. examples; financial rules, protections, and agencies differ from country to country, so check the rules where you live."
       ]
     },
     {

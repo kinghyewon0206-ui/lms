@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l1",
-  "content_version": 1,
+  "content_version": 2,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -13,6 +13,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Added a note that the U.S. examples of financial rules differ by country (source review). Not reviewed or approved by a human."
       }
     ]
   },
@@ -249,7 +255,7 @@
         "cfpb-pay-stub-tool"
       ],
       "paragraphs": [
-        "Consumer education materials from the U.S. Consumer Financial Protection Bureau (CFPB) walk new workers through a sample pay stub: gross wages, each tax and deduction, and the resulting net pay. They point out that seeing how gross pay shrinks to take-home pay helps people plan a realistic budget."
+        "Consumer education materials from the U.S. Consumer Financial Protection Bureau (CFPB) walk new workers through a sample pay stub: gross wages, each tax and deduction, and the resulting net pay. They point out that seeing how gross pay shrinks to take-home pay helps people plan a realistic budget. These are U.S. examples; financial rules, protections, and agencies differ from country to country, so check the rules where you live."
       ]
     },
     {

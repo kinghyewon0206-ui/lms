@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,11 +19,17 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Reworded a definition that closely matched the OpenStax wording (source review). Not reviewed or approved by a human."
       }
     ]
   },
   "objectives": [
-    "Explain what GDP measures, the market value of final goods and services produced within a country in a period, and why intermediate goods are left out.",
+    "Explain what GDP measures (the market value of a country's output of final goods and services over a set period) and why intermediate goods are left out.",
     "Distinguish nominal GDP from real GDP, calculate real GDP and growth rates with base-year prices or a GDP deflator, and tell a percentage change apart from a percentage-point change.",
     "Evaluate GDP per capita as a measure of living standards by identifying what GDP leaves out and explaining why a correlation, such as GDP per capita moving with life expectancy, does not by itself prove causation."
   ],
@@ -31,7 +37,7 @@
     {
       "id": "gdp",
       "term": "Gross domestic product (GDP)",
-      "definition": "The market value of all final goods and services produced within a country during a given period, usually a year or a quarter. Each item is valued at its market price, so very different goods can be added into one number.",
+      "definition": "A measure that adds up, at market prices, everything a country's economy turns out for final use within its borders over a set period, usually a year or a quarter. Each item is valued at its market price, so very different goods can be added into one number.",
       "source_ids": [
         "openstax-pe3-19-1"
       ]
@@ -151,7 +157,7 @@
             "final_vs_intermediate"
           ],
           "paragraphs": [
-            "GDP is the market value of all final goods and services produced within a country in a given period. Three parts of that definition matter. \"Market value\" means items are weighted by their prices. \"Final\" means intermediate goods are excluded to avoid double counting. \"Produced within a country in the period\" means used goods sold this year, which were counted when they were made, are not added again, and output made abroad is not included.",
+            "GDP adds up the market value of the final goods and services made inside a country's borders over a set period. Three parts of that idea matter. \"Market value\" means items are weighted by their prices. \"Final\" means intermediate goods are excluded to avoid double counting. \"Produced within a country in the period\" means used goods sold this year, which were counted when they were made, are not added again, and output made abroad is not included.",
             "An equivalent way to avoid double counting is to add up the value added at each stage: the sales price of each firm minus what it paid for intermediate goods. Summed across all stages, value added equals the price of the final product."
           ]
         },
@@ -452,7 +458,7 @@
     ]
   },
   "key_takeaways": [
-    "GDP is the market value of final goods and services produced within a country in a period; intermediate goods are excluded to avoid double counting.",
+    "GDP adds up the market value of a country's final goods and services over a period; intermediate goods are left out to avoid counting the same value twice.",
     "Real GDP values output at base-year prices, so it changes only with quantities; the GDP deflator = nominal GDP ÷ real GDP × 100.",
     "A change from 4% to 3% is a fall of 1 percentage point but a 25% decrease in the rate; say which one you mean.",
     "GDP per capita is a rough average guide to living standards that leaves out household production, leisure, the environment, and distribution.",

@@ -112,3 +112,14 @@ def test_public_assessment_files_have_no_answers():
             data = json.load(f)
         for q in data["questions"]:
             assert not {"answer", "explanation", "check", "tolerance_note"} & set(q), (name, q["id"])
+
+
+def test_ai_checked_sources_are_not_shown_as_human_approved():
+    """sources.json 'verified' means an AI (or author) opened the page; the admin screen must still treat it as awaiting human review."""
+    from econova import admin_content
+    targets = [t for t in admin_content.global_targets() if t.type == "source"]
+    assert len(targets) >= 89
+    for t in targets:
+        state = admin_content.review_state(t, [])
+        assert state["state"] == "draft", t.id
+    assert admin_content.STATE_KO["verified"] == "AI-checked (not human-approved)"

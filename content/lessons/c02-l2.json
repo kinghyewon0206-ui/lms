@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c02-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Reworded a definition that closely matched the OpenStax wording (source review). Not reviewed or approved by a human."
       }
     ]
   },
@@ -61,7 +67,7 @@
     {
       "id": "price_controls",
       "term": "Price ceiling and price floor",
-      "definition": "A price ceiling is a legal maximum price; a price floor is a legal minimum price. A ceiling set below equilibrium creates a shortage, and a floor set above equilibrium creates a surplus.",
+      "definition": "A price ceiling sets the highest price that sellers may legally charge; a price floor sets the lowest price that buyers may legally pay. A ceiling set below equilibrium creates a shortage, and a floor set above equilibrium creates a surplus.",
       "source_ids": [
         "openstax-pe3-3-4",
         "openstax-pe3-3-5"

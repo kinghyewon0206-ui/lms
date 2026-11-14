@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "id": "econ-diagnostic",
-  "version": 3,
+  "version": 4,
   "title": "Economics Basics Diagnostic Assessment",
-  "description": "These 12 questions check economic terms, scarcity and opportunity cost, supply and demand, reading graphs, basic calculations, and policy trade-offs. Scoring follows fixed rules only (no AI grading), and the result is only a suggestion to help you choose a difficulty level.",
+  "description": "These 12 questions check the starting ideas behind all nine ECONOVA courses: scarcity and opportunity cost, markets and prices, market failure, the whole economy, income, taxes and money, trade, and reasoning about SDG policy evidence. You do not need to have studied economics before. Scoring follows fixed rules only (no AI grading), and the result is only a suggestion to help you choose a difficulty level.",
   "review": {
     "status": "draft",
-    "note": "AI-written question draft (v2: numbers differ from the lesson examples, answer positions balanced, attitude question replaced). Not yet reviewed by a teacher; the difficulty thresholds are provisional and have not been validated."
+    "note": "AI-written question draft (v3 redesign: covers foundational ideas from c01-c09, one question per concept area plus two SDG reasoning questions; written for students before instruction). Not yet reviewed by a teacher; the difficulty thresholds are provisional and have not been validated."
   },
   "thresholds": {
     "intermediate": 0.4,
@@ -16,79 +16,52 @@
   },
   "categories": [
     {
-      "id": "terminology",
-      "name": "Economic terms"
-    },
-    {
       "id": "scarcity",
-      "name": "Scarcity and opportunity cost"
+      "name": "Scarcity, choices, and trade"
     },
     {
       "id": "supply_demand",
-      "name": "Supply and demand"
+      "name": "Markets and prices"
     },
     {
-      "id": "graph",
-      "name": "Reading graphs"
+      "id": "market_failure",
+      "name": "When markets fall short"
     },
     {
-      "id": "calculation",
-      "name": "Basic calculations"
+      "id": "macroeconomy",
+      "name": "Output, prices, and jobs"
+    },
+    {
+      "id": "income_money",
+      "name": "Income, taxes, and saving"
     },
     {
       "id": "policy",
-      "name": "Policy and trade-offs"
+      "name": "Reasoning about SDG policy"
     }
   ],
   "graphs": {
-    "market": {
-      "id": "dg-market",
-      "title": "Demand (D) and supply (S) in a market for one good",
-      "caption": "A hypothetical market. The vertical axis shows price, and the horizontal axis shows quantity.",
-      "axis": {
-        "p_max": 50,
-        "q_max": 90,
-        "p_label": "Price P",
-        "q_label": "Quantity Q"
-      },
-      "demand": [
-        {
-          "label": "D",
-          "a": 80,
-          "b": 2
-        }
-      ],
-      "supply": [
-        {
-          "label": "S",
-          "c": 5,
-          "d": 1
-        }
-      ],
-      "price_lines": [],
-      "expected_equilibria": []
-    },
     "market_ceiling": {
       "id": "dg-market-ceiling",
-      "title": "The same market with a price ceiling",
-      "caption": "A hypothetical market. The dashed line is the price ceiling set by the government.",
+      "title": "A market with a legal maximum price",
+      "caption": "A hypothetical market. The vertical axis shows price, the horizontal axis shows quantity, and the dashed line is the maximum price set by the government.",
       "axis": {
         "p_max": 50,
-        "q_max": 90,
+        "q_max": 100,
         "p_label": "Price P",
         "q_label": "Quantity Q"
       },
       "demand": [
         {
           "label": "D",
-          "a": 80,
+          "a": 90,
           "b": 2
         }
       ],
       "supply": [
         {
           "label": "S",
-          "c": 5,
+          "c": 0,
           "d": 1
         }
       ],
@@ -104,233 +77,232 @@
   "questions": [
     {
       "id": "q01",
-      "category": "terminology",
+      "category": "scarcity",
       "type": "mcq",
-      "prompt": "Other things being equal, when the price of a good rises, people want to buy less of it. What is this relationship called?",
+      "prompt": "Hypothetical example: A town owns one empty lot. It could turn the lot into a park, a parking lot, or a community garden. Residents value the park most, the parking lot second, and the garden third, so the town builds the park. What is the opportunity cost of building the park?",
       "choices": [
         {
           "id": "a",
-          "text": "Law of supply"
+          "text": "The enjoyment residents will get from the new park"
         },
         {
           "id": "b",
-          "text": "Opportunity cost"
+          "text": "The parking lot and the garden added together"
         },
         {
           "id": "c",
-          "text": "Law of demand"
+          "text": "The parking lot, the next-best use of the land"
         },
         {
           "id": "d",
-          "text": "Market equilibrium"
+          "text": "The garden, the use residents value the least"
         }
       ]
     },
     {
       "id": "q02",
-      "category": "terminology",
+      "category": "supply_demand",
       "type": "mcq",
-      "prompt": "\"When a pack of instant noodles costs $1, people in this neighborhood want to buy 500 packs a day.\" What does the 500 packs describe?",
+      "prompt": "Hypothetical example: A popular video convinces many people that oat milk is healthy, so they want to buy more of it at every price. Nothing changes for the farms and firms that make oat milk. What most likely happens to the price of oat milk and the quantity sold?",
       "choices": [
         {
           "id": "a",
-          "text": "Demand"
+          "text": "The price rises, and the quantity sold rises"
         },
         {
           "id": "b",
-          "text": "Quantity supplied"
+          "text": "The price rises, and the quantity sold falls"
         },
         {
           "id": "c",
-          "text": "Total revenue"
+          "text": "The price falls, and the quantity sold rises"
         },
         {
           "id": "d",
-          "text": "Quantity demanded"
+          "text": "The price falls, and the quantity sold falls"
         }
       ]
     },
     {
       "id": "q03",
-      "category": "scarcity",
+      "category": "supply_demand",
       "type": "mcq",
-      "prompt": "What is the most basic reason economic questions (what to produce, how much, and for whom) arise?",
+      "graph": "market_ceiling",
+      "prompt": "Hypothetical example: The graph shows a market for one good. The government then sets a legal maximum price (a price ceiling), shown by the dashed line. At that maximum price, what happens?",
       "choices": [
         {
           "id": "a",
-          "text": "Resources are limited compared with what people want"
+          "text": "Sellers offer more than buyers want, so there is a surplus"
         },
         {
           "id": "b",
-          "text": "Governments set the prices of most goods"
+          "text": "Buyers want more than sellers offer, so there is a shortage"
         },
         {
           "id": "c",
-          "text": "Not enough money has been printed yet"
+          "text": "Buyers and sellers want the same amount, so the market clears"
         },
         {
           "id": "d",
-          "text": "Production technology is not advanced enough yet"
+          "text": "Buyers want less of the good, so the demand curve shifts left"
         }
       ]
     },
     {
       "id": "q04",
-      "category": "scarcity",
+      "category": "market_failure",
       "type": "mcq",
-      "prompt": "On Saturday afternoon you can either work a part-time job that pays $30 or study at the library, but not both. You choose to study. What is the best description of the opportunity cost of studying?",
+      "prompt": "Hypothetical example: A paint factory pays for its workers, materials, and electricity, but it pays nothing for the smoke that makes nearby residents sick. If no rule or fee changes this, how does the amount of paint produced compare with the amount that would be best for society as a whole?",
       "choices": [
         {
           "id": "a",
-          "text": "The bus fare to get to the library"
+          "text": "It is about right, because buyers pay the market price"
         },
         {
           "id": "b",
-          "text": "The better grades you earn by studying"
+          "text": "It is too low, because the factory sells paint below cost"
         },
         {
           "id": "c",
-          "text": "The $30 you could have earned at the job"
+          "text": "It is too low, because sick residents buy less paint"
         },
         {
           "id": "d",
-          "text": "The cost of the workbook you bought last week"
+          "text": "It is too high, because the factory ignores the harm"
         }
       ]
     },
     {
       "id": "q05",
-      "category": "supply_demand",
+      "category": "market_failure",
       "type": "mcq",
-      "prompt": "Summer arrives, and people want to buy more ice cream even at the same price. Other things being equal, what happens in the ice cream market?",
+      "prompt": "Hypothetical example: A neighborhood has no streetlights. Every household would benefit from them, and once the lights are on, no one can be stopped from enjoying them. A company offers to install the lights if households pay for them voluntarily. What is the most likely problem?",
       "choices": [
         {
           "id": "a",
-          "text": "Supply rises, so the equilibrium price falls and quantity rises"
+          "text": "The light gets used up as more households use it"
         },
         {
           "id": "b",
-          "text": "Demand rises, so the equilibrium price rises and quantity rises"
+          "text": "Many hope others will pay, so too little is raised"
         },
         {
           "id": "c",
-          "text": "Demand rises, so the equilibrium price falls and quantity falls"
+          "text": "The company earns large profits from selling the lights"
         },
         {
           "id": "d",
-          "text": "Quantity demanded rises, but equilibrium price and quantity stay put"
+          "text": "Households compete to pay first, so too many are built"
         }
       ]
     },
     {
       "id": "q06",
-      "category": "supply_demand",
+      "category": "macroeconomy",
       "type": "mcq",
-      "prompt": "Fertilizer prices rise sharply, making lettuce more expensive to grow. Other things being equal, how does equilibrium in the lettuce market change?",
+      "prompt": "Hypothetical example: This year, the total dollar value of everything a country produced rose by 10%. Over the same year, the prices of the goods and services it produced also rose by about 10% on average. What most likely happened to the actual amount of goods and services produced?",
       "choices": [
         {
           "id": "a",
-          "text": "Price↓, quantity↑"
+          "text": "It rose by about 10%, the same as the dollar value"
         },
         {
           "id": "b",
-          "text": "Price↑, quantity↑"
+          "text": "It rose by about 20%, adding both increases together"
         },
         {
           "id": "c",
-          "text": "Price↓, quantity↓"
+          "text": "It stayed about the same, as prices explain the rise"
         },
         {
           "id": "d",
-          "text": "Price↑, quantity↓"
+          "text": "It fell by about 10%, since prices went up by 10%"
         }
       ]
     },
     {
       "id": "q07",
-      "category": "graph",
-      "type": "mcq",
-      "graph": "market",
-      "prompt": "According to the graph, what is the equilibrium price in this market?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "20"
-        },
-        {
-          "id": "b",
-          "text": "25"
-        },
-        {
-          "id": "c",
-          "text": "30"
-        },
-        {
-          "id": "d",
-          "text": "40"
-        }
-      ]
+      "category": "macroeconomy",
+      "type": "numeric",
+      "prompt": "Hypothetical example: A town has 1,000 adults. Of these, 360 have jobs, 40 have no job but are actively looking for one, and 600 are not looking for work (for example, full-time students and retirees). Economists count the people who have a job or are actively looking for one as the labor force. What percentage of the labor force is unemployed? Enter a number in percent, rounded to the nearest whole percent (for example, 7).",
+      "unit": "%"
     },
     {
       "id": "q08",
-      "category": "graph",
+      "category": "income_money",
       "type": "mcq",
-      "graph": "market_ceiling",
-      "prompt": "Suppose the government sets a price ceiling below equilibrium, as shown by the dashed line in the graph. What happens?",
+      "prompt": "Hypothetical example: Under a new tax, Lee earns $20,000 a year and pays $2,000 in tax, while Kim earns $80,000 a year and pays $16,000 in tax. Compared with Lee, what share of income does Kim pay in tax?",
       "choices": [
         {
           "id": "a",
-          "text": "Quantity supplied exceeds quantity demanded, causing a surplus (excess supply)"
+          "text": "A larger share of income than Lee pays"
         },
         {
           "id": "b",
-          "text": "The quantity traded rises above the equilibrium quantity"
+          "text": "The same share of income as Lee pays"
         },
         {
           "id": "c",
-          "text": "Quantity demanded exceeds quantity supplied, causing a shortage (excess demand)"
+          "text": "A smaller share of income than Lee pays"
         },
         {
           "id": "d",
-          "text": "The ceiling causes the demand curve to shift to the left"
+          "text": "A share that these numbers cannot show"
         }
       ]
     },
     {
       "id": "q09",
-      "category": "calculation",
+      "category": "income_money",
       "type": "numeric",
-      "prompt": "The demand function is Qd = 80 − 2P. If the price is 15, what is the quantity demanded? (Enter a number only.)",
-      "unit": ""
+      "prompt": "Hypothetical example: You put $500 in a savings account that pays 10% interest per year. Each year's interest is added to the balance, and the next year's interest is paid on the new balance. You make no other deposits or withdrawals. What is the balance after 2 years? Enter a number in dollars, rounded to the nearest whole dollar.",
+      "unit": "$"
     },
     {
       "id": "q10",
-      "category": "calculation",
-      "type": "numeric",
-      "prompt": "When the price of a good rose by 10%, quantity demanded fell by 5%. What is the price elasticity of demand (absolute value)? (Enter a decimal, e.g., 1.2.)",
-      "unit": ""
+      "category": "scarcity",
+      "type": "mcq",
+      "prompt": "Hypothetical example: In one hour, Ana can bake 6 cakes or sew 3 shirts. In one hour, Ben can bake 4 cakes or sew 1 shirt. They want to split the work and trade so that, together, they give up as few cakes as possible for the shirts they make. Who should sew the shirts, and why?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Ben, because he gives up fewer cakes per shirt"
+        },
+        {
+          "id": "b",
+          "text": "Ben, because Ana is faster and should bake instead"
+        },
+        {
+          "id": "c",
+          "text": "Ana should do both tasks, since she is faster at each"
+        },
+        {
+          "id": "d",
+          "text": "Ana, because each shirt costs her fewer cakes"
+        }
+      ]
     },
     {
       "id": "q11",
       "category": "policy",
       "type": "mcq",
-      "prompt": "After bread prices rise sharply, the government sets a price ceiling below the market price. What side effect is likely?",
+      "prompt": "Hypothetical example: In a rural district, many children miss morning classes. A survey finds that most of these children spend early mornings walking to a distant well to collect water for their families. A student is defining this problem for an SDG project. Which of these is most likely a root cause rather than a symptom?",
       "choices": [
         {
           "id": "a",
-          "text": "Unsold loaves pile up on store shelves at closing time"
+          "text": "The hours children spend fetching water far away"
         },
         {
           "id": "b",
-          "text": "Sellers offer less bread than buyers want, so lines form"
+          "text": "The empty seats teachers notice in morning classes"
         },
         {
           "id": "c",
-          "text": "Bakeries decide to bake more bread than before"
+          "text": "The low attendance numbers in the district's records"
         },
         {
           "id": "d",
-          "text": "The equilibrium price of bread drops below the ceiling"
+          "text": "The lower test scores of children who miss classes"
         }
       ]
     },
@@ -338,23 +310,23 @@
       "id": "q12",
       "category": "policy",
       "type": "mcq",
-      "prompt": "A city decides to spend $10 million on electric buses. What is the best description of the opportunity cost of this decision?",
+      "prompt": "Hypothetical example: A city made its buses free for one year. Officials claim that the free buses reduced car traffic. Which piece of evidence would best support their claim?",
       "choices": [
         {
           "id": "a",
-          "text": "The best alternative project the $10 million could fund"
+          "text": "A survey in which most riders said they like free buses"
         },
         {
           "id": "b",
-          "text": "The reduction in exhaust emissions the electric buses will bring"
+          "text": "Traffic fell in a year when gas prices also rose sharply"
         },
         {
           "id": "c",
-          "text": "The increase in ticket revenue the bus company will earn"
+          "text": "Car trips fell more than in a similar city with paid buses"
         },
         {
           "id": "d",
-          "text": "The research money for buses already spent last year"
+          "text": "The city spent more on its bus service than it had planned"
         }
       ]
     }

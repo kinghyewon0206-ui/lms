@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c03-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Added explanation that the carbon-tax simulation uses simplified hypothetical values (Option A). Not reviewed or approved by a human."
       }
     ]
   },
@@ -120,7 +126,7 @@
           ],
           "paragraphs": [
             "When a tax reduces trade, some of the gains people got from buying and selling are lost. But pollution falls too, so people avoid some harm. If the harm avoided is bigger than the gains lost, society as a whole comes out ahead.",
-            "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Try raising the tax t step by step from 0 and watch how 'Price paid by consumers', 'Quantity after tax', and 'Emissions (after tax)' change."
+            "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Try raising the tax t step by step from 0 and watch how 'Price paid by consumers', 'Quantity after tax', and 'Emissions (after tax)' change. These starting values are simplified hypothetical numbers chosen to show how a carbon tax works, not real carbon prices. Read every result in the units of the model ($ per unit of the good, kg of emissions per unit), and do not use them to guess what a real carbon tax costs."
           ]
         }
       ]
@@ -157,7 +163,7 @@
           ],
           "paragraphs": [
             "When a tax reduces trade, part of the gains from trade that would exist without any externality disappears (the loss within the market, or deadweight loss). But when there is an external cost, every unit no longer traded avoids damage equal to that external cost. Change in social welfare = avoided external damage − loss within the market.",
-            "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Compare the rows 'Consumer burden (per unit)', 'Producer burden (per unit)', 'Tax revenue', 'Avoided external damage (assumed)', and 'Change in social welfare (assumed)' in the results table with your calculations from worked examples 1 to 3. Then change the demand slope b and see how the consumer share of the tax changes."
+            "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Compare the rows 'Consumer burden (per unit)', 'Producer burden (per unit)', 'Tax revenue', 'Avoided external damage (assumed)', and 'Change in social welfare (assumed)' in the results table with your calculations from worked examples 1 to 3. Then change the demand slope b and see how the consumer share of the tax changes. Keep the units consistent: t and md are dollars per unit of the good, and e is kilograms of emissions per unit, so a tax of $6 per unit with e = 1 kg is $6 per kilogram of emissions. That is far higher than real carbon prices, which are usually quoted per tonne of carbon dioxide. The default values are chosen to make the mechanism easy to see, not to represent any real tax rate."
           ]
         }
       ]
@@ -195,7 +201,7 @@
           "paragraphs": [
             "The loss within the market (deadweight loss) is ½·t·ΔQ, and if the external damage per unit is md, the avoided damage is md·ΔQ. So the change in social welfare is W(t) = ΔQ·(md − t/2) = k·t·(md − t/2), where k = b·d/(b + d). Differentiating W with respect to t gives k·(md − t), so W is largest when t = md. A tax rate equal to the external cost is called a Pigouvian tax, the standard economics term named after the economist Arthur Pigou. When t is twice md, W = 0, and any higher rate actually lowers welfare.",
             "A caution: this model assumes straight-line demand and supply and a constant damage per unit. In reality, estimates of the social cost of carbon are uncertain, and lower-income households may feel the burden more heavily, so how the revenue is used shapes both the fairness of the policy and how willing people are to accept it.",
-            "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Set t to 3, 6, and 12 in turn, record the 'Change in social welfare (assumed)' each time, and compare the results with the formula for W(t). Then change md and check where the t that gives the largest welfare change moves."
+            "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Set t to 3, 6, and 12 in turn, record the 'Change in social welfare (assumed)' each time, and compare the results with the formula for W(t). Then change md and check where the t that gives the largest welfare change moves. Unit check: with t in dollars per unit and e in kilograms per unit, the implied price of emissions is t ÷ e dollars per kilogram, or 1,000 × t ÷ e dollars per tonne. The default values (t = 6, e = 1) imply $6,000 per tonne, which is a teaching number, not a realistic carbon price. Real-world carbon prices and estimates of the social cost of carbon are measured per tonne of carbon dioxide and are uncertain, so compare mechanisms, not magnitudes."
           ]
         }
       ]
@@ -265,7 +271,7 @@
     {
       "id": "c03-l3-g1",
       "title": "The effect of a $6 carbon tax",
-      "caption": "Hypothetical example (worked examples 1 to 3; same as the simulation starting values). The $6 tax shifts the supply curve up from S to S+t. Consumer price $32, producer price $26, quantity falls from 40 to 36.",
+      "caption": "Hypothetical example (worked examples 1 to 3; same as the simulation starting values). The $6 tax shifts the supply curve up from S to S+t. Consumer price $32, producer price $26, quantity falls from 40 to 36. The $6 tax is a teaching value in the model units, not a real carbon price.",
       "axis": {
         "p_max": 60,
         "q_max": 110,
@@ -355,7 +361,7 @@
     "title": "How should carbon tax revenue be used?",
     "paragraphs": [
       "SDG target 13.2 calls for integrating climate change measures into national policies, and SDG 7 aims for affordable (7.1) and clean (7.2) energy for everyone, along with better energy efficiency (7.3).",
-      "Hypothetical situation: A country has introduced a carbon tax, which brings in revenue every year. Because the tax raises energy prices, households that spend a large share of their income on energy may feel the burden heavily. The government has to choose how to use the revenue."
+      "Hypothetical situation: A country has introduced a carbon tax, which brings in revenue every year. Because the tax raises energy prices, households that spend a large share of their income on energy may feel the burden heavily. The government has to choose how to use the revenue. The numbers in this lesson and its simulation are hypothetical teaching values, so they do not tell you how large a real carbon tax or its revenue would be."
     ],
     "options": [
       {

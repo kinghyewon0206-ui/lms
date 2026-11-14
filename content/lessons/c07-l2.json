@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Added a note that the U.S. examples of financial rules differ by country (source review). Not reviewed or approved by a human."
       }
     ]
   },
@@ -162,7 +168,7 @@
           ],
           "paragraphs": [
             "Always check the units of a rate. A 6% APR compounded monthly means 6% ÷ 12 = 0.5% per month. Over a year, the balance grows by (1.005)^12 ≈ 1.0617, so the APY is about 6.17%. More frequent compounding raises the APY slightly: at a 6% APR, quarterly compounding gives an APY of about 6.14% and daily compounding (365 days) about 6.18%.",
-            "U.S. rules require deposit accounts to state an APY that reflects both the rate and the compounding frequency, which makes accounts comparable. For loans, the APR is a broader measure than the interest rate because it can include some fees (for example, certain charges paid to get a mortgage). The exact fees included depend on the type of loan and the rules that apply."
+            "U.S. rules require deposit accounts to state an APY that reflects both the rate and the compounding frequency, which makes accounts comparable. For loans, the APR is a broader measure than the interest rate because it can include some fees (for example, certain charges paid to get a mortgage). The exact fees included depend on the type of loan and the rules that apply. These are U.S. examples; financial rules, protections, and agencies differ from country to country, so check the rules where you live."
           ]
         },
         {
