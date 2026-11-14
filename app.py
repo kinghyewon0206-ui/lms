@@ -82,7 +82,15 @@ def security_headers(resp):
 def index():
     if g.user:
         return redirect(url_for("dashboard"))
-    return render_template("index.html")
+    # 랜딩 페이지에는 실제 강좌(c01~c09)의 제목·SDG·공개 여부만 보여 준다. 개발용 테스트 강좌는 제외한다.
+    # 강좌 JSON 을 읽지 못해도 공개 첫 화면은 열려야 하므로, 그때는 강좌 목록 없이 보여 준다.
+    try:
+        cat = learning.catalog()
+        real, sdgs = [c for c in cat.visible() if not getattr(c, "fixture", False)], cat.sdgs
+    except content.ContentError as exc:
+        app.logger.error("Landing page: course content unavailable: %s", exc)
+        real, sdgs = [], {}
+    return render_template("index.html", landing_courses=real, sdg_info=sdgs)
 
 
 @app.route("/signup", methods=["GET", "POST"])

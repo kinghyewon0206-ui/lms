@@ -12,7 +12,7 @@
   <section class="ec-section">
     <h2>{{ row.course.title_ko }}</h2>
     {% if row.topics %}
-    <ul class="ec-list">{% for t in row.topics %}<li><a href="{{ url_for('econova.discuss_topic', course_id=row.course.id, topic_id=t.id) }}">{{ t.title }}</a></li>{% endfor %}</ul>
+    <ul class="topic-list">{% for t in row.topics %}<li><a href="{{ url_for('econova.discuss_topic', course_id=row.course.id, topic_id=t.id) }}">{{ t.title }}</a></li>{% endfor %}</ul>
     {% else %}<p class="ec-placeholder-text">This course has no approved debate topics yet.</p>{% endif %}
   </section>
   {% else %}

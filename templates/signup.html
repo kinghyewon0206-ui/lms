@@ -1,22 +1,35 @@
 {% extends "base.html" %}
 {% block title %}Sign up · ECONOVA{% endblock %}
+{% block flashes %}{% endblock %}
 {% block content %}
-<form method="post" class="card">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-  <h2>Sign up</h2>
-  <label>Name
-    <input type="text" name="name" value="{{ name or '' }}" required autofocus>
-  </label>
-  <label>Email
-    <input type="email" name="email" value="{{ email or '' }}" required>
-  </label>
-  <label>Password (at least 8 characters)
-    <input type="password" name="password" minlength="8" required>
-  </label>
-  <label>Confirm password
-    <input type="password" name="confirm" minlength="8" required>
-  </label>
-  <button type="submit" class="btn">Create account</button>
-  <p class="hint">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
-</form>
+<div class="auth">
+  <div class="auth-main">
+    {% include "_auth_flashes.html" %}
+    <form method="post" class="auth-card" aria-labelledby="auth-title">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <span class="logo-mark" aria-hidden="true" style="width:40px;height:40px;font-size:19px;border-radius:12px">E</span>
+      <h1 id="auth-title">Sign up</h1>
+      <p class="sub">Create your ECONOVA account to start learning.</p>
+      <label>Name
+        <input type="text" name="name" value="{{ name or '' }}" required autofocus autocomplete="name">
+      </label>
+      <label>Email
+        <input type="email" name="email" value="{{ email or '' }}" required autocomplete="email">
+      </label>
+      <label class="pw-field">Password (at least 8 characters)
+        <input type="password" id="signup-password" name="password" minlength="8" required autocomplete="new-password" data-pw-new aria-describedby="pw-msg">
+        <button type="button" class="pw-toggle" data-pw-toggle aria-controls="signup-password" aria-pressed="false" hidden>Show</button>
+      </label>
+      <div class="pw-meter" data-pw-meter data-level="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <span class="field-msg" id="pw-msg" data-pw-msg aria-live="polite"></span>
+      <label>Confirm password
+        <input type="password" name="confirm" minlength="8" required autocomplete="new-password" data-pw-confirm aria-describedby="confirm-msg">
+      </label>
+      <span class="field-msg" id="confirm-msg" data-confirm-msg aria-live="polite"></span>
+      <button type="submit" class="btn">Create account</button>
+      <p class="hint">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+    </form>
+  </div>
+  {% include "_auth_art.html" %}
+</div>
 {% endblock %}

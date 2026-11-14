@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f9fd">
   <title>{% block title %}ECONOVA{% endblock %}</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%235b4bdb%22/><text x=%2250%22 y=%2271%22 font-size=%2260%22 font-weight=%22700%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22>E</text></svg>">
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22><stop offset=%220%22 stop-color=%22%237659f7%22/><stop offset=%22.55%22 stop-color=%22%23ff7498%22/><stop offset=%221%22 stop-color=%22%23ffb45f%22/></linearGradient></defs><rect width=%22100%22 height=%22100%22 rx=%2228%22 fill=%22url(%23g)%22/><text x=%2250%22 y=%2271%22 font-size=%2260%22 font-weight=%22800%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22>E</text></svg>">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -14,10 +16,13 @@
   <div id="busy" class="busy" hidden role="status" aria-live="polite">
     <div class="busy-card"><span class="spinner big"></span><p id="busy-msg">Please wait a moment</p><small id="busy-sub"></small></div>
   </div>
-  <header class="nav">
-    <a class="brand" href="{{ url_for('index') }}"><span class="logo-mark">E</span>ECONOVA</a>
-    <nav aria-label="Main menu">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="nav" data-nav>
+    <a class="brand" href="{{ url_for('index') }}" aria-label="ECONOVA home"><span class="logo-mark" aria-hidden="true">E</span>ECONOVA</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-menu" data-nav-toggle><span></span><b class="sr-only">Menu</b></button>
+    <nav id="main-menu" aria-label="Main menu">
       {% if g.user %}
+      <div class="nav-links">
         <a href="{{ url_for('dashboard') }}"{% if request.endpoint == 'dashboard' %} aria-current="page"{% endif %}>Dashboard</a>
         <a href="{{ url_for('econova.catalog') }}"{% if request.endpoint and request.endpoint.startswith('econova.') and 'diagnostic' not in request.endpoint and 'lab' not in request.endpoint and 'discuss' not in request.endpoint and request.endpoint not in ('econova.report',) and 'admin' not in request.endpoint %} aria-current="page"{% endif %}>Courses</a>
         <a href="{{ url_for('econova.diagnostic_home') }}"{% if request.endpoint and 'diagnostic' in request.endpoint %} aria-current="page"{% endif %}>Diagnostic assessment</a>
@@ -25,25 +30,46 @@
         <a href="{{ url_for('econova.discuss_home') }}"{% if request.endpoint and 'discuss' in request.endpoint %} aria-current="page"{% endif %}>Debate</a>
         <a href="{{ url_for('econova.report') }}"{% if request.endpoint == 'econova.report' %} aria-current="page"{% endif %}>My report</a>
         {% if is_admin_user() %}<a href="{{ url_for('econova.admin_content') }}"{% if request.endpoint and 'admin' in request.endpoint %} aria-current="page"{% endif %}>Content admin</a>{% endif %}
-        <span class="who">{{ g.user['name'] }}</span>
+      </div>
+      <div class="nav-end">
+        <span class="who"><span class="avatar" aria-hidden="true">{{ (g.user['name'] or '?')[:1]|upper }}</span><span class="who-name">{{ g.user['name'] }}</span></span>
         <form action="{{ url_for('logout') }}" method="post" class="inline">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <button type="submit" class="link">Log out</button>
         </form>
+      </div>
       {% else %}
-        <a href="{{ url_for('login') }}">Log in</a>
-        <a href="{{ url_for('signup') }}">Sign up</a>
+      <div class="nav-end">
+        <a href="{{ url_for('login') }}" class="btn secondary sm">Log in</a>
+        <a href="{{ url_for('signup') }}" class="btn sm">Sign up</a>
+      </div>
       {% endif %}
     </nav>
   </header>
-  <main>
+  <main id="main" tabindex="-1">
+    {% block flashes %}
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% for category, message in messages %}
-        <div class="flash {{ category }}">{{ message }}</div>
+        <div class="flash {{ category }}" role="{{ 'alert' if category == 'error' else 'status' }}">{{ message }}</div>
       {% endfor %}
     {% endwith %}
+    {% endblock %}
     {% block content %}{% endblock %}
   </main>
+  <footer class="site-footer">
+    <div class="footer-prism" aria-hidden="true"></div>
+    <div class="inner">
+      <a class="brand" href="{{ url_for('index') }}"><span class="logo-mark" aria-hidden="true">E</span>ECONOVA</a>
+      <p>Economics for high school students, connected to the UN Sustainable Development Goals.</p>
+      {% if g.user %}
+      <nav aria-label="Footer">
+        <a href="{{ url_for('econova.catalog') }}">Courses</a>
+        <a href="{{ url_for('econova.lab_home') }}">Economics Lab</a>
+        <a href="{{ url_for('econova.report') }}">My report</a>
+      </nav>
+      {% endif %}
+    </div>
+  </footer>
 <script>
 (function () {
   var bar = document.getElementById("topbar"), busy = document.getElementById("busy");
@@ -79,5 +105,6 @@
   window.addEventListener("pageshow", reset);       // reset loading state when returning via the back button
 })();
 </script>
+<script src="{{ url_for('static', filename='js/econova-ui.js') }}" defer></script>
 </body>
 </html>

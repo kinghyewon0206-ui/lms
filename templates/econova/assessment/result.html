@@ -5,7 +5,10 @@
   <header class="ec-head">
     <span class="eyebrow">{{ 'Final assessment' if attempt.kind == 'final' else 'Lesson quiz' }} results · {{ attempt.created_at }} (UTC)</span>
     <h1>{{ assessment.title if assessment else attempt.assessment_id }}</h1>
-    <p class="dg-rec">{{ attempt.score|round(1) }} / {{ attempt.max_score|round(1) }} points ({{ (attempt.ratio * 100)|round|int }}%)</p>
+    <div class="score-hero">
+      <span class="ring" data-p="{{ (attempt.ratio * 100)|round|int }}" aria-hidden="true"><b>{{ (attempt.ratio * 100)|round|int }}%</b></span>
+      <p class="dg-rec">{{ attempt.score|round(1) }} / {{ attempt.max_score|round(1) }} points ({{ (attempt.ratio * 100)|round|int }}%)</p>
+    </div>
     <p class="hint">Graded by fixed rules (no AI grading). Submitted answers and scores can't be changed.</p>
   </header>
 

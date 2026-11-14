@@ -3,7 +3,8 @@
 {% import "econova/_material.html" as mat with context %}
 {% block title %}{{ lesson.title_ko }} · {{ course.title_ko }} · ECONOVA{% endblock %}
 {% block content %}
-<div class="ec-page ec-lesson-page">
+<div class="lesson-progress" data-reading-progress aria-hidden="true"><span></span></div>
+<div class="ec-page ec-lesson-page" style="{{ m.accent(course) }}">
   <nav class="crumbs" aria-label="Breadcrumb">
     <a href="{{ url_for('econova.catalog') }}">Courses</a> <span>/</span>
     <a href="{{ url_for('econova.course_detail', course_id=course.id) }}">{{ course.title_ko }}</a> <span>/</span> Lesson {{ lesson.order }}
@@ -37,6 +38,9 @@
     </ul>
   </section>
 
+  <nav class="lesson-toc" aria-label="Lesson sections" data-lesson-toc>
+    {% for key, title, phase in sections %}<a href="#sec-{{ key }}">{{ title }}</a>{% endfor %}
+  </nav>
   {% set allow_review = true %}
   {% include "econova/_lesson_body.html" %}
 

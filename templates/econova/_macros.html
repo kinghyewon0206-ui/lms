@@ -1,4 +1,14 @@
-{# ECONOVA 공통 부품: SDG 배지, 상태 배지, 진도 막대, 강좌 카드 #}
+{# ECONOVA 공통 부품: SDG 배지, 상태 배지, 진도 막대, 강좌 카드, 강좌 고유 색 #}
+
+{# Each real course gets its own two-stop accent from the ECONOVA palette; development fixtures stay neutral. #}
+{% set ACCENTS = {
+  'c01': ('#7659f7', '#659cff'), 'c02': ('#ff7498', '#ffb45f'), 'c03': ('#56cdbe', '#659cff'),
+  'c04': ('#659cff', '#7659f7'), 'c05': ('#ffb45f', '#ff7498'), 'c06': ('#ff7498', '#7659f7'),
+  'c07': ('#56cdbe', '#ffb45f'), 'c08': ('#659cff', '#56cdbe'), 'c09': ('#7659f7', '#ff7498') } %}
+{% macro accent(course) -%}
+{%- set a = ACCENTS.get(course.id, ('#8a8ea8', '#b9bdd3')) -%}
+--a1: {{ a[0] }}; --a2: {{ a[1] }};
+{%- endmacro %}
 
 {% macro sdg_badges(course) %}
 <ul class="sdgs" aria-label="Related SDGs">
@@ -21,7 +31,7 @@
 
 {% macro progress_bar(p, label) %}
 <div class="ec-progress">
-  <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ p.percent }}"
+  <div class="bar" data-animate role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ p.percent }}"
        aria-label="{{ label }}"><span style="width: {{ p.percent }}%"></span></div>
   <small>{{ p.percent }}% · {{ p.completed }}/{{ p.total }} lessons completed</small>
 </div>
@@ -34,7 +44,7 @@
 {% endmacro %}
 
 {% macro catalog_card(course, enrolled=false) %}
-<article class="ec-card{{ ' is-soon' if not course.published }}">
+<article class="ec-card{{ ' is-soon' if not course.published }}" style="{{ accent(course) }}" data-reveal>
   <div class="ec-card-top">
     <span class="ec-code">{{ course.id|upper }}</span>
     <span>{{ course_badge(course, enrolled) }}</span>

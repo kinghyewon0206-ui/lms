@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Log in · ECONOVA{% endblock %}
+{% block flashes %}{% endblock %}
 {% block content %}
-<form method="post" class="card">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-  <h2>Log in</h2>
-  <label>Email
-    <input type="email" name="email" value="{{ email or '' }}" required autofocus>
-  </label>
-  <label>Password
-    <input type="password" name="password" required>
-  </label>
-  <button type="submit" class="btn">Log in</button>
-  <p class="hint">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
-</form>
+<div class="auth">
+  <div class="auth-main">
+    {% include "_auth_flashes.html" %}
+    <form method="post" class="auth-card" aria-labelledby="auth-title">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <span class="logo-mark" aria-hidden="true" style="width:40px;height:40px;font-size:19px;border-radius:12px">E</span>
+      <h1 id="auth-title">Log in</h1>
+      <p class="sub">Welcome back. Pick up where you left off.</p>
+      <label>Email
+        <input type="email" name="email" value="{{ email or '' }}" required autofocus autocomplete="email">
+      </label>
+      <label class="pw-field">Password
+        <input type="password" id="login-password" name="password" required autocomplete="current-password">
+        <button type="button" class="pw-toggle" data-pw-toggle aria-controls="login-password" aria-pressed="false" hidden>Show</button>
+      </label>
+      <button type="submit" class="btn">Log in</button>
+      <p class="hint">Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+    </form>
+  </div>
+  {% include "_auth_art.html" %}
+</div>
 {% endblock %}

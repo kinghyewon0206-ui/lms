@@ -6,7 +6,7 @@
   <header class="ec-head">
     <span class="eyebrow">{{ type_ko[t.type] }} · {{ t.id }} · Version {{ t.version }}{% if t.fixture %} · Development{% endif %}</span>
     <h1>{{ t.title }}</h1>
-    <p>Canonical file status <strong>{{ state_ko.get(t.file_state, t.file_state) }}</strong> · Current review status <strong>{{ state_ko.get(state.state, state.state) }}</strong>
+    <p>Canonical file status <strong class="st st-{{ t.file_state }}">{{ state_ko.get(t.file_state, t.file_state) }}</strong> · Current review status <strong class="st st-{{ state.state }}">{{ state_ko.get(state.state, state.state) }}</strong>
       {% if state.source == 'db' %}(review record #{{ state.latest.id }}){% else %}(from the canonical file){% endif %}</p>
     <p class="hint">File {{ t.file }} · Content fingerprint <code>{{ t.digest[:16] if t.digest else 'cannot be calculated' }}</code>{% if state.stale %} · Review records for earlier content: {{ state.stale }} (void){% endif %}</p>
     {% for p in t.problems %}<p class="admin-error">{{ p }}</p>{% endfor %}

@@ -8,8 +8,12 @@
     <h1>{{ test.title }}</h1>
     <p class="hint">You can leave a question blank if you don't know it (it will be marked incorrect). For numeric questions, type only the number and use "." for decimals.</p>
   </header>
-  <form method="post" action="{{ url_for('econova.diagnostic_take') }}" data-overlay="Grading your answers">
+  <form method="post" action="{{ url_for('econova.diagnostic_take') }}" data-overlay="Grading your answers" data-assessment>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="assess-progress">
+      <div class="bar" role="progressbar" aria-label="Questions completed" aria-valuemin="0" aria-valuemax="{{ questions|length }}" aria-valuenow="0"><span data-qbar style="width:0%"></span></div>
+      <output data-qcount aria-live="off">0 of {{ questions|length }} questions done</output>
+    </div>
     {% for q in questions %}
     <fieldset class="dg-question" id="{{ q.id }}">
       <legend>{{ loop.index }}. {{ q.prompt }}</legend>
@@ -24,7 +28,7 @@
       {% endif %}
     </fieldset>
     {% endfor %}
-    <button type="submit" class="btn">Submit and see results</button>
+    <div class="submit-bar"><button type="submit" class="btn lg">Submit and see results</button></div>
   </form>
 </div>
 {% endblock %}

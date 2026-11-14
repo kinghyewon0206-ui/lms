@@ -15,8 +15,12 @@
 
   {{ ex.rules(assessment, course, left) }}
 
-  <form method="post" action="{{ action }}" data-overlay="Grading your answers">
+  <form method="post" action="{{ action }}" data-overlay="Grading your answers" data-assessment>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="assess-progress">
+      <div class="bar" role="progressbar" aria-label="Questions completed" aria-valuemin="0" aria-valuemax="{{ questions|length }}" aria-valuenow="0"><span data-qbar style="width:0%"></span></div>
+      <output data-qcount aria-live="off">0 of {{ questions|length }} questions done</output>
+    </div>
     <input type="hidden" name="submission_token" value="{{ token }}">
     {% for q in questions %}
     <fieldset class="dg-question" id="{{ q.id }}">
@@ -31,8 +35,10 @@
       {% endif %}
     </fieldset>
     {% endfor %}
-    <button type="submit" class="btn">Submit and see results</button>
-    <p class="hint">Submitted answers and scores can't be changed. If you want another try, retake it.</p>
+    <div class="submit-bar">
+      <button type="submit" class="btn lg">Submit and see results</button>
+      <p class="hint">Submitted answers and scores can't be changed. If you want another try, retake it.</p>
+    </div>
   </form>
 
   {% if attempts %}

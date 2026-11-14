@@ -47,8 +47,8 @@
         <tr>
           <td>{{ type_ko[t.type] }}</td>
           <td><a href="{{ url_for('econova.admin_target', target_type=t.type, target_id=t.id) }}">{{ t.title }}</a><div class="hint">{{ t.id }} · v{{ t.version }}</div></td>
-          <td>{{ state_ko.get(t.file_state, t.file_state) }}</td>
-          <td>{{ state_ko.get(s.state, s.state) }}{% if s.source == 'db' %} <span class="hint">(review record)</span>{% endif %}</td>
+          <td><span class="st st-{{ t.file_state }}">{{ state_ko.get(t.file_state, t.file_state) }}</span></td>
+          <td><span class="st st-{{ s.state }}">{{ state_ko.get(s.state, s.state) }}</span>{% if s.source == 'db' %} <span class="hint">(review record)</span>{% endif %}</td>
           <td>{% for p in t.problems %}<div class="hint">{{ p }}</div>{% endfor %}{% if s.stale %}<div class="hint">Records for earlier content: {{ s.stale }}</div>{% endif %}</td>
         </tr>
       {% endfor %}
@@ -64,7 +64,7 @@
       <thead><tr><th scope="col">Type</th><th scope="col">Target</th><th scope="col">Canonical status</th><th scope="col">Review status</th><th scope="col">Notes</th></tr></thead>
       <tbody>{% for t in globals_ %}{% set s = gstates[t.key] %}
         <tr><td>{{ type_ko[t.type] }}</td><td><a href="{{ url_for('econova.admin_target', target_type=t.type, target_id=t.id) }}">{{ t.title }}</a></td>
-          <td>{{ state_ko.get(t.file_state, t.file_state) }}</td><td>{{ state_ko.get(s.state, s.state) }}</td>
+          <td><span class="st st-{{ t.file_state }}">{{ state_ko.get(t.file_state, t.file_state) }}</span></td><td><span class="st st-{{ s.state }}">{{ state_ko.get(s.state, s.state) }}</span></td>
           <td>{% for p in t.problems %}<div class="hint">{{ p }}</div>{% endfor %}</td></tr>
       {% endfor %}</tbody>
     </table></div>

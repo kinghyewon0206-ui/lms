@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% import "econova/_material.html" as mat with context %}
+{% import "econova/_macros.html" as m with context %}
 {% block title %}[Preview] {{ lesson.title_ko }} · ECONOVA{% endblock %}
 {% block content %}
-<div class="ec-page ec-lesson-page">
+<div class="lesson-progress" data-reading-progress aria-hidden="true"><span></span></div>
+<div class="ec-page ec-lesson-page" style="{{ m.accent(course) }}">
   <aside class="preview-banner" role="note">
     <strong>Review preview · Not visible to students</strong>
     <span>This page opens only in the development environment or for platform admins. It shows unreviewed drafts as they are; content reaches students only after it goes through the review process (draft → in_review → approved → published).</span>
@@ -22,6 +24,9 @@
     <ul>{% for h in doc.review.history %}<li><span class="pill pill-draft">{{ h.status }}</span> {{ h.at }} · {{ h.by }}{% if h.note %} — {{ h.note }}{% endif %}</li>{% endfor %}</ul>
   </section>
 
+  <nav class="lesson-toc" aria-label="Lesson sections" data-lesson-toc>
+    {% for key, title, phase in sections %}<a href="#sec-{{ key }}">{{ title }}</a>{% endfor %}
+  </nav>
   {% include "econova/_lesson_body.html" %}
 
   <nav class="ec-lesson-nav" aria-label="Lesson navigation">

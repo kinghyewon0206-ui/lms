@@ -9,14 +9,14 @@
   </header>
   <div class="ec-grid">
     {% for sid, s in sims.items() %}
-    <article class="ec-card">
+    <article class="ec-card" style="{{ '--a1: #56cdbe; --a2: #659cff;' if sid == 'supply-demand' else '--a1: #ffb45f; --a2: #ff7498;' }}" data-reveal>
       <h3><a href="{{ url_for('econova.lab_sim', sim_id=sid) }}">{{ s.title }}</a></h3>
       <p>{% if sid == 'supply-demand' %}Change the intercepts and slopes of demand and supply and watch how the equilibrium price and quantity move.{% else %}See how a per-unit carbon tax changes the consumer price, producer price, quantity, tax revenue and emissions.{% endif %}</p>
       <div class="ec-card-actions"><a class="btn" href="{{ url_for('econova.lab_sim', sim_id=sid) }}">Start experimenting</a></div>
     </article>
     {% endfor %}
   </div>
-  <section class="block">
+  <section class="block ec-section">
     <div class="browse-head"><h2>Recently saved experiments</h2><a class="hint" href="{{ url_for('econova.lab_saved') }}">View all →</a></div>
     {% if runs %}
     <ul class="ec-list">{% for r in runs %}<li><a href="{{ url_for('econova.lab_run', run_id=r.id) }}">{{ sims[r.simulation_id].title }}</a> · {{ r.created_at }} (UTC){% if r.lesson_id %} · Lesson {{ r.lesson_id }}{% endif %}</li>{% endfor %}</ul>

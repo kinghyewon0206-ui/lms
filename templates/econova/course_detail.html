@@ -5,7 +5,7 @@
 <div class="ec-page">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.catalog') }}">Courses</a> <span>/</span> {{ course.id|upper }}</nav>
 
-  <section class="ec-course-hero">
+  <section class="ec-course-hero" style="{{ m.accent(course) }}">
     <div>
       <div class="ec-card-top"><span class="ec-code">{{ course.id|upper }}</span><span>{{ m.course_badge(course, enrollment is not none) }}</span></div>
       <h1>{{ course.title_ko }}</h1>
@@ -55,7 +55,7 @@
     </aside>
   </section>
 
-  <section class="block" aria-labelledby="h-obj">
+  <section class="block ec-section" aria-labelledby="h-obj" data-reveal>
     <h2 id="h-obj">Learning objectives {% if course.review_status == 'draft' %}<span class="pill pill-draft">Draft (not yet reviewed)</span>{% endif %}</h2>
     <ul class="ec-list">{% for o in course.objectives %}<li>{{ o }}</li>{% endfor %}</ul>
     <dl class="ec-facts">
@@ -65,7 +65,7 @@
     </dl>
   </section>
 
-  <section class="block" aria-labelledby="h-lessons">
+  <section class="block" aria-labelledby="h-lessons" data-reveal>
     <h2 id="h-lessons">Lessons</h2>
     <ol class="ec-lessons">
       {% for lesson in course.lessons %}
@@ -87,7 +87,7 @@
   </section>
 
   {% if course.capstone %}
-  <section class="block" aria-labelledby="h-capstone">
+  <section class="block ec-section" aria-labelledby="h-capstone" data-reveal>
     <h2 id="h-capstone">SDG Capstone project</h2>
     {% if course.published and course.capstone_ready %}
       <p>Instead of a final assessment, you complete the course by finishing and submitting your own SDG economics project (this is not an official academic achievement or certification).</p>
@@ -97,7 +97,7 @@
     {% endif %}
   </section>
   {% endif %}
-  <section class="block" aria-labelledby="h-final">
+  <section class="block" aria-labelledby="h-final" data-reveal>
     <h2 id="h-final">Final assessment</h2>
     {% set fi = final_info %}
     {% if fi.state == 'upcoming' %}
