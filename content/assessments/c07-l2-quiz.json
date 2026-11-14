@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c07",
   "lesson_id": "c07-l2",
-  "version": 2,
+  "version": 3,
   "title": "Lesson 2 Quiz: Saving, Interest, and Compound Growth",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "c07-l2-q2",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c07-l2",
       "objective": 2,
@@ -56,7 +56,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: $2,500 is deposited at 4% per year, compounded annually, for 2 years with no other deposits or withdrawals. What is the balance after 2 years, in dollars? Round to the nearest cent. (Enter a number only.)",
+      "prompt": "Hypothetical example: $2,500 is deposited at 4% per year, compounded annually, for 2 years with no other deposits or withdrawals. What is the balance after 2 years, in dollars? Round to the nearest cent, and round only at the final step. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-17-3"

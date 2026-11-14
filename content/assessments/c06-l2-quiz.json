@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c06",
   "lesson_id": "c06-l2",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 2 Quiz: Taxation and Redistribution",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "c06-l2-q2",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c06-l2",
       "objective": 1,
@@ -73,7 +73,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: An income tax charges 0% on the first $12,000, 15% on income from $12,000 to $50,000, and 25% on income above $50,000. What is the average tax rate for someone earning $80,000? (Enter a number in percent, without the % sign.)",
+      "prompt": "Hypothetical example: An income tax charges 0% on the first $12,000, 15% on income from $12,000 to $50,000, and 25% on income above $50,000. What is the average tax rate for someone earning $80,000? Round to one decimal place. (Enter a number in percent, without the % sign.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-30-2"

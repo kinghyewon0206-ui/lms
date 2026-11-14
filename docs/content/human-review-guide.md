@@ -19,7 +19,7 @@ tools/review-server.sh
 |---|---|
 | 데이터베이스 | `~/econova-private/review-server/review.db` (전용 SQLite, 저장소 밖. 운영 DB 와 무관) |
 | AI | `mock` (가짜 응답, OpenAI 요청 없음), AI 오답 설명 off |
-| 초안 미리보기 | 켜짐 (`/preview/...`) |
+| 초안 미리보기 | **관리자 계정만** (`/preview/...`, 운영과 같은 규칙. 일반 계정은 초안을 볼 수 없음) |
 | 개발용 테스트 강좌 | 켜짐 (학생 흐름을 끝까지 시험하는 "Dev Test Course" 들. 실제 강좌가 아님) |
 | 정답 키 | `~/econova-private` (관리자 검토 화면에서만 보임) |
 

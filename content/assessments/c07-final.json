@@ -3,7 +3,7 @@
   "id": "c07-final",
   "kind": "final",
   "course_id": "c07",
-  "version": 1,
+  "version": 2,
   "title": "Personal Finance: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -122,7 +122,7 @@
     },
     {
       "id": "c07-final-q4",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c07-l2",
       "objective": 2,
@@ -133,7 +133,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: $1,500 is deposited at a 4.8% APR compounded monthly for one year, with no other deposits or withdrawals. What is the balance after one year, in dollars? Round to the nearest cent. (Enter a number only.)",
+      "prompt": "Hypothetical example: Maya opens a savings account with $1,500. It pays a 4.8% APR, compounded monthly, and she makes no other deposits or withdrawals for one year. How much is in the account at the end of the year? Round to the nearest cent, and round only at the final step. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-17-3",

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "econ-diagnostic",
-  "version": 4,
+  "version": 5,
   "title": "Economics Basics Diagnostic Assessment",
   "description": "These 12 questions check the starting ideas behind all nine ECONOVA courses: scarcity and opportunity cost, markets and prices, market failure, the whole economy, income, taxes and money, trade, and reasoning about SDG policy evidence. You do not need to have studied economics before. Scoring follows fixed rules only (no AI grading), and the result is only a suggestion to help you choose a difficulty level.",
   "review": {
@@ -255,7 +255,7 @@
       "id": "q09",
       "category": "income_money",
       "type": "numeric",
-      "prompt": "Hypothetical example: You put $500 in a savings account that pays 10% interest per year. Each year's interest is added to the balance, and the next year's interest is paid on the new balance. You make no other deposits or withdrawals. What is the balance after 2 years? Enter a number in dollars, rounded to the nearest whole dollar.",
+      "prompt": "Hypothetical example: You put $500 in a savings account that pays 10% interest per year. Each year's interest is added to the balance, and the next year's interest is paid on the new balance. You make no other deposits or withdrawals. What is the balance after 2 years? Enter a number in dollars, rounded to the nearest whole dollar. Round only at the final step.",
       "unit": "$"
     },
     {

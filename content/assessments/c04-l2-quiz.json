@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c04",
   "lesson_id": "c04-l2",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 2 Quiz: Economic Growth and Productivity",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -121,7 +121,7 @@
     },
     {
       "id": "c04-l2-q4",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c04-l2",
       "objective": 2,
@@ -132,7 +132,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Country U's real GDP is $80 billion and grows 4% per year, compounded, for 3 years. What is real GDP after 3 years, in billions of dollars? Round to two decimal places. (Enter a number only.)",
+      "prompt": "Hypothetical example: Country U's real GDP is $80 billion and grows 4% per year, compounded, for 3 years. What is real GDP after 3 years, in billions of dollars? Round to two decimal places, and round only at the final step. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-20-2"

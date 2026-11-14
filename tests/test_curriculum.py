@@ -123,3 +123,32 @@ def test_ai_checked_sources_are_not_shown_as_human_approved():
         state = admin_content.review_state(t, [])
         assert state["state"] == "draft", t.id
     assert admin_content.STATE_KO["verified"] == "AI-checked (not human-approved)"
+
+
+def test_assessment_titles_follow_course_and_lesson_titles():
+    for course in _cat().courses:
+        for n, lesson in enumerate(course.lessons, start=1):
+            assert lesson.quiz_assessment.title == f"Lesson {n} Quiz: {lesson.title}", lesson.id
+        if course.final is not None:
+            assert course.final.title == f"{course.title}: Final Assessment", course.id
+
+
+def test_c07_us_financial_rules_are_labeled_wherever_they_appear():
+    import re
+    us_rule = re.compile(r"\b(FDIC|Regulation [A-Z]{1,2}|CFPB|Truth in Lending)\b")
+    for n in (1, 2, 3):
+        with open(os.path.join(content.CONTENT_DIR, "lessons", f"c07-l{n}.json"), encoding="utf-8") as f:
+            doc = json.load(f)
+        paragraphs = [p for lvl in doc["levels"].values() for s in lvl["sections"] for p in s["paragraphs"]]
+        paragraphs += [p for r in doc.get("real_world_examples", []) for p in r["paragraphs"]]
+        for p in paragraphs:
+            if us_rule.search(p):
+                assert "U.S." in p and "differ" in p, p[:120]
+
+
+def test_c03_carbon_tax_numbers_are_framed_as_hypothetical_teaching_values():
+    with open(os.path.join(content.CONTENT_DIR, "lessons", "c03-l3.json"), encoding="utf-8") as f:
+        doc = json.load(f)
+    text = json.dumps(doc)
+    assert "not real carbon prices" in text and "teaching" in text
+    assert all(e["problem"].startswith("Hypothetical example") for e in doc["worked_examples"])

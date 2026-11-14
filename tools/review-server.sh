@@ -2,7 +2,7 @@
 # ECONOVA local review server (for the owner's curriculum review). Isolated from every real service:
 # - its own SQLite database under ~/econova-private/review-server (never the repo's lms.db, never Firestore)
 # - mock AI only (no OpenAI requests), AI wrong-answer feedback off
-# - draft preview on (/preview/...), dev test courses on (to walk through the student flow end to end)
+# - draft preview only for admin accounts (/preview/...; same rule as production), dev test courses on (to walk through the student flow)
 # Review decisions made in /admin/content are stored only in this local database. Approving there does NOT publish:
 # publishing needs a signed release plan, a commit, and a deployment, which are separate human steps.
 #
@@ -18,7 +18,7 @@ export DB_BACKEND=sqlite
 export SQLITE_PATH="$REVIEW_DIR/review.db"
 export ECONOVA_AI_PROVIDER=mock
 export ECONOVA_AI_FEEDBACK=off
-export ECONOVA_CONTENT_PREVIEW=1
+unset ECONOVA_CONTENT_PREVIEW   # admins preview drafts through their role; ordinary accounts never see drafts
 export ECONOVA_DEV_FIXTURES=1
 export ECONOVA_PRIVATE_CONTENT_DIR="$HOME/econova-private"
 export PORT="${PORT:-5070}"

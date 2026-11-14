@@ -3,7 +3,7 @@
   "id": "c04-final",
   "kind": "final",
   "course_id": "c04",
-  "version": 1,
+  "version": 2,
   "title": "Growth & Stability: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -158,7 +158,7 @@
     },
     {
       "id": "c04-final-q5",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c04-l2",
       "objective": 2,
@@ -168,7 +168,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Country CC's real GDP per capita is $5,000 and grows at 6% per year, compounded, for 12 years. What is real GDP per capita after 12 years, to the nearest dollar? (Enter a number only, in dollars.)",
+      "prompt": "Hypothetical example: Country CC's real GDP per capita is $5,000 and grows at 6% per year, compounded, for 12 years. What is real GDP per capita after 12 years, to the nearest dollar? Round only at the final step. (Enter a number only, in dollars.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-20-2"

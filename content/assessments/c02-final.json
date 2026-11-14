@@ -3,7 +3,7 @@
   "id": "c02-final",
   "kind": "final",
   "course_id": "c02",
-  "version": 4,
+  "version": 5,
   "title": "Markets & Prices: Final Assessment",
   "description": "This final assessment checks the key ideas from all three lessons. If you reach the passing score, you complete the course.",
   "review": {
@@ -233,7 +233,7 @@
     },
     {
       "id": "c02-final-q7",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c02-l2",
       "objective": 3,
@@ -243,7 +243,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "A market has the demand function Qd = 110 − 2P and the supply function Qs = 20 + P (equilibrium P = 30, Q = 50). A price ceiling of 27 is imposed. What is the deadweight loss? (Enter a decimal.)",
+      "prompt": "A market has the demand function Qd = 110 − 2P and the supply function Qs = 20 + P (equilibrium P = 30, Q = 50). A price ceiling of 27 is imposed. What is the deadweight loss? Round to two decimal places. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",
@@ -253,7 +253,7 @@
     },
     {
       "id": "c02-final-q8",
-      "version": 4,
+      "version": 5,
       "type": "numeric",
       "lesson_id": "c02-l3",
       "objective": 2,
@@ -263,7 +263,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: When the ticket price for a show rose from $80 to $100, daily ticket sales fell from 200 to 170. Using the midpoint method, find the price elasticity of demand (absolute value), rounded to two decimal places.",
+      "prompt": "Hypothetical example: When the ticket price for a show rose from $80 to $100, daily ticket sales fell from 200 to 170. Using the midpoint method, find the price elasticity of demand (absolute value), rounded to two decimal places. Round only at the final step. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-5-1",

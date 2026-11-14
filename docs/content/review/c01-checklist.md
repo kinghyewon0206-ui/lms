@@ -7,7 +7,30 @@
 - 검토자: ______  · 검토 날짜: ______  · 검토 서버: http://127.0.0.1:5070
 - 이 강좌의 AI 검토 기록: `docs/content/c01-review.md`, 출처 검토: `docs/content/source-review.md`, 허용 오차 제안: `docs/content/tolerance-policy-proposal.md`
 
-## 0. 검토 순서 (권장 약 2~3시간)
+## 0. 빠른 따라하기 (c01, 약 2~3시간)
+1. 서버: `tools/review-server.sh` (이미 켜져 있으면 생략) → http://127.0.0.1:5070 → 로그인 (처음이면 `/signup` 후 `tools/review-server.sh make-admin 본인이메일`).
+2. **강좌 설명·목표:** http://127.0.0.1:5070/admin/content → "C01 Economics & Choices" 표의 첫 행 "Course description and learning objectives".
+3. **레슨 9화면 (3레슨 × 3레벨):**
+   - http://127.0.0.1:5070/preview/c01/c01-l1?level=beginner · …?level=intermediate · …?level=advanced
+   - http://127.0.0.1:5070/preview/c01/c01-l2?level=beginner · …?level=intermediate · …?level=advanced
+   - http://127.0.0.1:5070/preview/c01/c01-l3?level=beginner · …?level=intermediate · …?level=advanced
+   - 각 화면 하단 "Sources" 의 링크로 **출처**를 연다 (출처 요약표: `docs/content/source-review.md`).
+4. **형성 퀴즈 (정답·해설 보임):** http://127.0.0.1:5070/admin/content/assessment/c01-l1-quiz · c01-l2-quiz · c01-l3-quiz
+5. **최종 평가와 비공개 정답:** http://127.0.0.1:5070/admin/content/assessment/c01-final (인쇄용 전체: `~/econova-private/review/c01-review-package.md`)
+6. **채점·합격 기준:** http://127.0.0.1:5070/admin/content/passing/c01-final — 합격 70%(10문항 중 7개), 최대 3회. 수치형 문항은 승인된 R1~R5 규칙으로 채점(관리 화면에 "allowed margin" 표시).
+7. **학생 화면·이동:** 일반 계정(관리자 아님)을 하나 더 만들어 `/courses` 에서 c01 이 "Coming soon" 이고 열리지 않는지 확인 → "Dev Test Course" 로 수강 → 레슨 → 퀴즈 → 최종 평가 → 수료 → `/report` 흐름의 영어 문구·버튼 확인.
+
+### 결정을 기록하는 방법
+- **고칠 점:** 아래 7장 "수정 요청" 표에 적고 저에게 전달 → 반영 후 해당 항목의 내용 지문이 바뀌므로 다시 검토.
+- **관리 화면 기록 (항목 화면 하단 폼):**
+  1. "Start review" 를 누르면 그 항목이 In review 가 된다.
+  2. 문제가 있으면 "Request changes" (의견 5자 이상) → Draft 로 돌아감.
+  3. 승인하려면 "Approve" (의견 5자 이상 + "I personally reviewed the content above…" 확인란) → Approved 로 기록.
+  4. 이미 승인한 뒤 다시 보려면 "Reopen review".
+- 이 기록은 **로컬 검토 DB 에만** 남고 정본 JSON·공개 상태는 바뀌지 않는다. 승인해도 학생에게 공개되지 않는다.
+- 권장 순서: 레슨 자료 → 퀴즈 → 최종 평가 → (최종 평가 승인 뒤) 합격 기준. 출처는 관리 화면의 Source 항목(“AI-checked (not human-approved)”)에서 따로 기록한다.
+
+## 0.1 검토 순서 (요약)
 1. 강좌 정보 → 2. 레슨 1~3 (하·중·상 모두) → 3. 형성 퀴즈 3개 → 4. 최종 평가·합격 기준 → 5. 출처 → 6. 학생 화면 → 7. 종합 판정
 
 ## 1. 강좌 정보 — `/admin/content` 의 c01 "Course description and learning objectives"
@@ -39,13 +62,13 @@
 | L3 | `/admin/content/assessment/c01-l3-quiz` | ☐ |
 - [ ] **평가 공정성:** 정답이 하나뿐이고, 오답이 그럴듯한 오개념이며, 문장 길이·문법으로 정답이 드러나지 않는다
 - [ ] 레슨에서 배운 내용 안에서 출제됐다 (학습목표 번호와 맞음)
-- [ ] 수치형 문항에 단위·반올림 안내가 있고 허용 오차가 적절하다 (c01-l1-q5: 허용 오차 정책 제안 참고)
+- [ ] 수치형 문항에 단위·반올림 안내가 있고 허용 오차가 적절하다 (승인된 R1~R5 적용: c01-l1-q5 는 R1 정확 일치)
 - [ ] 해설이 왜 맞고 왜 틀렸는지 설명한다
 
 ## 4. 최종 평가와 합격 기준
 - [ ] 최종 평가 10문항 — `/admin/content/assessment/c01-final` (세 레슨을 고르게 다룸, 퀴즈와 중복 없음)
 - [ ] 합격 기준 70% (10문항 중 7개)·재응시 3회 — `/admin/content/passing/c01-final` (최종 평가 승인 **뒤에** 판단)
-- [ ] 제목 일관성: 최종 평가 제목이 "Economics and Choice: Final Assessment" 로 강좌 제목 "Economics & Choices" 와 다르다 → 통일할지 결정 (AI 가 발견, 아직 안 고침)
+- [ ] 제목 일관성: 최종 평가 제목을 "Economics & Choices: Final Assessment" 로 통일함 (2026-11-14) — 확인
 
 ## 5. 학생 화면 (실제 강좌는 공개 전이라 개발용 테스트 강좌로 흐름만 확인)
 - [ ] `/courses` 에서 c01 이 "Coming soon" 으로 보이고 학생이 레슨을 열 수 없다
