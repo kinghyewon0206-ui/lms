@@ -3,8 +3,8 @@
   "id": "c02-final",
   "kind": "final",
   "course_id": "c02",
-  "version": 3,
-  "title": "Markets and Prices Final Assessment",
+  "version": 4,
+  "title": "Markets & Prices: Final Assessment",
   "description": "This final assessment checks the key ideas from all three lessons. If you reach the passing score, you complete the course.",
   "review": {
     "status": "draft",
@@ -253,7 +253,7 @@
     },
     {
       "id": "c02-final-q8",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c02-l3",
       "objective": 2,
@@ -263,7 +263,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "When the ticket price for a show rose from $80 to $100, daily ticket sales fell from 200 to 170. Using the midpoint method, find the price elasticity of demand (absolute value), rounded to two decimal places.",
+      "prompt": "Hypothetical example: When the ticket price for a show rose from $80 to $100, daily ticket sales fell from 200 to 170. Using the midpoint method, find the price elasticity of demand (absolute value), rounded to two decimal places.",
       "unit": "",
       "source_ids": [
         "openstax-pe3-5-1",

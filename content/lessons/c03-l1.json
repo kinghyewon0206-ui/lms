@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c03-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: reworded the externality definition in original language to remove a close match with the OpenStax wording. Not reviewed or approved by a human."
       }
     ]
   },
@@ -39,7 +45,7 @@
     {
       "id": "externality",
       "term": "Externality",
-      "definition": "A cost or benefit that a transaction or activity imposes on a third party who is not part of it, without any payment changing hands.",
+      "definition": "A cost or benefit from an activity that spills over onto people who did not take part in it, with no payment to make up for the harm or to charge for the gain.",
       "source_ids": [
         "openstax-pe3-12-1"
       ]

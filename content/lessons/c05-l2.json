@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c05-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: framed the participation/unemployment link as following from the definitions. Not reviewed or approved by a human."
       }
     ]
   },
@@ -193,7 +199,7 @@
           "paragraphs": [
             "With N = E + U + O (O = not in the labor force) and LF = E + U, the participation rate is p = LF/N and the unemployment rate is u = U/LF. Note that the employment-to-population ratio is E/N = p(1 − u), so the three measures are linked.",
             "If x unemployed people become discouraged and stop searching, U and LF both fall by x: u′ = (U − x)/(LF − x) and p′ = (LF − x)/N. Because U < LF, subtracting the same x from both makes the ratio smaller, so u′ < u. The participation rate falls by x/N. A falling unemployment rate is therefore less reassuring if the participation rate is falling at the same time.",
-            "The reverse also happens: when job prospects improve, some people outside the labor force start searching. They count as unemployed until they find work, so the unemployment rate can rise briefly even as the job market strengthens."
+            "The reverse can also happen. If better job prospects lead some people outside the labor force to start searching, these definitions count them as unemployed until they find work, so the unemployment rate can rise briefly even as the job market strengthens."
           ]
         },
         {

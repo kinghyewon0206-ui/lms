@@ -4,8 +4,8 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l2",
-  "version": 2,
-  "title": "Lesson 2 Quiz: Opportunity Cost and Rational Decision-Making",
+  "version": 3,
+  "title": "Lesson 2 Quiz: Opportunity Cost and Rational Decisions",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
     "status": "draft",
@@ -34,7 +34,7 @@
   "questions": [
     {
       "id": "c01-l2-q1",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 1,
@@ -44,7 +44,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "For 2 hours after school, you could (1) work a part-time job that pays $9 per hour, (2) go to a club activity, or (3) take a nap. You choose the club activity. If the job is worth more to you than the nap, what is the opportunity cost of the club activity?",
+      "prompt": "Hypothetical example: For 2 hours after school, you could (1) work a part-time job that pays $9 per hour, (2) go to a club activity, or (3) take a nap. You choose the club activity. If the job is worth more to you than the nap, what is the opportunity cost of the club activity?",
       "choices": [
         {
           "id": "a",
@@ -70,7 +70,7 @@
     },
     {
       "id": "c01-l2-q2",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 2,
@@ -81,7 +81,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "You bought a non-refundable $60 amusement park day pass, but on the day of your visit it is raining and you feel a cold coming on. What is the most rational way to decide whether to go?",
+      "prompt": "Hypothetical example: You bought a non-refundable $60 amusement park day pass, but on the day of your visit it is raining and you feel a cold coming on. What is the most rational way to decide whether to go?",
       "choices": [
         {
           "id": "a",
@@ -107,7 +107,7 @@
     },
     {
       "id": "c01-l2-q3",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l2",
       "objective": 2,
@@ -117,7 +117,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "The value of the skill you gain from the 1st, 2nd, 3rd, and 4th hours of basketball practice (the marginal benefit) is $10, $8, $5, and $2, respectively. Each hour of practice gives up $6 worth of other activities (the marginal cost). If you practice only until the marginal benefit falls below the marginal cost, how many hours do you practice? (Enter a number only.)",
+      "prompt": "Hypothetical example: The value of the skill you gain from the 1st, 2nd, 3rd, and 4th hours of basketball practice (the marginal benefit) is $10, $8, $5, and $2, respectively. Each hour of practice gives up $6 worth of other activities (the marginal cost). If you practice only until the marginal benefit falls below the marginal cost, how many hours do you practice? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",

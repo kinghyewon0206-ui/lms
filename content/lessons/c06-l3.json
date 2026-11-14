@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: relative poverty line example cited to Eurostat (60% of median); poverty gap cited to World Bank WDI definition; targeting vs. universality hedged. Not reviewed or approved by a human."
       }
     ]
   },
@@ -31,18 +37,20 @@
     {
       "id": "poverty_line",
       "term": "Absolute and relative poverty lines",
-      "definition": "A poverty line is the income below which a person or household is counted as poor. An absolute line is a fixed amount of real income, often based on the cost of basic needs such as food. A relative line moves with typical incomes, for example half of the median income. Choosing the method and the level is a policy decision, so different lines give different poverty counts.",
+      "definition": "A poverty line is the income below which a person or household is counted as poor. An absolute line is a fixed amount of real income, often based on the cost of basic needs such as food. A relative line moves with typical incomes, for example 50% or 60% of the median income; the European Union's at-risk-of-poverty threshold uses 60% of the national median. Choosing the method and the level is a policy decision, so different lines give different poverty counts.",
       "source_ids": [
         "openstax-pe3-15-1",
-        "worldbank-measuring-poverty"
+        "worldbank-measuring-poverty",
+        "eurostat-at-risk-of-poverty-rate"
       ]
     },
     {
       "id": "poverty_rate_gap",
       "term": "Poverty rate and poverty gap",
-      "definition": "The poverty rate (headcount ratio) is the number of people below the poverty line divided by the population. The poverty gap is the total amount of money needed to raise everyone below the line exactly up to it. The rate counts how many are poor; the gap also shows how far below the line they are.",
+      "definition": "The poverty rate (headcount ratio) is the number of people below the poverty line divided by the population. The poverty gap adds up each poor person's shortfall from the line: the total amount of money needed to raise everyone below the line exactly up to it. Agencies such as the World Bank often report it as an index: the average shortfall across the whole population (counting people above the line as zero), as a percentage of the line. The rate counts how many are poor; the gap also shows how far below the line they are.",
       "source_ids": [
-        "openstax-pe3-15-1"
+        "openstax-pe3-15-1",
+        "worldbank-poverty-gap-national"
       ]
     },
     {
@@ -66,7 +74,7 @@
     {
       "id": "targeting_universality",
       "term": "Targeting vs. universality",
-      "definition": "Targeted (means-tested) programs pay only people below an income limit, so they cost less per dollar that reaches the poor, but they need more administration, can miss eligible people who do not apply, and create phase-outs. Universal programs pay everyone in a group, so they reach all the poor and are simple to run, but they cost much more in total.",
+      "definition": "Targeted (means-tested) programs pay only people below an income limit, so they usually cost less per dollar that reaches the poor, but they need more administration, can miss eligible people who do not apply, and create phase-outs. Universal programs pay everyone in a group, so they can reach nearly all the poor in that group and are simpler to run, but they cost much more in total. How these trade-offs balance depends on the program and the country.",
       "source_ids": [
         "openstax-pe3-15-3",
         "openstax-pe3-15-2"
@@ -100,7 +108,7 @@
             "poverty_line"
           ],
           "paragraphs": [
-            "A poverty line is the income below which a family is counted as poor. One way to set it is to estimate the cost of basic needs, like enough food, and build the line from that. This is an absolute line: it stays the same in real terms, even as the country gets richer. Another way is a relative line, like half of the typical (median) income. A relative line rises when typical incomes rise, because what counts as a decent life changes as a society gets richer.",
+            "A poverty line is the income below which a family is counted as poor. One way to set it is to estimate the cost of basic needs, like enough food, and build the line from that. This is an absolute line: it stays the same in real terms, even as the country gets richer. Another way is a relative line, like half or 60% of the typical (median) income. A relative line rises when typical incomes rise, because it measures low income compared with other people in the same country.",
             "Neither line is a law of nature. Someone has to choose the method and the amount, so a poverty number always depends on that choice."
           ]
         },
@@ -219,7 +227,7 @@
             "poverty_rate_gap"
           ],
           "paragraphs": [
-            "Let z be the poverty line and yᵢ the income of person i in a population of n. The headcount ratio is H = (1 ÷ n) Σ 1[yᵢ < z]. The total poverty gap is Σ max(0, z − yᵢ), and the poverty gap index divides it by n·z. An absolute line fixes z in real terms; a relative line sets z = α × median(y), for example α = 0.5. With a relative line, multiplying every income by λ > 0 leaves H unchanged; with an absolute line, H falls when λ > 1.",
+            "Let z be the poverty line and yᵢ the income of person i in a population of n. The headcount ratio is H = (1 ÷ n) Σ 1[yᵢ < z]. The total poverty gap is Σ max(0, z − yᵢ), and the poverty gap index divides it by n·z. An absolute line fixes z in real terms; a relative line sets z = α × median(y), for example α = 0.5 or α = 0.6 (the EU's at-risk-of-poverty threshold). With a relative line, multiplying every income by λ > 0 leaves H unchanged; with an absolute line, H falls when λ > 1.",
             "The headcount ignores depth: moving a poor person from just below z to just above it lowers H, even if the money came from someone much poorer. The gap measure does not reward such transfers. The choice of z, α, the income concept (cash only or including in-kind benefits), and the equivalence scale for household size are normative and practical choices that change the measured level of poverty."
           ]
         },
@@ -491,6 +499,8 @@
     "openstax-pe3-30-2",
     "worldbank-measuring-poverty",
     "un-sdg-1",
-    "un-sdg-10"
+    "un-sdg-10",
+    "eurostat-at-risk-of-poverty-rate",
+    "worldbank-poverty-gap-national"
   ]
 }

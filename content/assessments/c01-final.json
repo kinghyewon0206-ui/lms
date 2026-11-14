@@ -3,8 +3,8 @@
   "id": "c01-final",
   "kind": "final",
   "course_id": "c01",
-  "version": 2,
-  "title": "Economics and Choice: Final Assessment",
+  "version": 3,
+  "title": "Economics & Choices: Final Assessment",
   "description": "This final assessment checks the key ideas from all three lessons. Meet the passing standard to complete the course.",
   "review": {
     "status": "draft",
@@ -149,7 +149,7 @@
     },
     {
       "id": "c01-final-q4",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l2",
       "objective": 1,
@@ -159,7 +159,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Over the weekend, you volunteered for 4 hours instead of working a part-time job that pays $11 per hour (the job is worth more to you than resting). How much income, in dollars, did you give up by volunteering? (Enter a number only.)",
+      "prompt": "Hypothetical example: Over the weekend, you volunteered for 4 hours instead of working a part-time job that pays $11 per hour (the job is worth more to you than resting). How much income, in dollars, did you give up by volunteering? (Enter a number only.)",
       "unit": "$",
       "source_ids": [
         "openstax-pe3-2-1",
@@ -168,7 +168,7 @@
     },
     {
       "id": "c01-final-q5",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l2",
       "objective": 1,
@@ -179,7 +179,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "With a $30 entertainment budget, you plan to buy theater tickets ($12 each) and tacos ($3 each). What is the opportunity cost of one theater ticket, measured in tacos? (Enter a number only.)",
+      "prompt": "Hypothetical example: With a $30 entertainment budget, you plan to buy theater tickets ($12 each) and tacos ($3 each). What is the opportunity cost of one theater ticket, measured in tacos? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",
@@ -188,7 +188,7 @@
     },
     {
       "id": "c01-final-q6",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 2,
@@ -199,7 +199,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "A school has already spent $50,000 on renovating its gym. Finishing the work would cost another $30,000, and the expected benefit of completing it is $20,000 (assume the money has no other use). Which judgment is most rational?",
+      "prompt": "Hypothetical example: A school has already spent $50,000 on renovating its gym. Finishing the work would cost another $30,000, and the expected benefit of completing it is $20,000 (assume the money has no other use). Which judgment is most rational?",
       "choices": [
         {
           "id": "a",
@@ -262,7 +262,7 @@
     },
     {
       "id": "c01-final-q8",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 2,
@@ -272,7 +272,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "For one unit of a product, the private cost is 40 cents and the social cost is $1.00 (100 cents). What fee per unit, in cents, would make the private cost equal to the social cost? (Enter a number only.)",
+      "prompt": "Hypothetical example: For one unit of a product, the private cost is 40 cents and the social cost is $1.00 (100 cents). What fee per unit, in cents, would make the private cost equal to the social cost? (Enter a number only.)",
       "unit": "cents",
       "source_ids": [
         "openstax-pe3-2-1",

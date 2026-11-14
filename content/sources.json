@@ -877,16 +877,18 @@
       "url": "https://openstax.org/books/principles-economics-3e/pages/19-1-measuring-the-size-of-the-economy-gross-domestic-product",
       "concepts": [
         "gdp",
-        "final_vs_intermediate"
+        "final_vs_intermediate",
+        "value_added"
       ],
       "lesson_ids": [
-        "c04-l1"
+        "c04-l1",
+        "c08-l3"
       ],
       "license": "CC BY-NC-SA 4.0 (same as the OpenStax notice above)",
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "2026-11-13: opened the page and confirmed it defines GDP as the value of all final goods and services produced within a country in a given year and explains that intermediate goods are excluded to avoid double counting (tires counted within a truck's price).",
+        "method": "2026-11-13: opened the page and confirmed it defines GDP as the value of all final goods and services produced within a country in a given year and explains that intermediate goods are excluded to avoid double counting (tires counted within a truck's price). c08 remediation (2026-11-14, AI): also cited in c08-l3 next to imf-fd-gdp-basics; this page says the value of intermediate goods is captured in the final products and does not use the term 'value added'.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -1093,8 +1095,8 @@
       "license": "Subject to the IMF website terms of use. Content is summarized and linked only (figures are not quoted).",
       "verification": {
         "status": "verified",
-        "checked_at": "2026-11-13",
-        "method": "2026-11-13: opened the page and confirmed it defines inflation as the rate at which prices rise over a period, describes the CPI basket, calls the erosion of purchasing power (when incomes lag prices) the biggest cost of inflation, and says fixed-rate borrowers can gain while lenders lose. It does not state a central bank inflation target, so it is not cited for that.",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-13: opened the page and confirmed it defines inflation as the rate at which prices rise over a period, describes the CPI basket, calls the erosion of purchasing power (when incomes lag prices) the biggest cost of inflation, and says fixed-rate borrowers can gain while lenders lose. It does not state a central bank inflation target, so it is not cited for that. 2026-11-14: reopened and confirmed it says contractionary monetary policy (usually raising interest rates) can rein in aggregate demand and that policymakers may keep economic activity low temporarily to bring inflation down; it does not mention hiring specifically.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -1207,7 +1209,8 @@
         "equity_efficiency_tradeoff",
         "economic_mobility",
         "income_vs_wealth",
-        "transfer_payments"
+        "transfer_payments",
+        "marginal_average_rate"
       ],
       "lesson_ids": [
         "c06-l1",
@@ -1218,7 +1221,7 @@
       "verification": {
         "status": "verified",
         "checked_at": "2026-11-13",
-        "method": "Opened 2026-11-13: title and book metadata present. Covers redistribution through transfer programs and progressive taxation; effective vs. statutory tax rates; the ladder of opportunity, inequality rooted in circumstances of birth, human capital policies (early childhood, schools, training); inheritance/estate taxes; wealth more unequal than income because earnings differences accumulate; the possible trade-off between equality and incentives/output and policies such as education that may raise both; states there is no agreed answer on how much redistribution is appropriate. The page does NOT define 'intergenerational mobility' with a regression slope (AI-written extension in c06-l3) and does not use the word 'equity' as a formal term.",
+        "method": "Opened 2026-11-13: title and book metadata present. Covers redistribution through transfer programs and progressive taxation; effective vs. statutory tax rates; the ladder of opportunity, inequality rooted in circumstances of birth, human capital policies (early childhood, schools, training); inheritance/estate taxes; wealth more unequal than income because earnings differences accumulate; the possible trade-off between equality and incentives/output and policies such as education that may raise both; states there is no agreed answer on how much redistribution is appropriate. The page does NOT define 'intergenerational mobility' with a regression slope (AI-written extension in c06-l3) and does not use the word 'equity' as a formal term. Rechecked 2026-11-14 (AI): the page defines the effective income tax as total taxes paid divided by total income (the average tax rate used in c06-l2); it does not discuss sales taxes or call them regressive.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     },
@@ -2135,6 +2138,476 @@
         "status": "verified",
         "checked_at": "2026-11-14",
         "method": "c09 (2026-11-14, AI): opened the page and confirmed: an EPA study estimated Clean Air Act benefits for 1970-1990 far above costs, but overall benefits exceeding costs does not mean every rule is worthwhile; for some pollutants costs may match or exceed benefits; marginal costs of pollution reduction rise and marginal benefits fall; some benefits (health, clear air) are hard to value in money.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "eurostat-at-risk-of-poverty-rate",
+      "title": "Glossary: At-risk-of-poverty rate",
+      "container": "Eurostat Statistics Explained",
+      "author": "Eurostat (European Commission)",
+      "published": null,
+      "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:At-risk-of-poverty_rate",
+      "concepts": [
+        "poverty_line"
+      ],
+      "lesson_ids": [
+        "c06-l3"
+      ],
+      "license": "Eurostat content may be reused with acknowledgement under the European Commission reuse policy. Summarized with a link, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "Opened 2026-11-14: defines the at-risk-of-poverty rate as the share of people with equivalised disposable income (after social transfers) below a threshold set at 60% of the national median equivalised disposable income after social transfers, and says the indicator does not measure wealth or poverty but low income compared with other residents of the same country. Supports c06-l3's description of a relative poverty line set as a percentage of median income (EU example: 60%). The 50% example in the lesson is not confirmed by this page.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "worldbank-poverty-gap-national",
+      "title": "Poverty gap at national poverty lines (%) (SI.POV.NAGP), metadata glossary",
+      "container": "World Bank DataBank, World Development Indicators",
+      "author": "World Bank",
+      "published": null,
+      "url": "https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SI.POV.NAGP",
+      "concepts": [
+        "poverty_rate_gap"
+      ],
+      "lesson_ids": [
+        "c06-l3"
+      ],
+      "license": "Subject to the World Bank website terms of use. Summarized with a link, not copied.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "Opened 2026-11-14: defines the poverty gap as the mean shortfall from the poverty line (counting the nonpoor as having zero shortfall) as a percentage of the poverty line, and says the measure reflects the depth of poverty as well as its incidence. Supports c06-l3's poverty gap (sum of shortfalls) and poverty gap index (sum divided by n times the line). The page does not say the gap equals the transfer needed to end poverty; the lesson states that interpretation with its assumptions (perfect targeting, no cost, no behavioral change).",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "clevelandfed-minimum-wage-2007",
+      "title": "The Minimum Wage and the Labor Market",
+      "container": "Federal Reserve Bank of Cleveland — Economic Commentary",
+      "author": "Guillaume Rocheteau, Murat Tasci (Federal Reserve Bank of Cleveland)",
+      "published": "2007-05-01",
+      "url": "https://www.clevelandfed.org/publications/economic-commentary/2007/ec-20070501-the-minimum-wage-and-the-labor-market",
+      "concepts": [
+        "monopsony",
+        "minimum_wage_evidence"
+      ],
+      "lesson_ids": [
+        "c05-l3"
+      ],
+      "license": "Subject to the Federal Reserve Bank of Cleveland website terms of use. Content is summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-14: opened the page and confirmed it explains that in a monopsony model a minimum wage set above the monopsony wage but below the competitive wage raises employment by offsetting the employer's wage-setting power, so more workers are hired and those employed earn more. It also says the effect of a binding minimum depends on the market wage, and that a survey (Neumark and Wascher) finds most evidence points to higher unemployment; it is cited for the model result only, not as settling the empirical debate.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "minneapolisfed-minimum-wage-monopsony-2022",
+      "title": "Can the minimum wage combat employers' labor market power?",
+      "container": "Federal Reserve Bank of Minneapolis — article",
+      "author": "Jeff Horwich (Federal Reserve Bank of Minneapolis)",
+      "published": "2022-06-03",
+      "url": "https://www.minneapolisfed.org/article/2022/can-the-minimum-wage-combat-employers-labor-market-power",
+      "concepts": [
+        "monopsony",
+        "minimum_wage_evidence"
+      ],
+      "lesson_ids": [
+        "c05-l3"
+      ],
+      "license": "Subject to the Federal Reserve Bank of Minneapolis website terms of use. Content is summarized and linked only (figures are not quoted).",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-14: opened the page and confirmed it links employer wage-setting power (monopsony) to minimum wage effects: in the classic monopsony model a minimum wage can raise wages and help employment, but in the researchers' model the gains hold only up to a certain level, above which employment gains reverse. It presents this as one view in a continuing debate. Cited for the idea that effects depend on employer power and on how high the minimum is; its specific dollar results are not used.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-psych2e-2-3",
+      "title": "2.3 Analyzing Findings",
+      "container": "Psychology 2e",
+      "author": "Rose M. Spielman, William J. Jenkins, Marilyn D. Lovett (OpenStax, Rice University)",
+      "published": null,
+      "url": "https://openstax.org/books/psychology-2e/pages/2-3-analyzing-findings",
+      "concepts": [
+        "correlation_causation"
+      ],
+      "lesson_ids": [
+        "c04-l1"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-14: opened the page and confirmed it has a subsection stating that correlation does not indicate causation and explains that a confounding (third) variable can cause both measured variables to move together (its example uses temperature). It does not explicitly discuss reverse causation; that point is the lesson's own explanation.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "psu-eme807-growth-doubling",
+      "title": "1.7 Growth, Delays, and Tipping Points",
+      "container": "EME 807: Technologies for Sustainability Systems — Penn State College of Earth and Mineral Sciences (online course materials)",
+      "author": "The Pennsylvania State University, Department of Energy and Mineral Engineering",
+      "published": null,
+      "url": "https://courses.ems.psu.edu/eme807/node/754",
+      "concepts": [
+        "compound_growth"
+      ],
+      "lesson_ids": [
+        "c04-l2"
+      ],
+      "license": "University course materials; subject to Penn State's terms of use. Content is summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-14: opened the page and confirmed it states that doubling time can be estimated by dividing 70 by the growth rate in percent (the rule of 70). It calls this an estimate but does not derive it from ln 2; the derivation is the lesson's own.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "eurostat-resource-productivity",
+      "title": "Resource productivity statistics",
+      "container": "Eurostat — Statistics Explained",
+      "author": "Eurostat (European Commission)",
+      "published": null,
+      "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Resource_productivity_statistics",
+      "concepts": [
+        "decoupling"
+      ],
+      "lesson_ids": [
+        "c04-l2"
+      ],
+      "license": "Eurostat content may be reused with acknowledgement under the European Commission reuse policy. Content is summarized and linked only (figures are not quoted).",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-14: opened the page and confirmed it defines absolute decoupling (the environmental variable is stable or falls while the economic driving force grows) and relative decoupling (the environmental variable grows more slowly than the economic variable), attributing the definitions to the OECD. Its data are about material use, but the definitions are stated for environmental variables in general.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "stlouisfed-money-inflation",
+      "title": "Money and Inflation: A Functional Relationship",
+      "container": "Federal Reserve Bank of St. Louis — Page One Economics",
+      "author": "Scott A. Wolla (Federal Reserve Bank of St. Louis)",
+      "published": "2013-03-01",
+      "url": "https://www.stlouisfed.org/publications/page-one-economics/2013/03/01/money-and-inflation-a-functional-relationship",
+      "concepts": [
+        "price_stability"
+      ],
+      "lesson_ids": [
+        "c04-l3"
+      ],
+      "license": "Subject to the Federal Reserve Bank of St. Louis website terms of use. Content is summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-14: opened the page and confirmed it explains that when inflation is very high, the longer people hold cash the more value it loses, so they try to spend money quickly instead of holding it.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "imf-fd-externalities",
+      "title": "Externalities: Prices Do Not Capture All Costs",
+      "container": "International Monetary Fund — Finance & Development, Back to Basics",
+      "author": "Thomas Helbling (IMF)",
+      "published": "2017-05-10",
+      "url": "https://www.imf.org/en/Publications/fandd/issues/Series/Back-to-Basics/Externalities",
+      "concepts": [
+        "social_welfare_change",
+        "public_good"
+      ],
+      "lesson_ids": [
+        "c03-l3",
+        "c03-l2"
+      ],
+      "license": "Subject to the IMF website terms of use. Content is summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "2026-11-14: opened the page and confirmed it describes Pigou's proposal to tax polluters an amount equal to the harm they impose on others and uses the term Pigouvian taxes; it also calls the atmosphere a global public good and says environmental public goods lack clear property rights, creating collective action problems, so international policies are hard to agree on and enforce. It does not use the term 'tragedy of the commons' or discuss carbon taxes specifically.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "imf-fd-supply-chains",
+      "title": "The Stretch of Supply Chains",
+      "container": "International Monetary Fund — Finance & Development (June 2022)",
+      "author": "Diego Cerdeiro, Niels-Jakob H. Hansen (IMF)",
+      "published": "2022-06-02",
+      "url": "https://www.imf.org/en/Publications/fandd/issues/2022/06/the-stretch-of-supply-chains-B2B",
+      "concepts": [
+        "resilience_tradeoff",
+        "interdependence_disruption"
+      ],
+      "lesson_ids": [
+        "c08-l3"
+      ],
+      "license": "Subject to the IMF website terms of use. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c08 remediation (2026-11-14, AI): opened the page and confirmed: factory closures made intermediate inputs scarce and spread shortages through global production; diversification means more foreign suppliers for an input even at higher cost; overstocking means holding higher inventories to weather temporary supply shocks; both are described as insurance strategies that entail costs, so countries and firms must decide how high an insurance premium to pay. The article also argues that reshoring does not appear to improve resilience.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "imf-fd-gdp-basics",
+      "title": "Gross Domestic Product: An Economy's All",
+      "container": "International Monetary Fund — Finance & Development, Back to Basics",
+      "author": "Tim Callen (IMF)",
+      "published": "2019-06-15",
+      "url": "https://www.imf.org/en/Publications/fandd/issues/Series/Back-to-Basics/gross-domestic-product-GDP",
+      "concepts": [
+        "value_added"
+      ],
+      "lesson_ids": [
+        "c08-l3"
+      ],
+      "license": "Subject to the IMF website terms of use. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c08 remediation (2026-11-14, AI): opened the page (date shown 2019-06-15) and confirmed: value added = total sales less the value of intermediate inputs; the production approach to GDP sums value added at each stage of production. (That the stages' value added adds up to one product's final price is the same telescoping sum, derived in the c08-l3 lesson.)",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "libretexts-ittp-7-8",
+      "title": "7.8: Import Tariffs — Small Country Welfare Effects",
+      "container": "International Trade — Theory and Policy (LibreTexts Social Sciences; adapted from a Saylor Academy open textbook)",
+      "author": "Anonymous (original author not named at the licensor's request); LibreTexts staff",
+      "published": "2023-07-17",
+      "url": "https://socialsci.libretexts.org/Bookshelves/Economics/International_Economics/International_Trade_-_Theory_and_Policy/07%3A_Trade_Policy_Effects_with_Perfectly_Competitive_Markets/7.08%3A_Import_Tariffs-_Small_Country_Welfare_Effects",
+      "concepts": [
+        "tariff"
+      ],
+      "lesson_ids": [
+        "c08-l1"
+      ],
+      "license": "CC BY-NC-SA (as stated on the page). ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c08 remediation (2026-11-14, AI): opened the page (last updated 2023-07-17) and confirmed for a small importing country: consumers lose (areas A+B+C+D), producers gain (A), the government collects tariff revenue (C), and national welfare falls by the two remaining areas, B (production efficiency loss) and D (consumption efficiency loss), which it calls deadweight losses. The text refers to areas, not the word 'triangles'.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "libretexts-ittp-5-13",
+      "title": "5.13: The Compensation Principle",
+      "container": "International Trade — Theory and Policy (LibreTexts Social Sciences; adapted from a Saylor Academy open textbook)",
+      "author": "Anonymous (original author not named at the licensor's request); LibreTexts staff",
+      "published": "2023-07-17",
+      "url": "https://socialsci.libretexts.org/Bookshelves/Economics/International_Economics/International_Trade_-_Theory_and_Policy/05%3A_The_Heckscher-Ohlin_(Factor_Proportions)_Model/5.13%3A_The_Compensation_Principle",
+      "concepts": [
+        "distribution_of_gains"
+      ],
+      "lesson_ids": [
+        "c08-l1"
+      ],
+      "license": "CC BY-NC-SA (as stated on the page). ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c08 remediation (2026-11-14, AI): opened the page (last updated 2023-07-17) and confirmed: because the winners' gains from free trade exceed the losers' losses, a compensation scheme could in principle make everyone better off; the lump-sum transfers this would require are effective in theory but virtually impossible to implement in practice and rarely occur.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "bls-displaced-workers",
+      "title": "Displaced Workers Summary (USDL-26-1423)",
+      "container": "U.S. Bureau of Labor Statistics — Economic News Release",
+      "author": "U.S. Bureau of Labor Statistics",
+      "published": "2026-08-27",
+      "url": "https://www.bls.gov/news.release/disp.nr0.htm",
+      "concepts": [
+        "distribution_of_gains"
+      ],
+      "lesson_ids": [
+        "c08-l1"
+      ],
+      "license": "U.S. government work (public domain in the United States). Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c08 remediation (2026-11-14, AI): opened the release dated 2026-08-27 (January 2026 survey, displacements 2023-2025) and confirmed: about 49 percent of displaced workers reemployed in full-time wage and salary jobs were earning as much or more than at their lost job (about 62 percent in the January 2024 survey), i.e. many earned less. U.S. data on all displaced workers, not only trade-related job loss or retraining participants. The figures change with each survey.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "saylor-ifp-8-12",
+      "title": "8.12 The J-Curve Effect",
+      "container": "International Finance: Theory and Policy, v. 1.0 (Saylor Academy open textbook)",
+      "author": "Anonymous (original author not named at the licensor's request); adapted by Saylor Academy",
+      "published": null,
+      "url": "https://saylordotorg.github.io/text_international-finance-theory-and-policy/s11-12-the-j-curve-effect.html",
+      "concepts": [
+        "trade_balance"
+      ],
+      "lesson_ids": [
+        "c08-l2"
+      ],
+      "license": "CC BY-NC-SA 3.0 (as stated on the book's licensing page). ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c08 remediation (2026-11-14, AI): opened the page and the book's licensing page and confirmed: a depreciation makes imports more expensive and is normally expected to raise exports and lower imports; because trade prices and quantities are often set in advance in contracts, the current account balance may first fall before rising (the J-curve); a rough rule of thumb is one to two years; in some cases the effect does not arise, so nothing about it is automatic. The page discusses the current account; the lesson applies the same reasoning to the trade balance.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "wto-tbt-technical-info",
+      "title": "Technical Information on Technical Barriers to Trade",
+      "container": "World Trade Organization — Trade topics: Technical barriers to trade",
+      "author": "World Trade Organization",
+      "published": null,
+      "url": "https://www.wto.org/english/tratop_e/tbt_e/tbt_info_e.htm",
+      "concepts": [
+        "sustainable_production_partnership"
+      ],
+      "lesson_ids": [
+        "c08-l3"
+      ],
+      "license": "Subject to the WTO website terms of use. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c08 remediation (2026-11-14, AI): opened the page and confirmed: technical regulations and standards could be adopted and applied solely to protect domestic industries; non-transparent and discriminatory conformity assessment procedures can become effective protectionist tools; the TBT Agreement requires that regulations not create unnecessary obstacles to trade.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "columbia-did",
+      "title": "Difference-in-Difference Estimation",
+      "container": "Columbia University Mailman School of Public Health — Population Health Methods",
+      "author": "Columbia University Mailman School of Public Health",
+      "published": null,
+      "url": "https://www.publichealth.columbia.edu/research/population-health-methods/difference-difference-estimation",
+      "concepts": [
+        "counterfactual"
+      ],
+      "lesson_ids": [
+        "c09-l2"
+      ],
+      "license": "Subject to the Columbia University website terms of use. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 remediation (2026-11-14, AI): opened the page (no publication date shown) and confirmed: difference-in-differences estimates a program's effect by comparing the changes in outcomes over time between an enrolled group and a non-enrolled group; it removes biases from permanent differences between the groups and from trends due to other causes; it requires the parallel trend assumption, i.e. without treatment the difference between the groups would stay constant over time.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pof2e-16-5",
+      "title": "16.5 Choosing between Projects",
+      "container": "Principles of Finance 2e",
+      "author": "Julie Dahlquist, Rainford Knight (OpenStax, Rice University)",
+      "published": "2026-06-24",
+      "url": "https://openstax.org/books/principles-finance-2e/pages/16-5-choosing-between-projects",
+      "concepts": [
+        "cost_effectiveness"
+      ],
+      "lesson_ids": [
+        "c09-l2"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 remediation (2026-11-14, AI): opened the page and confirmed: for mutually exclusive projects the rule is to take the project with the highest NPV; when capital is limited, managers rank positive-NPV projects by their profitability index (a benefit-per-dollar ratio) and fund the highest-ranked projects the budget allows, because ranking by NPV alone can give a worse result. The page does not give a formula for the profitability index or discuss public-policy benefit-cost ratios by that name.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "openstax-pe3-appendix-c",
+      "title": "C | Present Discounted Value",
+      "container": "Principles of Economics 3e",
+      "author": "Steven A. Greenlaw, David Shapiro, Daniel MacDonald (OpenStax, Rice University)",
+      "published": "2022-12-14",
+      "url": "https://openstax.org/books/principles-economics-3e/pages/c-present-discounted-value",
+      "concepts": [
+        "costs_over_time"
+      ],
+      "lesson_ids": [
+        "c09-l3"
+      ],
+      "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 remediation (2026-11-14, AI): opened the page and confirmed: the present discounted value of a future payment is the payment divided by (1 + r) raised to the number of years; for a stream, the present values of each period are added up; discounting at a higher interest rate gives a lower present value.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "uk-green-book-2026",
+      "title": "The Green Book (2026)",
+      "container": "HM Treasury (UK Government) — Central government guidance on appraisal and evaluation",
+      "author": "HM Treasury",
+      "published": "2026-10-28",
+      "url": "https://www.gov.uk/government/publications/the-green-book--2/the-green-book-2026",
+      "concepts": [
+        "costs_over_time",
+        "cost_effectiveness"
+      ],
+      "lesson_ids": [
+        "c09-l2",
+        "c09-l3"
+      ],
+      "license": "Open Government Licence v3.0 (UK public sector information) unless otherwise stated. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 remediation (2026-11-14, AI): opened the HTML guidance (collection page last updated 2026-10-28) and confirmed: social costs and benefits should be estimated in real prices; they are discounted with the Social Time Preference Rate, a real rate applied only to real values; net present social value subtracts real discounted social costs from real discounted social benefits, and a benefit-cost ratio is also calculated; ranking options by these summary metrics is only a first step and is not sufficient by itself to make a decision. The guidance does not state when to rank by the ratio rather than by net value.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "cdc-logic-model",
+      "title": "Step 2 – Describe the Program",
+      "container": "U.S. Centers for Disease Control and Prevention — CDC Approach to Program Evaluation (Evaluation Framework Action Guide)",
+      "author": "U.S. Centers for Disease Control and Prevention",
+      "published": "2024-08-18",
+      "url": "https://www.cdc.gov/evaluation/php/evaluation-framework-action-guide/step-2-describe-the-program.html",
+      "concepts": [
+        "proposal_structure",
+        "measurable_indicators"
+      ],
+      "lesson_ids": [
+        "c09-l3"
+      ],
+      "license": "U.S. government work (public domain in the United States). Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 remediation (2026-11-14, AI): opened the page (dated 2024-08-18) and confirmed: a logic model shows how a program's activities connect to its intended outcomes; inputs are resources such as personnel, partners, materials and funding; activities are the strategies the program implements; outputs are the products of program activities; outcomes are who or what will change because of the program, running from short-term to intermediate to longer-term; contextual factors can help or hinder reaching outcomes.",
+        "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
+      }
+    },
+    {
+      "id": "ncsu-evaluate-sources",
+      "title": "Evaluate Sources",
+      "container": "NC State University Libraries — Think and Do at the Library",
+      "author": "NC State University Libraries",
+      "published": null,
+      "url": "https://www.lib.ncsu.edu/taxonomy/term/34630",
+      "concepts": [
+        "source_reliability"
+      ],
+      "lesson_ids": [
+        "c09-l2"
+      ],
+      "license": "Subject to the NC State University Libraries website terms. Summarized and linked only.",
+      "verification": {
+        "status": "verified",
+        "checked_at": "2026-11-14",
+        "method": "c09 remediation (2026-11-14, AI): opened the page and confirmed: a reputable source will acknowledge any conflict of interest, errors, or shortcomings; check a publisher's About page and any page listing its funding sources; even experts can have biases that influence their writing.",
         "checked_by": "Checked by Claude Code (AI), which opened the page. Not yet checked by a human (not an approval)."
       }
     }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c05-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,12 +19,18 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: labeled the monopsony minimum-wage result as a model result citing Cleveland Fed and Minneapolis Fed pages, and softened claims about what drives mixed evidence to factors economists point to. Not reviewed or approved by a human. Evidence summary aligned with the cited Federal Reserve reviews (earlier studies mostly found some job losses; later studies are mixed)."
       }
     ]
   },
   "objectives": [
     "Use the price-floor model to predict how a minimum wage above the equilibrium wage affects wages, employment, and the surplus of labor in a competitive labor market.",
-    "Explain why real-world evidence on minimum wages is mixed and still debated, including the roles of how high the minimum is relative to local wages and of employer market power.",
+    "Explain why real-world evidence on minimum wages is mixed and still debated, including factors economists point to, such as how high the minimum is relative to local wages and employer market power.",
     "Compare labor policies such as the minimum wage, job training, job-search help, and earned-income support by their benefits, costs, and trade-offs."
   ],
   "concepts": [
@@ -52,7 +58,9 @@
       "definition": "Studies of real minimum wage increases reach different conclusions: some find reduced hiring of low-skill workers, while others find little or no effect on employment. Economists continue to debate the results, and the effects appear to depend on how high the minimum is compared with local wages.",
       "source_ids": [
         "openstax-pe3-4-1",
-        "openstax-pe3-21-4"
+        "openstax-pe3-21-4",
+        "clevelandfed-minimum-wage-2007",
+        "minneapolisfed-minimum-wage-monopsony-2022"
       ]
     },
     {
@@ -60,7 +68,9 @@
       "term": "Employer market power (monopsony)",
       "definition": "A monopsony is a labor market with a single employer (or a few dominant ones) that can set wages. Because workers have few alternatives, such an employer hires fewer workers and pays a lower wage than a competitive labor market would.",
       "source_ids": [
-        "openstax-pe3-14-2"
+        "openstax-pe3-14-2",
+        "clevelandfed-minimum-wage-2007",
+        "minneapolisfed-minimum-wage-monopsony-2022"
       ]
     },
     {
@@ -110,7 +120,7 @@
           ],
           "paragraphs": [
             "Economists have studied many real minimum wage increases, and they do not all agree on what happened. Some studies find fewer jobs for low-skill workers; others find little change. A small increase in a place where wages are already high is different from a big jump in a place where wages are low.",
-            "Another reason is that some employers have the power to set wages. Imagine a town where one big company is almost the only place to work. Workers have few other choices, so the company can pay less than a competitive market would. In a case like that, a minimum wage can raise pay without necessarily cutting jobs. Whether that describes a real town is a question for evidence, not just theory."
+            "Another reason is that some employers have the power to set wages. Imagine a town where one big company is almost the only place to work. Workers have few other choices, so the company can pay less than a competitive market would. In a simple model of a town like that, a minimum wage that is not set too high can raise pay without cutting jobs. Whether that describes a real town is a question for evidence, not just theory."
           ]
         },
         {
@@ -126,7 +136,7 @@
       ]
     },
     "intermediate": {
-      "summary": "A binding minimum wage raises the wage of those employed, lowers the quantity of labor demanded, and raises the quantity supplied, creating a surplus of labor in the competitive model. Real-world effects depend on how high the minimum is relative to local wages and on employer market power, and other labor policies have their own trade-offs.",
+      "summary": "A binding minimum wage raises the wage of those employed, lowers the quantity of labor demanded, and raises the quantity supplied, creating a surplus of labor in the competitive model. To explain why real-world effects differ, economists point to factors such as how high the minimum is relative to local wages and how much power employers have to set wages. Other labor policies have their own trade-offs.",
       "sections": [
         {
           "heading": "Binding and non-binding minimums",
@@ -154,8 +164,8 @@
             "monopsony"
           ],
           "paragraphs": [
-            "Researchers measure what actually happens after minimum wages rise, and their results differ. Some studies find that higher minimum wages reduce low-skill hiring somewhat, while others find no measurable employment effect, and studies on both sides are debated. Economists also argue about how to weigh job losses for some workers against higher incomes for many others.",
-            "Two factors help explain the range of results. First, the level matters: a minimum that is modest compared with typical local wages is likely to have smaller effects than one far above them. Second, market structure matters: where a few employers have the power to set wages (monopsony), they pay less and hire fewer workers than a competitive market would. A minimum wage set between the monopsony wage and the competitive wage can, in theory, raise both pay and employment. How common such markets are is still debated."
+            "Researchers measure what actually happens after minimum wages rise, and their results differ. Reviews of earlier research found that most studies reported some reduction in low-skill employment after minimum wage increases, while a number of later studies find small or no measurable employment effects; economists continue to debate the methods and results on both sides. Economists also argue about how to weigh job losses for some workers against higher incomes for many others.",
+            "Economists point to factors that may help explain the range of results. First, the level: a minimum that is modest compared with typical local wages is likely to have smaller effects than one far above them. Second, market structure: where a few employers have the power to set wages (monopsony), they pay less and hire fewer workers than a competitive market would. In the standard monopsony model, a minimum wage set between the monopsony wage and the competitive wage can raise both pay and employment. How common such markets are, and how much they explain real results, is still debated."
           ]
         },
         {
@@ -171,7 +181,7 @@
       ]
     },
     "advanced": {
-      "summary": "With L_d = a − bW and L_s = c + dW, a binding minimum wage W_min > W* lowers employment by b(W_min − W*) and creates a surplus of labor of (b + d)(W_min − W*). Total wage income of employed workers can rise or fall. Under monopsony, the competitive prediction can reverse over a range of minimum wages, which is one reason the evidence is contested.",
+      "summary": "With L_d = a − bW and L_s = c + dW, a binding minimum wage W_min > W* lowers employment by b(W_min − W*) and creates a surplus of labor of (b + d)(W_min − W*). Total wage income of employed workers can rise or fall. In the standard monopsony model, the competitive prediction can reverse over a range of minimum wages, which is one reason the evidence is contested.",
       "sections": [
         {
           "heading": "The competitive model in equations",
@@ -192,7 +202,7 @@
           ],
           "paragraphs": [
             "A monopsonist faces the upward-sloping labor supply curve, so hiring one more worker means paying a higher wage to all workers. Its marginal cost of labor is above the wage, and it hires where labor demand equals that marginal cost. The result is employment L_m below the competitive level L_c and a wage W_m below the competitive wage W_c.",
-            "A minimum wage W_min with W_m < W_min ≤ W_c makes the marginal cost of labor equal to W_min over a range of employment, so the firm can hire more workers at the floor than it did at W_m. In this range, a minimum wage can raise both the wage and employment. Above W_c, the competitive prediction of lower employment returns. Because real labor markets differ in employer power and in how high the minimum is relative to local wages, empirical studies can reasonably reach different conclusions, and the debate is not settled."
+            "A minimum wage W_min with W_m < W_min ≤ W_c makes the marginal cost of labor equal to W_min over a range of employment, so the firm can hire more workers at the floor than it did at W_m. In this range of the standard monopsony model, a minimum wage can raise both the wage and employment. Above W_c, the competitive prediction of lower employment returns. Because real labor markets differ in employer power and in how high the minimum is relative to local wages, empirical studies can reasonably reach different conclusions, and the debate is not settled."
           ]
         },
         {
@@ -425,7 +435,7 @@
   },
   "key_takeaways": [
     "A minimum wage is a price floor for labor. In the simple competitive model, a binding minimum raises the wage of those employed, lowers employment, and creates a surplus of labor.",
-    "Real-world evidence is mixed and debated: effects appear to depend on how high the minimum is relative to local wages and on employer market power (monopsony).",
+    "Real-world evidence is mixed and debated. To explain why results differ, economists point to factors such as how high the minimum is relative to local wages and employer market power (monopsony).",
     "Training, job-search help, and earned-income support target different problems and have their own costs; good labor policy weighs these trade-offs rather than relying on a single tool."
   ],
   "source_ids": [
@@ -434,6 +444,8 @@
     "openstax-pe3-14-2",
     "openstax-pe3-21-4",
     "openstax-pe3-15-3",
-    "un-sdg-8"
+    "un-sdg-8",
+    "clevelandfed-minimum-wage-2007",
+    "minneapolisfed-minimum-wage-monopsony-2022"
   ]
 }

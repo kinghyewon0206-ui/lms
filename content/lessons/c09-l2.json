@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: added direct sources for difference-in-differences and parallel trends (Columbia Public Health), benefit-cost ranking rules (OpenStax Principles of Finance 16.5, UK Green Book) and conflict of interest (NC State Libraries); framed the ranking rule as a common appraisal rule. Not reviewed or approved by a human."
       }
     ]
   },
@@ -33,7 +39,8 @@
       "term": "Source reliability",
       "definition": "How far you can trust a source depends on its authority (who wrote or published it and their expertise), its purpose (to inform, persuade, or sell, and any economic interest or conflict of interest), how and where it was published (for example, peer review or an official statistics agency), its date, and its documentation (whether it cites its evidence and represents it fairly).",
       "source_ids": [
-        "berkeley-evaluating-resources"
+        "berkeley-evaluating-resources",
+        "ncsu-evaluate-sources"
       ]
     },
     {
@@ -59,7 +66,8 @@
       "definition": "The impact of a program is the difference between what happened with it and what would have happened without it (the counterfactual). Because the counterfactual cannot be observed, evaluations use a comparison group. Simple before-and-after comparisons, or comparisons of participants with non-participants, can be biased when the groups differ in other ways (selection bias).",
       "source_ids": [
         "jpal-intro-evaluations",
-        "openstax-is2e-1-4"
+        "openstax-is2e-1-4",
+        "columbia-did"
       ]
     },
     {
@@ -68,7 +76,9 @@
       "definition": "Cost-effectiveness divides a program's cost by its impact on one outcome (for example, dollars per extra day of attendance), which lets you compare programs aiming at the same goal. Benefit–cost analysis puts both benefits and costs in money terms, so the benefit–cost ratio (benefits ÷ costs) or net benefit (benefits − costs) can compare programs with different goals, at the price of harder valuation assumptions.",
       "source_ids": [
         "jpal-cea",
-        "openstax-pe3-12-4"
+        "openstax-pe3-12-4",
+        "openstax-pof2e-16-5",
+        "uk-green-book-2026"
       ]
     },
     {
@@ -247,7 +257,7 @@
           ],
           "paragraphs": [
             "For a program with cost C and impact ΔY on outcome Y, the cost-effectiveness ratio is C ÷ ΔY (or its inverse, ΔY per $100). Multi-year costs are discounted to present value and expressed in the prices of one base year, using a stated discount rate and price index; the order of these adjustments should be applied consistently. Discount real (base-year-price) costs with a real discount rate and nominal costs with a nominal rate; never mix them.",
-            "With monetized benefits B, the benefit–cost ratio is B ÷ C and the net benefit is B − C. Ratios rank options by efficiency per dollar, while net benefit ranks by total gain; with a fixed budget that can be split, rank by ratio; with mutually exclusive projects of different size, net benefit matters. At the margin, expand an activity while marginal benefit ≥ marginal cost; because cheap reductions come first, marginal cost typically rises as coverage grows."
+            "With monetized benefits B, the benefit–cost ratio is B ÷ C and the net benefit is B − C. Ratios rank options by gain per dollar, while net benefit ranks by total gain, and the two can disagree. A common rule in project appraisal: when a fixed budget must be shared among independent projects, rank them by ratio and fund down the list (corporate finance does this with a similar ratio, the profitability index); when only one of several alternatives of different size can be chosen, pick the one with the largest net benefit. Either ranking is a starting point, not the whole decision. At the margin, expand an activity while marginal benefit ≥ marginal cost; because cheap reductions come first, marginal cost typically rises as coverage grows."
           ]
         },
         {
@@ -495,6 +505,10 @@
     "openstax-pe3-30-2",
     "un-sdg-1",
     "un-sdg-2",
-    "un-sdg-4"
+    "un-sdg-4",
+    "columbia-did",
+    "openstax-pof2e-16-5",
+    "uk-green-book-2026",
+    "ncsu-evaluate-sources"
   ]
 }

@@ -4,8 +4,8 @@
   "kind": "lesson_quiz",
   "course_id": "c02",
   "lesson_id": "c02-l1",
-  "version": 3,
-  "title": "Lesson 1 Quiz: Demand and Supply",
+  "version": 4,
+  "title": "Lesson 1 Quiz: Supply and Demand",
   "description": "This lesson quiz checks what you learned in the lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
     "status": "draft",
@@ -40,7 +40,7 @@
   "questions": [
     {
       "id": "c02-l1-q1",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 1,
@@ -51,7 +51,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "\"When a carton of milk in the school cafeteria costs 50 cents, students want to buy 200 cartons a day.\" What does the 200 cartons describe?",
+      "prompt": "Hypothetical example: \"When a carton of milk in the school cafeteria costs 50 cents, students want to buy 200 cartons a day.\" What does the 200 cartons describe?",
       "choices": [
         {
           "id": "a",

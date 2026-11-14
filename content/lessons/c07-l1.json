@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Added a note that the U.S. examples of financial rules differ by country (source review). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: budget rules of thumb and SMART framed as common practices, not official standards; CFPB example labeled as U.S.. Not reviewed or approved by a human."
       }
     ]
   },
@@ -55,7 +61,7 @@
     {
       "id": "budget",
       "term": "Budget and budgeting methods",
-      "definition": "A budget is a plan that lists expected income and assigns it to spending and saving for a period, usually a month. Common methods include tracking every category against a plan, a zero-based budget (every dollar of net income gets a job), and percentage guidelines such as 50/30/20 (needs/wants/saving). These are examples, not rules; the right split depends on your situation.",
+      "definition": "A budget is a plan that lists expected income and assigns it to spending and saving for a period, usually a month. Common methods include tracking every category against a plan, a zero-based budget (every dollar of net income gets a job), and percentage rules of thumb that some personal-finance writers suggest, such as 50/30/20 (needs/wants/saving). These are examples, not rules; the right split depends on your situation.",
       "source_ids": [
         "cfpb-pay-stub-tool",
         "openstax-pe3-2-1"
@@ -64,7 +70,7 @@
     {
       "id": "financial_goals",
       "term": "Financial goals (SMART framing)",
-      "definition": "A useful financial goal is specific, measurable, achievable, relevant, and time-bound (SMART). For example, \"save $600 for a used bike in 6 months\" can be turned into a saving amount per month and checked against the budget.",
+      "definition": "One common way to frame a financial goal is SMART: specific, measurable, achievable, relevant, and time-bound. For example, \"save $600 for a used bike in 6 months\" can be turned into a saving amount per month and checked against the budget.",
       "source_ids": [
         "cfpb-emergency-fund-guide"
       ]
@@ -138,7 +144,7 @@
             "budget"
           ],
           "paragraphs": [
-            "A tracking budget compares planned and actual amounts in each category at the end of the month. A zero-based budget assigns every dollar of net income to a category, including saving, so that income − spending − saving = 0. A percentage guideline such as 50/30/20 is a starting point: for example, about 50% of net income for needs, 30% for wants, and 20% for saving and paying down debt.",
+            "A tracking budget compares planned and actual amounts in each category at the end of the month. A zero-based budget assigns every dollar of net income to a category, including saving, so that income − spending − saving = 0. A percentage rule of thumb such as 50/30/20 is one possible starting point, not an official standard: for example, about 50% of net income for needs, 30% for wants, and 20% for saving and paying down debt.",
             "Percentage guidelines are examples, not rules. Where housing is expensive, needs may take far more than 50%. The goal of any method is the same: spending plus saving should not exceed net income, and the plan should reflect your priorities."
           ]
         },
@@ -148,7 +154,7 @@
             "financial_goals"
           ],
           "paragraphs": [
-            "A SMART goal is specific (what), measurable (how much), achievable (fits the budget), relevant (matters to you), and time-bound (by when). The saving needed per month is (goal amount − amount already saved) ÷ months left. If that amount does not fit the budget, you can lower the goal, extend the deadline, cut other spending, or raise income."
+            "One common framing is a SMART goal: specific (what), measurable (how much), achievable (fits the budget), relevant (matters to you), and time-bound (by when). The saving needed per month is (goal amount − amount already saved) ÷ months left. If that amount does not fit the budget, you can lower the goal, extend the deadline, cut other spending, or raise income."
           ]
         }
       ]
@@ -264,7 +270,7 @@
         "cfpb-emergency-fund-guide"
       ],
       "paragraphs": [
-        "The CFPB's guide to emergency savings suggests tracking when money comes in and goes out, because bills that come due before payday can leave a person short even when the monthly totals balance. It also suggests that a specific savings goal helps people stay motivated."
+        "The CFPB's guide to emergency savings (U.S. example; rules differ by country) suggests tracking when money comes in and goes out, because bills that come due before payday can leave a person short even when the monthly totals balance. It also suggests that a specific savings goal helps people stay motivated."
       ]
     }
   ],

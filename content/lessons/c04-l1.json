@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l1",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Reworded a definition that closely matched the OpenStax wording (source review). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: cited OpenStax Psychology 2e 2.3 for correlation vs. causation and the third (confounding) factor. Not reviewed or approved by a human."
       }
     ]
   },
@@ -88,7 +94,8 @@
       "definition": "Two measures are correlated when they tend to move together. A correlation alone does not show that one causes the other: the cause could run the other way, or a third factor could drive both.",
       "source_ids": [
         "openstax-is2e-12-3",
-        "openstax-pe3-19-5"
+        "openstax-pe3-19-5",
+        "openstax-psych2e-2-3"
       ]
     }
   ],
@@ -470,6 +477,7 @@
     "openstax-pe3-19-4",
     "openstax-pe3-19-5",
     "openstax-is2e-12-3",
-    "un-sdg-8"
+    "un-sdg-8",
+    "openstax-psych2e-2-3"
   ]
 }

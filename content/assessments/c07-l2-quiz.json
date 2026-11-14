@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c07",
   "lesson_id": "c07-l2",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 2 Quiz: Saving, Interest, and Compound Growth",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -119,7 +119,7 @@
     },
     {
       "id": "c07-l2-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l2",
       "objective": 1,
@@ -129,7 +129,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Why is an emergency fund usually kept in an insured savings account rather than invested in the shares of a single company?",
+      "prompt": "Why is an emergency fund usually kept in an insured savings account (deposit insurance rules differ by country) rather than invested in the shares of a single company?",
       "choices": [
         {
           "id": "a",

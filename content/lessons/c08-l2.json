@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l2",
-  "content_version": 1,
+  "content_version": 2,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -13,6 +13,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: added a direct source for the timing of trade-balance effects (J-curve, Saylor International Finance 8.12) and named the pattern with its caveat. Not reviewed or approved by a human."
       }
     ]
   },
@@ -62,7 +68,8 @@
       "definition": "The value of a country's exports minus the value of its imports. A depreciation tends to raise exports and reduce imports, but the effect on the trade balance depends on how strongly quantities respond to the price changes (their elasticities) and on how much time passes.",
       "source_ids": [
         "openstax-pe3-29-3",
-        "openstax-pe3-5-1"
+        "openstax-pe3-5-1",
+        "saylor-ifp-8-12"
       ]
     },
     {
@@ -203,7 +210,7 @@
           ],
           "paragraphs": [
             "Measured in aris, the trade balance is TB = P_A·X − (P_B/e)·M, where X and M are the quantities exported and imported. A depreciation (lower e) raises the ari cost of each import and, by making exports cheaper abroad, tends to raise X and lower M. Whether TB improves depends on how responsive X and M are: if export and import demand are elastic enough, the quantity effects dominate; if they are very inelastic in the short run, the higher price of imports can dominate and TB can fall at first.",
-            "Because quantities often adjust more over time than immediately, a change in the trade balance after a currency move may build gradually. Other forces, such as incomes at home and abroad and capital flows, also affect the trade balance, so an exchange rate change is never the only explanation. Statements about the trade balance in this lesson are tendencies, not predictions."
+            "Because quantities often adjust more over time than immediately, a change in the trade balance after a currency move may build gradually. When the balance first worsens and later improves, economists call the pattern a J-curve, but it does not always appear. Other forces, such as incomes at home and abroad and capital flows, also affect the trade balance, so an exchange rate change is never the only explanation. Statements about the trade balance in this lesson are tendencies, not predictions."
           ]
         },
         {
@@ -455,6 +462,7 @@
     "openstax-pe3-29-3",
     "openstax-pe3-5-1",
     "un-sdg-8",
-    "un-sdg-17"
+    "un-sdg-17",
+    "saylor-ifp-8-12"
   ]
 }

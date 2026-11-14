@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l3",
-  "version": 2,
+  "version": 3,
   "title": "Lesson 3 Quiz: Sustainable Consumption and Resource Allocation",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -111,7 +111,7 @@
     },
     {
       "id": "c01-l3-q3",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 2,
@@ -121,7 +121,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Making one disposable takeout container costs 30 cents, and after it is used, disposal and environmental damage cost society another 45 cents (assumed values). What is the social cost of one container, in cents? (Enter a number only.)",
+      "prompt": "Hypothetical example: Making one disposable takeout container costs 30 cents, and after it is used, disposal and environmental damage cost society another 45 cents (assumed values). What is the social cost of one container, in cents? (Enter a number only.)",
       "unit": "cents",
       "source_ids": [
         "openstax-pe3-2-1",
@@ -170,7 +170,7 @@
     },
     {
       "id": "c01-l3-q5",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 3,
@@ -181,7 +181,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "A reusable shopping bag costs $3, and each time you use it for shopping, you avoid a 5-cent plastic bag fee. How many times must you use the reusable bag to earn back its price? (Enter a number only.)",
+      "prompt": "Hypothetical example: A reusable shopping bag costs $3, and each time you use it for shopping, you avoid a 5-cent plastic bag fee. How many times must you use the reusable bag to earn back its price? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: replaced OpenStax 33.3 with direct sources for resilience costs (IMF F&D 2022) and value added (IMF F&D GDP basics, OpenStax 19.1), and added WTO TBT for standards used as protection. Not reviewed or approved by a human."
       }
     ]
   },
@@ -42,7 +48,8 @@
       "term": "Value added",
       "definition": "The value a stage of production adds: the price of what the stage sells minus the cost of the inputs it buys from earlier stages. Adding up the value added at every stage, starting from raw materials, gives the final price of the product.",
       "source_ids": [
-        "openstax-pe3-33-3"
+        "imf-fd-gdp-basics",
+        "openstax-pe3-19-1"
       ]
     },
     {
@@ -51,7 +58,8 @@
       "definition": "Because each stage depends on the others, a problem at one point, such as a factory closure, a natural disaster, or a blocked shipping route, can delay production far away. Specialization lowers costs but links countries and firms closely together.",
       "source_ids": [
         "openstax-pe3-33-3",
-        "openstax-pe3-33-4"
+        "openstax-pe3-33-4",
+        "imf-fd-supply-chains"
       ]
     },
     {
@@ -59,7 +67,7 @@
       "term": "Resilience and its costs",
       "definition": "Resilience is the ability of a supply chain to keep working or recover quickly after a disruption. Firms can buy from several suppliers (diversification) or hold extra inventory, but both usually cost money in normal times, so firms face a trade-off between low cost and resilience.",
       "source_ids": [
-        "openstax-pe3-33-3"
+        "imf-fd-supply-chains"
       ]
     },
     {
@@ -87,7 +95,8 @@
       "source_ids": [
         "un-sdg-12",
         "un-sdg-17",
-        "un-sdg-8"
+        "un-sdg-8",
+        "wto-tbt-technical-info"
       ]
     }
   ],
@@ -400,7 +409,8 @@
       "un-sdg-12",
       "un-sdg-8",
       "un-sdg-17",
-      "openstax-pe3-34-3"
+      "openstax-pe3-34-3",
+      "wto-tbt-technical-info"
     ]
   },
   "key_takeaways": [
@@ -418,6 +428,10 @@
     "openstax-pe3-12-1",
     "un-sdg-8",
     "un-sdg-12",
-    "un-sdg-17"
+    "un-sdg-17",
+    "imf-fd-supply-chains",
+    "imf-fd-gdp-basics",
+    "openstax-pe3-19-1",
+    "wto-tbt-technical-info"
   ]
 }

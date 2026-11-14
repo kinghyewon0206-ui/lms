@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Added a note that the U.S. examples of financial rules differ by country (source review). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: U.S. deposit-insurance mentions labeled at beginner and intermediate levels; financial inclusion definition marked as a broad description; FTC list reworded. Not reviewed or approved by a human."
       }
     ]
   },
@@ -77,7 +83,7 @@
     {
       "id": "financial_inclusion",
       "term": "Financial inclusion",
-      "definition": "Access for individuals and businesses to useful, affordable financial services: a transaction account, payments, savings, credit, and insurance, delivered responsibly. Access helps people manage shocks, save, and invest in work or education, which links it to poverty reduction (SDG target 1.4) and to expanding financial services for all (SDG target 8.10).",
+      "definition": "There is no single official wording; broadly, it means access for individuals and businesses to useful, affordable financial services: a transaction account, payments, savings, credit, and insurance, delivered responsibly. Access helps people manage shocks, save, and invest in work or education, which links it to poverty reduction (SDG target 1.4) and to expanding financial services for all (SDG target 8.10).",
       "source_ids": [
         "worldbank-financial-inclusion",
         "un-sdg-1",
@@ -116,7 +122,7 @@
             "diversification"
           ],
           "paragraphs": [
-            "A savings account at an insured bank pays a small amount of interest, and the money is very safe. Investments like shares in companies can earn more on average, but their value goes up and down, and you can lose money. If someone promises a high return with no risk, treat it as a warning sign.",
+            "A savings account at an insured bank pays a small amount of interest, and the money is very safe up to the insurance limit (in the U.S., FDIC insurance; rules differ by country). Investments like shares in companies can earn more on average, but their value goes up and down, and you can lose money. If someone promises a high return with no risk, treat it as a warning sign.",
             "\"Don't put all your eggs in one basket\" is the idea behind diversification. If all your money is in one company and it fails, you lose a lot. If it is spread across many, one failure hurts much less. But if the whole market falls, spreading out will not fully protect you."
           ]
         },
@@ -163,7 +169,7 @@
             "diversification"
           ],
           "paragraphs": [
-            "Investors generally require a higher average return to hold riskier assets. Insured bank deposits have low risk and low return; bonds are usually in the middle; stocks have historically offered higher average returns with much larger ups and downs. These are general patterns, not promises: past returns do not guarantee future returns.",
+            "Investors generally require a higher average return to hold riskier assets. Insured bank deposits have low risk and low return (up to the insurance limit; U.S. example: FDIC insurance; rules differ by country); bonds are usually in the middle; stocks have historically offered higher average returns with much larger ups and downs. These are general patterns, not promises: past returns do not guarantee future returns.",
             "Diversification spreads money across many assets whose results do not move together perfectly. Company-specific events, such as one firm's failed product, then have a small effect on the total. But events that hit the whole market, like a recession, affect most assets at once, so diversification reduces risk without eliminating it."
           ]
         },
@@ -355,7 +361,7 @@
         "ftc-avoid-scam"
       ],
       "paragraphs": [
-        "The U.S. Federal Trade Commission describes four common signs of a scam: impersonation of a trusted organization, a claimed problem or prize, pressure to act immediately, and a demand for payment by an unusual method such as gift cards, wire transfers, payment apps, or cryptocurrency. These are U.S. examples; financial rules, protections, and agencies differ from country to country, so check the rules where you live."
+        "The U.S. Federal Trade Commission describes four common signs of a scam: impersonation of a trusted organization, a claimed problem or prize, pressure to decide right away, and a demand for payment by an unusual method such as gift cards, wire transfers, payment apps, or cryptocurrency. These are U.S. examples; financial rules, protections, and agencies differ from country to country, so check the rules where you live."
       ]
     },
     {

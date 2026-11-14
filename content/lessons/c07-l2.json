@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Added a note that the U.S. examples of financial rules differ by country (source review). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: U.S. rule examples (FDIC, Regulation DD, credit card statements) labeled as U.S. examples at each level and in real-world examples. Not reviewed or approved by a human."
       }
     ]
   },
@@ -179,7 +185,7 @@
           ],
           "paragraphs": [
             "Real return = (1 + nominal return) ÷ (1 + inflation) − 1, the same exact formula used for real wages in Course 4. A savings account paying 5% when inflation is 3% gives a real return of 1.05 ÷ 1.03 − 1 ≈ 1.94%. The shortcut 5% − 3% = 2% is close for small rates. If the nominal rate is below inflation, the real return is negative and purchasing power falls.",
-            "For a borrower, the same math works in reverse. A credit card balance at 24% APR grows by about 2% a month if it is not paid down. Simplified hypothetical example: on a $1,000 balance, one month's interest is about $1,000 × 0.02 = $20. If the payment barely covers that interest, the balance hardly falls, and the debt can last for years. U.S. credit card statements generally must show how long repayment would take at the minimum payment, which makes this cost visible."
+            "For a borrower, the same math works in reverse. A credit card balance at 24% APR grows by about 2% a month if it is not paid down. Simplified hypothetical example: on a $1,000 balance, one month's interest is about $1,000 × 0.02 = $20. If the payment barely covers that interest, the balance hardly falls, and the debt can last for years. U.S. credit card statements generally must show how long repayment would take at the minimum payment (U.S. example; rules differ by country), which makes this cost visible."
           ]
         }
       ]
@@ -193,7 +199,7 @@
             "saving_emergency_fund"
           ],
           "paragraphs": [
-            "An emergency fund is precautionary saving: a buffer against income and expense shocks. Its value comes from liquidity and stability, not from return. Holding it in a deposit account sacrifices some expected return (an opportunity cost), but it avoids two costly alternatives: selling a volatile asset after its price has fallen, or borrowing at a high APR. In the U.S., deposits at insured banks are protected by FDIC deposit insurance up to a limit, while investments such as stocks and mutual funds are not."
+            "An emergency fund is precautionary saving: a buffer against income and expense shocks. Its value comes from liquidity and stability, not from return. Holding it in a deposit account sacrifices some expected return (an opportunity cost), but it avoids two costly alternatives: selling a volatile asset after its price has fallen, or borrowing at a high APR. In the U.S., deposits at insured banks are protected by FDIC deposit insurance up to a limit, while investments such as stocks and mutual funds are not (U.S. example; rules differ by country)."
           ]
         },
         {
@@ -214,7 +220,7 @@
             "real_return"
           ],
           "paragraphs": [
-            "APY = (1 + r/n)^n − 1, which increases with n and approaches e^r − 1 as n → ∞. At r = 6%: n = 1 gives 6.00%, n = 4 gives 6.136%, n = 12 gives 6.168%, n = 365 gives 6.183%. U.S. deposit rules (Regulation DD) define the APY so that it reflects both the interest rate and the compounding frequency. On loans, the disclosed APR can fold certain fees into the rate, so two loans with the same interest rate can have different APRs.",
+            "APY = (1 + r/n)^n − 1, which increases with n and approaches e^r − 1 as n → ∞. At r = 6%: n = 1 gives 6.00%, n = 4 gives 6.136%, n = 12 gives 6.168%, n = 365 gives 6.183%. U.S. deposit rules (Regulation DD) define the APY so that it reflects both the interest rate and the compounding frequency (U.S. example; rules differ by country). On loans, the disclosed APR can fold certain fees into the rate, so two loans with the same interest rate can have different APRs.",
             "Exact real return: i_real = (1 + i) ÷ (1 + π) − 1. The approximation i_real ≈ i − π ignores the cross term and overstates the real return slightly when π > 0 (5% nominal, 3% inflation: exact 1.942%, approximate 2%). Over many years, real growth compounds too: the real value after t years is P[(1 + i) ÷ (1 + π)]^t. Past returns do not guarantee future returns, so any long-run projection is an illustration that depends on its assumptions."
           ]
         },
@@ -356,7 +362,7 @@
         "fdic-deposit-insurance"
       ],
       "paragraphs": [
-        "Economics textbooks describe a range of choices for household savings: checking accounts with easy access and little interest, savings accounts with some interest, and certificates of deposit that pay more but charge a penalty for early withdrawal. In the United States, deposits at insured banks are protected by FDIC deposit insurance up to a stated limit per depositor, per bank, and ownership category; stocks, bonds, mutual funds, and crypto assets are not deposits and are not covered, even when bought through a bank."
+        "Economics textbooks describe a range of choices for household savings: checking accounts with easy access and little interest, savings accounts with some interest, and certificates of deposit that pay more but charge a penalty for early withdrawal. In the United States, deposits at insured banks are protected by FDIC deposit insurance up to a stated limit per depositor, per bank, and ownership category; stocks, bonds, mutual funds, and crypto assets are not deposits and are not covered, even when bought through a bank (U.S. example; rules differ by country)."
       ]
     },
     {
@@ -367,7 +373,7 @@
         "cfpb-minimum-payment-box"
       ],
       "paragraphs": [
-        "U.S. rules require banks to state the APY on deposit accounts in a standard way that reflects the rate and the frequency of compounding. For mortgages, the APR is a broader measure of the cost of borrowing than the interest rate because it includes certain fees. Credit card statements generally must show how long it would take to pay off the balance by paying only the minimum, and the CFPB notes that paying more each month means paying less interest over time."
+        "U.S. rules require banks to state the APY on deposit accounts in a standard way that reflects the rate and the frequency of compounding (U.S. example; rules differ by country). For U.S. mortgages, the APR is a broader measure of the cost of borrowing than the interest rate because it includes certain fees. U.S. credit card statements generally must show how long it would take to pay off the balance by paying only the minimum, and the CFPB notes that paying more each month means paying less interest over time."
       ]
     }
   ],

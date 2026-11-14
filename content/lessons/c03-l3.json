@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c03-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Added explanation that the carbon-tax simulation uses simplified hypothetical values (Option A). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: stated the carbon tax as a pollution tax applied to greenhouse gases, cited the IMF F&D externalities page for the Pigouvian tax, and dropped the unsupported 'standard term' claim for carbon dividend; teaching-value wording and simulation values unchanged. Not reviewed or approved by a human."
       }
     ]
   },
@@ -53,7 +59,7 @@
     {
       "id": "carbon_tax",
       "term": "Carbon tax",
-      "definition": "A pollution tax on emissions of greenhouse gases (carbon dioxide). Together with emissions trading, it is one of the main forms of carbon pricing, and its revenue can be used to support households or fund clean investment.",
+      "definition": "A pollution tax applied to emissions of greenhouse gases such as carbon dioxide. Like emissions trading, it puts a price on carbon, and its revenue can be used to support households or fund clean investment.",
       "source_ids": [
         "imf-climate-mitigation",
         "openstax-pe3-12-3"
@@ -82,7 +88,8 @@
       "definition": "When a tax reduces trade, some gains from trade within the market are lost (deadweight loss), but external damage is avoided on every unit no longer traded. A policy can be evaluated only by looking at both effects together.",
       "source_ids": [
         "openstax-pe3-12-1",
-        "openstax-pe3-12-3"
+        "openstax-pe3-12-3",
+        "imf-fd-externalities"
       ]
     }
   ],
@@ -199,7 +206,7 @@
             "social_welfare_change"
           ],
           "paragraphs": [
-            "The loss within the market (deadweight loss) is ½·t·ΔQ, and if the external damage per unit is md, the avoided damage is md·ΔQ. So the change in social welfare is W(t) = ΔQ·(md − t/2) = k·t·(md − t/2), where k = b·d/(b + d). Differentiating W with respect to t gives k·(md − t), so W is largest when t = md. A tax rate equal to the external cost is called a Pigouvian tax, the standard economics term named after the economist Arthur Pigou. When t is twice md, W = 0, and any higher rate actually lowers welfare.",
+            "The loss within the market (deadweight loss) is ½·t·ΔQ, and if the external damage per unit is md, the avoided damage is md·ΔQ. So the change in social welfare is W(t) = ΔQ·(md − t/2) = k·t·(md − t/2), where k = b·d/(b + d). Differentiating W with respect to t gives k·(md − t), so W is largest when t = md. A tax rate equal to the external cost is called a Pigouvian tax, after the economist Arthur Pigou, who proposed taxing polluters by the amount of harm they cause others. When t is twice md, W = 0, and any higher rate actually lowers welfare.",
             "A caution: this model assumes straight-line demand and supply and a constant damage per unit. In reality, estimates of the social cost of carbon are uncertain, and lower-income households may feel the burden more heavily, so how the revenue is used shapes both the fairness of the policy and how willing people are to accept it.",
             "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Set t to 3, 6, and 12 in turn, record the 'Change in social welfare (assumed)' each time, and compare the results with the formula for W(t). Then change md and check where the t that gives the largest welfare change moves. Unit check: with t in dollars per unit and e in kilograms per unit, the implied price of emissions is t ÷ e dollars per kilogram, or 1,000 × t ÷ e dollars per tonne. The default values (t = 6, e = 1) imply $6,000 per tonne, which is a teaching number, not a realistic carbon price. Real-world carbon prices and estimates of the social cost of carbon are measured per tonne of carbon dioxide and are uncertain, so compare mechanisms, not magnitudes."
           ]
@@ -365,7 +372,7 @@
     ],
     "options": [
       {
-        "name": "Return the revenue to every resident in equal amounts (a carbon dividend, the standard economics term)",
+        "name": "Return the revenue to every resident in equal amounts (sometimes called a carbon dividend)",
         "benefits": [
           "Lower-income households may get back more than they pay in higher prices, which helps with fairness.",
           "The price signal stays in place, so emissions keep falling."
@@ -427,6 +434,7 @@
     "openstax-pe3-5-3",
     "imf-climate-mitigation",
     "un-sdg-7",
-    "un-sdg-13"
+    "un-sdg-13",
+    "imf-fd-externalities"
   ]
 }

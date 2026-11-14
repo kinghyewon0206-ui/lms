@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: added direct sources for tariff welfare analysis (LibreTexts 7.8), the compensation principle (LibreTexts 5.13) and displaced workers' pay (BLS); reworded the retraining cost in the SDG case and the comparative-advantage definition (close-paraphrase check). Not reviewed or approved by a human."
       }
     ]
   },
@@ -40,7 +46,7 @@
     {
       "id": "comparative_advantage",
       "term": "Comparative advantage",
-      "definition": "A country has a comparative advantage in a good when it can produce that good at a lower opportunity cost than another country, meaning it gives up less of the other good for each unit. Every country has a comparative advantage in something, even if it has no absolute advantage at all, unless both countries have exactly the same opportunity costs.",
+      "definition": "Comparative advantage means producing a good at a lower opportunity cost than another country: for each unit made, the country gives up less of the other good. Every country has a comparative advantage in something, even if it has no absolute advantage at all, unless both countries have exactly the same opportunity costs.",
       "source_ids": [
         "openstax-pe3-33-1",
         "openstax-pe3-33-2",
@@ -72,7 +78,8 @@
       "definition": "Trade can raise a country's total income while hurting some groups. Workers and firms in industries that compete with imports may lose jobs or income, while export industries and consumers gain. Moving to new jobs takes time and money (adjustment costs), so policies such as temporary income support and retraining are often discussed.",
       "source_ids": [
         "openstax-pe3-34-2",
-        "openstax-pe3-34-5"
+        "openstax-pe3-34-5",
+        "libretexts-ittp-5-13"
       ]
     },
     {
@@ -81,7 +88,8 @@
       "definition": "A tariff is a tax on imported goods. Import quotas (limits on the quantity imported) and nontariff barriers (rules and paperwork that make importing harder) also restrict trade. Protection raises the domestic price: domestic producers of the protected good gain, while domestic consumers and firms that use the good as an input lose.",
       "source_ids": [
         "openstax-pe3-34-1",
-        "openstax-pe3-33-4"
+        "openstax-pe3-33-4",
+        "libretexts-ittp-7-8"
       ]
     }
   ],
@@ -225,7 +233,7 @@
             "distribution_of_gains"
           ],
           "paragraphs": [
-            "Because opening to trade raises total surplus, the winners could in principle compensate the losers and everyone could still be better off. In practice, compensation requires deliberate policy (income support, retraining, help for affected regions), and it is costly, imperfect, and politically contested. Losses tend to be concentrated in specific industries and places, while gains are spread across many consumers, which also helps explain why small, organized producer groups can win protection.",
+            "Because opening to trade raises total surplus, the winners could in principle compensate the losers and everyone could still be better off (economists call this the compensation principle). In practice, compensation requires deliberate policy (income support, retraining, help for affected regions), and it is costly, imperfect, and politically contested. Losses tend to be concentrated in specific industries and places, while gains are spread across many consumers, which also helps explain why small, organized producer groups can win protection.",
             "Protection also has spillovers: a tariff on an input raises costs for downstream industries that use it, which can cost jobs there. Evaluating trade policy therefore means comparing the aggregate gain with the size, concentration, and duration of the losses, and with the effectiveness of the tools available to address them."
           ]
         }
@@ -412,7 +420,7 @@
           "Displaced workers get income while they search and training for growing industries."
         ],
         "costs": [
-          "Programs cost public money, and retraining does not always lead to jobs with similar pay.",
+          "Programs cost public money, and support does not guarantee similar pay: in U.S. surveys, many displaced workers who find new full-time jobs earn less than at their old job.",
           "The two towns may struggle even with support if few new employers arrive."
         ],
         "assumptions": [
@@ -454,7 +462,8 @@
     "source_ids": [
       "un-sdg-8",
       "un-sdg-17",
-      "openstax-pe3-34-5"
+      "openstax-pe3-34-5",
+      "bls-displaced-workers"
     ]
   },
   "key_takeaways": [
@@ -473,6 +482,9 @@
     "openstax-pe3-34-5",
     "openstax-pe3-2-2",
     "un-sdg-8",
-    "un-sdg-17"
+    "un-sdg-17",
+    "libretexts-ittp-7-8",
+    "libretexts-ittp-5-13",
+    "bls-displaced-workers"
   ]
 }

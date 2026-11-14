@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l1",
-  "content_version": 1,
+  "content_version": 2,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -13,6 +13,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written draft. Not reviewed or approved by a human; not shown to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: Gini grouped-data claim reworded as a derived result; worked-example label made consistent. Not reviewed or approved by a human."
       }
     ]
   },
@@ -60,7 +66,7 @@
     {
       "id": "gini_coefficient",
       "term": "Gini coefficient",
-      "definition": "A single-number summary of inequality based on the Lorenz curve: the area between the diagonal and the Lorenz curve, divided by the whole area under the diagonal. It runs from 0 (perfect equality) to 1 (one person has all the income); the World Bank also reports it on a 0 to 100 scale. When it is estimated from grouped data, such as quintiles, it is an approximation that understates inequality within each group.",
+      "definition": "A single-number summary of inequality based on the Lorenz curve: the area between the diagonal and the Lorenz curve, divided by the whole area under the diagonal. It runs from 0 (perfect equality) to 1 (one person has all the income); the World Bank also reports it on a 0 to 100 scale. When it is estimated from grouped data, such as quintiles, it ignores income differences inside each group, so it understates the Gini coefficient for the whole population (Worked Example 6 shows this).",
       "source_ids": [
         "worldbank-gini-index"
       ]
@@ -248,7 +254,7 @@
       "id": "c06-l1-we1",
       "level": "beginner",
       "title": "How many times more does the top fifth get?",
-      "problem": "Hypothetical example, Country A, share of total income by quintile: Quintile 1 (poorest 20%): 5%. Quintile 2: 10%. Quintile 3: 15%. Quintile 4: 25%. Quintile 5 (richest 20%): 45%. How many times as much income does the richest quintile receive as the poorest quintile?",
+      "problem": "Hypothetical example: Country A's share of total income by quintile is Quintile 1 (poorest 20%): 5%. Quintile 2: 10%. Quintile 3: 15%. Quintile 4: 25%. Quintile 5 (richest 20%): 45%. How many times as much income does the richest quintile receive as the poorest quintile?",
       "steps": [
         "Check that the shares add up: 5 + 10 + 15 + 25 + 45 = 100%.",
         "Both groups have the same number of households (20% each), so you can compare their shares directly.",

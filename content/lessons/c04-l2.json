@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: cited a Penn State course page for the rule of 70 and Eurostat for relative vs. absolute decoupling; labeled the production function form as a modeling assumption. Not reviewed or approved by a human."
       }
     ]
   },
@@ -73,7 +79,8 @@
       "term": "Compound growth and the rule of 70",
       "definition": "When a value grows at rate g per year, after t years it equals the starting value × (1 + g)ᵗ, because each year's growth builds on the previous total. The rule of 70 is an approximation of doubling time: years to double ≈ 70 ÷ (growth rate in percent).",
       "source_ids": [
-        "openstax-pe3-20-2"
+        "openstax-pe3-20-2",
+        "psu-eme807-growth-doubling"
       ]
     },
     {
@@ -81,7 +88,8 @@
       "term": "Decoupling growth from environmental degradation",
       "definition": "Raising output while resource use or environmental harm grows more slowly (relative decoupling) or falls (absolute decoupling). SDG target 8.4 calls for improving resource efficiency and working to decouple growth from environmental degradation.",
       "source_ids": [
-        "un-sdg-8"
+        "un-sdg-8",
+        "eurostat-resource-productivity"
       ]
     }
   ],
@@ -208,7 +216,7 @@
             "technology"
           ],
           "paragraphs": [
-            "A common form is y = A·k^α·h^(1−α), where y is output per hour, k is physical capital per hour, h is human capital per hour, A is technology, and 0 < α < 1. Taking growth rates, g_y ≈ g_A + α·g_k + (1 − α)·g_h. Because α < 1, raising k alone yields diminishing returns: doubling k multiplies y by only 2^α. Sustained growth in y therefore requires continued growth in A or h.",
+            "A common modeling assumption is the form y = A·k^α·h^(1−α), where y is output per hour, k is physical capital per hour, h is human capital per hour, A is technology, and 0 < α < 1. Taking growth rates, g_y ≈ g_A + α·g_k + (1 − α)·g_h. Because α < 1, raising k alone yields diminishing returns: doubling k multiplies y by only 2^α. Sustained growth in y therefore requires continued growth in A or h.",
             "Growth accounting uses this equation in reverse: the part of g_y not explained by measured growth in k and h is attributed to technology and efficiency (the residual). That residual also absorbs measurement errors, so it should be read with caution."
           ]
         },
@@ -400,6 +408,8 @@
   "source_ids": [
     "openstax-pe3-20-2",
     "openstax-pe3-20-3",
-    "un-sdg-8"
+    "un-sdg-8",
+    "psu-eme807-growth-doubling",
+    "eurostat-resource-productivity"
   ]
 }

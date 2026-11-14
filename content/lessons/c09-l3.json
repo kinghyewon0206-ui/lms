@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: added direct sources for present value (OpenStax Appendix C), real prices and real discount rates (UK Green Book) and the inputs-activities-outputs-outcomes logic model (CDC). Not reviewed or approved by a human."
       }
     ]
   },
@@ -34,7 +40,8 @@
       "definition": "A coherent policy proposal states the goal (which SDG target and indicator it aims to move), the mechanism (how the policy changes incentives, prices, or resources to cause the change), the target group, the cost, the funding source, and the expected outcomes for the economy and for the SDG target. Each part should follow from the evidence and comparison of options.",
       "source_ids": [
         "jpal-cea",
-        "openstax-pe3-12-3"
+        "openstax-pe3-12-3",
+        "cdc-logic-model"
       ]
     },
     {
@@ -62,7 +69,9 @@
       "source_ids": [
         "openstax-pe3-19-2",
         "openstax-pe3-17-3",
-        "jpal-cea"
+        "jpal-cea",
+        "openstax-pe3-appendix-c",
+        "uk-green-book-2026"
       ]
     },
     {
@@ -72,7 +81,8 @@
       "source_ids": [
         "unstats-sdg-indicators",
         "un-sdg-4",
-        "un-sdg-6"
+        "un-sdg-6",
+        "cdc-logic-model"
       ]
     },
     {
@@ -224,7 +234,7 @@
             "proposal_structure"
           ],
           "paragraphs": [
-            "Specify the chain inputs → activities → outputs → outcomes → SDG indicator, and the economic mechanism at each link (a change in relative prices, a correction of an externality, provision of a public good, a fall in the opportunity cost of a choice). Every link is an assumption that evidence can support or weaken.",
+            "Specify the chain inputs → activities → outputs → outcomes → SDG indicator (program evaluators call this a logic model), and the economic mechanism at each link (a change in relative prices, a correction of an externality, provision of a public good, a fall in the opportunity cost of a choice). Every link is an assumption that evidence can support or weaken.",
             "Quantify the plan with a cost function C = F + c × N, where F is the fixed cost, c the cost per person reached, and N the number reached, and with expected impact ΔY on the target indicator. Report cost-effectiveness C ÷ ΔY next to the alternatives you rejected."
           ]
         },
@@ -488,6 +498,9 @@
     "openstax-pe3-30-2",
     "unstats-sdg-indicators",
     "un-sdg-4",
-    "un-sdg-6"
+    "un-sdg-6",
+    "openstax-pe3-appendix-c",
+    "uk-green-book-2026",
+    "cdc-logic-model"
   ]
 }

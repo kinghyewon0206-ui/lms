@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: cited the St. Louis Fed for avoiding cash at very high inflation and the IMF F&D inflation page for disinflation slowing activity for a while (wording aligned to the source). Not reviewed or approved by a human."
       }
     ]
   },
@@ -87,7 +93,8 @@
       "source_ids": [
         "openstax-pe3-22-4",
         "openstax-pe3-28-1",
-        "ecb-monetary-policy-intro"
+        "ecb-monetary-policy-intro",
+        "stlouisfed-money-inflation"
       ]
     }
   ],
@@ -408,7 +415,7 @@
         ],
         "costs": [
           "Low-income households get no direct help while prices are high.",
-          "Bringing inflation down can slow spending and hiring for a while (a later course explains why)."
+          "Bringing inflation down can slow spending and economic activity for a while (a later course explains why)."
         ],
         "assumptions": [
           "People trust the central bank, so inflation expectations stay anchored."
@@ -421,7 +428,8 @@
     "source_ids": [
       "un-sdg-8",
       "openstax-pe3-22-4",
-      "ecb-monetary-policy-intro"
+      "ecb-monetary-policy-intro",
+      "imf-fd-inflation-basics"
     ]
   },
   "key_takeaways": [
@@ -438,6 +446,7 @@
     "openstax-pe3-28-1",
     "imf-fd-inflation-basics",
     "ecb-monetary-policy-intro",
-    "un-sdg-8"
+    "un-sdg-8",
+    "stlouisfed-money-inflation"
   ]
 }

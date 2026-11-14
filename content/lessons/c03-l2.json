@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c03-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: framed the climate free-riding/commons link as an analogy and cited the IMF F&D externalities page (atmosphere as a global public good). Not reviewed or approved by a human."
       }
     ]
   },
@@ -49,7 +55,8 @@
       "term": "Public good",
       "definition": "A good that is both nonexcludable and nonrival, such as national defense, streetlights, or basic research. Because it is hard to charge for, the market tends not to supply enough of it.",
       "source_ids": [
-        "openstax-pe3-13-3"
+        "openstax-pe3-13-3",
+        "imf-fd-externalities"
       ]
     },
     {
@@ -181,7 +188,7 @@
           ],
           "paragraphs": [
             "In an open-access fishery, a boat enters whenever its average catch is worth more than its cost. For society as a whole, however, what matters is how much the total catch rises when that boat enters (the marginal catch). If F(n) is the total catch of n boats and w is the cost of one boat, free entry continues as long as the average F(n)/n ≥ w, while the efficiency condition is that the marginal catch F(n) − F(n − 1) ≥ w. The catch a new boat takes away from other boats does not enter that boat's cost, so entry goes beyond the efficient level (worked example 3).",
-            "The atmosphere is like a common resource that absorbs greenhouse gases, and cutting emissions to stabilize the climate is like a global public good that benefits every country. So climate action faces both free riding and the tragedy of the commons at once, which makes cooperation between countries difficult."
+            "Applying these ideas to climate change takes an analogy. The atmosphere works like a common resource that absorbs greenhouse gases, and cutting emissions to stabilize the climate works like a global public good that benefits every country (the IMF describes the atmosphere itself as a global public good). Seen this way, climate action faces both free riding and the tragedy of the commons at once, which helps explain why cooperation between countries is difficult."
           ]
         }
       ]
@@ -346,6 +353,7 @@
     "openstax-pe3-12-5",
     "openstax-pe3-13-3",
     "un-sdg-7",
-    "un-sdg-13"
+    "un-sdg-13",
+    "imf-fd-externalities"
   ]
 }

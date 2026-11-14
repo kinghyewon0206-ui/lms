@@ -452,3 +452,84 @@
   (해당 문단이 있는 레벨에만 들어감 — 모든 레벨에 넣을지는 사람 결정)
 - 나머지 지적(출처가 직접 뒷받침하지 않는 주장 20건, 간접 지지 23건, 새 출처 후보)은 `review-backlog.md` A2·B2·B3 로 사람 결정을 기다린다.
 
+## 7. 근거 보완 결과 (2026-11-14, AI 작업 · 사람 승인 아님)
+
+미지지 20건·간접 23건(총 43건)을 다시 처리했다. 직접 출처를 실제로 열어 확인한 경우에만 인용을 추가했고, 찾지 못하면 표현을 조심스럽게 바꾸거나 가정을 명시하거나 삭제했다.
+
+| 집계 | 건수 |
+|---|---|
+| 미지지 → 남은 미지지 | 20 → **0** |
+| 직접 지지가 된 주장 | 22 |
+| 레슨 안에서 유도된 결과로 표시 (정의·산술에서 따라 나옴) | 8 |
+| 간접 지지 + 가정·한계를 본문에 명시 | 10 |
+| 간접 지지 그대로 (사람 판단 대기) | 2 |
+| 삭제 | 1 (c03 '탄소 배당은 표준 용어' 주장) |
+| 새 출처 | 22 (출처 레지스트리 89 → 111개, 모두 AI 확인 · 사람 미승인) |
+
+### 7.1 주장별 전후 (각 그룹 결과 표에서 발췌; 직접→직접 항목 포함)
+| id | 이전 판정 | 조치 | 이후 판정 | 출처 |
+|---|---|---|---|---|
+| P05-4 | unsupported | new source + reworded (labeled as a model result) | direct (for the model result; the empirical debate stays ope | clevelandfed, clevelandfed-minimum-wage-2007, minneapolisfed, minneapolisfed-minimum-wage-monopsony-2022 |
+| P05-5 | unsupported | reworded + same new sources (concept-level) | direct (model result), hedge kept |  |
+| P05-7 | indirect | added citation + reworded to "factors economists point to" | direct for "factors economists point to"; not presented as s | clevelandfed-minimum-wage-2007, minneapolisfed-minimum-wage-monopsony-2022 |
+| P05-8 | indirect | kept as derived; ¶2 reworded to show it follows from definitions | derived-in-lesson | openstax-pe3-21-1 |
+| P04-1 | unsupported (rule) | new source; lesson's ln 2 derivation kept | direct (rule) + derived-in-lesson (ln 2 accuracy) | psu, psu-eme807-growth-doubling |
+| P04-2 | unsupported | kept as derived (arithmetic definition) | derived-in-lesson |  |
+| P04-3 | indirect | new source added to concept | direct (correlation ≠ causation; third/confounding factor);  | openstax, openstax-psych2e-2-3 |
+| P04-4 | indirect | new source added to concept | direct (definitions); intensity identity = derived-in-lesson | eurostat, eurostat-resource-productivity |
+| P04-5 | indirect | reworded to state the assumption | indirect-with-stated-assumption |  |
+| P04-6 | unsupported | new source (concept price_stability + lesson) | direct | stlouisfed, stlouisfed-money-inflation |
+| P04-7 | unsupported (current citation) | added citation (options have no own source_ids, so added to `sdg_case. | direct | imf, imf-fd-inflation-basics |
+| P03-1 | indirect (definition) | reworded to state it as a pollution tax applied to GHGs | indirect-with-stated-assumption | imf-climate-mitigation, openstax-pe3-12-3 |
+| P03-3 | indirect | new source + reworded | direct (Pigouvian tax = tax equal to harm caused); t = md op | imf, imf-fd-externalities |
+| P03-4 | indirect | reworded (removed "standard economics term" claim) | removed (claim) |  |
+| P03-5 | n/a (hypothetical) | kept unchanged ("teaching value" wording and all starting values a=100 | n/a — still needs human approval of the Option A wording |  |
+| P03-6 | indirect | new source + reworded as an analogy | indirect-with-stated-assumption (public-good part direct) | imf-fd-externalities, openstax-pe3-12-5 |
+| P06-1 | direct | none | direct | worldbank-gini-index |
+| P06-2 | indirect | kept as derived | derived-in-lesson (mathematical equivalence; WE5 computes bo | worldbank-gini-index |
+| P06-3 | unsupported | reworded, kept as derived | derived-in-lesson |  |
+| P06-4 | unsupported | new source + reworded | direct (60% EU example); 50% kept as a hypothetical example  | eurostat, eurostat-at-risk-of-poverty-rate |
+| P06-5 | unsupported | new source + reworded | direct (shortfall/depth/index); "total money needed" = deriv | worldbank, worldbank-poverty-gap-national |
+| P06-6 | indirect | added citation | direct | openstax, openstax-pe3-15-5 |
+| P06-7 | unsupported | reworded as explicit assumption | indirect-with-stated-assumption | openstax-pe3-30-2 |
+| P06-8 | direct | none | direct | openstax-pe3-15-5 |
+| P06-9 | indirect | kept (standard terminology) | indirect (standard classification) | openstax-pe3-15-3 |
+| P06-10 | indirect | kept as derived | derived-in-lesson (EMTR = benefit cut ÷ extra earnings, comp | openstax-pe3-15-2 |
+| P06-11 | indirect | reworded (hedged) | indirect-with-stated-assumption |  |
+| P06-12 | direct | none | direct | openstax-pe3-30-2 |
+| P06-13 | direct | none | direct | openstax-pe3-15-5 |
+| P06-14 | direct | none | direct | worldbank-measuring-poverty |
+| P07-1 | direct | U.S. label added | direct | fdic-deposit-insurance |
+| P07-2 | direct | U.S. label added | direct | cfpb-reg-dd-apy |
+| P07-3 | direct | clarified as U.S. | direct | cfpb-mortgage-apr |
+| P07-4 | direct | U.S. label added | direct | cfpb-minimum-payment-box |
+| P07-5 | direct | reworded (list wording, section 5) | direct | ftc-avoid-scam |
+| P07-6 | unsupported | reworded (rule of thumb) | indirect-with-stated-assumption |  |
+| P07-7 | indirect | reworded (common framing) | indirect-with-stated-assumption |  |
+| P07-8 | indirect | kept (already framed as "general patterns, not promises") | indirect-with-stated-assumption (educational caution) |  |
+| P07-9 | indirect | kept as derived | derived-in-lesson (equals Reg DD day-count formula for a 365 | cfpb-reg-dd-apy |
+| P07-10 | indirect | kept (hedge "depending on...") | indirect-with-stated-assumption | cfpb-credit-card-apr, cfpb-mortgage-apr |
+| P07-11 | unsupported | kept (already "A common rule of thumb ... depends on your situation") | indirect-with-stated-assumption | cfpb-emergency-fund-guide |
+| P07-12 | indirect (definition) / direct (risks, mobile money) | reworded | indirect-with-stated-assumption (definition) / direct (rest) | worldbank-financial-inclusion |
+| P08-1 | indirect | new source + added citation (concept `tariff`) | direct (the page calls areas B and D "deadweight losses"; it | libretexts, libretexts-ittp-7-8 |
+| P08-2 | unsupported | new source + added citation (concept `distribution_of_gains`) + named  | direct | libretexts, libretexts-ittp-5-13 |
+| P08-3 | unsupported | reworded + new source (sdg_case source_ids) | direct (U.S. data on all displaced workers; the retraining-s | bls, bls-displaced-workers |
+| P08-6 | indirect | new source + added citation (concept `trade_balance`) + one added sent | direct for timing/contracts/J-curve and "not automatic"; the | saylor-ifp-8-12, saylordotorg |
+| P08-8 | unsupported | new source; concept source_ids changed from openstax-pe3-33-3 to imf-f | direct | imf, imf-fd-supply-chains |
+| P08-9 | unsupported (by cited source) | new source; concept source_ids changed from openstax-pe3-33-3 to imf-f | direct for the definition (sales minus intermediate inputs)  | imf, imf-fd-gdp-basics, openstax, openstax-pe3-19-1 |
+| P08-11 | indirect | new source; added to concept `sustainable_production_partnership` and  | direct | wto, wto-tbt-technical-info |
+| P09-2 | unsupported | new source + added citation (concept `counterfactual`) | direct (compares changes over time between groups; removes p | columbia, columbia-did |
+| P09-3 | unsupported (method) | kept as derived; method now sourced via P09-2 | derived-in-lesson (arithmetic) on a directly sourced method | columbia-did |
+| P09-5 | unsupported (rule) / indirect | new sources (concept `cost_effectiveness`) + reworded as a common appr | direct for both rules in the corporate-finance form (highest | openstax, openstax-pof2e-16-5, uk-green-book-2026 |
+| P09-6 | indirect | new sources + added citations | direct (PV = amount ÷ (1 + r)^t, sum over periods, higher ra | openstax, openstax-pe3-appendix-c, uk-green-book-2026 |
+| P09-7 | direct (criteria) / indirect (term) | new source + added citation (concept `source_reliability`) | direct | ncsu, ncsu-evaluate-sources |
+| P09-9 | unsupported | new source (concepts `proposal_structure`, `measurable_indicators`) +  | direct for the chain and output/outcome distinction; q × ΔY  | cdc, cdc-logic-model |
+| P09-10 | n/a | not changed (app guidance, tied to A4 capstone rubric approval) | n/a |  |
+
+### 7.2 사람 판단이 필요한 남은 항목
+- c05 최저임금 실증 근거: 클리블랜드 연준(2007) 문헌 검토는 대부분의 연구가 고용 감소를 보고했다고 정리한다. 레슨 중급 문장을 '이전 연구 대부분은 일부 고용 감소, 이후 연구 일부는 작거나 없는 효과, 방법·결과 논쟁 지속'으로 맞췄다 — 균형 판단 필요.
+- 새 출처의 신뢰도·이용 조건: LibreTexts·Saylor(저자 비공개 교재), Columbia·NC State 대학 페이지, WTO, CDC, 영국 Green Book, 연준 지역 은행 글, Eurostat, Penn State 강의 노트.
+- 간접 그대로 2건: P06-9(현금·현물 이전, 표준 용어), P07-12(금융 포용 정의의 넓은 서술).
+- 출처 없이 가정으로 둔 것: c06 판매세 역진성(연간 소득 기준 가정, 평생 소득 기준이면 더 평평), c07 경험칙(50/30/20, SMART, 생활비 몇 개월분), '과거 수익은 미래를 보장하지 않음'(investor.gov·SEC 403), c04 콥-더글러스 형태, c03 탄소세 공식 정의 출처(열리는 페이지 없음).
+- c09 편익-비용 순위 규칙은 기업 재무(수익성 지수) 출처로 뒷받침됨 — 공공 부문 지침 출처가 필요한지.
+- c03 탄소세 '설명용 값' 문장(A안) 승인.

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-14",
+        "by": "Claude Code (AI)",
+        "note": "Source-evidence remediation: average tax rate now also cited to OpenStax 15.5; sales-tax regressivity in the Country F case stated as an explicit assumption. Not reviewed or approved by a human."
       }
     ]
   },
@@ -42,7 +48,8 @@
       "term": "Marginal vs. average tax rate",
       "definition": "The marginal tax rate is the rate paid on the next dollar of income. The average tax rate is total tax divided by total income. In a bracket system, each rate applies only to the income inside its bracket, so the average rate is below the top marginal rate, and moving into a higher bracket never lowers after-tax income.",
       "source_ids": [
-        "openstax-pe3-30-2"
+        "openstax-pe3-30-2",
+        "openstax-pe3-15-5"
       ]
     },
     {
@@ -387,7 +394,7 @@
     "title": "Designing a fairer fiscal system for Country F",
     "paragraphs": [
       "SDG target 10.4 calls on countries to adopt policies, especially fiscal, wage and social protection policies, and progressively achieve greater equality. Target 10.1 aims for income growth of the bottom 40 percent at a rate higher than the national average.",
-      "Hypothetical situation: Country F raises most of its revenue from a sales tax on all goods, which takes a larger share of income from low-income households because they spend more of what they earn. The government wants to make the overall system more redistributive while keeping total revenue roughly the same. Advisers present three designs; all estimates assume no behavioral response unless stated."
+      "Hypothetical situation: Country F raises most of its revenue from a sales tax on all goods. Assume that low-income households spend nearly all of their yearly income while high-income households save part of theirs, so in this case the sales tax takes a larger share of yearly income from low-income households. The government wants to make the overall system more redistributive while keeping total revenue roughly the same. Advisers present three designs; all estimates assume no behavioral response unless stated."
     ],
     "options": [
       {
@@ -407,7 +414,7 @@
       {
         "name": "Keep the sales tax but return part of the revenue as an equal cash transfer to every household",
         "benefits": [
-          "If the equal payment is large enough compared with what households pay in sales tax, it can make the overall system progressive even though the sales tax alone is regressive.",
+          "If the equal payment is large enough compared with what households pay in sales tax, it can make the overall system progressive even though, under the assumption above, the sales tax alone is regressive.",
           "Universal payments are simple to run and reach poor households without an application process."
         ],
         "costs": [
