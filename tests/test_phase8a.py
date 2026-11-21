@@ -235,13 +235,14 @@ def test_final_answers_hidden_while_retakes_remain(app, logged_in):
     assert any(q["explanation"] in html for q in course.final.questions)
 
 
-def test_draft_diagnostic_not_served_in_production(monkeypatch):
+def test_diagnostic_served_when_answer_keys_exist_even_in_production(monkeypatch):
+    """대회판 정책: 진단평가는 검토 상태와 무관하게 정답 키가 있으면 제공한다 (운영 환경 포함). 정답 키가 없으면 제공하지 않는다."""
     from econova import diagnostic
     test = diagnostic.load()
-    assert test["review"]["status"] == "draft" and diagnostic.servable(test)
+    assert test["review"]["status"] == "draft" and diagnostic.servable(test)   # 검토 기록은 draft 그대로
     monkeypatch.setenv("RENDER", "1")
-    assert not diagnostic.servable(test)
-    assert diagnostic.servable({**test, "review": {**test["review"], "status": "approved"}})
+    assert diagnostic.servable(test)
+    assert not diagnostic.servable({**test, "answer_keys": False})
 
 
 @pytest.mark.parametrize("token", ["..", "a/b/c", "short", "x" * 65, "tok en-aaaaaaaaaaaa"])

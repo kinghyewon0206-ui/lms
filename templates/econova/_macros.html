@@ -55,7 +55,7 @@
   <p>{{ course.description }}</p>
   {{ sdg_badges(course) }}
   <details class="ec-obj">
-    <summary>Learning objectives {% if course.review_status == 'draft' %}<span class="pill pill-draft">Draft (not yet reviewed)</span>{% endif %}</summary>
+    <summary>Learning objectives</summary>
     <ul>{% for o in course.objectives %}<li>{{ o }}</li>{% endfor %}</ul>
   </details>
   <dl class="ec-facts">

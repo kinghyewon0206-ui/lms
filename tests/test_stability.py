@@ -1,5 +1,6 @@
 """Phase 2.1 안정성: 강좌 JSON 오류 격리, 운영 설정 fail-fast, 오류 페이지,
 sqlite 트랜잭션 보호, 보안 회귀(CSRF·로그인 필수)."""
+import json
 import os
 import shutil
 import subprocess
@@ -75,8 +76,10 @@ def test_fixing_content_recovers_without_restart(logged_in, broken_content):
 
 def test_invalid_schema_is_controlled(logged_in, content_copy):
     path = content_copy / "courses" / "c02.json"
-    path.write_text(path.read_text(encoding="utf-8").replace('"status": "coming_soon"', '"status": "published"'),
-                    encoding="utf-8")   # 자료·퀴즈 승인 없이 공개 → 로더가 거절
+    data = json.loads(path.read_text(encoding="utf-8"))
+    assert data["status"] == "published"
+    data["lessons"][0]["quiz"] = {"status": "missing", "assessment_id": None}   # 필수 퀴즈 없이 공개 → 로더가 구조 오류로 거절
+    path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     res = logged_in.get("/dashboard")
     assert res.status_code == 503
     _no_leak(res.get_data(as_text=True))
@@ -116,7 +119,7 @@ def test_production_fixture_error_is_not_hidden_as_content_error(logged_in, monk
 def test_check_content_command_ok(sqlite_app, content_copy):
     res = sqlite_app.test_cli_runner().invoke(args=["check-content"])
     assert res.exit_code == 0, res.output
-    assert "9 real course(s) (27 lesson(s), 0 published), 3 dev test course(s)" in res.output
+    assert "9 real course(s) (27 lesson(s), 9 published), 3 dev test course(s)" in res.output   # 대회판: 모두 공개
 
 
 def test_check_content_command_reports_errors(sqlite_app, broken_content):
@@ -144,7 +147,12 @@ def test_404_page_logged_in(logged_in):
         assert "Page not found" in html and 'href="/dashboard"' in html and "/legacy" not in html, path
 
 
-def test_403_page_links_back_to_course(logged_in):
+def test_403_page_links_back_to_course(logged_in, content_copy):
+    # 대회판에서는 실제 강좌 레슨이 모두 공개되므로, 임시 사본에서 레슨 하나를 draft 로 되돌려 403 화면을 확인한다
+    path = content_copy / "courses" / "c02.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["lessons"][0]["status"] = "draft"
+    path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     res = logged_in.get("/learn/c02/c02-l1")
     html = res.get_data(as_text=True)
     assert res.status_code == 403 and "You can't access this page" in html

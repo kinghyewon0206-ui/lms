@@ -19,7 +19,7 @@
     {% else %}
       {% set p = attempt.passing %}
       <p>{% if attempt.passed %}You <strong>reached</strong>{% else %}You did not reach{% endif %} the passing score (at least {{ (p.score_ratio * 100)|round|int }}% correct).
-        {% if p.status == 'approved' %}This standard was approved by a teacher.{% elif p.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% else %}This is a <span class="pill pill-draft">Proposed value, not approved</span>, so it does not count as course completion.{% endif %}</p>
+        {% if p.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% endif %}</p>
       {% if enrollment and enrollment.status == 'completed' %}
         <p class="ec-done-note">Course completed {% if enrollment.completion_policy == 'dev_provisional' %}(test completion under the temporary development standard){% endif %}</p>
       {% endif %}

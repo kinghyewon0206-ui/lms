@@ -59,9 +59,10 @@ def _complete_lessons(client, course_id):
 
 
 # ------------------------------------------------------------- c02 초안 평가
-def test_c02_assessments_are_complete_drafts():
+def test_c02_assessments_are_complete_drafts_served_to_students():
+    """대회판 정책: c02 는 공개(수강 가능)되어 평가가 제공되지만, 평가의 검토 기록은 그대로 AI 작성 draft 다."""
     course = content.load_catalog(False).course("c02")
-    assert course.status == "coming_soon" and course.final_assessment_status == "draft"
+    assert course.status == "published" and course.published and course.final_assessment_status == "draft"
     quizzes = [l.quiz_assessment for l in course.lessons]
     assert [q.id for q in quizzes] == list(C02_ASSESSMENTS[:3]) and course.final.id == "c02-final"
     for a in quizzes + [course.final]:
@@ -69,7 +70,7 @@ def test_c02_assessments_are_complete_drafts():
         assert all(q["review_status"] == "draft" for q in a.questions)
         assert {q["type"] for q in a.questions} == {"mcq", "numeric"}
         assert len({q["difficulty"] for q in a.questions}) >= 2
-    assert not any(l.quiz_approved for l in course.lessons) and not course.final_ready
+    assert all(l.quiz_approved for l in course.lessons) and course.final_ready   # 파일이 있으면 제공 (승인 주장은 아님)
     assert course.final.passing == {"score_ratio": 0.7, "status": "proposed", "note": course.final.passing["note"]}
     assert {q["lesson_id"] for q in course.final.questions} == {"c02-l1", "c02-l2", "c02-l3"}
 
@@ -162,8 +163,8 @@ def _write_split(assess_dir, keys_dir, full):
     (keys_dir / f"{full['id']}.answers.json").write_text(json.dumps(keys, ensure_ascii=False), encoding="utf-8")
 
 
-def test_publication_requires_approved_final_and_passing(tmp_path, monkeypatch):
-    """자료·퀴즈·최종 평가가 모두 교사 승인되고 합격 기준도 승인돼야 공개할 수 있다."""
+def test_publication_requires_final_structure_not_approval(tmp_path, monkeypatch):
+    """대회판 정책: 공개에는 구조(필수 활동 파일, 최종 평가 또는 캡스톤)만 필요하다. 승인 기록 형식 검사는 그대로다."""
     lessons_dir, assess_dir, keys_dir = tmp_path / "lessons", tmp_path / "assessments", tmp_path.parent / f"{tmp_path.name}-keys"
     lessons_dir.mkdir()
     assess_dir.mkdir()
@@ -185,8 +186,9 @@ def test_publication_requires_approved_final_and_passing(tmp_path, monkeypatch):
         lesson["material"]["status"] = "approved"
         lesson["quiz"]["status"] = "approved"
     course["final_assessment"]["status"] = "approved"
-    with pytest.raises(content.ContentError, match="passing criteria are not approved"):   # 합격 기준이 아직 proposed
-        content.parse_course(copy.deepcopy(course), base_dir=str(tmp_path))
+    proposed = content.parse_course(copy.deepcopy(course), base_dir=str(tmp_path))   # 합격 기준이 proposed 여도 공개 가능
+    assert proposed.published and proposed.final_ready and proposed.final.passing["status"] == "proposed"
+    assert proposed.final.passing_usable(False)
     final = _approve(_raw("c02-final"))
     final["passing"]["status"] = "approved"
     with pytest.raises(content.ContentError, match="passing.review_id"):   # 관리자 검토 기록 번호 없는 합격 기준 승인
@@ -197,7 +199,7 @@ def test_publication_requires_approved_final_and_passing(tmp_path, monkeypatch):
     parsed = content.parse_course(copy.deepcopy(course), base_dir=str(tmp_path))
     assert parsed.published and parsed.final_ready and parsed.final.passing_usable(False)
     course["final_assessment"] = {"status": "upcoming"}
-    with pytest.raises(content.ContentError, match="no approved final assessment"):
+    with pytest.raises(content.ContentError, match="needs a final assessment or a capstone"):
         content.parse_course(course, base_dir=str(tmp_path))
 
 
@@ -205,7 +207,9 @@ def test_passing_policy_usability():
     final = content.load_catalog(True).course("dev-f1").final
     assert final.passing_usable(True) and not final.passing_usable(False)   # 개발용 기준은 실제 강좌에 못 씀
     proposed = dataclasses.replace(final, passing={**final.passing, "status": "proposed"})
-    assert not proposed.passing_usable(True)
+    assert proposed.passing_usable(True) and proposed.passing_usable(False)   # 대회판: 제안값도 수료 기준으로 쓴다
+    unknown = dataclasses.replace(final, passing={**final.passing, "status": "rejected"})
+    assert not unknown.passing_usable(True) and not unknown.passing_usable(False)
 
 
 # ------------------------------------------------------------- 정답 격리
@@ -353,7 +357,8 @@ def test_final_is_locked_until_all_lessons_completed(app, logged_in):
     _complete_lessons(logged_in, "dev-f1")
     html = logged_in.get("/courses/dev-f1/final").get_data(as_text=True)
     assert "About this final assessment" in html and "Temporary development standard" in html and "up to 3 attempts" in html
-    assert logged_in.get("/courses/c02/final").status_code == 403                        # 공개 전 강좌
+    res = logged_in.get("/courses/c02/final")                                             # 실제 강좌도 열려 있지만 수강 전
+    assert res.status_code == 303 and "/final" not in res.headers["Location"]
 
 
 def test_failing_then_passing_final_completes_course_once(app, logged_in):
@@ -400,7 +405,8 @@ def test_final_attempt_limit(app, logged_in):
         assert len(storage.list_assessment_attempts(uid, assessment_id=final.id)) == 3
 
 
-def test_unapproved_passing_policy_never_awards_completion(app, logged_in):
+def test_proposed_passing_policy_awards_completion_recorded_as_proposed(app, logged_in):
+    """대회판 정책: 제안(proposed) 합격 기준으로도 수료를 인정하되, 기록에는 'proposed' 로 남겨 승인으로 주장하지 않는다."""
     _enroll(logged_in, "dev-f2")
     _complete_lessons(logged_in, "dev-f2")
     course = content.get_catalog().course("dev-f2")
@@ -410,7 +416,9 @@ def test_unapproved_passing_policy_never_awards_completion(app, logged_in):
         answers = {q["id"]: q["answer"] if q["type"] == "mcq" else f"{q['answer']:g}" for q in proposed.questions}
         attempt_id, created = learning.submit_assessment(uid, course, proposed, answers, "tok-1")
         assert created and storage.get_assessment_attempt(uid, attempt_id)["passed"] is True
-        assert storage.get_enrollment(uid, "dev-f2")["status"] == "active"   # 합격해도 수료 아님
+        e = storage.get_enrollment(uid, "dev-f2")
+        assert (e["status"], e["completion_policy"]) == ("completed", "proposed")
+        assert e["completion_attempt_id"] == attempt_id
 
 
 # ------------------------------------------------------------- 학생 간 분리

@@ -6,12 +6,14 @@
 {%- for sid in ids %}<sup class="ec-cite"><a href="#src-{{ sid }}" title="Source {{ doc.source_ids.index(sid) + 1 }}">[{{ doc.source_ids.index(sid) + 1 }}]</a></sup>{% endfor -%}
 {%- endmacro %}
 
-{% macro review_badge(doc) %}
+{% macro review_badge(doc, show_review=False) %}
+{# 학생 화면은 검토 상태를 보여주지 않는다(대회판). 교사용 미리보기(show_review=True)는 검토 상태를 그대로 보여준다. #}
 {% set r = doc.review %}
 {% if doc.fixture %}<span class="pill pill-dev">Development test material</span>
-{% elif r.status == 'published' or r.status == 'approved' %}<span class="pill pill-done">Teacher-reviewed · {{ r.reviewer.name }} · {{ r.approved_at }}</span>
+{% elif show_review %}{% if r.status == 'published' or r.status == 'approved' %}<span class="pill pill-done">Teacher-reviewed · {{ r.reviewer.name }} · {{ r.approved_at }}</span>
 {% elif r.status == 'in_review' %}<span class="pill pill-draft">Under teacher review</span>
 {% else %}<span class="pill pill-draft">Draft, not yet reviewed (AI-written)</span>{% endif %}
+{% endif %}
 {% endmacro %}
 
 {% macro concepts(doc) %}

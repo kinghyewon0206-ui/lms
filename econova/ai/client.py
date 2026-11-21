@@ -33,7 +33,7 @@ MESSAGES_KO = {
     "timeout": "The AI took too long to respond, so the request was stopped. Please try again in a moment. Your learning progress is safe.",
     "provider_error": "We couldn't connect to the AI service. Please try again in a moment. Your learning progress is safe.",
     "invalid_response": "The AI response couldn't be verified, so it wasn't shown. Please try again.",
-    "unavailable": "AI help isn't available for this content (there are no approved learning materials yet).",
+    "unavailable": "AI help isn't available for this content (there are no learning materials for it yet).",
     "feedback_off": "AI explanations of wrong answers are turned off right now (so answer keys and explanations are not sent to an outside AI service). Please review with the explanations above and the learning materials.",
 }
 

@@ -42,7 +42,7 @@ def parse_topics(data, course, sources, where):
         if bad:
             raise ContentError(f"{w}: cannot use unverified or missing sources {bad}.")
         topics.append({"id": tid, "title": lesson_content._text(t, "title", w), "review": review,
-                       "approved": review["status"] in lesson_content.APPROVED_STATUSES,
+                       "approved": True,   # 대회판: 열린 강좌의 토론 주제는 모두 제공 (review 는 기록용)
                        "background": lesson_content._texts(t, "background", w),
                        "policy_question": lesson_content._text(t, "policy_question", w),
                        "perspectives": perspectives,

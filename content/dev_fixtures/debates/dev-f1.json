@@ -158,7 +158,7 @@
     },
     {
       "id": "draft-topic-hidden",
-      "title": "[Dev] Unapproved topic (must not be shown to students)",
+      "title": "[Dev] Unapproved topic (shown to students in the competition version)",
       "review": {
         "status": "draft",
         "history": [

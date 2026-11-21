@@ -121,4 +121,4 @@ def test_audit_edits_are_marked_as_ai_work_and_nothing_is_approved():
                 assert h["by"] == "Claude Code (AI)" and "not reviewed or approved by a human" in h["note"].lower(), p
     for cid in COURSES:
         c = _load("courses", f"{cid}.json")
-        assert c["status"] == "coming_soon", cid
+        assert c["status"] == "published", cid   # competition policy: open to students; review records above stay draft

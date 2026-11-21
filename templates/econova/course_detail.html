@@ -56,7 +56,7 @@
   </section>
 
   <section class="block ec-section" aria-labelledby="h-obj" data-reveal>
-    <h2 id="h-obj">Learning objectives {% if course.review_status == 'draft' %}<span class="pill pill-draft">Draft (not yet reviewed)</span>{% endif %}</h2>
+    <h2 id="h-obj">Learning objectives</h2>
     <ul class="ec-list">{% for o in course.objectives %}<li>{{ o }}</li>{% endfor %}</ul>
     <dl class="ec-facts">
       <div><dt>Lessons</dt><dd>{{ course.lessons|length }}</dd></div>
@@ -103,12 +103,12 @@
     {% if fi.state == 'upcoming' %}
     <div class="ec-placeholder">
       <span class="pill pill-soon">Coming soon</span>
-      <p>The final assessment will be published after teacher review. Complete all lessons and pass the final assessment to complete the course.</p>
+      <p>The final assessment isn't available yet. Complete all lessons and pass the final assessment to complete the course.</p>
     </div>
     {% else %}
     <div class="ec-quiz-box">
       <p><strong>{{ fi.assessment.title }}</strong> · {{ fi.assessment.questions|length }} {{ 'question' if fi.assessment.questions|length == 1 else 'questions' }} · Passing score {{ (fi.assessment.passing.score_ratio * 100)|round|int }}%
-        {% if fi.assessment.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% elif fi.assessment.passing.status != 'approved' %}<span class="pill pill-draft">Proposed value, not approved</span>{% endif %}</p>
+        {% if fi.assessment.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% endif %}</p>
       {% if fi.state == 'not_enrolled' %}
         <p class="hint">Opens after you enroll and complete all lessons.</p>
       {% elif fi.state == 'locked' %}

@@ -24,7 +24,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "draft",
@@ -41,7 +41,7 @@
       "order": 1,
       "title": "Income, Spending, and Budgeting",
       "title_ko": "Income, Spending, and Budgeting",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -61,7 +61,7 @@
       "order": 2,
       "title": "Saving, Interest, and Compound Growth",
       "title_ko": "Saving, Interest, and Compound Growth",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -81,7 +81,7 @@
       "order": 3,
       "title": "Financial Risk and Financial Inclusion",
       "title_ko": "Financial Risk and Financial Inclusion",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

@@ -1,4 +1,5 @@
-"""Every course that has lesson materials must be a complete, unpublished, AI-drafted course with the agreed assessment rules.
+"""Every course that has lesson materials must be a complete, AI-drafted course with the agreed assessment rules
+(open to students under the competition policy; review records remain draft).
 
 Applies to c01–c05 today and to every later course as soon as its lesson files exist.
 """
@@ -17,9 +18,10 @@ def _catalog():
 
 
 @pytest.mark.parametrize("course_id", DRAFTED)
-def test_drafted_course_is_complete_and_unpublished(course_id):
+def test_drafted_course_is_complete_and_open_with_draft_reviews(course_id):
+    """Competition policy (owner decision 2026-11-21): the course is open to students, but its review records stay AI-drafted 'draft'."""
     course = _catalog().course(course_id)
-    assert course.status == "coming_soon" and not course.published and course.content_version >= 2
+    assert course.status == "published" and course.published and course.content_version >= 2
     assert len(course.lessons) == 3
     for lesson in course.lessons:
         doc = lesson.content

@@ -6,9 +6,8 @@
     {% if assessment.is_final %}
     <li>This is the <strong>final assessment</strong>. It opens after you complete all lessons.</li>
     <li>Passing score: at least {{ (assessment.passing.score_ratio * 100)|round|int }}% correct.
-      {% if assessment.passing.status == 'approved' %}This standard was approved by a teacher. If you pass, you <strong>complete</strong> the course.
-      {% elif assessment.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span> This standard is used only in development and test environments, so completion here is not a real course completion.
-      {% else %}<span class="pill pill-draft">Proposed value, not approved</span> Until it is approved, passing does not count as completing the course.{% endif %}</li>
+      {% if assessment.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span> This standard is used only in development and test environments, so completion here is not a real course completion.
+      {% else %}If you pass, you <strong>complete</strong> the course.{% endif %}</li>
     <li>Retakes: {% if not assessment.retakes_allowed %}you can take it only once{% elif assessment.max_attempts %}up to {{ assessment.max_attempts }} {{ 'attempt' if assessment.max_attempts == 1 else 'attempts' }}{% if left is not none %} ({{ left }} left){% endif %}{% else %}you can retake it as many times as you like{% endif %}. Your best result is recorded.</li>
     {% else %}
     <li>This is a <strong>lesson quiz</strong>. Submitting it meets the "Submit the required quiz" step for completing the lesson.</li>

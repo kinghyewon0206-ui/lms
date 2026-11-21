@@ -62,10 +62,15 @@ def test_context_uses_only_approved_material_and_verified_source_metadata():
     assert "https://" not in dumped and "license" not in dumped        # 출처 본문·링크·라이선스 문구도 보내지 않는다
 
 
-def test_draft_material_is_never_sent_to_ai():
+def test_lesson_material_is_used_as_ai_context_and_missing_material_is_unavailable():
+    """대회판 정책: 학습자료 파일이 있으면 (검토 기록이 draft 여도) 튜터 맥락으로 쓴다. 자료가 없으면 여전히 쓸 수 없다."""
     course = content.load_catalog(False).course("c02")
+    lesson = course.lesson("c02-l1")
+    assert lesson.content.review["status"] == "draft"                     # 검토 기록은 그대로 draft
+    ctx = context.lesson_context(course, lesson, "beginner", content.read_sources())
+    assert ctx["concepts"] and set(s["id"] for s in ctx["sources"]) <= set(lesson.content.source_ids)
     with pytest.raises(AIError) as err:
-        context.lesson_context(course, course.lesson("c02-l1"), "beginner", content.read_sources())
+        context.lesson_context(course, dataclasses.replace(lesson, content=None), "beginner", content.read_sources())
     assert err.value.code == "unavailable"
 
 
@@ -296,16 +301,17 @@ def test_unapproved_assessment_keys_never_used_for_feedback(logged_in):
 
 # ------------------------------------------------------------- 토론
 def test_debate_access_rules(app, client):
+    """대회판 정책: 열린 강좌의 토론 주제는 검토 상태와 무관하게 모두 제공한다. 수강 신청은 여전히 필요하다."""
     signup(client)
     login(client)
     set_csrf(client)
-    assert client.get("/discuss/c02").status_code == 403                    # 공개 전 강좌
-    assert client.get("/discuss/c02/anything").status_code == 403
+    assert client.get("/discuss/c02").status_code == 303                    # 실제 강좌도 열려 있다: 수강 전이면 안내로 보낸다
     assert client.get("/discuss/dev-f1").status_code == 303                 # 수강 전
     _enroll(client, "dev-f1")
     html = client.get("/discuss/dev-f1").get_data(as_text=True)
-    assert "Would a price ceiling on groceries help?" in html and "Unapproved topic" not in html
-    assert client.get("/discuss/dev-f1/draft-topic-hidden").status_code == 404
+    assert "Would a price ceiling on groceries help?" in html and "Unapproved topic" in html   # draft 주제도 제공
+    assert client.get("/discuss/dev-f1/draft-topic-hidden").status_code == 200
+    assert client.get("/discuss/dev-f1/no-such-topic").status_code == 404
     assert client.get("/discuss/nope").status_code == 404
     assert "Should we introduce a carbon tax?" in client.get("/discuss").get_data(as_text=True)
 

@@ -178,8 +178,11 @@ def test_review_transitions_are_audited_and_never_touch_files(app, client):
     assert all(r["content_digest"] == target.digest and r["reviewer_user_id"] == admin_id and r["reviewer_name"] == "관리자 김"
                and r["content_version"] == "1" and r["created_at"] for r in records)
     assert _file_hash("dev_fixtures/debates/dev-f1.json") == before          # 정본 파일은 그대로
+    with open(os.path.join(content.CONTENT_DIR, "dev_fixtures", "debates", "dev-f1.json"), encoding="utf-8") as f:
+        topic = next(t for t in json.load(f)["topics"] if t["id"] == "draft-topic-hidden")
+    assert topic["review"]["status"] == "draft"                              # DB 승인 기록은 정본 파일의 검토 상태를 바꾸지 않는다
     _enroll(client, "dev-f1")
-    assert client.get("/discuss/dev-f1/draft-topic-hidden").status_code == 404   # 학생 화면에서도 여전히 초안
+    assert client.get("/discuss/dev-f1/draft-topic-hidden").status_code == 200   # 대회판: 열린 강좌의 주제는 검토 상태와 무관하게 제공
     html = client.get("/admin/content/release").get_data(as_text=True)
     assert DRAFT_TOPIC in html and "#" + records[-1]["id"] in html
     plan = json.loads(client.get("/admin/content/release?download=1").get_data(as_text=True))
@@ -275,9 +278,10 @@ def test_admin_review_schema_rules():
                                       "content_digest": digest}, "t", False, digest)
 
 
-def test_overview_explains_why_courses_are_not_ready():
+def test_overview_lists_outstanding_reviews_for_open_courses():
+    """대회판 정책: 강좌는 모두 공개(published)지만, 관리자 개요는 여전히 남은 사람 검토 항목을 보여준다."""
     rows = {r["id"]: r for r in ac.overview()}
-    assert set(rows) == {f"c0{i}" for i in range(1, 10)} and all(r["status"] == "coming_soon" for r in rows.values())
+    assert set(rows) == {f"c0{i}" for i in range(1, 10)} and all(r["status"] == "published" for r in rows.values())
     assert any("learning materials are not approved" in b for b in rows["c02"]["blockers"])
     assert any("no answer key, so the assessment cannot be opened" in b for b in rows["c02"]["blockers"])
     assert any("passing criteria are not approved" in b for b in rows["c02"]["blockers"])
@@ -346,17 +350,22 @@ def _cap_form(defn, **override):
     return values
 
 
-def test_capstone_unpublished_and_access_rules(app, client):
+def test_capstone_open_course_and_access_rules(app, client):
+    """대회판 정책: c09 캡스톤은 열려 있지만 수강 신청이 필요하다. 정의·루브릭의 검토 기록은 그대로다."""
     signup(client)
     login(client)
     set_csrf(client)
-    assert client.get("/capstone/c09").status_code == 403                    # c09 는 공개 전
-    assert client.post("/capstone/c09/edit", data={"csrf_token": CSRF}).status_code == 403
+    assert client.get("/capstone/c09").status_code == 303                    # c09 는 열려 있지만 수강 전
+    assert client.post("/capstone/c09/edit", data={"csrf_token": CSRF}).status_code == 303
+    with app.app_context():
+        assert storage.list_capstone_versions(_uid(app), "c09") == []         # 수강 전 저장 시도는 기록되지 않는다
     assert client.get("/capstone/dev-f1").status_code == 404                 # 캡스톤 없는 강좌
     assert client.get("/capstone/dev-f3").status_code == 303                 # 수강 전
     course = content.load_catalog(False).course("c09")
     assert course.capstone.review_status == "draft" and course.capstone.rubric["status"] == "provisional"
-    assert cap.completion_policy(course) is None
+    assert cap.completion_policy(course) == "capstone_self_directed"
+    _enroll(client, "c09")
+    assert client.get("/capstone/c09").status_code == 200
 
 
 def test_capstone_draft_edit_versions_and_ownership(app, client):
@@ -429,15 +438,16 @@ def test_capstone_submission_self_assessment_and_completion(app, client):
     assert s["average_level"] == 3.7 and s["improve"] == [defn.rubric["criteria"][0]["name"]] and s["complete"]
 
 
-def test_real_capstone_completion_needs_human_approved_rubric():
+def test_real_capstone_completion_is_self_directed_without_rubric_approval():
+    """대회판 정책: 실제 캡스톤 수료는 루브릭 승인 없이 '자기 주도 제출'(capstone_self_directed)로 기록한다. 승인으로 기록하지 않는다."""
     course = content.load_catalog(False).course("c09")
-    published = dataclasses.replace(course, status="published",
-                                    capstone=dataclasses.replace(course.capstone, review={**course.capstone.review,
-                                                                                         "status": "approved"}))
-    assert cap.completion_policy(published) is None                          # 루브릭이 아직 provisional
-    rubric_ok = dataclasses.replace(published, capstone=dataclasses.replace(
-        published.capstone, rubric={**published.capstone.rubric, "status": "approved"}))
+    assert course.capstone.rubric["status"] == "provisional" and course.capstone.review_status == "draft"
+    assert cap.completion_policy(course) == "capstone_self_directed"
+    rubric_ok = dataclasses.replace(course, capstone=dataclasses.replace(
+        course.capstone, rubric={**course.capstone.rubric, "status": "approved"}))
     assert cap.completion_policy(rubric_ok) == "capstone_self_directed"
+    assert cap.completion_policy(dataclasses.replace(course, status="draft")) is None      # 카탈로그에 없는 강좌
+    assert cap.completion_policy(dataclasses.replace(course, capstone=None)) is None       # 캡스톤 정의 없음
 
 
 @pytest.mark.parametrize("mutate, message", [
@@ -490,7 +500,8 @@ def test_lesson_and_course_pages_link_capstone(client):
     html = client.get("/learn/dev-f3/dev-f3-l2").get_data(as_text=True)
     assert "Capstone project steps linked to this lesson" in html and "5. Incentives and trade-offs" in html
     assert "View Capstone project" in client.get("/courses/dev-f3").get_data(as_text=True)
-    assert "The Capstone project opens once its guide and self-assessment criteria have been reviewed." in client.get("/courses/c09").get_data(as_text=True)
+    html = client.get("/courses/c09").get_data(as_text=True)                  # 대회판: 실제 캡스톤도 열려 있다
+    assert "View Capstone project" in html and "have been reviewed" not in html
 
 
 # ------------------------------------------------------------- 보안 설정

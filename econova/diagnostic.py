@@ -152,10 +152,8 @@ def load():
 
 
 def servable(test):
-    """학생에게 응시시켜도 되는가: 정답 키가 있고, 운영 환경에서는 사람 승인(approved·published)을 받은 진단평가만.
-    개발 환경에서는 초안도 열어 둔다 (검토·시험용)."""
-    status = (test.get("review") or {}).get("status")
-    return bool(test.get("answer_keys")) and (status in ("approved", "published") or not config.is_production())
+    """학생에게 응시시켜도 되는가: 정답 키가 있으면 (대회판: 사람 승인 여부와 무관)."""
+    return bool(test.get("answer_keys"))
 
 
 def public_questions(test=None):

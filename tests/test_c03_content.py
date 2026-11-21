@@ -14,9 +14,10 @@ def _course():
     return content.load_catalog(False).course("c03")
 
 
-def test_c03_is_a_complete_unpublished_draft():
+def test_c03_is_complete_and_open_with_draft_review_records():
+    """대회판 정책: c03 은 공개(수강 가능)되지만 학습자료 검토 기록은 그대로 AI 작성 draft 다."""
     course = _course()
-    assert course.status == "coming_soon" and not course.published and course.content_version >= 2
+    assert course.status == "published" and course.published and course.content_version >= 2
     for lesson in course.lessons:
         doc = lesson.content
         assert doc is not None and doc.review["status"] == "draft"

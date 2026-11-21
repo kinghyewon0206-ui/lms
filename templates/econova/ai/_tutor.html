@@ -13,7 +13,7 @@
 {% endmacro %}
 <div class="tutor-panel" data-tutor data-course="{{ course.id }}" data-lesson="{{ lesson.id }}" data-level="{{ level }}"
      data-endpoint="{{ url_for('econova.tutor_api') }}" data-conversation="{{ tutor.conversation_id }}" data-max="{{ tutor.max_chars }}">
-  <p class="hint">The AI Tutor explains things based on this lesson's <strong>approved learning materials</strong>. AI answers can be wrong, and they don't affect your score or progress.
+  <p class="hint">The AI Tutor explains things based on this lesson's <strong>learning materials</strong>. AI answers can be wrong, and they don't affect your score or progress.
     Don't include personal information such as your name or contact details in your questions.</p>
   <div class="tutor-log" role="log" aria-live="polite" aria-label="AI Tutor conversation">
     {% for m in tutor.messages %}

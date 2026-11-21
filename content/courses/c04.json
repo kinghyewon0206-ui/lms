@@ -23,7 +23,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "draft",
@@ -40,7 +40,7 @@
       "order": 1,
       "title": "GDP and Measuring Economic Activity",
       "title_ko": "GDP and Measuring Economic Activity",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -60,7 +60,7 @@
       "order": 2,
       "title": "Economic Growth and Productivity",
       "title_ko": "Economic Growth and Productivity",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -80,7 +80,7 @@
       "order": 3,
       "title": "Inflation, Purchasing Power, and Living Standards",
       "title_ko": "Inflation, Purchasing Power, and Living Standards",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

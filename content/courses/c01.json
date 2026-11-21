@@ -23,7 +23,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "draft",
@@ -40,7 +40,7 @@
       "order": 1,
       "title": "Scarcity and Economic Choices",
       "title_ko": "Scarcity and Economic Choices",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -60,7 +60,7 @@
       "order": 2,
       "title": "Opportunity Cost and Rational Decisions",
       "title_ko": "Opportunity Cost and Rational Decisions",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -80,7 +80,7 @@
       "order": 3,
       "title": "Sustainable Consumption and Resource Allocation",
       "title_ko": "Sustainable Consumption and Resource Allocation",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

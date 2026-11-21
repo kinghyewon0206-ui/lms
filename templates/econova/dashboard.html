@@ -89,7 +89,7 @@
 
     <a class="tile obsidian span-3" href="{% if ns.cont %}{{ url_for('econova.continue_learning', course_id=ns.cont.course.id) }}{% else %}{{ url_for('econova.catalog') }}{% endif %}" data-reveal>
       <span class="orb" aria-hidden="true" style="width:38px;height:38px"></span>
-      <h3>AI Tutor</h3><p>Ask questions inside any lesson with approved material. Answers come from that lesson.</p>
+      <h3>AI Tutor</h3><p>Ask questions inside any lesson. Answers come from that lesson's material.</p>
       <span class="go">{{ 'Open a lesson' if ns.cont else 'Find a course' }}</span>
     </a>
     <a class="tile lab-tile span-3" href="{{ url_for('econova.lab_home') }}" data-reveal>

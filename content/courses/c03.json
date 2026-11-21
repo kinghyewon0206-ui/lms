@@ -24,7 +24,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "draft",
@@ -41,7 +41,7 @@
       "order": 1,
       "title": "Externalities and Market Failure",
       "title_ko": "Externalities and Market Failure",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -61,7 +61,7 @@
       "order": 2,
       "title": "Public Goods and Common Resources",
       "title_ko": "Public Goods and Common Resources",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -81,7 +81,7 @@
       "order": 3,
       "title": "Carbon Taxes and Government Intervention",
       "title_ko": "Carbon Taxes and Government Intervention",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

@@ -12,7 +12,7 @@ SCHEMA = {"type": "object", "properties": {
     "follow_up_questions": {"type": "array", "maxItems": 3, "items": {"type": "string", "maxLength": 200}},
     "limitations": {"type": "string", "maxLength": 500},
 }}
-GROUNDING_KO = {"grounded": "Based on approved learning materials", "partial": "Partly based on learning materials",
+GROUNDING_KO = {"grounded": "Based on the lesson materials", "partial": "Partly based on learning materials",
                 "insufficient": "Not enough support in the learning materials"}
 SUGGESTED = ("Can you explain this concept with a simpler example?", "Can you explain what moves on the graph?",
              "How does this connect to the SDGs?")

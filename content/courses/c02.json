@@ -24,7 +24,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 3,
   "final_assessment": {
     "status": "draft",
@@ -41,7 +41,7 @@
       "order": 1,
       "title": "Supply and Demand",
       "title_ko": "Supply and Demand",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -64,7 +64,7 @@
       "order": 2,
       "title": "Market Equilibrium and Price Formation",
       "title_ko": "Market Equilibrium and Price Formation",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -87,7 +87,7 @@
       "order": 3,
       "title": "Price Elasticity and Food Markets",
       "title_ko": "Price Elasticity and Food Markets",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

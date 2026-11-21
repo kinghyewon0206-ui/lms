@@ -24,7 +24,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "draft",
@@ -41,7 +41,7 @@
       "order": 1,
       "title": "Income Distribution and Inequality",
       "title_ko": "Income Distribution and Inequality",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -61,7 +61,7 @@
       "order": 2,
       "title": "Taxation and Redistribution",
       "title_ko": "Taxation and Redistribution",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -81,7 +81,7 @@
       "order": 3,
       "title": "Poverty, Social Protection, and Public Finance",
       "title_ko": "Poverty, Social Protection, and Public Finance",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

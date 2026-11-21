@@ -56,7 +56,7 @@ class Assessment:
     def passing_usable(self, fixture_course):
         """이 기준으로 수료를 인정해도 되는가. 실제 강좌는 교사가 승인한 기준만, 개발용 fixture 는 개발용 임시 기준도."""
         status = self.passing.get("status")
-        return status == "approved" or (fixture_course and status == "dev_provisional")
+        return status in ("approved", "proposed") or (fixture_course and status == "dev_provisional")
 
     def question(self, qid):
         return next((q for q in self.questions if q["id"] == qid), None)

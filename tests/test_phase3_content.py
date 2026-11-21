@@ -50,13 +50,13 @@ def _approve(raw, by="Ms. Kim", role="teacher"):
 # ------------------------------------------------------------- c02 초안 구조
 def test_c02_lessons_have_complete_draft_material():
     course = content.load_catalog(False).course("c02")
-    assert course.status == "coming_soon" and not course.published and course.content_version >= 2
+    assert course.status == "published" and course.published and course.content_version >= 2   # 대회판: 공개
     for lesson in course.lessons:
         doc = lesson.content
         assert doc is not None and doc.lesson_id == lesson.id
         assert doc.review_status == "draft" and doc.review["reviewer"] is None and doc.review["approved_at"] is None
         assert doc.review["history"][-1]["by"] == "Claude Code (AI)"
-        assert not lesson.material_approved   # 초안은 학생용 자료로 쓰지 않는다
+        assert lesson.material_approved and not doc.approved   # 대회판: 초안 자료도 제공하지만 승인으로 주장하지 않는다
         assert lesson.objectives == doc.objectives and len(doc.objectives) >= 3
         assert set(doc.levels) == set(lesson_content.LEVELS)
         assert len(doc.concepts) >= 4 and all(c["source_ids"] for c in doc.concepts)
@@ -222,8 +222,8 @@ def test_approved_material_cannot_cite_unverified_source():
         lesson_content.parse_material(raw, "c02-l1", _sources_with_unverified())
 
 
-def test_course_publication_still_requires_approved_quiz(tmp_path, monkeypatch):
-    # 자료를 승인해도 퀴즈(Phase 4)가 없으면 c02 를 published 로 둘 수 없다
+def test_course_publication_requires_quiz_files_not_approval(tmp_path, monkeypatch):
+    # 대회판 정책: 퀴즈가 draft 여도 공개할 수 있지만, 필수 퀴즈 파일이 없으면 c02 를 published 로 둘 수 없다
     lessons = tmp_path / "lessons"
     lessons.mkdir()
     for lid in C02_LESSONS:
@@ -235,20 +235,29 @@ def test_course_publication_still_requires_approved_quiz(tmp_path, monkeypatch):
     for lesson in course["lessons"]:
         lesson["status"] = "published"
         lesson["material"]["status"] = "approved"
-    parsed = content.parse_course(copy.deepcopy(course), base_dir=str(tmp_path))
-    assert all(lesson.material_approved for lesson in parsed.lessons) and not parsed.published
     course["status"] = "published"
-    with pytest.raises(content.ContentError, match="quiz"):
+    parsed = content.parse_course(copy.deepcopy(course), base_dir=str(tmp_path))
+    assert all(lesson.material_approved and lesson.quiz_approved for lesson in parsed.lessons) and parsed.published
+    assert all(not lesson.quiz_assessment.approved for lesson in parsed.lessons)   # 퀴즈 검토 기록은 draft 그대로
+    course["lessons"][1]["quiz"] = {"status": "missing", "assessment_id": None}
+    with pytest.raises(content.ContentError, match="missing required quiz"):
         content.parse_course(course, base_dir=str(tmp_path))
 
 
 # ------------------------------------------------------------- 학생 화면: 공개 통제와 렌더링
-def test_draft_c02_content_never_reaches_students(logged_in, fixtures_on):
-    paragraph = _doc_raw("c02-l1")["levels"]["beginner"]["sections"][0]["paragraphs"][0][:30]
+def test_c02_content_reaches_students_only_after_enrollment(logged_in, fixtures_on):
+    """대회판 정책: c02 자료는 수강 신청한 학생에게 보인다. 수강 전에는 어느 화면에도 레슨 본문이 나오지 않는다."""
+    from markupsafe import escape
+    paragraph = str(escape(_doc_raw("c02-l1")["levels"]["beginner"]["sections"][0]["paragraphs"][0][:30]))
     for path in ("/courses", "/courses/c02", "/dashboard", "/learn/c02/c02-l1", "/learn/c02/c02-l1?level=advanced"):
         html = logged_in.get(path).get_data(as_text=True)
         assert paragraph not in html and "Qd = a − bP" not in html, path
-    assert logged_in.get("/learn/c02/c02-l1").status_code == 403
+    assert logged_in.get("/learn/c02/c02-l1").status_code == 302
+    logged_in.post("/courses/c02/enroll", data={"csrf_token": CSRF})
+    res = logged_in.get("/learn/c02/c02-l1?level=beginner")
+    html = res.get_data(as_text=True)
+    assert res.status_code == 200 and paragraph in html
+    assert "Draft, not yet reviewed" not in html and "Not visible to students" not in html   # 학생 화면엔 검토 표시 없음
 
 
 def test_lesson_page_renders_material_sections(logged_in, fixtures_on):

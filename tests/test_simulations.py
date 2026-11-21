@@ -271,7 +271,10 @@ def test_lesson_embeds_simulation_only_when_accessible(logged_in, fixtures_on):
     html = logged_in.get("/learn/dev-f1/dev-f1-l2").get_data(as_text=True)
     assert 'data-sim="carbon-tax"' in html
     assert "This lesson has no simulation." in logged_in.get("/learn/dev-f1/dev-f1-l3").get_data(as_text=True)
-    assert logged_in.get("/learn/c02/c02-l1").status_code == 403
+    assert logged_in.get("/learn/c02/c02-l1").status_code == 302          # 실제 강좌도 수강 전에는 레슨(과 시뮬레이션)에 못 들어감
+    _enroll(logged_in, "c02")                                               # 대회판: 수강하면 실제 강좌 레슨의 시뮬레이션도 보인다
+    html = logged_in.get("/learn/c02/c02-l1").get_data(as_text=True)
+    assert 'data-sim="supply-demand"' in html and 'name="lesson_id" value="c02-l1"' in html
 
 
 def test_preview_shows_simulation_for_draft_lesson(logged_in, monkeypatch):
@@ -284,7 +287,7 @@ def test_lesson_simulation_metadata_is_validated():
     cat = content.load_catalog(False)
     assert cat.course("c02").lesson("c02-l1").simulations == ("supply-demand",)
     assert cat.course("c03").lesson("c03-l3").simulations == ("carbon-tax",)
-    assert cat.course("c02").status == "coming_soon" and cat.course("c03").status == "coming_soon"
+    assert cat.course("c02").status == "published" and cat.course("c03").status == "published"
     with open(os.path.join(content.CONTENT_DIR, "courses", "c03.json"), encoding="utf-8") as f:
         raw = json.load(f)
     raw["lessons"][0]["simulations"] = ["rocket-science"]
@@ -295,9 +298,10 @@ def test_lesson_simulation_metadata_is_validated():
         content.parse_course(raw)
 
 
-def test_drafts_and_publication_unchanged():
+def test_courses_open_and_review_records_unchanged():
+    """대회판 정책: 실제 강좌는 모두 공개되지만, 검토 기록은 draft·proposed 그대로다."""
     cat = content.load_catalog(False)
-    assert {c.status for c in cat.courses} == {"coming_soon"} and cat.published() == []
+    assert {c.status for c in cat.courses} == {"published"} and len(cat.published()) == len(cat.courses) == 9
     c02 = cat.course("c02")
     assert all(l.content.review_status == "draft" and l.quiz_assessment.review_status == "draft" for l in c02.lessons)
     assert c02.final.review_status == "draft" and c02.final.passing["status"] == "proposed"

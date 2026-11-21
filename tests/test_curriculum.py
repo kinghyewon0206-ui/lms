@@ -1,6 +1,7 @@
 """Whole-curriculum checks: 9 courses × 3 lessons drafted, c01–c08 end with a final assessment, c09 ends with the capstone.
 
-Draft completeness is not approval: nothing here may be published or approved by these drafts.
+Draft completeness is not approval. Under the competition policy (owner decision 2026-11-21) every course is open to students,
+but no review record may be marked approved by these drafts.
 """
 import json
 import os
@@ -31,13 +32,13 @@ def test_nine_courses_and_twenty_seven_lessons_are_drafted():
         assert lesson.quiz_assessment.review_status == "draft", lesson.id
 
 
-def test_no_course_lesson_or_assessment_is_published_or_approved():
+def test_all_courses_are_open_but_nothing_is_approved():
     for course in _cat().courses:
-        assert course.status == "coming_soon" and not course.published, course.id
-        assert course.review_status == "draft", course.id
+        assert course.status == "published" and course.published, course.id       # open to students
+        assert course.review_status == "draft", course.id                          # but never claimed reviewed
         for lesson in course.lessons:
-            assert lesson.status != "published" and not lesson.content.approved, lesson.id
-            assert not lesson.quiz_approved, lesson.id
+            assert lesson.status == "published" and lesson.material_approved and lesson.quiz_approved, lesson.id
+            assert not lesson.content.approved and not lesson.quiz_assessment.approved, lesson.id
         if course.final is not None:
             assert not course.final.approved and course.final.passing["status"] == "proposed", course.id
 
@@ -59,7 +60,8 @@ def test_c09_uses_capstone_completion_instead_of_a_final_exam():
     defn = course.capstone
     assert defn is not None and defn.review_status == "draft" and not defn.approved
     assert defn.rubric["status"] == "provisional"
-    assert cap.completion_policy(course) is None            # no completion can be recorded until humans approve
+    assert course.capstone_ready                             # competition policy: the capstone is open without approval
+    assert cap.completion_policy(course) == "capstone_self_directed"   # completion is recorded as self-directed, not approved
     lesson_ids = [lesson.id for lesson in course.lessons]
     assert {s["lesson_id"] for s in defn.steps} == set(lesson_ids)   # every lesson prepares at least one capstone step
 

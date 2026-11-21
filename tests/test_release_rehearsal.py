@@ -70,7 +70,7 @@ def rehearsal(sqlite_app, content_copy, monkeypatch, tmp_path):  # noqa: F811
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     content.load_catalog.cache_clear()
     cat = content.get_catalog()
-    assert cat.course("c01").published and cat.course("c09").published and not cat.course("c02").published
+    assert cat.course("c01").published and cat.course("c09").published and cat.course("c02").published   # competition version: all courses open
     return app
 
 
@@ -103,7 +103,8 @@ def test_real_c01_journey_with_real_keys(rehearsal):
     assert _enroll(s, "c02").status_code in (302, 303)
     with app.app_context():
         uid = storage.get_user_by_email("student1@example.test")["id"]
-        assert storage.get_enrollment(uid, "c02") is None and storage.get_enrollment(uid, "c01")["selected_difficulty"] == "advanced"
+        # competition version: every course is open, so c02 enrollment succeeds too
+        assert storage.get_enrollment(uid, "c02") is not None and storage.get_enrollment(uid, "c01")["selected_difficulty"] == "advanced"
     for lesson in course.lessons:
         for level in ("beginner", "intermediate", "advanced"):
             html = _page(s, f"/learn/c01/{lesson.id}?level={level}")

@@ -35,9 +35,9 @@
     {% if tutor %}
       {% include "econova/ai/_tutor.html" %}
     {% elif allow_review %}
-      <p class="ec-placeholder-text">The AI Tutor is available only in lessons with approved learning materials.</p>
+      <p class="ec-placeholder-text">The AI Tutor is available only in lessons with learning materials.</p>
     {% else %}
-      <p class="ec-placeholder-text">The AI Tutor is off in teacher preview. Unreviewed drafts are never sent to the AI.</p>
+      <p class="ec-placeholder-text">The AI Tutor is off in the admin preview. Students can use it in their lessons.</p>
     {% endif %}
 
   {% elif phase %}

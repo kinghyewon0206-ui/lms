@@ -2,12 +2,13 @@
 
 1. Exam course:     sign up → diagnostic → enroll → lesson → formative quiz → final → completion → learning report
 2. Capstone course: enroll → three lessons → capstone draft → submit → rubric self-assessment → reflection → completion
-3. Unpublished real courses (c01–c09) stay closed to students and open only through admin review / preview.
+3. Real courses (c01–c09) are open to enrolled students (competition policy); review records stay draft and admin review / preview keep showing them.
 Every page a student sees along the way must be English.
 """
 import re
 
 import pytest
+from markupsafe import escape
 
 from econova import content, storage
 from tests.conftest import CSRF, login, set_csrf, signup
@@ -133,22 +134,31 @@ COURSES = [f"c0{n}" for n in range(1, 10)]
 
 
 @pytest.mark.parametrize("course_id", COURSES)
-def test_unpublished_real_courses_are_closed_to_students(app, client, course_id, monkeypatch):
+def test_real_courses_are_enrollable_and_lessons_open_after_enrollment(app, client, course_id, monkeypatch):
+    """Competition policy (owner decision 2026-11-21): every real course is open to enrolled students.
+    Enrollment is still required, review records stay draft, and assessments still need answer keys to be taken."""
     monkeypatch.delenv("ECONOVA_CONTENT_PREVIEW", raising=False)
-    _student(client, f"s-{course_id}@example.com")
+    email = f"s-{course_id}@example.com"
+    _student(client, email)
     course = content.get_catalog().course(course_id)
-    assert not course.published
-    _enroll(client, course_id)
-    with app.app_context():
-        assert storage.get_enrollment(_uid(app, f"s-{course_id}@example.com"), course_id) is None
     lesson = course.lessons[0]
-    for url in (f"/learn/{course_id}/{lesson.id}", f"/learn/{course_id}/{lesson.id}/quiz", f"/courses/{course_id}/final",
-                f"/preview/{course_id}/{lesson.id}"):
-        res = client.get(url)
-        assert res.status_code != 200 or "Not visible to students" not in res.get_data(as_text=True), url
-        assert lesson.content.levels["beginner"]["summary"] not in res.get_data(as_text=True), url
+    assert course.published and course.review_status == "draft" and not lesson.content.approved
+    summary = str(escape(lesson.content.levels["beginner"]["summary"]))      # as rendered in HTML
+    before = client.get(f"/learn/{course_id}/{lesson.id}")                     # not enrolled yet: no lesson content
+    assert before.status_code != 200 and summary not in before.get_data(as_text=True)
+    assert _enroll(client, course_id).status_code in (302, 303)
+    with app.app_context():
+        assert storage.get_enrollment(_uid(app, email), course_id)["status"] == "active"
+    html = _english(client, f"/learn/{course_id}/{lesson.id}?level=beginner")
+    assert summary in html and "Not visible to students" not in html
+    assert "Draft, not yet reviewed" not in html and "Draft (not yet reviewed)" not in html
+    quiz = client.get(f"/learn/{course_id}/{lesson.id}/quiz")                   # answer keys are not loaded in tests
+    quiz_html = quiz.get_data(as_text=True)
+    assert quiz.status_code == 503 and 'name="submission_token"' not in quiz_html
+    preview = client.get(f"/preview/{course_id}/{lesson.id}")                  # teacher preview stays admin/dev only
+    assert preview.status_code == 404
     if course.capstone is not None:
-        assert client.get(f"/capstone/{course_id}").status_code == 403
+        assert client.get(f"/capstone/{course_id}").status_code == 200
 
 
 def test_admin_can_review_unpublished_content_without_the_preview_switch(app, client, monkeypatch):

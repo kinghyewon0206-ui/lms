@@ -42,7 +42,7 @@
     {% elif final_best %}
       <p>Best result: {{ (final_best.ratio * 100)|round|int }}% ({{ 'Passed' if final_best.passed else 'Not passed' }}) · {{ final_attempts|length }} {{ 'attempt' if final_attempts|length == 1 else 'attempts' }}</p>
       <p class="hint">Passing score {{ (course.final.passing.score_ratio * 100)|round|int }}%
-        {% if course.final.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% elif course.final.passing.status != 'approved' %}<span class="pill pill-draft">Proposed value, not approved</span>{% endif %}</p>
+        {% if course.final.passing.status == 'dev_provisional' %}<span class="pill pill-dev">Temporary development standard</span>{% endif %}</p>
     {% else %}
       <p class="ec-placeholder-text">You haven't taken it yet.</p>
     {% endif %}

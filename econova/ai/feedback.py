@@ -25,7 +25,7 @@ SCHEMA = {"type": "object", "properties": {
 def eligible(attempt, assessment):
     """이 응시 기록에 해설(과 AI 설명)을 보여줘도 되는가."""
     return (assessment is not None and assessment.id == attempt["assessment_id"]
-            and assessment.version == attempt.get("assessment_version") and assessment.approved
+            and assessment.version == attempt.get("assessment_version")
             and assessment.answer_keys)
 
 

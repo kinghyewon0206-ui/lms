@@ -61,16 +61,17 @@ def test_real_catalog_matches_spec():
         assert c.content_version >= 1 and c.estimated_hours >= 1 and c.slug and c.objectives
 
 
-def test_real_courses_are_not_published_yet():
-    # 검증된 학습자료와 평가가 없으므로 실제 강좌는 아직 공개하면 안 된다
+def test_real_courses_are_open_but_reviews_stay_draft():
+    # 대회판 정책(2026-11-21 소유자 결정): 실제 강좌는 모두 공개(수강 가능)하되, 검토 기록은 승인으로 바꾸지 않는다
     cat = content.load_catalog(False)
-    assert cat.published() == []
-    assert {c.status for c in cat.courses} == {"coming_soon"}
+    assert [c.id for c in cat.published()] == [c.id for c in cat.courses] == [f"c0{n}" for n in range(1, 10)]
+    assert {c.status for c in cat.courses} == {"published"}
     assert all(c.review_status == "draft" and not c.fixture for c in cat.courses)
     for c in cat.courses:
         for lesson in c.lessons:
             assert lesson.requirements == ("material", "quiz")
-            assert not lesson.material_approved and not lesson.quiz_approved
+            assert lesson.material_approved and lesson.quiz_approved          # 파일이 있으므로 제공
+            assert not lesson.content.approved and not lesson.quiz_assessment.approved   # 승인 주장은 없음
 
 
 def test_course_and_lesson_ids_are_unique():
@@ -90,7 +91,8 @@ def test_fixtures_when_enabled(fixtures_on):
     cat = content.get_catalog()
     fixtures = [c for c in cat.courses if c.fixture]
     assert [c.id for c in fixtures] == ["dev-f1", "dev-f2", "dev-f3"]   # dev-f3: 캡스톤 강좌 (Phase 7)
-    assert [c.id for c in cat.published()] == ["dev-f1", "dev-f2", "dev-f3"]   # 공개된 것은 테스트 강좌뿐
+    assert [c.id for c in cat.published() if c.fixture] == ["dev-f1", "dev-f2", "dev-f3"]
+    assert {c.id for c in cat.published() if not c.fixture} == {f"c0{n}" for n in range(1, 10)}   # 대회판: 실제 강좌도 공개
     assert cat.course("dev-f2").lesson("dev-f2-l2").requirements == ("material",)
 
 
@@ -123,7 +125,7 @@ def test_visible_and_published_filtering():
     cat = content.build_catalog(list(base.courses) + [content.parse_course(draft), content.parse_course(archived)], base.sdgs)
     visible = [c.id for c in cat.visible()]
     assert "zz-draft" not in visible and "zz-old" not in visible
-    assert {c.id for c in cat.published()} == {"dev-f1", "dev-f2", "dev-f3"}
+    assert {c.id for c in cat.published()} == {c.id for c in base.courses}   # 보이는 강좌는 모두 수강 가능 (대회판)
     assert all(c.id in visible for c in base.courses)
 
 
@@ -166,21 +168,28 @@ def test_valid_course_parses():
     (lambda d: d["lessons"][0]["material"].update(file="../../etc/passwd"), "material.file"),
     (lambda d: d["lessons"][0]["material"].update(status="ok"), "material.status"),
     (lambda d: d.update(fixture=True), "dev_fixtures"),
-    (lambda d: d.update(status="published"), "published"),
+    # 공개 강좌는 최종 평가나 캡스톤 중 하나가 있어야 한다 (대회판: 승인이 아닌 구조 요건)
+    (lambda d: d.update(final_assessment={"status": "upcoming"}), "needs a final assessment or a capstone"),
 ])
 def test_invalid_course_is_rejected(mutate, message):
     assert message in _bad(mutate)
 
 
-def test_publish_requires_every_required_activity_approved():
-    # 테스트 강좌에서 퀴즈 승인 하나만 빼도 published 가 거절된다
+def test_publish_requires_every_required_activity_to_exist():
+    # 대회판 정책: 공개에는 구조만 필요하다. 필수 퀴즈 파일 하나만 빠져도 published 가 거절된다
     def drop_quiz(d):
         d["lessons"][2]["quiz"] = {"status": "missing", "assessment_id": None}
-    assert "quiz" in _bad(drop_quiz, raw=_fixture_raw(), fixture=True)
+    assert "missing required quiz" in _bad(drop_quiz, raw=_fixture_raw(), fixture=True)
 
-    def unpublish_lesson(d):
-        d["lessons"][0]["status"] = "draft"
-    assert "published" in _bad(unpublish_lesson, raw=_fixture_raw(), fixture=True)
+    def drop_final(d):
+        d["final_assessment"] = {"status": "upcoming"}
+    assert "needs a final assessment or a capstone" in _bad(drop_final, raw=_fixture_raw(), fixture=True)
+
+    # 레슨 하나를 draft 로 두는 것은 구조 문제가 아니다: 강좌는 공개되고, 그 레슨만 학생에게 닫힌다 (learning.lesson_access)
+    data = copy.deepcopy(_fixture_raw())
+    data["lessons"][0]["status"] = "draft"
+    parsed = content.parse_course(data, fixture=True)
+    assert parsed.published and parsed.lessons[0].status == "draft"
 
 
 def test_fixture_file_must_be_marked():
@@ -197,7 +206,7 @@ def test_catalog_level_duplicates_are_rejected():
 
     same_slug = copy.deepcopy(_raw("c01"))
     same_slug["final_assessment"] = {"status": "upcoming"}
-    same_slug.update(id="c99", lesson_ids=[f"c99-l{i}" for i in (1, 2, 3)])
+    same_slug.update(id="c99", status="draft", lesson_ids=[f"c99-l{i}" for i in (1, 2, 3)])
     for i, lesson in enumerate(same_slug["lessons"], start=1):
         lesson["id"] = f"c99-l{i}"
         _drop_materials(lesson)

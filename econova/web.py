@@ -225,7 +225,7 @@ def diagnostic_take():
     if not test["answer_keys"]:   # 정답 키 없이는 응시·채점하지 않는다
         raise private_content.KeysUnavailable(test["keys_problem"])
     if not diagnostic.servable(test):   # 운영에서는 사람 승인 전 진단평가를 열지 않는다
-        raise private_content.KeysUnavailable("The diagnostic assessment has not been human-reviewed (approved) yet.")
+        raise private_content.KeysUnavailable("The diagnostic assessment isn't available right now.")
     if request.method == "POST":
         try:
             quotas.check("DIAGNOSTIC_ATTEMPTS", len(storage.list_diagnostic_attempts(g.user["id"])))
@@ -361,9 +361,8 @@ def assessment_result(attempt_id):
     if course is not None:
         assessment = course.final if attempt["kind"] == "final" else \
             (course.lesson(attempt["lesson_id"]).quiz_assessment if course.lesson(attempt["lesson_id"]) else None)
-    if assessment is not None and (assessment.id != attempt["assessment_id"] or not assessment.approved
-                                   or not assessment.answer_keys):
-        assessment = None   # 승인되지 않았거나, 다른 평가로 바뀌었거나, 정답 키가 없으면 해설을 보여주지 않는다
+    if assessment is not None and (assessment.id != attempt["assessment_id"] or not assessment.answer_keys):
+        assessment = None   # 다른 평가로 바뀌었거나 정답 키가 없으면 해설을 보여주지 않는다
         # (평가 버전이 달라도 '당시 버전' 안내를 위해 평가는 넘긴다. 해설은 문항 버전이 같을 때만 템플릿이 보여준다)
     enrollment = storage.get_enrollment(g.user["id"], attempt["course_id"])
     from econova import ai_web

@@ -1,5 +1,6 @@
 """ECONOVA 화면: 카탈로그, 수강 신청, 대시보드, 강좌 상세, 레슨 접근, 진도, 난이도.
-sqlite 와 가짜 Firestore 양쪽에서 실행된다. 공개된 실제 강좌가 아직 없으므로 개발용 테스트 강좌를 켠다."""
+sqlite 와 가짜 Firestore 양쪽에서 실행된다. 실제 강좌는 대회판 정책(2026-11-21)으로 공개되어 있지만, 테스트에는 정답 키가 없으므로
+평가 흐름은 개발용 테스트 강좌로 시험한다."""
 import pytest
 
 from econova import content, learning, storage
@@ -55,14 +56,15 @@ def _switch_user(client, email):
 
 
 # ------------------------------------------------------------- 카탈로그
-def test_catalog_separates_available_upcoming_enrolled(logged_in):
+def test_catalog_lists_all_courses_as_open_and_separates_enrolled(logged_in):
+    """대회판 정책: 카탈로그에 보이는 강좌는 모두 수강 신청할 수 있다 (Coming soon 구역 없음)."""
     html = logged_in.get("/courses").get_data(as_text=True)
-    assert 'id="h-available">Open for enrollment' in html and 'id="h-upcoming">Coming soon' in html
+    assert 'id="h-available">Open for enrollment' in html and 'id="h-upcoming">' not in html
     assert 'id="h-enrolled">My courses' not in html
     assert "Markets &amp; Prices" in html and "SDG 2" in html and "Choose your own SDG" in html
-    assert html.count("Coming soon · Enrollment closed") == 9               # 실제 강좌 9개는 신청 불가
+    assert "Enrollment closed" not in html and "Coming soon" not in html
+    assert all(f'action="/courses/c0{n}/enroll"' in html for n in range(1, 10))   # 실제 강좌 9개 모두 신청 가능
     assert html.count("Development test course") >= 2
-    assert 'action="/courses/c02/enroll"' not in html
 
     _enroll(logged_in, "dev-f1")
     html = logged_in.get("/courses").get_data(as_text=True)
@@ -72,20 +74,26 @@ def test_catalog_separates_available_upcoming_enrolled(logged_in):
 def test_fixtures_hidden_when_disabled(monkeypatch, logged_in):
     monkeypatch.delenv("ECONOVA_DEV_FIXTURES")
     html = logged_in.get("/courses").get_data(as_text=True)
-    assert "Development test course" not in html and "No courses are open for enrollment right now." in html
+    assert "Development test course" not in html and "dev-f1" not in html
+    assert 'action="/courses/c02/enroll"' in html                         # 실제 강좌는 그대로 열려 있다
     assert logged_in.get("/courses/dev-f1").status_code == 404
     assert _enroll(logged_in, "dev-f1").status_code == 404
 
 
 # ------------------------------------------------------------- 수강 신청
-def test_cannot_enroll_in_unpublished_course(app, logged_in):
+def test_real_course_is_enrollable_but_draft_course_is_not(app, logged_in):
+    """대회판 정책: 실제 강좌(c02)는 수강 신청할 수 있다. 카탈로그에 보이지 않는 상태(draft·archived)의 강좌는 여전히 막힌다."""
+    import dataclasses
     res = _enroll(logged_in, "c02")
-    assert res.status_code == 303
-    assert "This course isn&#39;t published yet, so you can&#39;t enroll." in logged_in.get(res.headers["Location"]).get_data(as_text=True)
+    assert res.status_code == 302 and res.headers["Location"].endswith("/courses/c02")
     with app.app_context():
-        assert storage.get_enrollment(_uid(app), "c02") is None
-    with app.app_context(), pytest.raises(learning.LearningError):   # 화면을 거치지 않아도 막힌다
-        learning.enroll(_uid(app), content.get_catalog().course("c02"))
+        assert storage.get_enrollment(_uid(app), "c02")["status"] == "active"
+    c01 = content.get_catalog().course("c01")
+    for status in ("draft", "archived"):
+        with app.app_context(), pytest.raises(learning.LearningError):   # 화면을 거치지 않아도 막힌다
+            learning.enroll(_uid(app), dataclasses.replace(c01, status=status))
+    with app.app_context():
+        assert storage.get_enrollment(_uid(app), "c01") is None
 
 
 def test_enroll_unknown_course_404(logged_in):
@@ -145,10 +153,10 @@ def test_dashboard_keeps_card_when_course_disappears(monkeypatch, logged_in):
 
 # ------------------------------------------------------------- 강좌 상세
 def test_course_detail_before_and_after_enrollment(logged_in):
-    html = logged_in.get("/courses/c02").get_data(as_text=True)
-    assert "Enrollment closed" in html and "Draft (not yet reviewed)" in html and "Final assessment" in html
-    assert "Supply and Demand" in html
-    assert 'href="/learn/c02/' not in html
+    html = logged_in.get("/courses/c02").get_data(as_text=True)                # 실제 강좌: 수강 신청 가능, 검토 상태 표시 없음
+    assert 'action="/courses/c02/enroll"' in html and "Enrollment closed" not in html and "Final assessment" in html
+    assert "Draft (not yet reviewed)" not in html and "Supply and Demand" in html
+    assert 'href="/learn/c02/' not in html                                     # 수강 전에는 레슨 링크 없음
 
     html = logged_in.get("/courses/dev-f1").get_data(as_text=True)
     assert 'action="/courses/dev-f1/enroll"' in html
@@ -164,7 +172,8 @@ def test_course_detail_unknown_404(logged_in):
 
 # ------------------------------------------------------------- 레슨 접근
 def test_lesson_access_rules(logged_in):
-    assert logged_in.get("/learn/c02/c02-l1").status_code == 403            # 공개 전 강좌
+    res = logged_in.get("/learn/c02/c02-l1")                                # 실제 강좌도 수강 전이면 강좌 소개로
+    assert res.status_code == 302 and res.headers["Location"].endswith("/courses/c02")
     assert logged_in.get("/learn/dev-f1/dev-f2-l1").status_code == 404      # 다른 강좌의 레슨
     assert logged_in.get("/learn/dev-f1/dev-f1-l9").status_code == 404
     assert logged_in.get("/learn/nope/x").status_code == 404
@@ -217,13 +226,13 @@ def test_quiz_submission_rules(app, logged_in):
             learning.record_quiz_submission(uid, f1, f1.lesson("dev-f1-l1"), "999999")
         with pytest.raises(learning.LearningError, match="has no required quiz to submit"):   # 퀴즈가 필요 없는 레슨
             learning.record_quiz_submission(uid, f2, f2.lesson("dev-f2-l2"), "1")
-        with pytest.raises(learning.LearningError, match="has no required quiz to submit"):   # 퀴즈가 아직 draft 인 실제 강좌
+        with pytest.raises(learning.LearningError, match="couldn't find your quiz submission"):   # 실제 강좌도 본인 응시 기록이 있어야 한다
             learning.record_quiz_submission(uid, c02, c02.lesson("c02-l1"), "1")
     res = _post(logged_in, "/learn/dev-f1/dev-f1-l1/material-reviewed", quiz_submitted="1", status="completed")
     with app.app_context():
         assert storage.list_lesson_progress(_uid(app), "dev-f1")["dev-f1-l1"]["status"] == "in_progress"   # 위조 무시
     assert logged_in.get("/learn/dev-f2/dev-f2-l1/quiz").status_code == 303   # 수강 전
-    assert logged_in.get("/learn/c02/c02-l1/quiz").status_code == 403         # 공개 전 강좌
+    assert logged_in.get("/learn/c02/c02-l1/quiz").status_code == 303         # 실제 강좌도 수강 전에는 응시 불가
     assert logged_in.get("/learn/dev-f2/dev-f2-l2/quiz").status_code in (303, 404)
 
     rec = _submit_quiz(app, logged_in, "dev-f1", "dev-f1-l1")
@@ -268,12 +277,17 @@ def test_full_course_lessons_completed_but_not_course_completed(app, logged_in):
         assert storage.get_enrollment(_uid(app), "dev-f2")["status"] == "active"   # 수료는 최종 평가 후 (Phase 4)
 
 
-def test_material_review_requires_enrollment_and_published_course(app, logged_in):
+def test_material_review_requires_enrollment(app, logged_in):
     res = _post(logged_in, "/learn/dev-f1/dev-f1-l1/material-reviewed")
     assert res.status_code == 303 and res.headers["Location"].endswith("/courses/dev-f1")
-    assert _post(logged_in, "/learn/c02/c02-l1/material-reviewed").status_code == 403
+    res = _post(logged_in, "/learn/c02/c02-l1/material-reviewed")               # 실제 강좌도 수강 전에는 기록하지 않는다
+    assert res.status_code == 303 and res.headers["Location"].endswith("/courses/c02")
     with app.app_context():
         assert storage.list_all_lesson_progress(_uid(app)) == {}
+    _enroll(logged_in, "c02")                                                  # 수강 후에는 실제 강좌 자료 확인이 기록된다
+    assert _post(logged_in, "/learn/c02/c02-l1/material-reviewed").status_code == 302
+    with app.app_context():
+        assert storage.list_lesson_progress(_uid(app), "c02")["c02-l1"]["material_reviewed"] is True
 
 
 # ------------------------------------------------------------- 난이도

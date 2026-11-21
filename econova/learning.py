@@ -105,7 +105,7 @@ def lesson_access(user_id, course_id, lesson_id):
 def mark_material_reviewed(user_id, course, lesson):
     """필수 학습자료 확인. 승인된 자료가 있는 레슨에서만 기록한다."""
     if "material" not in lesson.requirements or not lesson.material_approved:
-        raise LearningError("unavailable", "There are no approved learning materials to review.")
+        raise LearningError("unavailable", "There are no learning materials to review.")
     return storage.update_lesson_progress(user_id, course.id, lesson.id, lesson.requirements, material_reviewed=True)
 
 
@@ -197,7 +197,9 @@ def reconcile_attempt(user_id, course, assessment, attempt, lesson=None):
         if attempt["kind"] == "lesson_quiz" and attempt["lesson_id"] == lesson.id:
             record_quiz_submission(user_id, course, lesson, attempt["id"])
     elif attempt["kind"] == "final" and attempt["passed"] and assessment.passing_usable(course.fixture):
-        policy = "approved" if assessment.passing["status"] == "approved" else "dev_provisional"
+        # 기록 정책 = 합격 기준 상태 그대로 (approved / proposed(대회판, 미승인 제안값) / dev_provisional(개발용)).
+        # proposed 를 dev_provisional 로 적으면 실제 강좌 수료가 '개발용 시험 수료'로 잘못 표시된다.
+        policy = assessment.passing["status"]
         storage.complete_enrollment(user_id, course.id, attempt["id"], policy, at=attempt["created_at"])
 
 

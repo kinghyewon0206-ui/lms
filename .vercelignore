@@ -15,3 +15,9 @@ requirements-dev.txt
 pytest.ini
 *.answers.json
 keys-bundle*
+.claude/
+.pytest_cache/
+*.pyc
+.env.example
+templates/prototype/
+public/static/glass/

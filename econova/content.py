@@ -50,14 +50,15 @@ class Lesson:
     quiz_assessment: object = None   # assessments.Assessment (형성 퀴즈 파일이 있을 때)
     simulations: tuple = ()          # 이 레슨에 넣을 시뮬레이션 id (econova.simulations.SIMULATIONS)
 
+    # 대회판 결정(2026-11-21, 소유자): 학습자료·퀴즈는 파일이 있으면 학생에게 제공한다. 사람 검토 상태(review.status)는
+    # 기록으로만 남고 접근을 막지 않는다. (속성 이름은 호출부 호환을 위해 유지; 정답 키가 없으면 응시는 여전히 막힌다)
     @property
     def material_approved(self):
-        return self.material.get("status") in READY_STATUSES and self.content is not None
+        return self.content is not None
 
     @property
     def quiz_approved(self):
-        return (self.quiz.get("status") in READY_STATUSES and self.quiz_assessment is not None
-                and self.quiz_assessment.approved)
+        return self.quiz_assessment is not None
 
     def activity_available(self, activity):
         return {"material": self.material_approved, "quiz": self.quiz_approved}[activity]
@@ -86,17 +87,18 @@ class Course:
 
     @property
     def capstone_ready(self):
-        """학생이 쓸 수 있는 캡스톤이 있는가 (승인된 정의만)."""
-        return self.capstone is not None and self.capstone.approved
+        """학생이 쓸 수 있는 캡스톤이 있는가."""
+        return self.capstone is not None
 
     @property
     def final_ready(self):
-        """학생이 볼 수 있는 최종 평가가 있는가 (승인·공개된 평가만)."""
-        return self.final is not None and self.final.approved
+        """학생이 볼 수 있는 최종 평가가 있는가."""
+        return self.final is not None
 
     @property
     def published(self):
-        return self.status == "published"
+        """학생에게 열려 있는 강좌인가 (카탈로그에 보이는 강좌는 모두 수강 가능)."""
+        return self.status in VISIBLE_STATUSES
 
     @property
     def lesson_ids(self):
@@ -317,22 +319,14 @@ def parse_course(data, where="course", fixture=False, sources=None, base_dir=Non
                                f"({capstone_doc.review_status}).")
 
     status = _choice(data.get("status"), COURSE_STATUSES, where, "status")
-    if status == "published":
+    if status in VISIBLE_STATUSES:
+        # 학생에게 열리는 강좌(coming_soon·published)의 구조 요건만 확인한다 (사람 승인 요건은 대회판에서 없앴다)
         for lesson in lessons:
             missing = [a for a in lesson.requirements if not lesson.activity_available(a)]
-            if lesson.status != "published" or missing:
-                raise ContentError(f"{where}: lesson {lesson.id} has required materials/assessments ({', '.join(missing) or 'status'}) "
-                                   "that are not approved, so the course cannot be published.")
-        if final_doc is None and capstone_doc is not None:
-            # 캡스톤 강좌(c09 처럼 최종 평가 없이 캡스톤으로 마치는 강좌): 캡스톤 정의와 루브릭이 승인돼야 공개할 수 있다
-            if not capstone_doc.approved:
-                raise ContentError(f"{where}: there is no approved capstone definition, so the course cannot be published.")
-            if capstone_doc.rubric["status"] != "approved" and not fixture:
-                raise ContentError(f"{where}: the capstone rubric is not approved, so the course cannot be published.")
-        elif final_doc is None or not final_doc.approved:
-            raise ContentError(f"{where}: there is no approved final assessment (final_assessment), so the course cannot be published.")
-        elif not final_doc.passing_usable(fixture):
-            raise ContentError(f"{where}: the final assessment's passing criteria are not approved, so the course cannot be published.")
+            if missing:
+                raise ContentError(f"{where}: lesson {lesson.id} is missing required {', '.join(missing)}, so the course cannot be published.")
+        if final_doc is None and capstone_doc is None:
+            raise ContentError(f"{where}: a published course needs a final assessment or a capstone.")
 
     return Course(
         id=course_id, slug=slug, title=_text(data, "title", where), title_ko=_text(data, "title_ko", where),

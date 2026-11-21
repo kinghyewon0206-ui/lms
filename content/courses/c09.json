@@ -21,7 +21,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "upcoming"
@@ -41,7 +41,7 @@
       "order": 1,
       "title": "Identify an Economic Problem",
       "title_ko": "Identify an Economic Problem",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -61,7 +61,7 @@
       "order": 2,
       "title": "Analyze Evidence and Compare Policy Options",
       "title_ko": "Analyze Evidence and Compare Policy Options",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -81,7 +81,7 @@
       "order": 3,
       "title": "Develop and Present an Economic Policy Proposal",
       "title_ko": "Develop and Present an Economic Policy Proposal",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

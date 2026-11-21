@@ -25,7 +25,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "draft",
@@ -42,7 +42,7 @@
       "order": 1,
       "title": "Comparative Advantage and International Trade",
       "title_ko": "Comparative Advantage and International Trade",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -62,7 +62,7 @@
       "order": 2,
       "title": "Exchange Rates and International Markets",
       "title_ko": "Exchange Rates and International Markets",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -82,7 +82,7 @@
       "order": 3,
       "title": "Global Supply Chains and Sustainable Production",
       "title_ko": "Global Supply Chains and Sustainable Production",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

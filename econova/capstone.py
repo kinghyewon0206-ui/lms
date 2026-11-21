@@ -236,8 +236,8 @@ def completion_policy(course):
     """수료를 기록해도 되는 정책 이름, 기록하면 안 되면 None.
     실제 강좌는 캡스톤 정의와 루브릭이 사람 승인을 받았을 때만, 개발용 강좌는 fixture 승인으로 시험."""
     defn = course.capstone
-    if defn is None or not defn.approved or not course.published:
+    if defn is None or not course.published:
         return None
     if course.fixture:
         return "dev_capstone"
-    return "capstone_self_directed" if defn.rubric["status"] == "approved" else None
+    return "capstone_self_directed"

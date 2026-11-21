@@ -23,7 +23,7 @@
     "intermediate",
     "advanced"
   ],
-  "status": "coming_soon",
+  "status": "published",
   "content_version": 2,
   "final_assessment": {
     "status": "draft",
@@ -40,7 +40,7 @@
       "order": 1,
       "title": "Labor Supply and Demand",
       "title_ko": "Labor Supply and Demand",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -60,7 +60,7 @@
       "order": 2,
       "title": "Employment, Unemployment, and Productivity",
       "title_ko": "Employment, Unemployment, and Productivity",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",
@@ -80,7 +80,7 @@
       "order": 3,
       "title": "Wages, Minimum Wage, and Labor Policy",
       "title_ko": "Wages, Minimum Wage, and Labor Policy",
-      "status": "draft",
+      "status": "published",
       "objectives": [],
       "requirements": [
         "material",

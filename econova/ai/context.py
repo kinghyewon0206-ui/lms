@@ -35,8 +35,8 @@ def _level_text(material, level):
 def lesson_context(course, lesson, level, sources, sim_run=None):
     """승인된 학습자료로만 만든 튜터 맥락. 승인되지 않았으면 AIError('unavailable')."""
     material = lesson.content
-    if material is None or not material.approved:
-        raise AIError("unavailable", "no approved learning materials")
+    if material is None:   # 대회판: 학습자료가 있는 레슨이면 튜터를 쓸 수 있다 (사람 검토 상태와 무관)
+        raise AIError("unavailable", "no learning materials")
     if level not in content.DIFFICULTIES:
         level = "beginner"
     src = allowed_sources(material, sources)
@@ -68,6 +68,6 @@ def lesson_context(course, lesson, level, sources, sim_run=None):
 def concept_terms(course, lesson_id):
     """레슨의 승인된 개념 {id: (term, definition)} (피드백·추천 설명용)."""
     lesson = course.lesson(lesson_id) if course else None
-    if lesson is None or lesson.content is None or not lesson.content.approved:
+    if lesson is None or lesson.content is None:
         return {}
     return {c["id"]: (c["term"], c["definition"]) for c in lesson.content.concepts}

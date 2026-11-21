@@ -7,7 +7,7 @@
 <div class="ec-page ec-lesson-page" style="{{ m.accent(course) }}">
   <aside class="preview-banner" role="note">
     <strong>Review preview · Not visible to students</strong>
-    <span>This page opens only in the development environment or for platform admins. It shows unreviewed drafts as they are; content reaches students only after it goes through the review process (draft → in_review → approved → published).</span>
+    <span>This page opens only in the development environment or for platform admins. It shows the material with its review history. Students see the same material in their lessons.</span>
   </aside>
   <nav class="crumbs" aria-label="Breadcrumb">{{ course.id|upper }} {{ course.title_ko }} <span>/</span> Lesson {{ lesson.order }}</nav>
   <header class="ec-lesson-head">
@@ -16,7 +16,7 @@
       <h1>{{ lesson.title_ko }}</h1>
       {% if lesson.title != lesson.title_ko %}<p class="ec-en">{{ lesson.title }}</p>{% endif %}
     </div>
-    <div class="ec-lesson-meta">{{ mat.review_badge(doc) }}</div>
+    <div class="ec-lesson-meta">{{ mat.review_badge(doc, show_review=True) }}</div>
   </header>
 
   <section class="ec-checklist" aria-labelledby="h-history">
