@@ -37,6 +37,20 @@ LIMITS = {
     "md": (0, 1000, True, "External damage per unit md (assumed)", "$ per unit"),
     "e": (0, 1000, True, "Emissions per unit e (assumed)", "kg per unit"),
 }
+PRESETS = {
+    "supply-demand": [
+        {"label": "Starting market", "values": {"a": 100, "b": 2, "c": 10, "d": 1}},
+        {"label": "Demand rises (higher income)", "values": {"a": 130, "b": 2, "c": 10, "d": 1}},
+        {"label": "Supply falls (higher costs)", "values": {"a": 100, "b": 2, "c": -20, "d": 1}},
+        {"label": "Both shift right", "values": {"a": 130, "b": 2, "c": 40, "d": 1}},
+    ],
+    "carbon-tax": [
+        {"label": "No tax", "values": {"a": 100, "b": 2, "c": 10, "d": 1, "t": 0, "md": 6, "e": 1}},
+        {"label": "Tax equals external damage", "values": {"a": 100, "b": 2, "c": 10, "d": 1, "t": 6, "md": 6, "e": 1}},
+        {"label": "Tax above external damage", "values": {"a": 100, "b": 2, "c": 10, "d": 1, "t": 15, "md": 6, "e": 1}},
+        {"label": "No external damage", "values": {"a": 100, "b": 2, "c": 10, "d": 1, "t": 6, "md": 0, "e": 1}},
+    ],
+}
 DEFAULTS = {
     "supply-demand": {"a": 100, "b": 2, "c": 10, "d": 1},
     "carbon-tax": {"a": 100, "b": 2, "c": 10, "d": 1, "t": 6, "md": 6, "e": 1},
@@ -160,7 +174,10 @@ def carbon_tax(a, b, c, d, t, md=None, e=1.0):
            "emissions_before": r6(e * q0), "emissions_after": r6(e * qt), "emissions_change": r6(e * dq)}
     if md is not None:
         avoided = md * (q0 - qt)
-        out.update(avoided_damage=r6(avoided), social_welfare_change=r6(avoided - dwl))
+        # 외부 피해가 단위당 md 로 일정하면 사회적 한계비용 MSC = 공급 + md. 효율적 수량은 수요 = MSC 인 점 (세금 t = md 일 때와 같다)
+        q_eff = max(0.0, a - b * (a - c + d * md) / (b + d))
+        out.update(avoided_damage=r6(avoided), social_welfare_change=r6(avoided - dwl),
+                   efficient_quantity=r6(q_eff), pigouvian_tax=r6(md))
     return out
 
 
@@ -216,7 +233,9 @@ ROW_LABELS = {
                    ("consumer_burden_per_unit", "Consumer burden (per unit)", "$ per unit"), ("producer_burden_per_unit", "Producer burden (per unit)", "$ per unit"),
                    ("consumer_share", "Consumer share of the tax", ""), ("deadweight_loss_private", "Deadweight loss (assuming no external damage)", "$"),
                    ("emissions_before", "Emissions (before tax)", "kg"), ("emissions_after", "Emissions (after tax)", "kg"),
-                   ("avoided_damage", "Avoided external damage (assumed)", "$"), ("social_welfare_change", "Change in social welfare (assumed)", "$")),
+                   ("avoided_damage", "Avoided external damage (assumed)", "$"), ("social_welfare_change", "Change in social welfare (assumed)", "$"),
+                   ("efficient_quantity", "Socially efficient quantity (demand = marginal social cost)", "units"),
+                   ("pigouvian_tax", "Tax that reaches the efficient quantity (= external damage per unit)", "$ per unit")),
 }
 
 

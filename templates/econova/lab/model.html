@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% import "econova/_macros.html" as m with context %}
+{% block title %}{{ spec.title }} · Economics Lab · ECONOVA{% endblock %}
+{% macro control(i) %}
+<div class="sim-ctl" data-name="{{ i.name }}">
+  <label for="lab-{{ i.name }}">{{ i.label }}{% if i.unit and i.kind == 'number' %} <small>({{ i.unit }}; {{ i.min|lab_input }} to {{ i.max|lab_input }})</small>{% endif %}</label>
+  {% if i.kind == 'select' %}
+  <select id="lab-{{ i.name }}" name="{{ i.name }}" data-role="select" aria-describedby="lab-{{ i.name }}-err">
+    {% for value, label in i.options %}<option value="{{ value }}"{% if value|string == inputs[i.name]|string %} selected{% endif %}>{{ label }}</option>{% endfor %}
+  </select>
+  {% else %}
+  <div class="sim-ctl-row">
+    <input type="range" min="{{ i.min }}" max="{{ i.max }}" step="{{ i.step }}" value="{{ inputs[i.name]|lab_input }}" data-role="range"
+           aria-label="{{ i.label }} slider" tabindex="-1">
+    <input type="text" inputmode="decimal" id="lab-{{ i.name }}" name="{{ i.name }}" data-role="number" value="{{ inputs[i.name]|lab_input }}"
+           aria-describedby="lab-{{ i.name }}-err">
+  </div>
+  {% endif %}
+  <p class="sim-err" id="lab-{{ i.name }}-err" role="alert"></p>
+</div>
+{% endmacro %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.lab_home') }}">Economics Lab</a> <span>/</span> {{ spec.title }}</nav>
+  <section class="sim-widget lab-model" style="{{ m.accent({'id': entry.course_id}) }}" data-lab="{{ sim_id }}"
+           data-spec='{{ spec|tojson }}' data-defaults='{{ defaults|tojson }}' data-projects='{{ projects|tojson }}' aria-labelledby="lab-title">
+    <header class="lab-model-head">
+      <p class="lab-course"><a href="{{ url_for('econova.course_detail', course_id=entry.course_id) }}">{{ entry.course_id|upper }} · {{ entry.course_name }}</a></p>
+      <h1 id="lab-title">{{ spec.title }}</h1>
+      <p class="lab-blurb">{{ spec.blurb }}</p>
+    </header>
+    <p class="sim-note">Hypothetical example: these are results from a simplified model, not real statistics or forecasts. {{ spec.model_note }}</p>
+    {% if link_error %}<p class="flash error" role="alert">The link had a value we couldn't use ({{ link_error }}), so the starting values are shown.</p>{% endif %}
+
+    <div class="lab-presets" role="group" aria-label="Scenarios">
+      <span class="lab-presets-label">Try a scenario</span>
+      {% for p in spec.presets %}<button type="button" class="chip" data-preset="{{ loop.index0 }}">{{ p.label }}</button>{% endfor %}
+    </div>
+
+    <form class="sim-form" action="{{ url_for('econova.lab_sim', sim_id=sim_id) }}" method="get" novalidate>
+      {% if spec.groups %}
+        {% for title, names in spec.groups %}
+        <fieldset class="lab-group"><legend>{{ title }}</legend>
+          <div class="sim-controls">{% for i in spec.inputs if i.name in names %}{{ control(i) }}{% endfor %}</div>
+        </fieldset>
+        {% endfor %}
+      {% else %}
+        <div class="sim-controls">{% for i in spec.inputs %}{{ control(i) }}{% endfor %}</div>
+      {% endif %}
+      <div class="sim-buttons">
+        <button type="button" class="btn secondary" data-action="baseline">Use current values as baseline</button>
+        <button type="button" class="btn secondary" data-action="reset">Reset to starting values</button>
+        <button type="submit" class="btn secondary" data-action="link">Update the page link</button>
+        <span class="hint lab-link-hint">The page address keeps your values, so you can bookmark or share this scenario.</span>
+      </div>
+    </form>
+
+    <p class="sim-summary" data-role="summary" aria-live="polite">{% if results.reason %}{{ results.reason }}{% else %}Results for the values above are in the table below.{% endif %}</p>
+    <div class="lab-charts" data-role="charts">
+      <noscript><p class="hint">The charts need JavaScript. The table below shows the results the server calculated.</p></noscript>
+    </div>
+
+    <div class="sim-table-wrap"><table class="ec-table sim-table" data-role="table"><caption class="sr-only">Calculated results compared with the baseline</caption>
+      <thead><tr><th scope="col">Result</th><th scope="col">Now</th></tr></thead>
+      <tbody>{% for label, value, unit in rows %}<tr><th scope="row">{{ label }}</th><td>{{ value|lab_number(unit) }}</td></tr>{% endfor %}</tbody></table></div>
+    <div class="lab-extra" data-role="extra"></div>
+    <div class="sim-notes" data-role="notes"></div>
+
+    <details class="sim-assume" open><summary>Model assumptions</summary>
+      <ul class="ec-list">{% for a in spec.assumptions %}<li>{{ a }}</li>{% endfor %}</ul>
+    </details>
+  </section>
+
+  <nav class="lab-related" aria-label="Related pages">
+    <a class="btn secondary" href="{{ url_for('econova.lesson', course_id=entry.course_id, lesson_id=entry.lesson_id) }}">Read the related lesson</a>
+    <a class="btn secondary" href="{{ url_for('econova.discuss_course', course_id=entry.course_id) }}">Debate topics for {{ entry.course_name }}</a>
+    {% if sim_id == 'sdg-project' %}<a class="btn" href="{{ url_for('econova.capstone_home', course_id='c09') }}">Use this analysis in your capstone</a>{% endif %}
+    <a class="btn ghost" href="{{ url_for('econova.lab_home') }}">All experiments</a>
+  </nav>
+</div>
+<script src="{{ url_for('static', filename='js/econova-lab-models.js') }}"></script>
+<script src="{{ url_for('static', filename='js/econova-lab-ui.js') }}"></script>
+{% endblock %}

@@ -154,7 +154,7 @@ def discuss_course(course_id):
 
 def _topic_or_404(course, topic_id):
     topic = debates.topic(course, learning.catalog().sources, topic_id)
-    if topic is None:   # 없거나 승인되지 않은 주제
+    if topic is None:   # 없는 주제
         abort(404)
     return topic
 
@@ -171,6 +171,7 @@ def discuss_topic(course_id, topic_id):
     return render_econova("econova/discuss/topic.html", course=course, topic=topic, conv=conv, messages=messages,
                           turns=ai_debate.student_turns(messages), ai_enabled=ai_enabled(),
                           perspective_names={p["id"]: p["name"] for p in topic["perspectives"]},
+                          sources=[learning.catalog().sources[sid] for sid in topic["source_ids"] if sid in learning.catalog().sources],
                           max_chars=_max_chars())
 
 

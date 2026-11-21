@@ -3,9 +3,11 @@
 {% block content %}
 <div class="ec-page">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.discuss_home') }}">Economics Debate</a> <span>/</span> {{ course.title_ko }}</nav>
-  <header class="ec-head"><h1>{{ course.title_ko }}: Debate topics</h1></header>
+  <header class="ec-head"><span class="eyebrow">Economics Debate · {{ course.id|upper }}</span><h1>{{ course.title_ko }}: Debate topics</h1>
+    <p class="hint">Each topic gives you background, a policy question and several perspectives. There is no single right answer; the aim is to reason with evidence and name your assumptions.</p></header>
   {% if topics %}
-  <ul class="ec-list">{% for t in topics %}<li><a href="{{ url_for('econova.discuss_topic', course_id=course.id, topic_id=t.id) }}">{{ t.title }}</a> — {{ t.policy_question }}</li>{% endfor %}</ul>
-  {% else %}<p class="ec-placeholder-text">No approved debate topics yet.</p>{% endif %}
+  <ul class="debate-topics">{% for t in topics %}<li class="persp-card"><h2><a href="{{ url_for('econova.discuss_topic', course_id=course.id, topic_id=t.id) }}">{{ t.title }}</a></h2>
+    <p>{{ t.policy_question }}</p><p class="hint">{{ t.perspectives|length }} perspectives · {{ t.perspectives|map(attribute='name')|join(' / ') }}</p></li>{% endfor %}</ul>
+  {% else %}<p class="ec-placeholder-text">Debate topics for this course couldn't be loaded. Try again later.</p>{% endif %}
 </div>
 {% endblock %}

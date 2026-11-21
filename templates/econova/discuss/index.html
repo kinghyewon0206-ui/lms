@@ -6,17 +6,17 @@
     <span class="eyebrow">Economics Debate</span>
     <h1>Weigh policies from several perspectives</h1>
     <p class="hint">This isn't about finding one right answer. It's practice in separating models, evidence, assumptions and value judgments.
-      Only approved topics from published courses you're enrolled in are shown.</p>
+      You'll find three or more topics for every course you're enrolled in. Pick one, read the perspectives, then argue your own view with the AI moderator.</p>
   </header>
   {% for row in rows %}
   <section class="ec-section">
-    <h2>{{ row.course.title_ko }}</h2>
+    <div class="browse-head"><h2>{{ row.course.title_ko }}</h2><a class="hint" href="{{ url_for('econova.discuss_course', course_id=row.course.id) }}">{{ row.topics|length }} topics →</a></div>
     {% if row.topics %}
     <ul class="topic-list">{% for t in row.topics %}<li><a href="{{ url_for('econova.discuss_topic', course_id=row.course.id, topic_id=t.id) }}">{{ t.title }}</a></li>{% endfor %}</ul>
-    {% else %}<p class="ec-placeholder-text">This course has no approved debate topics yet.</p>{% endif %}
+    {% else %}<p class="ec-placeholder-text">Debate topics for this course couldn't be loaded. Try again later.</p>{% endif %}
   </section>
   {% else %}
-  <p class="ec-placeholder-text">You aren't enrolled in any published courses. Debate topics appear once you enroll in a course.</p>
+  <p class="ec-placeholder-text">You aren't enrolled in any courses yet. <a href="{{ url_for('econova.catalog') }}">Enroll in a course</a> and its debate topics appear here.</p>
   {% endfor %}
 </div>
 {% endblock %}

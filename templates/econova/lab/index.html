@@ -1,26 +1,57 @@
 {% extends "base.html" %}
+{% import "econova/_macros.html" as m with context %}
 {% block title %}Economics Lab · ECONOVA{% endblock %}
+{% macro preview(sid) -%}
+<svg class="lab-preview" viewBox="0 0 120 72" aria-hidden="true" focusable="false">
+  <path class="lp-axis" d="M10 6V64H114"/>
+  {% if sid == 'opportunity-cost' %}
+    <path class="lp-fill" d="M10 64V14L96 64Z"/><path class="lp-a" d="M10 14L96 64"/><circle class="lp-dot" cx="42" cy="44" r="4.5"/>
+  {% elif sid == 'supply-demand' %}
+    <path class="lp-a" d="M16 10L106 60"/><path class="lp-b" d="M16 60L106 10"/><circle class="lp-dot" cx="61" cy="35" r="4.5"/>
+  {% elif sid == 'carbon-tax' %}
+    <path class="lp-a" d="M16 12L106 60"/><path class="lp-b" d="M16 58L100 14"/><path class="lp-c" d="M16 40L74 10"/><circle class="lp-dot" cx="48" cy="24" r="4"/>
+  {% elif sid == 'inflation' %}
+    <path class="lp-a" d="M10 44C40 38 76 26 112 12"/><path class="lp-b" d="M10 44C44 46 78 50 112 54"/>
+  {% elif sid == 'minimum-wage' %}
+    <path class="lp-a" d="M14 10L104 62"/><path class="lp-b" d="M14 60L104 12"/><path class="lp-c" d="M10 26H114"/><path class="lp-gap" d="M41 26H90"/>
+  {% elif sid == 'inequality' %}
+    <path class="lp-c" d="M10 64L110 6"/><path class="lp-fill" d="M10 64C52 62 84 50 110 6L10 64Z"/><path class="lp-a" d="M10 64C52 62 84 50 110 6"/>
+  {% elif sid == 'compound-interest' %}
+    <path class="lp-fill" d="M10 64L10 56L110 36L110 64Z"/><path class="lp-a" d="M10 56C50 50 82 36 110 8"/><path class="lp-b" d="M10 56L110 36"/>
+  {% elif sid == 'comparative-advantage' %}
+    <path class="lp-a" d="M10 34L102 64"/><path class="lp-b" d="M10 8L56 64"/><circle class="lp-dot" cx="54" cy="36" r="4"/><circle class="lp-dot2" cx="34" cy="50" r="3.5"/>
+  {% else %}
+    <rect class="lp-bar-neg" x="16" y="40" width="9" height="24"/>
+    {% for i in range(8) %}<rect class="lp-bar" x="{{ 30 + i * 10 }}" y="{{ 52 - i * 2 }}" width="7" height="{{ 12 + i * 2 }}"/>{% endfor %}
+    <path class="lp-a" d="M20 52C46 46 80 30 110 16"/>
+  {% endif %}
+</svg>
+{%- endmacro %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
   <header class="ec-head">
     <span class="eyebrow">Economics Lab</span>
-    <h1>Experiment with markets by changing the numbers</h1>
-    <p class="hint">Simulations use fixed math formulas (no AI). Hypothetical example: the numbers are for learning only and are not real statistics.</p>
+    <h1>Nine experiments, one for every course</h1>
+    <p class="hint">Change the numbers and watch the model respond. Every experiment uses fixed formulas (no AI) with hypothetical numbers for learning, not real statistics or forecasts. Experiments are optional and don't affect course completion.</p>
   </header>
-  <div class="ec-grid">
-    {% for sid, s in sims.items() %}
-    <article class="ec-card" style="{{ '--a1: #56cdbe; --a2: #659cff;' if sid == 'supply-demand' else '--a1: #ffb45f; --a2: #ff7498;' }}" data-reveal>
-      <h3><a href="{{ url_for('econova.lab_sim', sim_id=sid) }}">{{ s.title }}</a></h3>
-      <p>{% if sid == 'supply-demand' %}Change the intercepts and slopes of demand and supply and watch how the equilibrium price and quantity move.{% else %}See how a per-unit carbon tax changes the consumer price, producer price, quantity, tax revenue and emissions.{% endif %}</p>
-      <div class="ec-card-actions"><a class="btn" href="{{ url_for('econova.lab_sim', sim_id=sid) }}">Start experimenting</a></div>
-    </article>
+  <ul class="lab-grid" role="list">
+    {% for e in experiments %}
+    <li class="lab-card" style="{{ m.accent({'id': e.course_id}) }}" data-experiment="{{ e.id }}">
+      <div class="lab-card-visual">{{ preview(e.id) }}</div>
+      <div class="lab-card-body">
+        <p class="lab-course">{{ e.course_id|upper }} · {{ e.course_name }}</p>
+        <h2><a href="{{ url_for('econova.lab_sim', sim_id=e.id) }}">{{ e.title }}</a></h2>
+        <p>{{ e.blurb }}</p>
+      </div>
+      <a class="btn" href="{{ url_for('econova.lab_sim', sim_id=e.id) }}" aria-label="Start experiment: {{ e.title }}">Start experiment</a>
+    </li>
     {% endfor %}
-  </div>
+  </ul>
   <section class="block ec-section">
     <div class="browse-head"><h2>Recently saved experiments</h2><a class="hint" href="{{ url_for('econova.lab_saved') }}">View all →</a></div>
     {% if runs %}
     <ul class="ec-list">{% for r in runs %}<li><a href="{{ url_for('econova.lab_run', run_id=r.id) }}">{{ sims[r.simulation_id].title }}</a> · {{ r.created_at }} (UTC){% if r.lesson_id %} · Lesson {{ r.lesson_id }}{% endif %}</li>{% endfor %}</ul>
-    {% else %}<p class="ec-placeholder-text">You haven't saved any experiments yet.</p>{% endif %}
+    {% else %}<p class="ec-placeholder-text">You haven't saved any experiments yet. Supply &amp; Demand and Carbon Tax results can be saved; the other experiments give you a link to share a scenario.</p>{% endif %}
   </section>
 </div>
 {% endblock %}

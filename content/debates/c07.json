@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "course_id": "c07",
+  "topics": [
+    {
+      "id": "mandatory-finance-education",
+      "title": "Should every high school require a personal finance course?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Young people soon face decisions about pay stubs, budgets, bank accounts, credit cards, and loans. Mistakes such as carrying a large credit card balance can be expensive because interest compounds. Some places now require a personal finance course before students can graduate.",
+        "Supporters argue that financial skills are as basic as reading. Critics point out that a required course takes up time that could be used for other subjects, and that knowing facts does not always change behavior. Research on whether finance classes change later behavior is mixed, and results seem to depend on how the course is taught and when."
+      ],
+      "policy_question": "Should a personal finance course be required for high school graduation?",
+      "perspectives": [
+        {
+          "id": "require-course",
+          "name": "Yes, make it required",
+          "summary": "Every student will manage money, so every student should learn how before they leave school.",
+          "reasoning": [
+            "Understanding interest, APR, and minimum payments can help people avoid expensive debt.",
+            "Students whose families cannot teach these skills at home gain the most from a required course.",
+            "A required course reaches everyone, not only the students who would choose it."
+          ],
+          "assumptions": [
+            "Assumes that the course is taught well and covers practical skills.",
+            "Assumes that knowledge learned at school is remembered when decisions come years later."
+          ]
+        },
+        {
+          "id": "opportunity-cost-time",
+          "name": "Consider the opportunity cost of school time",
+          "summary": "Every new required course replaces something else, and the benefits are uncertain.",
+          "reasoning": [
+            "School time is scarce, so a new requirement means less time for math, science, or the arts.",
+            "Knowing a fact does not always change behavior, especially when people face stress or tempting offers.",
+            "Finance skills could be built into math or social studies instead of a separate course."
+          ],
+          "assumptions": [
+            "Assumes the subjects that would be cut have higher value.",
+            "Assumes that integration into other subjects would actually happen."
+          ]
+        },
+        {
+          "id": "just-in-time",
+          "name": "Teach it when decisions happen",
+          "summary": "Support at the moment of a decision, like a first job or first loan, may work better than a class years earlier.",
+          "reasoning": [
+            "People may learn best when the information is relevant to a choice they are making right now.",
+            "Clear disclosures, such as standard ways of showing APR, help people compare options at the moment they choose.",
+            "Employers, banks, and public agencies can offer short guides when people open accounts or take out loans."
+          ],
+          "assumptions": [
+            "Assumes people will seek help or read information at the time of the decision.",
+            "Assumes the providers of information are trustworthy and not selling something."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What are the most costly money mistakes a young person could make?",
+        "What is the opportunity cost of adding a required course?",
+        "Why might knowledge not always change behavior?",
+        "How could a school find out whether its course actually works?"
+      ],
+      "trade_offs": [
+        "Reaching every student vs. less time for other subjects",
+        "Teaching early vs. helping at the moment of a decision",
+        "A dedicated course vs. finance skills built into existing classes"
+      ],
+      "source_ids": [
+        "cfpb-pay-stub-tool",
+        "cfpb-credit-card-apr",
+        "openstax-pe3-17-3",
+        "un-sdg-4"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "borrowing-for-college",
+      "title": "Is borrowing to pay for college or training a good choice for most students?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Many students borrow to pay for college or job training. On average, people with more education tend to earn more, so education can be seen as an investment in human capital. But averages hide big differences: outcomes vary by field of study, by school, and by whether a student finishes the program.",
+        "The full cost of education includes tuition and also the opportunity cost of income a student could have earned while studying. A loan must be repaid with interest, so a larger loan with a higher rate costs more over time. The debate is about when borrowing is a sensible investment, how much risk students should carry, and what governments should do to help."
+      ],
+      "policy_question": "Should students be encouraged to borrow for higher education, and should governments limit or support that borrowing?",
+      "perspectives": [
+        {
+          "id": "invest-in-skills",
+          "name": "Borrowing can be a good investment",
+          "summary": "For many students, education raises lifetime earnings by more than the cost of the loan.",
+          "reasoning": [
+            "Spending now can pay off over a working life of many decades, much like a business investing in equipment.",
+            "Without loans, talented students from low-income families might not be able to afford education at all.",
+            "Education also has benefits beyond pay, such as health, civic life, and job security."
+          ],
+          "assumptions": [
+            "Assumes the student finishes the program.",
+            "Assumes the field and school lead to better job prospects."
+          ]
+        },
+        {
+          "id": "risk-of-debt",
+          "name": "Be cautious about the risk",
+          "summary": "Debt is fixed, but future earnings are uncertain, and students who do not finish face the worst outcome.",
+          "reasoning": [
+            "Students who borrow but do not finish have debt without the higher earnings that a degree can bring.",
+            "Interest adds to the total cost, especially if payments are delayed.",
+            "Lower-cost options, such as starting at a community college or choosing a shorter training program, can reduce risk."
+          ],
+          "assumptions": [
+            "Assumes students cannot easily predict their future earnings.",
+            "Assumes cheaper paths offer similar benefits for many students."
+          ]
+        },
+        {
+          "id": "share-the-risk",
+          "name": "Share risk through policy",
+          "summary": "Governments could tie repayment to income or fund more of the cost, because education also benefits society.",
+          "reasoning": [
+            "Repayment based on income lowers the risk for students whose earnings turn out low.",
+            "An educated workforce raises productivity for the whole economy, which is a positive externality.",
+            "Better information about costs, completion rates, and earnings by program can help students choose."
+          ],
+          "assumptions": [
+            "Assumes income-based plans are managed well and are easy to use.",
+            "Assumes public funding does not simply lead schools to raise prices."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What is the full cost of education, including the opportunity cost?",
+        "Why can average results be misleading for an individual student?",
+        "How does the interest rate change the total cost of a loan?",
+        "Who should bear the risk if education does not pay off: the student, the school, or taxpayers?"
+      ],
+      "trade_offs": [
+        "Access to education vs. the burden of debt",
+        "Higher expected earnings vs. uncertain outcomes",
+        "Student responsibility vs. shared public support"
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-17-3",
+        "openstax-pe3-17-2",
+        "openstax-pe3-appendix-c"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "retirement-saving-incentives",
+      "title": "Should governments give tax breaks to encourage saving for retirement?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Many countries offer tax incentives for retirement saving, such as allowing people to delay or reduce taxes on money placed in retirement accounts. Because of compound growth, money saved early can grow a great deal over a working life, so small differences in saving can matter.",
+        "Critics point out that tax breaks are usually worth most to people who already have higher incomes and can afford to save, while people with low incomes may get little or nothing. Some research also suggests that part of the saving in these accounts would have happened anyway, moved from other accounts. Alternatives include automatic enrollment, matching payments for low-income savers, or stronger public pensions."
+      ],
+      "policy_question": "Should governments keep tax breaks for retirement saving, change them, or use a different approach?",
+      "perspectives": [
+        {
+          "id": "keep-incentives",
+          "name": "Keep tax breaks to reward saving",
+          "summary": "Tax breaks raise the return on saving, which helps people prepare for retirement.",
+          "reasoning": [
+            "A higher after-tax return makes saving more attractive.",
+            "Saving more for retirement reduces the risk that people will be poor in old age.",
+            "Retirement savings also provide funds that firms can borrow to invest."
+          ],
+          "assumptions": [
+            "Assumes people respond to tax breaks by saving more overall, not just moving money between accounts.",
+            "Assumes people understand the incentive."
+          ]
+        },
+        {
+          "id": "fair-design",
+          "name": "Redesign them to help low earners",
+          "summary": "Current tax breaks can favor higher earners, so support should go more to people who save least.",
+          "reasoning": [
+            "A tax deduction is worth more to someone in a high tax bracket than to someone in a low one.",
+            "Matching payments or flat credits could give low-income savers the same help per dollar saved.",
+            "Public money should go where it makes the most difference to retirement security."
+          ],
+          "assumptions": [
+            "Assumes low-income savers would save more if they got larger matches.",
+            "Assumes the change can be made without discouraging other savers too much."
+          ]
+        },
+        {
+          "id": "use-defaults",
+          "name": "Make saving automatic",
+          "summary": "People often stick with default choices, so automatic enrollment may raise saving more than tax rewards.",
+          "reasoning": [
+            "Many people intend to save but put it off, so a default that enrolls them can help.",
+            "Automatic enrollment still lets people opt out, which respects choice.",
+            "This approach costs the government less than large tax breaks."
+          ],
+          "assumptions": [
+            "Assumes the default saving rate and investment options are sensible.",
+            "Assumes that people who are enrolled automatically can afford to save."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "How does compound growth make early saving more powerful?",
+        "Why is a tax deduction worth more to some people than to others?",
+        "What is the difference between new saving and saving that would have happened anyway?",
+        "Is it the government's job to help people save, or should it be left to individuals?"
+      ],
+      "trade_offs": [
+        "Rewarding saving vs. the cost of tax revenue given up",
+        "Equal rules for everyone vs. extra help for low earners",
+        "Freedom of choice vs. using defaults to guide behavior"
+      ],
+      "source_ids": [
+        "openstax-pe3-17-3",
+        "openstax-pe3-17-2",
+        "openstax-pe3-30-2"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

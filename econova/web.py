@@ -10,7 +10,7 @@ import secrets
 
 from flask import Blueprint, abort, current_app, flash, g, redirect, render_template, request, session, url_for
 
-from econova import config, content, diagnostic, graphs, learning, private_content, quotas, simulations, storage
+from econova import config, content, diagnostic, graphs, lab_models, learning, private_content, quotas, simulations, storage
 from econova.auth import login_required
 
 bp = Blueprint("econova", __name__)
@@ -19,7 +19,7 @@ bp = Blueprint("econova", __name__)
 def render_econova(template, **context):
     """ECONOVA 템플릿 렌더링. SDG 이름·색과 난이도 이름을 함께 넘긴다 (예전에는 모든 화면에서 읽었다)."""
     return render_template(template, sdg_info=learning.catalog().sdgs, difficulty_names=content.DIFFICULTY_NAMES,
-                           graph_geometry=graphs.geometry, **context)
+                           graph_geometry=graphs.geometry, lab_for=lab_models.for_course, **context)
 
 
 def _human_sources(doc):
@@ -407,7 +407,7 @@ def sim_context(sim_id, raw=None, lesson=None, course=None):
     return {"sim_id": sim_id, "sim": simulations.SIMULATIONS[sim_id], "limits": simulations.LIMITS,
             "defaults": simulations.DEFAULTS[sim_id], "inputs": inputs, "results": results,
             "spec": simulations.graph_spec(sim_id, inputs, results), "lesson": lesson, "course": course,
-            "rows": simulations.result_rows(sim_id, results),
+            "rows": simulations.result_rows(sim_id, results), "presets": simulations.PRESETS[sim_id],
             "calc_version": simulations.CALC_VERSION}
 
 
@@ -419,14 +419,54 @@ def _render_lab(template, **context):
 @bp.route("/lab")
 @login_required
 def lab_home():
-    return _render_lab("econova/lab/index.html", sims=simulations.SIMULATIONS,
+    return _render_lab("econova/lab/index.html", sims=simulations.SIMULATIONS, experiments=lab_models.catalog(),
                        runs=storage.list_simulation_runs(g.user["id"])[:5])
+
+
+def lab_number(value, unit=""):
+    """실험실 표의 숫자 표시 (화면 JS 의 fmtUnit 과 같은 규칙): 천 단위 쉼표, 소수 둘째 자리까지, $ 는 앞에."""
+    if value is None:
+        return "–"
+    v = round(float(value), 2) if abs(float(value)) >= 1 else round(float(value), 4)
+    text = f"{abs(v):,.4f}".rstrip("0").rstrip(".")
+    if unit.startswith("$"):
+        return ("-$" if v < 0 else "$") + text + unit[1:]
+    sign = "-" if v < 0 else ""
+    if unit.startswith("%"):
+        return sign + text + "%" + unit[1:]
+    return sign + text + (" " + unit if unit else "")
+
+
+@bp.app_template_filter("lab_input")
+def _lab_input(value):
+    """입력 칸에 넣는 값: 지수 표기 없이."""
+    v = float(value)
+    return str(int(v)) if v.is_integer() else repr(v)
+
+
+bp.add_app_template_filter(lab_number, "lab_number")
+
+
+def _entry(sim_id):
+    return next(e for e in lab_models.catalog() if e["id"] == sim_id)
 
 
 @bp.route("/lab/<sim_id>")
 @login_required
 def lab_sim(sim_id):
-    return _render_lab("econova/lab/sim.html", **sim_context(_sim_or_404(sim_id)))
+    if sim_id in lab_models.SPECS:
+        # 새 실험 7개: 서버가 첫 결과를 계산하고, 화면 JS 가 같은 공식으로 바로 갱신한다. 주소의 값(공유 링크)은 검사 후 쓴다.
+        spec, error = lab_models.SPECS[sim_id], None
+        raw = {**lab_models.defaults(sim_id), **{k: request.args[k] for k in lab_models.input_names(sim_id) if k in request.args}}
+        try:
+            inputs, results = lab_models.run(sim_id, raw)
+        except lab_models.LabError as exc:
+            error = exc.message
+            inputs, results = lab_models.run(sim_id, lab_models.defaults(sim_id))
+        return _render_lab("econova/lab/model.html", sim_id=sim_id, spec=spec, entry=_entry(sim_id), inputs=inputs, results=results,
+                           rows=lab_models.result_rows(sim_id, results), defaults=lab_models.defaults(sim_id),
+                           projects=lab_models.PROJECTS, link_error=error)
+    return _render_lab("econova/lab/sim.html", entry=_entry(_sim_or_404(sim_id)), **sim_context(sim_id))
 
 
 @bp.route("/lab/<sim_id>/save", methods=["POST"])

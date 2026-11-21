@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "course_id": "c01",
+  "topics": [
+    {
+      "id": "universal-free-school-meals",
+      "title": "Should every student get free school meals, whatever their family income?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Many schools already give free or reduced-price meals to students from low-income families. Some places have gone further and offer free meals to every student, no matter what their family earns. Because a school system's budget is limited, money spent on meals for everyone is money that cannot be spent on teachers, books, or buildings. That is scarcity and opportunity cost at work.",
+        "Supporters say universal meals remove the paperwork and embarrassment that can stop eligible students from eating. Critics say a large share of the money goes to families who could already pay, and that the same budget could do more if it were targeted. Studies of school meal programs exist, but results depend on how programs are designed and measured, so this debate is as much about values and priorities as about evidence."
+      ],
+      "policy_question": "Should a school system provide free meals to all students, or keep free meals only for students from low-income families?",
+      "perspectives": [
+        {
+          "id": "universal-access",
+          "name": "Free meals for everyone",
+          "summary": "Universal meals reach every hungry student and remove the stigma of being singled out.",
+          "reasoning": [
+            "When only some students qualify, families must apply, and some eligible families never do because of paperwork or embarrassment.",
+            "Checking who qualifies has its own administrative cost, which a universal program can avoid.",
+            "Well-fed students may concentrate better, which supports the goal of the school itself."
+          ],
+          "assumptions": [
+            "Assumes that missed take-up among eligible families is a real and sizeable problem.",
+            "Assumes the extra cost can be found without cutting something students need more."
+          ]
+        },
+        {
+          "id": "targeted-budget",
+          "name": "Target the money where need is greatest",
+          "summary": "With a fixed budget, spending on meals for families who can pay has a high opportunity cost.",
+          "reasoning": [
+            "Every dollar spent on meals for higher-income students is a dollar not spent on tutoring, counselors, or support for students who struggle most.",
+            "A targeted program can give more generous help per student to the families who need it.",
+            "Better outreach and simpler forms could fix low take-up without paying for everyone."
+          ],
+          "assumptions": [
+            "Assumes the school can identify needy students accurately and respectfully.",
+            "Assumes the money saved would actually be spent on other high-value uses for students."
+          ]
+        },
+        {
+          "id": "local-choice",
+          "name": "Let each community weigh its own trade-offs",
+          "summary": "The right answer depends on how many local students are in need and what else the budget must cover.",
+          "reasoning": [
+            "In a school where most families have low incomes, checking eligibility may cost more than it saves.",
+            "In a school where few families are in need, a targeted program may free up more resources for other priorities.",
+            "Local decision-makers can see the full list of alternatives the money could fund."
+          ],
+          "assumptions": [
+            "Assumes local leaders have good information and act in students' interests."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What is the opportunity cost of a universal meal program for a school with a fixed budget?",
+        "Which costs are easy to see (meal prices) and which are harder to see (stigma, paperwork, missed meals)?",
+        "Is this mainly a question about efficiency, about fairness, or both?",
+        "What evidence would help you decide, and what would remain a value judgment?"
+      ],
+      "trade_offs": [
+        "Reaching every student who needs a meal vs. spending part of the budget on students who could pay",
+        "Lower paperwork and stigma vs. less money left for other school priorities",
+        "One simple rule for all schools vs. decisions fitted to each community"
+      ],
+      "source_ids": [
+        "openstax-pe3-2-1",
+        "openstax-pe3-15-3",
+        "un-sdg-2",
+        "un-sdg-4"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "transit-vs-road-expansion",
+      "title": "Should a growing city spend its transport budget on public transit or on wider roads?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "A growing city has one transport budget and two main options: add lanes to busy roads, or improve buses and trains. Because the budget is limited, choosing more of one means less of the other. This is the same kind of choice the production possibilities frontier shows: moving along the frontier means giving something up.",
+        "Each option has costs that do not appear on the city's bill. More driving adds traffic, air pollution, and noise that fall on other people. Transit has different costs, such as long construction periods and the risk that few people ride it. People also disagree about whether a city should mainly serve the way residents travel today or try to change how they will travel in the future."
+      ],
+      "policy_question": "Should the city put most of its transport budget into public transit or into expanding roads?",
+      "perspectives": [
+        {
+          "id": "transit-first",
+          "name": "Invest in public transit",
+          "summary": "Transit can move more people using less space and creates fewer external costs per traveler.",
+          "reasoning": [
+            "A full bus or train carries many people in the space a few cars would use.",
+            "Driving creates costs for others, such as pollution and congestion, that drivers do not pay, so the private cost of driving is lower than its social cost.",
+            "Transit gives people who cannot drive, such as many teenagers, older people, and low-income households, more access to jobs and school."
+          ],
+          "assumptions": [
+            "Assumes enough people will actually switch to transit if service improves.",
+            "Assumes the city can build and run the service at a reasonable cost."
+          ]
+        },
+        {
+          "id": "roads-first",
+          "name": "Expand roads for how people travel now",
+          "summary": "Most trips in many cities are made by car or truck, and roads also carry buses and deliveries.",
+          "reasoning": [
+            "Spending where current demand is highest gives benefits to many people quickly.",
+            "Businesses depend on roads to move goods, so congestion raises costs across the economy.",
+            "Transit projects can take many years to finish and may end up with fewer riders than planned."
+          ],
+          "assumptions": [
+            "Assumes the city's travel patterns will stay similar in the future.",
+            "Assumes new lanes will not quickly fill up with new traffic."
+          ]
+        },
+        {
+          "id": "use-what-exists",
+          "name": "Get more from what already exists",
+          "summary": "Before any big project, use cheaper fixes that make existing roads and buses work better.",
+          "reasoning": [
+            "Big projects use up most of a budget for years, so the opportunity cost of being wrong is very high.",
+            "Low-cost steps, such as bus-only lanes on existing roads, better traffic signals, or safer bike routes, can be tested quickly.",
+            "Small steps give the city real information about how people respond before it commits to a large choice."
+          ],
+          "assumptions": [
+            "Assumes small improvements can make a noticeable difference.",
+            "Assumes the city's growth will not quickly overwhelm the existing network."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What does the city give up if it chooses roads? What does it give up if it chooses transit?",
+        "Which costs of driving fall on people who are not driving?",
+        "Who gains most from each option, and who might be left out?",
+        "How sure can the city be about how many people will use each option in ten years?"
+      ],
+      "trade_offs": [
+        "Quick benefits for today's drivers vs. long-term change in how people travel",
+        "Lower external costs vs. the risk of building transit that few people use",
+        "Spending on what most people use now vs. access for people who cannot drive"
+      ],
+      "source_ids": [
+        "openstax-pe3-2-2",
+        "openstax-pe3-12-1",
+        "un-sdg-12"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "encourage-buying-less",
+      "title": "Should governments try to persuade consumers to buy less?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "What we buy uses up materials, energy, and water, and much of it eventually becomes waste. SDG 12 asks countries to make consumption and production more sustainable. One idea is for governments to encourage people to buy less, through information campaigns, labels, deposits on bottles, or charges on items such as single-use bags.",
+        "Economics usually treats consumers as the best judges of what makes them better off. But it also recognizes that private cost and social cost can differ when a purchase creates waste or pollution that others pay for. The debate is about whether the problem is how much people buy, or the fact that prices leave out some of the costs. It is also about how far governments should go in shaping personal choices."
+      ],
+      "policy_question": "Should governments actively encourage people to consume less, and if so, with which tools?",
+      "perspectives": [
+        {
+          "id": "reduce-consumption",
+          "name": "Yes, less consumption is the goal",
+          "summary": "The planet's resources are limited, so cutting total consumption, especially of throwaway goods, is necessary.",
+          "reasoning": [
+            "Making goods more efficient helps, but if people keep buying more, total resource use can still rise.",
+            "Campaigns, labels, and small charges have changed habits such as carrying reusable bags in some places.",
+            "Social norms matter: people often copy what others around them do, so public messages can shift what feels normal."
+          ],
+          "assumptions": [
+            "Assumes that reducing the amount people buy is the most effective way to reduce environmental harm.",
+            "Assumes people will not simply switch their spending to other goods with similar impacts."
+          ]
+        },
+        {
+          "id": "fix-prices",
+          "name": "Fix prices, then let people choose",
+          "summary": "The real problem is that prices leave out social costs; once that is fixed, people's choices should be respected.",
+          "reasoning": [
+            "If a product's price included the cost of its waste and pollution, consumers would buy less of it on their own.",
+            "Telling people to buy less in general treats harmless purchases, such as music lessons, the same as harmful ones.",
+            "Respecting people's choices is a value many people hold, and pricing tools respect it more than campaigns do."
+          ],
+          "assumptions": [
+            "Assumes the social cost of goods can be measured well enough to set a sensible price.",
+            "Assumes consumers notice and respond to price changes."
+          ]
+        },
+        {
+          "id": "jobs-and-incomes",
+          "name": "Be careful about the side effects",
+          "summary": "Spending by one person is income for another, so a large fall in consumption can hurt workers.",
+          "reasoning": [
+            "Shops, factories, and their workers depend on people buying goods and services.",
+            "Low-income households may already buy very little, so a general message to cut back could be unfair to them.",
+            "Shifting spending toward services, repair, and longer-lasting goods may be a better aim than simply buying less."
+          ],
+          "assumptions": [
+            "Assumes that a fall in consumption would not be offset by more spending on other things.",
+            "Assumes workers in affected industries would find it hard to move into new jobs."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What is the difference between private cost and social cost for a cheap, single-use item?",
+        "Is the problem how much people buy, or what they buy?",
+        "Which tools respect personal choice most, and which change behavior most?",
+        "Who might lose out if total consumption falls, and could they be helped?"
+      ],
+      "trade_offs": [
+        "Lower resource use vs. respect for personal choice",
+        "Environmental goals vs. jobs and incomes that depend on consumer spending",
+        "Simple messages to everyone vs. tools aimed at the most harmful goods"
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-2-3",
+        "un-sdg-12"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

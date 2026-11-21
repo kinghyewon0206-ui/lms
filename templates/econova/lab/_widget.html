@@ -11,6 +11,12 @@
   <p class="sim-note">These are results from a math model. Hypothetical example: the numbers are not real statistics.
     {% if w.sim_id == 'supply-demand' %}Demand Qd = a − bP, supply Qs = c + dP{% else %}Per-unit tax t on supply: Qs = c + d(P − t){% endif %}</p>
 
+  {% if w.presets %}
+  <div class="lab-presets" role="group" aria-label="Scenarios">
+    <span class="lab-presets-label">Try a scenario</span>
+    {% for p in w.presets %}<button type="button" class="chip" data-preset='{{ p["values"]|tojson }}'>{{ p.label }}</button>{% endfor %}
+  </div>
+  {% endif %}
   <form method="post" action="{{ url_for('econova.lab_save', sim_id=w.sim_id) }}" class="sim-form" novalidate>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     {% if w.lesson %}<input type="hidden" name="lesson_id" value="{{ w.lesson.id }}"><input type="hidden" name="course_id" value="{{ w.course.id }}">{% endif %}
@@ -55,6 +61,7 @@
       <li>The model assumes straight-line demand and supply, perfect competition, and a per-unit tax charged to producers. The split of the burden is the same no matter who legally pays the tax.</li>
       <li>The "deadweight loss" is the gain from trade the market loses <strong>if we assume there is no external damage</strong> such as pollution.</li>
       <li>If you enter an external damage (md), the model also counts the damage avoided because less is traded. Total social welfare can then rise or fall. A carbon tax does not always reduce welfare.</li>
+      <li>With a constant external damage md, marginal social cost (MSC) is the supply curve shifted up by md. The socially efficient quantity is where demand meets MSC, which a tax of exactly t = md reaches. With md = 0 the market quantity is already efficient and any tax only creates deadweight loss.</li>
       <li>md and e are assumed values for illustration. They are not the real social cost of carbon or real emissions factors.</li>
       <li>The starting values are simplified teaching numbers for seeing the mechanism. With t in $ per unit and e in kg per unit, the implied price of emissions is t ÷ e dollars per kg (1,000 × t ÷ e per tonne), so do not read them as real-world carbon tax rates.</li>
     </ul>

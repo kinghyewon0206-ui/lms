@@ -3,9 +3,15 @@
 {% block title %}{{ sim.title }} · Economics Lab · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page ec-lesson-page">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.lab_home') }}">Economics Lab</a> <span>/</span> {{ sim.title }}</nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="{{ url_for('econova.lab_home') }}">Economics Lab</a> <span>/</span> {{ entry.title }}</nav>
+  <p class="lab-course"><a href="{{ url_for('econova.course_detail', course_id=entry.course_id) }}">{{ entry.course_id|upper }} · {{ entry.course_name }}</a></p>
   {{ sw.widget({"sim_id": sim_id, "sim": sim, "limits": limits, "defaults": defaults, "inputs": inputs, "results": results,
-                "spec": spec, "lesson": lesson, "course": course, "rows": rows}) }}
+                "spec": spec, "lesson": lesson, "course": course, "rows": rows, "presets": presets}) }}
+  <nav class="lab-related" aria-label="Related pages">
+    <a class="btn secondary" href="{{ url_for('econova.lesson', course_id=entry.course_id, lesson_id=entry.lesson_id) }}">Read the related lesson</a>
+    <a class="btn secondary" href="{{ url_for('econova.discuss_course', course_id=entry.course_id) }}">Debate topics for {{ entry.course_name }}</a>
+    <a class="btn ghost" href="{{ url_for('econova.lab_home') }}">All experiments</a>
+  </nav>
 </div>
 <script src="{{ url_for('static', filename='js/econova-sim.js') }}"></script>
 <script src="{{ url_for('static', filename='js/econova-sim-ui.js') }}"></script>

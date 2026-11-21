@@ -12,7 +12,13 @@
       {% for w in sim_widgets %}{{ sw.widget(w, compact=true) }}{% endfor %}
       <p class="hint">Simulation numbers are results from a math model. They are not verified real-world statistics. You can experiment in more detail in the <a href="{{ url_for('econova.lab_home') }}">Economics Lab</a>.</p>
     {% else %}
+      {% set exp = lab_for(course.id) if lab_for is defined and course else none %}
+      {% if exp %}
+      <div class="course-lab-link"><div><p><strong>{{ exp.title }}</strong> in the Economics Lab</p><p class="hint">{{ exp.blurb }}</p></div>
+        <a class="btn secondary" href="{{ url_for('econova.lab_sim', sim_id=exp.id) }}">Open the experiment</a></div>
+      {% else %}
       <p class="ec-placeholder-text">This lesson has no simulation.</p>
+      {% endif %}
     {% endif %}
 
   {% elif key == 'quiz' %}

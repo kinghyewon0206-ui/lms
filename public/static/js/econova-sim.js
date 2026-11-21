@@ -99,6 +99,7 @@
     if (md !== undefined && md !== null) {
       var avoided = md * (q0 - qt);
       res.avoided_damage = r6(avoided); res.social_welfare_change = r6(avoided - dwl);
+      res.efficient_quantity = r6(Math.max(0, a - b * (a - c + d * md) / (b + d))); res.pigouvian_tax = r6(md);
     }
     return res;
   }

@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "course_id": "c05",
+  "topics": [
+    {
+      "id": "raise-minimum-wage",
+      "title": "Should the minimum wage be raised substantially?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "A minimum wage is a price floor in the labor market: employers cannot legally pay less. In the basic competitive model, a minimum wage set above the equilibrium wage raises pay for workers who keep their jobs but reduces the number of workers employers want to hire, creating a surplus of labor (unemployment).",
+        "Real-world evidence on employment effects is mixed and still debated. Some studies find small or hard-to-detect job losses from moderate increases, while others find larger effects, especially for young or less experienced workers. One explanation for small effects is employer market power (monopsony): when workers have few alternative employers, a minimum wage can raise pay without cutting jobs, within limits. How large the increase is compared with local wages appears to matter a great deal."
+      ],
+      "policy_question": "Should the government make a large increase in the minimum wage?",
+      "perspectives": [
+        {
+          "id": "raise-pay",
+          "name": "Raise it to reward work",
+          "summary": "A higher minimum wage lifts the pay of low-wage workers directly and quickly.",
+          "reasoning": [
+            "When employers have market power, they can pay less than the value workers produce, and a minimum wage can push pay up without cutting jobs.",
+            "Higher pay may reduce turnover, so firms spend less on hiring and training new staff.",
+            "Many people see a wage that supports a basic standard of living as a matter of fairness."
+          ],
+          "assumptions": [
+            "Assumes that employer market power is common in low-wage labor markets.",
+            "Assumes the increase is not so large that firms cut many jobs or hours."
+          ]
+        },
+        {
+          "id": "job-loss-risk",
+          "name": "Worried about fewer jobs and hours",
+          "summary": "A large increase may price some workers, especially young and less experienced ones, out of jobs.",
+          "reasoning": [
+            "In the competitive model, a binding price floor reduces the quantity of labor demanded.",
+            "Firms can respond with fewer hours, fewer hires, or more automation, even if few current workers are fired.",
+            "A single national minimum can be much more binding in low-wage regions than in high-wage cities."
+          ],
+          "assumptions": [
+            "Assumes labor markets are fairly competitive.",
+            "Assumes employers can substitute machines or other inputs for labor."
+          ]
+        },
+        {
+          "id": "other-tools",
+          "name": "Use earnings support and training",
+          "summary": "Tools like earned-income support and job training can raise incomes with less risk to jobs.",
+          "reasoning": [
+            "Earned-income support adds to the pay of low-income workers through the tax system, so employers' costs do not rise.",
+            "Training raises workers' productivity, which supports higher wages over the long run.",
+            "These tools can be aimed at low-income households, while many minimum-wage workers live in households that are not poor."
+          ],
+          "assumptions": [
+            "Assumes the government will fund these programs adequately.",
+            "Assumes workers can access training that leads to better jobs."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What does the price-floor model predict, and what does the monopsony model predict?",
+        "Why might the evidence differ between a small increase and a large one?",
+        "Who pays for a higher minimum wage: employers, consumers, or workers who lose hours?",
+        "What would change your mind about the best policy?"
+      ],
+      "trade_offs": [
+        "Higher pay for workers who keep jobs vs. the risk of fewer jobs or hours",
+        "A simple, nationwide rule vs. differences in local wages and costs",
+        "Employers paying the cost vs. taxpayers funding earnings support"
+      ],
+      "source_ids": [
+        "clevelandfed-minimum-wage-2007",
+        "minneapolisfed-minimum-wage-monopsony-2022",
+        "openstax-pe3-14-2",
+        "openstax-pe3-3-4"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "four-day-work-week",
+      "title": "Should governments encourage a four-day work week?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Some companies have tried a four-day work week, usually with the same pay and fewer total hours. Supporters say workers become more focused and productive, while critics say output and service will fall in many jobs. In the labor supply model, people trade off work against leisure, and as incomes rise, many choose to spend part of their higher income on more free time.",
+        "Results from company trials have been reported, but firms that volunteer for trials may not be typical, and short trials may not show long-run effects. The debate is about whether a shorter week should be a private choice between employers and workers, or something governments should encourage through law or incentives."
+      ],
+      "policy_question": "Should the government encourage or require a shorter standard work week?",
+      "perspectives": [
+        {
+          "id": "productivity-gain",
+          "name": "Encourage it because it can raise productivity",
+          "summary": "Rested, focused workers may produce nearly as much in four days as they did in five.",
+          "reasoning": [
+            "Long hours can cause fatigue and mistakes, so the output from the last hours of the week may be low.",
+            "A shorter week can help firms attract and keep workers.",
+            "More free time is valuable in itself, and it is not counted in GDP."
+          ],
+          "assumptions": [
+            "Assumes that productivity per hour rises enough to offset fewer hours.",
+            "Assumes the results from volunteer firms apply to other firms."
+          ]
+        },
+        {
+          "id": "market-choice",
+          "name": "Leave it to employers and workers",
+          "summary": "Different jobs and workers need different arrangements, so one rule should not apply to all.",
+          "reasoning": [
+            "In jobs like nursing, retail, or transport, someone has to be present, so fewer hours may mean hiring more staff at higher cost.",
+            "Some workers would rather earn more by working more hours.",
+            "Firms that benefit from a four-day week can choose it without a law."
+          ],
+          "assumptions": [
+            "Assumes workers have enough bargaining power to get the arrangement they want.",
+            "Assumes there are few benefits to society beyond the firm and its workers."
+          ]
+        },
+        {
+          "id": "fairness-concern",
+          "name": "Who gets the benefit?",
+          "summary": "A four-day week may help office workers most, while hourly workers risk losing pay.",
+          "reasoning": [
+            "Workers paid by the hour could lose income if their hours are cut without a pay rise.",
+            "The jobs easiest to shorten are often already better paid.",
+            "Any policy should protect the incomes of lower-paid workers first."
+          ],
+          "assumptions": [
+            "Assumes that the benefits would be shared unevenly across types of jobs.",
+            "Assumes governments care about how gains are distributed, not only about the total."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "How does the work-leisure trade-off help explain the demand for shorter hours?",
+        "Why might results from voluntary company trials be different from results for all firms?",
+        "Which jobs could most easily move to four days, and which could not?",
+        "Is free time something governments should try to increase?"
+      ],
+      "trade_offs": [
+        "More leisure vs. possible lower output or higher costs",
+        "One national rule vs. flexible choices by firms and workers",
+        "Benefits for some workers vs. lost pay or hours for others"
+      ],
+      "source_ids": [
+        "openstax-pe3-14-1",
+        "openstax-pe3-20-2",
+        "un-sdg-8"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "automation-displaced-workers",
+      "title": "How should governments help workers who lose jobs to automation?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "New machines and software can raise productivity, which tends to raise wages and living standards over time. But technology can also reduce the demand for some kinds of workers while raising it for others. Workers whose jobs disappear may face structural unemployment: their skills no longer match the jobs available.",
+        "Surveys of displaced workers show that many find new jobs, but some take a long time, and some re-employed workers earn less than before. Governments can respond with training programs, help with job searching, wage insurance, income support, or by slowing automation. How well training programs work varies a lot depending on how they are designed."
+      ],
+      "policy_question": "What should be the main policy response to workers who lose their jobs because of automation?",
+      "perspectives": [
+        {
+          "id": "retrain-workers",
+          "name": "Invest in retraining",
+          "summary": "Help displaced workers gain the skills employers are looking for.",
+          "reasoning": [
+            "Automation often raises demand for workers who can use, repair, or work alongside new technology.",
+            "Raising human capital increases productivity, which supports higher wages.",
+            "Training linked to local employers can help workers move into real job openings."
+          ],
+          "assumptions": [
+            "Assumes training programs are well designed and linked to actual job openings.",
+            "Assumes older workers are willing and able to retrain."
+          ]
+        },
+        {
+          "id": "income-security",
+          "name": "Protect incomes during the transition",
+          "summary": "Retraining takes time and does not always work, so workers need income support and wage insurance.",
+          "reasoning": [
+            "Displaced workers can face long periods without work or lower pay in their next job.",
+            "Wage insurance could pay part of the gap if a worker takes a lower-paid job.",
+            "Society gains from automation as a whole, so it can afford to share some gains with those who lose."
+          ],
+          "assumptions": [
+            "Assumes that support does not greatly reduce the incentive to look for work.",
+            "Assumes the public is willing to pay for it."
+          ]
+        },
+        {
+          "id": "slow-automation",
+          "name": "Slow down the pace of change",
+          "summary": "Taxing or limiting automation can give workers and communities time to adjust.",
+          "reasoning": [
+            "When a large employer automates quickly, a whole town can lose jobs at once.",
+            "Gradual change gives schools and training programs time to catch up.",
+            "Some people believe that firms should share responsibility for the workers they replace."
+          ],
+          "assumptions": [
+            "Assumes that slowing automation does not make firms less competitive than foreign rivals.",
+            "Assumes the lost productivity gains are worth the extra time for adjustment."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Why can automation raise demand for some workers and lower it for others?",
+        "What makes unemployment caused by automation 'structural' rather than 'cyclical'?",
+        "What evidence would show whether a training program actually works?",
+        "Who should bear the cost of helping displaced workers?"
+      ],
+      "trade_offs": [
+        "Faster productivity growth vs. disruption for workers and communities",
+        "Training for new jobs vs. protecting incomes now",
+        "Costs to taxpayers vs. costs to firms that automate"
+      ],
+      "source_ids": [
+        "bls-displaced-workers",
+        "openstax-pe3-21-4",
+        "openstax-pe3-14-1",
+        "openstax-pe3-20-3"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

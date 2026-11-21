@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "course_id": "c04",
+  "topics": [
+    {
+      "id": "rate-rise-vs-growth",
+      "title": "Should a central bank raise interest rates to fight inflation if it slows growth?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "When prices rise quickly, people's wages and savings buy less. Central banks often respond by raising interest rates. Higher rates make borrowing more expensive, so households and firms spend less, and that spending slowdown helps bring inflation down. The same slowdown can also mean slower growth and fewer jobs for a while.",
+        "Most central banks are given the job of keeping prices stable, and many economists argue that stable prices support growth in the long run. But how much growth is lost, and for how long, is hard to predict and depends on what caused the inflation. Inflation caused by a supply shock, such as a jump in energy prices, raises especially difficult questions."
+      ],
+      "policy_question": "When inflation is high, should the central bank raise interest rates even if this slows the economy?",
+      "perspectives": [
+        {
+          "id": "price-stability-first",
+          "name": "Act firmly to restore price stability",
+          "summary": "Letting high inflation continue does more harm over time than a short slowdown.",
+          "reasoning": [
+            "High and unpredictable inflation makes it hard for households and firms to plan, save, and invest.",
+            "If people come to expect high inflation, they build it into wages and prices, and it becomes harder to stop.",
+            "Inflation hurts people on fixed incomes and those with little savings, who have few ways to protect themselves."
+          ],
+          "assumptions": [
+            "Assumes that higher interest rates reduce inflation without very large job losses.",
+            "Assumes that the central bank's promises are believed, which makes its actions more effective."
+          ]
+        },
+        {
+          "id": "protect-jobs",
+          "name": "Move cautiously to protect jobs",
+          "summary": "Raising rates too quickly can push people out of work, and that harm falls heavily on low-wage workers.",
+          "reasoning": [
+            "Workers who lose jobs in a slowdown can lose income and skills for years.",
+            "If inflation was caused by a temporary supply problem, it may fade on its own.",
+            "A careful, gradual approach can give the central bank time to see what is happening."
+          ],
+          "assumptions": [
+            "Assumes inflation is mostly temporary.",
+            "Assumes that waiting will not cause expectations of inflation to rise."
+          ]
+        },
+        {
+          "id": "share-the-job",
+          "name": "Combine monetary policy with other tools",
+          "summary": "The central bank should not carry the full load; governments can also act on the causes of inflation.",
+          "reasoning": [
+            "When inflation comes from supply problems, policies that raise supply, such as clearing transport bottlenecks, can help.",
+            "Government help for the hardest-hit households can soften the pain without adding much to demand.",
+            "Coordinated action may need smaller rate rises."
+          ],
+          "assumptions": [
+            "Assumes the government's actions do not add too much spending to the economy.",
+            "Assumes supply problems can be fixed fairly quickly."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "How do higher interest rates affect spending, jobs, and prices?",
+        "Who is hurt most by inflation, and who is hurt most by a slowdown?",
+        "Why do people's expectations about inflation matter?",
+        "Does it matter whether inflation is caused by strong demand or by a supply shock?"
+      ],
+      "trade_offs": [
+        "Lower inflation vs. slower growth and fewer jobs in the short run",
+        "Acting early with less information vs. waiting and risking higher expectations",
+        "Protecting savers and fixed-income households vs. protecting workers at risk of losing jobs"
+      ],
+      "source_ids": [
+        "openstax-pe3-28-1",
+        "ecb-monetary-policy-intro",
+        "imf-fd-inflation-basics",
+        "openstax-pe3-22-4"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "zero-vs-moderate-inflation",
+      "title": "Should a central bank aim for zero inflation instead of low, steady inflation?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Many central banks aim for a low, steady rate of inflation rather than zero. In this lesson you saw that very high or unstable inflation is costly, because it erodes purchasing power and makes planning difficult. But it is less obvious whether a small, predictable amount of inflation is harmful.",
+        "Arguments for a low positive target include the idea that price indexes may overstate true inflation a little, that some room above zero makes it easier for wages and prices to adjust, and that falling prices (deflation) can be risky. Arguments for zero include the view that any steady loss of purchasing power is unfair to savers. Many of these arguments rest on assumptions about how people and markets behave."
+      ],
+      "policy_question": "Should the goal for inflation be zero, or a low positive rate?",
+      "perspectives": [
+        {
+          "id": "aim-for-zero",
+          "name": "Aim for truly stable prices",
+          "summary": "Even low inflation slowly reduces the value of money, which is unfair to savers.",
+          "reasoning": [
+            "Over many years, even a small yearly rise in prices adds up to a large loss in purchasing power, as compound growth shows.",
+            "People who hold cash or have savings that do not keep up with inflation lose out.",
+            "A target of zero is simple to explain: money should hold its value."
+          ],
+          "assumptions": [
+            "Assumes that a zero target can be reached without causing periods of falling prices.",
+            "Assumes that the price index measures inflation accurately."
+          ]
+        },
+        {
+          "id": "low-positive",
+          "name": "Keep a small, steady buffer",
+          "summary": "A low positive target gives the economy room to adjust and helps avoid deflation.",
+          "reasoning": [
+            "Price indexes may overstate inflation slightly because they can miss improvements in quality and new products.",
+            "Wages rarely fall in money terms, so a little inflation lets real wages adjust without cuts in pay.",
+            "If interest rates are already low, a little inflation gives the central bank more room to cut rates in a recession."
+          ],
+          "assumptions": [
+            "Assumes that people expect the target and plan around it.",
+            "Assumes the costs of low, predictable inflation are small."
+          ]
+        },
+        {
+          "id": "credibility-matters",
+          "name": "The exact number matters less than trust",
+          "summary": "What matters most is that the target is clear and that people believe it will be met.",
+          "reasoning": [
+            "Predictable inflation is less harmful than surprise inflation, because people can plan for it in contracts and wages.",
+            "Changing the target often could damage trust in the central bank.",
+            "Who gains and loses from inflation depends mainly on whether it was expected."
+          ],
+          "assumptions": [
+            "Assumes the central bank is independent and keeps its promises.",
+            "Assumes people pay attention to the target."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Why might a price index overstate the true rise in the cost of living?",
+        "Who gains and who loses when inflation is higher than expected?",
+        "Why do central banks often worry about deflation?",
+        "Which parts of this debate depend on evidence, and which depend on values like fairness to savers?"
+      ],
+      "trade_offs": [
+        "Keeping the value of money steady vs. flexibility for wages and interest rates",
+        "Simplicity of a zero target vs. the risk of deflation",
+        "Fairness to savers vs. smoother adjustment for workers and borrowers"
+      ],
+      "source_ids": [
+        "openstax-pe3-22-4",
+        "openstax-pe3-22-2",
+        "stlouisfed-money-inflation"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "gdp-or-wellbeing-goal",
+      "title": "Should a country judge its success by GDP growth or by a broader measure of well-being?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Gross domestic product (GDP) measures the market value of final goods and services produced in a country. GDP per capita is a useful rough guide to living standards, and it is closely watched by governments. But GDP leaves out things such as unpaid work at home, leisure time, pollution, and how income is shared.",
+        "Some people argue that governments should set targets using a dashboard of measures, such as health, education, environmental quality, and inequality, alongside GDP. Others worry that broad measures are harder to compare and easier to manipulate, and that GDP growth is still the main source of the resources needed to improve health and education. SDG 8 itself combines growth with decent work."
+      ],
+      "policy_question": "Should a government make GDP growth its main economic goal, or replace it with a broader set of well-being measures?",
+      "perspectives": [
+        {
+          "id": "gdp-matters",
+          "name": "GDP growth is still the core goal",
+          "summary": "Growth provides the income and tax revenue needed for health, education, and lower poverty.",
+          "reasoning": [
+            "Countries with higher GDP per capita tend to have better health and education, although this is a correlation and not proof of cause.",
+            "GDP is measured with standard methods, which makes it easier to compare across countries and over time.",
+            "Broad measures can include weights that reflect political choices rather than facts."
+          ],
+          "assumptions": [
+            "Assumes that growth will be shared widely enough to improve most people's lives.",
+            "Assumes that problems GDP leaves out can be handled by other policies."
+          ]
+        },
+        {
+          "id": "wellbeing-dashboard",
+          "name": "Use a dashboard of well-being",
+          "summary": "What gets measured gets managed, so the measures should match what people actually value.",
+          "reasoning": [
+            "GDP can rise while pollution, overwork, or inequality also rise.",
+            "Spending to repair damage, such as cleaning up a disaster, raises GDP even if people are not better off.",
+            "Tracking health, education, and the environment directly keeps attention on those goals."
+          ],
+          "assumptions": [
+            "Assumes that well-being measures can be collected reliably.",
+            "Assumes governments will respond to the dashboard instead of choosing the measures that look best."
+          ]
+        },
+        {
+          "id": "growth-with-limits",
+          "name": "Grow, but within limits",
+          "summary": "Keep growth as a goal, but add firm conditions, such as decoupling growth from environmental harm.",
+          "reasoning": [
+            "Rising productivity can raise output while using fewer resources per unit, which is called decoupling.",
+            "Resource productivity can be tracked next to GDP to show whether growth is becoming cleaner.",
+            "This keeps the advantages of a clear measure while guarding against its blind spots."
+          ],
+          "assumptions": [
+            "Assumes that decoupling is possible at the needed scale.",
+            "Assumes the limits are enforced and not dropped when growth slows."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What does GDP measure well, and what does it leave out?",
+        "Why is the link between GDP and well-being a correlation and not proof of cause?",
+        "Who decides which well-being measures count and how much each one matters?",
+        "What could go wrong if a government chased only one number?"
+      ],
+      "trade_offs": [
+        "A clear, comparable number vs. a fuller picture of well-being",
+        "Faster growth vs. protecting the environment and leisure time",
+        "Objective measurement vs. choices about what to value"
+      ],
+      "source_ids": [
+        "openstax-pe3-19-5",
+        "imf-fd-gdp-basics",
+        "eurostat-resource-productivity",
+        "un-sdg-8"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

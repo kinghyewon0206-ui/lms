@@ -77,4 +77,6 @@ def test_c03_lesson_3_preview_shows_the_simulation(logged_in, monkeypatch):
 def test_c03_other_previews_render(logged_in, monkeypatch, lesson_id):
     monkeypatch.setenv("ECONOVA_CONTENT_PREVIEW", "1")
     res = logged_in.get(f"/preview/c03/{lesson_id}?level=beginner")
-    assert res.status_code == 200 and "This lesson has no simulation." in res.get_data(as_text=True)
+    html = res.get_data(as_text=True)
+    # Lessons without an embedded simulation point to the course's Economics Lab experiment instead
+    assert res.status_code == 200 and 'href="/lab/carbon-tax"' in html and "Open the experiment" in html

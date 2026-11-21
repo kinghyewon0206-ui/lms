@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "course_id": "c08",
+  "topics": [
+    {
+      "id": "free-trade-who-gains",
+      "title": "Does free trade benefit everyone, and what should be done for those who lose?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "The theory of comparative advantage shows that when countries specialize and trade, total output and consumption can rise in both countries. This is one of the most widely accepted ideas in economics. But the gains are not shared equally. Consumers and exporting industries tend to gain, while workers and firms in industries facing new import competition may lose.",
+        "The compensation principle says that if the winners gain more than the losers lose, the winners could in principle compensate the losers and everyone could be better off. In practice, such compensation is often incomplete. Studies of displaced workers show that some find new work quickly while others face long spells without jobs or lower pay. The debate is less about whether trade raises total income and more about how the gains and losses are shared."
+      ],
+      "policy_question": "Should a country keep opening its markets to trade, and how should it handle the people who lose out?",
+      "perspectives": [
+        {
+          "id": "open-trade-gains",
+          "name": "Keep trade open, the overall gains are large",
+          "summary": "Trade lowers prices, gives consumers more choice, and lets each country specialize in what it does best.",
+          "reasoning": [
+            "Lower import prices raise the purchasing power of all households, especially those who spend much of their income on traded goods.",
+            "Exporting firms can sell to bigger markets and often pay higher wages.",
+            "Closing markets also has losers, such as consumers and firms that use imported parts."
+          ],
+          "assumptions": [
+            "Assumes the total gains from trade are larger than the losses.",
+            "Assumes workers can eventually move into new jobs."
+          ]
+        },
+        {
+          "id": "compensate-losers",
+          "name": "Share the gains through adjustment help",
+          "summary": "Trade raises total income, but the losers need real support, not just promises.",
+          "reasoning": [
+            "Job losses from import competition can be concentrated in particular towns and industries.",
+            "Training, wage insurance, and help moving to new jobs can spread the gains more widely.",
+            "Without compensation, public support for trade may collapse."
+          ],
+          "assumptions": [
+            "Assumes the government can fund and deliver effective adjustment programs.",
+            "Assumes compensation can reach the people who were actually harmed."
+          ]
+        },
+        {
+          "id": "pace-and-sequence",
+          "name": "Open gradually and carefully",
+          "summary": "Opening too fast can overwhelm communities, so the speed and order of opening matter.",
+          "reasoning": [
+            "A gradual timetable gives firms and workers time to adjust.",
+            "Some industries may need time to become competitive.",
+            "Countries can negotiate so that they gain access to other markets at the same time as they open their own."
+          ],
+          "assumptions": [
+            "Assumes a slower pace really leads to adjustment rather than delay.",
+            "Assumes protected industries will improve during the transition."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Explain comparative advantage in your own words. Why can both countries gain?",
+        "Who gains and who loses when a country opens to imports?",
+        "What does the compensation principle say, and why is it hard to put into practice?",
+        "Is it enough for trade to raise total income, or does how it is shared matter too?"
+      ],
+      "trade_offs": [
+        "Larger total gains vs. concentrated losses in some communities",
+        "Lower consumer prices vs. jobs in import-competing industries",
+        "Fast opening vs. time to adjust"
+      ],
+      "source_ids": [
+        "openstax-pe3-33-4",
+        "libretexts-ittp-5-13",
+        "openstax-pe3-34-2",
+        "bls-displaced-workers"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "tariffs-protect-industry",
+      "title": "Should a country use tariffs to protect its domestic industries?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "A tariff is a tax on imported goods. It raises the price of imports and of competing domestic goods, which helps domestic producers but costs consumers. In the standard model for a small country, a tariff reduces total welfare: the gains to producers and the government's tariff revenue are smaller than the loss to consumers. This welfare loss is a well-established textbook result.",
+        "Arguments for tariffs include protecting young (infant) industries, national security, keeping jobs in particular regions, and responding to unfair practices by other countries. These arguments rest on specific assumptions, and economists often debate whether they hold in real cases. Tariffs can also lead other countries to retaliate."
+      ],
+      "policy_question": "Should a government impose tariffs to protect an important domestic industry?",
+      "perspectives": [
+        {
+          "id": "protect-industry",
+          "name": "Protect strategic industries",
+          "summary": "Some industries matter for security or long-run development and may need protection.",
+          "reasoning": [
+            "A country may not want to depend on imports for goods needed in an emergency.",
+            "A young industry may become competitive if it has time to grow and learn.",
+            "Tariffs can protect jobs in regions with few other employers."
+          ],
+          "assumptions": [
+            "Assumes the industry will become competitive and the protection will end.",
+            "Assumes the security benefits are real and large."
+          ]
+        },
+        {
+          "id": "consumer-cost",
+          "name": "Tariffs are a hidden tax on consumers",
+          "summary": "Protection is an indirect subsidy from consumers to producers, and the total welfare loss is real.",
+          "reasoning": [
+            "Consumers pay higher prices for imported and domestic goods alike.",
+            "Firms that use the protected good as an input face higher costs, which can cost jobs elsewhere.",
+            "Other countries may respond with tariffs on this country's exports."
+          ],
+          "assumptions": [
+            "Assumes the country cannot change world prices by itself.",
+            "Assumes no special market failures justify protection."
+          ]
+        },
+        {
+          "id": "targeted-alternatives",
+          "name": "Use more direct tools",
+          "summary": "If a goal like security or regional jobs matters, there are cheaper ways to reach it than tariffs.",
+          "reasoning": [
+            "A direct subsidy or support for research costs taxpayers openly and does not raise consumer prices.",
+            "Stockpiles or agreements with several reliable suppliers can improve security.",
+            "Help for affected regions can target workers rather than whole industries."
+          ],
+          "assumptions": [
+            "Assumes the government can fund direct support transparently.",
+            "Assumes direct tools can be designed without favoring politically connected firms."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Who gains and who loses from a tariff? Which group is larger?",
+        "Why does the small-country model show a net welfare loss?",
+        "Which arguments for tariffs depend on special assumptions?",
+        "How might other countries respond, and how would that change the outcome?"
+      ],
+      "trade_offs": [
+        "Protecting domestic producers vs. higher prices for consumers",
+        "National security vs. lower costs from trade",
+        "Jobs in protected industries vs. jobs in industries that use imports"
+      ],
+      "source_ids": [
+        "openstax-pe3-34-1",
+        "openstax-pe3-34-3",
+        "libretexts-ittp-7-8",
+        "openstax-pe3-34-5"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "environmental-standards-trade",
+      "title": "Should countries require imports to meet environmental standards?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Global supply chains split production across many countries. When goods are made where environmental rules are weaker, pollution costs may fall on local communities and on the global climate, which are externalities not paid by buyers. Some countries want to require imported goods to meet environmental or labor standards, or to charge extra at the border based on the emissions made in producing them.",
+        "Supporters say this prevents a 'race to the bottom' and protects the environment. Critics worry that standards can become a hidden form of protectionism and can hurt producers in lower-income countries. International trade rules allow technical standards in some cases, but require them to be fair and not unnecessarily restrictive."
+      ],
+      "policy_question": "Should a country require imports to meet environmental standards similar to its own?",
+      "perspectives": [
+        {
+          "id": "level-field",
+          "name": "Require standards to protect the environment",
+          "summary": "Standards stop pollution from simply moving to places with weaker rules.",
+          "reasoning": [
+            "Without standards, firms may move production to where pollution is cheaper, so global pollution may not fall.",
+            "Buyers in wealthy countries create demand for goods, so they share responsibility for how goods are made.",
+            "Standards push suppliers to adopt cleaner methods."
+          ],
+          "assumptions": [
+            "Assumes standards can be measured and checked across long supply chains.",
+            "Assumes production really does move to escape rules."
+          ]
+        },
+        {
+          "id": "hidden-protection",
+          "name": "Beware of protectionism in disguise",
+          "summary": "Standards can be designed to keep out foreign competitors rather than to protect the environment.",
+          "reasoning": [
+            "Rules that are very costly to meet can block imports as effectively as a tariff.",
+            "Producers in lower-income countries may lack the money and technology to meet strict standards quickly.",
+            "Trade helps lower-income countries grow, which can later fund environmental improvements."
+          ],
+          "assumptions": [
+            "Assumes some standards are written to favor domestic firms.",
+            "Assumes trade-driven growth will lead to cleaner production over time."
+          ]
+        },
+        {
+          "id": "partnership-support",
+          "name": "Pair standards with support",
+          "summary": "Standards should come with finance, technology, and time to adjust for producers in poorer countries.",
+          "reasoning": [
+            "Global partnership (SDG 17) includes sharing technology and support.",
+            "Gradual timelines and help with certification make standards achievable.",
+            "Agreements made together are more likely to be followed than rules imposed by one side."
+          ],
+          "assumptions": [
+            "Assumes wealthy countries will actually provide the promised support.",
+            "Assumes cooperation is possible among countries with different priorities."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Why do environmental costs in global supply chains count as externalities?",
+        "How could a standard act like a trade barrier?",
+        "Who bears the cost of meeting a new standard?",
+        "How should the interests of lower-income exporters be weighed against environmental goals?"
+      ],
+      "trade_offs": [
+        "Environmental protection vs. market access for lower-income countries",
+        "Strict standards vs. the risk of hidden protectionism",
+        "Quick action vs. time and support for producers to adjust"
+      ],
+      "source_ids": [
+        "wto-tbt-technical-info",
+        "openstax-pe3-12-5",
+        "openstax-pe3-34-3",
+        "un-sdg-17"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

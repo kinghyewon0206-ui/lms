@@ -73,6 +73,10 @@
       line(x.a, -x.b, "gr-demand", "D");
       line(x.c, x.d, "gr-supply", "S", x.t > 0);
       if (x.t > 0) line(x.c - x.d * x.t, x.d, "gr-supply", "S+t", false, true);
+      if (x.md !== undefined && x.md > 0 && Math.abs(x.md - x.t) > 1e-9) line(x.c - x.d * x.md, x.d, "gr-msc", "MSC", false, true);
+      if (r.efficient_quantity !== undefined && r.efficient_quantity > 0) {
+        el("circle", { "class": "gr-eq gr-eq-eff", cx: X(r.efficient_quantity), cy: Y((x.a - r.efficient_quantity) / x.b), r: 5 }, svg);
+      }
       var b0 = r.baseline;
       if (b0 && b0.status === "interior") el("circle", { "class": "gr-eq gr-eq-base", cx: X(b0.quantity), cy: Y(b0.price), r: 4 }, svg);
       if (r.status === "interior") {
@@ -127,6 +131,7 @@
         if (r.social_welfare_change !== undefined) {
           rows.push(["Avoided external damage (assumed)", "–", money(r.avoided_damage), "–"]);
           rows.push(["Change in social welfare (assumed)", "–", (r.social_welfare_change > 0 ? "+" : "") + money(r.social_welfare_change), "–"]);
+          rows.push(["Socially efficient quantity (demand = MSC)", "–", withUnit(r.efficient_quantity, "units"), "–"]);
         }
       }
     }
@@ -151,6 +156,12 @@
       else if (r.social_welfare_change > 0) list.push("With the assumed external damage, the avoided damage is larger than the deadweight loss, so total social welfare rises by " + money(r.social_welfare_change) + ".");
       else if (r.social_welfare_change < 0) list.push("The assumed external damage is small, so in this model total social welfare falls by " + money(-r.social_welfare_change) + ".");
       else list.push("The assumed avoided damage equals the deadweight loss, so the change in total social welfare is 0.");
+      if (r.efficient_quantity !== undefined) {
+        var gap = x.t - x.md;
+        if (x.md === 0) list.push("With no external damage, the market quantity is already efficient: marginal private cost equals marginal social cost, so the tax only causes deadweight loss.");
+        else if (Math.abs(gap) < 1e-9) list.push("The tax equals the external damage per unit, so the market now produces the socially efficient quantity (" + fmt(r.efficient_quantity) + " units), where demand meets marginal social cost (MSC). This is a corrective (Pigouvian) tax in the model.");
+        else list.push("The socially efficient quantity is " + fmt(r.efficient_quantity) + " units, where demand meets marginal social cost (MSC, the dashed line). The tax is " + (gap > 0 ? "higher" : "lower") + " than the external damage, so output is " + (gap > 0 ? "below" : "above") + " that level. A tax equal to " + money(x.md) + " per unit would reach it.");
+      }
     } else {
       list.push(r.reason);
     }
@@ -209,6 +220,17 @@
         c.querySelector("[data-role=range]").value = v === undefined || v === null ? 0 : v;
       });
       base = null; update();
+    });
+    root.querySelectorAll("[data-preset]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var vals = JSON.parse(btn.getAttribute("data-preset"));
+        ctls.forEach(function (c) {
+          var name = c.getAttribute("data-name");
+          if (name in vals) { c.querySelector("[data-role=number]").value = vals[name]; c.querySelector("[data-role=range]").value = vals[name]; }
+        });
+        root.querySelectorAll("[data-preset]").forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+        update();
+      });
     });
     root.querySelectorAll("[data-role=range]").forEach(function (r) { r.removeAttribute("tabindex"); });
     update();

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "course_id": "c06",
+  "topics": [
+    {
+      "id": "top-marginal-tax-rate",
+      "title": "Should the top income tax rate be raised?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Under a progressive income tax, the marginal tax rate is the rate paid on the next dollar of income, and it rises in steps as income rises. Raising the top marginal rate affects only income above the highest threshold. It does not change the tax paid on income below that line.",
+        "Supporters see a higher top rate as a way to reduce inequality and raise revenue. Critics argue it may reduce work, investment, or reported income among high earners, so less revenue may be raised than expected. Economists agree that people respond to taxes, but they disagree about how large those responses are, and they point out that tax avoidance and the design of the tax system both matter. Choosing a rate also depends on how much a society values equity compared with efficiency."
+      ],
+      "policy_question": "Should the government raise the tax rate on the highest incomes?",
+      "perspectives": [
+        {
+          "id": "raise-top-rate",
+          "name": "Raise it to reduce inequality",
+          "summary": "People with the highest incomes can contribute more, and the revenue can fund services for everyone.",
+          "reasoning": [
+            "Inequality in income and wealth has risen in many countries, and a more progressive tax can narrow after-tax gaps.",
+            "An extra dollar is likely to matter less to a very high earner than to a low-income family.",
+            "Revenue can fund education and health care that widen opportunity."
+          ],
+          "assumptions": [
+            "Assumes high earners do not cut work or move income away so much that revenue falls.",
+            "Assumes the revenue is spent well."
+          ]
+        },
+        {
+          "id": "growth-incentives",
+          "name": "Keep it lower to protect incentives",
+          "summary": "High rates can discourage work, saving, and starting businesses, which can slow growth for everyone.",
+          "reasoning": [
+            "A higher marginal rate lowers the reward for earning one more dollar.",
+            "Some high earners are business owners whose investment creates jobs.",
+            "When rates rise, people may shift income into forms or places that are taxed less, so revenue gains may be smaller than expected."
+          ],
+          "assumptions": [
+            "Assumes that high earners respond strongly to tax rates.",
+            "Assumes the benefits of growth are shared widely."
+          ]
+        },
+        {
+          "id": "broaden-base",
+          "name": "Fix the tax base before the rate",
+          "summary": "Close loopholes and treat different kinds of income alike before changing the top rate.",
+          "reasoning": [
+            "The rate written in law (the statutory rate) can be very different from the rate people actually pay (the effective rate).",
+            "If some income is taxed less, raising the top rate on wages may simply shift income to less-taxed forms.",
+            "A broader base can raise revenue and improve fairness without raising rates."
+          ],
+          "assumptions": [
+            "Assumes that loopholes can be closed despite political resistance.",
+            "Assumes that avoidance, not the rate itself, is the main problem."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What is the difference between a marginal tax rate and an average tax rate?",
+        "How might high earners respond to a higher top rate, and why does the size of that response matter?",
+        "What is the difference between the statutory rate and the effective rate?",
+        "How would you weigh equity against efficiency in this choice?"
+      ],
+      "trade_offs": [
+        "More equal after-tax incomes vs. possible weaker incentives to work and invest",
+        "Higher revenue vs. more tax avoidance",
+        "Raising rates vs. changing which income is taxed"
+      ],
+      "source_ids": [
+        "openstax-pe3-30-2",
+        "openstax-pe3-15-5",
+        "openstax-pe3-15-4",
+        "un-sdg-10"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "universal-basic-income",
+      "title": "Should every adult receive a basic income from the government?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "A universal basic income (UBI) is a regular cash payment given to every adult, whether or not they work and whatever their income. Most current safety-net programs are targeted: they help people below a certain income, and their benefits shrink as earnings rise.",
+        "When benefits are withdrawn quickly as earnings rise, the effective marginal tax rate on extra work can be very high, which can create a poverty trap. A UBI avoids this because the payment does not shrink. But paying everyone is very expensive, which means higher taxes or less money for other programs. Pilot programs have been run in several places, but small, short pilots cannot show every effect of a permanent national program."
+      ],
+      "policy_question": "Should a country replace some or all of its targeted benefits with a universal basic income?",
+      "perspectives": [
+        {
+          "id": "universal-simple",
+          "name": "Pay everyone a basic income",
+          "summary": "A UBI is simple, avoids the poverty trap, and gives everyone a secure floor.",
+          "reasoning": [
+            "Because the payment does not shrink when people earn more, every extra hour of work raises take-home income.",
+            "It removes the paperwork and stigma of applying for help.",
+            "It can protect people who fall through the gaps of targeted programs."
+          ],
+          "assumptions": [
+            "Assumes that the taxes needed to fund it do not greatly reduce work and investment.",
+            "Assumes that a payment large enough to matter is affordable."
+          ]
+        },
+        {
+          "id": "targeted-cheaper",
+          "name": "Keep support targeted",
+          "summary": "With limited public funds, it is better to give more help to the people who need it most.",
+          "reasoning": [
+            "Paying everyone means much of the money goes to households that are not poor.",
+            "For the same total cost, targeted programs can give larger benefits to the poorest households.",
+            "The poverty trap can be reduced by withdrawing benefits more slowly, without paying everyone."
+          ],
+          "assumptions": [
+            "Assumes targeting can be done accurately and without excluding many eligible people.",
+            "Assumes slower phase-outs are affordable."
+          ]
+        },
+        {
+          "id": "work-and-dignity",
+          "name": "Worried about work and social contribution",
+          "summary": "Support should be linked to work, training, or care, not given unconditionally.",
+          "reasoning": [
+            "Many people value the idea that support comes with a contribution to society.",
+            "Earned-income support rewards work directly.",
+            "If many people worked less, the tax base needed to fund the program could shrink."
+          ],
+          "assumptions": [
+            "Assumes that a basic income would reduce work by a meaningful amount.",
+            "Assumes that a contribution requirement can be designed fairly for carers and disabled people."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What is a poverty trap, and how does it come from benefits that shrink as earnings rise?",
+        "What is the opportunity cost of paying a benefit to everyone?",
+        "What can a small pilot program tell us, and what can it not tell us?",
+        "Should support be a right for everyone, or tied to need or contribution?"
+      ],
+      "trade_offs": [
+        "Universal coverage vs. higher total cost",
+        "Simplicity and no stigma vs. less money for the poorest",
+        "Stronger work incentives at the bottom vs. higher taxes for everyone else"
+      ],
+      "source_ids": [
+        "openstax-pe3-15-2",
+        "openstax-pe3-15-3",
+        "openstax-pe3-15-5",
+        "un-sdg-1"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "school-funding-redistribution",
+      "title": "Should more school funding go to schools in disadvantaged communities?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "In some places, schools are funded partly by local taxes, so schools in wealthier areas can have more money per student. Other systems give equal funding per student, and some give extra money to schools that serve more students from low-income families.",
+        "This debate brings together the ideas of equality and equity. Equality means giving everyone the same amount. Equity means giving people what they need to have a fair chance, which may mean giving some more. Research on whether extra money raises student outcomes has found different results, and many researchers argue that how the money is spent matters as much as how much there is."
+      ],
+      "policy_question": "Should a school system give extra funding to schools that serve disadvantaged communities?",
+      "perspectives": [
+        {
+          "id": "equity-funding",
+          "name": "Give more where needs are greater",
+          "summary": "Students who start with fewer advantages may need more support to have an equal chance.",
+          "reasoning": [
+            "Students from low-income families may need extra tutoring, counseling, or meals to learn well.",
+            "Education builds human capital, which affects lifetime earnings and economic mobility.",
+            "If funding follows local wealth, inequality can be passed from one generation to the next."
+          ],
+          "assumptions": [
+            "Assumes the extra funding is spent on things that help learning.",
+            "Assumes that differences in school resources contribute to differences in outcomes."
+          ]
+        },
+        {
+          "id": "equal-per-student",
+          "name": "Fund every student equally",
+          "summary": "Equal funding per student is the clearest and fairest rule.",
+          "reasoning": [
+            "Every family pays taxes, so each child could expect the same support.",
+            "Moving money away from some schools may hurt their students and reduce support for public schools.",
+            "Equal funding is simple and hard to manipulate."
+          ],
+          "assumptions": [
+            "Assumes that equal resources lead to a fair chance for all students.",
+            "Assumes that needs do not differ much between schools."
+          ]
+        },
+        {
+          "id": "results-focused",
+          "name": "Tie money to proven approaches",
+          "summary": "Extra funding should go to programs with good evidence, not simply be added to budgets.",
+          "reasoning": [
+            "Studies suggest that how money is spent can matter as much as how much is spent.",
+            "Careful evaluations, such as comparing similar schools with and without a program, can show what works.",
+            "Linking money to evidence can build public trust that the money is well used."
+          ],
+          "assumptions": [
+            "Assumes good evidence is available for the programs being considered.",
+            "Assumes schools are not pushed into narrow goals just because they are easy to measure."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What is the difference between equality and equity in school funding?",
+        "Why does education affect economic mobility and inequality?",
+        "How could researchers test whether extra funding improves results?",
+        "Which value matters more to you here: equal treatment or equal opportunity?"
+      ],
+      "trade_offs": [
+        "Equal treatment vs. support based on need",
+        "Helping disadvantaged students vs. fewer resources for other schools",
+        "Flexibility for schools vs. tying money to proven programs"
+      ],
+      "source_ids": [
+        "openstax-pe3-15-5",
+        "openstax-pe3-15-4",
+        "un-sdg-4",
+        "un-sdg-10"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

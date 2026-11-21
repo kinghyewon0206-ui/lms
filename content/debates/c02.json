@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "course_id": "c02",
+  "topics": [
+    {
+      "id": "price-caps-after-disaster",
+      "title": "Should prices of essentials be capped after a natural disaster?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "After a hurricane, flood, or earthquake, demand for bottled water, fuel, generators, and building materials can jump while supply is disrupted. In the supply and demand model, the equilibrium price rises sharply. Some governments respond with rules against 'price gouging' that cap how much sellers can raise prices during an emergency.",
+        "The model gives a clear prediction: if a price ceiling is set below the equilibrium price and is binding, quantity demanded exceeds quantity supplied, and a shortage results. That prediction is well established. The real debate is about what society should value in an emergency: getting goods to whoever will pay most, encouraging more supply to arrive quickly, or making sure everyone gets a fair share."
+      ],
+      "policy_question": "Should a government cap the prices of essential goods during an emergency?",
+      "perspectives": [
+        {
+          "id": "fairness-cap",
+          "name": "Cap prices to protect fairness",
+          "summary": "In a crisis, it feels deeply unfair for sellers to profit from people's desperation.",
+          "reasoning": [
+            "When people are in danger, a very high price can mean that only richer households get water or fuel.",
+            "Many people judge emergency price jumps as unfair, and trust in markets and neighbors can suffer.",
+            "A cap can be short-term and limited to a small list of true essentials."
+          ],
+          "assumptions": [
+            "Assumes that fairness in who gets goods matters more than how many goods arrive.",
+            "Assumes the shortage the cap creates can be managed with rationing or queues."
+          ]
+        },
+        {
+          "id": "price-signal",
+          "name": "Let prices rise to pull in supply",
+          "summary": "High prices tell sellers to bring more goods into the disaster area and tell buyers to take only what they need most.",
+          "reasoning": [
+            "A binding ceiling creates a shortage, so goods are handed out by waiting in line or by luck instead of need.",
+            "Higher prices give suppliers from outside the area a reason to drive in extra fuel or water quickly.",
+            "When prices are high, buyers tend to buy less and leave some for others, instead of stockpiling."
+          ],
+          "assumptions": [
+            "Assumes suppliers can actually increase deliveries in the short run.",
+            "Assumes buyers with the greatest need are able to pay the higher price."
+          ]
+        },
+        {
+          "id": "direct-aid",
+          "name": "Leave prices alone and help people directly",
+          "summary": "Combine market prices with emergency cash or free supplies for the people hit hardest.",
+          "reasoning": [
+            "Direct help protects vulnerable households without removing the signal that brings more supply.",
+            "Governments and charities can buy goods at market prices and give them to those in need.",
+            "This separates the question of efficiency (getting goods there) from the question of fairness (who can afford them)."
+          ],
+          "assumptions": [
+            "Assumes the government can deliver help quickly in a disaster zone.",
+            "Assumes it can identify who needs help most."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What does the supply and demand model predict if the cap is below the equilibrium price?",
+        "If there is a shortage, who decides who gets the goods, and how?",
+        "Which parts of this debate are about evidence, and which are about fairness?",
+        "Could the government get the benefits of both prices and fairness at the same time?"
+      ],
+      "trade_offs": [
+        "Fair access at a low price vs. fewer goods available because of a shortage",
+        "A strong price signal for suppliers vs. high prices for people in need",
+        "Simple rules that are easy to enforce vs. targeted aid that is harder to deliver quickly"
+      ],
+      "source_ids": [
+        "openstax-pe3-3-4",
+        "openstax-pe3-3-5",
+        "openstax-pe3-3-3"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "rent-regulation",
+      "title": "Should cities limit how much landlords can raise rents?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "In many fast-growing cities, rents have risen faster than wages, and some long-time residents have been pushed out. One response is rent regulation. Strict rent control sets a maximum rent. Softer rent stabilization limits how much the rent on an existing tenant can rise each year.",
+        "In the basic model, a binding rent ceiling below equilibrium creates a shortage of rental housing, and the textbook treats this as a standard result. Over time, landlords may also build fewer new units, convert units to other uses, or spend less on repairs. The size of these effects depends on how the rules are designed, so the debate is about design and about how to weigh the security of current tenants against the needs of future renters."
+      ],
+      "policy_question": "Should a city limit yearly rent increases for existing tenants, and if so, how strictly?",
+      "perspectives": [
+        {
+          "id": "tenant-stability",
+          "name": "Protect tenants from sudden increases",
+          "summary": "Rent limits let families stay in their homes, schools, and communities instead of being forced to move.",
+          "reasoning": [
+            "Moving is costly: families lose time, money, and their connections to neighbors, schools, and jobs.",
+            "Tenants usually have less bargaining power than landlords when there are few vacant homes.",
+            "A soft limit on yearly increases can protect stability while still letting rents follow the market over time."
+          ],
+          "assumptions": [
+            "Assumes that the soft limit is mild enough not to cut the supply of housing much.",
+            "Assumes community stability is a value worth paying for."
+          ]
+        },
+        {
+          "id": "build-more",
+          "name": "Increase supply instead",
+          "summary": "The cause of high rents is too little housing, and rent limits can make that worse.",
+          "reasoning": [
+            "A binding ceiling raises quantity demanded and lowers quantity supplied, so the shortage grows.",
+            "When rents are held down, landlords may spend less on upkeep or turn rentals into owner-occupied homes.",
+            "Allowing more homes to be built through zoning changes attacks the root cause and helps future renters too."
+          ],
+          "assumptions": [
+            "Assumes new building can respond fairly quickly to zoning changes.",
+            "Assumes extra supply will lower rents enough to help low-income renters."
+          ]
+        },
+        {
+          "id": "targeted-help",
+          "name": "Help low-income renters directly",
+          "summary": "Housing vouchers or rent support aim help at the households that need it most.",
+          "reasoning": [
+            "Rent control helps whoever already has a regulated home, whether or not they are poor.",
+            "Direct support can follow the family if they move for a new job.",
+            "Support funded by taxes spreads the cost across society instead of placing it on landlords."
+          ],
+          "assumptions": [
+            "Assumes enough public money is available.",
+            "Assumes that support will not mainly push up rents when the supply of homes is tight."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Who gains and who loses from rent regulation in the short run and in the long run?",
+        "What would the model predict for new renters arriving in the city?",
+        "How does the elasticity of housing supply change the answer?",
+        "Is stability for current tenants a value that should outweigh other goals?"
+      ],
+      "trade_offs": [
+        "Security for current tenants vs. fewer available homes for newcomers",
+        "Lower rents today vs. less building and maintenance in the future",
+        "Placing the cost on landlords vs. spreading it across all taxpayers"
+      ],
+      "source_ids": [
+        "openstax-pe3-3-4",
+        "openstax-pe3-5-1",
+        "openstax-pe3-3-5"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "food-price-spike-response",
+      "title": "When world food prices spike, how should a government respond?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Indicators such as the FAO Food Price Index track world food prices, and they show that prices sometimes rise sharply because of droughts, conflicts, or high energy costs. Because the demand for staple foods is price inelastic, a fall in supply can cause a large rise in price, and low-income households, who spend a large share of their income on food, are hit hardest.",
+        "Governments have several tools: export bans to keep food at home, price controls, cuts to food taxes or import tariffs, public food reserves, and cash or food support for poor households. Each tool has different effects on prices, supply, and other countries. The strongest predictions come from the model, while the size of the effects in a real crisis is often uncertain."
+      ],
+      "policy_question": "During a food price spike, which response should a government choose first?",
+      "perspectives": [
+        {
+          "id": "export-restriction",
+          "name": "Keep food at home",
+          "summary": "Restricting exports puts the needs of the country's own people first.",
+          "reasoning": [
+            "When world prices jump, domestic food may be sold abroad, and local prices can rise even further.",
+            "A government's first duty, many people argue, is to its own citizens.",
+            "A short restriction can calm local prices while other help is organized."
+          ],
+          "assumptions": [
+            "Assumes the country produces enough food to benefit from keeping it at home.",
+            "Assumes other countries will not respond with restrictions of their own."
+          ]
+        },
+        {
+          "id": "targeted-transfers",
+          "name": "Give cash or food support to the poorest",
+          "summary": "Support for low-income households protects nutrition without blocking trade or the price signal.",
+          "reasoning": [
+            "Higher prices encourage farmers to produce more next season, so keeping that signal matters.",
+            "Export bans can push world prices even higher and hurt importing countries, many of them poor.",
+            "Support can be aimed at the households that spend the largest share of income on food."
+          ],
+          "assumptions": [
+            "Assumes the government has a working system to deliver support quickly.",
+            "Assumes enough food is available to buy, so the cash is not just pushing prices higher."
+          ]
+        },
+        {
+          "id": "reserves-and-resilience",
+          "name": "Build reserves and resilience",
+          "summary": "The best response is prepared in advance: reserves, diverse suppliers, and support for farmers.",
+          "reasoning": [
+            "A public reserve can be released during a spike to add supply when it is needed most.",
+            "Relying on several suppliers and crops makes a country less exposed to one bad harvest.",
+            "Investment in farm productivity raises supply over the long run."
+          ],
+          "assumptions": [
+            "Assumes reserves can be managed honestly and at a reasonable storage cost.",
+            "Assumes the government plans ahead instead of reacting only once a crisis starts."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Why does inelastic demand make food price spikes so large?",
+        "How might one country's export ban affect people in other countries?",
+        "Which tools work quickly, and which work only if prepared in advance?",
+        "How should a government weigh its own citizens against people in other countries?"
+      ],
+      "trade_offs": [
+        "Protecting domestic consumers vs. effects on importing countries",
+        "Fast price relief vs. keeping the signal that encourages more production",
+        "Spending on reserves in normal years vs. using that money for other needs"
+      ],
+      "source_ids": [
+        "fao-food-price-index",
+        "worldbank-food-security-update",
+        "openstax-pe3-5-1",
+        "un-sdg-2"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

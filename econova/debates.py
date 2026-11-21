@@ -1,7 +1,8 @@
 """경제 토론 주제 (content/debates/<course_id>.json, 개발용은 content/dev_fixtures/debates/<course_id>.json).
 
 주제마다: 배경(검토된 글), 정책 질문, 서로 다른 관점(2개 이상, 각 관점의 근거·가정), 안내 질문, 상충관계, 출처.
-검토 규칙은 학습자료와 같다 (교사 승인 필요, AI 승인 불가). 학생에게는 승인된 주제만, 공개·수강 중인 강좌에서만 보인다.
+대회판(2026-11-21 소유자 결정): 주제는 검토 상태와 상관없이 제공된다. review 블록은 기록용으로 그대로 남기며 승인을 꾸며 넣지 않는다.
+학생에게는 공개 강좌 중 수강 중인 강좌의 주제만 보인다 (수강 확인은 ai_web._debate_course).
 """
 import os
 
@@ -52,13 +53,13 @@ def parse_topics(data, course, sources, where):
     return topics
 
 
-def topics_for(course, sources, approved_only=True):
+def topics_for(course, sources):
+    """이 강좌의 모든 토론 주제 (검토 상태로 거르지 않는다)."""
     path = _path(course)
     if not os.path.exists(path):
         return []
     rel = os.path.relpath(path, content.CONTENT_DIR)
-    topics = parse_topics(lesson_content.read_json(path, rel), course, sources, rel)
-    return [t for t in topics if t["approved"] or not approved_only]
+    return parse_topics(lesson_content.read_json(path, rel), course, sources, rel)
 
 
 def topic(course, sources, topic_id):

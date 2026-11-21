@@ -29,13 +29,24 @@
       </article>
       {% endfor %}
     </div>
-    <p class="hint">Trade-offs: {{ topic.trade_offs|join(' / ') }}</p>
+    <h3>Trade-offs to weigh</h3>
+    <ul class="ec-list">{% for t in topic.trade_offs %}<li>{{ t }}</li>{% endfor %}</ul>
+    <h3>Questions to guide your argument</h3>
+    <ul class="ec-list">{% for q in topic.guiding_questions %}<li>{{ q }}</li>{% endfor %}</ul>
   </section>
+
+  {% if sources %}
+  <section class="ec-section" aria-labelledby="h-src">
+    <h2 id="h-src">Sources to explore</h2>
+    <ul class="ec-list">{% for s in sources %}<li><a href="{{ s.url }}" rel="noopener noreferrer" target="_blank">{{ s.title }}</a>{% if s.container %}, {{ s.container }}{% endif %}{% if s.author %} ({{ s.author }}){% endif %}</li>{% endfor %}</ul>
+    <p class="hint">Links open the original source. ECONOVA doesn't copy their text.</p>
+  </section>
+  {% endif %}
 
   <section class="ec-section" aria-labelledby="h-talk">
     <h2 id="h-talk">Debate</h2>
     {% if not ai_enabled %}<p class="hint">The AI moderator is off, so the debate uses prepared guiding questions. Your responses are still saved.</p>{% endif %}
-    <div class="tutor-log" role="log" aria-label="Debate log">
+    <div class="tutor-log debate-log" role="log" aria-label="Debate log">
       {% set summary_meta = namespace(v=none) %}
       {% for m in messages %}
         {% if m.role == 'student' %}

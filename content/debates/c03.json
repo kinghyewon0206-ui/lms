@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "course_id": "c03",
+  "topics": [
+    {
+      "id": "carbon-tax",
+      "title": "Should the government put a tax on carbon emissions?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Burning fossil fuels releases carbon dioxide, which contributes to climate change. The people who burn the fuel do not pay for the damage, so this is a negative externality. In the model, the market produces more than the socially optimal quantity. A carbon tax adds a price to each unit of emissions so that buyers and sellers face more of the social cost.",
+        "Economists widely agree that pricing an externality is an efficient way to reduce it, because firms and households can choose the cheapest ways to cut emissions. What is more debated is how high the tax should be, who ends up paying it (tax incidence), and what to do with the revenue. Other tools, such as regulations or emissions trading (cap-and-trade), aim at the same problem in different ways."
+      ],
+      "policy_question": "Should the government introduce a carbon tax, and how should it use the revenue?",
+      "perspectives": [
+        {
+          "id": "price-carbon",
+          "name": "Yes, price the externality",
+          "summary": "A carbon tax lets the whole economy find the cheapest ways to cut emissions.",
+          "reasoning": [
+            "Different firms face very different costs of cutting emissions, and a tax lets those with cheap options cut the most.",
+            "A tax gives a lasting reason to invent cleaner technology, because every unit of emissions saved saves money.",
+            "Revenue could be returned to households as a dividend or used to cut other taxes."
+          ],
+          "assumptions": [
+            "Assumes the tax rate is set close to the external damage per unit.",
+            "Assumes the tax can be kept in place steadily over many years."
+          ]
+        },
+        {
+          "id": "protect-households",
+          "name": "Worried about who pays",
+          "summary": "Energy is a necessity, so a carbon tax can fall hardest on low-income and rural households.",
+          "reasoning": [
+            "Households with low incomes spend a larger share of their budget on energy, so the tax can be regressive.",
+            "People who must drive long distances or live in poorly insulated homes may have few ways to cut back quickly.",
+            "Without a clear plan to return the revenue, the tax may lose public support."
+          ],
+          "assumptions": [
+            "Assumes that demand for energy is inelastic in the short run.",
+            "Assumes that revenue will not be fully returned to the households that are hit hardest."
+          ]
+        },
+        {
+          "id": "regulate-instead",
+          "name": "Use standards or permits",
+          "summary": "Rules or a fixed cap on emissions give more certainty about how much pollution falls.",
+          "reasoning": [
+            "A tax fixes the price of emissions but not the amount, while a cap fixes the amount directly.",
+            "Standards for cars, buildings, and power plants can be easier for the public to understand.",
+            "Some sectors respond little to price, so rules may be needed there anyway."
+          ],
+          "assumptions": [
+            "Assumes the government knows enough about each sector to set good standards.",
+            "Assumes certainty about the amount of emissions matters more than certainty about the cost."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Why does the market produce too much of a good with a negative externality?",
+        "Who bears the burden of a carbon tax: producers, consumers, or both?",
+        "What are the main differences between a tax, a cap-and-trade system, and a regulation?",
+        "Which use of the revenue seems fairest, and why?"
+      ],
+      "trade_offs": [
+        "Lower cost of cutting emissions vs. less certainty about how much emissions fall",
+        "Efficiency vs. the burden on low-income households",
+        "Returning revenue to households vs. spending it on clean energy"
+      ],
+      "source_ids": [
+        "openstax-pe3-12-3",
+        "imf-fd-externalities",
+        "imf-climate-mitigation",
+        "openstax-pe3-12-2"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "plastic-tax-or-ban",
+      "title": "Should single-use plastics be taxed, banned, or left to the market?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Single-use plastic items such as bags, straws, and packaging are cheap to make, but much of the waste ends up in landfills, rivers, and oceans. The cost of that pollution falls on people and wildlife, not on the buyer or seller, which makes it a negative externality.",
+        "Governments have tried several approaches: bans on certain items, taxes or charges on plastic, requirements that producers pay for collecting and recycling their packaging, and information campaigns. Each approach has different effects on prices, choices, and costs. The substitutes for plastic also have environmental costs of their own, so the comparison is not always simple."
+      ],
+      "policy_question": "Which policy should a government use to reduce single-use plastic waste?",
+      "perspectives": [
+        {
+          "id": "ban-items",
+          "name": "Ban the worst items",
+          "summary": "For items with easy substitutes and high pollution, a ban is simple and certain.",
+          "reasoning": [
+            "A ban is easy to understand and enforce for a short list of items like plastic straws or thin bags.",
+            "Command-and-control rules give certainty that the item disappears from shops.",
+            "When good substitutes exist, the cost to consumers of a ban may be small."
+          ],
+          "assumptions": [
+            "Assumes the substitutes really are less harmful overall.",
+            "Assumes that people with special needs, such as some disabled people who rely on straws, can still get what they need."
+          ]
+        },
+        {
+          "id": "tax-plastic",
+          "name": "Charge for plastic and let people choose",
+          "summary": "A charge lets people keep plastic where it is truly useful while cutting careless use.",
+          "reasoning": [
+            "A tax brings the price closer to the social cost, so people use less but are not forced to stop.",
+            "It raises money that could pay for cleanup or recycling.",
+            "Firms have an incentive to design packaging that uses less plastic."
+          ],
+          "assumptions": [
+            "Assumes buyers respond to small price changes.",
+            "Assumes the charge can be set at a level that reflects the harm."
+          ]
+        },
+        {
+          "id": "producer-responsibility",
+          "name": "Make producers pay for the waste",
+          "summary": "Producers who design the packaging should pay to collect and recycle it.",
+          "reasoning": [
+            "Producers can change materials and designs far more easily than individual shoppers can.",
+            "When firms pay for the end-of-life cost of their packaging, they have a reason to make it simpler and recyclable.",
+            "This targets the source of the waste rather than the consumer at the checkout."
+          ],
+          "assumptions": [
+            "Assumes recycling systems work well enough to handle the collected material.",
+            "Assumes producers will not simply pass the full cost to consumers without changing their designs."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What makes plastic waste a negative externality?",
+        "When is a ban better than a tax, and when is a tax better than a ban?",
+        "What are the environmental costs of the substitutes for plastic?",
+        "Who ends up paying under each policy: consumers, producers, or taxpayers?"
+      ],
+      "trade_offs": [
+        "Certainty of a ban vs. flexibility of a tax",
+        "Low cost for consumers vs. a larger cut in waste",
+        "Placing responsibility on producers vs. on consumers"
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-12-2",
+        "openstax-pe3-12-3",
+        "un-sdg-12"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "clean-energy-innovation-subsidy",
+      "title": "Should governments pay for research into new clean energy technology?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Inventing a better battery or a cheaper solar panel can benefit many people beyond the firm that invents it, because others learn from and copy new ideas. This is a positive externality. In the model, when the social benefit is larger than the private benefit, the market produces less than the socially optimal amount, so private firms may invest too little in research.",
+        "Governments can respond with research grants, tax credits for research, public laboratories, or prizes. But public money has an opportunity cost, and governments may not be good at picking which technologies will succeed. The debate is about whether research support is needed in addition to tools like a carbon tax, and about how to spend the money well."
+      ],
+      "policy_question": "Should the government fund clean energy research, and if so, how?",
+      "perspectives": [
+        {
+          "id": "fund-research",
+          "name": "Fund research because of spillovers",
+          "summary": "Knowledge spills over to others, so firms underinvest unless the public shares the cost.",
+          "reasoning": [
+            "A firm that invents a new technology captures only part of the benefits, because others can learn from it.",
+            "Early-stage research is risky and can take many years to pay off, which makes private investors cautious.",
+            "Past public research programs have contributed to important technologies, even if not every project succeeded."
+          ],
+          "assumptions": [
+            "Assumes public funding adds new research rather than replacing research firms would have done anyway.",
+            "Assumes the funding is given through a fair and competitive process."
+          ]
+        },
+        {
+          "id": "price-first",
+          "name": "Put a price on pollution first",
+          "summary": "If pollution is priced, firms will have their own reasons to invent clean technology.",
+          "reasoning": [
+            "A carbon price makes every clean technology more valuable, without the government choosing winners.",
+            "Governments can waste money on projects that are popular but not promising.",
+            "Money spent on subsidies has an opportunity cost: it could be spent on schools or health care."
+          ],
+          "assumptions": [
+            "Assumes a carbon price is politically possible and high enough.",
+            "Assumes a price alone fixes the knowledge spillover problem, which many economists doubt."
+          ]
+        },
+        {
+          "id": "both-tools",
+          "name": "Use both tools for two problems",
+          "summary": "Pollution and knowledge spillovers are two different market failures, so they may need two different tools.",
+          "reasoning": [
+            "A carbon tax corrects the negative externality from pollution.",
+            "Research support corrects the positive externality from new knowledge.",
+            "Using both may cut emissions at lower total cost than using either one alone."
+          ],
+          "assumptions": [
+            "Assumes the government can design and run both programs well.",
+            "Assumes the extra cost is worth the extra benefit."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Why might a private firm invest less in research than would be best for society?",
+        "What is the opportunity cost of public research funding?",
+        "Is it possible to support research without 'picking winners'?",
+        "Can one policy tool fix two different market failures?"
+      ],
+      "trade_offs": [
+        "Faster innovation vs. the risk of wasted public money",
+        "Government choosing technologies vs. leaving it to markets",
+        "Spending on research today vs. other public needs"
+      ],
+      "source_ids": [
+        "openstax-pe3-13-1",
+        "openstax-pe3-12-3",
+        "un-sdg-7",
+        "un-sdg-13"
+      ],
+      "max_turns": 6
+    }
+  ]
+}

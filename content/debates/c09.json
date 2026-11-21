@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "course_id": "c09",
+  "topics": [
+    {
+      "id": "town-solar-investment",
+      "title": "Should a town invest in solar power even though the upfront cost is high?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Imagine a town council choosing whether to put solar panels on its public buildings. The panels cost a lot to install now, but they could lower electricity bills for many years and reduce emissions. Because the costs come now and the savings come later, the council needs to compare them using present value, which converts future amounts into today's terms using a discount rate.",
+        "Official guides to project appraisal, such as the UK government's Green Book, describe how to compare options by counting all costs and benefits in the same way, including ones that are hard to price. The answer can change a lot depending on the discount rate chosen, the expected life of the panels, future energy prices, and how much value is placed on lower emissions. These choices involve uncertainty and value judgments."
+      ],
+      "policy_question": "Should the town council pay the high upfront cost to install solar panels on public buildings?",
+      "perspectives": [
+        {
+          "id": "long-term-payoff",
+          "name": "Invest now for long-term savings",
+          "summary": "Over the life of the panels, savings on energy and lower emissions may outweigh the upfront cost.",
+          "reasoning": [
+            "Once installed, solar panels have low running costs.",
+            "Lower emissions bring benefits to society that are not shown on the town's electricity bill.",
+            "Acting early supports affordable and clean energy goals (SDG 7)."
+          ],
+          "assumptions": [
+            "Assumes the panels last as long as expected and perform as planned.",
+            "Assumes the value of lower emissions is included in the appraisal."
+          ]
+        },
+        {
+          "id": "opportunity-cost-budget",
+          "name": "Compare with other uses of the budget",
+          "summary": "The same money could fund other projects with bigger or faster benefits.",
+          "reasoning": [
+            "A town budget is limited, so money for solar is money not spent on roads, schools, or water.",
+            "With a higher discount rate, future savings are worth less in today's terms, which can make the project less attractive.",
+            "Some benefits, such as lower emissions, are shared with the world, while the town pays all the cost."
+          ],
+          "assumptions": [
+            "Assumes other projects have similar or higher value per dollar.",
+            "Assumes a fairly high discount rate is the right choice."
+          ]
+        },
+        {
+          "id": "wait-or-share",
+          "name": "Lower the risk before deciding",
+          "summary": "The town can reduce its risk by leasing panels, waiting for prices to fall, or starting with a small pilot.",
+          "reasoning": [
+            "Leasing or working with a private partner spreads the upfront cost over time.",
+            "A small pilot gives real data on savings before the town commits to a larger project.",
+            "Testing how sensitive the result is to key assumptions shows how risky the decision is."
+          ],
+          "assumptions": [
+            "Assumes that waiting will not raise costs or delay benefits much.",
+            "Assumes partners will offer fair terms."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Why do future savings need to be converted to present value?",
+        "How does the choice of discount rate change the result?",
+        "Which benefits are easy to price, and which are hard?",
+        "What would a sensitivity test tell the council?"
+      ],
+      "trade_offs": [
+        "High cost now vs. savings later",
+        "Benefits for the town vs. benefits shared by the world",
+        "Acting now vs. waiting for better information"
+      ],
+      "source_ids": [
+        "openstax-pe3-appendix-c",
+        "uk-green-book-2026",
+        "openstax-pof2e-16-5",
+        "un-sdg-7"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "congestion-charge",
+      "title": "Should drivers pay a charge to enter a busy city center?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "When roads in a city center are crowded, each extra car slows down everyone else and adds to air pollution. These are external costs that drivers do not pay. A congestion charge makes drivers pay to enter the busiest areas at busy times, which in theory brings the private cost of driving closer to its social cost.",
+        "Several cities have used congestion charges. The model predicts fewer car trips and faster travel for those who still drive, and city reports have described changes like these. But who pays and who benefits is a key question: a flat charge takes a larger share of income from lower-income drivers, while the benefits depend on whether good alternatives such as buses are available and how the revenue is used."
+      ],
+      "policy_question": "Should a city introduce a congestion charge for driving into its center?",
+      "perspectives": [
+        {
+          "id": "price-congestion",
+          "name": "Charge for the external cost",
+          "summary": "A congestion charge reduces traffic and pollution by making drivers pay for the costs they impose.",
+          "reasoning": [
+            "People who value the trip most will still drive, while others switch time, route, or mode.",
+            "Faster traffic benefits buses, deliveries, and emergency vehicles.",
+            "Revenue can improve public transport and walking and cycling routes."
+          ],
+          "assumptions": [
+            "Assumes drivers respond to price by changing their behavior.",
+            "Assumes good alternatives to driving exist."
+          ]
+        },
+        {
+          "id": "fairness-for-drivers",
+          "name": "Unfair to those with no alternative",
+          "summary": "A flat charge hits low-income workers and people who must drive harder than it hits wealthy drivers.",
+          "reasoning": [
+            "A charge takes a larger share of a lower income.",
+            "Some workers, such as night-shift staff or tradespeople, may have no real alternative to driving.",
+            "Businesses in the center may lose customers."
+          ],
+          "assumptions": [
+            "Assumes there are no discounts or exemptions for those most affected.",
+            "Assumes revenue is not used to help those groups."
+          ]
+        },
+        {
+          "id": "transit-first",
+          "name": "Improve alternatives before charging",
+          "summary": "Build better transit first, so people have real choices before a charge begins.",
+          "reasoning": [
+            "A charge works better and feels fairer when good buses or trains are available.",
+            "Starting with alternatives builds public support.",
+            "The charge can then be added once people have options."
+          ],
+          "assumptions": [
+            "Assumes the city can fund transit before charge revenue arrives.",
+            "Assumes that better transit alone would not solve the congestion problem."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "Which costs does a driver impose on others by entering a busy area?",
+        "Why might a congestion charge be regressive, and how could that be fixed?",
+        "How would you measure whether the charge worked?",
+        "What should the revenue be used for?"
+      ],
+      "trade_offs": [
+        "Less traffic and pollution vs. extra costs for drivers",
+        "Efficiency vs. fairness for low-income drivers",
+        "Acting quickly vs. building alternatives first"
+      ],
+      "source_ids": [
+        "openstax-pe3-12-1",
+        "openstax-pe3-12-3",
+        "uk-green-book-2026",
+        "un-sdg-13"
+      ],
+      "max_turns": 6
+    },
+    {
+      "id": "sustainable-food-subsidy",
+      "title": "Should governments subsidize farmers who use more sustainable methods?",
+      "review": {
+        "status": "draft",
+        "history": [
+          {
+            "status": "draft",
+            "at": "2026-11-21",
+            "by": "ECONOVA development team (AI-assisted draft)",
+            "note": "Competition version debate topic. Not reviewed by a teacher."
+          }
+        ]
+      },
+      "background": [
+        "Farming provides food and jobs, but some methods can harm soil, water, and the climate. Others, such as reducing chemical runoff or protecting soil, can create benefits for people beyond the farm, which are positive externalities. SDG 2 links ending hunger with sustainable agriculture, and SDG 12 calls for sustainable production.",
+        "One option is to pay farmers who use sustainable methods. Others include taxing harmful practices, setting rules, or funding research. Subsidies cost public money, and their results depend on whether they pay for changes that would not have happened anyway. Comparing options on cost per result, as in cost-effectiveness analysis, can help, but the evidence for many programs is still limited."
+      ],
+      "policy_question": "Should the government pay farmers to adopt more sustainable methods?",
+      "perspectives": [
+        {
+          "id": "pay-for-benefits",
+          "name": "Pay for the public benefits",
+          "summary": "Farmers who protect soil and water create benefits for everyone, so the public should share the cost.",
+          "reasoning": [
+            "Without payment, farmers bear the cost of changes while others enjoy many of the benefits.",
+            "A subsidy can help farmers through the early years when switching methods may reduce yields or income.",
+            "Supporting farmers keeps rural jobs and food supply secure."
+          ],
+          "assumptions": [
+            "Assumes the subsidy pays for real changes that would not have happened anyway.",
+            "Assumes the benefits can be measured and checked."
+          ]
+        },
+        {
+          "id": "polluter-pays",
+          "name": "Charge for harm instead",
+          "summary": "It is fairer and cheaper for the public if harmful practices are charged, not good ones paid for.",
+          "reasoning": [
+            "Taxing pollution brings in revenue while subsidies cost it.",
+            "The polluter-pays idea holds that those who cause harm should bear its cost.",
+            "Subsidies may go mostly to large farms that would have changed anyway."
+          ],
+          "assumptions": [
+            "Assumes the harm from farming can be measured farm by farm.",
+            "Assumes higher costs for farmers would not raise food prices too much for poor households."
+          ]
+        },
+        {
+          "id": "evidence-first",
+          "name": "Test and compare before scaling up",
+          "summary": "Fund pilots and compare options on cost per result before spending large sums.",
+          "reasoning": [
+            "Cost-effectiveness analysis compares how much each option costs to achieve the same result.",
+            "Pilots with comparison groups can show what really changes because of the program.",
+            "Money saved by choosing the best option can be spent on other food security goals."
+          ],
+          "assumptions": [
+            "Assumes there is time to test before acting.",
+            "Assumes pilot results will hold when a program is scaled up."
+          ]
+        }
+      ],
+      "guiding_questions": [
+        "What are the positive and negative externalities of different farming methods?",
+        "Who should pay for change: taxpayers, farmers, or consumers?",
+        "How could you tell whether a subsidy caused a change, or whether it would have happened anyway?",
+        "How would you weigh cheap food today against sustainable farming for the future?"
+      ],
+      "trade_offs": [
+        "Public cost of subsidies vs. benefits for the environment",
+        "Supporting farmers vs. charging those who cause harm",
+        "Acting quickly vs. testing to find what works"
+      ],
+      "source_ids": [
+        "un-sdg-2",
+        "un-sdg-12",
+        "openstax-pe3-12-1",
+        "jpal-cea"
+      ],
+      "max_turns": 6
+    }
+  ]
+}
