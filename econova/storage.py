@@ -1185,9 +1185,9 @@ def reserve_ai_request(user_id, day, per_user_limit, global_limit, request_hash,
 
 
 def _check_ai_limits(u, gl, per_user_limit, global_limit, request_hash, now, duplicate_window):
-    if int(gl.get("requests") or 0) >= global_limit:
+    if global_limit and int(gl.get("requests") or 0) >= global_limit:      # 0 = 상한 없음
         raise AILimitExceeded("global")
-    if int(u.get("requests") or 0) >= per_user_limit:
+    if per_user_limit and int(u.get("requests") or 0) >= per_user_limit:
         raise AILimitExceeded("user")
     last_at = _as_dt(u.get("last_request_at"))
     if request_hash and u.get("last_request_hash") == request_hash and last_at and \

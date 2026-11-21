@@ -64,8 +64,8 @@ def _int(name, default, lo, hi):
 class Settings:
     provider: str
     model: str
-    daily_requests: int          # 학생 1명이 하루에 보낼 수 있는 AI 요청
-    global_daily_requests: int   # 서비스 전체 하루 요청 상한 (예상 밖 비용 방지)
+    daily_requests: int          # 학생 1명이 하루에 보낼 수 있는 AI 요청 (0 = 상한 없음)
+    global_daily_requests: int   # 서비스 전체 하루 요청 상한 (0 = 상한 없음)
     max_input_chars: int         # 학생 입력 최대 길이
     max_history: int             # 공급자에게 보내는 이전 메시지 수
     max_output_tokens: int
@@ -92,8 +92,10 @@ def settings():
     return Settings(
         provider=provider,
         model=(config.env("ECONOVA_AI_MODEL") or config.env("OPENAI_MODEL") or "gpt-4o-mini").strip(),
-        daily_requests=_int("ECONOVA_AI_DAILY_REQUESTS", 20, 1, 500),
-        global_daily_requests=_int("ECONOVA_AI_GLOBAL_DAILY_REQUESTS", 300, 1, 100000),
+        # 하루 요청 상한은 기본 없음(0 = 무제한, 소유자 결정 2026-11-21). 필요하면 환경변수로 다시 켤 수 있다.
+        # 남는 남용 방지: 로그인·CSRF, 사용자당 동시 요청 1개(lock), 같은 질문 반복 차단, 입력·출력 길이, 시간 제한.
+        daily_requests=_int("ECONOVA_AI_DAILY_REQUESTS", 0, 0, 100000),
+        global_daily_requests=_int("ECONOVA_AI_GLOBAL_DAILY_REQUESTS", 0, 0, 10000000),
         max_input_chars=_int("ECONOVA_AI_MAX_INPUT_CHARS", 600, 50, 4000),
         max_history=_int("ECONOVA_AI_MAX_HISTORY", 6, 0, 20),
         max_output_tokens=_int("ECONOVA_AI_MAX_OUTPUT_TOKENS", 700, 100, 4000),

@@ -156,7 +156,8 @@ def test_vercel_config_files():
     with open(os.path.join(ROOT, "vercel.json"), encoding="utf-8") as f:
         cfg = json.load(f)
     assert cfg["git"]["deploymentEnabled"]["main"] is False, "legacy main must never auto-deploy as ECONOVA"
-    assert cfg["functions"]["app.py"]["maxDuration"] <= 300
+    assert "functions" not in cfg, "Flask zero-config: a functions pattern for app.py breaks the deploy"
+    assert cfg["regions"] == ["icn1"]
     for cron in cfg.get("crons", []):
         minute, hour, *rest = cron["schedule"].split()
         assert minute.isdigit() and hour.isdigit(), "Hobby allows at most one run per day"

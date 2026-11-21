@@ -15,3 +15,5 @@ econova-private/
 .vercel/
 .env*.local
 keys-bundle*
+.vercel
+.env*

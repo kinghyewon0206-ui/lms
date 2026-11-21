@@ -554,7 +554,8 @@ def test_logs_do_not_contain_prompts_or_keys(logged_in, mock_ai, caplog, monkeyp
 # ------------------------------------------------------------- 설정·공급자
 def test_settings_defaults_and_production_guards(monkeypatch):
     s = client.settings()
-    assert s.provider == "off" and not s.enabled and s.daily_requests == 20 and s.max_output_tokens == 700
+    assert s.provider == "off" and not s.enabled and s.max_output_tokens == 700
+    assert s.daily_requests == 0 and s.global_daily_requests == 0   # owner decision: no daily quotas by default (0 = none)
     monkeypatch.setenv("ECONOVA_AI_PROVIDER", "openai")
     with pytest.raises(config.ConfigError, match="OPENAI_API_KEY"):
         client.settings()
@@ -563,7 +564,7 @@ def test_settings_defaults_and_production_guards(monkeypatch):
     with pytest.raises(config.ConfigError, match="mock AI provider"):
         client.settings()
     monkeypatch.delenv("RENDER")
-    monkeypatch.setenv("ECONOVA_AI_DAILY_REQUESTS", "100000")
+    monkeypatch.setenv("ECONOVA_AI_DAILY_REQUESTS", "-1")   # out of range (0 = none, positive = a limit)
     with pytest.raises(config.ConfigError):
         client.settings()
     monkeypatch.setenv("ECONOVA_AI_PROVIDER", "everything")
@@ -704,3 +705,17 @@ def test_firestore_ai_layout(firestore_app, fake_fs):
     paths = set(fake_fs.docs)
     assert ("users", "a@example.com", "econ_ai_conversations", conv) in paths
     assert ("users", "a@example.com", "econ_ai_usage", "2026-11-03") in paths and ("econ_ai_usage_global", "2026-11-03") in paths
+
+
+def test_zero_daily_limits_mean_unlimited_but_duplicate_guard_stays(sqlite_app):
+    from econova import storage
+    with sqlite_app.app_context():
+        signup_uid = storage.create_user("quota@example.test", "Q", "x") or storage.get_user_by_email("quota@example.test")["id"]
+        uid = storage.get_user_by_email("quota@example.test")["id"]
+        now = storage._utcnow()
+        for i in range(30):   # far beyond the old 20/day
+            storage.reserve_ai_request(uid, "2026-11-21", 0, 0, f"q{i}", now, 20)
+        storage.reserve_ai_request(uid, "2026-11-21", 0, 0, "same", now, 20)
+        storage.record_ai_tokens(uid, "2026-11-21", 1, 1, "same", now)
+        with pytest.raises(storage.AILimitExceeded):
+            storage.reserve_ai_request(uid, "2026-11-21", 0, 0, "same", now, 20)   # repeated identical question within 20 s

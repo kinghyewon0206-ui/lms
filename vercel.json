@@ -1,13 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "flask",
   "regions": [
     "icn1"
   ],
-  "functions": {
-    "app.py": {
-      "maxDuration": 60
-    }
-  },
   "git": {
     "deploymentEnabled": {
       "main": false,
