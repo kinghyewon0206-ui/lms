@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c08",
   "lesson_id": "c08-l3",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 3 Quiz: Global Supply Chains and Sustainable Production",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q3: distractor c made demonstrably wrong (the old one was half true); q4: stem no longer copies the lesson's wording of target 12.6. Independent-review follow-up: q1 cites IMF GDP basics; q2 and q5 cite IMF supply-chain resilience instead of OpenStax 33.3. Not reviewed or approved by a human."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c08-l3-q1",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c08-l3",
       "objective": 1,
@@ -42,12 +48,13 @@
       "prompt": "Hypothetical example: Parts for a coffee maker are made in Country K and sold for $24 (assume the parts maker buys no inputs). A factory in Country M assembles the coffee maker and sells it to a store for $41. The store sells it for $72. How many dollars of value does the assembly stage add? (Enter a number only.)",
       "unit": "",
       "source_ids": [
-        "openstax-pe3-33-3"
+        "openstax-pe3-33-3",
+        "imf-fd-gdp-basics"
       ]
     },
     {
       "id": "c08-l3-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l3",
       "objective": 2,
@@ -77,12 +84,12 @@
         }
       ],
       "source_ids": [
-        "openstax-pe3-33-3"
+        "imf-fd-supply-chains"
       ]
     },
     {
       "id": "c08-l3-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l3",
       "objective": 3,
@@ -104,7 +111,7 @@
         },
         {
           "id": "c",
-          "text": "It equals the private cost, so the external cost disappears after export"
+          "text": "It is below the private cost, because the plant pays nothing for the damage"
         },
         {
           "id": "d",
@@ -117,7 +124,7 @@
     },
     {
       "id": "c08-l3-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l3",
       "objective": 3,
@@ -127,7 +134,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Which SDG target most directly encourages large and transnational companies to adopt sustainable practices and include sustainability information in their reporting?",
+      "prompt": "A government wants large companies to adopt sustainable practices and to publish information about their environmental and social impacts in their regular reports. Which SDG target is most closely related to this goal?",
       "choices": [
         {
           "id": "a",
@@ -152,7 +159,7 @@
     },
     {
       "id": "c08-l3-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l3",
       "objective": 2,
@@ -183,7 +190,7 @@
         }
       ],
       "source_ids": [
-        "openstax-pe3-33-3"
+        "imf-fd-supply-chains"
       ]
     }
   ]

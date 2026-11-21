@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c04",
   "lesson_id": "c04-l2",
-  "version": 2,
+  "version": 3,
   "title": "Lesson 2 Quiz: Economic Growth and Productivity",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: difficulty tags matched to cognitive demand (q2 beginner, q4 intermediate); l2-q5 distractors that contradicted the stem replaced with plausible misconceptions. Not reviewed or approved by a human."
       }
     ]
   },
@@ -66,7 +72,7 @@
     },
     {
       "id": "c04-l2-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l2",
       "objective": 1,
@@ -75,7 +81,7 @@
         "human_capital",
         "technology"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: Country S (1) builds a new rail line to its ports, (2) pays for nurses to complete an advanced training course, and (3) has its factories adopt a better method of scheduling production. Which classification of these three changes is correct?",
@@ -121,7 +127,7 @@
     },
     {
       "id": "c04-l2-q4",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c04-l2",
       "objective": 2,
@@ -129,7 +135,7 @@
         "compound_growth",
         "economic_growth"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: Country U's real GDP is $80 billion and grows 4% per year, compounded, for 3 years. What is real GDP after 3 years, in billions of dollars? Round to two decimal places, and round only at the final step. (Enter a number only.)",
@@ -140,7 +146,7 @@
     },
     {
       "id": "c04-l2-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l2",
       "objective": 3,
@@ -155,7 +161,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Output and material use moved together, so no decoupling took place this year"
+          "text": "It is relative decoupling, because material use grew more slowly than output"
         },
         {
           "id": "b",
@@ -163,7 +169,7 @@
         },
         {
           "id": "c",
-          "text": "Material use fell, so real GDP probably shrank in this year despite the reported growth"
+          "text": "It is not decoupling, because target 8.4 is about emissions rather than materials"
         },
         {
           "id": "d",

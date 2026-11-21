@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c05-l2",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: stated that the productivity-to-wages link relies on employers competing for workers, with a pointer to monopsony; added the temporary-layoff case to the definition of unemployed. Not reviewed or approved by a human."
       }
     ]
   },
@@ -51,7 +57,7 @@
     {
       "id": "unemployed",
       "term": "Unemployed",
-      "definition": "A person counts as unemployed only if they have no job, are available to work, and have actively looked for work recently (for example, in the past four weeks). Wanting a job is not enough.",
+      "definition": "A person generally counts as unemployed if they have no job, are available to work, and have actively looked for work recently (for example, in the past four weeks). People on temporary layoff who are waiting to be recalled to their job are also counted as unemployed. Wanting a job is not enough.",
       "source_ids": [
         "openstax-pe3-21-1"
       ]
@@ -156,7 +162,7 @@
             "not_in_labor_force"
           ],
           "paragraphs": [
-            "Working-age population = employed + unemployed + not in the labor force, and labor force = employed + unemployed. The test for being unemployed has three parts: no job, available to work, and actively searching. A part-time worker who wants more hours is still counted as employed, and a discouraged worker who has stopped searching is out of the labor force. Because of these rules, the official unemployment count can understate how many people want work; economists call the missing part hidden unemployment."
+            "Working-age population = employed + unemployed + not in the labor force, and labor force = employed + unemployed. The general test for being unemployed has three parts: no job, available to work, and actively searching (people on temporary layoff waiting to be recalled are also counted). A part-time worker who wants more hours is still counted as employed, and a discouraged worker who has stopped searching is out of the labor force. Because of these rules, the official unemployment count can understate how many people want work; economists call the missing part hidden unemployment."
           ]
         },
         {
@@ -185,7 +191,7 @@
             "productivity_human_capital"
           ],
           "paragraphs": [
-            "Labor productivity is output per hour worked. Workers become more productive with more human capital (education, training, experience), more and better physical capital (tools and equipment), and better technology. In the language of Lesson 1, higher productivity raises the value of the marginal product of labor and shifts labor demand to the right. If an employer paid well below the value a worker produces, other employers could bid that worker away, so over the long run, output per hour is the main factor behind the average wage level."
+            "Labor productivity is output per hour worked. Workers become more productive with more human capital (education, training, experience), more and better physical capital (tools and equipment), and better technology. In the language of Lesson 1, higher productivity raises the value of the marginal product of labor and shifts labor demand to the right. When many employers compete for workers, an employer that paid well below the value a worker produces would risk losing that worker to another employer. Under that kind of competition, output per hour is the main factor behind the average wage level over the long run. Where one employer has the power to set wages, pay can stay below that value (Lesson 3 looks at this case)."
           ]
         }
       ]
@@ -223,7 +229,7 @@
             "productivity_human_capital"
           ],
           "paragraphs": [
-            "Labor productivity is Y/H, output (in value) per hour worked. In the competitive hiring rule W = MPL × P from Lesson 1, a sustained rise in the value produced per hour raises labor demand at every wage, and competition among employers passes much of the gain into wages over time. Human capital raises MPL directly; physical capital and technology raise it by giving each worker better tools and methods. Short-run surprises in productivity can move unemployment for a while, because wages adjust to productivity only slowly."
+            "Labor productivity is Y/H, output (in value) per hour worked. In the competitive hiring rule W = MPL × P from Lesson 1, a sustained rise in the value produced per hour raises labor demand at every wage, and when employers compete for workers, that competition passes much of the gain into wages over time. An employer with wage-setting power (monopsony, Lesson 3) can keep more of the gain. Human capital raises MPL directly; physical capital and technology raise it by giving each worker better tools and methods. Short-run surprises in productivity can move unemployment for a while, because wages adjust to productivity only slowly."
           ]
         }
       ]

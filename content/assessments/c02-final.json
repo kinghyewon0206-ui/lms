@@ -3,7 +3,7 @@
   "id": "c02-final",
   "kind": "final",
   "course_id": "c02",
-  "version": 5,
+  "version": 6,
   "title": "Markets & Prices: Final Assessment",
   "description": "This final assessment checks the key ideas from all three lessons. If you reach the passing score, you complete the course.",
   "review": {
@@ -29,6 +29,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: invented-number items labeled hypothetical; q2 choices given parallel endings; q9 stem no longer restates the key; q10 choices made parallel (key was the only two-part hedged choice); q7 states the deadweight-loss assumptions and cites OpenStax 3.5; q8 check tolerance aligned; q3 tagged advanced and q5 beginner. Not reviewed or approved by a human."
       }
     ]
   },
@@ -81,7 +87,7 @@
     },
     {
       "id": "c02-final-q2",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 1,
@@ -96,15 +102,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "A trend fades, so people buy less at the same price"
+          "text": "A trend fades, so people buy less of it"
         },
         {
           "id": "b",
-          "text": "The population grows, so people buy more at the same price"
+          "text": "The population grows, so people buy more of it"
         },
         {
           "id": "c",
-          "text": "Incomes fall, so people buy less at the same price"
+          "text": "Incomes fall, so people buy less of it"
         },
         {
           "id": "d",
@@ -118,7 +124,7 @@
     },
     {
       "id": "c02-final-q3",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c02-l1",
       "objective": 3,
@@ -126,10 +132,10 @@
         "shifters",
         "movement_vs_shift"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "In a market with the supply function Qs = 10 + 2P, production costs rise, and quantity supplied falls by 6 at every price. What is the new quantity supplied at P = 20? (Enter a number only.)",
+      "prompt": "Hypothetical example: In a market with the supply function Qs = 10 + 2P, production costs rise, and quantity supplied falls by 6 at every price. What is the new quantity supplied at P = 20? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",
@@ -175,7 +181,7 @@
     },
     {
       "id": "c02-final-q5",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c02-l2",
       "objective": 1,
@@ -183,10 +189,10 @@
         "equilibrium",
         "surplus_shortage"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "A market has the following quantities at each price. Price 15: quantity demanded 75, quantity supplied 35 / Price 20: quantity demanded 70, quantity supplied 50 / Price 25: quantity demanded 60, quantity supplied 60 / Price 30: quantity demanded 50, quantity supplied 70. What is the equilibrium price? (Enter a number only.)",
+      "prompt": "Hypothetical example: A market has the following quantities at each price. Price 15: quantity demanded 75, quantity supplied 35 / Price 20: quantity demanded 70, quantity supplied 50 / Price 25: quantity demanded 60, quantity supplied 60 / Price 30: quantity demanded 50, quantity supplied 70. What is the equilibrium price? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",
@@ -233,7 +239,7 @@
     },
     {
       "id": "c02-final-q7",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c02-l2",
       "objective": 3,
@@ -243,12 +249,12 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "A market has the demand function Qd = 110 − 2P and the supply function Qs = 20 + P (equilibrium P = 30, Q = 50). A price ceiling of 27 is imposed. What is the deadweight loss? Round to two decimal places. (Enter a number only.)",
+      "prompt": "Hypothetical example: A market has the demand function Qd = 110 − 2P and the supply function Qs = 20 + P (equilibrium P = 30, Q = 50). A price ceiling of 27 is imposed. What is the deadweight loss? Assume the units that are traded go to the buyers who value them most and that rationing itself costs nothing. Round to two decimal places. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",
         "openstax-pe3-3-3",
-        "openstax-pe3-3-4"
+        "openstax-pe3-3-5"
       ]
     },
     {
@@ -272,7 +278,7 @@
     },
     {
       "id": "c02-final-q9",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c02-l3",
       "objective": 2,
@@ -283,23 +289,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "An amusement park lowered its admission price, and the number of visitors rose by a much larger percentage than the price fell (demand is elastic). What happened to the park's total admission revenue?",
+      "prompt": "Demand for admission to an amusement park is elastic. The park lowers its admission price. What happens to the park's total admission revenue?",
       "choices": [
         {
           "id": "a",
-          "text": "The price fell, so total revenue decreased"
+          "text": "The price falls, so total revenue decreases"
         },
         {
           "id": "b",
-          "text": "Price and quantity changed by the same percentage, so total revenue stayed the same"
+          "text": "Price and quantity change by the same percentage, so total revenue stays the same"
         },
         {
           "id": "c",
-          "text": "More tickets were sold, but each was cheaper, so total revenue decreased"
+          "text": "More tickets are sold, but each is cheaper, so total revenue decreases"
         },
         {
           "id": "d",
-          "text": "Quantity rose by a larger percentage than the price fell, so total revenue increased"
+          "text": "Visitors rise by a larger percentage than the price falls, so revenue increases"
         }
       ],
       "source_ids": [
@@ -309,7 +315,7 @@
     },
     {
       "id": "c02-final-q10",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c02-l3",
       "objective": 3,
@@ -323,19 +329,19 @@
       "choices": [
         {
           "id": "a",
-          "text": "It targets households in need, but with supply unchanged it adds upward price pressure and has fiscal costs"
+          "text": "It protects food access for targeted households, but it adds upward pressure on the food price"
         },
         {
           "id": "b",
-          "text": "It lets supported households buy more food, so the market price tends to fall over time"
+          "text": "It protects food access for targeted households, and the extra spending pulls the food price down"
         },
         {
           "id": "c",
-          "text": "It shifts the supply curve to the right, so the effect of the poor harvest largely disappears"
+          "text": "It adds to the food supply, so the price falls back toward its level before the poor harvest"
         },
         {
           "id": "d",
-          "text": "It works much like a price ceiling, so it tends to create a shortage in the food market"
+          "text": "It caps the food price like a price ceiling, so it tends to create a shortage of food"
         }
       ],
       "source_ids": [

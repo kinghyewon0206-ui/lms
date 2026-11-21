@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l2",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: stated the Solow-type assumptions behind the long-run growth result (technology sustains growth; capital and skills raise the level), labeled model predictions and policy views, and described growth accounting as bookkeeping rather than causal evidence. Not reviewed or approved by a human."
       }
     ]
   },
@@ -175,8 +181,8 @@
             "technology"
           ],
           "paragraphs": [
-            "Economists summarize the link between inputs and output with an aggregate production function: output per worker depends on physical capital per worker, human capital per worker, and technology. Adding capital per worker raises output per worker, but each extra machine adds a bit less than the one before when nothing else changes (diminishing returns). Human capital makes both workers and machines more effective.",
-            "Technology is what keeps growth going. Because new ideas can be used by many firms at once, technological progress can raise productivity without running into the same diminishing returns as piling up more machines. This is also why policies that support research, education, and the spread of ideas are central to long-run growth."
+            "Economists summarize the link between inputs and output with an aggregate production function: output per worker depends on physical capital per worker, human capital per worker, and technology. Adding capital per worker raises output per worker, but each extra machine adds a bit less than the one before when nothing else changes (diminishing returns). Human capital makes both workers and machines more effective and raises the level of output per worker.",
+            "In standard growth models, technological progress is what keeps growth going in the long run; more capital and more skills raise the level of output, but each runs into limits. Because new ideas can be used by many firms at once, technological progress can raise productivity without running into the same diminishing returns as piling up more machines. This is one reason many economists emphasize policies that support research, education, and the spread of ideas, although they debate which specific policies work best."
           ]
         },
         {
@@ -222,7 +228,7 @@
             "technology"
           ],
           "paragraphs": [
-            "A common modeling assumption is the form y = A·k^α·h^(1−α), where y is output per hour, k is physical capital per hour, h is human capital per hour, A is technology, and 0 < α < 1. Taking growth rates, g_y ≈ g_A + α·g_k + (1 − α)·g_h. Because α < 1, raising k alone yields diminishing returns: doubling k multiplies y by only 2^α. Sustained growth in y therefore requires continued growth in A or h.",
+            "A common modeling assumption is the form y = A·k^α·h^(1−α), where y is output per hour, k is physical capital per hour, h is human capital per hour, A is technology, and 0 < α < 1. Taking growth rates, g_y ≈ g_A + α·g_k + (1 − α)·g_h. Because α < 1, raising k alone yields diminishing returns: holding A and h fixed, doubling k multiplies y by only 2^α. In a Solow-type model, new capital comes from saving a limited share of output, and existing capital wears out (depreciates). With diminishing returns and A and h held fixed, capital per hour then settles at a steady level, so in that model sustained growth in y requires continued growth in A. Human capital per hour can rise for a long time, but not without limit, so it raises the level of y more than its long-run growth rate. Other models, for example ones where investment also creates new ideas, relax these assumptions.",
             "Growth accounting uses this equation in reverse: the part of g_y not explained by measured growth in k and h is attributed to technology and efficiency (the residual). That residual also absorbs measurement errors, so it should be read with caution."
           ]
         },
@@ -341,7 +347,7 @@
         "openstax-pe3-20-3"
       ],
       "paragraphs": [
-        "Growth accounting studies split productivity growth into contributions from physical capital, human capital, and technology. Investments in infrastructure, schooling, and research appear repeatedly as the ingredients behind sustained gains, and they are often most effective in combination."
+        "Growth accounting studies split productivity growth into contributions from physical capital, human capital, and technology. Measured increases in capital and skills account for much of measured growth, and the rest (the residual) is credited to technology and efficiency. This is bookkeeping, not proof of cause: showing which investments actually raise growth, and whether they work best in combination, needs separate causal evidence."
       ]
     }
   ],
@@ -407,7 +413,7 @@
   },
   "key_takeaways": [
     "Sustained growth in real GDP per capita comes mainly from rising labor productivity, not from working ever more hours.",
-    "Physical capital, human capital, and technology raise productivity; capital alone runs into diminishing returns, so ideas and skills keep growth going.",
+    "Physical capital, human capital, and technology raise productivity; in standard growth models, capital runs into diminishing returns, so technological progress keeps growth going, while skills raise the level of output.",
     "Compound growth follows (1 + g)ᵗ; the rule of 70 (70 ÷ growth rate in percent) approximates doubling time and is less accurate at high rates.",
     "SDG 8 links growth with productivity (8.2) and with decoupling growth from environmental degradation (8.4); these goals can conflict, so growth plans involve trade-offs."
   ],

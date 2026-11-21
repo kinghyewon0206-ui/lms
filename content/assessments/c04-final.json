@@ -3,7 +3,7 @@
   "id": "c04-final",
   "kind": "final",
   "course_id": "c04",
-  "version": 2,
+  "version": 3,
   "title": "Growth & Stability: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -17,6 +17,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: removed answer clues in final-q1, q3 and q6 (q6 choices made parallel); final-q2 key stored at the requested precision; final-q8 replaced a near-copy of a lesson example with a real-wage question; final-q7 now assesses CPI substitution bias (cpi_limits); difficulty tags for q5 and q10 set to intermediate. Lead QA: q7 distractors c and d no longer use absolute wording. Lead QA: q2 key normalized to the correctly rounded value and the standard percent-entry instruction added (question version raised so the key change is recorded). Lead QA: q7 explanation for choice d clarified. Lead QA: q6 choice c no longer shares an opening with the key. Not reviewed or approved by a human."
       }
     ]
   },
@@ -32,7 +38,7 @@
   "questions": [
     {
       "id": "c04-final-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l1",
       "objective": 3,
@@ -46,19 +52,19 @@
       "choices": [
         {
           "id": "a",
-          "text": "The story should compare nominal GDP across regions instead of GDP per capita"
+          "text": "It uses GDP per capita, but total nominal GDP is the better measure for regions"
         },
         {
           "id": "b",
-          "text": "Hospitals provide services, so their output is left out of GDP by definition"
+          "text": "It ignores that hospital care is a service, which GDP leaves out by definition"
         },
         {
           "id": "c",
-          "text": "It treats a correlation as proof of cause; richer regions may simply build more hospitals"
+          "text": "It treats a correlation as a cause; income may drive hospital building instead"
         },
         {
           "id": "d",
-          "text": "The reasoning is sound, because the two measures move together closely across regions"
+          "text": "It has no real weakness, since the two measures move together closely here"
         }
       ],
       "source_ids": [
@@ -68,7 +74,7 @@
     },
     {
       "id": "c04-final-q2",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c04-l1",
       "objective": 2,
@@ -79,7 +85,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Country Z produces only laptops and meals. Base year: 250 laptops at $400 each and 1,500 meals at $10 each. Next year: 260 laptops at $360 each and 1,650 meals at $12 each. Using base-year prices, by what percent did real GDP grow? Round to one decimal place. (Enter a number only, in percent.)",
+      "prompt": "Hypothetical example: Country Z produces only laptops and meals. Base year: 250 laptops at $400 each and 1,500 meals at $10 each. Next year: 260 laptops at $360 each and 1,650 meals at $12 each. Using base-year prices, by what percent did real GDP grow? Round to one decimal place. (Enter a number only; for example, enter 2.5 for 2.5%.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-19-2"
@@ -87,7 +93,7 @@
     },
     {
       "id": "c04-final-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l1",
       "objective": 3,
@@ -101,7 +107,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Measured GDP falls, though care may be unchanged, because unpaid household work is not counted"
+          "text": "Measured GDP falls, because the same care is now unpaid work that GDP does not count"
         },
         {
           "id": "b",
@@ -158,14 +164,14 @@
     },
     {
       "id": "c04-final-q5",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c04-l2",
       "objective": 2,
       "concept_ids": [
         "compound_growth"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: Country CC's real GDP per capita is $5,000 and grows at 6% per year, compounded, for 12 years. What is real GDP per capita after 12 years, to the nearest dollar? Round only at the final step. (Enter a number only, in dollars.)",
@@ -176,7 +182,7 @@
     },
     {
       "id": "c04-final-q6",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l2",
       "objective": 3,
@@ -193,19 +199,19 @@
       "choices": [
         {
           "id": "a",
-          "text": "SDG 8 is judged by the GDP growth rate alone, so the cement plan is clearly the better choice"
+          "text": "Target 8.1 asks to sustain per capita growth, so SDG 8 points to the cement plan"
         },
         {
           "id": "b",
-          "text": "Target 8.1 favors fast per capita growth, but 8.4 calls for decoupling, so it is a trade-off"
+          "text": "Targets 8.1 and 8.4 pull apart here, so SDG 8 leaves a trade-off to weigh"
         },
         {
           "id": "c",
-          "text": "Target 8.2 forbids any expansion of heavy industry, so the SDGs require the training plan"
+          "text": "Target 8.4 asks to decouple growth from harm, so SDG 8 gives the cleaner plan priority"
         },
         {
           "id": "d",
-          "text": "Training lies outside SDG 8, because target 8.2 is about physical capital such as new factories"
+          "text": "Target 8.2 is about new factories, so the cement plan also meets the productivity goal"
         }
       ],
       "source_ids": [
@@ -215,54 +221,55 @@
     },
     {
       "id": "c04-final-q7",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l3",
       "objective": 1,
       "concept_ids": [
-        "inflation_rate"
+        "cpi_limits",
+        "price_index"
       ],
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: News reports say that inflation in Country EE went from 2% last year to 5% this year. Which description of the change is accurate?",
+      "prompt": "Hypothetical example: In Country EE, bus fares jump 30% this year while bike-share prices stay the same, so many commuters switch from buses to bike-share. The consumer price index still prices last year's fixed basket. How does the rise in the CPI compare with the true rise in commuters' cost of living?",
       "choices": [
         {
           "id": "a",
-          "text": "Inflation rose by 3 percentage points, which is a 150 percent increase in the rate"
+          "text": "It overstates the rise, because the basket still counts as many bus rides"
         },
         {
           "id": "b",
-          "text": "Inflation rose by 3 percent, so prices are now 3 percent above last year's level"
+          "text": "It understates the rise, because commuters had to give up the buses they preferred"
         },
         {
           "id": "c",
-          "text": "Inflation rose by 150 percentage points, because 5 is two and a half times 2"
+          "text": "It measures the rise well, because the same basket is priced in both years"
         },
         {
           "id": "d",
-          "text": "Prices rose 7 percent this year, since that is the sum of the two inflation rates"
+          "text": "It understates the rise, because bike-share now takes a larger share of spending"
         }
       ],
       "source_ids": [
-        "openstax-pe3-22-1"
+        "openstax-pe3-22-1",
+        "openstax-pe3-22-2"
       ]
     },
     {
       "id": "c04-final-q8",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c04-l3",
       "objective": 2,
       "concept_ids": [
         "purchasing_power",
-        "real_income",
-        "inflation_redistribution"
+        "real_income"
       ],
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A retiree in Country FF receives a pension fixed at $1,800 a month. Over several years, the price index rises from 100 to 120. What is the pension worth now in base-year dollars? (Enter a number only, in dollars.)",
+      "prompt": "Hypothetical example: A worker in Country FF earned $20 an hour in the base year and earns $30 an hour now. Over the same period, the price index rose from 100 to 120. What is the worker's current hourly wage in base-year dollars? (Enter a number only, in dollars.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-22-4",
@@ -306,7 +313,7 @@
     },
     {
       "id": "c04-final-q10",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l3",
       "objective": 1,
@@ -314,7 +321,7 @@
         "inflation_rate",
         "price_index"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: Country HH's price index is 100 in Year 1, 108 in Year 2, and 110 in Year 3. Which statement is correct?",

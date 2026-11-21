@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c05",
   "lesson_id": "c05-l1",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 1 Quiz: Labor Supply and Demand",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: retagged q4 as intermediate and the one-step q2 as beginner; clarified the q3 explanation. Not reviewed or approved by a human."
       }
     ]
   },
@@ -65,7 +71,7 @@
     },
     {
       "id": "c05-l1-q2",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c05-l1",
       "objective": 1,
@@ -73,7 +79,7 @@
         "marginal_product",
         "derived_demand"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: A juice bar is deciding whether to hire one more worker. The extra worker would let the bar sell 9 more smoothies per hour, and each smoothie sells for $4. The wage is $20 per hour. By how many dollars per hour does the value of the extra worker's output exceed the wage? (Enter a number only.)",
@@ -119,7 +125,7 @@
     },
     {
       "id": "c05-l1-q4",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c05-l1",
       "objective": 2,
@@ -127,7 +133,7 @@
         "labor_equilibrium",
         "labor_market"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: In a city's market for home health aides, labor demand is L_d = 1,200 − 40W and labor supply is L_s = 200 + 60W, where W is the hourly wage in dollars. How many aides are employed at the equilibrium? (Enter a number only, in workers.)",

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l3",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: value-chain location no longer stated as pure comparative advantage; parts-spending base made explicit in worked example 2; marginal social cost wording; carbon/pollution policy names aligned with Course 3. Independent-review follow-up: price-equals-marginal-benefit step added; external costs left out of the price wherever they fall; beginner disruption wording softened. Not reviewed or approved by a human."
       }
     ]
   },
@@ -43,7 +49,7 @@
     {
       "id": "global_value_chain",
       "term": "Global supply chain (value chain)",
-      "definition": "The sequence of stages, from raw materials and parts to design, assembly, transport, and retail, that turns inputs into a finished product, often spread across several countries. Each country specializes in the stages where it has a comparative advantage, and trade often involves parts and components rather than finished goods.",
+      "definition": "The sequence of stages, from raw materials and parts to design, assembly, transport, and retail, that turns inputs into a finished product, often spread across several countries. Firms tend to place each stage where it can be done at relatively low cost, which reflects comparative advantage but also economies of scale, specialized know-how, and transport costs, so trade often involves parts and components rather than finished goods.",
       "source_ids": [
         "openstax-pe3-33-3",
         "openstax-pe3-33-4"
@@ -61,7 +67,7 @@
     {
       "id": "interdependence_disruption",
       "term": "Interdependence and disruption",
-      "definition": "Because each stage depends on the others, a problem at one point, such as a factory closure, a natural disaster, or a blocked shipping route, can delay production far away. Specialization lowers costs but links countries and firms closely together.",
+      "definition": "Because each stage depends on the others, a problem at one point, such as a factory closure, a natural disaster, or a blocked shipping route, can delay production far away. Specialization can lower costs, but it links countries and firms closely together.",
       "source_ids": [
         "openstax-pe3-33-3",
         "openstax-pe3-33-4",
@@ -79,7 +85,7 @@
     {
       "id": "supply_chain_externalities",
       "term": "Externalities in global production",
-      "definition": "Production stages can create external costs, such as pollution or emissions, that are not included in the price. When those costs fall on people in the producing country, or on the whole world in the case of greenhouse gases, the market price of the product is lower than its social cost, as in Course 3.",
+      "definition": "Production stages can create external costs, such as pollution or emissions, that are not included in the price. Wherever those costs fall (on people in the producing country, in other countries, or, for greenhouse gases, on the whole world), the market price leaves them out and is lower than the product's marginal social cost, so the market tends to produce more than the efficient quantity, as in Course 3.",
       "source_ids": [
         "openstax-pe3-12-1",
         "openstax-pe3-34-3"
@@ -108,7 +114,7 @@
   ],
   "levels": {
     "beginner": {
-      "summary": "Many products are made in steps in different countries. This makes them cheaper, but it also means a problem in one place can hold up production everywhere. Factories along the chain can also pollute or treat workers badly, and those costs are not in the price you pay. Making supply chains more sustainable takes effort from companies, governments, and countries working together.",
+      "summary": "Many products are made in steps in different countries. This often makes them cheaper, but it also means a problem in one place can hold up production everywhere. Factories along the chain can also pollute or treat workers badly, and those costs are not in the price you pay. Making supply chains more sustainable takes effort from companies, governments, and countries working together.",
       "sections": [
         {
           "heading": "A backpack's trip around the world",
@@ -118,7 +124,7 @@
           ],
           "paragraphs": [
             "Hypothetical example: a backpack's fabric is woven in Country F and sold for $8 (to keep it simple, assume the fabric maker buys no inputs). A factory in Country S sews it into a backpack and sells it to a brand for $20. The brand, in Country D, designs it, advertises it, and sells it in stores for $50.",
-            "Each step adds value. Weaving adds $8, sewing adds $20 − $8 = $12, and design, marketing, and selling add $50 − $20 = $30. Together: $8 + $12 + $30 = $50, the price you pay. Each country does the step it is relatively good at, the same idea as comparative advantage in Lesson 1."
+            "Each step adds value. Weaving adds $8, sewing adds $20 − $8 = $12, and design, marketing, and selling add $50 − $20 = $30. Together: $8 + $12 + $30 = $50, the price you pay. In this example, each step is done where it is relatively cheap to do, an idea related to comparative advantage in Lesson 1. In real supply chains, the size of factories, workers' skills, and transport costs also matter."
           ]
         },
         {
@@ -128,7 +134,7 @@
             "resilience_tradeoff"
           ],
           "paragraphs": [
-            "If the sewing factory in Country S closes because of a flood, the brand in Country D has nothing to sell, even though nothing went wrong in Country D. Countries that trade depend on each other.",
+            "If the sewing factory in Country S closes because of a flood, the brand in Country D may soon have nothing to sell, even though nothing went wrong in Country D. Countries that trade depend on each other.",
             "Firms can prepare by buying from more than one supplier or by keeping extra stock in a warehouse. But a second supplier may charge more, and stored goods cost money to keep. Being ready for problems is not free."
           ]
         },
@@ -164,7 +170,7 @@
             "value_added"
           ],
           "paragraphs": [
-            "Better communication and transportation have made it practical to split production into stages, so countries now often trade parts, components, and services within the same industry. A stage locates where costs are lowest relative to others: comparative advantage still applies, plus economies of scale (one large plant serving many countries) and specialized know-how built up over time.",
+            "Better communication and transportation have made it practical to split production into stages, so countries now often trade parts, components, and services within the same industry. Firms tend to place a stage where its cost is low relative to other locations: comparative advantage still applies, plus economies of scale (one large plant serving many countries) and specialized know-how built up over time.",
             "Value added = sales of a stage − purchased inputs from earlier stages. Hypothetical example (assuming the fabric maker buys no inputs): fabric $8 → sewn backpack $20 → retail $50 gives value added of $8, $12, and $30. The stage with the largest value added need not employ the most workers; design and marketing can add much value with few workers, while sewing may employ many workers and add less."
           ]
         },
@@ -176,7 +182,7 @@
           ],
           "paragraphs": [
             "Specialization concentrates production: a few plants may make a key part for a whole industry. That keeps costs low until something goes wrong. A disruption at one stage can halt every later stage, and with lean (low) inventories, there is little buffer.",
-            "Hypothetical example: a firm buys 10,000 parts a year at $30 each. Moving 40% of its orders to a second supplier that charges $1.50 more per part costs 4,000 × $1.50 = $6,000 a year, 2% of its $300,000 spending on parts. Holding extra inventory has similar costs (storage, money tied up in stock). Whether these costs are worth it depends on how likely and how costly disruptions are. Different firms and industries can reasonably choose differently, and governments sometimes encourage more resilience for goods they consider essential."
+            "Hypothetical example: a firm buys 10,000 parts a year at $30 each. Moving 40% of its orders to a second supplier that charges $1.50 more per part costs 4,000 × $1.50 = $6,000 a year, 2% of its original $300,000 spending on parts (before the switch). Holding extra inventory has similar costs (storage, money tied up in stock). Whether these costs are worth it depends on how likely and how costly disruptions are. Different firms and industries can reasonably choose differently, and governments sometimes encourage more resilience for goods they consider essential."
           ]
         },
         {
@@ -186,7 +192,7 @@
             "decent_work_supply_chains"
           ],
           "paragraphs": [
-            "If a stage creates pollution, the private cost of the product is below its social cost (social cost = private cost + external cost), so the market produces more than the socially optimal quantity, exactly as in Course 3. With global chains, the external cost may fall in a different country from where the product is bought, or, for greenhouse gases, on everyone.",
+            "If a stage creates pollution, the private cost of the product is below its social cost (marginal social cost = marginal private cost + marginal external cost). At the market quantity, marginal social cost is above marginal private cost, which equals buyers' marginal benefit (the price), so the market produces more than the efficient quantity, as in Course 3. With global chains, the external cost may fall in a different country from where the product is bought, or, for greenhouse gases, on everyone.",
             "Labor conditions are a related concern. In some low-income countries, pay and safety fall far below high-income standards, and the worst practices include forced and child labor. Economists debate the best response: some stress enforceable minimum labor standards everywhere; others caution that boycotts can push workers into even worse options. SDG 8 asks countries to end forced and child labor (8.7) and protect labor rights and safe workplaces for all workers (8.8)."
           ]
         },
@@ -234,7 +240,7 @@
             "decent_work_supply_chains"
           ],
           "paragraphs": [
-            "Hypothetical example: a T-shirt has a private cost of $6, and the dyeing stage causes water pollution with an assumed external cost of $1.50 per shirt, so the social cost is $7.50. For 20,000 shirts, the total external cost is 20,000 × $1.50 = $30,000. Tools from Course 3, such as a Pigouvian tax, command-and-control standards, or tradable permits, can close the gap, but the producing country, the buying country, or both could apply them, and each choice shifts who pays and who collects revenue.",
+            "Hypothetical example: a T-shirt has a private cost of $6, and the dyeing stage causes water pollution with an assumed external cost of $1.50 per shirt, so the social cost is $7.50. For 20,000 shirts, the total external cost is 20,000 × $1.50 = $30,000. Tools from Course 3, such as a pollution tax (corrective tax) set equal to the external cost (a Pigouvian tax), command-and-control regulation, or an emissions trading system (cap-and-trade), can close the gap, but the producing country, the buying country, or both could apply them, and each choice shifts who pays and who collects revenue.",
             "Labor problems are harder to price, and some, like forced labor, are not trade-offs to be priced at all but rights violations to be ended (target 8.7). The OpenStax textbook argues that environmental costs are usually a small share of a plant's costs and that trade restrictions are often not the best tool for raising foreign standards; others argue that without enforceable standards, competition can pressure suppliers to cut corners. Evidence on both sides should be weighed case by case."
           ]
         },
@@ -274,13 +280,13 @@
       "id": "c08-l3-we2",
       "level": "intermediate",
       "title": "The cost of a second supplier",
-      "problem": "Hypothetical example: A firm buys 10,000 parts a year from one supplier at $30 each. To be safer, it moves 40% of its orders to a second supplier that charges $1.50 more per part. How much more does it spend each year, and what share of its parts spending is that?",
+      "problem": "Hypothetical example: A firm buys 10,000 parts a year from one supplier at $30 each. To be safer, it moves 40% of its orders to a second supplier that charges $1.50 more per part. How much more does it spend each year, and what percentage of its original parts spending (before the switch) is that extra cost?",
       "steps": [
         "Parts moved: 40% × 10,000 = 4,000.",
         "Extra cost: 4,000 × $1.50 = $6,000 a year.",
-        "Share: $6,000 ÷ (10,000 × $30) = $6,000 ÷ $300,000 = 2%."
+        "Original parts spending: 10,000 × $30 = $300,000. Share: $6,000 ÷ $300,000 = 2%. (Measured against the new total of $306,000, it would be about 1.96%.)"
       ],
-      "answer": "Diversifying costs $6,000 more a year, 2% of parts spending. Whether that is worth it depends on how likely and how costly a disruption would be.",
+      "answer": "Diversifying costs $6,000 more a year, 2% of the original parts spending. Whether that is worth it depends on how likely and how costly a disruption would be.",
       "check": {
         "type": "product",
         "factors": [
@@ -421,7 +427,7 @@
   },
   "key_takeaways": [
     "Global supply chains split production into stages across countries; each stage's value added (sales minus purchased inputs), counted from raw materials onward, sums to the final price.",
-    "Specialization across stages lowers costs but makes countries and firms interdependent, so a disruption in one place can spread along the chain.",
+    "Specialization across stages can lower costs but makes countries and firms interdependent, so a disruption in one place can spread along the chain.",
     "Resilience (more suppliers, extra inventory) costs money in normal times; whether it pays off depends on the probability and size of disruptions.",
     "External costs and poor working conditions at distant stages can make market prices lower than social costs, as with the externalities in Course 3.",
     "SDGs 8, 12, and 17 connect decent work, sustainable production and company reporting, and open, fair trade; policies that raise standards involve trade-offs with market access for developing countries."

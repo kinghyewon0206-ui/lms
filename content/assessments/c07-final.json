@@ -3,7 +3,7 @@
   "id": "c07-final",
   "kind": "final",
   "course_id": "c07",
-  "version": 2,
+  "version": 3,
   "title": "Personal Finance: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -17,6 +17,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q3 distractors made specific so the key is not the only numeric choice, and the explanation's 'June' corrected to 12 months; q4 uses 'interest rate' for a deposit; q7 replaced (redundant inflation-risk recall) with a credit card minimum-payment calculation; q8 percent-entry instruction and difficulty set to intermediate; q9 choices made parallel with two finance-related targets; q10 choices made parallel so the key is not the only two-part choice. Not reviewed or approved by a human."
       }
     ]
   },
@@ -87,7 +93,7 @@
     },
     {
       "id": "c07-final-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l1",
       "objective": 3,
@@ -105,15 +111,15 @@
         },
         {
           "id": "b",
-          "text": "Save a lot more money this year than I did last year"
+          "text": "Save as much as I can for a laptop over the next 12 months"
         },
         {
           "id": "c",
-          "text": "Try to spend less on things I do not really need"
+          "text": "Save $900 for a laptop someday by cutting back on extras"
         },
         {
           "id": "d",
-          "text": "Become better with money and stop wasting it soon"
+          "text": "Save $900 for a laptop in 12 months by setting aside $25 a month"
         }
       ],
       "source_ids": [
@@ -122,7 +128,7 @@
     },
     {
       "id": "c07-final-q4",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c07-l2",
       "objective": 2,
@@ -133,7 +139,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Maya opens a savings account with $1,500. It pays a 4.8% APR, compounded monthly, and she makes no other deposits or withdrawals for one year. How much is in the account at the end of the year? Round to the nearest cent, and round only at the final step. (Enter a number only.)",
+      "prompt": "Hypothetical example: Maya opens a savings account with $1,500. It pays a 4.8% interest rate (stated per year), compounded monthly, and she makes no other deposits or withdrawals for one year. How much is in the account at the end of the year? Round to the nearest cent, and round only at the final step. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-17-3",
@@ -213,52 +219,37 @@
     },
     {
       "id": "c07-final-q7",
-      "version": 1,
-      "type": "mcq",
-      "lesson_id": "c07-l3",
-      "objective": 1,
+      "version": 2,
+      "type": "numeric",
+      "lesson_id": "c07-l2",
+      "objective": 2,
       "concept_ids": [
-        "financial_risk_types"
+        "borrowing_cost",
+        "compound_interest"
       ],
-      "difficulty": "beginner",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: For ten years, Grace keeps all her savings in cash in a drawer at home, while prices rise every year. Which risk is she most clearly exposed to?",
-      "choices": [
-        {
-          "id": "a",
-          "text": "Inflation risk"
-        },
-        {
-          "id": "b",
-          "text": "Market risk"
-        },
-        {
-          "id": "c",
-          "text": "Credit risk"
-        },
-        {
-          "id": "d",
-          "text": "Liquidity risk"
-        }
-      ],
+      "prompt": "Hypothetical example: Sam has a $1,000 credit card balance. The card charges 2% interest per month on the balance, and Sam makes no new purchases. Each month, interest is added first, and then Sam pays $25. What is the balance after 2 months, in dollars? Round to the nearest cent, and round only at the final step. (Enter a number only.)",
       "source_ids": [
-        "openstax-pe3-22-4"
-      ]
+        "cfpb-credit-card-apr",
+        "cfpb-minimum-payment-box"
+      ],
+      "unit": ""
     },
     {
       "id": "c07-final-q8",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c07-l3",
       "objective": 1,
       "concept_ids": [
         "financial_risk_types"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A lender wants an expected return of 3% on one-year loans. It expects 5% of borrowers to default and repay nothing. Using (1 + i)(1 − default share) = 1 + target return, what interest rate i must it charge, in percent? Round to two decimal places. (Enter a number only.)",
+      "prompt": "Hypothetical example: A lender wants an expected return of 3% on one-year loans. It expects 5% of borrowers to default and repay nothing. Using (1 + i)(1 − default share) = 1 + target return, what interest rate i must it charge, in percent? Round to two decimal places. (Enter a number only; for example, enter 25 for 25%.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-17-1",
@@ -267,7 +258,7 @@
     },
     {
       "id": "c07-final-q9",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l3",
       "objective": 3,
@@ -278,34 +269,35 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A program in Country V helps rural women open mobile money accounts linked to a savings feature and simple insurance. Which SDG target does this most directly support?",
+      "prompt": "Hypothetical example: A program in Country V helps rural households, many with no bank account, open mobile money accounts linked to a savings feature and simple insurance. Which SDG target does this most directly support?",
       "choices": [
         {
           "id": "a",
-          "text": "Target 8.5, equal pay for work of equal value"
+          "text": "Target 8.3, support for small firms, including access to finance"
         },
         {
           "id": "b",
-          "text": "Target 1.1, eradicating extreme poverty for everyone"
+          "text": "Target 1.1, ending extreme poverty for all people everywhere"
         },
         {
           "id": "c",
-          "text": "Target 8.6, fewer young people out of school or work"
+          "text": "Target 8.5, decent work and equal pay for all workers"
         },
         {
           "id": "d",
-          "text": "Target 1.4, equal access to financial services for all"
+          "text": "Target 1.4, equal access to resources, including financial services"
         }
       ],
       "source_ids": [
         "un-sdg-1",
+        "un-sdg-8",
         "worldbank-financial-inclusion",
         "worldbank-global-findex"
       ]
     },
     {
       "id": "c07-final-q10",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l3",
       "objective": 2,
@@ -320,15 +312,15 @@
       "choices": [
         {
           "id": "a",
-          "text": "Agree, because three good years show the fund has a reliable return"
+          "text": "Agree, because three good years show that its return is reliable"
         },
         {
           "id": "b",
-          "text": "Agree, as long as the fund's fees are lower than a savings account's"
+          "text": "Agree, as long as the fund charges lower fees than a savings account"
         },
         {
           "id": "c",
-          "text": "Disagree: past returns do not guarantee future ones, and emergency money needs stability"
+          "text": "Disagree, because emergency money should stay stable and easy to reach"
         },
         {
           "id": "d",

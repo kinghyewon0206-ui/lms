@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "c01 correction pass after human-review preparation: social vs private cost direction, marginal conditions, bag-fee question, sustainable-consumption definition, narrower behavior claims. Edited by Claude Code (AI); not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: SDG 12 goal wording; Pigouvian-fee condition; reason for default design; net saving per use in break-even rule; we2 states the discount; independent review: wasted food has an opportunity cost when more is made or bought than is used (once made, the remaining choice is how to use it). Not reviewed or approved by a human."
       }
     ]
   },
@@ -37,7 +43,7 @@
     {
       "id": "sustainable_consumption",
       "term": "Sustainable consumption",
-      "definition": "Consumption that meets today's needs while using fewer resources and creating less waste, so that resources remain for future generations. It is the goal of SDG 12.",
+      "definition": "Consumption that meets today's needs while using fewer resources and creating less waste, so that resources remain for future generations. SDG 12 aims to ensure sustainable consumption and production patterns.",
       "source_ids": [
         "un-sdg-12"
       ]
@@ -45,7 +51,7 @@
     {
       "id": "consumption_tradeoff",
       "term": "Opportunity cost of consumption choices",
-      "definition": "Every choice to buy or throw something away carries an opportunity cost: the other uses of that money or those resources that are given up. Even wasted food has an opportunity cost, because of the resources that went into it.",
+      "definition": "Every choice to buy or throw something away carries an opportunity cost: the other uses of that money or those resources that are given up. Wasted food has an opportunity cost when more is produced or bought than is used: the resources that went into the extra food could have been used for something else. Once food is made, the cost of making it is sunk, and the remaining choice is how to use it, such as eating it or donating it instead of throwing it away.",
       "source_ids": [
         "openstax-pe3-2-1",
         "un-sdg-12"
@@ -89,7 +95,7 @@
             "consumption_tradeoff"
           ],
           "paragraphs": [
-            "When you leave part of your school cafeteria lunch uneaten, you're not just throwing away food. The water, electricity, and work used to grow, transport, and cook that food are thrown away with it. Those resources could have made food for someone else, so wasted food has an opportunity cost. Sustainable consumption means meeting your needs while using fewer resources and creating less waste, for example by buying only what you need, using things for a long time, and reusing them."
+            "When you leave part of your school cafeteria lunch uneaten, you're not just throwing away food. The water, electricity, and work used to grow, transport, and cook that food are thrown away with it. When more food is made than is eaten, those resources could have been used for something else, so wasted food has an opportunity cost. Once a lunch is made, the remaining choice is whether it gets eaten, shared, or thrown away. Sustainable consumption means meeting your needs while using fewer resources and creating less waste, for example by buying only what you need, using things for a long time, and reusing them."
           ]
         },
         {
@@ -166,7 +172,7 @@
             "social_cost"
           ],
           "paragraphs": [
-            "Marginal social cost = marginal private cost + marginal external cost. Consumers consider only their own marginal private cost: they buy another unit when its marginal benefit is greater than its marginal private cost and stop where the two are equal. When there is an external cost, marginal social cost is higher than marginal private cost at that quantity, so they use more than the socially efficient quantity, where marginal benefit equals marginal social cost. A fee equal to the marginal external cost brings the price consumers face closer to the social cost, which reduces use. However, external costs are hard to measure precisely, and an equity concern remains: such fees can weigh relatively more heavily on low-income households."
+            "Marginal social cost = marginal private cost + marginal external cost. Consumers consider only their own marginal private cost: they buy another unit when its marginal benefit is greater than its marginal private cost and stop where the two are equal. When there is an external cost, marginal social cost is higher than marginal private cost at that quantity, so they use more than the socially efficient quantity, where marginal benefit equals marginal social cost. If the price already covers the marginal private cost, a fee equal to the marginal external cost at the efficient quantity raises the price consumers face to the marginal social cost, so use falls to the efficient quantity. However, external costs are hard to measure precisely, and an equity concern remains: such fees can weigh relatively more heavily on low-income households."
           ]
         },
         {
@@ -176,8 +182,8 @@
             "values_and_information"
           ],
           "paragraphs": [
-            "Because a deposit is refunded on return, it can raise collection rates while keeping the final burden on consumers small, but return facilities and administration are costly. Information and labeling are inexpensive but may have small effects and can lose out to habit and convenience. Since people care about others as well as themselves, and habits and convenience also shape choices, changing the default (for example, providing disposable cutlery only on request) is another design option.",
-            "Reusable items take more resources to make than single-use ones, so they pay off only if used enough times. The break-even number of uses can be estimated as the extra cost of the reusable item ÷ the cost saved per use."
+            "Because a deposit is refunded on return, it can raise collection rates while keeping the final burden on consumers small, but return facilities and administration are costly. Information and labeling are inexpensive but may have small effects and can lose out to habit and convenience. Because habits and convenience shape many choices and many people simply accept the default option, changing the default (for example, providing disposable cutlery only on request) is another design option.",
+            "Reusable items take more resources to make than single-use ones, so they pay off only if used enough times. The break-even number of uses can be estimated as the extra cost of the reusable item ÷ the net cost saved per use (the single-use cost avoided minus any washing or upkeep cost per use)."
           ]
         }
       ]
@@ -193,7 +199,7 @@
         "30% of $3 = $3 × 0.3.",
         "= $0.90."
       ],
-      "answer": "$0.90 worth (90 cents). The water, electricity, and labor used to grow, transport, and cook the ingredients are thrown away, too.",
+      "answer": "$0.90 worth (90 cents). The water, electricity, and labor used to grow, transport, and cook the ingredients are thrown away, too. This opportunity cost arises because more food was made than was eaten; once the lunch is made, the remaining choice is only how it is used.",
       "check": {
         "type": "product",
         "factors": [
@@ -207,7 +213,7 @@
       "id": "c01-l3-we2",
       "level": "intermediate",
       "title": "How many uses until a reusable cup pays off?",
-      "problem": "Hypothetical example: Suppose that every time a café uses a disposable cup, 10 cents for the cup is built into the price of the drink. If you buy a $12 reusable cup, you save those 10 cents each time. How many times must you use the reusable cup to earn back its price?",
+      "problem": "Hypothetical example: Suppose a café builds 10 cents for each disposable cup into the price of a drink and takes those 10 cents off when you bring your own cup. If you buy a $12 reusable cup, how many times must you use it to earn back its price? (Ignore washing costs.)",
       "steps": [
         "Money saved per use: 10 cents.",
         "Cost of the reusable cup: $12 = 1,200 cents.",

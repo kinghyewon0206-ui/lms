@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c07",
   "lesson_id": "c07-l3",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 3 Quiz: Financial Risk and Financial Inclusion",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: l3-q4 key no longer the only hedged choice, absolute wording removed from distractors, and choice b explained as unlikely rather than backwards; l3-q5 all choices are now financial policies so the key cannot be found by matching the target's wording, and only one expands access. Not reviewed or approved by a human."
       }
     ]
   },
@@ -116,7 +122,7 @@
     },
     {
       "id": "c07-l3-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l3",
       "objective": 2,
@@ -131,19 +137,19 @@
       "choices": [
         {
           "id": "a",
-          "text": "It is protected, because 300 companies offset one another's losses"
+          "text": "It holds its value, since its 300 companies offset one another's losses"
         },
         {
           "id": "b",
-          "text": "It falls by more than one company would, because losses add up"
+          "text": "It falls by a larger percentage than a one-company portfolio would"
         },
         {
           "id": "c",
-          "text": "It probably loses value, because a market-wide shock is hard to diversify"
+          "text": "It loses value, since a market-wide shock hits most of its companies"
         },
         {
           "id": "d",
-          "text": "It is unaffected, because recessions mainly hurt single companies"
+          "text": "It loses little, since recessions mostly hurt a few weak companies"
         }
       ],
       "source_ids": [
@@ -153,7 +159,7 @@
     },
     {
       "id": "c07-l3-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l3",
       "objective": 3,
@@ -164,23 +170,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Which policy is the clearest example of the financial inclusion called for in SDG target 8.10?",
+      "prompt": "Which policy is the clearest example of the goal of SDG target 8.10?",
       "choices": [
         {
           "id": "a",
-          "text": "Raising the minimum balance for opening a savings account"
+          "text": "Cutting the central bank's interest rate to make loans cheaper"
         },
         {
           "id": "b",
-          "text": "Helping local institutions offer low-cost accounts and insurance to all"
+          "text": "Helping local lenders open accounts for adults who have none"
         },
         {
           "id": "c",
-          "text": "Closing rural bank branches to lower the costs of urban banking"
+          "text": "Raising the deposit insurance limit for people with large savings"
         },
         {
           "id": "d",
-          "text": "Offering high-interest loans with fees that are not disclosed"
+          "text": "Cutting taxes on stock gains for people who already invest"
         }
       ],
       "source_ids": [

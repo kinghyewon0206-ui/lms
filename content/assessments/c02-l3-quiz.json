@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c02",
   "lesson_id": "c02-l3",
-  "version": 3,
+  "version": 4,
   "title": "Lesson 3 Quiz: Price Elasticity and Food Markets",
   "description": "This lesson quiz checks what you learned in the lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -30,6 +30,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: invented-number items labeled hypothetical; q2 entry instruction made plain and check tolerance aligned with the exact-integer rule; q4 choices made parallel (key was the only hedged choice) and retagged intermediate. Not reviewed or approved by a human."
       }
     ]
   },
@@ -40,7 +46,7 @@
   "questions": [
     {
       "id": "c02-l3-q1",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c02-l3",
       "objective": 1,
@@ -50,7 +56,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "A good's price elasticity of demand (absolute value) is 0.3. How would you describe its demand?",
+      "prompt": "Hypothetical example: A good's price elasticity of demand (absolute value) is 0.3. How would you describe its demand?",
       "choices": [
         {
           "id": "a",
@@ -76,7 +82,7 @@
     },
     {
       "id": "c02-l3-q2",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c02-l3",
       "objective": 2,
@@ -87,7 +93,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "When the price rose from 4 to 6, quantity demanded fell from 120 to 80. Using the midpoint method, what is the elasticity (absolute value)? (Enter a decimal.)",
+      "prompt": "Hypothetical example: When the price rose from 4 to 6, quantity demanded fell from 120 to 80. Using the midpoint method, what is the elasticity (absolute value)? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-5-1",
@@ -132,21 +138,21 @@
     },
     {
       "id": "c02-l3-q4",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c02-l3",
       "objective": 3,
       "concept_ids": [
         "food_demand_inelastic"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "In a market where food demand is inelastic, a bumper harvest sharply increases supply. What is a likely result?",
       "choices": [
         {
           "id": "a",
-          "text": "The price falls sharply, and farm total revenue may decrease"
+          "text": "The price falls sharply, and farm total revenue falls"
         },
         {
           "id": "b",
@@ -154,11 +160,11 @@
         },
         {
           "id": "c",
-          "text": "More units are sold, so farm total revenue also rises"
+          "text": "The price barely changes, and farm total revenue rises with output"
         },
         {
           "id": "d",
-          "text": "The demand curve shifts to the right, so the price rises"
+          "text": "The demand curve shifts right, and the price rises"
         }
       ],
       "source_ids": [
@@ -168,7 +174,7 @@
     },
     {
       "id": "c02-l3-q5",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c02-l3",
       "objective": 2,
@@ -179,7 +185,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Demand for a good is Q = 80 − 2P. At what price is total revenue (P × Q) the largest? (Enter a number only.)",
+      "prompt": "Hypothetical example: Demand for a good is Q = 80 − 2P. At what price is total revenue (P × Q) the largest? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-5-1",

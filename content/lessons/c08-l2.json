@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: added a direct source for the timing of trade-balance effects (J-curve, Saylor International Finance 8.12) and named the pattern with its caveat. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: trade-balance concept now refers to export/import quantities; purchasing power parity labeled as a theory's prediction vs. evidence; price-unchanged condition added to a takeaway; third invented currency moved to Country Z so it does not clash with assessment Country C. Independent-review follow-up: Marshall-Lerner condition stated roughly. Not reviewed or approved by a human."
       }
     ]
   },
@@ -65,7 +71,7 @@
     {
       "id": "trade_balance",
       "term": "Trade balance",
-      "definition": "The value of a country's exports minus the value of its imports. A depreciation tends to raise exports and reduce imports, but the effect on the trade balance depends on how strongly quantities respond to the price changes (their elasticities) and on how much time passes.",
+      "definition": "The value of a country's exports minus the value of its imports. A depreciation tends to raise the quantity of exports and reduce the quantity of imports, but the effect on the trade balance (measured in values) depends on how strongly quantities respond to the price changes (their elasticities) and on how much time passes.",
       "source_ids": [
         "openstax-pe3-29-3",
         "openstax-pe3-5-1",
@@ -141,7 +147,7 @@
           ],
           "paragraphs": [
             "Write every rate with its units. Hypothetical example: e = 4 BEL per ARI means 1 ARI = 4 BEL; its inverse is 1/e = 0.25 ARI per BEL. Conversion follows the units: ARI × (BEL per ARI) = BEL, and BEL ÷ (BEL per ARI) = ARI. If a problem gives you the rate in the opposite direction, take the reciprocal first.",
-            "A rate is a price of a currency, so a change in it is a change in a relative price. Hypothetical cross rate: if 1 ARI = 4 BEL and 1 cen (Country C's currency, also invented) = 2 BEL, then 1 ARI = 4 ÷ 2 = 2 cen."
+            "A rate is a price of a currency, so a change in it is a change in a relative price. Hypothetical cross rate: if 1 ARI = 4 BEL and 1 cen (Country Z's currency, also invented) = 2 BEL, then 1 ARI = 4 ÷ 2 = 2 cen."
           ]
         },
         {
@@ -209,8 +215,8 @@
             "trade_balance"
           ],
           "paragraphs": [
-            "Measured in aris, the trade balance is TB = P_A·X − (P_B/e)·M, where X and M are the quantities exported and imported. A depreciation (lower e) raises the ari cost of each import and, by making exports cheaper abroad, tends to raise X and lower M. Whether TB improves depends on how responsive X and M are: if export and import demand are elastic enough, the quantity effects dominate; if they are very inelastic in the short run, the higher price of imports can dominate and TB can fall at first.",
-            "Because quantities often adjust more over time than immediately, a change in the trade balance after a currency move may build gradually. When the balance first worsens and later improves, economists call the pattern a J-curve, but it does not always appear. Other forces, such as incomes at home and abroad and capital flows, also affect the trade balance, so an exchange rate change is never the only explanation. Statements about the trade balance in this lesson are tendencies, not predictions."
+            "Measured in aris, the trade balance is TB = P_A·X − (P_B/e)·M, where X and M are the quantities exported and imported. A depreciation (lower e) raises the ari cost of each import and, by making exports cheaper abroad, tends to raise X and lower M. Whether TB improves depends on how responsive X and M are: if export and import demand are elastic enough (roughly, the export and import price elasticities must add up to more than 1), the quantity effects dominate; if they are very inelastic in the short run, the higher price of imports can dominate and TB can fall at first.",
+            "Because quantities often adjust more over time than immediately, a change in the trade balance after a currency move may build gradually. When the balance first worsens and later improves, economists call the pattern a J-curve, but it does not always appear. Other forces, such as incomes at home and abroad and capital flows, also affect the trade balance, so an exchange rate change is never the only explanation. Statements about the trade balance in this lesson are tendencies, not guarantees."
           ]
         },
         {
@@ -220,7 +226,7 @@
           ],
           "paragraphs": [
             "Hypothetical example (see the graph): with the price measured as e (BEL per ARI) and the quantity as millions of aris traded, demand for aris is Q = 100 − 10e and supply of aris is Q = 15e. Equilibrium: 100 − 10e = 15e, so e = 4 and Q = 60. If higher returns in Country A raise demand to Q = 125 − 10e, the new equilibrium is e = 5 and Q = 75: the ari appreciates.",
-            "Expectations can shift demand and supply together and can be self-reinforcing, which helps explain large short-run swings. Over long periods, exchange rates tend to move toward purchasing power parity, the rate at which traded goods cost about the same in both countries, but actual rates can stay away from it for years."
+            "Expectations can shift demand and supply together and can be self-reinforcing, which helps explain large short-run swings. The theory of purchasing power parity (PPP) predicts that, over long periods, exchange rates move toward the rate at which traded goods cost about the same in both countries. In practice, actual rates can stay far from that rate for years."
           ]
         }
       ]
@@ -452,7 +458,7 @@
   "key_takeaways": [
     "Always state the quote direction: 1 ARI = 4 BEL (belos per ari) is the same rate as 1 BEL = 0.25 ARI (aris per belo).",
     "A currency appreciates when one unit buys more of the other currency; the other currency then depreciates. The two percentage changes are not equal (25% vs. 20% in the example).",
-    "When the home currency appreciates, exports cost more abroad and imports cost less at home; a depreciation does the opposite.",
+    "When the home currency appreciates, exports cost more abroad and imports cost less at home (if sellers keep their own-currency prices); a depreciation does the opposite.",
     "A stronger currency helps importers and travelers abroad and hurts exporters; a weaker currency does the reverse and can raise the burden of foreign-currency debt.",
     "Effects on the trade balance depend on elasticities and time, and the exchange rate itself is set by demand and supply in the foreign exchange market."
   ],

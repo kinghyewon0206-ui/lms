@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "c01 correction pass after human-review preparation: consistent marginal rule (MB > MC, MB < MC, MB = MC indifference), PPF shift wording, beginner opening. Edited by Claude Code (AI); not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: implicit-cost wording without double counting; budget trade-off only when the budget is spent; PPF trade-off only when resources are fully used; PPF slope units and allocative-efficiency condition; budget-line rotation; we1 asks for forgone income only; independent review: past study hours matter only through what one more hour adds. Not reviewed or approved by a human."
       }
     ]
   },
@@ -45,7 +51,7 @@
     {
       "id": "budget_constraint",
       "term": "Budget constraint",
-      "definition": "The limit on the combinations you can buy, set by the money (or time) you have and the prices you face. Buying more of one good means giving up the other good in proportion to their price ratio.",
+      "definition": "The limit on the combinations you can buy, set by the money (or time) you have and the prices you face. When the whole budget is spent, buying more of one good means giving up the other good in proportion to their price ratio.",
       "source_ids": [
         "openstax-pe3-2-1"
       ]
@@ -102,7 +108,7 @@
             "budget_constraint"
           ],
           "paragraphs": [
-            "When your spending money is fixed, so are the combinations you can buy. Hypothetically, if a matinee movie ticket costs $8 and a slice of pizza costs $4, seeing one more movie means giving up two slices of pizza. Prices tell you what you give up, and how much."
+            "When your spending money is fixed, so are the combinations you can buy. Hypothetically, if a matinee movie ticket costs $8, a slice of pizza costs $4, and you spend all of your money, seeing one more movie means giving up two slices of pizza. Prices tell you what you give up, and how much."
           ]
         },
         {
@@ -120,7 +126,7 @@
             "marginal_thinking"
           ],
           "paragraphs": [
-            "The night before a test, when you're deciding whether to study one more hour, don't focus on how many hours you've already studied. Instead, compare how much one more hour would help with how much you'd lose by sleeping less. Weighing the benefit and cost of a little more is called marginal thinking."
+            "The night before a test, when you're deciding whether to study one more hour, the hours you've already studied matter only through how much one more hour would add (a tired mind may learn less). Compare how much one more hour would help with how much you'd lose by sleeping less. Weighing the benefit and cost of a little more is called marginal thinking."
           ]
         },
         {
@@ -130,7 +136,7 @@
             "increasing_opportunity_cost"
           ],
           "paragraphs": [
-            "A country also has a limited number of workers, amount of land, and number of machines, so growing more rice means making less clothing. At first, the land best suited to farming is used, so giving up a little clothing adds a lot of rice. But as rice production keeps growing, workers and land better suited to factory work have to be moved into farming, and much more clothing must be given up. The curve connecting all these possible combinations is the production possibilities frontier."
+            "A country also has a limited number of workers, amount of land, and number of machines, so once all of them are in use, growing more rice means making less clothing. At first, the land best suited to farming is used, so giving up a little clothing adds a lot of rice. But as rice production keeps growing, workers and land better suited to factory work have to be moved into farming, and much more clothing must be given up. The curve connecting all these possible combinations is the production possibilities frontier."
           ]
         }
       ]
@@ -144,7 +150,7 @@
             "opportunity_cost"
           ],
           "paragraphs": [
-            "Opportunity cost = explicit costs (money actually paid) + implicit costs (the value of income and time given up). The cost of going to college includes not only tuition but also the income you would have earned by working during those years. Note that opportunity cost is not the sum of all the alternatives given up but only the single most valuable one, because you could not have done all of them at the same time."
+            "Opportunity cost = explicit costs (money actually paid) + implicit costs (the value of your own time and resources in their best other use, such as income you could have earned). The cost of going to college includes not only tuition but also the income you would have earned by working during those years. Note that opportunity cost is not the sum of all the alternatives given up but only the single most valuable one, because you could not have done all of them at the same time."
           ]
         },
         {
@@ -153,7 +159,7 @@
             "budget_constraint"
           ],
           "paragraphs": [
-            "The budget line shows the limit on the combinations you can buy with a budget m at the prices of two goods. To buy one more unit of one good, you must give up the other good in an amount equal to the ratio of the two prices. Hypothetically, if a movie ticket costs $8 and a pizza slice costs $4, the opportunity cost of one movie is two pizza slices."
+            "The budget line shows the limit on the combinations you can buy with a budget m at the prices of two goods. On the budget line (when the whole budget is spent), buying one more unit of one good means giving up the other good in an amount equal to the ratio of the two prices. Hypothetically, if a movie ticket costs $8 and a pizza slice costs $4, the opportunity cost of one movie is two pizza slices."
           ]
         },
         {
@@ -180,7 +186,7 @@
       ]
     },
     "advanced": {
-      "summary": "Rational choice means maximizing net benefit subject to constraints, which requires marginal benefit = marginal cost. The slope of the production possibilities frontier is the marginal opportunity cost, and efficiency comes in two forms: productive efficiency and allocative efficiency.",
+      "summary": "Rational choice means maximizing net benefit subject to constraints, which, when the activity can be adjusted in small steps, means choosing the level where marginal benefit = marginal cost. The slope of the production possibilities frontier is the marginal opportunity cost, and efficiency comes in two forms: productive efficiency and allocative efficiency.",
       "sections": [
         {
           "heading": "Formalizing opportunity cost and the budget constraint",
@@ -189,7 +195,7 @@
             "budget_constraint"
           ],
           "paragraphs": [
-            "From the budget constraint p₁x₁ + p₂x₂ = m, we get x₂ = m/p₂ − (p₁/p₂)x₁, so the slope of the budget line is −p₁/p₂. The absolute value of the slope, p₁/p₂, is the opportunity cost of one unit of good 1 measured in units of good 2. An increase in income shifts the budget line outward in parallel, while a change in one good's price changes its slope."
+            "From the budget constraint p₁x₁ + p₂x₂ = m, we get x₂ = m/p₂ − (p₁/p₂)x₁, so the slope of the budget line is −p₁/p₂. The absolute value of the slope, p₁/p₂, is the opportunity cost of one unit of good 1 measured in units of good 2. An increase in income shifts the budget line outward in parallel, while a change in one good's price changes its slope, rotating the line around the other good's intercept."
           ]
         },
         {
@@ -209,7 +215,7 @@
             "increasing_opportunity_cost"
           ],
           "paragraphs": [
-            "At any point on the production possibilities frontier, the absolute value of the slope is the marginal opportunity cost of producing one more unit of a good. Every point on the curve satisfies productive efficiency (maximum output with no waste), but only the combination society most prefers satisfies allocative efficiency. So \"Is it efficient?\" and \"Is it desirable?\" are different questions, and which point to choose depends on society's preferences and value judgments."
+            "At any point on the production possibilities frontier, the absolute value of the slope is the marginal opportunity cost of producing one more unit of the good on the horizontal axis, measured in units of the good on the vertical axis. Every point on the curve satisfies productive efficiency (maximum output with no waste), but only the combination society most prefers satisfies allocative efficiency. In marginal terms, that is the point where the amount of the other good society must give up for one more unit (the slope) equals the amount it is willing to give up. So \"Is it efficient?\" and \"Is it desirable?\" are different questions, and which point to choose depends on society's preferences and value judgments."
           ]
         }
       ]
@@ -220,12 +226,12 @@
       "id": "c01-l2-we1",
       "level": "beginner",
       "title": "The opportunity cost of a Saturday afternoon",
-      "problem": "Hypothetical example: On Saturday afternoon you have 3 hours, and you can do only one of these: (1) work a part-time job that pays $10 per hour, (2) see a movie with a friend, or (3) relax at home. You choose the movie, and you think the job is worth more than relaxing. How much money did you give up by seeing the movie?",
+      "problem": "Hypothetical example: On Saturday afternoon you have 3 hours, and you can do only one of these: (1) work a part-time job that pays $10 per hour, (2) see a movie with a friend, or (3) relax at home. You choose the movie, and you think the job is worth more than relaxing. How much income did you give up by seeing the movie?",
       "steps": [
         "The most valuable alternative you gave up is the part-time job.",
         "Money you could have earned at the job: $10 × 3 = $30."
       ],
-      "answer": "$30 (plus the price of the movie ticket). Relaxing is worth less to you than the job, so it is not added to the opportunity cost.",
+      "answer": "$30 of forgone income (an implicit cost). Your full opportunity cost of the movie also includes the ticket price you pay (an explicit cost). Relaxing is worth less to you than the job, so it is not added to the opportunity cost.",
       "check": {
         "type": "product",
         "factors": [
@@ -368,7 +374,7 @@
     ]
   },
   "key_takeaways": [
-    "Opportunity cost is the value of the best alternative given up, including both money paid and the value of income and time forgone.",
+    "Opportunity cost is the value of the best alternative given up, including both money paid (explicit costs) and the value of your own time and resources in their best other use, such as forgone income (implicit costs).",
     "Ignore sunk costs when deciding about the future, and decide whether to do a little more by comparing marginal benefit and marginal cost.",
     "The production possibilities frontier shows a society's choices and opportunity costs, and it bows outward because of increasing opportunity cost."
   ],

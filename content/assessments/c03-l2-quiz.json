@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c03",
   "lesson_id": "c03-l2",
-  "version": 2,
+  "version": 3,
   "title": "Lesson 2 Quiz: Public Goods and Common Resources",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q5 states the maximum number of cows so the open-access count is determined. Not reviewed or approved by a human."
       }
     ]
   },
@@ -157,7 +163,7 @@
     },
     {
       "id": "c03-l2-q5",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c03-l2",
       "objective": 3,
@@ -168,7 +174,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: On a village's shared pasture, total daily income by number of cows grazing is $20 for 1 cow, $36 for 2, $48 for 3, $56 for 4, and $60 for 5. Keeping one cow costs $10 per day. If anyone can graze cows there, cows keep being added as long as the average income is at least the cost. How many dollars less is the net income (total income − cost) than at the efficient number of cows? (Enter a number only.)",
+      "prompt": "Hypothetical example: On a village's shared pasture, total daily income by number of cows grazing is $20 for 1 cow, $36 for 2, $48 for 3, $56 for 4, and $60 for 5. Keeping one cow costs $10 per day, and at most 5 cows can graze there. If anyone can graze cows there, cows keep being added as long as the average income is at least the cost. How many dollars less is the net income (total income − cost) than at the efficient number of cows? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-13-3"

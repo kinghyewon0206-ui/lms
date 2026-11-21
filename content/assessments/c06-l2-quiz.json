@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c06",
   "lesson_id": "c06-l2",
-  "version": 2,
+  "version": 3,
   "title": "Lesson 2 Quiz: Taxation and Redistribution",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q2 percent-entry instruction; q4 retagged intermediate (one equation); q5 key choice made parallel with distractors. Not reviewed or approved by a human."
       }
     ]
   },
@@ -63,7 +69,7 @@
     },
     {
       "id": "c06-l2-q2",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c06-l2",
       "objective": 1,
@@ -73,7 +79,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: An income tax charges 0% on the first $12,000, 15% on income from $12,000 to $50,000, and 25% on income above $50,000. What is the average tax rate for someone earning $80,000? Round to one decimal place. (Enter a number in percent, without the % sign.)",
+      "prompt": "Hypothetical example: An income tax charges 0% on the first $12,000, 15% on income from $12,000 to $50,000, and 25% on income above $50,000. What is the average tax rate, in percent, for someone earning $80,000? Round to one decimal place. Enter a number only; for example, enter 25 for 25%.",
       "unit": "",
       "source_ids": [
         "openstax-pe3-30-2"
@@ -117,7 +123,7 @@
     },
     {
       "id": "c06-l2-q4",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c06-l2",
       "objective": 2,
@@ -125,7 +131,7 @@
         "redistribution",
         "transfer_payments"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: Country N has a flat income tax of 25% and pays every household an equal transfer of $6,000 a year. Assuming no behavioral response, at what market income does a household pay exactly as much in tax as it receives in the transfer? (Enter a number in dollars, without the $ sign or commas.)",
@@ -136,7 +142,7 @@
     },
     {
       "id": "c06-l2-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c06-l2",
       "objective": 3,
@@ -151,7 +157,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "How much people cut their work hours when marginal tax rates rise"
+          "text": "Whether a rise in marginal tax rates leads many people to cut work hours"
         },
         {
           "id": "b",

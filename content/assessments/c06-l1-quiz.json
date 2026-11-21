@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c06",
   "lesson_id": "c06-l1",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 1 Quiz: Income Distribution and Inequality",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q1 prompt now guarantees poverty falls so the key is not the only hedged choice; q5 distractors without giveaway absolutes and retagged beginner; q3 explanation wording; q2 retagged beginner; independent AI review follow-ups. Not reviewed or approved by a human."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c06-l1-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c06-l1",
       "objective": 1,
@@ -38,7 +44,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: In Country K, every household's income rises by exactly 10% in one year, and prices do not change. What happens to the quintile income shares and to the number of people below a fixed poverty line?",
+      "prompt": "Hypothetical example: In Country K, every household's income rises by exactly 10% in one year, and prices do not change. Some households start just below a fixed poverty line, less than 5% under it. What happens to the quintile income shares and to the number of people below that line?",
       "choices": [
         {
           "id": "a",
@@ -50,11 +56,11 @@
         },
         {
           "id": "c",
-          "text": "Income shares stay the same, and poverty may fall"
+          "text": "Income shares stay the same, and poverty falls"
         },
         {
           "id": "d",
-          "text": "Income shares become more equal, and poverty falls"
+          "text": "Income shares stay the same, and poverty stays the same"
         }
       ],
       "source_ids": [
@@ -64,7 +70,7 @@
     },
     {
       "id": "c06-l1-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c06-l1",
       "objective": 2,
@@ -72,7 +78,7 @@
         "lorenz_curve",
         "quintile_distribution"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "On a Lorenz curve, what does the point (60%, 30%) tell you?",
@@ -155,21 +161,21 @@
     },
     {
       "id": "c06-l1-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c06-l1",
       "objective": 4,
       "concept_ids": [
         "causes_of_inequality"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Which statement about the causes of rising income inequality matches the lesson?",
+      "prompt": "Which statement best describes what economists know about the causes of rising income inequality?",
       "choices": [
         {
           "id": "a",
-          "text": "Technology is the proven single cause, so other explanations are ruled out"
+          "text": "Technology is the main cause, and economists agree on its exact share"
         },
         {
           "id": "b",
@@ -177,11 +183,11 @@
         },
         {
           "id": "c",
-          "text": "Inequality rises mainly because the poverty line is raised each year"
+          "text": "The poverty line is raised each year, and that pushes income shares apart"
         },
         {
           "id": "d",
-          "text": "Changes in household structure have no effect on household inequality"
+          "text": "Household changes matter, but they tend to lower household inequality"
         }
       ],
       "source_ids": [

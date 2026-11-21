@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l1",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: comparative-advantage model claims labeled as model results; tariff gains/losses completed (government revenue at beginner level; small-country condition in summary and takeaway). Independent-review follow-up: large-importer terms-of-trade result stated. Not reviewed or approved by a human."
       }
     ]
   },
@@ -101,7 +107,7 @@
   ],
   "levels": {
     "beginner": {
-      "summary": "Countries trade because they are better at different things in a relative sense. Even if one country is better at making everything, both countries can end up with more when each one focuses on the good it gives up the least to make. Trade helps a country overall, but some workers and businesses lose, and a tariff (a tax on imports) shifts gains and losses between groups.",
+      "summary": "One main reason countries trade is that they are better at different things in a relative sense. Even if one country is better at making everything, both countries can end up with more when each one focuses on the good it gives up the least to make. Trade helps a country overall, but some workers and businesses lose, and a tariff (a tax on imports) shifts gains and losses between groups.",
       "sections": [
         {
           "heading": "Two countries, two goods",
@@ -143,14 +149,14 @@
             "tariff"
           ],
           "paragraphs": [
-            "A tariff is a tax on goods coming in from other countries. It makes imports more expensive, so the price inside the country goes up. Local producers of that good can sell more at a higher price, so they gain. Shoppers pay more and buy less, so they lose. Businesses that use the imported good to make other products also pay more.",
+            "A tariff is a tax on goods coming in from other countries. It makes imports more expensive, so the price inside the country goes up. Local producers of that good can sell more at a higher price, so they gain. Shoppers pay more and buy less, so they lose. The government collects the tax on the imports that still come in. Businesses that use the imported good to make other products also pay more.",
             "A tariff can protect some jobs in one industry, but it does so by raising prices for everyone who buys the good."
           ]
         }
       ]
     },
     "intermediate": {
-      "summary": "Absolute advantage compares output per unit of resources; comparative advantage compares opportunity costs. Specializing according to comparative advantage raises total output, and trade at terms between the two countries' opportunity costs lets both consume beyond their own production possibilities frontiers. The aggregate gain is unevenly distributed, and a tariff raises the domestic price, helping domestic producers while costing consumers more than producers gain.",
+      "summary": "Absolute advantage compares output per unit of resources; comparative advantage compares opportunity costs. Specializing according to comparative advantage raises total output, and trade at terms between the two countries' opportunity costs lets both consume beyond their own production possibilities frontiers. The aggregate gain is unevenly distributed, and in a small importing country a tariff raises the domestic price, helping domestic producers and raising government revenue while costing consumers more than those two gains combined.",
       "sections": [
         {
           "heading": "Opportunity cost decides comparative advantage",
@@ -230,7 +236,7 @@
           ],
           "paragraphs": [
             "Hypothetical example (see the graph): domestic demand Q_D = 120 − 2P and domestic supply Q_S = −20 + 2P (P in dollars, Q in thousands of units). Without trade: P = $35, Q = 50. At a world price of $20: Q_D = 80, Q_S = 20, imports = 60. A $5 tariff raises the domestic price to $25: Q_D = 70, Q_S = 30, imports = 40.",
-            "Changes (in thousands of dollars): consumer surplus falls by (80 + 70)/2 × 5 = 375; producer surplus rises by (20 + 30)/2 × 5 = 125; tariff revenue = 5 × 40 = 200. Net change = −375 + 125 + 200 = −50. The deadweight loss of 50 is two triangles: production inefficiency ½ × 5 × (30 − 20) = 25 (high-cost domestic output replaces cheaper imports) and consumption inefficiency ½ × 5 × (80 − 70) = 25 (buyers give up units worth more than the world price). This assumes a small country; a large importer might push the world price down, which changes the result."
+            "Changes (in thousands of dollars): consumer surplus falls by (80 + 70)/2 × 5 = 375; producer surplus rises by (20 + 30)/2 × 5 = 125; tariff revenue = 5 × 40 = 200. Net change = −375 + 125 + 200 = −50. The deadweight loss of 50 is two triangles: production inefficiency ½ × 5 × (30 − 20) = 25 (high-cost domestic output replaces cheaper imports) and consumption inefficiency ½ × 5 × (80 − 70) = 25 (buyers give up units worth more than the world price). This assumes a small country. A large importer can push the world price down; in the standard model, that terms-of-trade gain can offset the deadweight loss, so a large importer can gain on net while its trading partners lose."
           ]
         },
         {
@@ -239,7 +245,7 @@
             "distribution_of_gains"
           ],
           "paragraphs": [
-            "Because opening to trade raises total surplus, the winners could in principle compensate the losers and everyone could still be better off (economists call this the compensation principle). In practice, compensation requires deliberate policy (income support, retraining, help for affected regions), and it is costly, imperfect, and politically contested. Losses tend to be concentrated in specific industries and places, while gains are spread across many consumers, which also helps explain why small, organized producer groups can win protection.",
+            "In the model, opening to trade raises total surplus, so the winners could in principle compensate the losers and everyone could still be better off (economists call this the compensation principle). In practice, compensation requires deliberate policy (income support, retraining, help for affected regions), and it is costly, imperfect, and politically contested. Losses tend to be concentrated in specific industries and places, while gains are spread across many consumers, which also helps explain why small, organized producer groups can win protection.",
             "Protection also has spillovers: a tariff on an input raises costs for downstream industries that use it, which can cost jobs there. Evaluating trade policy therefore means comparing the aggregate gain with the size, concentration, and duration of the losses, and with the effectiveness of the tools available to address them."
           ]
         }
@@ -404,7 +410,7 @@
         "openstax-pe3-34-5"
       ],
       "paragraphs": [
-        "The OpenStax textbook describes import protection as a way of making consumers pay higher prices that benefit domestic producers, with domestic consumers, foreign exporters, and industries that use the protected good as an input among the losers. It also notes that protection tends to move jobs between industries rather than create jobs overall, and that the costs of trade fall unevenly. Its recommended response is to keep the gains from trade while helping those who lose, for example with temporary assistance and retraining, rather than blocking trade."
+        "The OpenStax textbook describes import protection as a way of making consumers pay higher prices that benefit domestic producers, with domestic consumers, foreign exporters, and industries that use the protected good as an input among the losers. It also argues that protection tends to move jobs between industries rather than create jobs overall, and that the costs of trade fall unevenly. Its recommended response is to keep the gains from trade while helping those who lose, for example with temporary assistance and retraining, rather than blocking trade."
       ]
     }
   ],
@@ -473,11 +479,11 @@
     ]
   },
   "key_takeaways": [
-    "Absolute advantage compares how much each country can produce; comparative advantage compares opportunity costs. Trade follows comparative advantage.",
+    "Absolute advantage compares how much each country can produce; comparative advantage compares opportunity costs. In the basic model, specialization and trade follow comparative advantage.",
     "A country with an absolute advantage in every good still gains by specializing in the good with the lower opportunity cost and trading for the other.",
     "Both countries gain only if the terms of trade lie between their opportunity costs; trade lets each country consume beyond its own PPF.",
     "The overall gain from trade is real but unevenly shared: import-competing workers, industries, and regions can lose and face adjustment costs, so policies such as income support and retraining matter.",
-    "A tariff is a tax on imports. It raises the domestic price, helps domestic producers, raises government revenue, and costs consumers more than those gains combined (a deadweight loss)."
+    "A tariff is a tax on imports. In the standard model of a small importing country, it raises the domestic price, helps domestic producers, raises government revenue, and costs consumers more than those gains combined (a deadweight loss)."
   ],
   "source_ids": [
     "openstax-pe3-33-1",

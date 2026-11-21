@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c05-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: labeled the monopsony minimum-wage result as a model result citing Cleveland Fed and Minneapolis Fed pages, and softened claims about what drives mixed evidence to factors economists point to. Not reviewed or approved by a human. Evidence summary aligned with the cited Federal Reserve reviews (earlier studies mostly found some job losses; later studies are mixed)."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: corrected the monopsony result above the competitive wage (with the non-binding case and the threshold for falling below L_m), qualified the price-floor rule to competitive markets, removed a hedge from the simple-model prediction, narrowed the unemployment insurance trade-off to what the cited textbook supports, and aligned the evidence wording with the debated framing. Not reviewed or approved by a human."
       }
     ]
   },
@@ -37,7 +43,7 @@
     {
       "id": "minimum_wage",
       "term": "Minimum wage as a price floor",
-      "definition": "A legal lower limit on the wage employers may pay. In the labor market it works like a price floor: it matters (is binding) only if it is set above the equilibrium wage.",
+      "definition": "A legal lower limit on the wage employers may pay. In a competitive labor market, it works like a price floor: it matters (is binding) only if it is set above the equilibrium wage. Under monopsony (see below), a floor below the competitive wage can still matter if it is above the wage the employer pays.",
       "source_ids": [
         "openstax-pe3-4-1",
         "openstax-pe3-3-4"
@@ -55,7 +61,7 @@
     {
       "id": "minimum_wage_evidence",
       "term": "Mixed evidence on minimum wages",
-      "definition": "Studies of real minimum wage increases reach different conclusions: some find reduced hiring of low-skill workers, while others find little or no effect on employment. Economists continue to debate the results, and the effects appear to depend on how high the minimum is compared with local wages.",
+      "definition": "Studies of real minimum wage increases reach different conclusions: some find reduced hiring of low-skill workers, while others find little or no effect on employment. Economists continue to debate the methods and results. To explain the differences, they point to factors such as how high the minimum is compared with local wages and how much power employers have to set wages.",
       "source_ids": [
         "openstax-pe3-4-1",
         "openstax-pe3-21-4",
@@ -66,7 +72,7 @@
     {
       "id": "monopsony",
       "term": "Employer market power (monopsony)",
-      "definition": "A monopsony is a labor market with a single employer (or a few dominant ones) that can set wages. Because workers have few alternatives, such an employer hires fewer workers and pays a lower wage than a competitive labor market would.",
+      "definition": "A monopsony is a labor market with a single employer (or a few dominant ones) that can set wages. Because workers have few alternatives, in the standard model such an employer hires fewer workers and pays a lower wage than a competitive labor market would.",
       "source_ids": [
         "openstax-pe3-14-2",
         "clevelandfed-minimum-wage-2007",
@@ -109,7 +115,7 @@
             "labor_surplus"
           ],
           "paragraphs": [
-            "Suppose the market wage for a job is $14 an hour and a law sets the minimum at $16. At the higher wage, more people want those jobs. But each worker now costs employers more, so they may hire fewer people. The result in the simple model: more people want work than there are jobs. That gap is a surplus of labor, and it shows up as unemployment. Workers who keep their jobs earn more; some others may not get hired."
+            "Suppose the market wage for a job is $14 an hour and a law sets the minimum at $16. At the higher wage, more people want those jobs. But each worker now costs employers more, so in the simple model they hire fewer people. The result: more people want work than there are jobs. That gap is a surplus of labor, and it shows up as unemployment. Workers who keep their jobs earn more; some people who would have been hired at $14 are not hired."
           ]
         },
         {
@@ -175,7 +181,7 @@
             "earned_income_support"
           ],
           "paragraphs": [
-            "Training and retraining target structural unemployment by building the human capital employers want; the trade-off is cost and uncertain results. Job-search help targets frictional unemployment by speeding up matching; it is cheaper but does not create jobs or skills. Earned-income support raises the income of low-wage workers and encourages work because it grows with earnings; it is paid by taxpayers instead of employers, and as it phases out at higher incomes, each extra dollar earned adds less to take-home income. Unemployment insurance supports people while they search, though very long benefit periods may slow the return to work."
+            "Training and retraining target structural unemployment by building the human capital employers want; the trade-off is cost and uncertain results. Job-search help targets frictional unemployment by speeding up matching; it is cheaper but does not create jobs or skills. Earned-income support raises the income of low-wage workers and encourages work because it grows with earnings; it is paid by taxpayers instead of employers, and as it phases out at higher incomes, each extra dollar earned adds less to take-home income. Unemployment insurance supports people while they search. It also lowers the cost of staying unemployed, so some people may search less intensely, and how long benefits last can matter for how quickly people return to work. How big this effect is depends on program design."
           ]
         }
       ]
@@ -202,7 +208,7 @@
           ],
           "paragraphs": [
             "A monopsonist faces the upward-sloping labor supply curve, so hiring one more worker means paying a higher wage to all workers. Its marginal cost of labor is above the wage, and it hires where labor demand equals that marginal cost. The result is employment L_m below the competitive level L_c and a wage W_m below the competitive wage W_c.",
-            "A minimum wage W_min with W_m < W_min ≤ W_c makes the marginal cost of labor equal to W_min over a range of employment, so the firm can hire more workers at the floor than it did at W_m. In this range of the standard monopsony model, a minimum wage can raise both the wage and employment. Above W_c, the competitive prediction of lower employment returns. Because real labor markets differ in employer power and in how high the minimum is relative to local wages, empirical studies can reasonably reach different conclusions, and the debate is not settled."
+            "A floor at or below W_m does not bind. A minimum wage W_min with W_m < W_min ≤ W_c makes the marginal cost of labor equal to W_min over a range of employment, so the firm hires the number of workers on the labor supply curve at W_min, which is more than L_m. In this range of the standard monopsony model, a minimum wage raises both the wage and employment, and employment is highest when W_min = W_c (it reaches L_c). Above W_c, the firm hires only the quantity on labor demand, so employment falls as the floor rises. Employment drops below the original monopsony level L_m only when W_min is higher than the height of labor demand at L_m, which equals the monopsonist's marginal cost of labor at L_m. Because real labor markets differ in employer power and in how high the minimum is relative to local wages, empirical studies can reasonably reach different conclusions, and the debate is not settled."
           ]
         },
         {
@@ -212,7 +218,7 @@
             "earned_income_support"
           ],
           "paragraphs": [
-            "Earned-income support is typically designed with a phase-in rate (support rises with earnings), a flat range, and a phase-out rate (support falls as earnings rise further). During the phase-out, each extra dollar earned raises take-home income by only (1 − phase-out rate), which acts like an extra tax on work. A slow phase-out weakens work incentives less but costs more. Training and job-search programs should be judged by how much they raise employment and earnings compared with what would have happened without them, relative to their cost."
+            "Earned-income support is typically designed with a phase-in rate (support rises with earnings), a flat range, and a phase-out rate (support falls as earnings rise further). During the phase-out, each extra dollar earned raises take-home income by only (1 − phase-out rate), which acts like an extra tax on work. A slower phase-out means a smaller extra tax on each dollar earned, but it costs more and stretches the phase-out range over more workers. Training and job-search programs should be judged by how much they raise employment and earnings compared with what would have happened without them, relative to their cost."
           ]
         }
       ]

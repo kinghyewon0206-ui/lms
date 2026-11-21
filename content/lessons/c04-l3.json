@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: cited the St. Louis Fed for avoiding cash at very high inflation and the IMF F&D inflation page for disinflation slowing activity for a while (wording aligned to the source). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: distinguished redistribution from other inflation costs (menu, shoe-leather, tax), corrected the CPI vs. GDP deflator description, softened central-bank and purchasing-power claims to match the sources, noted debate on disinflation costs, added the real-interest shortcut. Not reviewed or approved by a human."
       }
     ]
   },
@@ -37,7 +43,7 @@
     {
       "id": "price_index",
       "term": "Price index and basket",
-      "definition": "A price index tracks the cost of a fixed basket of goods and services that typical households buy, relative to a base year: index = (cost of the basket this year ÷ cost in the base year) × 100. The base year's index is 100.",
+      "definition": "A consumer price index tracks the cost of a fixed basket of goods and services that typical households buy, relative to a base year: index = (cost of the basket this year ÷ cost in the base year) × 100. The base year's index is 100.",
       "source_ids": [
         "openstax-pe3-22-1"
       ]
@@ -93,8 +99,7 @@
       "source_ids": [
         "openstax-pe3-22-4",
         "openstax-pe3-28-1",
-        "ecb-monetary-policy-intro",
-        "stlouisfed-money-inflation"
+        "ecb-monetary-policy-intro"
       ]
     }
   ],
@@ -155,7 +160,7 @@
             "cpi_limits"
           ],
           "paragraphs": [
-            "Choose a basket that reflects what typical households buy, price it each period, and divide by its cost in the base year: index = cost this year ÷ cost in the base year × 100. A consumer price index (CPI) does this for consumer goods and services; the GDP deflator from Lesson 1 does it for all final goods and services.",
+            "Choose a basket that reflects what typical households buy, price it each period, and divide by its cost in the base year: index = cost this year ÷ cost in the base year × 100. A consumer price index (CPI) does this for consumer goods and services. The GDP deflator from Lesson 1 is a broader price index covering all final goods and services, but it uses each year's actual output instead of a fixed basket.",
             "Because the basket is fixed, a CPI-style index has known biases. Substitution bias: when beef gets expensive and you buy chicken, the fixed basket still assumes you buy beef. Quality and new-product bias: a phone that costs the same but does much more is effectively cheaper, which a simple price comparison misses. Both biases tend to overstate the true rise in the cost of living."
           ]
         },
@@ -177,7 +182,7 @@
           ],
           "paragraphs": [
             "Real wage = nominal wage ÷ (price index ÷ 100). The percentage change in the real wage is approximately the percentage change in the nominal wage minus the inflation rate. A 6% raise with 4% inflation is roughly a 2% gain in purchasing power; a 3% raise with 5% inflation is roughly a 2% loss.",
-            "Living standards depend on real income, which is why comparisons over time should always be made in real terms."
+            "Living standards depend on real income, which is why comparisons of income over time should be made in real terms."
           ]
         },
         {
@@ -187,7 +192,7 @@
             "price_stability"
           ],
           "paragraphs": [
-            "Loans, rents, and pensions are often set in dollars in advance, based on expected inflation. If inflation turns out higher than expected, borrowers repay with dollars that buy less (they gain) and lenders and people on fixed incomes lose. Inflation that everyone expects can be built into contracts in advance, so the damage comes mostly from surprises.",
+            "Loans, rents, and pensions are often set in dollars in advance, based on expected inflation. If inflation turns out higher than expected, borrowers repay with dollars that buy less (they gain) and lenders and people on fixed incomes lose. Inflation that everyone expects can be built into contracts in advance, so these shifts between borrowers and lenders come mostly from surprises. Expected inflation is not completely free, but its costs work through other channels: menu costs (the work of changing prices often), shoe-leather costs (the effort of holding less cash), and tax distortions when tax rules are not adjusted for inflation.",
             "High or unstable inflation also makes it hard to tell whether a price rose because a good became scarcer or because all prices are rising, so price signals become less useful. Saving and long-term contracts become riskier. Central banks generally aim to keep inflation low, stable, and predictable. How they do that is a topic for a later course."
           ]
         }
@@ -232,8 +237,8 @@
             "price_stability"
           ],
           "paragraphs": [
-            "A lender who charges nominal rate i expects a real return of (1 + i) ÷ (1 + πᵉ) − 1. The realized real return is (1 + i) ÷ (1 + π) − 1. When π > πᵉ, the realized real return is lower than expected: value moves from the lender to the borrower in proportion to the surprise π − πᵉ. A fixed nominal income N has real value N ÷ (1 + π) after one year, so its holder loses as π rises.",
-            "Because these transfers depend on surprises, and because uncertainty about future π makes long-term nominal contracts riskier, the variability of inflation is costly even apart from its average level. At very high rates, relative price signals become hard to read and people spend effort avoiding holding money. These costs explain why central banks generally aim for low, stable, and predictable inflation."
+            "A lender who charges nominal rate i expects a real return of (1 + i) ÷ (1 + πᵉ) − 1. The realized real return is (1 + i) ÷ (1 + π) − 1. When π > πᵉ, the realized real return is lower than expected: value moves from the lender to the borrower, roughly in proportion to the surprise π − πᵉ. The shortcut real rate ≈ i − π drops a small cross term, just like the real-growth shortcut. A fixed nominal income N has real value N ÷ (1 + π) after one year, so its holder loses as π rises.",
+            "Because these transfers depend on surprises, and because uncertainty about future π makes long-term nominal contracts riskier, the variability of inflation is costly even apart from its average level. At very high rates, relative price signals become hard to read and people spend effort avoiding holding money. These costs help explain why central banks generally aim for low, stable, and predictable inflation."
           ]
         }
       ]
@@ -354,7 +359,7 @@
         "imf-fd-inflation-basics"
       ],
       "paragraphs": [
-        "Retirees with pensions fixed in dollars lose purchasing power as prices rise, and lenders on fixed-rate loans lose when inflation turns out higher than expected, while borrowers gain. Economists describe the erosion of purchasing power as one of the main costs of inflation, especially when incomes lag behind prices."
+        "Retirees with pensions fixed in dollars lose purchasing power as prices rise, and lenders on fixed-rate loans lose when inflation turns out higher than expected, while borrowers gain. Economists point out that inflation does not cut everyone's purchasing power in the same way, because many wages rise along with prices over time. The losses are largest for people whose incomes or savings are fixed in dollars or lag behind prices."
       ]
     },
     {
@@ -410,12 +415,12 @@
       {
         "name": "Let the central bank focus on returning inflation to a low, stable rate, with no new payments",
         "benefits": [
-          "Low, stable inflation protects the purchasing power of everyone's income and savings over time.",
+          "Low, stable inflation helps protect the purchasing power of money and savings over time.",
           "It avoids new government spending."
         ],
         "costs": [
           "Low-income households get no direct help while prices are high.",
-          "Bringing inflation down can slow spending and economic activity for a while (a later course explains why)."
+          "Bringing inflation down can slow spending and economic activity for a while (a later course explains why). Economists disagree about how large and how long such a slowdown tends to be."
         ],
         "assumptions": [
           "People trust the central bank, so inflation expectations stay anchored."

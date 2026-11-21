@@ -3,7 +3,7 @@
   "id": "c05-final",
   "kind": "final",
   "course_id": "c05",
-  "version": 1,
+  "version": 2,
   "title": "Labor & Employment: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -17,6 +17,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: made q1 a city-wide labor market; retagged q2, q5 and q9 by cognitive demand; rewrote q5 so the key does not echo the stem and the explanation defines frictional unemployment by normal search turnover; replaced weak q6 distractors; removed hedge clues in q8 and qualified its rule to competitive markets; made all q10 choices parallel; kept the q9 explanation in the debated framing. Lead QA: q10 distractors c and d no longer use absolute wording. Not reviewed or approved by a human."
       }
     ]
   },
@@ -32,7 +38,7 @@
   "questions": [
     {
       "id": "c05-final-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l1",
       "objective": 3,
@@ -42,7 +48,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A grocery chain installs self-checkout machines that do much of the work cashiers used to do. Other things equal, what happens in the chain's labor market for cashiers?",
+      "prompt": "Hypothetical example: Grocery stores across a city install self-checkout machines that do much of the work cashiers used to do. Other things equal, what happens in the city's labor market for cashiers?",
       "choices": [
         {
           "id": "a",
@@ -67,14 +73,14 @@
     },
     {
       "id": "c05-final-q2",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c05-l1",
       "objective": 2,
       "concept_ids": [
         "labor_equilibrium"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: In a region's market for bus drivers, labor demand is L_d = 1,500 − 50W and labor supply is L_s = 180 + 60W, where W is the hourly wage in dollars. What is the equilibrium wage, in dollars per hour? (Enter a number only.)",
@@ -140,25 +146,25 @@
     },
     {
       "id": "c05-final-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l2",
       "objective": 3,
       "concept_ids": [
         "unemployment_types"
       ],
-      "difficulty": "beginner",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: During a recession, a car dealership lays off several salespeople because fewer people are buying cars. What type of unemployment does this create?",
+      "prompt": "Hypothetical example: Spending falls across the whole economy for several months, and many industries cut jobs at the same time. A car dealership lays off several salespeople because fewer people are buying cars. What type of unemployment does this create?",
       "choices": [
         {
           "id": "a",
-          "text": "Frictional, because the salespeople are moving between jobs by choice"
+          "text": "Frictional, because the salespeople now have to search for new jobs"
         },
         {
           "id": "b",
-          "text": "Structural, because the salespeople's skills are no longer needed"
+          "text": "Structural, because the dealership needs fewer salespeople than before"
         },
         {
           "id": "c",
@@ -166,7 +172,7 @@
         },
         {
           "id": "d",
-          "text": "Cyclical, because it is caused by a downturn in the whole economy"
+          "text": "Cyclical, because spending has fallen in many industries at once"
         }
       ],
       "source_ids": [
@@ -176,7 +182,7 @@
     },
     {
       "id": "c05-final-q6",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l2",
       "objective": 3,
@@ -186,7 +192,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Why do workers who gain more education and training tend to earn higher wages over time?",
+      "prompt": "In the human capital view, why do workers who gain more education and training tend to earn higher wages over time?",
       "choices": [
         {
           "id": "a",
@@ -194,15 +200,15 @@
         },
         {
           "id": "b",
-          "text": "Training lowers the total number of workers in the economy as a whole"
+          "text": "Employers repay the cost of their schooling through higher hourly pay"
         },
         {
           "id": "c",
-          "text": "Employers are required by law to pay more for each diploma a worker has"
+          "text": "Their education makes leisure cheaper, so they choose to work more hours"
         },
         {
           "id": "d",
-          "text": "More education raises the legal minimum wage that applies to the worker"
+          "text": "Their training raises the price of the product, so each worker's output is worth more"
         }
       ],
       "source_ids": [
@@ -232,7 +238,7 @@
     },
     {
       "id": "c05-final-q8",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l3",
       "objective": 1,
@@ -254,7 +260,7 @@
         },
         {
           "id": "c",
-          "text": "Little changes, because the floor is below the market wage"
+          "text": "Nothing changes, because the floor is below the market wage"
         },
         {
           "id": "d",
@@ -268,14 +274,14 @@
     },
     {
       "id": "c05-final-q9",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l3",
       "objective": 2,
       "concept_ids": [
         "minimum_wage_evidence"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: Two regions both raise their minimum wage to $15 per hour. In Region A, typical entry-level wages are already about $16; in Region B, they are about $10. Other things equal, where is a larger drop in hiring of low-skill workers more likely?",
@@ -304,7 +310,7 @@
     },
     {
       "id": "c05-final-q10",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l3",
       "objective": 3,
@@ -319,19 +325,19 @@
       "choices": [
         {
           "id": "a",
-          "text": "It raises employers' labor costs, so hiring tends to fall more"
+          "text": "It raises take-home pay, but it raises employers' labor costs even more"
         },
         {
           "id": "b",
-          "text": "It avoids raising labor costs, but taxpayers bear the cost"
+          "text": "It avoids raising employers' labor costs, but taxpayers bear the cost"
         },
         {
           "id": "c",
-          "text": "It replaces wages, so workers have less reason to take jobs"
+          "text": "It avoids public spending, but employers pay part of each worker's wage"
         },
         {
           "id": "d",
-          "text": "It helps people without jobs more than people who are working"
+          "text": "It helps people without jobs more, but it adds little for people already working"
         }
       ],
       "source_ids": [

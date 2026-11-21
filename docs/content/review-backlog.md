@@ -42,4 +42,4 @@
 
 ## D. 2026-11-21 c01 수정과 c02~c09 감사
 - c01 확정 결함 8건과 교육 개선 사항을 반영했다 (레슨 content_version 3, 퀴즈·최종 평가 버전 증가). 아직 사람 승인 전이다.
-- c02~c09 감사 결과·남은 결정 사항: `docs/content/review/c02-c09-defect-audit.md`.
+- c02~c09 감사 결과: `docs/content/review/c02-c09-defect-audit.md`. 2026-11-21 종합 감사(전 강좌 수정·독립 검증): `docs/content/review/changes/README.md`.

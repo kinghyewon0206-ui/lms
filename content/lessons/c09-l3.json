@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l3",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: self-assessment advice changed from 'choose the lower level' to matching the evidence in the text, expected-impact formula given its assumption, one rule for unverified numbers matching the rubric, percentage-point note on the required path. Not reviewed or approved by a human."
       }
     ]
   },
@@ -151,7 +157,7 @@
             "measurable_indicators"
           ],
           "paragraphs": [
-            "Pick one or two numbers to watch. For each one, write four things: where it is now (baseline), where you want it to be (target), by when (timeframe), and where the number will come from (data source). Example: \"School days with working drinking water: from about 120 of 180 days now to 170 of 180 days within two years, from the school's own maintenance log.\" The numbers in your capstone should come from real sources, or be clearly marked as estimates."
+            "Pick one or two numbers to watch. For each one, write four things: where it is now (baseline), where you want it to be (target), by when (timeframe), and where the number will come from (data source). Example: \"School days with working drinking water: from about 120 of 180 days now to 170 of 180 days within two years, from the school's own maintenance log.\" In your capstone, use only numbers you checked in a source, or estimates and assumptions that you clearly label as such. Flag any claim you could not verify."
           ]
         },
         {
@@ -160,7 +166,7 @@
             "self_assessment_reflection"
           ],
           "paragraphs": [
-            "After you submit, you rate your own work with the rubric: for each criterion, pick the level (1. Beginning, 2. Developing, 3. Proficient, 4. Exemplary) whose description best matches what you actually wrote. It is a tool for checking your own work, not an official score, so honesty helps you most. If you are unsure between two levels, choose the lower one and write a note on what would raise it.",
+            "After you submit, you rate your own work with the rubric: for each criterion, pick the level (1. Beginning, 2. Developing, 3. Proficient, 4. Exemplary) whose description best matches what you actually wrote. It is a tool for checking your own work, not an official score, so honesty helps you most. If you are unsure between two levels, reread both descriptions, choose the one that the evidence in your text supports, and write a note on what would raise it.",
             "Step \"9. Reflect\" asks what you learned and what you would do differently. Name at least one real limitation, such as a number you could not verify or an effect you could not prove, and one thing you would improve."
           ]
         }
@@ -225,7 +231,7 @@
             "self_assessment_reflection"
           ],
           "paragraphs": [
-            "The Capstone self-assessment asks you to rate the submitted version on every rubric criterion. The Capstone project page then shows a weighted average level (not an official score) and lists the criteria rated at level 2 or below as criteria to improve. Rate by matching the level descriptions to evidence in your text; for example, \"Quality of evidence\" at level 4 requires clearly sourced evidence and stated limits.",
+            "The Capstone self-assessment asks you to rate the submitted version on every rubric criterion. The Capstone project page then shows a weighted average level (not an official score) and lists the criteria rated at level 2 or below as criteria to improve. Rate by matching the level descriptions to evidence in your text; for example, \"Quality of evidence\" at level 4 requires clearly sourced evidence, labeled estimates and assumptions, and stated limits.",
             "The reflection is required to complete the Capstone project. Write about the limitations of your evidence (missing comparison groups, outdated or secondary data, unverified numbers), the assumptions your recommendation depends on, what changed your mind during the project, and what you would improve or research next."
           ]
         }
@@ -260,7 +266,7 @@
           ],
           "paragraphs": [
             "Scale is a marginal decision: expand coverage while the marginal benefit of reaching one more person exceeds the marginal cost, recognizing that the last people reached are often the costliest. An equity objective may justify going further, but that is a value judgment to state openly.",
-            "Model implementation risk as probabilities: if the program delivers its output with probability q, the expected impact is q × ΔY. Constraints such as staff shortages or weak maintenance lower q. A pilot with a comparison group narrows the uncertainty about ΔY and q before full rollout."
+            "Model implementation risk as probabilities: if the program delivers its output with probability q, and has no effect when it fails, the expected impact is q × ΔY. Constraints such as staff shortages or weak maintenance lower q. A pilot with a comparison group narrows the uncertainty about ΔY and q before full rollout."
           ]
         },
         {
@@ -279,7 +285,7 @@
             "measurable_indicators"
           ],
           "paragraphs": [
-            "Define each indicator as I = N ÷ P with explicit numerator and denominator, baseline I₀ at date t₀ from a named source, target I* at date T, and the required path (I* − I₀) ÷ (T − t₀) per year. Distinguish outputs (under the program's control) from outcomes (also affected by other factors), and plan how a comparison group or trend will separate the program's effect from other changes."
+            "Define each indicator as I = N ÷ P with explicit numerator and denominator, baseline I₀ at date t₀ from a named source, target I* at date T, and the required path (I* − I₀) ÷ (T − t₀) per year (× 100 for percentage points when I is a fraction). Distinguish outputs (under the program's control) from outcomes (also affected by other factors), and plan how a comparison group or trend will separate the program's effect from other changes."
           ]
         },
         {

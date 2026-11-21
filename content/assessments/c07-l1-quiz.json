@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c07",
   "lesson_id": "c07-l1",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 1 Quiz: Income, Spending, and Budgeting",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: l1-q2 choices made parallel and neutral (fixed prices stated once in the stem); l1-q3 choices made parallel so the key is not the only hedged or differently built choice; l1-q5 stem fixes the saving goal so only one choice balances the budget, and difficulty set to intermediate. Not reviewed or approved by a human."
       }
     ]
   },
@@ -46,7 +52,7 @@
     },
     {
       "id": "c07-l1-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l1",
       "objective": 2,
@@ -56,23 +62,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Which of these is the best example of a variable expense for a student?",
+      "prompt": "Which of these is the best example of a variable expense for a student? Assume each plan, pass, or subscription has a set price.",
       "choices": [
         {
           "id": "a",
-          "text": "A phone plan that costs $40 each month"
+          "text": "A phone plan"
         },
         {
           "id": "b",
-          "text": "Snacks and eating out, which change from month to month"
+          "text": "Snacks and meals out"
         },
         {
           "id": "c",
-          "text": "A monthly bus pass sold at a set price"
+          "text": "A school bus pass"
         },
         {
           "id": "d",
-          "text": "A streaming subscription billed at a flat monthly fee"
+          "text": "A streaming subscription"
         }
       ],
       "source_ids": [
@@ -81,7 +87,7 @@
     },
     {
       "id": "c07-l1-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l1",
       "objective": 2,
@@ -92,23 +98,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Two students each pay $60 a month for a car insurance policy. Student A drives to a night job with no bus service. Student B lives next to a train station and drives mainly on weekends for fun. How should each classify the expense?",
+      "prompt": "Hypothetical example: Two students each pay $60 a month for a car insurance policy. Student A drives to a night job with no bus service. Student B lives next to a train station and drives mainly on weekends for fun. Which classification of the insurance fits best?",
       "choices": [
         {
           "id": "a",
-          "text": "Both should call it a want, because insurance is optional spending"
+          "text": "A fixed need for A and a variable want for B"
         },
         {
           "id": "b",
-          "text": "Both should call it a variable need, because prices can change"
+          "text": "A variable need for A and a fixed want for B"
         },
         {
           "id": "c",
-          "text": "Both should call it a need, because the bill arrives each month"
+          "text": "A fixed want for A and a fixed need for B"
         },
         {
           "id": "d",
-          "text": "It is a fixed need for A and closer to a fixed want for B"
+          "text": "A fixed need for A and a fixed want for B"
         }
       ],
       "source_ids": [
@@ -135,7 +141,7 @@
     },
     {
       "id": "c07-l1-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l1",
       "objective": 2,
@@ -143,26 +149,26 @@
         "budget",
         "gross_net_income"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Rosa's net income is $1,800 a month, but her planned spending and saving add up to $1,950. She notices her gross pay is $2,150. Which response is the best way to make her budget consistent with the budget identity?",
+      "prompt": "Hypothetical example: Rosa's net income is $1,800 a month, and her gross pay is $2,150. Her plan adds up to $1,950: $200 of saving for emergencies, $1,550 of fixed expenses and needs, and $200 of variable wants such as eating out. She wants to keep saving $200 a month. Which response balances her budget (spending + saving = net income) while keeping her saving goal?",
       "choices": [
         {
           "id": "a",
-          "text": "Cut variable wants (or raise net income) so spending plus saving equals net income"
+          "text": "Cut her variable wants by $150 a month"
         },
         {
           "id": "b",
-          "text": "Base the budget on $2,150 gross pay, since that covers the $1,950 plan"
+          "text": "Plan from her $2,150 gross pay instead"
         },
         {
           "id": "c",
-          "text": "Keep the plan and cover the $150 gap each month with a credit card"
+          "text": "Put the $150 gap on a credit card each month"
         },
         {
           "id": "d",
-          "text": "Stop saving until spending fits, since saving matters less than spending"
+          "text": "Stop saving until her spending fits her pay"
         }
       ],
       "source_ids": [

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l1",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: cited OpenStax Psychology 2e 2.3 for correlation vs. causation and the third (confounding) factor. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: per-capita growth wording; narrowed the long-run nominal-vs-real claim to what the cited source shows; labeled the fixed-base method. Not reviewed or approved by a human."
       }
     ]
   },
@@ -59,7 +65,7 @@
     {
       "id": "nominal_vs_real_gdp",
       "term": "Nominal GDP, real GDP, and the GDP deflator",
-      "definition": "Nominal GDP values output at the prices of the year it was produced. Real GDP values output at the prices of a fixed base year, so it changes only when quantities change. The GDP deflator is a price index for all final goods and services: real GDP = nominal GDP ÷ (deflator ÷ 100).",
+      "definition": "Nominal GDP values output at the prices of the year it was produced. Real GDP values output at the prices of a fixed base year, so it changes only when quantities change. (This is the simple fixed-base method taught here.) The GDP deflator is a price index for all final goods and services: real GDP = nominal GDP ÷ (deflator ÷ 100).",
       "source_ids": [
         "openstax-pe3-19-2"
       ]
@@ -195,7 +201,7 @@
             "gdp_limits"
           ],
           "paragraphs": [
-            "GDP per capita = GDP ÷ population. It adjusts for country size and is the usual starting point for comparing average living standards. Its growth rate is roughly the growth rate of real GDP minus the growth rate of population.",
+            "GDP per capita = GDP ÷ population. It adjusts for country size and is the usual starting point for comparing average living standards. The growth rate of real GDP per capita is roughly the growth rate of real GDP minus the growth rate of population.",
             "Because GDP is built from market transactions, it leaves out household production and volunteer work, places no value on leisure, does not subtract environmental damage, and, as an average, says nothing about distribution. It can even rise when a country spends money repairing storm damage. For these reasons, GDP is best read together with other indicators, such as health, education, employment, and environmental measures."
           ]
         },
@@ -389,7 +395,7 @@
         "openstax-pe3-19-2"
       ],
       "paragraphs": [
-        "Official statistics report GDP both at current prices and adjusted for inflation with a price index for final goods and services. Long-run comparisons of output are made with the inflation-adjusted series, because nominal figures over several decades mostly reflect rising prices."
+        "Official statistics report GDP both at current prices and adjusted for inflation with a price index for final goods and services. Long-run comparisons of output are made with the inflation-adjusted series. Over several decades, much of the rise in nominal GDP can come from rising prices rather than from more output, so nominal figures alone can make growth look much larger than it was."
       ]
     },
     {

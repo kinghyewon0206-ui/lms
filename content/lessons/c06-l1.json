@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l1",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: Lorenz-dominance claims limited to Lorenz-consistent measures; Gini n-squared convention stated; wealth vs income causes and fixed-line wording narrowed; Gini grouping 'understates (or at best equals)'; SDG sampling-noise wording; independent AI review follow-ups. Not reviewed or approved by a human."
       }
     ]
   },
@@ -38,7 +44,7 @@
     {
       "id": "income_vs_wealth",
       "term": "Income vs. wealth",
-      "definition": "Income is a flow: the money a person or household receives during a period, such as wages, interest, or government payments in a year. Wealth is a stock: the value of everything owned (savings, homes, businesses, shares) minus debts at a point in time. Wealth is usually distributed more unequally than income, because differences in earnings and saving add up over many years.",
+      "definition": "Income is a flow: the money a person or household receives during a period, such as wages, interest, or government payments in a year. Wealth is a stock: the value of everything owned (savings, homes, businesses, shares) minus debts at a point in time. Wealth is usually distributed more unequally than income, partly because differences in earnings, saving, returns on assets, and inheritance add up over many years.",
       "source_ids": [
         "openstax-pe3-15-5"
       ]
@@ -72,7 +78,7 @@
     {
       "id": "gini_coefficient",
       "term": "Gini coefficient",
-      "definition": "A single-number summary of inequality based on the Lorenz curve: the area between the diagonal and the Lorenz curve, divided by the whole area under the diagonal. It runs from 0 (perfect equality) to 1 (one person has all the income); the World Bank also reports it on a 0 to 100 scale. When it is estimated from grouped data, such as quintiles, it ignores income differences inside each group, so it understates the Gini coefficient for the whole population (Worked Example 6 shows this).",
+      "definition": "A single-number summary of inequality based on the Lorenz curve: the area between the diagonal and the Lorenz curve, divided by the whole area under the diagonal. It runs from 0 (perfect equality) toward 1 (one person has all the income; with the formula used in this course, the maximum for n people is (n − 1) ÷ n, which is close to 1 in a large population); the World Bank also reports it on a 0 to 100 scale. When it is estimated from grouped data, such as quintiles, it ignores income differences inside each group, so it understates (or at best equals) the Gini coefficient for the whole population (Worked Example 6 shows this).",
       "source_ids": [
         "worldbank-gini-index"
       ]
@@ -96,8 +102,8 @@
             "income_vs_wealth"
           ],
           "paragraphs": [
-            "Your income is the money that comes in over a period, like your pay from a summer job. Your wealth is what you own at a moment, like the money in your savings account, minus anything you owe. A retired person may have a low income but a paid-off house, so they are wealthy but have little income. A new graduate may earn a good salary but owe student loans, so they have income but little wealth.",
-            "Wealth is usually shared much more unequally than income. Families that earn more can save more, and those savings can grow year after year, so differences pile up over time."
+            "Your income is the money that comes in over a period, like your pay from a summer job. Your wealth is what you own at a moment, like the money in your savings account, minus anything you owe. A retired person may have a low income but a paid-off house, so they can have substantial wealth but little income. A new graduate may earn a good salary but owe student loans, so they have income but little wealth.",
+            "Wealth is usually shared much more unequally than income. One reason is that families that earn more can save more, and those savings can grow year after year. Inheritances also pass wealth from one generation to the next, so differences pile up over time."
           ]
         },
         {
@@ -106,7 +112,7 @@
             "inequality_vs_poverty"
           ],
           "paragraphs": [
-            "Poverty asks: how many people have too little to meet basic needs? Inequality asks: how is the total income divided? They are different questions. Hypothetical example: if every income in a country doubled while prices stayed the same, the shares would not change, so inequality would stay the same, but many people could rise above a fixed poverty line. If only the richest people got richer, inequality would rise, but the number of poor people would not change."
+            "Poverty asks: how many people have too little to meet basic needs? Inequality asks: how is the total income divided? They are different questions. Hypothetical example: if every income in a country doubled while prices stayed the same, the shares would not change, so inequality would stay the same, but many people could rise above a fixed poverty line. If only the richest people got richer, inequality would rise, but the number of people below a fixed poverty line would not change."
           ]
         },
         {
@@ -136,7 +142,7 @@
           ],
           "paragraphs": [
             "The Gini coefficient turns the bow into one number between 0 and 1. A Gini of 0 means perfect equality: the Lorenz curve sits on the diagonal. A Gini close to 1 means one person has almost all the income. A higher Gini means more inequality. For Country A it works out to 0.38 (you will see how in the worked examples).",
-            "One warning: a Gini is often calculated from group shares, such as quintiles. That treats everyone inside a group as if they earned the same, so it misses the inequality inside each group. The result is a slight underestimate."
+            "One warning: a Gini is often calculated from group shares, such as quintiles. That treats everyone inside a group as if they earned the same, so it misses the inequality inside each group. The result is an underestimate."
           ]
         },
         {
@@ -181,7 +187,7 @@
             "lorenz_curve"
           ],
           "paragraphs": [
-            "Compare Country A (cumulative 5, 15, 30, 55) with Country B (cumulative 8, 20, 37, 60). At every point, Country B's curve is higher, closer to the diagonal. When one Lorenz curve lies entirely above another, the higher one shows a more equal distribution by any reasonable measure.",
+            "Compare Country A (cumulative 5, 15, 30, 55) with Country B (cumulative 8, 20, 37, 60). At every point, Country B's curve is higher, closer to the diagonal. When one Lorenz curve lies entirely above another, the higher one shows a more equal distribution by the Gini coefficient and by any other inequality measure that agrees with Lorenz comparisons (the advanced level states the conditions).",
             "Curves can also cross: one country can give its poorest groups a larger share while also giving its richest group a larger share. Then the Lorenz curves alone cannot rank the two countries, and different summary measures may disagree."
           ]
         },
@@ -192,7 +198,7 @@
           ],
           "paragraphs": [
             "Call A the area between the diagonal and the Lorenz curve, and B the area under the Lorenz curve. Because the graph is a unit square, the area under the diagonal is A + B = 0.5. The Gini coefficient is G = A ÷ (A + B) = A ÷ 0.5 = 1 − 2B. With perfect equality, A = 0 and G = 0. As the bow grows, A grows and so does G.",
-            "With quintile data, the Lorenz curve is drawn as straight segments between the known points, and B is the sum of five trapezoids. This is an approximation: it assumes everyone inside a quintile has the same income, so the true curve, which sags a little between the points, is replaced by a straight chord. The estimated Gini is therefore a little too low. A Gini also compresses the whole curve into one number, so two different distributions can share the same Gini."
+            "With quintile data, the Lorenz curve is drawn as straight segments between the known points, and B is the sum of five trapezoids. This is an approximation: it assumes everyone inside a quintile has the same income, so the true curve, which sags a little between the points, is replaced by a straight chord. The estimated Gini is therefore too low, unless incomes inside each quintile really are equal. A Gini also compresses the whole curve into one number, so two different distributions can share the same Gini."
           ]
         },
         {
@@ -229,7 +235,7 @@
           ],
           "paragraphs": [
             "With incomes sorted y₁ ≤ y₂ ≤ … ≤ yₙ, the Lorenz curve passes through the points (Xₖ, Yₖ) with Xₖ = k ÷ n and Yₖ = (y₁ + … + yₖ) ÷ (y₁ + … + yₙ), and L(0) = 0, L(1) = 1. Because the slope of segment k equals yₖ ÷ ȳ (the k-th income relative to the mean), L is increasing and convex, and L(p) ≤ p. The slope equals 1 exactly where income equals the mean.",
-            "For quintiles, the same construction uses group shares sₖ and cumulative shares Yₖ = s₁ + … + sₖ with Xₖ = 0.2k. If L_B(p) ≥ L_A(p) for every p (B Lorenz-dominates A), every scale-invariant inequality measure that falls when income is transferred from a richer to a poorer person ranks B as at least as equal as A. Hypothetical example of crossing: Country C has quintile shares 3, 12, 20, 25, 40 (cumulative 3, 15, 35, 60) and Country D has 7, 10, 15, 22, 46 (cumulative 7, 17, 32, 54). D's curve is higher at 20% and 40%, C's is higher at 60% and 80%, so neither dominates; their grouped Gini values (0.348 for C, 0.36 for D) rank them, but that ranking depends on how G weights different parts of the curve."
+            "For quintiles, the same construction uses group shares sₖ and cumulative shares Yₖ = s₁ + … + sₖ with Xₖ = 0.2k. If L_B(p) ≥ L_A(p) for every p (B Lorenz-dominates A), then every Lorenz-consistent inequality measure ranks B as at least as equal as A. A Lorenz-consistent measure is one that is scale invariant, ignores who has which income (anonymity), does not change when the population is replicated, and falls when income is transferred from a richer to a poorer person without reversing their order (the transfer principle). The Gini coefficient is one such measure; measures without these properties, such as a simple income range, need not agree. Hypothetical example of crossing: Country C has quintile shares 3, 12, 20, 25, 40 (cumulative 3, 15, 35, 60) and Country D has 7, 10, 15, 22, 46 (cumulative 7, 17, 32, 54). D's curve is higher at 20% and 40%, C's is higher at 60% and 80%, so neither dominates; their grouped Gini values (0.348 for C, 0.36 for D) rank them, but that ranking depends on how G weights different parts of the curve."
           ]
         },
         {
@@ -239,7 +245,7 @@
           ],
           "paragraphs": [
             "Area form: G = 1 − 2∫₀¹ L(p) dp. With grouped data, approximate the integral by trapezoids: G ≈ 1 − Σₖ (Xₖ − Xₖ₋₁)(Yₖ + Yₖ₋₁), with X₀ = Y₀ = 0. For equal-sized quintiles, each Xₖ − Xₖ₋₁ = 0.2.",
-            "Mean-absolute-difference form, for n listed incomes with mean μ: G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ), where the double sum runs over all ordered pairs (i, j). This is exact for that population, and it gives the same value as the trapezoid formula when each group contains exactly one person, because the straight segments then coincide with the true Lorenz curve. With this n² convention, the largest possible value for n people is (n − 1) ÷ n, reached when one person has everything.",
+            "Mean-absolute-difference form, for n listed incomes with mean μ: G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ), where the double sum runs over all ordered pairs (i, j), including each person paired with themselves. This course uses this population (uncorrected) convention with n² in the denominator. Some texts and software use n(n − 1) instead, a small-sample correction that multiplies the value by n ÷ (n − 1); always check which convention a figure uses. This is exact for that population, and it gives the same value as the trapezoid formula when each group contains exactly one person, because the straight segments then coincide with the true Lorenz curve. With this n² convention, the largest possible value for n people is (n − 1) ÷ n, reached when one person has everything.",
             "When each group contains several people with different incomes, the trapezoid formula treats them as equal, ignores the within-group spread, and returns a value no larger than the exact Gini of those listed incomes. Grouped Gini values are therefore approximations, and comparisons should use the same grouping."
           ]
         },
@@ -305,7 +311,7 @@
         "At 20%, 40%, 60%, and 80% of the population, Country B's cumulative share is higher, so its Lorenz curve lies above Country A's everywhere and closer to the diagonal.",
         "Bottom 40%: 20% − 15% = 5 percentage points more income in Country B."
       ],
-      "answer": "Country B's Lorenz curve lies entirely above Country A's, so B's distribution is more equal. Its bottom 40% receive 20% of income, 5 percentage points more than in Country A.",
+      "answer": "Country B's Lorenz curve lies entirely above Country A's, so B's distribution is more equal by the Gini coefficient and other measures that agree with Lorenz comparisons. Its bottom 40% receive 20% of income, 5 percentage points more than in Country A.",
       "check": {
         "type": "difference",
         "a": 20,
@@ -337,7 +343,7 @@
       "id": "c06-l1-we5",
       "level": "advanced",
       "title": "An exact Gini for five people, and the trapezoid formula agrees",
-      "problem": "Hypothetical example: A village has five people with annual incomes of $10,000, $20,000, $30,000, $40,000, and $100,000. Compute the exact Gini coefficient with G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ). Then compute it with the trapezoid formula, treating each person as a group of 20%.",
+      "problem": "Hypothetical example: A village has five people with annual incomes of $10,000, $20,000, $30,000, $40,000, and $100,000. Compute the exact Gini coefficient with G = Σᵢ Σⱼ |yᵢ − yⱼ| ÷ (2n²μ), the population (n²) convention used in this course. Then compute it with the trapezoid formula, treating each person as a group of 20%.",
       "steps": [
         "Work in thousands of dollars. n = 5, total = 200, mean μ = 40.",
         "Absolute differences for each unordered pair: 10, 20, 30, 90, 10, 20, 80, 10, 70, 60. Their sum is 400, so over all ordered pairs Σᵢ Σⱼ |yᵢ − yⱼ| = 2 × 400 = 800.",
@@ -423,7 +429,7 @@
         ],
         "costs": [
           "It can stay flat even when the bottom 40% falls behind, because different shapes of the Lorenz curve can share the same Gini.",
-          "With grouped data and missing top incomes, it understates inequality."
+          "With grouped data and missing top incomes, it is likely to understate inequality."
         ],
         "assumptions": [
           "The survey covers rich and poor households well, and the grouping is the same each year."
@@ -437,7 +443,7 @@
         ],
         "costs": [
           "It says nothing about changes within the top 60%, such as gains concentrated at the very top.",
-          "Growth rates can jump around from year to year, especially for small groups."
+          "Growth rates can jump around from year to year, especially when survey samples are small."
         ],
         "assumptions": [
           "Incomes of the bottom 40% are measured accurately, including government transfers."

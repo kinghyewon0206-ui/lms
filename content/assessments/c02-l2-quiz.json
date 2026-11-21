@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c02",
   "lesson_id": "c02-l2",
-  "version": 4,
+  "version": 5,
   "title": "Lesson 2 Quiz: Market Equilibrium and Price Formation",
   "description": "This lesson quiz checks what you learned in the lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -30,6 +30,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: numeric items labeled hypothetical; q5 made self-contained (no reference to the previous question). Not reviewed or approved by a human."
       }
     ]
   },
@@ -151,7 +157,7 @@
     },
     {
       "id": "c02-l2-q4",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c02-l2",
       "objective": 1,
@@ -161,7 +167,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "The demand function is Qd = 120 − 3P and the supply function is Qs = 20 + 2P. What is the equilibrium price? (Enter a number only.)",
+      "prompt": "Hypothetical example: The demand function is Qd = 120 − 3P and the supply function is Qs = 20 + 2P. What is the equilibrium price? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",
@@ -171,7 +177,7 @@
     },
     {
       "id": "c02-l2-q5",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c02-l2",
       "objective": 3,
@@ -182,7 +188,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "In the same market (Qd = 120 − 3P, Qs = 20 + 2P), the government sets a price ceiling of 16. How large is the shortage (quantity demanded − quantity supplied)? (Enter a number only.)",
+      "prompt": "Hypothetical example: A market has Qd = 120 − 3P and Qs = 20 + 2P. The government sets a price ceiling of 16. How large is the shortage (quantity demanded − quantity supplied)? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",

@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c06",
   "lesson_id": "c06-l3",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 3 Quiz: Poverty, Social Protection, and Public Finance",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q1 key no longer the only hedged choice; q2 key wording matches the poverty-gap definition; q3 percent-entry instruction; q4 explanation states the static assumption. Not reviewed or approved by a human."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c06-l3-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c06-l3",
       "objective": 1,
@@ -38,7 +44,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Country M uses a relative poverty line equal to 60% of median income. Over ten years, every income in the country grows by 25% after inflation. What happens to measured poverty?",
+      "prompt": "Hypothetical example: Country M uses a relative poverty line equal to 60% of median income. Over ten years, every person's real (inflation-adjusted) income grows by exactly 25%. What happens to measured poverty?",
       "choices": [
         {
           "id": "a",
@@ -54,7 +60,7 @@
         },
         {
           "id": "d",
-          "text": "It stays about the same, because the line rises with incomes"
+          "text": "It stays the same, because the line rises with incomes"
         }
       ],
       "source_ids": [
@@ -63,7 +69,7 @@
     },
     {
       "id": "c06-l3-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c06-l3",
       "objective": 1,
@@ -77,7 +83,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Town Q has a larger poverty gap, so ending poverty there costs more"
+          "text": "Town Q has a larger poverty gap, so closing it takes more money"
         },
         {
           "id": "b",
@@ -98,7 +104,7 @@
     },
     {
       "id": "c06-l3-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c06-l3",
       "objective": 2,
@@ -108,7 +114,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Omar's housing benefit falls by 35 cents for each extra dollar he earns, and he also pays a 10% income tax on extra earnings. He earns $2,000 more this year. What is his effective marginal tax rate? (Enter a number in percent, without the % sign.)",
+      "prompt": "Hypothetical example: Omar's housing benefit falls by 35 cents for each extra dollar he earns, and he also pays a 10% income tax on extra earnings. He earns $2,000 more this year. What is his effective marginal tax rate, in percent? Enter a number only; for example, enter 25 for 25%.",
       "unit": "",
       "source_ids": [
         "openstax-pe3-15-2",

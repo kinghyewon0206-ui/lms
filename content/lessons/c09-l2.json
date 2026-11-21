@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l2",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: SDG discussion given hypothetical estimates and a proportionality assumption so the cost-per-student-day task is determinate, present-value and real-value formulas stated, parallel-trends assumption explained, ratio-ranking rule given its budget and divisibility caveat, marginal rule aligned with MB > MC, one rule for unverified numbers. Not reviewed or approved by a human."
       }
     ]
   },
@@ -129,7 +135,7 @@
           ],
           "paragraphs": [
             "A primary source is where information first appears: survey data, an official statistics release, or a study reporting its own results. A secondary source talks about that information, like a news story or a blog post. Secondary sources are useful for finding your way, but numbers can get changed or rounded as they are passed along. Whenever you can, follow the link back to the original.",
-            "In the Capstone project, the \"Evidence and sources\" field asks for the title, publisher, and date of each source you checked yourself. If you could not check a number, leave it out."
+            "In the Capstone project, the \"Evidence and sources\" field asks for the title, publisher, and date of each source you checked yourself. If you could not check a number, leave it out or label it clearly as an estimate or assumption and say how you got it. Flag any claim you could not verify."
           ]
         },
         {
@@ -149,7 +155,7 @@
             "cost_effectiveness"
           ],
           "paragraphs": [
-            "A simple way to compare options is cost per person reached: total cost ÷ number of people helped. Even better is cost per result, like dollars per extra school day attended. If two programs aim at the same result, the one with the lower cost per result does more with the same budget.",
+            "A simple way to compare options is cost per person reached: total cost ÷ number of people helped. Even better is cost per result, like dollars per extra school day attended. If two programs aim at the same result, the one with the lower cost per result does more with the same budget, as long as its cost per result stays about the same when it grows.",
             "Sometimes you can also put benefits in dollars. If benefits are larger than costs, the option is worth considering; benefits ÷ costs gives the benefit–cost ratio."
           ]
         },
@@ -253,7 +259,7 @@
           ],
           "paragraphs": [
             "Let Y₁ be the outcome with the program and Y₀ without it. The impact on participants is E[Y₁ − Y₀ | participant], but Y₀ is never observed for participants. A naive comparison of participants and non-participants equals the true impact plus a selection-bias term E[Y₀ | participant] − E[Y₀ | non-participant]. Random assignment makes that term zero on average, which is why an experiment can establish cause and effect.",
-            "Without random assignment, a difference-in-differences estimate compares changes: (Y_after − Y_before) for the treated group minus (Y_after − Y_before) for the comparison group. It removes fixed differences between groups and common trends, but it assumes both groups would have followed parallel paths without the program. A correlation coefficient r measures linear association only; even a high r says nothing about which variable causes which."
+            "Without random assignment, a difference-in-differences estimate compares changes: (Y_after − Y_before) for the treated group minus (Y_after − Y_before) for the comparison group. It removes fixed differences between groups and common trends, but it assumes both groups would have followed parallel paths without the program (the parallel-trends assumption). Similar trends in the years before the program make this assumption more believable, but they cannot prove it, because the paths after the program starts without it are never observed. A correlation coefficient r measures linear association only; even a high r says nothing about which variable causes which."
           ]
         },
         {
@@ -262,8 +268,8 @@
             "cost_effectiveness"
           ],
           "paragraphs": [
-            "For a program with cost C and impact ΔY on outcome Y, the cost-effectiveness ratio is C ÷ ΔY (or the impact per $100 spent, 100 × ΔY ÷ C). Multi-year costs are discounted to present value and expressed in the prices of one base year, using a stated discount rate and price index; the order of these adjustments should be applied consistently. Discount real (base-year-price) costs with a real discount rate and nominal costs with a nominal rate; never mix them.",
-            "With monetized benefits B, the benefit–cost ratio is B ÷ C and the net benefit is B − C. Ratios rank options by gain per dollar, while net benefit ranks by total gain, and the two can disagree. A common rule in project appraisal: when a fixed budget must be shared among independent projects, rank them by ratio and fund down the list (corporate finance does this with a similar ratio, the profitability index); when only one of several alternatives of different size can be chosen, pick the one with the largest net benefit. Either ranking is a starting point, not the whole decision. At the margin, expand an activity while marginal benefit ≥ marginal cost; because cheap reductions come first, marginal cost typically rises as coverage grows."
+            "For a program with cost C and impact ΔY on outcome Y, the cost-effectiveness ratio is C ÷ ΔY (or the impact per $100 spent, 100 × ΔY ÷ C). Costs and benefits that occur in different years are expressed in the prices of one base year (real value = nominal value ÷ (price index ÷ 100)) and discounted to present value, PV = Σ Xₜ ÷ (1 + r)ᵗ, where Xₜ is the amount in year t and r the discount rate. Apply these adjustments in the same order for every option. Discount real (base-year-price) amounts with a real discount rate and nominal amounts with a nominal rate; never mix them. The choice of r is partly a value judgment about the present versus the future, so state it and check whether a different rate changes the ranking.",
+            "With monetized benefits B, the benefit–cost ratio is B ÷ C and the net benefit is B − C. Ratios rank options by gain per dollar, while net benefit ranks by total gain, and the two can disagree. A common rule in project appraisal: when a fixed budget must be shared among independent projects, rank them by ratio and fund down the list, stopping before projects with a ratio below 1 (corporate finance does this with a similar ratio, the profitability index). The rule works when projects can be scaled down or the list uses up the budget; when projects are all-or-nothing and the next one does not fit in the money left, a different combination with lower ratios can give a larger total net benefit, so compare the combinations that fit the budget; when only one of several alternatives of different size can be chosen, pick the one with the largest net benefit. Either ranking is a starting point, not the whole decision. At the margin, expand an activity while marginal benefit > marginal cost (at MB = MC the last unit adds nothing either way); because the cheapest units, such as the easiest people to reach or the cheapest reductions, come first, marginal cost typically rises as coverage grows."
           ]
         },
         {
@@ -329,7 +335,7 @@
       "id": "c09-l2-we3",
       "level": "intermediate",
       "title": "A benefit–cost ratio",
-      "problem": "Hypothetical example: A town estimates that a well-maintenance program would cost $100,000 over five years and bring benefits worth $150,000 (lower medical costs and time saved, valued under stated assumptions). What are the benefit–cost ratio and the net benefit?",
+      "problem": "Hypothetical example: A town estimates that a well-maintenance program would cost $100,000 over five years and bring benefits worth $150,000 (lower medical costs and time saved, valued under stated assumptions). Both totals are already expressed in present value. What are the benefit–cost ratio and the net benefit?",
       "steps": [
         "Benefit–cost ratio = benefits ÷ costs = $150,000 ÷ $100,000 = 1.5.",
         "Net benefit = $150,000 − $100,000 = $50,000.",
@@ -432,7 +438,7 @@
     "title": "Raising attendance in Country D",
     "paragraphs": [
       "SDG target 4.1 aims for all girls and boys to complete free, equitable, good-quality primary and secondary education. Target 2.1 aims to end hunger and ensure access to safe, nutritious, and sufficient food all year round, and target 1.3 calls for social protection systems that substantially cover the poor and vulnerable.",
-      "Hypothetical situation: In Country D, attendance in poor rural districts is low. The education ministry has a fixed budget for a pilot and is comparing three options. Local evidence is limited: one option has been evaluated with a comparison group in a similar country, and the others have only before-and-after data."
+      "Hypothetical situation: In Country D, attendance in poor rural districts is low. The education ministry has a fixed budget for a pilot and is comparing three options. Local evidence is limited: one option has been evaluated with a comparison group in a similar country, and the others have only before-and-after data. The ministry's rough estimates for a one-year pilot: free meals would cost $60,000 and add about 1,500 student-days of attendance (before-and-after data); cash transfers would cost $90,000 and add about 1,800 student-days (comparison-group study in another country); tutoring would cost $20,000 in fixed costs plus $30 per participant, with 1,000 participants expected, and add about 800 student-days (before-and-after data)."
     ],
     "options": [
       {
@@ -479,7 +485,7 @@
       }
     ],
     "discussion": [
-      "Which option has the most credible evidence, and why? Compute a cost per extra student-day for each option under the same hypothetical assumptions, then test what happens if take-up or the size of the effect is lower. Who gains and who pays under each option, and which one would you recommend for the pilot?"
+      "Which option has the most credible evidence, and why? Using the ministry's hypothetical estimates, compute the cost per extra student-day for each option. Then test the ranking: what if the true effects of the options with only before-and-after data are half as large as estimated, or only 500 students join the tutoring? (Assume the tutoring's student-days fall in proportion to the number of students who join.) Who gains and who pays under each option, and which one would you recommend for the pilot?"
     ],
     "source_ids": [
       "un-sdg-4",

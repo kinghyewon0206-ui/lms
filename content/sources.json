@@ -1660,7 +1660,8 @@
         "terms_of_trade"
       ],
       "lesson_ids": [
-        "c08-l1"
+        "c08-l1",
+        "c09-l1"
       ],
       "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
       "verification": {
@@ -1851,7 +1852,8 @@
         "forex_market"
       ],
       "lesson_ids": [
-        "c08-l2"
+        "c08-l2",
+        "c09-l1"
       ],
       "license": "CC BY-NC-SA 4.0. OpenStax states that its content may not be used to train large language models without written permission. ECONOVA does not copy the text; it only links to and credits the source.",
       "verification": {

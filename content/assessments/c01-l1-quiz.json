@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l1",
-  "version": 3,
+  "version": 4,
   "title": "Lesson 1 Quiz: Scarcity and Economic Choices",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -30,6 +30,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "c01 correction pass: q5: percentage-entry instruction added; difficulty set to intermediate to match its demand. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q3 difficulty set to beginner (recall of a definition taught at the beginner level). Not reviewed or approved by a human."
       }
     ]
   },
@@ -115,14 +121,14 @@
     },
     {
       "id": "c01-l1-q3",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l1",
       "objective": 2,
       "concept_ids": [
         "economic_systems"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "In which economic system does the government make a plan that decides what to produce, how much to produce, and who gets it?",

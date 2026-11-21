@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c04",
   "lesson_id": "c04-l3",
-  "version": 2,
+  "version": 3,
   "title": "Lesson 3 Quiz: Inflation, Purchasing Power, and Living Standards",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: l3-q2 key no longer the only hedged choice; l3-q5 rewritten to require expected vs. unexpected inflation reasoning (compound average annual rate stated). Lead QA: q5 distractor d made plausible. Lead QA: q5 explanation matches the revised choice d. Not reviewed or approved by a human."
       }
     ]
   },
@@ -46,7 +52,7 @@
     },
     {
       "id": "c04-l3-q2",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l3",
       "objective": 1,
@@ -72,7 +78,7 @@
         },
         {
           "id": "d",
-          "text": "The price level still rose, but by about 3 percent rather than about 6 percent"
+          "text": "The price level still rose, but by 3 percent this year instead of 6 percent"
         }
       ],
       "source_ids": [
@@ -136,33 +142,34 @@
     },
     {
       "id": "c04-l3-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c04-l3",
       "objective": 3,
       "concept_ids": [
-        "price_stability"
+        "price_stability",
+        "inflation_redistribution"
       ],
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Which is the best reason that central banks generally aim for low, stable inflation rather than high or unpredictable inflation?",
+      "prompt": "Hypothetical example: Inflation in Country X is 3% every year, and people expect it. In Country Y, inflation also has a compound average annual rate of 3% over ten years, but it swings unpredictably between −2% and 8%. Why do economists see Country Y's inflation as more costly, even though the average rate is the same?",
       "choices": [
         {
           "id": "a",
-          "text": "Low inflation means that the prices of individual goods stop changing over time"
+          "text": "Country Y has a higher price level at the end of the ten years than Country X"
         },
         {
           "id": "b",
-          "text": "Unpredictable inflation blurs price signals and makes saving and contracts riskier"
+          "text": "Surprise swings make the real value of fixed-dollar loans and wages uncertain"
         },
         {
           "id": "c",
-          "text": "High inflation raises the real wages of workers whose pay is set in fixed dollars"
+          "text": "Years of deflation in Country Y raise the real wages of workers on fixed dollar pay"
         },
         {
           "id": "d",
-          "text": "Stable inflation lets the government set most prices directly instead of markets"
+          "text": "Because the average rate is the same, the swings cost about as much as steady expected inflation"
         }
       ],
       "source_ids": [

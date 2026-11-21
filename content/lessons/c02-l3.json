@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c02-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: slope vs elasticity separated (supply-shock price change = ΔS/(b + d)); midpoint method justified by direction-independence, not exactness; graph caption uses the midpoint method; elasticity definition as a ratio; elastic/inelastic describe demand. Not reviewed or approved by a human."
       }
     ]
   },
@@ -37,7 +43,7 @@
     {
       "id": "price_elasticity_demand",
       "term": "Price elasticity of demand",
-      "definition": "The percentage change in quantity demanded when the price changes by 1%. It is usually stated as an absolute value.",
+      "definition": "The percentage change in quantity demanded divided by the percentage change in price (%ΔQd ÷ %ΔP). Roughly, it tells you by what percent quantity demanded changes when the price changes by 1%. It is usually stated as an absolute value.",
       "source_ids": [
         "openstax-pe3-5-1"
       ]
@@ -69,7 +75,7 @@
     {
       "id": "food_demand_inelastic",
       "term": "Inelastic demand for food",
-      "definition": "Food is a necessity that is hard to replace, so demand for it is usually inelastic. As a result, even a small change in supply can move the price a lot.",
+      "definition": "Food as a whole, and staples such as rice, are necessities with few substitutes, so demand for them is usually inelastic. As a result, even a small change in supply can move the price a lot.",
       "source_ids": [
         "openstax-pe3-5-3"
       ]
@@ -86,8 +92,8 @@
             "elasticity_categories"
           ],
           "paragraphs": [
-            "If the price of chips goes up, you can just buy a different snack or skip it, so the amount people buy drops a lot. We call goods like this elastic.",
-            "For essentials like rice or medicine, it is hard to cut back much even when the price rises. We call goods like this inelastic."
+            "If the price of chips goes up, you can just buy a different snack or skip it, so the amount people buy drops a lot. We say demand for goods like this is elastic.",
+            "For essentials like rice or medicine, it is hard to cut back much even when the price rises. We say demand for goods like this is inelastic."
           ]
         },
         {
@@ -96,7 +102,7 @@
             "midpoint_method"
           ],
           "paragraphs": [
-            "To find elasticity, divide the percentage change in the amount people buy by the percentage change in the price. Because it looks at percentages, not the number of items, you can compare expensive goods with cheap ones. For an exact answer, you calculate each percentage using the value halfway between the before and after amounts. This is called the midpoint method."
+            "To find elasticity, divide the percentage change in the amount people buy by the percentage change in the price. Because it looks at percentages, not the number of items, you can compare expensive goods with cheap ones. A common way to find each percentage is to divide the change by the value halfway between the before and after amounts. This is called the midpoint method, and it gives the same answer whether the price goes up or down."
           ]
         },
         {
@@ -157,7 +163,7 @@
             "food_demand_inelastic"
           ],
           "paragraphs": [
-            "Demand for food is usually inelastic, so the demand curve is steep. On a steep demand curve, the same shift in supply produces a large change in price and a small change in quantity.",
+            "Demand for food is usually inelastic. When two demand curves pass through the same point on the same axes, the less elastic one is steeper there, so the same shift in supply produces a larger change in price and a smaller change in quantity.",
             "That is why a poor harvest tends to cause price spikes and hardship for consumers, while a bumper harvest tends to cause price crashes and lower farm income. Movements in world food prices are tracked continuously by indicators such as the FAO Food Price Index."
           ]
         }
@@ -200,7 +206,7 @@
             "food_demand_inelastic"
           ],
           "paragraphs": [
-            "When supply falls by ΔS, the change in the equilibrium price is roughly inversely related to the slopes (elasticities) of demand and supply. The less elastic demand is, the larger the price change from the same supply shock. This is why prices are so volatile in markets with inelastic demand, such as food.",
+            "In the linear model Qd = a − bP, Qs = c + dP, if supply falls by ΔS units at every price (c falls by ΔS), the equilibrium price rises by ΔS/(b + d). So the price change is inversely related to b + d, the price sensitivity of quantity demanded and supplied (in the graph above, 15 ÷ (0.5 + 1) = 10). The coefficients b and d are not elasticities, but at a given price and quantity a smaller b means less elastic demand. So the less elastic demand is, the larger the price change from the same supply shock. This is why prices are so volatile in markets with inelastic demand, such as food.",
             "By the same logic, when a good is taxed, the less elastic side (the side that finds it harder to respond) bears more of the tax. A tax on food can fall largely on consumers, especially low-income households that spend a large share of their income on food."
           ]
         }
@@ -293,7 +299,7 @@
     {
       "id": "c02-l3-g1",
       "title": "A decrease in supply with inelastic demand",
-      "caption": "Hypothetical example. With a steep (inelastic) demand curve, when supply falls from S1 to S2, the price rises sharply from 40 to 50 (up 25%), while quantity falls only slightly from 40 to 35 (down 12.5%).",
+      "caption": "Hypothetical example. Demand is inelastic in this price range (drawn steep). When supply falls from S1 to S2, the price rises sharply from 40 to 50, while quantity falls only slightly from 40 to 35. With the midpoint method, the price rises about 22% and quantity falls about 13%, an elasticity of 0.6.",
       "axis": {
         "p_max": 80,
         "q_max": 70,

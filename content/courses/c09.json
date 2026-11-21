@@ -13,7 +13,7 @@
   "sdgs": "student_selected",
   "review": {
     "status": "draft",
-    "note": "Course description, objectives, lesson materials and lesson quizzes are AI-written drafts awaiting human review. The capstone guide and rubric (capstone/c09.json) are unchanged drafts that also need human review."
+    "note": "Course description, objectives, lesson materials and lesson quizzes are AI-written drafts awaiting human review. The capstone guide and rubric (capstone/c09.json) are drafts that also need human review; an AI audit on 2026-11-21 rewrote the rubric level descriptions and two step guidance texts without changing steps, weights, or completion rules."
   },
   "estimated_hours": 9,
   "difficulty_levels": [

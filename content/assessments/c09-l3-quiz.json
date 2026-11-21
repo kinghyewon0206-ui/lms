@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c09",
   "lesson_id": "c09-l3",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 3 Quiz: Develop and Present an Economic Policy Proposal",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: shortened the longest-key choice in q1, added the round-only-at-the-final-step instruction to q3, corrected the q3 explanation of the subtract-5%-per-year error. Not reviewed or approved by a human."
       }
     ]
   },
@@ -28,7 +34,7 @@
   "questions": [
     {
       "id": "c09-l3-q1",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c09-l3",
       "objective": 1,
@@ -42,7 +48,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "A repair fund cuts the time students lose fetching water, lowering the opportunity cost of attending school."
+          "text": "A repair fund cuts the time students lose fetching water, which lowers the opportunity cost of school."
         },
         {
           "id": "b",
@@ -101,7 +107,7 @@
     },
     {
       "id": "c09-l3-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c09-l3",
       "objective": 2,
@@ -111,7 +117,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A proposal includes a $22,050 equipment replacement that will be paid two years from now. Using a discount rate of 5% per year, what is the present value of that cost, in dollars? (Enter a number only.)",
+      "prompt": "Hypothetical example: A proposal includes a $22,050 equipment replacement that will be paid two years from now. Using a discount rate of 5% per year, what is the present value of that cost, in dollars? Round only at the final step. (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-17-3",

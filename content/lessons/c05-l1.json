@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c05-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: noted the market-level assumption behind an upward-sloping labor supply curve and narrowed an unsourced claim about technology and skill demand to the model logic. Not reviewed or approved by a human."
       }
     ]
   },
@@ -194,7 +200,7 @@
             "labor_equilibrium"
           ],
           "paragraphs": [
-            "Write labor demand as L_d = a − bW (b > 0) and labor supply as L_s = c + dW (d > 0). The positive slope d reflects the work–leisure trade-off: a higher W raises the opportunity cost of leisure. Setting L_d = L_s gives W* = (a − c)/(b + d) and L* = a − bW*.",
+            "Write labor demand as L_d = a − bW (b > 0) and labor supply as L_s = c + dW (d > 0). The positive slope d reflects the work–leisure trade-off: a higher W raises the opportunity cost of leisure. (This is an assumption about the market as a whole. For one person, a higher wage also raises income, which can lead some people to choose fewer hours, so individual labor supply does not always slope upward.) Setting L_d = L_s gives W* = (a − c)/(b + d) and L* = a − bW*.",
             "At any wage W above W*, the surplus of labor is L_s − L_d = (b + d)(W − W*). At any wage below W*, the shortage is (b + d)(W* − W). Market pressure pushes W toward W*."
           ]
         },
@@ -339,7 +345,7 @@
         "openstax-pe3-4-1"
       ],
       "paragraphs": [
-        "New technology can complement workers, making them more productive and raising the demand for their labor, or it can substitute for workers, doing tasks they used to do. Economists have linked technological change to rising demand for highly skilled workers and weaker demand for some lower-skill jobs, which can widen the gap between their wages."
+        "New technology can complement workers, making them more productive and raising the demand for their labor, or it can substitute for workers, doing tasks they used to do. When technology complements some workers and substitutes for others, demand for the first group rises while demand for the second falls, which can widen the gap between their wages."
       ]
     }
   ],

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l2",
-  "content_version": 5,
+  "content_version": 6,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -37,12 +37,18 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: deposit rates now use 'interest rate' and APY (APR reserved for loans and credit cards, with the daily-rate note); approximation-direction example placed with its case; amortization statement made precise; grace-period sentence labeled as a U.S. example. Not reviewed or approved by a human."
       }
     ]
   },
   "objectives": [
     "Explain why people save, what an emergency fund is for, and why it is usually kept where it can be reached quickly.",
-    "Calculate and compare simple and compound interest, including the effect of compounding frequency (APR vs. APY).",
+    "Calculate and compare simple and compound interest, including the effect of compounding frequency (stated interest rate vs. APY), and explain what a loan's APR measures.",
     "Convert a nominal return into a real return using inflation, and explain how interest, fees, and minimum payments affect the cost of borrowing."
   ],
   "concepts": [
@@ -73,8 +79,8 @@
     },
     {
       "id": "apr_apy",
-      "term": "APR vs. APY and rate units",
-      "definition": "Interest rates are usually stated per year. The annual percentage rate (APR) is the yearly rate before compounding; the rate per period is APR ÷ n. The annual percentage yield (APY) includes the effect of compounding within the year: APY = (1 + APR/n)^n − 1. For loans, the APR can also include certain fees, depending on the rules for that type of loan, so it is a broader measure of borrowing cost than the interest rate alone.",
+      "term": "Interest rate, APY, and APR",
+      "definition": "Interest rates are usually stated per year. For savings, the stated annual interest rate r does not include compounding; the rate per period is r ÷ n. The annual percentage yield (APY) includes the effect of compounding within the year: APY = (1 + r/n)^n − 1. For loans and credit cards, the cost is stated as an annual percentage rate (APR), which is also a yearly rate before compounding (a card's monthly rate is roughly APR ÷ 12; many cards apply a daily rate of APR ÷ 365). For many loans, the APR also includes certain fees, depending on the rules for that type of loan, so it is a broader measure of borrowing cost than the interest rate alone. In short: compare savings accounts by APY and loans by APR.",
       "source_ids": [
         "cfpb-reg-dd-apy",
         "cfpb-mortgage-apr",
@@ -134,7 +140,7 @@
             "real_return"
           ],
           "paragraphs": [
-            "Rates are usually given per year. The APR is the yearly rate before compounding. The APY shows what you actually earn in a year once compounding is included, so the APY is a little higher than the APR when interest is added more than once a year. When comparing savings accounts, compare APYs.",
+            "Rates are usually given per year. A savings account lists an interest rate and an APY (annual percentage yield). The APY shows what you actually earn in a year once compounding is included, so it is a little higher than the interest rate when interest is added more than once a year. When comparing savings accounts, compare APYs. When you borrow, the yearly cost is shown as an APR (annual percentage rate).",
             "Prices also rise over time (inflation). If your savings earn 5% but prices rise 3%, your money grows in dollars, but what it can buy grows by only about 2%. That is the difference between a nominal return and a real return."
           ]
         },
@@ -144,7 +150,7 @@
             "borrowing_cost"
           ],
           "paragraphs": [
-            "When you borrow, you pay interest instead of earning it. If you carry a credit card balance, interest is added each month. On many cards, you can avoid interest on purchases by paying the full balance by the due date. Paying only the minimum keeps the balance around for a long time, and you end up paying much more interest. Fees, like late fees, add to the cost too."
+            "When you borrow, you pay interest instead of earning it. If you carry a credit card balance, interest is added each month. On many cards, you can avoid interest on purchases by paying the full balance by the due date (U.S. example; rules differ by country). Paying only the minimum keeps the balance around for a long time, and you end up paying much more interest. Fees, like late fees, add to the cost too."
           ]
         }
       ]
@@ -179,7 +185,7 @@
             "apr_apy"
           ],
           "paragraphs": [
-            "Always check the units of a rate. A 6% APR compounded monthly means 6% ÷ 12 = 0.5% per month. Over a year, the balance grows by (1.005)^12 ≈ 1.0617, so the APY is about 6.17%. More frequent compounding raises the APY slightly: at a 6% APR, quarterly compounding gives an APY of about 6.14% and daily compounding (365 days) about 6.18%.",
+            "Always check the units of a rate. A savings account with a 6% interest rate compounded monthly earns 6% ÷ 12 = 0.5% per month. Over a year, the balance grows by (1.005)^12 ≈ 1.0617, so the APY is about 6.17%. More frequent compounding raises the APY slightly: at a 6% interest rate, quarterly compounding gives an APY of about 6.14% and daily compounding (365 days) about 6.18%.",
             "U.S. rules require deposit accounts to state an APY that reflects both the rate and the compounding frequency, which makes accounts comparable. For loans, the APR is a broader measure than the interest rate because it can include some fees (for example, certain charges paid to get a mortgage). The exact fees included depend on the type of loan and the rules that apply. These are U.S. examples; financial rules, protections, and agencies differ from country to country, so check the rules where you live."
           ]
         },
@@ -227,7 +233,7 @@
           ],
           "paragraphs": [
             "APY = (1 + r/n)^n − 1, which increases with n and approaches e^r − 1 as n → ∞. At r = 6%: n = 1 gives 6.00%, n = 4 gives 6.136%, n = 12 gives 6.168%, n = 365 gives 6.183%. U.S. deposit rules (Regulation DD) define the APY so that it reflects both the interest rate and the compounding frequency (U.S. example; rules differ by country). On loans, the disclosed APR can fold certain fees into the rate, so two loans with the same interest rate can have different APRs.",
-            "Exact real return: i_real = (1 + i) ÷ (1 + π) − 1. The approximation i_real ≈ i − π ignores the cross term and overstates the real return slightly when π > 0 and the real return is positive, and understates it when the nominal rate is below inflation (5% nominal, 3% inflation: exact 1.942%, approximate 2%). Over many years, real growth compounds too: the real value after t years is P[(1 + i) ÷ (1 + π)]^t. Past returns do not guarantee future returns, so any long-run projection is an illustration that depends on its assumptions."
+            "Exact real return: i_real = (1 + i) ÷ (1 + π) − 1. The approximation i_real ≈ i − π ignores the cross term. When π > 0, it overstates the real return slightly when the real return is positive (5% nominal, 3% inflation: exact 1.942%, approximate 2%), and it understates the real return (makes it look more negative) when the nominal rate is below inflation. Over many years, real growth compounds too: the real value after t years is P[(1 + i) ÷ (1 + π)]^t. Past returns do not guarantee future returns, so any long-run projection is an illustration that depends on its assumptions."
           ]
         },
         {
@@ -236,7 +242,7 @@
             "borrowing_cost"
           ],
           "paragraphs": [
-            "For a loan of P repaid in N equal payments at rate j per period, the payment is M = P·j ÷ (1 − (1 + j)^(−N)). Each payment covers that period's interest on the remaining balance, and the rest reduces the principal, so interest charges fall over time. Total interest is N·M − P, which is less than P × r × t because the balance shrinks.",
+            "For a loan of P repaid in N equal payments at rate j per period, the payment is M = P·j ÷ (1 − (1 + j)^(−N)). Each payment covers that period's interest on the remaining balance, and the rest reduces the principal, so interest charges fall over time. Total interest is N·M − P, which is less than P × r × t when N > 1 because the balance shrinks.",
             "A minimum payment that is close to the interest charge j·B reduces the balance B very slowly, so the number of payments, and total interest, become large. In the limit where the payment equals j·B, the balance never falls. Fees (origination, late, or annual fees) raise the true cost beyond what the interest rate alone suggests."
           ]
         }
@@ -292,14 +298,14 @@
     {
       "id": "c07-l2-we3",
       "level": "intermediate",
-      "title": "From APR to APY",
-      "problem": "Hypothetical example: Bank A offers a savings account with a 6% APR compounded monthly. What is the rate per month, and what is the APY? Round the APY to two decimal places.",
+      "title": "From a stated interest rate to APY",
+      "problem": "Hypothetical example: Bank A offers a savings account with a 6% interest rate (stated per year) compounded monthly. What is the rate per month, and what is the APY? Round the APY to two decimal places.",
       "steps": [
         "Rate per month = 6% ÷ 12 = 0.5% = 0.005.",
         "Growth factor over one year = (1.005)^12 ≈ 1.061678.",
         "APY = 1.061678 − 1 ≈ 0.0617, or about 6.17%."
       ],
-      "answer": "The monthly rate is 0.5%, and the APY is about 6.17%, slightly higher than the 6% APR because of monthly compounding.",
+      "answer": "The monthly rate is 0.5%, and the APY is about 6.17%, slightly higher than the 6% stated rate because of monthly compounding.",
       "check": {
         "type": "product",
         "factors": [
@@ -449,7 +455,7 @@
   "key_takeaways": [
     "An emergency fund is saving for surprises; it is usually kept where it is safe and easy to reach.",
     "Simple interest: I = P × r × t. Compound interest: A = P(1 + r/n)^(n·t). Compounding earns interest on interest, so the gap grows over time.",
-    "APY = (1 + APR/n)^n − 1 shows the yearly effect of compounding; compare savings accounts by APY. A loan's APR can include certain fees.",
+    "APY = (1 + r/n)^n − 1 shows the yearly effect of compounding on a stated rate r; compare savings accounts by APY. Loans and cards state an APR, which can include certain fees.",
     "Real return = (1 + nominal) ÷ (1 + inflation) − 1; the shortcut nominal − inflation is close for small rates.",
     "Interest, fees, and slow repayment raise the cost of debt; paying only the minimum can keep a balance for years. Past returns do not guarantee future returns."
   ],

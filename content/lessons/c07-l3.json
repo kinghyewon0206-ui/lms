@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: U.S. deposit-insurance mentions labeled at beginner and intermediate levels; financial inclusion definition marked as a broad description; FTC list reworded. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: stock-return claim scoped to long-period U.S. data with risk caveat; SDG option no longer assumes deposit insurance in Country T; default-pricing model assumption stated; single-cause 'which is why' claims softened to 'one reason'; diversification described, not recommended. Not reviewed or approved by a human."
       }
     ]
   },
@@ -158,7 +164,7 @@
             "fraud_scams"
           ],
           "paragraphs": [
-            "Market risk is the chance that asset prices fall; stock prices, for example, can swing widely in the short run. Inflation risk is the chance that rising prices reduce the real value of savings or fixed payments (Course 4). Credit or default risk is the chance that a borrower does not repay; lenders charge riskier borrowers higher rates to make up for it, which is why corporate bonds usually pay more than government bonds. Liquidity risk is the chance that you cannot turn an asset into cash quickly without a loss or penalty.",
+            "Market risk is the chance that asset prices fall; stock prices, for example, can swing widely in the short run. Inflation risk is the chance that rising prices reduce the real value of savings or fixed payments (Course 4). Credit or default risk is the chance that a borrower does not repay; lenders charge riskier borrowers higher rates to make up for it. This is one reason corporate bonds usually pay more than government bonds; differences in liquidity and taxes also matter. Liquidity risk is the chance that you cannot turn an asset into cash quickly without a loss or penalty.",
             "Fraud risk works differently: the loss comes from deception, not from the market. Typical signs are impersonation, a surprise problem or prize, pressure to act now, and unusual payment methods. Because scammers create urgency, a simple rule helps: slow down, do not share personal or financial information after an unexpected request, and verify through a contact you already trust."
           ]
         },
@@ -169,7 +175,7 @@
             "diversification"
           ],
           "paragraphs": [
-            "Investors generally require a higher average return to hold riskier assets. Insured bank deposits have low risk and low return (up to the insurance limit; U.S. example: FDIC insurance; rules differ by country); bonds are usually in the middle; stocks have historically offered higher average returns with much larger ups and downs. These are general patterns, not promises: past returns do not guarantee future returns.",
+            "Investors generally require a higher average return to hold riskier assets. Insured bank deposits have low risk and low return (up to the insurance limit; U.S. example: FDIC insurance; rules differ by country); bonds are usually in the middle. Over long periods, U.S. stocks as a group have had higher average returns than bonds or bank accounts, but with much larger ups and downs, including sharp falls such as in 2008. Other countries and other time periods can look different. These are general patterns, not promises: past returns do not guarantee future returns.",
             "Diversification spreads money across many assets whose results do not move together perfectly. Company-specific events, such as one firm's failed product, then have a small effect on the total. But events that hit the whole market, like a recession, affect most assets at once, so diversification reduces risk without eliminating it."
           ]
         },
@@ -196,7 +202,7 @@
       ]
     },
     "advanced": {
-      "summary": "Expected return E[R] = Σ pₛ·Rₛ summarizes the average outcome; risk describes the spread of outcomes. Lenders price default risk by requiring (1 + i)(1 − d) = 1 + i* for expected loss share d. Diversification lowers the weight of any single asset, but common (market-wide) shocks remain. Inclusion lowers transaction costs and widens access to saving, credit, and insurance.",
+      "summary": "Expected return E[R] = Σ pₛ·Rₛ summarizes the average outcome; risk describes the spread of outcomes. In a simple model with no recovery on defaulted loans, lenders price default risk by requiring (1 + i)(1 − d) = 1 + i* for expected loss share d. Diversification lowers the weight of any single asset, but common (market-wide) shocks remain. Inclusion lowers transaction costs and widens access to saving, credit, and insurance.",
       "sections": [
         {
           "heading": "Pricing risk",
@@ -236,7 +242,7 @@
             "digital_finance"
           ],
           "paragraphs": [
-            "Exclusion raises the cost of basic financial activities. Without an account, saving is riskier (cash can be lost or stolen), payments cost more, and borrowing often comes from informal lenders at high rates. Insurance markets that pool risk across many households are out of reach, so a single shock can push a household into poverty. Digital services lower the fixed cost of serving small, remote customers, which is why mobile money spread quickly in places where bank branches were scarce.",
+            "Exclusion raises the cost of basic financial activities. Without an account, saving is riskier (cash can be lost or stolen), payments cost more, and borrowing often comes from informal lenders at high rates. Insurance markets that pool risk across many households are out of reach, so a single shock can push a household into poverty. Digital services lower the fixed cost of serving small, remote customers, which is one reason mobile money spread quickly in places where bank branches were scarce.",
             "Measured inclusion is usually account ownership, but use matters too: saving in an account, receiving payments digitally, and being able to get emergency money. Policy therefore combines access (target 8.10) with consumer protection, because new channels also bring fraud, data misuse, and high-cost credit. Equal access for the poor and vulnerable is part of target 1.4."
           ]
         }
@@ -352,7 +358,7 @@
         "openstax-pe3-17-3"
       ],
       "paragraphs": [
-        "Economics textbooks compare bank accounts, bonds, stocks, and other assets by return, risk, and liquidity: safer assets tend to pay less, and stocks have offered higher average returns with large short-run swings. They recommend diversification, often through funds that hold many companies, and note that many professionally managed funds have not beaten the market average, because future price changes are hard to predict."
+        "Economics textbooks compare bank accounts, bonds, stocks, and other assets by return, risk, and liquidity: safer assets tend to pay less, and, over extended periods in U.S. data, stocks as a group have offered higher average returns, with large short-run swings and occasional sharp falls. They explain why diversification, often through funds that hold many companies, reduces risk, and note that many professionally managed funds have not beaten the market average, because future price changes are hard to predict."
       ]
     },
     {
@@ -403,7 +409,7 @@
       {
         "name": "Require banks to offer a basic low-fee account to everyone",
         "benefits": [
-          "Accounts come with deposit protection and a path to other services.",
+          "Money is held at supervised banks, with a path to other services.",
           "Uses existing regulated institutions (target 8.10)."
         ],
         "costs": [
@@ -411,7 +417,8 @@
           "Low-fee accounts may be costly for banks, which may push fees elsewhere."
         ],
         "assumptions": [
-          "People have the identification needed to open an account."
+          "People have the identification needed to open an account.",
+          "If deposits are to be protected, Country T has deposit insurance that covers these accounts."
         ]
       },
       {

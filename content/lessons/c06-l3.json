@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l3",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: benefit cliff distinguished from a phase-out (incl. worked example 5); beginner targeted/universal claims hedged like other levels; Eurostat threshold defined precisely; work-requirement evidence status stated; worked example 5 states the cliff in the problem; independent AI review follow-ups. Not reviewed or approved by a human."
       }
     ]
   },
@@ -43,7 +49,7 @@
     {
       "id": "poverty_line",
       "term": "Absolute and relative poverty lines",
-      "definition": "A poverty line is the income below which a person or household is counted as poor. An absolute line is a fixed amount of real income, often based on the cost of basic needs such as food. A relative line moves with typical incomes, for example 50% or 60% of the median income; the European Union's at-risk-of-poverty threshold uses 60% of the national median. Choosing the method and the level is a policy decision, so different lines give different poverty counts.",
+      "definition": "A poverty line is the income below which a person or household is counted as poor. An absolute line is a fixed amount of real income, often based on the cost of basic needs such as food. A relative line moves with typical incomes, for example 50% or 60% of the median income. The European Union's at-risk-of-poverty threshold is 60% of the national median equivalised disposable income (income after taxes and social transfers, adjusted for household size); Eurostat notes that this indicator measures low income compared with other residents, not wealth or poverty as such. Choosing the method and the level is a policy decision, so different lines give different poverty counts.",
       "source_ids": [
         "openstax-pe3-15-1",
         "worldbank-measuring-poverty",
@@ -71,7 +77,7 @@
     {
       "id": "poverty_trap",
       "term": "Poverty trap and effective marginal tax rate",
-      "definition": "When benefits fall as earnings rise, each extra dollar earned brings less than a dollar of extra income. The share of an extra dollar lost to benefit cuts and taxes is the effective marginal tax rate. If it is close to 100%, working more barely raises income: a poverty trap. Phasing benefits out more slowly keeps more reward for work but costs more.",
+      "definition": "When benefits fall as earnings rise, each extra dollar earned brings less than a dollar of extra income. The share of an extra dollar lost to benefit cuts and taxes is the effective marginal tax rate. If it is close to 100%, working more barely raises income: a poverty trap. A benefit that stops all at once at an income limit (a benefit cliff) is the extreme case: one more dollar earned can lower total income. For the same starting benefit, phasing benefits out more slowly keeps more reward for work but costs more.",
       "source_ids": [
         "openstax-pe3-15-2",
         "openstax-pe3-15-3"
@@ -80,7 +86,7 @@
     {
       "id": "targeting_universality",
       "term": "Targeting vs. universality",
-      "definition": "Targeted (means-tested) programs pay only people below an income limit, so they usually cost less per dollar that reaches the poor, but they need more administration, can miss eligible people who do not apply, and create phase-outs. Universal programs pay everyone in a group, so they can reach nearly all the poor in that group and are simpler to run, but they cost much more in total. How these trade-offs balance depends on the program and the country.",
+      "definition": "Targeted (means-tested) programs pay only people below an income limit, so they usually cost less per dollar that reaches the poor, but they need more administration, can miss eligible people who do not apply, and create phase-outs or cliffs. Universal programs pay everyone in a group, so they can reach nearly all the poor in that group and are simpler to run, but they cost much more in total before counting the taxes that richer recipients pay back. How these trade-offs balance depends on the program and the country.",
       "source_ids": [
         "openstax-pe3-15-3",
         "openstax-pe3-15-2"
@@ -142,7 +148,7 @@
             "poverty_trap"
           ],
           "paragraphs": [
-            "Many benefits shrink as a family earns more, so the help goes to the people who need it most. But if benefits shrink too fast, working extra hours barely raises the family's income. Hypothetical example: if a benefit falls by $1 for every $1 earned, a parent who takes on more work ends up with the same total income. That is called a poverty trap.",
+            "Many benefits shrink as a family earns more, so the help goes to the people who need it most. But if benefits shrink too fast, working extra hours barely raises the family's income. Hypothetical example: if a benefit falls by $1 for every $1 earned, a parent who takes on more work ends up with the same total income. That is called a poverty trap. Some benefits stop all at once at an income limit instead, which is called a benefit cliff: earning one more dollar can leave the family with less.",
             "A slower phase-out, such as cutting the benefit by 40 cents for each extra dollar, lets workers keep more of what they earn. The trade-off is cost: the government keeps paying some benefit to more families."
           ]
         },
@@ -153,7 +159,7 @@
             "public_finance"
           ],
           "paragraphs": [
-            "A targeted program pays only families below an income limit. It is cheaper, but families must apply and prove their income, and some who qualify never sign up. A universal program pays everyone in a group, such as all children. It reaches every poor child and is simple, but it costs much more because rich families get it too.",
+            "A targeted program pays only families below an income limit. It usually costs less in total, but families must apply and prove their income, and some who qualify never sign up. A universal program pays everyone in a group, such as all children. It can reach nearly every poor child if families are registered and payments work, and it is simpler to run, but it costs much more because rich families get it too. Which design works better depends on the country and the program.",
             "Every program has to be paid for with taxes, borrowing, or cuts to something else. A good policy question is always: who pays, and what do we give up?"
           ]
         },
@@ -163,13 +169,13 @@
             "economic_mobility"
           ],
           "paragraphs": [
-            "Economic mobility means being able to move up the income ladder during your life or compared with your parents. Children from poorer families often start with fewer resources, weaker schools, and fewer connections. Early childhood programs, good schools, and job training try to give every child a fair chance. They take years to pay off, but they work on the causes of poverty, not only the symptoms."
+            "Economic mobility means being able to move up the income ladder during your life or compared with your parents. Children from poorer families often start with fewer resources, weaker schools, and fewer connections. Early childhood programs, good schools, and job training try to give every child a fair chance. They take years to pay off, and how much they help is still studied, but they aim at some causes of poverty, not only the symptoms."
           ]
         }
       ]
     },
     "intermediate": {
-      "summary": "Poverty measures depend on the line chosen and on whether you count heads or gaps. Social protection programs differ in coverage, cost, and incentives: phase-outs raise effective marginal tax rates, targeting saves money but misses people, and every option must fit a budget.",
+      "summary": "Poverty measures depend on the line chosen and on whether you count heads or gaps. Social protection programs differ in coverage, cost, and incentives: phase-outs raise effective marginal tax rates, targeting usually costs less but can miss people, and every option must fit a budget.",
       "sections": [
         {
           "heading": "Poverty lines as policy choices",
@@ -197,8 +203,8 @@
             "poverty_trap"
           ],
           "paragraphs": [
-            "If a benefit falls by φ dollars for each extra dollar earned (the phase-out rate) and income or payroll taxes take t of each extra dollar, the effective marginal tax rate is about φ + t. Several programs phasing out over the same income range can push the combined rate near or above 100%, which is the poverty trap. Work costs such as child care and transportation shrink the gain further.",
-            "Slower phase-outs, work requirements, and earnings-based credits are ways to soften the trap. A slower phase-out means benefits reach higher up the income scale, so the program costs more. It is arithmetic that a higher effective marginal rate lowers the gain from working more; how many people actually change their hours is an empirical question."
+            "If a benefit falls by φ dollars for each extra dollar earned (the phase-out rate) and income or payroll taxes take t of each extra dollar, the effective marginal tax rate is about φ + t. Several programs phasing out over the same income range can push the combined rate near or above 100%, which is the poverty trap. A benefit cliff, where a benefit stops all at once at an income limit, is the extreme case: over that step, the effective rate is above 100%. Work costs such as child care and transportation shrink the gain further.",
+            "Slower phase-outs and earnings-based credits lower effective marginal tax rates. Work requirements take a different approach: they make work a condition of receiving benefits, and economists disagree about how much they raise employment and how much hardship they cause. For the same starting benefit, a slower phase-out means benefits reach higher up the income scale, so the program costs more. It is arithmetic that a higher effective marginal rate lowers the gain from working more; how many people actually change their hours is an empirical question."
           ]
         },
         {
@@ -208,7 +214,7 @@
             "public_finance"
           ],
           "paragraphs": [
-            "Targeted programs aim money at the poor, so a given budget can provide larger benefits to each poor household. Their weaknesses are administrative cost, incomplete take-up (some eligible people do not apply, because of complexity, lack of information, or stigma), errors that leave out eligible people, and phase-outs that raise marginal rates. Universal programs have high coverage and low administrative cost per person and no phase-out, but a much larger gross budget, part of which comes back from richer households through the taxes that finance it.",
+            "Targeted programs aim money at the poor, so a given budget can provide larger benefits to each poor household. Their weaknesses are administrative cost, incomplete take-up (some eligible people do not apply, because of complexity, lack of information, or stigma), errors that leave out eligible people, and phase-outs that raise marginal rates. Universal programs usually have high coverage, low administrative cost per person, and no phase-out, but a much larger gross budget, part of which comes back from richer households through the taxes that finance it.",
             "Comparing options requires the budget constraint: the required revenue divided by the tax base gives the tax rate needed. Who pays depends on the tax used: a progressive income tax, a flat tax, or a sales tax spreads the burden differently. Borrowing shifts the cost to the future, and cutting other spending gives up other goals."
           ]
         },
@@ -252,7 +258,7 @@
             "poverty_trap"
           ],
           "paragraphs": [
-            "The effective marginal tax rate is EMTR(y) = dN ÷ dy = T′(y) − B′(y). With a benefit B(y) = max(0, b − φy) and a tax rate t, EMTR = t + φ in the phase-out range. Stacking k programs with phase-out rates φ₁, …, φₖ over the same range gives EMTR = t + φ₁ + … + φₖ, which can exceed 1.",
+            "The effective marginal tax rate is EMTR(y) = dN ÷ dy = T′(y) − B′(y). With a benefit B(y) = max(0, b − φy) and a tax rate t, EMTR = t + φ in the phase-out range. Stacking k programs with phase-out rates φ₁, …, φₖ over the same range gives EMTR = t + φ₁ + … + φₖ, which can exceed 1. A cliff is different from a phase-out: if B(y) = b for y ≤ ȳ and 0 above ȳ, N(y) jumps by b at ȳ, so over a small step Δ past ȳ the effective rate is roughly t + b ÷ Δ, far above 100%.",
             "For a guarantee b and phase-out rate φ, the benefit ends at break-even income y* = b ÷ φ. Lowering φ cuts the EMTR but raises y*, extending benefits to more households and raising cost. This is a mechanical trade-off. How strongly people's decisions to work, and how many hours to work, respond to the EMTR is an empirical matter: studies reach different estimates for different groups, programs, and settings, so the size of the response should be treated as uncertain."
           ]
         },
@@ -359,7 +365,7 @@
       "id": "c06-l3-we5",
       "level": "advanced",
       "title": "Universal vs. targeted: cost per dollar reaching the poor",
-      "problem": "Hypothetical example: A region has 1,000 households, 150 of them poor. Option U pays $2,000 to every household with administrative costs of 2% of payments. Option T pays $2,000 only to poor households who apply; take-up is 80%, and administrative costs are 10% of payments. Compare total cost, dollars reaching poor households, and cost per dollar reaching the poor.",
+      "problem": "Hypothetical example: A region has 1,000 households, 150 of them poor. Option U pays $2,000 to every household with administrative costs of 2% of payments. Option T pays $2,000 only to poor households who apply, and the payment stops all at once for any household whose income rises above the eligibility line; take-up is 80%, and administrative costs are 10% of payments. Compare total cost, dollars reaching poor households, and cost per dollar reaching the poor.",
       "steps": [
         "Option U: payments = 1,000 × $2,000 = $2,000,000; total cost = 1.02 × $2,000,000 = $2,040,000. Poor households receive 150 × $2,000 = $300,000.",
         "Option U cost per dollar reaching the poor = $2,040,000 ÷ $300,000 = 6.8.",
@@ -367,7 +373,7 @@
         "Option T cost per dollar reaching the poor = $264,000 ÷ $240,000 = 1.1.",
         "Coverage of poor households: Option U 100%; Option T 80% (30 eligible households get nothing)."
       ],
-      "answer": "Option U costs $2,040,000, or $6.80 per dollar reaching the poor, but covers every poor household. Option T costs $264,000, or $1.10 per dollar reaching the poor, but misses 30 poor households and needs a phase-out. Neither is better on every measure.",
+      "answer": "Option U costs $2,040,000, or $6.80 per dollar reaching the poor, but covers every poor household. Option T costs $264,000, or $1.10 per dollar reaching the poor, but misses 30 poor households. Because Option T stops all at once at the eligibility line (a benefit cliff), a household that earns a little more and crosses the line loses the whole $2,000; replacing the cliff with a gradual phase-out would cost more. Neither is better on every measure.",
       "check": {
         "type": "ratio",
         "numerator": 2040000,
@@ -439,7 +445,7 @@
       {
         "name": "A universal child benefit paid for every child",
         "benefits": [
-          "Reaches every poor child without applications, so coverage is high and administration is simple.",
+          "Can reach nearly every poor child without applications, so coverage is high and administration is simpler.",
           "Has no phase-out of its own, so it adds no benefit-withdrawal effect to marginal tax rates, though the taxes that fund it do add to marginal rates."
         ],
         "costs": [
@@ -454,7 +460,7 @@
         "name": "A means-tested cash transfer for low-income families",
         "benefits": [
           "Concentrates the budget on poor families, so each payment can be much larger.",
-          "Costs less per dollar reaching the poor."
+          "Usually costs less per dollar reaching the poor, if incomes can be checked reasonably well."
         ],
         "costs": [
           "Verifying informal incomes is hard and costly, and some eligible families will be missed.",
@@ -492,8 +498,8 @@
   "key_takeaways": [
     "An absolute poverty line is fixed in real terms; a relative line moves with typical incomes. Either way, the line is a policy choice.",
     "The poverty rate counts how many are poor; the poverty gap measures how far below the line they are.",
-    "When benefits shrink as earnings rise, the effective marginal tax rate rises; near 100%, it creates a poverty trap. Slower phase-outs help incentives but cost more.",
-    "Targeted programs cost less per dollar reaching the poor but miss some eligible people and create phase-outs; universal programs cover everyone but need larger budgets.",
+    "When benefits shrink as earnings rise, the effective marginal tax rate rises; near 100%, it creates a poverty trap, and a benefit cliff can push it above 100%. Slower phase-outs help incentives but cost more.",
+    "Targeted programs usually cost less per dollar reaching the poor but can miss eligible people and create phase-outs or cliffs; universal programs can cover nearly everyone in the group but need larger gross budgets.",
     "Every program faces a budget constraint: ask who pays, what tax rate is needed, and what is given up.",
     "Human-capital policies aim to raise economic mobility; their direction is widely supported, but the size of long-run effects is debated."
   ],

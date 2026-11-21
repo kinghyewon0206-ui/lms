@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l1",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "c01 correction pass after human-review preparation: economics definition, scarcity example, budget-constraint condition, price-ratio example, systems sentence. Edited by Claude Code (AI); not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: tradeoff and budget conditions; allocation-by-price wording; mixed-economy sentence no longer value-laden; independent review: water-scarcity wording; specialization acts like better organization or technology. Not reviewed or approved by a human."
       }
     ]
   },
@@ -53,7 +59,7 @@
     {
       "id": "tradeoff",
       "term": "Trade-off",
-      "definition": "With limited resources, getting more of one thing means getting less of something else. Whenever a budget or the time available is fixed, trade-offs appear.",
+      "definition": "With limited resources, getting more of one thing means getting less of something else. When a fixed budget or a fixed amount of time is fully used, trade-offs appear.",
       "source_ids": [
         "openstax-pe3-2-1"
       ]
@@ -139,7 +145,7 @@
             "economics"
           ],
           "paragraphs": [
-            "Scarcity does not mean \"there is only a little of something.\" It means \"there is less than people want.\" In most places, ordinary outdoor air is available to everyone in the amount they want at no cost, so it is not scarce (although clean air can be scarce in heavily polluted cities). Clean water is abundant on Earth as a whole, yet it is scarce in regions where demand exceeds the supply. Economics analyzes the criteria that individuals, businesses, and governments use to choose under scarcity and how those choices affect one another."
+            "Scarcity does not mean \"there is only a little of something.\" It means \"there is less than people want.\" In most places, ordinary outdoor air is available to everyone in the amount they want at no cost, so it is not scarce (although clean air can be scarce in heavily polluted cities). Water is plentiful on Earth as a whole, yet clean fresh water is scarce in regions where people want more of it than is available. Economics analyzes the criteria that individuals, businesses, and governments use to choose under scarcity and how those choices affect one another."
           ]
         },
         {
@@ -148,7 +154,7 @@
             "tradeoff"
           ],
           "paragraphs": [
-            "When budgets, time, and resources are fixed, choosing more of one thing necessarily means less of another. Understanding this relationship frees you from the illusion that you can do everything and lets you compare what is worth giving up, and how much. The next lesson measures the value of what you give up more precisely, using the idea of opportunity cost."
+            "When budgets, time, and resources are fixed and already fully used, choosing more of one thing means choosing less of another. Understanding this relationship frees you from the illusion that you can do everything and lets you compare what is worth giving up, and how much. The next lesson measures the value of what you give up more precisely, using the idea of opportunity cost."
           ]
         },
         {
@@ -194,7 +200,7 @@
             "economic_systems"
           ],
           "paragraphs": [
-            "Scarce resources can be allocated by price (markets), by plans and rules (government), by custom (tradition), first come, first served, by lottery, or according to need. Allocation by price tends to send goods to those who value them most and can be efficient, but people who cannot pay may go without even when their need is great. First come, first served makes people pay with time (waiting in line) instead of money, and a lottery looks fair but may not send goods to those who need them most. A mixed economy manages these trade-offs by allocating most goods through markets. The government intervenes in areas where equity matters most, such as health care, education, and a minimum standard of living."
+            "Scarce resources can be allocated by price (markets), by plans and rules (government), by custom (tradition), first come, first served, by lottery, or according to need. Allocation by price tends to send goods to those who are willing and able to pay the most, which can be efficient, but people who cannot pay may go without even when their need is great. First come, first served makes people pay with time (waiting in line) instead of money, and a lottery looks fair but may not send goods to those who need them most. Mixed economies combine these methods: most goods are allocated through markets, while governments also provide or fund some services, such as education, health care, and income support. The balance differs from country to country, and people disagree about the right balance because it depends on value judgments about efficiency and equity."
           ]
         },
         {
@@ -203,7 +209,7 @@
             "specialization"
           ],
           "paragraphs": [
-            "Because the division of labor yields more output from the same inputs, it pushes outward the range of combinations a society can produce (the production possibilities frontier, covered in the next lesson). Adam Smith used the example of a pin factory to illustrate the productivity gains from the division of labor. Excessive specialization, however, also has costs: monotonous work, dependence on a single region or industry, and vulnerability when exchange is disrupted. The risks of supply-chain disruptions are revisited in the global economy course (c08)."
+            "Because the division of labor yields more output from the same inputs, it acts like an improvement in organization or technology: it pushes outward the range of combinations a society can produce (the production possibilities frontier, covered in the next lesson). Adam Smith used the example of a pin factory to illustrate the productivity gains from the division of labor. Excessive specialization, however, also has costs: monotonous work, dependence on a single region or industry, and vulnerability when exchange is disrupted. The risks of supply-chain disruptions are revisited in the global economy course (c08)."
           ]
         }
       ]

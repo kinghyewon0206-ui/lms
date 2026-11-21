@@ -112,7 +112,7 @@ def test_correct_answers_and_boundaries_are_accepted_and_neighbors_rejected():
 
 @real
 def test_common_wrong_methods_are_rejected():
-    path = os.path.join(os.path.expanduser("~/econova-private/tools"), "wrong_methods.json")
+    path = os.environ.get("ECONOVA_WRONG_METHODS_FILE") or os.path.join(os.path.expanduser("~/econova-private/tools"), "wrong_methods.json")
     if not os.path.exists(path):
         pytest.skip("No private wrong-method list")
     with open(path, encoding="utf-8") as f:

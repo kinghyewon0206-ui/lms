@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l1",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: externality wedge stated at the margin (units with 0 < NBp < E), school pump described as a free-rider (collective-action) problem rather than a public good, free riding vs. open-access overuse separated, percentage-point formula for fraction indicators, one rule for unverified numbers, c08 tool sources linked. Not reviewed or approved by a human."
       }
     ]
   },
@@ -82,7 +88,9 @@
         "openstax-pe3-19-2",
         "openstax-pe3-21-1",
         "openstax-pe3-15-4",
-        "openstax-pe3-17-3"
+        "openstax-pe3-17-3",
+        "openstax-pe3-33-1",
+        "openstax-pe3-29-1"
       ]
     },
     {
@@ -146,7 +154,7 @@
             "concept_toolkit"
           ],
           "paragraphs": [
-            "You have learned many economic ideas in this program. Use them like a checklist. Is someone causing a cost to others without paying for it? That is an externality. Does everyone benefit from something that nobody pays to maintain? That may be a public good. Are prices or wages changing? Check whether the change is real or only nominal. Are some groups much poorer than others? Use an inequality measure.",
+            "You have learned many economic ideas in this program. Use them like a checklist. Is someone causing a cost to others without paying for it? That is an externality. Does everyone benefit from something that nobody pays to maintain? That may be a public good, or a shared facility with a free-rider problem: each person hopes someone else will pay. Are prices or wages changing? Check whether the change is real or only nominal. Are some groups much poorer than others? Use an inequality measure.",
             "Pick the two or three concepts that really explain your problem. Step \"3. Economic concepts and evidence\" asks you to name each concept and explain how it works in your problem."
           ]
         },
@@ -182,7 +190,7 @@
             "concept_toolkit"
           ],
           "paragraphs": [
-            "Move from symptom to mechanism by asking which economic force produces the outcome. Common mechanisms in SDG problems: a negative externality (a third party who is neither buyer nor seller bears a cost, such as downstream pollution), a public good or common resource that is underprovided or overused because of free riding, prices that do not reflect scarcity, low price elasticity that makes a price change hurt poor households, a fall in real income hidden by rising nominal income, unemployment or low wages in a local labor market, high-interest debt that compounds, or trade and exchange-rate shocks to an export sector.",
+            "Move from symptom to mechanism by asking which economic force produces the outcome. Common mechanisms in SDG problems: a negative externality (a third party who is neither buyer nor seller bears a cost, such as downstream pollution), a public good that is underprovided because people can free ride on others' payments, a common resource that is overused because no one controls access, prices that do not reflect scarcity, low price elasticity that makes a price change hurt poor households, a fall in real income hidden by rising nominal income, unemployment or low wages in a local labor market, high-interest debt that compounds, or trade and exchange-rate shocks to an export sector.",
             "Several causes may operate at once. Rank them by how much of the problem each plausibly explains and by whether you can find evidence about it. A diagnosis with two well-supported mechanisms is stronger than a list of ten."
           ]
         },
@@ -213,13 +221,13 @@
           ],
           "paragraphs": [
             "A researchable problem statement names the affected population, the place and time, the indicator and its current level (or the evidence you still need), and a proposed mechanism. Template: \"In [place], [group] experiences [outcome measured by indicator], which is below [target]; we think the main cause is [mechanism], because [evidence].\"",
-            "Test your statement: Could evidence show the mechanism is wrong? Is it narrow enough that you can find data? Does it avoid naming the solution? Step \"3. Economic concepts and evidence\" also asks you to record each source's title, publisher, and date, and to leave out numbers you could not verify; Lesson 2 shows how to judge those sources."
+            "Test your statement: Could evidence show the mechanism is wrong? Is it narrow enough that you can find data? Does it avoid naming the solution? Step \"3. Economic concepts and evidence\" also asks you to record each source's title, publisher, and date, and to use only numbers you checked in a source, or estimates and assumptions that you clearly label as such (say how you got them), and flag any claim you could not verify; Lesson 2 shows how to judge those sources."
           ]
         }
       ]
     },
     "advanced": {
-      "summary": "Formally, an SDG indicator is a ratio with a defined numerator and denominator, progress is a change measured in percentage points or percent, the gap to a target implies a required rate of change, and an externality is the difference between private and social net benefit. A problem statement is a testable claim about which mechanism moves the indicator.",
+      "summary": "Formally, an SDG indicator is a ratio with a defined numerator and denominator, progress is a change measured in percentage points or percent, the gap to a target implies a required rate of change, and an externality creates a gap between private and social net benefit at the margin. A problem statement is a testable claim about which mechanism moves the indicator.",
       "sections": [
         {
           "heading": "Indicators as ratios and the gap to a target",
@@ -227,8 +235,8 @@
             "sdg_targets"
           ],
           "paragraphs": [
-            "Write an indicator as I = N ÷ P, where N is the number of people with the outcome and P is the reference population. A change from I₀ to I₁ is I₁ − I₀ percentage points, or (I₁ − I₀) ÷ I₀ as a percent change; when I₀ is small, the percent change can look large even if the percentage-point change is small.",
-            "If the baseline is I₀ in year t₀ and the target is I* in year T, the required average change is (I* − I₀) ÷ (T − t₀) percentage points per year. Comparing this with the recent trend shows whether the target is on track. The global indicator framework was adopted by the UN General Assembly in 2017 and is refined each year, so check the current wording of an indicator before using it."
+            "Write an indicator as I = N ÷ P, where N is the number of people with the outcome and P is the reference population. A change from I₀ to I₁ is (I₁ − I₀) × 100 percentage points when I is written as a fraction (0.69 − 0.60 = 0.09, or 9 percentage points), or (I₁ − I₀) ÷ I₀ as a percent change; when I₀ is small, the percent change can look large even if the percentage-point change is small.",
+            "If the baseline is I₀ in year t₀ and the target is I* in year T, the required average change is (I* − I₀) ÷ (T − t₀) per year, multiplied by 100 to give percentage points when I is a fraction. Comparing this with the recent trend shows whether the target is on track. The global indicator framework was adopted by the UN General Assembly in 2017 and is refined each year, so check the current wording of an indicator before using it."
           ]
         },
         {
@@ -238,7 +246,7 @@
             "stakeholders_incentives"
           ],
           "paragraphs": [
-            "Many SDG problems are a wedge between private and social net benefit. If an activity gives the decision maker a private net benefit of NBₚ per unit and imposes an external cost E per unit on third parties, the social net benefit is NBₛ = NBₚ − E. The decision maker chooses based on NBₚ, so whenever E > 0 the activity is carried further than is socially optimal: a negative externality and a market failure. For a public good, the wedge runs the other way: each user's private benefit is smaller than the total benefit, so voluntary provision falls short.",
+            "Many SDG problems are a wedge between private and social net benefit. Suppose one more unit of an activity gives the decision maker a marginal private net benefit NBₚ and imposes a marginal external cost E on third parties. The social net benefit of that unit is NBₛ = NBₚ − E. The decision maker adds units while NBₚ > 0, but society gains from a unit only while NBₚ > E. So the activity is carried too far for exactly those units with 0 < NBₚ < E: they are privately worth doing but lower social net benefit. This is a negative externality and a market failure; it is the same idea as producing where marginal private cost, not marginal social cost (MSC = MPC + marginal external cost), meets marginal benefit. In the worked example \"Putting a number on an externality\", NBₚ = $25 is above E = $18 on every acre, so each acre still adds social net benefit; in practice the extra gain from more fertilizer usually falls as more is applied (diminishing returns), and the overuse shows up in the last units. Even when no unit is overdone, the unpriced cost leaves the decision maker no reason to look for cheaper ways to cut the damage. For a public good, the wedge runs the other way: each user's private benefit is smaller than the total benefit to all users, so voluntary provision falls short.",
             "A causal claim of the form \"mechanism M explains outcome Y\" should come with a prediction you could check: if M is the cause, Y should be worse where M is stronger. Lesson 2 discusses why such patterns alone do not prove causation."
           ]
         },
@@ -269,7 +277,7 @@
           ],
           "paragraphs": [
             "Write the statement as: population S, place and period R, indicator I with value I₀ against target I*, and mechanism M with the evidence E that supports it. The statement is researchable if each element can be checked against a source and if some possible evidence would count against M.",
-            "Keep the solution out. A statement such as \"the town needs a water tax\" assumes the answer; \"unreliable school water supply lowers attendance in R because maintenance is a shared responsibility that no one funds (a public-good-style problem)\" leaves room to compare taxes, user fees, partnerships, or community maintenance in Lesson 2."
+            "Keep the solution out. A statement such as \"the town needs a water tax\" assumes the answer; \"unreliable school water supply lowers attendance in R because maintenance is a shared responsibility that no one funds\" leaves room to compare taxes, user fees, partnerships, or community maintenance in Lesson 2. Name the mechanism precisely: a school pump is not a pure public good, because its water is rival (water one student uses is not available to another) and access can be limited to the school. The maintenance problem is a collective-action or free-rider problem among the people who share the pump: everyone gains from a repair, but no one is responsible for paying for it."
           ]
         }
       ]
@@ -399,7 +407,7 @@
         "name": "Frame it narrowly: unreliable school water supply lowers attendance at two rural schools",
         "benefits": [
           "Links clearly to targets 6.1 and 4.a and to measurable indicators such as days with working water and attendance rates.",
-          "Points to a specific economic cause (pump maintenance is a shared good that nobody funds) that can be researched."
+          "Points to a specific economic cause that can be researched: pump maintenance is a shared responsibility with a free-rider problem, so nobody funds it."
         ],
         "costs": [
           "Leaves out wider causes of absence, such as family income or distance to school.",
@@ -468,6 +476,8 @@
     "openstax-pe3-15-4",
     "openstax-pe3-17-3",
     "openstax-pe3-19-2",
-    "openstax-pe3-21-1"
+    "openstax-pe3-21-1",
+    "openstax-pe3-33-1",
+    "openstax-pe3-29-1"
   ]
 }

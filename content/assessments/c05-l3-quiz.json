@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c05",
   "lesson_id": "c05-l3",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 3 Quiz: Wages, Minimum Wage, and Labor Policy",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: retagged q2 as advanced, rewrote q3 to ask which factor explains differing study results (all choices parallel and hedged), replaced q4 (copied the lesson) with a model application consistent with the corrected monopsony result, and aligned the q5 explanation with the lesson. Not reviewed or approved by a human."
       }
     ]
   },
@@ -65,7 +71,7 @@
     },
     {
       "id": "c05-l3-q2",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c05-l3",
       "objective": 1,
@@ -73,7 +79,7 @@
         "minimum_wage",
         "labor_surplus"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: In a market for hotel housekeepers, labor demand is L_d = 1,100 − 35W and labor supply is L_s = 140 + 45W, where W is the hourly wage in dollars. A minimum wage of $15 per hour is introduced. According to the simple competitive model, how many fewer housekeepers are employed than at the equilibrium without a minimum wage? (Enter a number only, in workers.)",
@@ -85,33 +91,34 @@
     },
     {
       "id": "c05-l3-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l3",
       "objective": 2,
       "concept_ids": [
-        "minimum_wage_evidence"
+        "minimum_wage_evidence",
+        "monopsony"
       ],
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Which statement best describes what economists have found about real-world minimum wage increases?",
+      "prompt": "Hypothetical example: Study X finds that a minimum wage increase in Town X caused almost no job losses. Study Y finds clear job losses after an increase in Town Y. Other things equal, which difference between the towns best fits the factors economists point to when explaining why results differ?",
       "choices": [
         {
           "id": "a",
-          "text": "Studies agree that increases cause large job losses"
+          "text": "Town X's employers may have had less power to set wages than Town Y's"
         },
         {
           "id": "b",
-          "text": "Studies agree that increases have no effect on jobs"
+          "text": "Town X's new minimum may have been far above its local wages, unlike Town Y's"
         },
         {
           "id": "c",
-          "text": "Findings differ, and effects seem to depend on local conditions"
+          "text": "Town X's new minimum may have been close to its local wages, unlike Town Y's"
         },
         {
           "id": "d",
-          "text": "Studies show that employment rises whenever the minimum rises"
+          "text": "Town X's labor demand may have been more responsive to wages than Town Y's"
         }
       ],
       "source_ids": [
@@ -121,7 +128,7 @@
     },
     {
       "id": "c05-l3-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l3",
       "objective": 2,
@@ -131,23 +138,23 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: In a remote town, one large employer is the main place to work, and it pays less than a competitive labor market would. In the monopsony model, what can a moderate minimum wage, set between the current wage and the competitive wage, do?",
+      "prompt": "Hypothetical example: A town's only large employer is a monopsonist. It pays $12 per hour and hires 300 workers. The labor supply curve it faces slopes upward and crosses its labor demand curve at a wage of $15 and 400 workers (the competitive outcome). In the standard monopsony model, which minimum wage would lead the employer to hire the most workers?",
       "choices": [
         {
           "id": "a",
-          "text": "Lower employment, as in the simple competitive model"
+          "text": "$12 per hour"
         },
         {
           "id": "b",
-          "text": "Lower the wage, because the employer's costs go up"
+          "text": "$13.50 per hour"
         },
         {
           "id": "c",
-          "text": "Keep employment the same but cut each worker's hours"
+          "text": "$15 per hour"
         },
         {
           "id": "d",
-          "text": "Raise both the wage and the number of workers hired"
+          "text": "$18 per hour"
         }
       ],
       "source_ids": [

@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c05",
   "lesson_id": "c05-l2",
-  "version": 1,
+  "version": 2,
   "title": "Lesson 2 Quiz: Employment, Unemployment, and Productivity",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: made q3 self-contained, stated the active-search condition in q5 and removed the stem's spelled-out mismatch, retagged q4 as intermediate. Not reviewed or approved by a human."
       }
     ]
   },
@@ -83,7 +89,7 @@
     },
     {
       "id": "c05-l2-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c05-l2",
       "objective": 2,
@@ -94,7 +100,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example (the same town as in the previous question): Its labor force is made up of 2,820 people with jobs and 180 people without jobs who are actively searching, and 1,000 working-age residents are outside the labor force. What is the town's unemployment rate, in percent? (Enter a number only.)",
+      "prompt": "Hypothetical example: A town has a working-age population of 4,000. Its labor force is made up of 2,820 people with jobs and 180 people without jobs who are available and actively searching, and 1,000 working-age residents are outside the labor force. What is the town's unemployment rate, in percent? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-21-1"
@@ -102,7 +108,7 @@
     },
     {
       "id": "c05-l2-q4",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l2",
       "objective": 2,
@@ -111,7 +117,7 @@
         "unemployment_rate",
         "participation_rate"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: An unemployed worker gives up searching because she believes no suitable jobs exist. Nothing else changes. What happens to the unemployment rate and the labor force participation rate?",
@@ -139,7 +145,7 @@
     },
     {
       "id": "c05-l2-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c05-l2",
       "objective": 3,
@@ -149,7 +155,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A newspaper printing plant closes because readers have moved online. Its press operators cannot find work because most local openings are in software and health care, which require different skills. Which type of unemployment is this?",
+      "prompt": "Hypothetical example: A newspaper printing plant closes because readers have moved online. Its former press operators are available and actively searching for work. Most job openings in their area are now for software developers and nurses. Which type of unemployment is this?",
       "choices": [
         {
           "id": "a",

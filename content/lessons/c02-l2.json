@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c02-l2",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Reworded a definition that closely matched the OpenStax wording (source review). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: SDG price-ceiling option compares the ceiling with the equilibrium price (not production costs) and uses quantity supplied; deadweight-loss assumptions (efficient rationing, costless rationing) stated; b and d sensitivity is not an elasticity; surplus vs consumer/producer surplus distinguished. Not reviewed or approved by a human."
       }
     ]
   },
@@ -51,7 +57,7 @@
     {
       "id": "surplus_shortage",
       "term": "Surplus (excess supply) and shortage (excess demand)",
-      "definition": "If the price is above equilibrium, quantity supplied exceeds quantity demanded and there is a surplus. If the price is below equilibrium, quantity demanded exceeds quantity supplied and there is a shortage.",
+      "definition": "If the price is above equilibrium, quantity supplied exceeds quantity demanded and there is a surplus. If the price is below equilibrium, quantity demanded exceeds quantity supplied and there is a shortage. Do not confuse this surplus with consumer surplus and producer surplus, which are different ideas (the gains buyers and sellers get from trade) used in later lessons.",
       "source_ids": [
         "openstax-pe3-3-1"
       ]
@@ -186,7 +192,7 @@
             "four_step"
           ],
           "paragraphs": [
-            "Since ∂P*/∂a = 1/(b + d) > 0, an increase in demand (higher a) raises the equilibrium price. Since ∂P*/∂c = −1/(b + d) < 0, an increase in supply (higher c) lowers the equilibrium price. The larger b and d are (the more price-sensitive buyers and sellers are), the smaller the price change caused by the same shock.",
+            "Since ∂P*/∂a = 1/(b + d) > 0, an increase in demand (higher a) raises the equilibrium price. Since ∂P*/∂c = −1/(b + d) < 0, an increase in supply (higher c) lowers the equilibrium price. The larger b and d are (the more price-sensitive buyers and sellers are, measured in units per dollar, not as an elasticity), the smaller the price change caused by the same shock.",
             "These results are the four-step analysis written in equations. The equations let you compare not only the direction of a change but also its size."
           ]
         },
@@ -196,7 +202,7 @@
             "price_controls"
           ],
           "paragraphs": [
-            "With a price ceiling P̄ < P*, the quantity actually traded falls to the quantity supplied, Qs(P̄), and the shortage is Qd(P̄) − Qs(P̄). Because fewer units are traded than at equilibrium, some gains from trade are lost to society as a whole; this loss is called deadweight loss. In a linear model, it is the area of the triangle between the equilibrium quantity and the quantity actually traded, bounded by the demand curve (the price consumers are willing to pay) and the supply curve (the minimum price producers must receive). (See Example 5.)",
+            "With a price ceiling P̄ < P*, the quantity actually traded falls to the quantity supplied, Qs(P̄), and the shortage is Qd(P̄) − Qs(P̄). Because fewer units are traded than at equilibrium, some gains from trade are lost to society as a whole; this loss is called deadweight loss. In a linear model, it is the area of the triangle between the equilibrium quantity and the quantity actually traded, bounded by the demand curve (the price consumers are willing to pay) and the supply curve (the minimum price producers must receive). This triangle assumes that the units that are traded go to the buyers who value them most and that rationing itself costs nothing. If waiting in line, searching, or black markets use up time and resources, the loss is larger. (See Example 5.)",
             "When evaluating a policy, ask together: Who gains and who loses? By how much? Is there another tool that could reach the same goal (for example, food access for low-income households) with fewer side effects?"
           ]
         }
@@ -282,7 +288,7 @@
         "The minimum price needed to produce the 34th unit: solve the supply function for P, P = Q − 10 → 34 − 10 = 24.",
         "The deadweight loss is the area of the triangle between quantities 34 and 40 = ½ × (40 − 34) × (33 − 24) = ½ × 6 × 9 = 27."
       ],
-      "answer": "The deadweight loss is 27 (price units × quantity units).",
+      "answer": "The deadweight loss is 27 (price units × quantity units). This assumes the 34 units go to the buyers who value them most and that rationing itself costs nothing; queuing, search, or black markets would make the loss larger.",
       "check": {
         "type": "product",
         "factors": [
@@ -373,18 +379,18 @@
           "It looks simple to administer."
         ],
         "costs": [
-          "If the ceiling is below equilibrium, supply falls, which can cause shortages, lines, and lower quality.",
+          "If the ceiling is below the equilibrium price, quantity supplied falls while quantity demanded rises, which can cause shortages, lines, and lower quality.",
           "Better-off households get the same benefit."
         ],
         "assumptions": [
-          "Side effects stay small only if the ceiling is not far below production costs."
+          "Side effects stay small only if the ceiling is close to the equilibrium price; the further below equilibrium it is set, the larger the shortage."
         ]
       },
       {
         "name": "Give food vouchers or cash to low-income households",
         "benefits": [
           "Help can be focused on the households that need it.",
-          "Market prices stay in place, so supply does not shrink."
+          "Prices are not capped, so sellers have no reason to cut the quantity they supply."
         ],
         "costs": [
           "It costs public money, plus administrative costs to select recipients and make payments.",

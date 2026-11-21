@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c03-l3",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: stated the carbon tax as a pollution tax applied to greenhouse gases, cited the IMF F&D externalities page for the Pigouvian tax, and dropped the unsupported 'standard term' claim for carbon dividend; teaching-value wording and simulation values unchanged. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: replaced the unsupported number-of-emission-sources rule with the standard uncertainty criterion (flat vs steep marginal damage) and noted that economists disagree; tax incidence stated as relative price elasticity at the equilibrium (including the beginner level); clarified deadweight loss, the lower-cost claim, and welfare above t = md. Simulation values, worked examples, and graph unchanged. Independent review follow-up: added property rights (Coase) with its limits, the source-supported practical point on permits vs charges, the abatement-cost comparison in the tax-vs-cap criterion, P₀/Q₀ for the no-tax equilibrium, lost-private-surplus wording with the Pigouvian tax eliminating the overproduction loss, and that every firm pays tax on remaining emissions. Not reviewed or approved by a human."
       }
     ]
   },
@@ -77,7 +83,7 @@
     {
       "id": "tax_incidence",
       "term": "Tax incidence",
-      "definition": "Who actually bears the burden of a tax. Regardless of who is legally required to pay it, the side that is less sensitive to price bears more of it.",
+      "definition": "Who actually bears the burden of a tax. In a competitive market, this does not depend on who is legally required to pay it: the side whose quantity responds less to price (the less price-elastic side at the market equilibrium) bears more of it.",
       "source_ids": [
         "openstax-pe3-5-3"
       ]
@@ -85,26 +91,35 @@
     {
       "id": "social_welfare_change",
       "term": "Welfare change including external damage",
-      "definition": "When a tax reduces trade, some gains from trade within the market are lost (deadweight loss), but external damage is avoided on every unit no longer traded. A policy can be evaluated only by looking at both effects together.",
+      "definition": "When a tax reduces trade, buyers and sellers lose some private surplus (the deadweight loss the tax would cause if there were no external damage), but external damage is avoided on every unit no longer traded. A policy can be evaluated only by looking at both effects together. A tax equal to the external damage per unit moves the market to the socially optimal quantity and eliminates the overproduction loss caused by the externality.",
       "source_ids": [
         "openstax-pe3-12-1",
         "openstax-pe3-12-3",
         "imf-fd-externalities"
       ]
+    },
+    {
+      "id": "property_rights",
+      "term": "Property rights (the Coase approach)",
+      "definition": "Making it clear who holds the legal right in a conflict over harm, such as pollution. Once the right is clear, the parties can bargain toward a fix, and whoever lacks the right has to pay for it. This can work when few parties are involved and bargaining is cheap, but rarely when there are millions of polluters and people harmed.",
+      "source_ids": [
+        "openstax-pe3-12-3"
+      ]
     }
   ],
   "levels": {
     "beginner": {
-      "summary": "When pollution has a price, people cut it on their own. A carbon tax puts a price on greenhouse gases. Prices go up, people buy less, firms make less, and emissions fall.",
+      "summary": "When pollution has a price, people and firms have a reason to cut it. A carbon tax puts a price on greenhouse gases. Prices go up, people buy less, firms make less, and emissions fall.",
       "sections": [
         {
           "heading": "Different ways to reduce pollution",
           "concept_ids": [
             "command_and_control",
-            "tradable_permits"
+            "tradable_permits",
+            "property_rights"
           ],
           "paragraphs": [
-            "Governments have several ways to cut pollution. They can set a rule such as no factory may release more than a certain amount of smoke, and make everyone follow it (command-and-control regulation). They can set a limit on total emissions and let firms buy and sell the right to emit (an emissions trading system, also called cap-and-trade). Or they can put a price on pollution."
+            "Governments have several ways to cut pollution. They can set a rule such as no factory may release more than a certain amount of smoke, and make everyone follow it (command-and-control regulation). They can set a limit on total emissions and let firms buy and sell the right to emit (an emissions trading system, also called cap-and-trade). They can make it clear who holds the right, for example whether neighbors have a right to clean air, so the two sides can bargain over a fix (property rights); this works only when just a few people are involved. Or they can put a price on pollution."
           ]
         },
         {
@@ -114,7 +129,7 @@
             "carbon_tax"
           ],
           "paragraphs": [
-            "If a firm has to pay a tax every time it pollutes, it compares the cost of cutting pollution with the tax. Firms that can cut cheaply cut a lot, and firms that find it hard to cut pay the tax. A tax that builds the harm from pollution into the price is called a pollution tax, and a pollution tax on greenhouse gases is called a carbon tax."
+            "If a firm has to pay a tax every time it pollutes, it compares the cost of cutting pollution with the tax. Every firm pays the tax on the pollution it still releases. Firms that can cut cheaply cut a lot, and firms that find it hard to cut pay the tax on more of their pollution instead of cutting much. A tax that builds the harm from pollution into the price is called a pollution tax, and a pollution tax on greenhouse gases is called a carbon tax."
           ]
         },
         {
@@ -123,7 +138,7 @@
             "tax_incidence"
           ],
           "paragraphs": [
-            "Even if the carbon tax is charged to firms, firms do not carry the whole burden. Prices go up, so consumers pay part of it too. If people need the product even when the price rises, consumers carry more of the burden. If people can easily switch to something else, firms carry more."
+            "Even if the carbon tax is charged to firms, firms do not carry the whole burden. Prices go up, so consumers pay part of it too. What matters is which side can react to the price change more easily. If buyers keep buying almost the same amount while sellers can easily cut back, consumers carry more of the burden. If buyers can easily switch to something else while sellers find it hard to change how much they make, firms carry more."
           ]
         },
         {
@@ -146,10 +161,12 @@
           "concept_ids": [
             "command_and_control",
             "pollution_tax",
-            "tradable_permits"
+            "tradable_permits",
+            "property_rights"
           ],
           "paragraphs": [
-            "Command-and-control regulation applies the same standard to every firm, so the result is clear. But once a firm meets the standard, it has no incentive to cut further, and the rule cannot account for differences in abatement costs across firms. A pollution tax sets the price and lets firms decide how much to cut, while an emissions trading system sets the total amount and lets trading determine the price. Both market-based tools make reductions happen first where abatement is cheapest, so they achieve the same reduction at a lower total cost."
+            "Command-and-control regulation applies the same standard to every firm, so the result is clear. But once a firm meets the standard, it has no incentive to cut further, and the rule cannot account for differences in abatement costs across firms. A pollution tax sets the price and lets firms decide how much to cut, while an emissions trading system sets the total amount and lets trading determine the price. Both market-based tools make reductions happen first where abatement is cheapest, so when abatement costs differ across firms, they achieve the same reduction at a lower total cost than a uniform standard (a standard model result).",
+            "A fourth tool is assigning clear property rights. The economist Ronald Coase argued that a harm such as pollution is hard to resolve until it is clear who holds the right. In his example, sparks from a passing train set fire to the field of a nearby farmer. If the law says whether the farmer has the right to a field free of sparks or the railroad has the right to send them, the two sides can bargain, and the cheaper fix (a fence for the field or a spark guard for the train) can be chosen, with the side that lacks the right paying for it. This works when only a few parties are involved and bargaining is cheap. With millions of emitters and billions of people affected, as with carbon emissions, such bargaining is not practical, so governments use taxes or caps instead."
           ]
         },
         {
@@ -160,7 +177,7 @@
           ],
           "paragraphs": [
             "A per-unit tax t charged to producers shifts the supply curve up by t (from S to S+t). At the new equilibrium, the price consumers pay rises, and the price producers keep after paying the tax falls. The gap between the two prices is t. Quantity falls, so emissions fall too, and the government collects revenue equal to the tax times the quantity.",
-            "How the tax splits between a higher consumer price and a lower producer price depends on how sensitive demand and supply are to price. The side that is less sensitive to price bears more of the tax."
+            "How the tax splits between a higher consumer price and a lower producer price depends on how strongly buyers respond to price compared with sellers (their price elasticities at the market equilibrium). The side that responds less bears more of the tax. In a straight-line model, both curves pass through the same equilibrium point, so comparing the slope coefficients b and d shows which side is less elastic there."
           ]
         },
         {
@@ -169,7 +186,7 @@
             "social_welfare_change"
           ],
           "paragraphs": [
-            "When a tax reduces trade, part of the gains from trade that would exist without any externality disappears (the loss within the market, or deadweight loss). But when there is an external cost, every unit no longer traded avoids damage equal to that external cost. Change in social welfare = avoided external damage − loss within the market.",
+            "When a tax reduces trade, part of the gains from trade in the market (consumer and producer surplus that is not collected as tax revenue) disappears. This loss within the market is lost private surplus (the deadweight loss the tax would cause if there were no external damage). But when there is an external cost, every unit no longer traded avoids damage equal to that external cost. Change in social welfare = avoided external damage − loss within the market. When the tax equals the external cost per unit, quantity falls to the socially optimal quantity from Lesson 1, and the welfare gain equals the overproduction loss that the externality caused, so the tax eliminates that loss.",
             "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Compare the rows 'Consumer burden (per unit)', 'Producer burden (per unit)', 'Tax revenue', 'Avoided external damage (assumed)', and 'Change in social welfare (assumed)' in the results table with your calculations from worked examples 1 to 3. Then change the demand slope b and see how the consumer share of the tax changes. Keep the units consistent: t and md are dollars per unit of the good, and e is kilograms of emissions per unit, so a tax of $6 per unit with e = 1 kg is $6 per kilogram of emissions. That is far higher than real carbon prices, which are usually quoted per tonne of carbon dioxide. The default values are chosen to make the mechanism easy to see, not to represent any real tax rate."
           ]
         }
@@ -183,10 +200,11 @@
           "concept_ids": [
             "command_and_control",
             "pollution_tax",
-            "tradable_permits"
+            "tradable_permits",
+            "property_rights"
           ],
           "paragraphs": [
-            "Firms differ in their marginal cost of reducing pollution. Under a pollution tax, each firm cuts until its marginal abatement cost equals the tax, so every firm ends up with the same marginal abatement cost, and any given reduction is achieved at the lowest possible cost. In an emissions trading system, the permit price plays the same role. The difference lies in uncertainty: a tax fixes the price (the cost of abatement) and leaves the amount of reduction uncertain, while an emissions trading system fixes the amount of reduction and leaves the price uncertain. A tax may suit cases with a very large number of emission sources to monitor, while permits may suit cases with few sources where the total amount matters most."
+            "Firms differ in their marginal cost of reducing pollution. Under a pollution tax, each firm cuts until its marginal abatement cost equals the tax, so every firm ends up with the same marginal abatement cost, and any given reduction is achieved at the lowest possible cost. In an emissions trading system, the permit price plays the same role. The difference lies in uncertainty: a tax fixes the price of emissions (and so the marginal abatement cost of every firm) and leaves the amount of reduction uncertain, while an emissions trading system fixes the amount of reduction and leaves the permit price uncertain. When abatement costs are uncertain, a standard model result says a tax tends to work better if the damage from each extra unit of emissions changes little relative to how quickly abatement costs rise, while a cap tends to work better if damage rises steeply (for example, past a threshold) relative to how quickly abatement costs rise. For climate change, economists disagree about which case fits better. Practical issues also shape the choice: permit trading tends to work best when a modest number of parties are keen to trade, while pollution charges suit pollution from millions of small sources such as car engines, and administration, price stability, and political acceptance matter too. Assigning property rights (the Coase approach) can reach an efficient outcome through bargaining only when the parties are few and bargaining costs are low; with millions of carbon emitters and people affected, those costs are far too high."
           ]
         },
         {
@@ -196,8 +214,8 @@
             "tax_incidence"
           ],
           "paragraphs": [
-            "With demand Qd = a − bP and supply Qs = c + d(P − t), the consumer price is Pc = (a − c + d·t)/(b + d) and the producer price is Pp = Pc − t. If P* is the equilibrium price with no tax, the consumer burden is Pc − P* = t·d/(b + d) and the producer burden is P* − Pp = t·b/(b + d). The less sensitive demand is to price (the smaller b is), the larger the consumer share d/(b + d).",
-            "Reduction in quantity ΔQ = b·d·t/(b + d), tax revenue = t·(Q* − ΔQ), and change in emissions = e·ΔQ (where e is emissions per unit)."
+            "With demand Qd = a − bP and supply Qs = c + d(P − t), the consumer price is Pc = (a − c + d·t)/(b + d) and the producer price is Pp = Pc − t. If P₀ and Q₀ are the equilibrium price and quantity with no tax, the consumer burden is Pc − P₀ = t·d/(b + d) and the producer burden is P₀ − Pp = t·b/(b + d). For a given d, the less sensitive demand is to price (the smaller b is), the larger the consumer share d/(b + d).",
+            "Reduction in quantity ΔQ = b·d·t/(b + d), tax revenue = t·(Q₀ − ΔQ), and change in emissions = e·ΔQ (where e is emissions per unit)."
           ]
         },
         {
@@ -206,7 +224,7 @@
             "social_welfare_change"
           ],
           "paragraphs": [
-            "The loss within the market (deadweight loss) is ½·t·ΔQ, and if the external damage per unit is md, the avoided damage is md·ΔQ. So the change in social welfare is W(t) = ΔQ·(md − t/2) = k·t·(md − t/2), where k = b·d/(b + d). Differentiating W with respect to t gives k·(md − t), so W is largest when t = md. A tax rate equal to the external cost is called a Pigouvian tax, after the economist Arthur Pigou, who proposed taxing polluters by the amount of harm they cause others. When t is twice md, W = 0, and any higher rate actually lowers welfare.",
+            "The loss within the market (lost private surplus: the deadweight loss the tax would cause if there were no external damage) is ½·t·ΔQ, and if the external damage per unit is md, the avoided damage is md·ΔQ. So the change in social welfare is W(t) = ΔQ·(md − t/2) = k·t·(md − t/2), where k = b·d/(b + d). Differentiating W with respect to t gives k·(md − t), so W is largest when t = md. At that rate, quantity falls exactly to the social optimum Q* from Lesson 1, and W(md) = ½·md·ΔQ is the whole overproduction loss caused by the externality, so the Pigouvian tax eliminates it. A tax rate equal to the external cost is called a Pigouvian tax, after the economist Arthur Pigou, who proposed taxing polluters by the amount of harm they cause others. Above t = md, raising the tax further lowers W. When t is twice md, W = 0, and any higher rate leaves society worse off than having no tax.",
             "A caution: this model assumes straight-line demand and supply and a constant damage per unit. In reality, estimates of the social cost of carbon are uncertain, and lower-income households may feel the burden more heavily, so how the revenue is used shapes both the fairness of the policy and how willing people are to accept it.",
             "The carbon-tax experiment in the 'Interactive simulation' section further down this lesson starts with a = 100, b = 2, c = 10, d = 1, a tax of t = 6, external damage md = 6, and emissions e = 1. These are the same values used in worked examples 1 to 3. Set t to 3, 6, and 12 in turn, record the 'Change in social welfare (assumed)' each time, and compare the results with the formula for W(t). Then change md and check where the t that gives the largest welfare change moves. Unit check: with t in dollars per unit and e in kilograms per unit, the implied price of emissions is t ÷ e dollars per kilogram, or 1,000 × t ÷ e dollars per tonne. The default values (t = 6, e = 1) imply $6,000 per tonne, which is a teaching number, not a realistic carbon price. Real-world carbon prices and estimates of the social cost of carbon are measured per tonne of carbon dioxide and are uncertain, so compare mechanisms, not magnitudes."
           ]
@@ -424,7 +442,7 @@
   },
   "key_takeaways": [
     "Command-and-control regulation gives clear results but little flexibility, while pollution taxes and emissions trading systems make reductions happen first where abatement is cheapest (a tax sets the price; permits set the total amount).",
-    "A per-unit carbon tax raises the consumer price and lowers the producer price, which reduces quantity and emissions and generates tax revenue. The side that is less sensitive to price bears more of the tax.",
+    "A per-unit carbon tax raises the consumer price and lowers the producer price, which reduces quantity and emissions and generates tax revenue. The side that is less price-elastic (responds less to price) bears more of the tax.",
     "When there is external damage, a tax is judged by avoided damage minus the loss within the market. In a straight-line model, this is largest when the tax rate equals the external damage per unit. How the revenue is used shapes fairness."
   ],
   "source_ids": [

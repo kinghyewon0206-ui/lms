@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "course_id": "c09",
-  "version": 1,
+  "version": 2,
   "review": {
     "status": "draft",
     "history": [
@@ -10,6 +10,12 @@
         "at": "2026-11-03",
         "by": "Claude Code (AI) draft",
         "note": "AI-written draft of the capstone guide and rubric. Not yet reviewed by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: criterion-specific level 2 and 3 descriptions, level 4 descriptions that cover everything level 3 lacks, level 1 communication text consistent with the required reflection, one rule for unverified numbers in the evidence criterion and step 3, clearer guidance for steps 1 and 2. Steps, fields, weights, and completion rules unchanged. Rubric still provisional. Not reviewed or approved by a human."
       }
     ]
   },
@@ -24,7 +30,7 @@
       "id": "sdg",
       "lesson_id": "c09-l1",
       "title": "1. Choose an SDG",
-      "guidance": "Pick one SDG that interests you and write why you chose it.",
+      "guidance": "Pick one SDG that interests you and write why you chose it. If you can, name the specific target your problem affects (for example, target 6.1).",
       "fields": [
         {
           "id": "sdg",
@@ -48,7 +54,7 @@
       "id": "problem",
       "lesson_id": "c09-l1",
       "title": "2. Define the economic problem",
-      "guidance": "Be specific: whose problem is it, and what scarcity or choice is involved? Narrowing it to one place or one market helps.",
+      "guidance": "Be specific: whose problem is it, and what scarcity or choice is involved? Narrowing it to one place or one market helps. Leave your solution for step 6.",
       "fields": [
         {
           "id": "problem",
@@ -65,7 +71,7 @@
       "id": "concepts",
       "lesson_id": "c09-l1",
       "title": "3. Economic concepts and evidence",
-      "guidance": "Write down the economic concepts that explain the problem (supply and demand, externalities, opportunity cost, etc.) and the evidence you checked yourself. When you use numbers, include the source (title, publisher, date).",
+      "guidance": "Write down the economic concepts that explain the problem (supply and demand, externalities, opportunity cost, etc.) and the evidence you checked yourself. When you use numbers, include the source (title, publisher, date). Use only numbers you checked in a source, or estimates and assumptions that you clearly label as such; flag any claim you could not verify.",
       "fields": [
         {
           "id": "concepts",
@@ -79,7 +85,7 @@
         {
           "id": "evidence",
           "label": "Evidence and sources",
-          "help": "Title, publisher, and date of each source you checked yourself. Leave out any numbers you could not verify.",
+          "help": "Title, publisher, and date of each source you checked yourself. Label any estimate or assumption, and flag any claim you could not verify.",
           "type": "long_text",
           "min_chars": 40,
           "max_chars": 2000,
@@ -200,7 +206,7 @@
     }
   ],
   "rubric": {
-    "version": 1,
+    "version": 2,
     "status": "provisional",
     "note": "These are suggested criteria and weights. They are provisional until a human (platform admin) reviews them, and they are a self-check tool, not an official score.",
     "levels": [
@@ -232,9 +238,9 @@
         ],
         "descriptors": {
           "1": "Concepts are missing or used incorrectly.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "Uses concepts correctly and explains how the problem works."
+          "2": "Names relevant concepts, but some are used incorrectly or only named, not applied to the problem.",
+          "3": "Uses the main concepts correctly and applies each to the problem, but does not fully explain how they produce it.",
+          "4": "Uses concepts correctly and explains how they produce the problem (the mechanism)."
         }
       },
       {
@@ -247,24 +253,24 @@
         ],
         "descriptors": {
           "1": "The problem is vague.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "The scope, the people affected, and the causes are clear."
+          "2": "Names a problem, but who is affected, where, or the economic cause is missing or unclear.",
+          "3": "States who is affected, where, and an economic cause, but the scope is still broad or there is no measure of the problem.",
+          "4": "The scope, the people affected, how the problem is measured, and the causes are clear."
         }
       },
       {
         "id": "evidence",
         "name": "Quality of evidence",
-        "description": "Does it give checked evidence and sources, and flag claims that could not be verified?",
+        "description": "Does it give checked evidence and sources, label estimates and assumptions, and flag claims that could not be verified?",
         "weight": 15,
         "related_steps": [
           "concepts"
         ],
         "descriptors": {
           "1": "There is no evidence or source.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "Uses clearly sourced evidence and states its limits."
+          "2": "Gives some evidence, but sources are incomplete (missing title, publisher, or date), or unchecked numbers are not labeled as estimates.",
+          "3": "Supports the key claims with checked sources (title, publisher, date) and labels any estimates, but does not discuss the limits of the evidence.",
+          "4": "Uses clearly sourced evidence, labels estimates and assumptions, and states the limits of the evidence."
         }
       },
       {
@@ -277,9 +283,9 @@
         ],
         "descriptors": {
           "1": "Covers only one group.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "Gives balanced attention to the positions and interests of several groups."
+          "2": "Names several groups, but their positions and interests are missing or one-sided.",
+          "3": "Describes the positions of the main groups, but leaves out an important group (such as people with no voice in the market) or treats some only briefly.",
+          "4": "Gives balanced attention to the positions and interests of several groups, including groups with no voice in the market."
         }
       },
       {
@@ -292,9 +298,9 @@
         ],
         "descriptors": {
           "1": "Does not address trade-offs.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "Clearly explains the key trade-offs and incentives."
+          "2": "Mentions incentives or trade-offs, but does not explain them in terms of gains and costs.",
+          "3": "Explains the main incentives and at least one trade-off in terms of gains and costs, but misses some stakeholders or trade-offs.",
+          "4": "Clearly explains the key trade-offs and incentives for each main stakeholder, in terms of gains and costs."
         }
       },
       {
@@ -308,9 +314,9 @@
         ],
         "descriptors": {
           "1": "The solution is unrealistic or not evaluated.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "Weighs costs, benefits, and limits against alternatives."
+          "2": "Proposes a solution, but its costs and benefits are missing or it is not compared with any alternative.",
+          "3": "Compares the solution with at least one alternative on costs and benefits, but does not address funding, limits, or uncertainty.",
+          "4": "Weighs costs, benefits, and limits against alternatives, including funding and uncertainty."
         }
       },
       {
@@ -323,9 +329,9 @@
         ],
         "descriptors": {
           "1": "The link to the SDG is weak.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "Explains the link at the level of specific SDG targets."
+          "2": "Names an SDG, but the link to the problem or the solution is only general.",
+          "3": "Clearly links the problem and the solution to the chosen SDG, but not to a specific target or indicator.",
+          "4": "Explains the link at the level of a specific SDG target and indicator."
         }
       },
       {
@@ -338,10 +344,10 @@
           "reflection"
         ],
         "descriptors": {
-          "1": "Disorganized, with no reflection.",
-          "2": "Partly there, but some parts are missing or inaccurate.",
-          "3": "Mostly accurate and complete.",
-          "4": "Logically organized, with specific reflection."
+          "1": "Disorganized, and the reflection does not say what was learned.",
+          "2": "Some parts are out of order or hard to follow, and the reflection stays general.",
+          "3": "Mostly follows the order problem → evidence → solution → costs and benefits → limits, and the reflection names a limitation but no clear next step.",
+          "4": "Logically organized in that order, with a specific reflection on limitations and next steps."
         }
       }
     ]

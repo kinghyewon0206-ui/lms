@@ -3,7 +3,7 @@
   "id": "c03-final",
   "kind": "final",
   "course_id": "c03",
-  "version": 3,
+  "version": 4,
   "title": "Market Failure: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -17,6 +17,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not yet reviewed by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q6 quota choice now includes the cap on total catch; q8 retagged intermediate (one step after q7); q10 explanation no longer refers to option letters. Independent review follow-up: q9 retagged intermediate. Not reviewed or approved by a human."
       }
     ]
   },
@@ -200,7 +206,7 @@
     },
     {
       "id": "c03-final-q6",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c03-l2",
       "objective": 3,
@@ -214,7 +220,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Give each boat a fixed share of the total catch"
+          "text": "Cap the total catch and give each boat a fixed share of it"
         },
         {
           "id": "b",
@@ -256,14 +262,14 @@
     },
     {
       "id": "c03-final-q8",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c03-l3",
       "objective": 2,
       "concept_ids": [
         "carbon_tax"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "In the market from q7, making one unit of the product releases 0.5 kg of greenhouse gases. By how many kilograms does the $6 carbon tax reduce emissions? (Enter a number only.)",
@@ -277,7 +283,7 @@
     },
     {
       "id": "c03-final-q9",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c03-l3",
       "objective": 3,
@@ -285,7 +291,7 @@
         "social_welfare_change",
         "pollution_tax"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "In the market from q7, assume each unit produced causes a constant $8 of external damage. Which of the following carbon taxes (in dollars per unit) produces the largest change in social welfare (avoided external damage − loss within the market)?",

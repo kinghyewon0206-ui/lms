@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l2",
-  "version": 4,
+  "version": 5,
   "title": "Lesson 2 Quiz: Opportunity Cost and Rational Decisions",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -30,6 +30,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "c01 correction pass: q5: difficulty set to intermediate (definition taught at the intermediate level). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q4 difficulty set to intermediate (one table lookup and one subtraction); independent review: q2 key wording covers all costs of going (key unchanged); q5 difficulty set to beginner (definition recall). Not reviewed or approved by a human."
       }
     ]
   },
@@ -76,7 +82,7 @@
     },
     {
       "id": "c01-l2-q2",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 2,
@@ -103,7 +109,7 @@
         },
         {
           "id": "d",
-          "text": "Compare today's fun with the risk of getting sick, leaving the pass price out."
+          "text": "Weigh today's fun against the costs of going today, leaving the pass price out."
         }
       ],
       "source_ids": [
@@ -132,7 +138,7 @@
     },
     {
       "id": "c01-l2-q4",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l2",
       "objective": 3,
@@ -140,7 +146,7 @@
         "ppf",
         "increasing_opportunity_cost"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "A town can produce the following combinations of (loaves of bread, cakes): (0, 60), (10, 52), (20, 40), (30, 22), (40, 0). How many cakes are given up when bread production rises from 20 to 30 loaves? (Enter a number only.)",
@@ -152,14 +158,14 @@
     },
     {
       "id": "c01-l2-q5",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 3,
       "concept_ids": [
         "ppf"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "What does a point inside the production possibilities frontier represent?",

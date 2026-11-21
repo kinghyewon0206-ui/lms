@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c02-l1",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: b and d described as coefficients (quantity change per unit of price), not slopes of the P-vertical graph; drawn slopes and elasticity distinguished; beginner movement-along-curve wording. Not reviewed or approved by a human."
       }
     ]
   },
@@ -130,7 +136,7 @@
             "shifters"
           ],
           "paragraphs": [
-            "If only the price of a slice changes, people stick to their usual plans and just buy a little more or a little less.",
+            "If only the price of a slice changes, people buy more when it gets cheaper and less when it gets more expensive. That is a change in quantity demanded, not a change in demand.",
             "But suppose exams end and you hang out with friends more often (a change in tastes or circumstances), your allowance goes up (a change in income), or a new burger place opens nearby (a substitute). Then the amount you want to buy changes even at the same price. We say that demand has changed.",
             "The same goes for sellers. If cheese gets more expensive, or a drought makes ingredients scarce, the pizza place will make fewer pizzas even at the same price. We say that supply has changed."
           ]
@@ -177,7 +183,7 @@
       ]
     },
     "advanced": {
-      "summary": "Writing demand and supply as linear functions, Qd = a − bP and Qs = c + dP, the slopes measure how strongly quantity responds to price, and a change in an intercept represents a shift of the curve.",
+      "summary": "Writing demand and supply as linear functions, Qd = a − bP and Qs = c + dP, the coefficients b and d measure how much quantity changes when the price changes by 1, and a change in an intercept represents a shift of the curve.",
       "sections": [
         {
           "heading": "The demand function",
@@ -187,7 +193,7 @@
             "law_of_demand"
           ],
           "paragraphs": [
-            "As a function, demand can be written Qd = a − bP (a > 0, b > 0). The law of demand is the condition b > 0, that is, ΔQd/ΔP = −b < 0. Plugging in a specific price P₀ gives Qd(P₀), the quantity demanded at that price.",
+            "As a function, demand can be written Qd = a − bP (a > 0, b > 0). The law of demand is the condition b > 0, that is, ΔQd/ΔP = −b < 0. Because price is on the vertical axis, the slope of the drawn demand curve is ΔP/ΔQd = −1/b, so a larger b means a flatter curve. Neither b nor the slope is the price elasticity, which also depends on where you are on the curve (Lesson 3). Plugging in a specific price P₀ gives Qd(P₀), the quantity demanded at that price.",
             "Market demand is the sum of individual consumers' quantities demanded at each price (a horizontal sum). So when the number of consumers grows, the market demand curve shifts to the right."
           ]
         },
@@ -198,7 +204,7 @@
             "law_of_supply"
           ],
           "paragraphs": [
-            "Writing supply as Qs = c + dP (d > 0), the law of supply is the condition ΔQs/ΔP = d > 0. The intercept c can be read as a summary of non-price conditions such as costs and technology."
+            "Writing supply as Qs = c + dP (d > 0), the law of supply is the condition ΔQs/ΔP = d > 0 (the drawn supply curve has slope 1/d). The intercept c can be read as a summary of non-price conditions such as costs and technology."
           ]
         },
         {
@@ -255,7 +261,7 @@
       "steps": [
         "At P = 10, Qd = 120 − 4×10 = 80.",
         "At P = 15, Qd = 120 − 4×15 = 60.",
-        "A price increase of 5 lowered quantity demanded by 20. This matches the slope of −4."
+        "A price increase of 5 lowered quantity demanded by 20. This matches the coefficient −4 in the demand function (ΔQd/ΔP = −4)."
       ],
       "answer": "Quantity demanded is 60 thousand bags (down 20 thousand bags from 80 thousand).",
       "check": {

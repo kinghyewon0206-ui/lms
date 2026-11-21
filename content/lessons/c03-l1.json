@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c03-l1",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: reworded the externality definition in original language to remove a close match with the OpenStax wording. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: marginal wording for the market equilibrium (MB to buyers = MC to sellers, both private) and the social optimum (MSB = MSC); negative externalities can come from consumption as well as production; stated the no-external-benefit/cost assumptions for the optimum; market-failure causes listed as examples. Not reviewed or approved by a human."
       }
     ]
   },
@@ -37,7 +43,7 @@
     {
       "id": "market_failure",
       "term": "Market failure",
-      "definition": "A situation in which the outcome the market produces on its own differs from the allocation of resources that is best for society as a whole. Externalities, public goods, and common resources are the classic causes.",
+      "definition": "A situation in which the outcome the market produces on its own differs from the allocation of resources that is best for society as a whole. Classic causes include externalities, public goods, and common resources, the three studied in this course.",
       "source_ids": [
         "openstax-pe3-12-1"
       ]
@@ -53,7 +59,7 @@
     {
       "id": "negative_externality",
       "term": "Negative externality",
-      "definition": "An externality that imposes uncompensated harm on third parties, such as pollution, noise, or congestion. Because producers do not count that harm as a cost, the market produces more than the socially optimal quantity.",
+      "definition": "An externality that imposes uncompensated harm on third parties, such as pollution, noise, or congestion. It can come from producing a good (smoke from a factory) or from consuming it (secondhand smoke, a loud late-night party). Because the producers or consumers who cause the harm do not count it as a cost, an uncorrected market produces or consumes more than the socially optimal quantity.",
       "source_ids": [
         "openstax-pe3-12-1"
       ]
@@ -85,7 +91,7 @@
     {
       "id": "social_optimum",
       "term": "Socially optimal quantity",
-      "definition": "The quantity that is best once all social benefits and social costs are counted. With a negative externality the market quantity is larger than this; with a positive externality it is smaller.",
+      "definition": "The quantity at which marginal social benefit equals marginal social cost, so every benefit and cost to society is counted. With a negative externality the market quantity is larger than this; with a positive externality it is smaller.",
       "source_ids": [
         "openstax-pe3-12-1",
         "openstax-pe3-13-1"
@@ -114,7 +120,7 @@
           ],
           "paragraphs": [
             "When a factory makes and sells a product, the factory and its customers both get what they want. But what if smoke from the factory chimney makes people in the neighborhood cough? Those neighbors were not part of the deal, yet they were harmed. Harm or benefit that falls on people outside a deal is called an externality.",
-            "If it causes harm, it is a negative externality. Car exhaust and late-night construction noise are examples. If it creates a benefit, it is a positive externality. When you get a flu shot, you are less likely to get sick, and so is the friend sitting next to you, because you are less likely to pass the flu on."
+            "If it causes harm, it is a negative externality. Car exhaust and late-night construction noise are examples. Externalities can come from making a good (the factory's smoke) or from using it (the exhaust from people driving their cars). If it creates a benefit, it is a positive externality. When you get a flu shot, you are less likely to get sick, and so is the friend sitting next to you, because you are less likely to pass the flu on."
           ]
         },
         {
@@ -147,7 +153,7 @@
             "market_failure"
           ],
           "paragraphs": [
-            "A competitive market reaches equilibrium where the benefits and costs that buyers and sellers themselves consider are equal. If those benefits and costs capture every benefit and cost to society, the market equilibrium is also socially desirable. But if someone's benefit or cost is left out, the market equilibrium no longer matches the social optimum. That mismatch is market failure."
+            "A competitive market reaches equilibrium where buyers' marginal benefit (shown by the demand curve) equals sellers' marginal cost (shown by the supply curve). These are private values: they include only the benefits and costs that buyers and sellers themselves consider. If those private marginal benefits and costs capture every benefit and cost to society, the market equilibrium is also socially efficient. But if someone's benefit or cost is left out, the market equilibrium no longer matches the social optimum. That mismatch is market failure."
           ]
         },
         {
@@ -158,7 +164,7 @@
             "positive_externality"
           ],
           "paragraphs": [
-            "An externality is a cost or benefit that falls, without payment, on a third party who is not part of the transaction. Pollution, noise, and traffic congestion are negative externalities; vaccination, education, and spillovers from research and development are positive externalities. The key point is that these effects are not reflected in the price: whoever causes harm does not pay for it, and whoever creates a benefit is not paid for it."
+            "An externality is a cost or benefit that falls, without payment, on a third party who is not part of the transaction. Externalities can arise from production (a factory's smoke) or from consumption (secondhand smoke from a cigarette). Pollution, noise, and traffic congestion are negative externalities; vaccination, education, and spillovers from research and development are positive externalities. The key point is that these effects are not reflected in the price: whoever causes harm does not pay for it, and whoever creates a benefit is not paid for it."
           ]
         },
         {
@@ -168,7 +174,7 @@
             "social_benefit"
           ],
           "paragraphs": [
-            "Social cost = private cost + external cost, and social benefit = private benefit + external benefit. The supply curve reflects producers' private costs, so with a negative externality the curve representing social cost lies above the supply curve by the amount of the external cost. The demand curve reflects consumers' private benefits, so with a positive externality the curve representing social benefit lies above the demand curve by the amount of the external benefit."
+            "Social cost = private cost + external cost, and social benefit = private benefit + external benefit. The supply curve reflects producers' private marginal cost, so with a negative externality the social-cost curve (marginal social cost) lies above the supply curve by the external cost per unit. The demand curve reflects consumers' private marginal benefit, so with a positive externality the social-benefit curve (marginal social benefit) lies above the demand curve by the external benefit per unit."
           ]
         },
         {
@@ -177,7 +183,7 @@
             "social_optimum"
           ],
           "paragraphs": [
-            "Negative externality: the socially optimal quantity is where the demand curve meets the social-cost curve, but the market trades where demand meets the (private) supply curve, so it trades more than the optimum (overproduction). Positive externality: the optimum is where the social-benefit curve meets the supply curve, but the market trades less than that (underproduction). On the graph, the vertical distance between the two curves is the external cost (or benefit) per unit."
+            "Negative externality (with no external benefit): the socially optimal quantity is where the demand curve meets the social-cost curve, but the market trades where demand meets the (private) supply curve, so it trades more than the optimum (overproduction). Positive externality (with no external cost): the optimum is where the social-benefit curve meets the supply curve, but the market trades less than that (underproduction). On the graph, the vertical distance between the two curves is the external cost (or benefit) per unit."
           ]
         }
       ]
@@ -414,7 +420,7 @@
   "key_takeaways": [
     "An externality is a cost or benefit that falls, without payment, on a third party outside a transaction, and it is a leading cause of market failure.",
     "Social cost = private cost + external cost; social benefit = private benefit + external benefit.",
-    "A negative externality leads to overproduction, and a positive externality leads to underproduction. If the external cost per unit is constant, the social-cost curve is the supply curve shifted up by that amount."
+    "Without correction, a negative externality leads to overproduction (or overconsumption), and a positive externality leads to underproduction (or underconsumption). If the external cost per unit is constant, the social-cost curve is the supply curve shifted up by that amount."
   ],
   "source_ids": [
     "openstax-pe3-12-1",

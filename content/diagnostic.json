@@ -1,12 +1,20 @@
 {
   "schema_version": 1,
   "id": "econ-diagnostic",
-  "version": 5,
+  "version": 6,
   "title": "Economics Basics Diagnostic Assessment",
-  "description": "These 12 questions check the starting ideas behind all nine ECONOVA courses: scarcity and opportunity cost, markets and prices, market failure, the whole economy, income, taxes and money, trade, and reasoning about SDG policy evidence. You do not need to have studied economics before. Scoring follows fixed rules only (no AI grading), and the result is only a suggestion to help you choose a difficulty level.",
+  "description": "These 12 questions check the starting ideas behind all nine ECONOVA courses: scarcity and opportunity cost; markets and prices; market failure; the whole economy; income, taxes, and saving; trade; and reasoning about SDG policy evidence. You do not need to have studied economics before. Scoring follows fixed rules only (no AI grading), and the result is only a suggestion to help you choose a difficulty level.",
   "review": {
     "status": "draft",
-    "note": "AI-written question draft (v3 redesign: covers foundational ideas from c01-c09, one question per concept area plus two SDG reasoning questions; written for students before instruction). Not yet reviewed by a teacher; the difficulty thresholds are provisional and have not been validated."
+    "note": "AI-written question draft (v3 redesign: covers foundational ideas from c01-c09, one question per concept area plus two SDG reasoning questions; written for students before instruction). Not yet reviewed by a teacher; the difficulty thresholds are provisional and have not been validated.",
+    "history": [
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: description now matches the actual coverage; q01 choices reworded so the item tests the idea rather than the definition; q11 prompt and choices aligned with the c09 term 'underlying cause'; q07 uses the standard percent entry instruction; q04 explanation aligned with the social-cost wording. Thresholds and categories unchanged. Not reviewed or approved by a human."
+      }
+    ]
   },
   "thresholds": {
     "intermediate": 0.4,
@@ -91,11 +99,11 @@
         },
         {
           "id": "c",
-          "text": "The parking lot, the next-best use of the land"
+          "text": "The parking lot, which residents ranked second"
         },
         {
           "id": "d",
-          "text": "The garden, the use residents value the least"
+          "text": "The garden, which residents ranked last"
         }
       ]
     },
@@ -224,7 +232,7 @@
       "id": "q07",
       "category": "macroeconomy",
       "type": "numeric",
-      "prompt": "Hypothetical example: A town has 1,000 adults. Of these, 360 have jobs, 40 have no job but are actively looking for one, and 600 are not looking for work (for example, full-time students and retirees). Economists count the people who have a job or are actively looking for one as the labor force. What percentage of the labor force is unemployed? Enter a number in percent, rounded to the nearest whole percent (for example, 7).",
+      "prompt": "Hypothetical example: A town has 1,000 adults. Of these, 360 have jobs, 40 have no job but are actively looking for one, and 600 are not looking for work (for example, full-time students and retirees). Economists count the people who have a job or are actively looking for one as the labor force. What percentage of the labor force is unemployed? Enter a number only, rounded to the nearest whole percent; for example, enter 7 for 7%.",
       "unit": "%"
     },
     {
@@ -286,11 +294,11 @@
       "id": "q11",
       "category": "policy",
       "type": "mcq",
-      "prompt": "Hypothetical example: In a rural district, many children miss morning classes. A survey finds that most of these children spend early mornings walking to a distant well to collect water for their families. A student is defining this problem for an SDG project. Which of these is most likely a root cause rather than a symptom?",
+      "prompt": "Hypothetical example: In a rural district, many children miss morning classes. A survey finds that most of these children spend early mornings walking to a distant well to collect water for their families. A student is defining this problem for an SDG project. Which of these is most likely an underlying cause rather than a symptom?",
       "choices": [
         {
           "id": "a",
-          "text": "The hours children spend fetching water far away"
+          "text": "The lack of a water source near the children's homes"
         },
         {
           "id": "b",

@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c07",
   "lesson_id": "c07-l2",
-  "version": 3,
+  "version": 4,
   "title": "Lesson 2 Quiz: Saving, Interest, and Compound Growth",
   "description": "A short quiz to check what you learned in this lesson. Submitting it completes the lesson's quiz requirement, and your score is recorded separately.",
   "review": {
@@ -18,6 +18,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: l2-q3 uses 'interest rate' instead of APR for a deposit account; l2-q4 percent-entry instruction added and difficulty set to intermediate (formula supplied, one substitution). Not reviewed or approved by a human."
       }
     ]
   },
@@ -64,7 +70,7 @@
     },
     {
       "id": "c07-l2-q3",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c07-l2",
       "objective": 2,
@@ -75,7 +81,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Bank A pays a 4.00% APR compounded monthly. Bank B pays a 4.05% APY. Assuming no fees and the same safety, which account earns more over one year?",
+      "prompt": "Hypothetical example: Bank A pays a 4.00% interest rate, compounded monthly. Bank B pays a 4.05% APY. Assuming no fees and the same safety, which account earns more over one year?",
       "choices": [
         {
           "id": "a",
@@ -100,17 +106,17 @@
     },
     {
       "id": "c07-l2-q4",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c07-l2",
       "objective": 3,
       "concept_ids": [
         "real_return"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A savings account earns a nominal return of 6% over a year in which inflation is 4%. Using the exact formula (1 + nominal) ÷ (1 + inflation) − 1, what is the real return, in percent? Round to two decimal places. (Enter a number only.)",
+      "prompt": "Hypothetical example: A savings account earns a nominal return of 6% over a year in which inflation is 4%. Using the exact formula (1 + nominal) ÷ (1 + inflation) − 1, what is the real return, in percent? Round to two decimal places. (Enter a number only; for example, enter 25 for 25%.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-22-4",

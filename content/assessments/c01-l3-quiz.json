@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l3",
-  "version": 4,
+  "version": 5,
   "title": "Lesson 3 Quiz: Sustainable Consumption and Resource Allocation",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -30,6 +30,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "c01 correction pass: q1 rewritten with a new scenario (was copied from the lesson); q2 wording aligned with the corrected social-cost explanation; q4 choice now matches the disposable-cup mechanism (recycling). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q2 stem no longer copies the lesson and choices rebalanced so the key is not the longest; q3 difficulty set to intermediate (one addition); q5 rewritten as a multi-step net-saving break-even problem to match its advanced tag; independent review: q3 difficulty set to beginner (one addition); q4 distractors a and d rewritten as plausible two-part statements (key unchanged); q1 explanation ties the waste to overproduction. Not reviewed or approved by a human."
       }
     ]
   },
@@ -79,7 +85,7 @@
     },
     {
       "id": "c01-l3-q2",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 2,
@@ -89,23 +95,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "When stores give out plastic bags for free, people tend to use more bags than is best for society. Which statement best explains why?",
+      "prompt": "Stores in a town hand out plastic bags at no charge. Economists predict that shoppers will use more bags than the socially efficient number. Which statement best explains this prediction?",
       "choices": [
         {
           "id": "a",
-          "text": "The social cost of a plastic bag is zero once it has been made."
+          "text": "The social cost of a plastic bag falls to zero once the bag has been made."
         },
         {
           "id": "b",
-          "text": "The cost shoppers face ($0) is below the social cost, including disposal and harm."
+          "text": "Shoppers pay $0, which is less than the full cost of the bag to society."
         },
         {
           "id": "c",
-          "text": "The cost of producing each plastic bag is very high for the store."
+          "text": "Producing each plastic bag is very expensive for the store that hands it out."
         },
         {
           "id": "d",
-          "text": "Plastic bags are a necessity that people need for daily life."
+          "text": "Plastic bags are a necessity, so people need many of them for daily life."
         }
       ],
       "source_ids": [
@@ -117,14 +123,14 @@
     },
     {
       "id": "c01-l3-q3",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 2,
       "concept_ids": [
         "social_cost"
       ],
-      "difficulty": "advanced",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "Hypothetical example: Making one disposable takeout container costs 30 cents, and after it is used, disposal and environmental damage cost society another 45 cents (assumed values). What is the social cost of one container, in cents? (Enter a number only.)",
@@ -138,7 +144,7 @@
     },
     {
       "id": "c01-l3-q4",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 3,
@@ -152,7 +158,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Cup prices keep rising, so the burden on consumers grows over time."
+          "text": "Refunds lower the price of cups, so consumers end up buying fewer cups overall."
         },
         {
           "id": "b",
@@ -164,7 +170,7 @@
         },
         {
           "id": "d",
-          "text": "It removes most of the cost of producing the cups in the first place."
+          "text": "It raises collection, but the deposit is a permanent extra cost even for returners."
         }
       ],
       "source_ids": [
@@ -176,7 +182,7 @@
     },
     {
       "id": "c01-l3-q5",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 3,
@@ -187,7 +193,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: A reusable shopping bag costs $3, and each time you use it for shopping, you avoid a 5-cent plastic bag fee. How many times must you use the reusable bag to earn back its price? (Enter a number only.)",
+      "prompt": "Hypothetical example: A reusable lunch container costs $9. Each time you use it instead of a disposable container, you avoid a 25-cent disposable-container charge, but washing it uses about 10 cents of water, soap, and energy. How many uses does it take for the reusable container to earn back its price? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",

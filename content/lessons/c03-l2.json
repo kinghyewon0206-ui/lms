@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c03-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,11 +25,17 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: framed the climate free-riding/commons link as an analogy and cited the IMF F&D externalities page (atmosphere as a global public good). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: added club goods so the two criteria give four categories; consistent climate framing (absorptive capacity of the atmosphere as a common resource, a stable climate as a global public good, noting that labels differ); replaced fire protection with flood barriers; stated open-access assumptions and the 5-boat maximum in worked example 3. Independent review follow-up: objective 1 now names club goods. Not reviewed or approved by a human."
       }
     ]
   },
   "objectives": [
-    "Use excludability and rivalry to classify private goods, public goods, and common resources.",
+    "Use excludability and rivalry to classify goods as private goods, club goods, public goods, or common resources.",
     "Explain why the free-rider problem keeps markets from supplying enough public goods, and describe the role of government.",
     "Explain why the tragedy of the commons happens, and compare solutions such as property rights, permits and quotas, and limits on use."
   ],
@@ -70,7 +76,7 @@
     {
       "id": "common_resource",
       "term": "Common resource",
-      "definition": "A resource that is nonexcludable but rival, such as fish in the ocean, a shared pasture, or the atmosphere. Anyone can use it, but using it leaves less for others.",
+      "definition": "A resource that is nonexcludable but rival, such as fish in the ocean, a shared pasture, or the atmosphere's limited capacity to absorb pollution. Anyone can use it, but using it leaves less for others.",
       "source_ids": [
         "openstax-pe3-13-3"
       ]
@@ -106,7 +112,7 @@
           ],
           "paragraphs": [
             "What about a streetlight on your block? You can't light up only the houses that paid for it and leave the others in the dark. And when you walk under it, there is no less light for anyone else. A good like this is called a public good.",
-            "Because you can use a public good without paying, it is tempting to wait and think, \"Someone else will pay for it.\" This is called free riding. If everyone thinks that way, a streetlight that would help everyone might never go up. That is why public goods such as streetlights, national defense, and fire protection are often paid for by the government through taxes."
+            "Because you can use a public good without paying, it is tempting to wait and think, \"Someone else will pay for it.\" This is called free riding. If everyone thinks that way, a streetlight that would help everyone might never go up. That is why public goods such as streetlights, national defense, and flood barriers are often paid for by the government through taxes."
           ]
         },
         {
@@ -117,7 +123,7 @@
           ],
           "paragraphs": [
             "Anyone can catch fish in the ocean, but when one person catches a lot, there are fewer fish left for others. Something like this is called a common resource. If every fisher thinks, \"If I don't catch them, someone else will, so I'd better catch them first,\" the fish never get a chance to recover, and in the end everyone loses. This is called the tragedy of the commons.",
-            "Clean air and a stable climate work much like common resources. Everyone uses them, but the more greenhouse gases we release, the less of a stable climate there is for everyone."
+            "The air works in a similar way when it comes to pollution. Anyone can release greenhouse gases into it, but the atmosphere can absorb only so much before the climate changes for everyone. In that sense, its ability to absorb pollution works much like a common resource."
           ]
         }
       ]
@@ -134,7 +140,7 @@
             "common_resource"
           ],
           "paragraphs": [
-            "Goods can be sorted by excludability (can nonpayers be kept out?) and rivalry (does one person's use reduce what others can use?). Excludable and rival goods are private goods (bread, clothing); nonexcludable and nonrival goods are public goods (national defense, streetlights); nonexcludable but rival goods are common resources (ocean fish, a shared pasture). The same good can become more or less excludable depending on technology and institutions (for example, a toll road versus a free road)."
+            "Goods can be sorted by excludability (can nonpayers be kept out?) and rivalry (does one person's use reduce what others can use?). Two criteria give four combinations. Excludable and rival goods are private goods (bread, clothing). Excludable but nonrival goods are club goods (a streaming service, or a toll road that is not crowded): nonpayers can be kept out, but one more user does not reduce what others get. Nonexcludable but rival goods are common resources (ocean fish, a shared pasture). Nonexcludable and nonrival goods are public goods (national defense, streetlights). The same good can move between categories depending on technology, institutions, and crowding: adding a toll turns a free road into a club good, and heavy traffic makes a road rival."
           ]
         },
         {
@@ -168,7 +174,7 @@
             "public_good"
           ],
           "paragraphs": [
-            "Each unit of a private good is used by only one person, so market demand adds up individual quantities demanded horizontally. Each unit of a public good is used by everyone at once, so its social value is the vertical sum of the values all users place on it. With n users, the social marginal benefit is MSB = MB₁ + MB₂ + … + MBₙ, and the efficient quantity is where MSB = MC. Each person looks only at their own MB and refuses to pay when MB < MC, so the good may go unsupplied even when the sum exceeds MC."
+            "Each unit of a private good is used by only one person, so market demand adds up individual quantities demanded horizontally. Each unit of a public good is used by everyone at once, so its social value is the vertical sum of the values all users place on it. With n users, the social marginal benefit is MSB = MB₁ + MB₂ + … + MBₙ, and the efficient quantity is where MSB = MC. Each person looks only at their own MB and will not pay for a unit alone when their own MB < MC, so the good may go unsupplied even when the sum exceeds MC."
           ]
         },
         {
@@ -187,8 +193,8 @@
             "tragedy_of_commons"
           ],
           "paragraphs": [
-            "In an open-access fishery, a boat enters whenever its average catch is worth more than its cost. For society as a whole, however, what matters is how much the total catch rises when that boat enters (the marginal catch). If F(n) is the total catch of n boats and w is the cost of one boat, free entry continues as long as the average F(n)/n ≥ w, while the efficiency condition is that the marginal catch F(n) − F(n − 1) ≥ w. The catch a new boat takes away from other boats does not enter that boat's cost, so entry goes beyond the efficient level (worked example 3).",
-            "Applying these ideas to climate change takes an analogy. The atmosphere works like a common resource that absorbs greenhouse gases, and cutting emissions to stabilize the climate works like a global public good that benefits every country (the IMF describes the atmosphere itself as a global public good). Seen this way, climate action faces both free riding and the tragedy of the commons at once, which helps explain why cooperation between countries is difficult."
+            "In an open-access fishery, assume identical boats that share the total catch equally, and enough potential boats that anyone who wants to enter can. A boat then enters whenever the average catch is worth at least its cost. For society as a whole, however, what matters is how much the total catch rises when that boat enters (the marginal catch). If F(n) is the total catch of n boats and w is the cost of one boat, free entry continues as long as the average F(n)/n ≥ w, while the efficiency condition is that the marginal catch F(n) − F(n − 1) ≥ w. The catch a new boat takes away from other boats does not enter that boat's cost, so entry goes beyond the efficient level (worked example 3).",
+            "Applying these ideas to climate change takes an analogy. The atmosphere's limited capacity to absorb greenhouse gases works like a common resource: no country can be kept from emitting, and each country's emissions use up capacity that others could have used. A stable climate, and the emission cuts that protect it, work like a global public good: every country benefits whether or not it helped pay. Sources label this differently depending on which side they focus on; the IMF, for example, describes the atmosphere as a global public good. Seen either way, climate action faces both free riding and the tragedy of the commons at once, which helps explain why cooperation between countries is difficult."
           ]
         }
       ]
@@ -236,9 +242,9 @@
       "id": "c03-l2-we3",
       "level": "advanced",
       "title": "How many boats will enter the fishery?",
-      "problem": "Hypothetical example: In a fishery, the total daily catch (in tons) by number of boats is 10 for 1 boat, 18 for 2, 24 for 3, 28 for 4, and 30 for 5. The daily cost of running one boat equals the value of 5 tons of fish. If anyone can enter, how many boats will enter? Which number of boats maximizes society's net catch?",
+      "problem": "Hypothetical example: In a fishery, the total daily catch (in tons) by number of boats is 10 for 1 boat, 18 for 2, 24 for 3, 28 for 4, and 30 for 5. The daily cost of running one boat equals the value of 5 tons of fish, and at most 5 boats are available to fish here. If anyone can enter, how many boats will enter? Which number of boats maximizes society's net catch?",
       "steps": [
-        "Average catch per boat: 10, 9, 8, 7, 6. All five exceed the cost of 5, so with free entry 5 boats enter.",
+        "Average catch per boat: 10, 9, 8, 7, 6. All five exceed the cost of 5, so with free entry all 5 available boats enter.",
         "Marginal catch (the increase from adding one more boat): 10, 8, 6, 4, 2. Only the first 3 boats add at least 5.",
         "Net catch = total catch − 5 × number of boats: with 3 boats, 24 − 15 = 9; with 5 boats, 30 − 25 = 5.",
         "Free entry reduces society's net catch by 9 − 5 = 4 tons."
@@ -345,9 +351,9 @@
     ]
   },
   "key_takeaways": [
-    "Classifying goods by excludability and rivalry gives private goods (excludable and rival), public goods (nonexcludable and nonrival), and common resources (nonexcludable but rival).",
+    "Excludability and rivalry sort goods into four types: private goods (excludable and rival), club goods (excludable but nonrival), common resources (nonexcludable but rival), and public goods (nonexcludable and nonrival).",
     "Because of free riding, markets tend to undersupply public goods, so they are often paid for jointly, for example through taxes.",
-    "When each user looks only at their own gain, a common resource is overused and depleted (the tragedy of the commons). Property rights, permits, quotas, and limits on use are possible solutions, and the climate is an example of this problem on a global scale."
+    "When each user looks only at their own gain, a common resource is overused and depleted (the tragedy of the commons). Property rights, permits, quotas, and limits on use are possible solutions, and the atmosphere's limited capacity to absorb greenhouse gases is an example of this problem on a global scale."
   ],
   "source_ids": [
     "openstax-pe3-12-5",

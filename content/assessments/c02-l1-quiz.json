@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c02",
   "lesson_id": "c02-l1",
-  "version": 4,
+  "version": 5,
   "title": "Lesson 1 Quiz: Supply and Demand",
   "description": "This lesson quiz checks what you learned in the lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -30,6 +30,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q3 stem no longer states the shift ('more even at the same price'); q5 labeled hypothetical (difficulty kept advanced: linear functions are taught only at the advanced level). Not reviewed or approved by a human."
       }
     ]
   },
@@ -114,7 +120,7 @@
     },
     {
       "id": "c02-l1-q3",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c02-l1",
       "objective": 3,
@@ -125,7 +131,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Incomes rise, and people now want to buy more sneakers (a normal good) even at the same price. What happens in the sneaker market?",
+      "prompt": "Incomes in a town rise. Sneakers are a normal good. Other things being equal, what happens in the sneaker market?",
       "choices": [
         {
           "id": "a",
@@ -187,7 +193,7 @@
     },
     {
       "id": "c02-l1-q5",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c02-l1",
       "objective": 3,
@@ -198,7 +204,7 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "The demand function for a good was Qd = 90 − 3P. Then incomes rose, and quantity demanded increased by 15 at every price. What is the new quantity demanded at P = 12? (Enter a number only.)",
+      "prompt": "Hypothetical example: The demand function for a good was Qd = 90 − 3P. Then incomes rose, and quantity demanded increased by 15 at every price. What is the new quantity demanded at P = 12? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-3-1",

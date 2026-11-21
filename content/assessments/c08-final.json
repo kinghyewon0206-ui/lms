@@ -3,7 +3,7 @@
   "id": "c08-final",
   "kind": "final",
   "course_id": "c08",
-  "version": 1,
+  "version": 2,
   "title": "Global Economics: Final Assessment",
   "description": "A final assessment covering the key ideas from all three lessons. Reach the passing score to complete the course.",
   "review": {
@@ -17,6 +17,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "AI-written question draft. Not reviewed or approved by a human (admin); do not give to students."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q4-q6: currencies defined in every prompt; q5: key was the only hedged choice, all choices now parallel and the explanation names the J-curve; q7: key reworded in the same form as the other options; q8: stem no longer asks for 'a concern discussed in this course' and options made parallel; q10 retagged advanced to intermediate (one-step application of the externality idea). Independent-review follow-up: q3, q7, q10 citations corrected; q5 stem no longer states the mechanism and option a no longer contradicts it (cites Saylor 8.12); q8 distractors hedged but wrong; q3 given a product context distinct from l1-q5. Lead QA: q8 key shortened so it no longer stands out or echoes the lesson. Not reviewed or approved by a human."
       }
     ]
   },
@@ -104,7 +110,7 @@
     },
     {
       "id": "c08-final-q3",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c08-l1",
       "objective": 3,
@@ -114,15 +120,16 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: In a small importing country, the world price of a good is $8. At $8, buyers want 500 and domestic firms supply 200 (thousands of units). A $2 tariff raises the domestic price to $10, where buyers want 460 and domestic firms supply 260. What is the deadweight loss of the tariff, in thousands of dollars? (Enter a number only.)",
+      "prompt": "Hypothetical example: In a small importing country, the world price of a toy is $8. At $8, buyers want 500 and domestic firms supply 200 (thousands of toys). A $2 tariff raises the domestic price to $10, where buyers want 460 and domestic firms supply 260. What is the deadweight loss of the tariff, in thousands of dollars? (Enter a number only.)",
       "unit": "",
       "source_ids": [
-        "openstax-pe3-34-1"
+        "openstax-pe3-34-1",
+        "libretexts-ittp-7-8"
       ]
     },
     {
       "id": "c08-final-q4",
-      "version": 1,
+      "version": 2,
       "type": "numeric",
       "lesson_id": "c08-l2",
       "objective": 1,
@@ -133,7 +140,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example (invented currencies): The exchange rate is quoted as 1 DEN = 0.8 COR (coros per dena). A bicycle made in Country C sells for 400 COR. How many denas does a buyer in Country D pay, ignoring shipping and taxes? (Enter a number only.)",
+      "prompt": "Hypothetical example (invented currencies): Country C uses the coro (COR), and Country D uses the dena (DEN). The exchange rate is quoted as 1 DEN = 0.8 COR (coros per dena). A bicycle made in Country C sells for 400 COR. How many denas does a buyer in Country D pay, ignoring shipping and taxes? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-29-1"
@@ -141,7 +148,7 @@
     },
     {
       "id": "c08-final-q5",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l2",
       "objective": 2,
@@ -151,33 +158,34 @@
       "difficulty": "advanced",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example (invented currencies): The coro depreciates sharply. Sellers keep their prices in their own currencies. For the first few months, the quantities Country C imports and exports barely change because orders were placed in advance. What is the most likely short-run effect on Country C's trade balance measured in coros?",
+      "prompt": "Hypothetical example (invented currencies): Country C uses the coro (COR), and Country D uses the dena (DEN). The coro depreciates sharply. Sellers keep their prices in their own currencies. Most of Country C's import and export orders for the next few months were signed before the depreciation. What is the most likely short-run effect on Country C's trade balance measured in coros?",
       "choices": [
         {
           "id": "a",
-          "text": "It improves right away, as export and import quantities adjust fully within days"
+          "text": "It improves right away, because Country C's exports become cheaper for foreign buyers"
         },
         {
           "id": "b",
-          "text": "It stays the same, as exchange rates affect just the prices of exported goods"
+          "text": "It stays the same, because the signed orders fix both the quantities and their coro values"
         },
         {
           "id": "c",
-          "text": "It may worsen at first, as each import costs more coros while quantities change little"
+          "text": "It worsens at first, because each import costs more coros while quantities change little"
         },
         {
           "id": "d",
-          "text": "It improves at first and then worsens later, as buyers switch to new suppliers"
+          "text": "It improves at first and then worsens, because buyers switch to new suppliers"
         }
       ],
       "source_ids": [
         "openstax-pe3-29-3",
-        "openstax-pe3-5-1"
+        "openstax-pe3-5-1",
+        "saylor-ifp-8-12"
       ]
     },
     {
       "id": "c08-final-q6",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l2",
       "objective": 2,
@@ -187,7 +195,7 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example (invented currencies): The dena appreciates against the coro. Which group in Country D is most likely to benefit?",
+      "prompt": "Hypothetical example (invented currencies): Country C uses the coro (COR), and Country D uses the dena (DEN). The dena appreciates against the coro. Which group in Country D is most likely to benefit?",
       "choices": [
         {
           "id": "a",
@@ -212,7 +220,7 @@
     },
     {
       "id": "c08-final-q7",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l3",
       "objective": 1,
@@ -239,16 +247,17 @@
         },
         {
           "id": "d",
-          "text": "Country G's gross exports overstate the value it adds, which is $40 per phone"
+          "text": "Country G adds $40 of value per phone, the export price minus the parts cost"
         }
       ],
       "source_ids": [
-        "openstax-pe3-33-3"
+        "openstax-pe3-33-3",
+        "imf-fd-gdp-basics"
       ]
     },
     {
       "id": "c08-final-q8",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l3",
       "objective": 3,
@@ -259,23 +268,23 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: Country D bans imports from foreign factories that fail its environmental and safety standards. Which concern about this policy was discussed in this course?",
+      "prompt": "Hypothetical example: Country D bans imports from foreign factories that fail its environmental and safety standards. Which statement about this policy is most accurate?",
       "choices": [
         {
           "id": "a",
-          "text": "Exporters in poorer countries may lose sales, and standards can be misused as hidden protection"
+          "text": "It can cut sales for exporters in poorer countries, and its rules can shield domestic firms"
         },
         {
           "id": "b",
-          "text": "Clothing in Country D will become cheaper, because the ban increases competition among sellers"
+          "text": "It tends to lower the prices of these goods in Country D, because it increases competition among sellers"
         },
         {
           "id": "c",
-          "text": "Exports from developing countries will rise, because the ban makes clothing scarcer worldwide"
+          "text": "It mainly shifts the pollution damage to Country D, because the external cost travels with the goods"
         },
         {
           "id": "d",
-          "text": "The ban will remove external costs at no cost to producers, workers, or consumers anywhere"
+          "text": "It tends to lower costs for producers in poorer countries, because cleaner plants are cheaper to run"
         }
       ],
       "source_ids": [
@@ -303,7 +312,7 @@
     },
     {
       "id": "c08-final-q10",
-      "version": 1,
+      "version": 2,
       "type": "mcq",
       "lesson_id": "c08-l3",
       "objective": 2,
@@ -311,7 +320,7 @@
         "resilience_tradeoff",
         "interdependence_disruption"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Why might firms choose less supply chain resilience than would be best for society as a whole?",
@@ -334,7 +343,7 @@
         }
       ],
       "source_ids": [
-        "openstax-pe3-33-3"
+        "imf-fd-supply-chains"
       ]
     }
   ]

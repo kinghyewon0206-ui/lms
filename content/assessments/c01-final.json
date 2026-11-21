@@ -3,7 +3,7 @@
   "id": "c01-final",
   "kind": "final",
   "course_id": "c01",
-  "version": 4,
+  "version": 5,
   "title": "Economics & Choices: Final Assessment",
   "description": "This final assessment checks the key ideas from all three lessons. Meet the passing standard to complete the course.",
   "review": {
@@ -29,6 +29,12 @@
         "at": "2026-11-21",
         "by": "Claude Code (AI)",
         "note": "c01 correction pass: q6 contradictory 'no other use' assumption removed; q9 choices rebalanced (answer changed); explanations for q7 and q10 aligned with the corrected lessons. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Comprehensive audit: q2 and q10 difficulty set to beginner and q3 and q8 to intermediate to match their demand; q6 key no longer the only hedged choice and choice c made plausible; q8 says buyers already pay the private cost and asks for the price buyers pay, not the private cost; q9 stem no longer copies the lesson case and the key is no longer the only hedged choice; independent review: q5 says the whole budget is spent (key unchanged). Not reviewed or approved by a human."
       }
     ]
   },
@@ -81,14 +87,14 @@
     },
     {
       "id": "c01-final-q2",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l1",
       "objective": 2,
       "concept_ids": [
         "economic_systems"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "Which statement best describes the economic system found in most countries today?",
@@ -118,14 +124,14 @@
     },
     {
       "id": "c01-final-q3",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l1",
       "objective": 3,
       "concept_ids": [
         "specialization"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "Which of the following is a limitation or cost of specialization and the division of labor?",
@@ -174,7 +180,7 @@
     },
     {
       "id": "c01-final-q5",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c01-l2",
       "objective": 1,
@@ -185,7 +191,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: With a $30 entertainment budget, you plan to buy theater tickets ($12 each) and tacos ($3 each). What is the opportunity cost of one theater ticket, measured in tacos? (Enter a number only.)",
+      "prompt": "Hypothetical example: With a $30 entertainment budget, you plan to spend the whole budget on theater tickets ($12 each) and tacos ($3 each). What is the opportunity cost of one theater ticket, measured in tacos? (Enter a number only.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-2-1",
@@ -194,7 +200,7 @@
     },
     {
       "id": "c01-final-q6",
-      "version": 4,
+      "version": 5,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 2,
@@ -209,7 +215,7 @@
       "choices": [
         {
           "id": "a",
-          "text": "Consider stopping, since the future $30,000 cost exceeds the future $20,000 benefit."
+          "text": "Stop the work, since the future $30,000 cost exceeds the future $20,000 benefit."
         },
         {
           "id": "b",
@@ -217,7 +223,7 @@
         },
         {
           "id": "c",
-          "text": "Keep going, since the $80,000 total cost already far exceeds the $20,000 benefit."
+          "text": "Keep going, since the $20,000 benefit of finishing is still greater than zero."
         },
         {
           "id": "d",
@@ -268,17 +274,17 @@
     },
     {
       "id": "c01-final-q8",
-      "version": 3,
+      "version": 4,
       "type": "numeric",
       "lesson_id": "c01-l3",
       "objective": 2,
       "concept_ids": [
         "social_cost"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Hypothetical example: For one unit of a product, the private cost is 40 cents and the social cost is $1.00 (100 cents). What fee per unit, in cents, would make the private cost equal to the social cost? (Enter a number only.)",
+      "prompt": "Hypothetical example: For one unit of a product, the private cost is 40 cents and the social cost is $1.00 (100 cents). Buyers already pay a price equal to the private cost. What additional fee per unit, in cents, would make the price buyers pay equal to the social cost? (Enter a number only.)",
       "unit": "cents",
       "source_ids": [
         "openstax-pe3-2-1",
@@ -289,7 +295,7 @@
     },
     {
       "id": "c01-final-q9",
-      "version": 3,
+      "version": 4,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 3,
@@ -300,7 +306,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Your school cafeteria starts publishing each class's food waste every week. Which statement best describes this policy tool?",
+      "prompt": "Hypothetical example: A school starts posting a weekly chart that shows how much food each class leaves uneaten. Which statement best describes this policy tool?",
       "choices": [
         {
           "id": "a",
@@ -308,7 +314,7 @@
         },
         {
           "id": "b",
-          "text": "It works through information and norms, and its effect may be small or fade."
+          "text": "It works through information and norms, making each class's waste visible to all."
         },
         {
           "id": "c",
@@ -328,14 +334,14 @@
     },
     {
       "id": "c01-final-q10",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 1,
       "concept_ids": [
         "sustainable_consumption"
       ],
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
       "prompt": "Which statement best describes sustainable consumption?",
