@@ -222,6 +222,24 @@ def content_digest(data):
                           .encode("utf-8")).hexdigest()
 
 
+def course_digest(data):
+    """강좌 JSON 의 승인 지문. 공개 결정(강좌·레슨 status)과, 각 자료 파일의 검토 상태를 옮겨 적은 칸
+    (material·quiz·final_assessment·capstone 의 status)은 뺀다. 이 칸들은 다른 승인·공개 결정의 결과라서,
+    그것을 반영해도 강좌 설명·목표·구성에 대한 승인이 무효가 되면 안 된다. 그 밖의 내용이 바뀌면 지문이 달라진다."""
+    body = json.loads(json.dumps(data or {}))
+    body.pop("status", None)
+    for lesson in body.get("lessons") or []:
+        if isinstance(lesson, dict):
+            lesson.pop("status", None)
+            for key in ("material", "quiz"):
+                if isinstance(lesson.get(key), dict):
+                    lesson[key].pop("status", None)
+    for key in ("final_assessment", "capstone"):
+        if isinstance(body.get(key), dict):
+            body[key].pop("status", None)
+    return content_digest(body)
+
+
 PASSING_POLICY_META = ("status", "note", "review_id")   # 합격 기준 승인 결과·설명 (기준 값이 아님)
 
 
@@ -230,6 +248,10 @@ def assessment_digest(data):
     (기준 값 score_ratio 가 바뀌면 지문이 달라진다). 그래서 합격 기준을 승인해도 평가 승인이 무효가 되지 않는다."""
     if isinstance((data or {}).get("passing"), dict):
         data = {**data, "passing": {k: v for k, v in data["passing"].items() if k not in PASSING_POLICY_META}}
+    if isinstance((data or {}).get("questions"), list):
+        # 문항별 review_status 는 평가 승인의 결과(승인하면 그때의 모든 문항이 approved 로 기록됨)라 지문에서 뺀다
+        data = {**data, "questions": [{k: v for k, v in q.items() if k != "review_status"} if isinstance(q, dict) else q
+                                      for q in data["questions"]]}
     return content_digest(data)
 
 

@@ -70,5 +70,12 @@ env DB_BACKEND=firestore FIREBASE_CREDENTIALS_JSON="$(cat ~/econova-dev-secrets/
 - `ai-purge`(AI 대화 보존 기간 정리): Render Cron 은 유료 → 이 컴퓨터에서 주기적으로 실행하거나 다른 방법을 정한다.
 
 ## 8. 출시 전 콘텐츠
+- 공개 절차 (강좌 단위, 2026-11-21 리허설로 검증 — `tests/test_release_rehearsal.py`):
+  1. 관리 화면에서 강좌 설명·레슨 자료·퀴즈·최종 평가(→ 합격 기준) 또는 캡스톤 정의를 사람이 승인한다.
+  2. 릴리스 계획을 내려받아 개발 환경에서 `flask --app app content-release-apply <plan>` (먼저 `--dry-run`). 레슨·퀴즈·최종 평가·캡스톤의
+     승인 상태는 강좌 JSON 에도 함께 반영되고, 평가를 승인하면 그 문항이 모두 approved 로 기록된다.
+  3. **공개 결정(사람):** 강좌 JSON 의 `status` 와 각 레슨의 `status` 를 `published` 로 바꾼다 (승인 지문에는 영향 없음).
+  4. `check-content`, 전체 테스트, `content-verify-approvals` → diff 확인 → 커밋. 승인된 평가의 정답 키를 Secret Files 로 올린다.
+  5. 승인된 평가는 비공개 원본 도구로 다시 가져오지 않는다 (도구가 거부한다). 고치려면 새 검토를 거친다.
 공개(`published`)된 실제 강좌가 없으면 카탈로그에는 '준비 중' 만 보인다. c02 부터 사람 검토·승인 → 릴리스 계획 반영 → 공개 커밋 →
 정답 키 Secret Files 순서로 진행한다 (`docs/content-readiness.md`, `docs/content/c02-review.md`).

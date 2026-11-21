@@ -106,7 +106,7 @@ def course_targets(course_file, fixture=False):
     data = _read(rel)
     cid = data.get("id", course_file)
     out = [Target("course", cid, data.get("title_ko") or cid, cid, rel, str(data.get("content_version")),
-                  (data.get("review") or {}).get("status", "?"), digest=lesson_content.content_digest(data), data=data,
+                  (data.get("review") or {}).get("status", "?"), digest=lesson_content.course_digest(data), data=data,
                   fixture=fixture, refs={"lesson_ids": data.get("lesson_ids")})]
     for lesson in data.get("lessons") or []:
         mat = lesson.get("material") or {}
@@ -399,6 +399,9 @@ def apply_release(plan, verify_record=None, dry_run=False):
                                        f"(review record #{item['review_id']})")
         else:
             data["review"] = _approved_review_block(data.get("review"), item)
+            if t.type == "assessment":
+                for q in data.get("questions") or []:   # 평가 승인 = 승인 당시의 모든 문항 승인 (문항별 승인 화면은 없음)
+                    q["review_status"] = "approved"
             if t.type == "capstone" and isinstance(data.get("rubric"), dict):
                 data["rubric"]["status"] = "approved"   # 정의 승인 = 루브릭(기준·가중치) 승인
         if dry_run:
@@ -407,8 +410,48 @@ def apply_release(plan, verify_record=None, dry_run=False):
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
             f.write("\n")
+        _sync_course_mirror(t)
         results.append((item, "Applied"))
     return results
+
+
+def _sync_course_mirror(t):
+    """승인을 반영한 자료·평가·캡스톤의 상태를 강좌 JSON 의 해당 칸(material/quiz/final_assessment/capstone.status)에도 적는다.
+    로더는 두 값이 같아야 강좌를 읽으므로, 이것이 없으면 승인 반영 직후 카탈로그가 열리지 않는다.
+    공개 여부(강좌·레슨 status)는 바꾸지 않는다 — 공개는 별도의 사람 결정이다. 강좌 승인 지문(course_digest)은 이 칸을 빼고 계산한다."""
+    if t.type not in ("material", "assessment", "capstone"):
+        return
+    base = _base(t.fixture)
+    crel = f"{base}courses/{t.course_id}.json"
+    cpath = os.path.join(content.CONTENT_DIR, crel)
+    if not os.path.exists(cpath):
+        return
+    with open(cpath, encoding="utf-8") as f:
+        course = json.load(f)
+    changed = False
+
+    def promote(res):
+        nonlocal changed
+        if isinstance(res, dict) and res.get("status") in ("draft", "in_review"):
+            res["status"] = "approved"
+            changed = True
+
+    for lesson in course.get("lessons") or []:
+        mat, quiz = lesson.get("material") or {}, lesson.get("quiz") or {}
+        if t.type == "material" and lesson.get("id") == t.id and f"{base}{mat.get('file', '')}" == t.file:
+            promote(mat)
+        if t.type == "assessment" and quiz.get("assessment_id") == t.id:
+            promote(quiz)
+    final = course.get("final_assessment") or {}
+    if t.type == "assessment" and final.get("assessment_id") == t.id:
+        promote(final)
+    cap = course.get("capstone") or {}
+    if t.type == "capstone" and f"{base}{cap.get('file', '')}" == t.file:
+        promote(cap)
+    if changed:
+        with open(cpath, "w", encoding="utf-8") as f:
+            json.dump(course, f, ensure_ascii=False, indent=2)
+            f.write("\n")
 
 
 # ------------------------------------------------------------------ 계획 서명·정본 승인 검증
