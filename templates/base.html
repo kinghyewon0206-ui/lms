@@ -32,7 +32,7 @@
         {% if is_admin_user() %}<a href="{{ url_for('econova.admin_content') }}"{% if request.endpoint and 'admin' in request.endpoint %} aria-current="page"{% endif %}>Content admin</a>{% endif %}
       </div>
       <div class="nav-end">
-        <span class="who"><span class="avatar" aria-hidden="true">{{ (g.user['name'] or '?')[:1]|upper }}</span><span class="who-name">{{ g.user['name'] }}</span></span>
+        <a class="who" href="{{ url_for('account') }}" aria-label="Account: {{ g.user['name'] }}"><span class="avatar" aria-hidden="true">{{ (g.user['name'] or '?')[:1]|upper }}</span><span class="who-name">{{ g.user['name'] }}</span></a>
         <form action="{{ url_for('logout') }}" method="post" class="inline">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <button type="submit" class="link">Log out</button>

@@ -53,6 +53,14 @@ FAKE_CREDENTIALS = '{"type": "service_account", "project_id": "not-a-real-projec
 
 
 @pytest.fixture(autouse=True)
+def _no_deployment_settings(monkeypatch):
+    """개발자 환경의 Google 로그인·Vercel·정답 키 묶음 설정이 테스트에 섞이지 않게 한다 (필요한 테스트가 직접 켠다)."""
+    for name in ("GOOGLE_OAUTH_CLIENT_ID", "GOOGLE_OAUTH_CLIENT_SECRET", "GOOGLE_OAUTH_REDIRECT_URI", "CRON_SECRET",
+                 "ECONOVA_PRIVATE_KEYS_BUNDLE", "ECONOVA_PRIVATE_KEYS_SECRET", "ECONOVA_TIMING_HEADERS", "VERCEL_ENV", "VERCEL"):
+        monkeypatch.delenv(name, raising=False)
+
+
+@pytest.fixture(autouse=True)
 def _no_network(monkeypatch):
     """OpenAI·강의 링크 확인 등 외부 요청을 막는다."""
     def refuse(*args, **kwargs):

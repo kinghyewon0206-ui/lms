@@ -10,3 +10,8 @@ __pycache__/
 !content/dev_fixtures/private/*.answers.json
 docs/review/
 econova-private/
+
+# Vercel 로컬 설정·내려받은 환경변수 (비밀값 포함 가능)
+.vercel/
+.env*.local
+keys-bundle*

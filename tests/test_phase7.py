@@ -539,7 +539,7 @@ def test_migration_7_on_phase6_database(sqlite_app, tmp_path, monkeypatch):
             conv = storage.create_ai_conversation(uid, "tutor", course_id="dev-f1", lesson_id="dev-f1-l1")
         finally:
             storage.SQLITE_MIGRATIONS = full
-        assert storage.migrate_sqlite() == [7, 8, 9]
+        assert storage.migrate_sqlite() == [7, 8, 9, 10]
         assert storage.get_enrollment(uid, "dev-f1") is not None and storage.get_ai_conversation(uid, conv) is not None
         assert roles.role_of(storage.get_user_by_id(uid)) == "student"
         with pytest.raises(sqlite3.IntegrityError):

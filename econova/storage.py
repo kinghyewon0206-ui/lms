@@ -452,6 +452,23 @@ def _migrate_9_drop_legacy_lms(db):
 
 
 # (번호, 설명, 함수). 새 테이블은 다음 번호로 추가한다.
+def _migrate_10_user_identities(db):
+    """외부 로그인(Google) 연결. 공급자 계정 하나는 ECONOVA 계정 하나에만, 한 계정에는 공급자마다 하나만 연결된다.
+    subject 는 공급자의 고정 계정 id (Google 의 sub). 이메일로 계정을 자동 병합하지 않는다. 추가만 하는 마이그레이션이다."""
+    db.execute("""
+        CREATE TABLE IF NOT EXISTS econ_user_identities (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            provider TEXT NOT NULL,
+            subject TEXT NOT NULL,
+            user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            email_at_link TEXT NOT NULL DEFAULT '',
+            created_account INTEGER NOT NULL DEFAULT 0,
+            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE (provider, subject),
+            UNIQUE (provider, user_id)
+        )""")
+
+
 SQLITE_MIGRATIONS = [
     (1, "Legacy LMS schema", _migrate_1_legacy_lms),
     (2, "ECONOVA enrollment and lesson progress", _migrate_2_econova_enrollment),
@@ -462,6 +479,7 @@ SQLITE_MIGRATIONS = [
     (7, "ECONOVA admins, content review, capstone, and login limits", _migrate_7_econova_platform),
     (8, "ECONOVA login failure counters", _migrate_8_econova_login_counters),
     (9, "Drop legacy LMS tables", _migrate_9_drop_legacy_lms),
+    (10, "External sign-in identities (Google)", _migrate_10_user_identities),
 ]
 
 
@@ -1700,3 +1718,85 @@ def purge_login_counters(now):
     n += db.execute("DELETE FROM econ_login_attempts").rowcount
     db.commit()
     return n
+
+
+# ---------------------------------------------------------------- 외부 로그인 연결 (Google)
+class IdentityConflict(Exception):
+    """그 공급자 계정이 이미 다른 ECONOVA 계정에 연결돼 있거나, 이 계정에 이미 같은 공급자 계정이 연결돼 있을 때."""
+
+
+def _identity_doc_ids(provider, subject=None, user_id=None):
+    out = {}
+    if subject is not None:
+        out["by_subject"] = f"{provider}:{subject}"
+    if user_id is not None:
+        out["by_user"] = f"{provider}-user:" + hashlib.sha256(str(user_id).encode("utf-8")).hexdigest()
+    return out
+
+
+def _identity_row(d):
+    if d is None:
+        return None
+    return {"provider": d["provider"], "subject": d["subject"], "user_id": d["user_id"],
+            "email_at_link": d.get("email_at_link", ""), "created_account": bool(d.get("created_account"))}
+
+
+def get_identity(provider, subject):
+    """공급자 계정(subject)에 연결된 ECONOVA 계정 정보. 없으면 None."""
+    if using_firestore():
+        snap = _fs().collection("econ_user_identities").document(_identity_doc_ids(provider, subject=subject)["by_subject"]).get()
+        return _identity_row(snap.to_dict()) if snap.exists else None
+    row = get_db().execute("SELECT * FROM econ_user_identities WHERE provider = ? AND subject = ?", (provider, subject)).fetchone()
+    return _identity_row(dict(row)) if row else None
+
+
+def get_identity_for_user(provider, user_id):
+    """이 ECONOVA 계정에 연결된 공급자 계정. 없으면 None."""
+    if using_firestore():
+        snap = _fs().collection("econ_user_identities").document(_identity_doc_ids(provider, user_id=user_id)["by_user"]).get()
+        return _identity_row(snap.to_dict()) if snap.exists else None
+    row = get_db().execute("SELECT * FROM econ_user_identities WHERE provider = ? AND user_id = ?", (provider, user_id)).fetchone()
+    return _identity_row(dict(row)) if row else None
+
+
+def create_identity(provider, subject, user_id, email_at_link="", created_account=False):
+    """연결을 만든다. 공급자 계정이나 이 계정 쪽에 이미 연결이 있으면 IdentityConflict (덮어쓰지 않는다)."""
+    record = {"provider": provider, "subject": subject, "user_id": user_id, "email_at_link": email_at_link,
+              "created_account": bool(created_account)}
+    if using_firestore():
+        db = _fs()
+        ids = _identity_doc_ids(provider, subject=subject, user_id=user_id)
+        by_subject = db.collection("econ_user_identities").document(ids["by_subject"])
+        by_user = db.collection("econ_user_identities").document(ids["by_user"])
+
+        @fb_firestore.transactional
+        def _txn(transaction):
+            if by_subject.get(transaction=transaction).exists or by_user.get(transaction=transaction).exists:
+                raise IdentityConflict()
+            data = {**record, "created_at": fb_firestore.SERVER_TIMESTAMP}
+            transaction.set(by_subject, data)
+            transaction.set(by_user, data)
+
+        _txn(db.transaction())
+        return
+    try:
+        get_db().execute("INSERT INTO econ_user_identities (provider, subject, user_id, email_at_link, created_account) "
+                         "VALUES (?, ?, ?, ?, ?)", (provider, subject, user_id, email_at_link, int(bool(created_account))))
+        get_db().commit()
+    except sqlite3.IntegrityError:
+        raise IdentityConflict()
+
+
+def delete_identity(provider, user_id):
+    """이 계정의 공급자 연결을 지운다 (계정·학습 기록은 그대로)."""
+    current = get_identity_for_user(provider, user_id)
+    if current is None:
+        return
+    if using_firestore():
+        ids = _identity_doc_ids(provider, subject=current["subject"], user_id=user_id)
+        col = _fs().collection("econ_user_identities")
+        col.document(ids["by_subject"]).delete()
+        col.document(ids["by_user"]).delete()
+        return
+    get_db().execute("DELETE FROM econ_user_identities WHERE provider = ? AND user_id = ?", (provider, user_id))
+    get_db().commit()

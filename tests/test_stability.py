@@ -230,7 +230,13 @@ def test_every_post_route_requires_csrf(app, logged_in):
 
 def test_every_private_get_route_requires_login(app, client):
     public = {"index", "login", "signup", "static"}
+    # 로그인 전에 쓰는 주소: Google 로그인 시작·콜백, Vercel Cron. 설정이 없으면 404 이고, 각자 테스트가 있다
+    # (tests/test_google_auth.py, tests/test_vercel_compat.py).
+    pre_login = {"google_login", "google_callback", "cron_daily_cleanup"}
     for rule in app.url_map.iter_rules():
+        if rule.endpoint in pre_login:
+            assert client.get(_sample_path(rule)).status_code == 404, rule.rule
+            continue
         if "GET" in rule.methods and rule.endpoint not in public:
             res = client.get(_sample_path(rule))
             assert res.status_code == 302 and res.headers["Location"].endswith("/login"), rule.rule

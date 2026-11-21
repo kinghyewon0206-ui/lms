@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "app.py": { "maxDuration": 60 }
+  },
+  "git": {
+    "deploymentEnabled": { "main": false, "master": false }
+  },
+  "crons": [
+    { "path": "/internal/cron/daily-cleanup", "schedule": "30 18 * * *" }
+  ]
+}

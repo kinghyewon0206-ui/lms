@@ -476,7 +476,7 @@ def test_migration_4_on_phase3_database(sqlite_app, tmp_path, monkeypatch):
             storage.save_diagnostic_attempt(uid, diagnostic.score({}))
         finally:
             storage.SQLITE_MIGRATIONS = full
-        assert storage.migrate_sqlite() == [4, 5, 6, 7, 8, 9]   # Phase 4~8B 의 마이그레이션
+        assert storage.migrate_sqlite() == [4, 5, 6, 7, 8, 9, 10]   # Phase 4~8B 의 마이그레이션
         e = storage.get_enrollment(uid, "dev-f1")
         assert (e["selected_difficulty"], e["status"], e["completion_attempt_id"], e["completion_policy"]) == \
             ("advanced", "active", None, None)

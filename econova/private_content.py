@@ -58,7 +58,16 @@ def keys_path(assessment_id, fixture=False):
 
 
 def read_keys(assessment_id, fixture=False):
-    """키 파일을 읽는다. 없으면 KeysUnavailable. (읽은 내용은 로그·오류 메시지에 넣지 않는다)"""
+    """정답 키를 읽는다. 없으면 KeysUnavailable. (읽은 내용은 로그·오류 메시지에 넣지 않는다)
+    실제 평가의 키는 (1) 묶음(ECONOVA_PRIVATE_KEYS_BUNDLE 또는 Secret Manager)이 설정돼 있으면 거기서,
+    (2) 아니면 비공개 폴더(ECONOVA_PRIVATE_CONTENT_DIR)에서 읽는다. 개발용 fixture 키는 항상 저장소의 합성 키 폴더에서 읽는다."""
+    if not fixture:
+        bundle = key_bundle()
+        if bundle is not None:
+            data = bundle.get(assessment_id)
+            if data is None:
+                raise KeysUnavailable(f"{assessment_id}: the answer key bundle has no key for this assessment.")
+            return _check_keys(assessment_id, data, fixture)
     path = keys_path(assessment_id, fixture)
     if path is None:
         raise KeysUnavailable(f"{assessment_id}: the private answer key folder (ECONOVA_PRIVATE_CONTENT_DIR) is not set.")
@@ -69,6 +78,10 @@ def read_keys(assessment_id, fixture=False):
         raise KeysUnavailable(f"{assessment_id}: the answer key file does not exist.")
     except (OSError, json.JSONDecodeError):
         raise KeysUnavailable(f"{assessment_id}: the answer key file cannot be read.")
+    return _check_keys(assessment_id, data, fixture)
+
+
+def _check_keys(assessment_id, data, fixture):
     if not isinstance(data, dict) or data.get("schema_version") != 1 or data.get("kind") != "assessment_keys":
         raise KeysUnavailable(f"{assessment_id}: the answer key file has an invalid format.")
     if data.get("assessment_id") != assessment_id:
@@ -117,3 +130,62 @@ def split(full, assessment_id, synthetic=False):
     if synthetic:
         keys["synthetic"] = True
     return public, keys
+
+
+# ---------------------------------------------------------------- 서버리스 배포용 정답 키 묶음 (Vercel 등: 파일을 둘 곳이 없음)
+# 형식: {"schema_version": 1, "kind": "assessment_key_bundle", "keys": {assessment_id: <키 파일 내용>}} 를 gzip → base64.
+# 출처 두 가지 중 하나:
+#   ECONOVA_PRIVATE_KEYS_BUNDLE      : 그 문자열 자체 (Vercel 의 Sensitive 환경변수)
+#   ECONOVA_PRIVATE_KEYS_SECRET      : Google Secret Manager 의 비밀 이름 (projects/<p>/secrets/<s>/versions/<v>)
+#                                      — Firestore 와 같은 서비스 계정으로 읽는다 (그 계정에 secretAccessor 권한 필요)
+# 프로세스당 한 번 읽어 메모리에만 둔다. 디스크에 쓰지 않고, 내용은 로그에 남기지 않는다.
+BUNDLE_KIND = "assessment_key_bundle"
+_bundle_cache = {"source": None, "keys": None}
+
+
+def encode_bundle(keys_by_id):
+    import base64
+    import gzip
+    raw = json.dumps({"schema_version": 1, "kind": BUNDLE_KIND, "keys": keys_by_id}, ensure_ascii=False,
+                     sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return base64.b64encode(gzip.compress(raw, mtime=0)).decode("ascii")
+
+
+def decode_bundle(text):
+    import base64
+    import binascii
+    import gzip
+    try:
+        data = json.loads(gzip.decompress(base64.b64decode(text.strip(), validate=True)).decode("utf-8"))
+    except (binascii.Error, OSError, ValueError, EOFError):
+        raise KeysUnavailable("the answer key bundle cannot be decoded.")
+    if not isinstance(data, dict) or data.get("schema_version") != 1 or data.get("kind") != BUNDLE_KIND \
+            or not isinstance(data.get("keys"), dict):
+        raise KeysUnavailable("the answer key bundle has an invalid format.")
+    return data["keys"]
+
+
+def _secret_manager_text(name):
+    """Secret Manager REST 로 비밀 값을 읽는다 (추가 라이브러리 없이 google-auth 만 사용)."""
+    import base64
+    from google.auth.transport.requests import AuthorizedSession
+    from google.oauth2 import service_account
+    info = json.loads(config.env("FIREBASE_CREDENTIALS_JSON") or "{}")
+    creds = service_account.Credentials.from_service_account_info(info, scopes=["https://www.googleapis.com/auth/cloud-platform"])
+    resp = AuthorizedSession(creds).get(f"https://secretmanager.googleapis.com/v1/{name}:access", timeout=10)
+    if resp.status_code != 200:
+        raise KeysUnavailable(f"Secret Manager returned HTTP {resp.status_code} for the answer key bundle.")
+    return base64.b64decode(resp.json()["payload"]["data"]).decode("ascii")
+
+
+def key_bundle():
+    """설정된 묶음을 {assessment_id: keys} 로 돌려준다. 묶음을 쓰지 않으면 None."""
+    inline = config.env("ECONOVA_PRIVATE_KEYS_BUNDLE").strip()
+    secret = config.env("ECONOVA_PRIVATE_KEYS_SECRET").strip()
+    if not inline and not secret:
+        return None
+    source = ("inline", hashlib.sha256(inline.encode()).hexdigest()) if inline else ("secret", secret)
+    if _bundle_cache["source"] != source:
+        text = inline if inline else _secret_manager_text(secret)
+        _bundle_cache.update(source=source, keys=decode_bundle(text))
+    return _bundle_cache["keys"]

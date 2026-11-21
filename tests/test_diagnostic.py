@@ -262,7 +262,7 @@ def test_migration_3_on_phase2_database(sqlite_app, tmp_path, monkeypatch):
             storage.update_lesson_progress(uid, "dev-f1", "dev-f1-l1", ("material",), material_reviewed=True)
         finally:
             storage.SQLITE_MIGRATIONS = full
-        assert storage.migrate_sqlite() == [3, 4, 5, 6, 7, 8, 9]   # Phase 3~8B 의 마이그레이션
+        assert storage.migrate_sqlite() == [3, 4, 5, 6, 7, 8, 9, 10]   # Phase 3~8B 의 마이그레이션
         e = storage.get_enrollment(uid, "dev-f1")
         assert (e["selected_difficulty"], e["difficulty_source"]) == ("advanced", "manual")   # 기존 행 보존
         assert storage.list_lesson_progress(uid, "dev-f1")["dev-f1-l1"]["status"] == "completed"

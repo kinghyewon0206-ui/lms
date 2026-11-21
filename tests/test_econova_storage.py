@@ -125,7 +125,7 @@ def test_sqlite_migration_2_on_existing_database(sqlite_app, tmp_path, monkeypat
         uid = storage.get_user_by_email("old@example.com")["id"]
         assert "econ_enrollments" not in {r[0] for r in db.execute("SELECT name FROM sqlite_master")}
 
-        assert storage.migrate_sqlite() == [2, 3, 4, 5, 6, 7, 8, 9]   # Phase 2~8B 의 마이그레이션 + 이전 LMS 테이블 삭제
+        assert storage.migrate_sqlite() == [2, 3, 4, 5, 6, 7, 8, 9, 10]   # Phase 2~8B 의 마이그레이션 + 이전 LMS 테이블 삭제
         assert storage.migrate_sqlite() == []
         assert storage.get_user_by_email("old@example.com")["name"] == "Old"
         assert "curricula" not in {r[0] for r in db.execute("SELECT name FROM sqlite_master")}

@@ -1,0 +1,17 @@
+# Vercel 에 올리지 않는 파일 (함수 크기 축소, 내부 문서·테스트·도구 제외). content/ 와 static/ 은 앱이 읽으므로 포함한다.
+.venv/
+__pycache__/
+*.db
+.env
+.env.*
+tests/
+integration_tests/
+docs/
+tools/
+content/dev_fixtures/
+render.yaml
+Procfile
+requirements-dev.txt
+pytest.ini
+*.answers.json
+keys-bundle*

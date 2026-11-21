@@ -320,7 +320,7 @@ def test_migration_5_on_phase4_database(sqlite_app, tmp_path, monkeypatch):
                                                   "answers": {}, "results": [], "passing": {}}, "tok")
         finally:
             storage.SQLITE_MIGRATIONS = full
-        assert storage.migrate_sqlite() == [5, 6, 7, 8, 9]
+        assert storage.migrate_sqlite() == [5, 6, 7, 8, 9, 10]
         assert len(storage.list_assessment_attempts(uid)) == 1 and storage.get_enrollment(uid, "dev-f1") is not None
         assert storage.list_simulation_runs(uid) == []
         import sqlite3

@@ -8,12 +8,13 @@ import json
 import os
 import re
 import secrets
+import time
 
 import click
 from flask import Flask, abort, flash, g, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from econova import config, content, learning, login_guard, quotas, roles, storage
+from econova import config, content, google_auth, learning, login_guard, quotas, roles, storage
 from econova.auth import login_required
 from econova import web as econova_web
 from econova.storage import DuplicateEmailError, create_user, get_user_by_email, get_user_by_id, init_db, using_firestore
@@ -42,6 +43,8 @@ login_guard.trusted_proxy_hops()
 from econova.ai import client as _ai_client  # noqa: E402
 _ai_client.settings()             # 운영에서 모의 AI, 키 없는 openai 공급자, 잘못된 한도 값이면 멈춘다
 _ai_client.feedback_enabled()     # ECONOVA_AI_FEEDBACK 값이 on/off 가 아니면 멈춘다
+google_auth.settings()            # Google 로그인 설정이 반쪽이거나 운영에서 콜백 주소가 없으면 멈춘다
+app.jinja_env.globals["google_enabled"] = google_auth.enabled
 
 app.jinja_env.globals["is_admin_user"] = lambda: roles.is_admin(g.user)   # 메뉴 표시용 (권한 검사는 서버에서 따로)
 
@@ -55,6 +58,15 @@ def csrf_token():
 
 
 app.jinja_env.globals["csrf_token"] = csrf_token
+
+
+_BOOT_AT = time.time()          # 서버리스 인스턴스가 시작된 시각 (콜드 스타트 측정용)
+_SERVED = {"count": 0}
+
+
+@app.before_request
+def _start_timer():
+    g._t0 = time.perf_counter()
 
 
 @app.before_request
@@ -74,6 +86,12 @@ def security_headers(resp):
     resp.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
     resp.headers.setdefault("X-Content-Type-Options", "nosniff")
     resp.headers.setdefault("Referrer-Policy", "same-origin")
+    if config.env("ECONOVA_TIMING_HEADERS") == "1":   # 콜드 스타트 측정 (끝나면 끈다). 비밀값·사용자 정보는 넣지 않는다.
+        _SERVED["count"] += 1
+        dur = (time.perf_counter() - g.get("_t0", time.perf_counter())) * 1000
+        resp.headers["Server-Timing"] = f"app;dur={dur:.1f}"
+        resp.headers["X-Econova-Instance"] = (f"{'cold' if _SERVED['count'] == 1 else 'warm'}; "
+                                              f"age={time.time() - _BOOT_AT:.0f}s; served={_SERVED['count']}")
     return resp
 
 
@@ -157,6 +175,137 @@ def login():
         return resp
 
     return render_template("login.html")
+
+
+# --------------------------------------------------------------- Google 로그인
+def _google_redirect_uri():
+    return google_auth.settings()["redirect_uri"] or url_for("google_callback", _external=True)
+
+
+def _start_session(user):
+    session.clear()                 # 로그인할 때 세션을 새로 만든다 (세션 고정 공격 방지)
+    session["user_id"] = user["id"]
+
+
+@app.route("/auth/google")
+def google_login():
+    """Google 로그인·가입 시작 (로그인하지 않은 상태)."""
+    if not google_auth.enabled():
+        abort(404)
+    if g.user:
+        return redirect(url_for("dashboard"))
+    return redirect(google_auth.begin(session, "login", _google_redirect_uri()))
+
+
+@app.route("/account/google/link", methods=["POST"])
+@login_required
+def google_link_start():
+    """로그인한 계정에 Google 계정을 연결하기 시작한다 (POST + CSRF 토큰: 다른 사이트가 몰래 연결을 시작하지 못하게)."""
+    if not google_auth.enabled():
+        abort(404)
+    if storage.get_identity_for_user(google_auth.PROVIDER, g.user["id"]):
+        flash("A Google account is already linked to your ECONOVA account.", "error")
+        return redirect(url_for("account"))
+    return redirect(google_auth.begin(session, "link", _google_redirect_uri(), user_id=g.user["id"]))
+
+
+@app.route("/auth/google/callback")
+def google_callback():
+    if not google_auth.enabled():
+        abort(404)
+    try:
+        pending = google_auth.take_pending(session, request.args.get("state", ""))
+    except google_auth.GoogleAuthError as exc:
+        app.logger.warning("Google sign-in rejected: %s", exc)
+        flash("Google sign-in could not be completed. Please try again.", "error")
+        return redirect(url_for("login"))
+    if request.args.get("error") or not request.args.get("code"):
+        flash("Google sign-in was cancelled.", "error")
+        return redirect(url_for("account") if pending["intent"] == "link" else url_for("login"))
+    try:
+        token = google_auth.exchange_code(request.args["code"], pending["verifier"], pending["redirect_uri"])
+        claims = google_auth.verify_id_token(token, pending["nonce"])
+    except google_auth.GoogleAuthError as exc:
+        app.logger.warning("Google sign-in rejected: %s", exc)
+        flash("Google sign-in could not be completed. Please try again.", "error")
+        return redirect(url_for("account") if pending["intent"] == "link" else url_for("login"))
+    sub, email = str(claims["sub"]), str(claims.get("email", "")).strip().lower()
+    identity = storage.get_identity(google_auth.PROVIDER, sub)
+
+    if pending["intent"] == "link":
+        if g.user is None or g.user["id"] != pending.get("user_id"):
+            flash("Please log in again before linking a Google account.", "error")
+            return redirect(url_for("login"))
+        if identity is not None:
+            same = identity["user_id"] == g.user["id"]
+            flash("This Google account is already linked to your ECONOVA account." if same else
+                  "This Google account is already linked to a different ECONOVA account.", "success" if same else "error")
+            return redirect(url_for("account"))
+        try:
+            storage.create_identity(google_auth.PROVIDER, sub, g.user["id"], email_at_link=email, created_account=False)
+        except storage.IdentityConflict:
+            flash("A Google account is already linked to your ECONOVA account.", "error")
+            return redirect(url_for("account"))
+        flash("Your Google account is now linked. You can use \"Continue with Google\" to log in.", "success")
+        return redirect(url_for("account"))
+
+    # intent == "login": 연결된 계정이 있으면 그 계정으로, 없으면 새 계정을 만든다 (이메일이 같아도 자동 병합하지 않음)
+    if identity is not None:
+        user = get_user_by_id(identity["user_id"])
+        if user is None:
+            flash("The ECONOVA account linked to this Google account no longer exists.", "error")
+            return redirect(url_for("login"))
+        _start_session(user)
+        return redirect(url_for("dashboard"))
+    if len(email) > 254 or not EMAIL_RE.match(email):
+        flash("Your Google account did not share a valid email address.", "error")
+        return redirect(url_for("login"))
+    if get_user_by_email(email) is not None:
+        flash("An ECONOVA account already uses this email. Log in with your email and password, "
+              "then link Google from your Account page.", "error")
+        return redirect(url_for("login"))
+    name = (str(claims.get("name") or "").strip() or email.split("@")[0])[:50]
+    try:
+        # Google 로 만든 계정에는 아무도 모르는 무작위 비밀번호를 둔다 (비밀번호 로그인은 쓸 수 없음)
+        create_user(email, name, generate_password_hash(secrets.token_urlsafe(32), method="pbkdf2:sha256"))
+    except DuplicateEmailError:
+        flash("An ECONOVA account already uses this email. Log in with your email and password, "
+              "then link Google from your Account page.", "error")
+        return redirect(url_for("login"))
+    user = get_user_by_email(email)
+    try:
+        storage.create_identity(google_auth.PROVIDER, sub, user["id"], email_at_link=email, created_account=True)
+    except storage.IdentityConflict:      # 동시에 두 번 눌러 다른 요청이 먼저 연결한 경우
+        identity = storage.get_identity(google_auth.PROVIDER, sub)
+        user = get_user_by_id(identity["user_id"]) if identity else None
+        if user is None:
+            flash("Google sign-in could not be completed. Please try again.", "error")
+            return redirect(url_for("login"))
+    _start_session(user)
+    flash("Welcome to ECONOVA! Your account was created with Google.", "success")
+    return redirect(url_for("dashboard"))
+
+
+@app.route("/account")
+@login_required
+def account():
+    identity = storage.get_identity_for_user(google_auth.PROVIDER, g.user["id"])
+    return render_template("account.html", identity=identity)
+
+
+@app.route("/account/google/unlink", methods=["POST"])
+@login_required
+def google_unlink():
+    identity = storage.get_identity_for_user(google_auth.PROVIDER, g.user["id"])
+    if identity is None:
+        return redirect(url_for("account"))
+    if identity["created_account"]:
+        # Google 로 만든 계정은 비밀번호가 없어서, 연결을 끊으면 다시 로그인할 방법이 없다
+        flash("This account was created with Google, so Google is its only way to log in. It can't be unlinked.", "error")
+        return redirect(url_for("account"))
+    storage.delete_identity(google_auth.PROVIDER, g.user["id"])
+    flash("Your Google account was unlinked. Log in with your email and password from now on.", "success")
+    return redirect(url_for("account"))
 
 
 @app.route("/logout", methods=["POST"])
@@ -347,14 +496,69 @@ def content_verify_approvals_command(include_fixtures):
 def ai_purge_command():
     """보존 기간(ECONOVA_AI_RETENTION_DAYS, 기본 30일)이 지난 AI 대화 메시지와 오래된 사용량 기록을 지운다.
     점수·진도·수강 기록은 건드리지 않는다. 운영에서는 Render Cron Job 등으로 매일 실행한다."""
-    import datetime
+    r = _daily_cleanup()
+    click.echo(f"AI data cleanup: deleted {r['messages']} message(s) older than {r['days']} days and {r['conversations']} empty conversation(s).")
+    click.echo(f"Login failure cleanup: deleted {r['login_counters']} expired record(s).")
+
+
+def _daily_cleanup():
+    """ai-purge 와 Vercel Cron 이 같이 쓰는 정리 작업. 여러 번 실행해도 결과가 같다 (Vercel Cron 은 중복 실행될 수 있다)."""
     from econova.ai import client as ai_client
     days = ai_client.settings().retention_days
     before = storage._utcnow() - datetime.timedelta(days=days)
     msgs, convs = storage.purge_ai_data(before, usage_before=storage._utcnow() - datetime.timedelta(days=max(days, 90)))
-    click.echo(f"AI data cleanup: deleted {msgs} message(s) older than {days} days and {convs} empty conversation(s).")
     n = storage.purge_login_counters(storage._utcnow())
-    click.echo(f"Login failure cleanup: deleted {n} expired record(s).")
+    return {"days": days, "messages": msgs, "conversations": convs, "login_counters": n}
+
+
+@app.route("/internal/cron/daily-cleanup")
+def cron_daily_cleanup():
+    """Vercel Cron 전용 (vercel.json). CRON_SECRET 이 없으면 404, Authorization: Bearer 값이 다르면 401.
+    학생 기록(점수·진도·수강)은 건드리지 않는다."""
+    expected = config.env("CRON_SECRET").strip()
+    if not expected:
+        abort(404)
+    sent = request.headers.get("Authorization", "")
+    if not secrets.compare_digest(sent.encode(), f"Bearer {expected}".encode()):
+        abort(401)
+    result = _daily_cleanup()
+    app.logger.info("Daily cleanup: %s", result)
+    return {"ok": True, **result}
+
+
+@app.cli.command("private-keys-bundle")
+@click.option("--output", required=True, type=click.Path(dir_okay=False),
+              help="File to write (must be outside the repository; never commit it)")
+def private_keys_bundle_command(output):
+    """비공개 폴더의 정답 키를 서버리스 배포용 묶음(gzip+base64) 한 개로 만든다 (Vercel 의 Sensitive 환경변수
+    ECONOVA_PRIVATE_KEYS_BUNDLE 또는 Secret Manager 비밀 값으로 쓴다). 화면에는 개수·크기·지문만 출력한다.
+    공개 평가 파일과 맞지 않는 키가 하나라도 있으면 만들지 않는다."""
+    import glob as _glob
+    import hashlib as _hashlib
+    from econova import private_content
+    out = os.path.realpath(os.path.expanduser(output))
+    if out == os.path.realpath(config.BASE_DIR) or out.startswith(os.path.realpath(config.BASE_DIR) + os.sep):
+        raise click.ClickException("Write the bundle outside the repository so answer keys are never committed.")
+    keys, problems = {}, []
+    publics = sorted(_glob.glob(os.path.join(content.CONTENT_DIR, "assessments", "*.json"))) + [os.path.join(content.CONTENT_DIR, "diagnostic.json")]
+    for path in publics:
+        with open(path, encoding="utf-8") as f:
+            public = json.load(f)
+        try:
+            data = private_content.read_keys(public["id"])
+            private_content.merge(public, data, os.path.relpath(path, content.CONTENT_DIR))
+            keys[public["id"]] = data
+        except private_content.KeysUnavailable as exc:
+            problems.append(str(exc))
+    if problems:
+        raise click.ClickException("Not written; keys missing or out of date:\n  " + "\n  ".join(problems))
+    text = private_content.encode_bundle(keys)
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, "w", encoding="ascii") as f:
+        f.write(text)
+    os.chmod(out, 0o600)
+    click.echo(f"Wrote {len(keys)} answer keys: {len(text):,} characters (Vercel limits the total size of all environment variables), "
+               f"sha256 {_hashlib.sha256(text.encode()).hexdigest()[:16]} -> {out}")
 
 
 @app.cli.command("check-public-files")

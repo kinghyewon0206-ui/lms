@@ -667,7 +667,7 @@ def test_migration_6_on_phase5_database(sqlite_app, tmp_path, monkeypatch):
             run = storage.save_simulation_run(uid, "supply-demand", None, {"a": 1}, {"price": 1}, "sim-1")
         finally:
             storage.SQLITE_MIGRATIONS = full
-        assert storage.migrate_sqlite() == [6, 7, 8, 9]
+        assert storage.migrate_sqlite() == [6, 7, 8, 9, 10]
         assert storage.get_enrollment(uid, "dev-f1") is not None and storage.get_simulation_run(uid, run) is not None
         conv = storage.create_ai_conversation(uid, "tutor", course_id="dev-f1", lesson_id="dev-f1-l1")
         storage.add_ai_message(uid, conv, "student", "q")

@@ -31,8 +31,10 @@ def env(name):
 
 
 def is_production():
-    """운영 환경인지. Render 는 모든 서비스에 RENDER 환경변수를 넣어 준다. 다른 곳에서는 APP_ENV=production."""
-    return bool(os.environ.get("RENDER")) or env("APP_ENV").strip().lower() == "production"
+    """운영 환경인지. Render 는 RENDER 를, Vercel 은 배포(production·preview)에 VERCEL_ENV 를 넣어 준다.
+    다른 곳에서는 APP_ENV=production. 운영이면 Firestore·강한 SECRET_KEY·Secure 쿠키가 필요하고 개발 기능이 막힌다."""
+    return (bool(os.environ.get("RENDER")) or os.environ.get("VERCEL_ENV", "").strip().lower() in ("production", "preview")
+            or env("APP_ENV").strip().lower() == "production")
 
 
 def db_backend():

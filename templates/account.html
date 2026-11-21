@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Account · ECONOVA{% endblock %}
+{% block content %}
+<div class="ec-page ec-lesson-page">
+  <header class="ec-head">
+    <span class="eyebrow">Account</span>
+    <h1>{{ g.user['name'] }}</h1>
+    <p class="hint">Signed in as {{ g.user['email'] }}.</p>
+  </header>
+  <section class="ec-section" aria-labelledby="h-google">
+    <h2 id="h-google">Google sign-in</h2>
+    {% if identity %}
+      <p>A Google account ({{ identity.email_at_link or 'email not shared' }}) is linked. You can use "Continue with Google" to log in.</p>
+      {% if identity.created_account %}
+        <p class="hint">This account was created with Google, so Google is its only way to log in.</p>
+      {% else %}
+        <form method="post" action="{{ url_for('google_unlink') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit" class="btn secondary">Unlink Google account</button>
+          <p class="hint">After unlinking, log in with your email and password.</p>
+        </form>
+      {% endif %}
+    {% elif google_enabled() %}
+      <p>Link a Google account to log in with "Continue with Google". Your learning records stay with this ECONOVA account.</p>
+      <form method="post" action="{{ url_for('google_link_start') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="btn">Link a Google account</button>
+      </form>
+      <p class="hint">ECONOVA only asks Google for your name and email address. It never joins accounts just because the email matches.</p>
+    {% else %}
+      <p class="ec-placeholder-text">Google sign-in is not available on this server.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}
