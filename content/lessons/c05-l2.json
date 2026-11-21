@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c05-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: framed the participation/unemployment link as following from the definitions. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -86,7 +92,7 @@
     {
       "id": "productivity_human_capital",
       "term": "Productivity and human capital",
-      "definition": "Labor productivity is the value of output produced per hour worked. Human capital is the skills and knowledge that make workers productive, built through education, training, and experience. Over the long run, higher productivity is the main source of higher average wages.",
+      "definition": "Labor productivity is the real (inflation-adjusted) value of output produced per hour worked. Human capital is the skills and knowledge that make workers productive, built through education, training, and experience. Over the long run, higher productivity is the main source of higher average wages.",
       "source_ids": [
         "openstax-pe3-20-2",
         "openstax-pe3-20-3"

@@ -33,6 +33,19 @@ LESSON_SECTIONS = (
 )
 
 
+def visible_sections(doc):
+    """Sections shown on a lesson page. Placeholders for features that do not exist yet ("Coming later") are hidden,
+    and the graph section is hidden when the lesson's material has no graphs. The stored section list is unchanged."""
+    out = []
+    for key, title, phase in LESSON_SECTIONS:
+        if phase:
+            continue
+        if key == "visual" and doc is not None and not doc.graphs:
+            continue
+        out.append((key, title, phase))
+    return tuple(out)
+
+
 def catalog():
     return content.get_catalog()
 

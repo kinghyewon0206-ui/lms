@@ -15,7 +15,7 @@
 {% endmacro %}
 
 {% macro concepts(doc) %}
-<p class="ec-layer">Verified material · Key concepts</p>
+<p class="ec-layer">Lesson material · Key concepts</p>
 <dl class="ec-concepts">
   {% for c in doc.concepts %}
   <div><dt>{{ c.term }}</dt><dd>{{ c.definition }}{{ cite(c.source_ids, doc) }}</dd></div>
@@ -87,14 +87,16 @@
 <ul class="ec-list">{% for t in doc.key_takeaways %}<li>{{ t }}</li>{% endfor %}</ul>
 {% endmacro %}
 
-{% macro source_list(doc, sources) %}
+{% macro source_list(doc, sources, human=(), pending_label=false) %}
 {% if doc.source_ids %}
 <ol class="ec-sources">
   {% for sid in doc.source_ids %}{% set s = sources[sid] %}
   <li id="src-{{ sid }}">
     <a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.title }}</a>{% if s.container %} — {{ s.container }}{% endif %}.
     {{ s.author }}{% if s.published %} ({{ s.published }}){% endif %}.
-    {% if s.verified %}<span class="pill pill-done">Source verified · {{ s.checked_at }}</span>
+    {% if sid in human %}<span class="pill pill-done">Teacher-verified source</span>
+    {% elif s.verified and pending_label %}<span class="st st-verified">AI-checked (not human-approved)</span> <span class="pill pill-draft">Human verification pending</span>
+    {% elif s.verified %}<span class="pill pill-soon">Link checked {{ s.checked_at }}</span>
     {% else %}<span class="pill pill-draft">Unverified source</span>{% endif %}
     <small class="hint">Terms of use: {{ s.license }}</small>
   </li>

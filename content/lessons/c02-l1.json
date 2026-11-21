@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c02-l1",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -265,7 +271,7 @@
     {
       "id": "c02-l1-g1",
       "title": "An increase in demand: the demand curve shifts right",
-      "caption": "Hypothetical example. If higher incomes make people want to buy 30 more units at every price, the demand curve shifts from D1 to D2. At the same price of 20, quantity demanded rises from 60 to 90 (a shift of the curve itself). You will learn how demand and supply together set the price (equilibrium) in Lesson 2.",
+      "caption": "Hypothetical example. If higher incomes make people want to buy 30 more units at every price (as with a normal good), the demand curve shifts from D1 to D2. At the same price of 20, quantity demanded rises from 60 to 90 (a shift of the curve itself). You will learn how demand and supply together set the price (equilibrium) in Lesson 2.",
       "axis": {
         "p_max": 70,
         "q_max": 140,

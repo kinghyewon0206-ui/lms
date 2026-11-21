@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: relative poverty line example cited to Eurostat (60% of median); poverty gap cited to World Bank WDI definition; targeting vs. universality hedged. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -237,7 +243,7 @@
             "social_protection"
           ],
           "paragraphs": [
-            "Any combination of programs can be written as a net tax N(y) = T(y) − B(y), so disposable income is y − N(y). Social insurance adds contributions to T and conditional benefits to B; social assistance adds means-tested B; refundable tax credits make N(y) negative at low earnings. A social protection floor sets a minimum on y − N(y) for everyone, which is a guarantee of B(0) at least equal to the floor."
+            "Any combination of programs can be written as a net tax N(y) = T(y) − B(y), so disposable income is y − N(y). Social insurance adds contributions to T and conditional benefits to B; social assistance adds means-tested B; refundable tax credits make N(y) negative at low earnings. A social protection floor sets a minimum on y − N(y) for everyone, which requires, at a minimum, that B(0) be no lower than the floor."
           ]
         },
         {
@@ -296,7 +302,7 @@
       "id": "c06-l3-we2",
       "level": "beginner",
       "title": "A relative poverty line",
-      "problem": "Hypothetical example: In Country G, the median household income is $30,000. The government sets a relative poverty line at 50% of the median. Where is the line? If every income in the country doubled, what would happen to this line and to an absolute line of $15,000?",
+      "problem": "Hypothetical example: In Country G, the median household income is $30,000. The government sets a relative poverty line at 50% of the median. Where is the line? If every real (inflation-adjusted) income in the country doubled, what would happen to this line and to an absolute line of $15,000?",
       "steps": [
         "Relative line = 0.5 × $30,000 = $15,000.",
         "If every real income doubled, the median would become $60,000, and the relative line would become $30,000.",

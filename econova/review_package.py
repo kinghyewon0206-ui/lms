@@ -55,7 +55,7 @@ def build(course, sources, generated_on):
             out.append("- Key concepts: " + ", ".join(c["term"] for c in doc.concepts))
             for level in ("beginner", "intermediate", "advanced"):
                 out.append(f"- {DIFFICULTY_NAMES[level]} summary: {doc.levels[level]['summary']}")
-            out.append("- Sources: " + "; ".join(f"{sources[s].title} ({'verified' if sources[s].verified else 'unverified'})" for s in doc.source_ids))
+            out.append("- Sources: " + "; ".join(f"{sources[s].title} ({'AI-checked, not human-approved' if sources[s].verified else 'unverified'})" for s in doc.source_ids))
         out.append("")
     out += ["## 2. Lesson quizzes", "",
             "Submitting the lesson quiz is what completes the lesson; the score does not affect completion, and the best score is recorded separately.", ""]

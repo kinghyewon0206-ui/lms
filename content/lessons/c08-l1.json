@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l1",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: added direct sources for tariff welfare analysis (LibreTexts 7.8), the compensation principle (LibreTexts 5.13) and displaced workers' pay (BLS); reworded the retraining cost in the SDG case and the comparative-advantage definition (close-paraphrase check). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -263,7 +269,7 @@
       "id": "c08-l1-we2",
       "level": "intermediate",
       "title": "How much more does specialization produce?",
-      "problem": "Hypothetical example: Before trade, Northland makes 480 bicycles and 60 tons of rice, and Southland makes 50 bicycles and 100 tons of rice. If Northland makes only bicycles (600) and Southland makes only rice (200 tons), how much does world output of each good change?",
+      "problem": "Hypothetical example: Each country has 100 workers. Before trade, Northland makes 480 bicycles and 60 tons of rice, and Southland makes 50 bicycles and 100 tons of rice. If Northland makes only bicycles (600) and Southland makes only rice (200 tons), how much does world output of each good change?",
       "steps": [
         "World output before: 480 + 50 = 530 bicycles; 60 + 100 = 160 tons of rice.",
         "World output after specialization: 600 bicycles; 200 tons of rice.",

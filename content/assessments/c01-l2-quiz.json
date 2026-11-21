@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l2",
-  "version": 3,
+  "version": 4,
   "title": "Lesson 2 Quiz: Opportunity Cost and Rational Decisions",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -24,6 +24,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "c01 correction pass: q5: difficulty set to intermediate (definition taught at the intermediate level). Not reviewed or approved by a human."
       }
     ]
   },
@@ -146,14 +152,14 @@
     },
     {
       "id": "c01-l2-q5",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l2",
       "objective": 3,
       "concept_ids": [
         "ppf"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
       "prompt": "What does a point inside the production possibilities frontier represent?",

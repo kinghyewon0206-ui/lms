@@ -255,7 +255,7 @@ def test_lesson_page_renders_material_sections(logged_in, fixtures_on):
     logged_in.post("/courses/dev-f1/enroll", data={"csrf_token": CSRF, "difficulty": "intermediate"})
     html = logged_in.get("/learn/dev-f1/dev-f1-l1").get_data(as_text=True)
     assert "[Intermediate] Fake material for development and automated tests only" in html            # 수강 난이도(중) 설명이 기본
-    assert "Verified material · Key concepts" in html and "Test concept 1" in html
+    assert "Lesson material · Key concepts" in html and "Test concept 1" in html and "Verified material" not in html
     assert '<svg viewBox="0 0 520 340"' in html and "Equilibrium price" in html   # 그래프와 접근성 표
     assert "Development test material" in html and "No sources cited." in html
     assert "The AI Tutor explains things based on this lesson's" in html and "AI features are turned off right now." in html   # 기본값: AI 꺼짐
@@ -286,7 +286,8 @@ def test_preview_shows_draft_when_enabled(logged_in, monkeypatch):
     assert res.status_code == 200 and res.headers["X-Robots-Tag"] == "noindex" and "no-store" in res.headers["Cache-Control"]
     assert "Not visible to students" in html and "Draft, not yet reviewed (AI-written)" in html
     assert "P* = (a − c)/(b + d)" in html and "price ceiling of 24" in html
-    assert "Source verified · 2026-11-13" in html and "openstax.org/books/principles-economics-3e" in html
+    assert "AI-checked (not human-approved)" in html and "Human verification pending" in html and "Source verified" not in html
+    assert "openstax.org/books/principles-economics-3e" in html
     assert "I have read all the learning materials" not in html   # 미리보기에서는 진도를 남기지 않는다
     assert logged_in.get("/preview/c02/c02-l9").status_code == 404
     # 자료가 없는 레슨: 지금은 27개 레슨 모두 초안이 있으므로, 한 레슨의 자료를 뗀 카탈로그로 확인한다

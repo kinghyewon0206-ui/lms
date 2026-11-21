@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l3",
-  "version": 3,
+  "version": 4,
   "title": "Lesson 3 Quiz: Sustainable Consumption and Resource Allocation",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -24,6 +24,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "c01 correction pass: q1 rewritten with a new scenario (was copied from the lesson); q2 wording aligned with the corrected social-cost explanation; q4 choice now matches the disposable-cup mechanism (recycling). Not reviewed or approved by a human."
       }
     ]
   },
@@ -34,7 +40,7 @@
   "questions": [
     {
       "id": "c01-l3-q1",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 1,
@@ -45,23 +51,23 @@
       "difficulty": "beginner",
       "points": 1,
       "review_status": "draft",
-      "prompt": "When you leave part of your school cafeteria lunch uneaten, what is wasted along with it?",
+      "prompt": "Hypothetical example: A bakery throws away 10 unsold loaves of bread every evening. Which statement best describes the opportunity cost of this waste?",
       "choices": [
         {
           "id": "a",
-          "text": "The food plus the water, power, and labor used to grow, ship, and cook it"
+          "text": "The other goods the flour, energy, and work in the bread could have produced"
         },
         {
           "id": "b",
-          "text": "Just the food left on the tray at the end of the meal"
+          "text": "The rent the bakery pays for its shop, which is due whether or not bread is wasted"
         },
         {
           "id": "c",
-          "text": "Very little, because the price of the lunch was already paid"
+          "text": "The weekly fee the bakery pays to have its garbage collected"
         },
         {
           "id": "d",
-          "text": "The part of the lunch price that matches the share left uneaten"
+          "text": "The money the bakery expects to earn from tomorrow's fresh bread"
         }
       ],
       "source_ids": [
@@ -73,7 +79,7 @@
     },
     {
       "id": "c01-l3-q2",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 2,
@@ -83,7 +89,7 @@
       "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "When stores give out plastic bags for free, people tend to use more bags than they need. Which statement best explains why?",
+      "prompt": "When stores give out plastic bags for free, people tend to use more bags than is best for society. Which statement best explains why?",
       "choices": [
         {
           "id": "a",
@@ -132,7 +138,7 @@
     },
     {
       "id": "c01-l3-q4",
-      "version": 2,
+      "version": 3,
       "type": "mcq",
       "lesson_id": "c01-l3",
       "objective": 3,
@@ -154,7 +160,7 @@
         },
         {
           "id": "c",
-          "text": "Refunds raise returns and reuse, but return sites and upkeep cost money."
+          "text": "Refunds raise return and recycling rates, but return sites and upkeep cost money."
         },
         {
           "id": "d",

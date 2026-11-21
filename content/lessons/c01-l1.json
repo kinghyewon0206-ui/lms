@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "c01 correction pass after human-review preparation: economics definition, scarcity example, budget-constraint condition, price-ratio example, systems sentence. Edited by Claude Code (AI); not reviewed or approved by a human."
       }
     ]
   },
@@ -89,7 +95,7 @@
           ],
           "paragraphs": [
             "Everyone gets 24 hours a day, and your spending money is limited. You can't have every movie you want to see, every book you want to buy, and every snack you want to share with friends. When what you have falls short of what you want, that is called scarcity.",
-            "Scarcity isn't just a problem for people with little money. Rich people also get only 24 hours a day, and every country has a limited amount of land, workers, and money. Economics is the study of how people and societies make choices when everyone has to choose."
+            "Scarcity isn't just a problem for people with little money. Rich people also get only 24 hours a day, and every country has a limited amount of land, workers, and money. Economics is the study of how people and societies decide how to use scarce resources, such as time, money, land, and workers, that are not enough to satisfy all their wants."
           ]
         },
         {
@@ -133,7 +139,7 @@
             "economics"
           ],
           "paragraphs": [
-            "Scarcity does not mean \"there is only a little of something.\" It means \"there is less than people want.\" Desert sand is plentiful and almost no one wants it, so it is not scarce. Clean water is abundant on Earth as a whole, yet it is scarce in regions where demand exceeds the supply. Economics analyzes the criteria that individuals, businesses, and governments use to choose under scarcity and how those choices affect one another."
+            "Scarcity does not mean \"there is only a little of something.\" It means \"there is less than people want.\" In most places, ordinary outdoor air is available to everyone in the amount they want at no cost, so it is not scarce (although clean air can be scarce in heavily polluted cities). Clean water is abundant on Earth as a whole, yet it is scarce in regions where demand exceeds the supply. Economics analyzes the criteria that individuals, businesses, and governments use to choose under scarcity and how those choices affect one another."
           ]
         },
         {
@@ -153,7 +159,7 @@
           ],
           "paragraphs": [
             "Every society must decide what to produce and how much (the types and quantities of goods), how to produce (with which technologies and resources), and for whom to produce (who gets how much).",
-            "A traditional economy follows custom and the practices of earlier generations. In a command economy, the government decides through central planning. In a market economy, outcomes emerge from voluntary trade among many buyers and sellers. Most real-world countries have mixed economies: market trade is the default, while the government sets rules and provides public services. Each system places different weight on efficiency, equity, freedom, and stability."
+            "A traditional economy follows custom and the practices of earlier generations. In a command economy, the government decides through central planning. In a market economy, outcomes emerge from voluntary trade among many buyers and sellers. Most real-world countries have mixed economies: market trade is the default, while the government sets rules and provides public services. The main difference among these systems is who makes the decisions: custom, the government, individual buyers and sellers, or a combination of markets and government."
           ]
         },
         {
@@ -178,7 +184,7 @@
             "tradeoff"
           ],
           "paragraphs": [
-            "Economics treats a choice as a problem: maximize an objective (satisfaction, profit, or social welfare) without exceeding the constraint set by available resources (budget, time, technology). Scarcity simply means that such a constraint exists. Without constraints there would be no problem of choice, and no need for economics. If you spend a budget m on two goods with prices p₁ and p₂, the constraint is p₁x₁ + p₂x₂ ≤ m, and increasing x₁ by one unit requires reducing x₂ by p₁/p₂ units. This ratio expresses the trade-off in quantitative terms."
+            "Economics treats a choice as a problem: maximize an objective (satisfaction, profit, or social welfare) without exceeding the constraint set by available resources (budget, time, technology). Scarcity simply means that such a constraint exists. Without constraints there would be no problem of choice, and no need for economics. If you spend a budget m on two goods with prices p₁ and p₂, the constraint is p₁x₁ + p₂x₂ ≤ m. When the whole budget is already spent (p₁x₁ + p₂x₂ = m), increasing x₁ by one unit requires reducing x₂ by p₁/p₂ units. If part of the budget is still unspent, you can buy more x₁ without giving up any x₂ until the budget runs out. This ratio expresses the trade-off in quantitative terms."
           ]
         },
         {
@@ -188,7 +194,7 @@
             "economic_systems"
           ],
           "paragraphs": [
-            "Scarce resources can be allocated by price (markets), by plans and rules (government), by custom (tradition), first come, first served, by lottery, or according to need. Allocation by price tends to send goods to those who value them most and can be efficient, but people who cannot pay may go without even when their need is great. First come, first served makes people pay with time (waiting in line) instead of money, and a lottery looks fair but may not send goods to those who need them most. A mixed economy manages these trade-offs by allocating most goods through markets while the government intervenes in areas where equity matters most, such as health care, education, and a minimum standard of living."
+            "Scarce resources can be allocated by price (markets), by plans and rules (government), by custom (tradition), first come, first served, by lottery, or according to need. Allocation by price tends to send goods to those who value them most and can be efficient, but people who cannot pay may go without even when their need is great. First come, first served makes people pay with time (waiting in line) instead of money, and a lottery looks fair but may not send goods to those who need them most. A mixed economy manages these trade-offs by allocating most goods through markets. The government intervenes in areas where equity matters most, such as health care, education, and a minimum standard of living."
           ]
         },
         {
@@ -245,13 +251,13 @@
       "id": "c01-l1-we3",
       "level": "advanced",
       "title": "Budget constraint and the rate of exchange",
-      "problem": "Hypothetical example: A school club has an activity budget of $120. A ball costs $20, and a snack pack costs $8. (1) If the club buys 4 balls, what is the maximum number of snack packs it can buy? (2) To buy one more ball, how many snack packs must the club give up?",
+      "problem": "Hypothetical example: A school club has an activity budget of $120. A ball costs $20, and a snack pack costs $8. (1) If the club buys 4 balls, what is the maximum number of snack packs it can buy? (2) What is the opportunity cost of one more ball, measured in snack packs (the price ratio)?",
       "steps": [
         "(1) 4 balls = 4 × $20 = $80. The remaining $40 ÷ $8 = 5 snack packs.",
         "(2) One more ball costs another $20. In snack packs, that is $20 ÷ $8 = 2.5 packs.",
         "The price ratio (p_ball / p_snack = 20/8 = 2.5) is the number of snack packs given up to get one more ball."
       ],
-      "answer": "(1) 5 snack packs. (2) 2.5 snack packs. (Because the club can't buy half a pack, buying 2 more balls means giving up 5 snack packs.)",
+      "answer": "(1) 5 snack packs. (2) 2.5 snack packs: one ball costs as much as 2.5 snack packs. This is a rate of exchange, not a number of packs the club can actually buy. Because packs cannot be split, buying a 5th ball leaves $20, enough for only 2 packs, so the club actually gives up 3 packs; buying 2 more balls means giving up exactly 5 packs.",
       "check": {
         "type": "ratio",
         "numerator": 20,

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c08-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: replaced OpenStax 33.3 with direct sources for resilience costs (IMF F&D 2022) and value added (IMF F&D GDP basics, OpenStax 19.1), and added WTO TBT for standards used as protection. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -250,7 +256,7 @@
       "id": "c08-l3-we1",
       "level": "beginner",
       "title": "Value added at the sewing stage",
-      "problem": "Hypothetical example: Fabric from Country F is sold for $8. A factory in Country S sews it into a backpack and sells the backpack to a brand for $20. The brand sells it in stores for $50. How much value does the sewing stage add, and how much does the brand's stage add?",
+      "problem": "Hypothetical example: Fabric from Country F is sold for $8 (assume the fabric maker buys no inputs). A factory in Country S sews it into a backpack and sells the backpack to a brand for $20. The brand sells it in stores for $50. How much value does the sewing stage add, and how much does the brand's stage add?",
       "steps": [
         "Sewing: $20 − $8 = $12.",
         "Brand (design, marketing, retail): $50 − $20 = $30.",

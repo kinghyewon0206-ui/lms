@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c04-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: cited a Penn State course page for the rule of 70 and Eurostat for relative vs. absolute decoupling; labeled the production function form as a modeling assumption. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -326,7 +332,7 @@
         "openstax-pe3-20-2"
       ],
       "paragraphs": [
-        "Economists measure labor productivity as the value of output per hour worked and treat its growth as the main driver of long-run gains in real income per person. Tables of compound growth show how a difference of a few percentage points per year turns into a many-fold difference in income over 50 years."
+        "Economists measure labor productivity as the real (inflation-adjusted) value of output per hour worked and treat its growth as the main driver of long-run gains in real income per person. Tables of compound growth show how a difference of a few percentage points per year turns into a many-fold difference in income over 50 years."
       ]
     },
     {

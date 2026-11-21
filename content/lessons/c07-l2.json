@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c07-l2",
-  "content_version": 4,
+  "content_version": 5,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -31,6 +31,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: U.S. rule examples (FDIC, Regulation DD, credit card statements) labeled as U.S. examples at each level and in real-world examples. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -221,7 +227,7 @@
           ],
           "paragraphs": [
             "APY = (1 + r/n)^n − 1, which increases with n and approaches e^r − 1 as n → ∞. At r = 6%: n = 1 gives 6.00%, n = 4 gives 6.136%, n = 12 gives 6.168%, n = 365 gives 6.183%. U.S. deposit rules (Regulation DD) define the APY so that it reflects both the interest rate and the compounding frequency (U.S. example; rules differ by country). On loans, the disclosed APR can fold certain fees into the rate, so two loans with the same interest rate can have different APRs.",
-            "Exact real return: i_real = (1 + i) ÷ (1 + π) − 1. The approximation i_real ≈ i − π ignores the cross term and overstates the real return slightly when π > 0 (5% nominal, 3% inflation: exact 1.942%, approximate 2%). Over many years, real growth compounds too: the real value after t years is P[(1 + i) ÷ (1 + π)]^t. Past returns do not guarantee future returns, so any long-run projection is an illustration that depends on its assumptions."
+            "Exact real return: i_real = (1 + i) ÷ (1 + π) − 1. The approximation i_real ≈ i − π ignores the cross term and overstates the real return slightly when π > 0 and the real return is positive, and understates it when the nominal rate is below inflation (5% nominal, 3% inflation: exact 1.942%, approximate 2%). Over many years, real growth compounds too: the real value after t years is P[(1 + i) ÷ (1 + π)]^t. Past returns do not guarantee future returns, so any long-run projection is an illustration that depends on its assumptions."
           ]
         },
         {

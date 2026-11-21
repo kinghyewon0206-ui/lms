@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l3",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "c01 correction pass after human-review preparation: social vs private cost direction, marginal conditions, bag-fee question, sustainable-consumption definition, narrower behavior claims. Edited by Claude Code (AI); not reviewed or approved by a human."
       }
     ]
   },
@@ -31,7 +37,7 @@
     {
       "id": "sustainable_consumption",
       "term": "Sustainable consumption",
-      "definition": "Consumption that meets today's needs while using resources efficiently and reducing waste, so that resources remain for future generations. It is the goal of SDG 12.",
+      "definition": "Consumption that meets today's needs while using fewer resources and creating less waste, so that resources remain for future generations. It is the goal of SDG 12.",
       "source_ids": [
         "un-sdg-12"
       ]
@@ -48,7 +54,7 @@
     {
       "id": "social_cost",
       "term": "Private cost and social cost",
-      "definition": "Private cost is the cost a consumer or producer pays directly. Social cost adds the costs that other people or future generations must bear (such as waste disposal and pollution). When the two differ, people use more than is socially desirable.",
+      "definition": "Private cost is the cost a consumer or producer pays directly. Social cost is the private cost plus the external costs that other people or future generations must bear (such as waste disposal and pollution). When the marginal social cost of an item is higher than the marginal private cost that buyers and sellers face, a market tends to produce and consume more than the socially efficient quantity.",
       "source_ids": [
         "openstax-pe3-12-1"
       ]
@@ -65,7 +71,7 @@
     {
       "id": "values_and_information",
       "term": "Values and information",
-      "definition": "People care about more than money; they also value the environment and other people, and because of habits they do not always choose rationally. Accurate information and awareness help people make more sustainable choices.",
+      "definition": "People care about more than money; they also value the environment and other people, and habits and convenience also shape their choices. Accurate information and awareness help people make more sustainable choices.",
       "source_ids": [
         "openstax-pe3-2-3",
         "un-sdg-12"
@@ -83,7 +89,7 @@
             "consumption_tradeoff"
           ],
           "paragraphs": [
-            "When you leave part of your school cafeteria lunch uneaten, you're not just throwing away food. The water, electricity, and work used to grow, transport, and cook that food are thrown away with it. Those resources could have made food for someone else, so wasted food has an opportunity cost. Buying only what you need, using things for a long time, and reusing them is called sustainable consumption."
+            "When you leave part of your school cafeteria lunch uneaten, you're not just throwing away food. The water, electricity, and work used to grow, transport, and cook that food are thrown away with it. Those resources could have made food for someone else, so wasted food has an opportunity cost. Sustainable consumption means meeting your needs while using fewer resources and creating less waste, for example by buying only what you need, using things for a long time, and reusing them."
           ]
         },
         {
@@ -92,7 +98,7 @@
             "social_cost"
           ],
           "paragraphs": [
-            "When a store gives you a free plastic bag, you don't pay anything. But someone has to collect and dispose of that bag, and if it ends up in the ocean, other people and future generations pay to clean it up. When the cost you pay is different from the cost society pays, people end up using more of that item than they need."
+            "When a store gives you a free plastic bag, you don't pay anything. But someone has to collect and dispose of that bag, and if it ends up in the ocean, other people and future generations pay to clean it up. When the cost you pay is lower than the full cost to society, people tend to use more of that item than is best for society."
           ]
         },
         {
@@ -108,7 +114,7 @@
       ]
     },
     "intermediate": {
-      "summary": "Consumption choices carry the opportunity cost of resources, and when private cost differs from social cost, people overconsume. Incentives such as prices, deposits, and information, along with people's values, change their choices.",
+      "summary": "Consumption choices carry the opportunity cost of resources, and when the social cost of an item is higher than the private cost people pay, they tend to consume more than is socially efficient. Incentives such as prices, deposits, and information, along with people's values, change their choices.",
       "sections": [
         {
           "heading": "Consumption and resources",
@@ -126,7 +132,7 @@
             "social_cost"
           ],
           "paragraphs": [
-            "When a transaction imposes costs (such as waste or pollution) on third parties who are not part of the transaction, those costs are not included in the price. Consumers then decide based only on private cost and use more than the socially desirable amount. This kind of third-party effect is called an externality, and you will study it in detail in the market failure course (c03)."
+            "When a transaction imposes costs (such as waste or pollution) on third parties who are not part of the transaction, those costs are not included in the price. Consumers then decide based only on their private cost. Because the cost to society is higher than the cost they face, they tend to use more than the socially efficient amount. This kind of third-party effect is called an externality, and you will study it in detail in the market failure course (c03)."
           ]
         },
         {
@@ -136,13 +142,13 @@
             "values_and_information"
           ],
           "paragraphs": [
-            "Policies change choices by changing incentives. Bag fees and similar charges raise private cost closer to social cost. Deposit-return systems pay people back when they return containers, increasing reuse and collection. Disclosure and labeling (for example, publishing how much food waste is generated) let people choose knowing the consequences. Because people weigh environmental and social values alongside money, and habits matter a great deal, price tools are often combined with information and social-norm tools."
+            "Policies change choices by changing incentives. Bag fees and similar charges raise private cost closer to social cost. Deposit-return systems pay people back when they return containers, increasing the share of containers collected for reuse or recycling. Disclosure and labeling (for example, publishing how much food waste is generated) let people choose knowing the consequences. Because people weigh environmental and social values alongside money, and habits matter a great deal, price tools are often combined with information and social-norm tools."
           ]
         }
       ]
     },
     "advanced": {
-      "summary": "The gap between private cost and social cost leads to overconsumption. Price tools (fees and deposits) and information and norm-based tools that close this gap each have different effects and limits. Whether reuse pays off depends on how many times an item is used.",
+      "summary": "When marginal social cost is higher than marginal private cost, the market tends to overconsume. Price tools (fees and deposits) and information and norm-based tools that close this gap each have different effects and limits. Whether reuse pays off depends on how many times an item is used.",
       "sections": [
         {
           "heading": "Efficiency and sustainability in resource use",
@@ -160,7 +166,7 @@
             "social_cost"
           ],
           "paragraphs": [
-            "Social cost per unit = private cost + external cost. Consumers consider only private cost and choose the quantity at which private benefit equals private cost, so when there is an external cost they use more than the socially desirable quantity. A fee equal to the external cost brings the price consumers face closer to the social cost, which reduces use. However, external costs are hard to measure precisely, and an equity concern remains: such fees can weigh relatively more heavily on low-income households."
+            "Marginal social cost = marginal private cost + marginal external cost. Consumers consider only their own marginal private cost: they buy another unit when its marginal benefit is greater than its marginal private cost and stop where the two are equal. When there is an external cost, marginal social cost is higher than marginal private cost at that quantity, so they use more than the socially efficient quantity, where marginal benefit equals marginal social cost. A fee equal to the marginal external cost brings the price consumers face closer to the social cost, which reduces use. However, external costs are hard to measure precisely, and an equity concern remains: such fees can weigh relatively more heavily on low-income households."
           ]
         },
         {
@@ -170,7 +176,7 @@
             "values_and_information"
           ],
           "paragraphs": [
-            "Because a deposit is refunded on return, it can raise collection rates while keeping the final burden on consumers small, but return facilities and administration are costly. Information and labeling are inexpensive but may have small effects and can lose out to habit and convenience. Since people are both self-interested and altruistic and do not always calculate rationally, changing the default (for example, providing disposable cutlery only on request) is another design option.",
+            "Because a deposit is refunded on return, it can raise collection rates while keeping the final burden on consumers small, but return facilities and administration are costly. Information and labeling are inexpensive but may have small effects and can lose out to habit and convenience. Since people care about others as well as themselves, and habits and convenience also shape choices, changing the default (for example, providing disposable cutlery only on request) is another design option.",
             "Reusable items take more resources to make than single-use ones, so they pay off only if used enough times. The break-even number of uses can be estimated as the extra cost of the reusable item ÷ the cost saved per use."
           ]
         }
@@ -219,13 +225,13 @@
       "id": "c01-l3-we3",
       "level": "advanced",
       "title": "Social cost and a bag fee",
-      "problem": "Hypothetical example: Making one plastic bag costs 2 cents (private cost), and after use, collection, disposal, and environmental damage cost society another 3 cents (external cost, assumed value). If stores give bags away for free, what is the gap between the social cost of one bag and the cost the consumer faces, and what fee would close that gap?",
+      "problem": "Hypothetical example: Making one plastic bag costs 2 cents (private cost), and after use, collection, disposal, and environmental damage cost society another 3 cents (external cost, assumed value). (1) If stores give bags away for free, what is the gap between the social cost of one bag and the price the consumer pays? (2) If a store instead charges the 2-cent production cost, what additional fee per bag would make the price the consumer pays equal to the social cost?",
       "steps": [
         "Social cost = private cost of 2 cents + external cost of 3 cents = 5 cents.",
-        "If the bag is free, the cost the consumer faces is 0 cents → a gap of 5 cents.",
-        "If the store charges the 2-cent production cost and adds a fee equal to the 3-cent external cost, the consumer price becomes 5 cents, equal to the social cost."
+        "(1) If the bag is free, the consumer pays 0 cents → a gap of 5 − 0 = 5 cents.",
+        "(2) If the store charges the 2-cent production cost, the remaining gap is 5 − 2 = 3 cents, so an additional fee of 3 cents (equal to the external cost) makes the price 5 cents, equal to the social cost."
       ],
-      "answer": "The gap is 5 cents. Charging the 2-cent production cost plus a 3-cent fee for the external cost, for a bag price of 5 cents, makes the private cost equal to the social cost.",
+      "answer": "(1) 5 cents. (2) An additional fee of 3 cents, for a total bag price of 2 + 3 = 5 cents, equal to the social cost.",
       "check": {
         "type": "difference",
         "a": 5,
@@ -251,7 +257,7 @@
         "openstax-pe3-2-3"
       ],
       "paragraphs": [
-        "Economic models of choice do not assume that people are always calculating and selfish. People also value things like family, charity, and the environment, and these values enter into the benefits and costs of their choices."
+        "In economic models, acting in your own interest does not have to mean being selfish. People also value things like family, charity, and the environment, and these values enter into the benefits and costs of their choices."
       ]
     }
   ],
@@ -316,7 +322,7 @@
   },
   "key_takeaways": [
     "Choices to consume and throw things away carry the opportunity cost of resources; sustainable consumption means getting the same satisfaction with fewer resources and less waste.",
-    "When private cost differs from social cost, people use more than the socially desirable amount.",
+    "When the social cost of an item is higher than the private cost people pay (for example, because of waste or pollution), people tend to use more than the socially efficient amount.",
     "Financial incentives such as prices and deposits, and approaches based on information, values, and habit design, each have strengths and limits, so they are often used together."
   ],
   "source_ids": [

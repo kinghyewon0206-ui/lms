@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c01-l2",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "c01 correction pass after human-review preparation: consistent marginal rule (MB > MC, MB < MC, MB = MC indifference), PPF shift wording, beginner opening. Edited by Claude Code (AI); not reviewed or approved by a human."
       }
     ]
   },
@@ -55,7 +61,7 @@
     {
       "id": "marginal_thinking",
       "term": "Marginal thinking",
-      "definition": "Deciding by comparing the marginal benefit of doing a little more with its marginal cost. If the marginal benefit is greater than the marginal cost, do more; if it is smaller, stop.",
+      "definition": "Deciding by comparing the marginal benefit of doing a little more with its marginal cost. If the marginal benefit of one more unit is greater than its marginal cost, doing it raises your net benefit; if it is smaller, doing it lowers your net benefit; if the two are equal, you are indifferent about that unit in this simple model.",
       "source_ids": [
         "openstax-pe3-2-1"
       ]
@@ -87,7 +93,7 @@
             "opportunity_cost"
           ],
           "paragraphs": [
-            "Suppose you could earn $30 at a part-time job on Saturday afternoon for 3 hours, but you go to the movies with a friend instead. Is the ticket price your only cost? No. You also gave up the $30 you could have earned. The most valuable thing you give up because of a choice is called its opportunity cost."
+            "Suppose you could earn $30 by working a part-time job for 3 hours on Saturday afternoon, but you go to the movies with a friend instead. Is the ticket price your only cost? No. You also gave up the $30 you could have earned. The most valuable thing you give up because of a choice is called its opportunity cost."
           ]
         },
         {
@@ -157,7 +163,7 @@
             "marginal_thinking"
           ],
           "paragraphs": [
-            "A sunk cost has already been spent and cannot be recovered; it is the same whichever option you choose, so it should not affect your decision. A rational decision compares the marginal benefit (MB) and marginal cost (MC) of one more unit: keep increasing the activity while MB ≥ MC, and stop once MB < MC. For many activities, marginal benefit declines as you do more, so there is a natural point to stop.",
+            "A sunk cost has already been spent and cannot be recovered; it is the same whichever option you choose, so it should not affect your decision. A rational decision compares the marginal benefit (MB) and marginal cost (MC) of one more unit: do one more unit when MB > MC, do not do it when MB < MC, and when MB = MC you are indifferent about that unit because it leaves net benefit unchanged. For many activities, marginal benefit declines as you do more, so there is a natural point to stop.",
             "In reality, people do not always act rationally; they may cling to sunk costs or choose out of habit. The rationality assumption in economics is a simplified starting point for understanding behavior."
           ]
         },
@@ -168,7 +174,7 @@
             "increasing_opportunity_cost"
           ],
           "paragraphs": [
-            "Points on the production possibilities frontier are combinations that use all resources efficiently. Points inside the curve involve unemployment or waste, and points outside it cannot be reached with current resources and technology. Moving along the curve, the amount of one good given up to produce more of the other is the opportunity cost. Because resources differ in how well suited they are to each use, this opportunity cost rises, so the curve bows outward. Technological progress or more resources shift the entire curve outward."
+            "Points on the production possibilities frontier are combinations that use all resources efficiently. Points inside the curve involve unemployment or waste, and points outside it cannot be reached with current resources and technology. Moving along the curve, the amount of one good given up to produce more of the other is the opportunity cost. Because resources differ in how well suited they are to each use, this opportunity cost rises, so the curve bows outward. More resources or better technology shift the curve outward. If an improvement helps only one good (for example, a better rice seed), the curve stretches outward mainly along that good's axis instead of moving out evenly."
           ]
         }
       ]
@@ -193,7 +199,7 @@
             "sunk_cost"
           ],
           "paragraphs": [
-            "Let B(q) be the total benefit and C(q) the total cost of an activity level q. At the q that maximizes net benefit B(q) − C(q), marginal benefit equals marginal cost (in discrete terms, you continue up to the last unit for which MB ≥ MC). A sunk cost F is the constant term in C(q) = F + V(q); it does not affect MC and therefore does not change the optimal q. Reasoning that \"we have already invested so much that we must continue\" is the sunk cost fallacy."
+            "Let B(q) be the total benefit and C(q) the total cost of an activity level q. At the q that maximizes net benefit B(q) − C(q), marginal benefit equals marginal cost (in discrete terms, you add every unit for which MB > MC and stop before any unit for which MB < MC; a unit with MB = MC leaves net benefit unchanged). A sunk cost F is the constant term in C(q) = F + V(q); it does not affect MC and therefore does not change the optimal q. Reasoning that \"we have already invested so much that we must continue\" is the sunk cost fallacy."
           ]
         },
         {
@@ -253,11 +259,11 @@
       "problem": "Hypothetical example: A student is deciding how long to study the night before an exam. The marginal benefit of the 1st, 2nd, 3rd, and 4th hours (the value of the grade improvement, expressed in dollars) is $12, $9, $6, and $3, respectively. Each hour of study gives up $6 worth of other activities (rest or sleep). How many hours of study is rational, and what is the net benefit?",
       "steps": [
         "Hour 1: $12 > $6 → study. Hour 2: $9 > $6 → study.",
-        "Hour 3: $6 = $6 → studying causes no loss. Hour 4: $3 < $6 → don't study.",
+        "Hour 3: $6 = $6 → the 3rd hour neither adds to nor reduces net benefit, so the student is indifferent about it. Hour 4: $3 < $6 → don't study.",
         "With 3 hours of study, total benefit = $12 + $9 + $6 = $27 and total cost = $6 × 3 = $18.",
         "Net benefit = $27 − $18 = $9 (the same $9 as with 2 hours)."
       ],
-      "answer": "Studying 2 or 3 hours is rational, with a net benefit of $9. In the 4th hour, the marginal benefit is smaller than the marginal cost, so it would reduce net benefit.",
+      "answer": "Studying 2 hours or 3 hours gives the same, highest net benefit of $9; the student is indifferent about the 3rd hour because its marginal benefit equals its marginal cost. In the 4th hour, the marginal benefit is smaller than the marginal cost, so it would reduce net benefit.",
       "check": {
         "type": "difference",
         "a": 27,

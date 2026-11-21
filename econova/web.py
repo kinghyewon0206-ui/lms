@@ -22,6 +22,14 @@ def render_econova(template, **context):
                            graph_geometry=graphs.geometry, **context)
 
 
+def _human_sources(doc):
+    """Cited sources that a person approved in the review database (current content only)."""
+    if doc is None:
+        return frozenset()
+    from econova import admin_content
+    return admin_content.human_approved_sources(doc.source_ids, storage.list_content_reviews)
+
+
 def _view_level(default):
     """?level= 로 다른 난이도 설명을 볼 수 있다. 수강 정보의 난이도는 바뀌지 않는다."""
     level = request.args.get("level", "")
@@ -137,13 +145,14 @@ def lesson(course_id, lesson_id):
     index = course.lessons.index(lesson_)
     quiz_attempts = storage.list_assessment_attempts(g.user["id"], assessment_id=lesson_.quiz_assessment.id) \
         if lesson_.quiz_approved else []
+    doc = lesson_.content if lesson_.material_approved else None
     return render_econova(
         "econova/lesson.html", course=course, lesson=lesson_, enrollment=enrollment, record=record,
         quiz_attempts=quiz_attempts,
         sim_widgets=[sim_context(sid, lesson=lesson_, course=course) for sid in lesson_.simulations],
-        doc=lesson_.content if lesson_.material_approved else None,   # 승인·공개된 자료만 학생에게 보여준다
+        doc=doc, human_sources=_human_sources(doc),   # 승인·공개된 자료만 학생에게 보여준다
         level=_view_level(enrollment["selected_difficulty"]), sources=learning.catalog().sources,
-        status=state["progress"]["statuses"][lesson_.id], progress=state["progress"], sections=learning.LESSON_SECTIONS,
+        status=state["progress"]["statuses"][lesson_.id], progress=state["progress"], sections=learning.visible_sections(doc),
         prev_lesson=course.lessons[index - 1] if index > 0 else None,
         next_lesson=course.lessons[index + 1] if index + 1 < len(course.lessons) else None,
         tutor=_tutor_panel(lesson_) if lesson_.material_approved else None,
@@ -188,7 +197,8 @@ def preview(course_id, lesson_id):
     resp = current_app.make_response(render_econova(
         "econova/preview.html", course=course, lesson=lesson_, doc=lesson_.content, level=_view_level("beginner"),
         sim_widgets=[sim_context(sid, lesson=None, course=None) for sid in lesson_.simulations],
-        sections=learning.LESSON_SECTIONS, sources=learning.catalog().sources, record=None, allow_review=False))
+        sections=learning.visible_sections(lesson_.content), sources=learning.catalog().sources,
+        human_sources=_human_sources(lesson_.content), source_review_pending=True, record=None, allow_review=False))
     resp.headers["X-Robots-Tag"] = "noindex"
     resp.headers["Cache-Control"] = "no-store"
     return resp

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: average tax rate now also cited to OpenStax 15.5; sales-tax regressivity in the Country F case stated as an explicit assumption. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -46,7 +52,7 @@
     {
       "id": "marginal_average_rate",
       "term": "Marginal vs. average tax rate",
-      "definition": "The marginal tax rate is the rate paid on the next dollar of income. The average tax rate is total tax divided by total income. In a bracket system, each rate applies only to the income inside its bracket, so the average rate is below the top marginal rate, and moving into a higher bracket never lowers after-tax income.",
+      "definition": "The marginal tax rate is the rate paid on the next dollar of income. The average tax rate is total tax divided by total income. In a bracket system, each rate applies only to the income inside its bracket, so the average rate is at or below the marginal rate on the last dollar, and moving into a higher bracket never lowers after-tax income.",
       "source_ids": [
         "openstax-pe3-30-2",
         "openstax-pe3-15-5"

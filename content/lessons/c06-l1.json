@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c06-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: Gini grouped-data claim reworded as a derived result; worked-example label made consistent. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -40,7 +46,7 @@
     {
       "id": "inequality_vs_poverty",
       "term": "Inequality vs. poverty",
-      "definition": "Poverty counts the people whose income falls below a poverty line. Inequality describes how total income is divided among groups. The two can move separately: if everyone's income rises by the same percentage, inequality shares stay the same while fewer people may be below a fixed poverty line.",
+      "definition": "Poverty counts the people whose income falls below a poverty line. Inequality describes how total income is divided among groups. The two can move separately: if everyone's real income rises by the same percentage, inequality shares stay the same while fewer people may be below a fixed poverty line.",
       "source_ids": [
         "openstax-pe3-15-1",
         "openstax-pe3-15-4"
@@ -100,7 +106,7 @@
             "inequality_vs_poverty"
           ],
           "paragraphs": [
-            "Poverty asks: how many people have too little to meet basic needs? Inequality asks: how is the total income divided? They are different questions. Hypothetical example: if every income in a country doubled, the shares would not change, so inequality would stay the same, but many people could rise above a fixed poverty line. If only the richest people got richer, inequality would rise, but the number of poor people would not change."
+            "Poverty asks: how many people have too little to meet basic needs? Inequality asks: how is the total income divided? They are different questions. Hypothetical example: if every income in a country doubled while prices stayed the same, the shares would not change, so inequality would stay the same, but many people could rise above a fixed poverty line. If only the richest people got richer, inequality would rise, but the number of poor people would not change."
           ]
         },
         {
@@ -155,7 +161,7 @@
           ],
           "paragraphs": [
             "Income is a flow per period; wealth is a stock at a moment. A distribution of annual income can look quite different from a distribution of wealth, which is typically more concentrated because earnings differences accumulate through saving, returns on assets, and inheritance. When you read an inequality figure, check whether it describes income or wealth, which income concept it uses (before or after taxes and transfers), and whether the unit is a person or a household.",
-            "Inequality and poverty answer different questions. A poverty rate counts people below a line; an inequality measure looks at shares across the whole distribution. A proportional rise in all incomes leaves every share, and so the Lorenz curve and the Gini coefficient, unchanged, while it can lower poverty measured against a fixed line. Gains concentrated at the top can raise inequality without changing poverty at all."
+            "Inequality and poverty answer different questions. A poverty rate counts people below a line; an inequality measure looks at shares across the whole distribution. A proportional rise in all real incomes leaves every share, and so the Lorenz curve and the Gini coefficient, unchanged, while it can lower poverty measured against a fixed line. Gains concentrated at the top can raise inequality without changing poverty at all."
           ]
         },
         {

@@ -4,7 +4,7 @@
   "kind": "lesson_quiz",
   "course_id": "c01",
   "lesson_id": "c01-l1",
-  "version": 2,
+  "version": 3,
   "title": "Lesson 1 Quiz: Scarcity and Economic Choices",
   "description": "A short quiz to check what you learned in this lesson. Submitting it meets the lesson's completion requirement (quiz submitted), and your score is recorded separately.",
   "review": {
@@ -24,6 +24,12 @@
         "at": "2026-11-13",
         "by": "Claude Code (AI)",
         "note": "Rewritten in English from the Korean draft. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "c01 correction pass: q5: percentage-entry instruction added; difficulty set to intermediate to match its demand. Not reviewed or approved by a human."
       }
     ]
   },
@@ -183,17 +189,17 @@
     },
     {
       "id": "c01-l1-q5",
-      "version": 2,
+      "version": 3,
       "type": "numeric",
       "lesson_id": "c01-l1",
       "objective": 3,
       "concept_ids": [
         "specialization"
       ],
-      "difficulty": "advanced",
+      "difficulty": "intermediate",
       "points": 1,
       "review_status": "draft",
-      "prompt": "Four students are making sandwiches. If each works alone from start to finish, each one makes 5 per hour. If they divide the work, the four of them together make 32 per hour. By what percentage does the division of labor increase hourly output? (Enter a number only.)",
+      "prompt": "Four students are making sandwiches. If each works alone from start to finish, each one makes 5 per hour. If they divide the work, the four of them together make 32 per hour. By what percentage does the division of labor increase hourly output? (Enter a number only; for example, enter 25 for 25%.)",
       "unit": "",
       "source_ids": [
         "openstax-pe3-1-1",

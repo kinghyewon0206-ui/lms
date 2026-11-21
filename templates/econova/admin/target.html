@@ -16,7 +16,7 @@
     <h2 id="h-body">Content</h2>
     {% if t.type == 'material' %}
       <p><a class="btn secondary" href="{{ url_for('econova.preview', course_id=t.course_id, lesson_id=t.id) }}">View as learning materials (by level, graphs, examples)</a></p>
-      <p class="hint">Sources: {% for sid in t.data.source_ids or [] %}{% set src = sources.get(sid) %}{{ src.title if src else sid }} ({{ 'verified' if src and src.verified else 'unverified' }}){% if not loop.last %}; {% endif %}{% endfor %}</p>
+      <p class="hint">Sources: {% for sid in t.data.source_ids or [] %}{% set src = sources.get(sid) %}{{ src.title if src else sid }} ({{ 'AI-checked, not human-approved' if src and src.verified else 'unverified' }}){% if not loop.last %}; {% endif %}{% endfor %}</p>
     {% elif t.type in ('assessment', 'diagnostic') %}
       <p class="hint">Admin-only page. Answers and explanations are shown here (they are never sent to student pages).</p>
       {% for q in t.data.questions or [] %}

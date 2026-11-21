@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l2",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: added direct sources for difference-in-differences and parallel trends (Columbia Public Health), benefit-cost ranking rules (OpenStax Principles of Finance 16.5, UK Green Book) and conflict of interest (NC State Libraries); framed the ranking rule as a common appraisal rule. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -256,7 +262,7 @@
             "cost_effectiveness"
           ],
           "paragraphs": [
-            "For a program with cost C and impact ΔY on outcome Y, the cost-effectiveness ratio is C ÷ ΔY (or its inverse, ΔY per $100). Multi-year costs are discounted to present value and expressed in the prices of one base year, using a stated discount rate and price index; the order of these adjustments should be applied consistently. Discount real (base-year-price) costs with a real discount rate and nominal costs with a nominal rate; never mix them.",
+            "For a program with cost C and impact ΔY on outcome Y, the cost-effectiveness ratio is C ÷ ΔY (or the impact per $100 spent, 100 × ΔY ÷ C). Multi-year costs are discounted to present value and expressed in the prices of one base year, using a stated discount rate and price index; the order of these adjustments should be applied consistently. Discount real (base-year-price) costs with a real discount rate and nominal costs with a nominal rate; never mix them.",
             "With monetized benefits B, the benefit–cost ratio is B ÷ C and the net benefit is B − C. Ratios rank options by gain per dollar, while net benefit ranks by total gain, and the two can disagree. A common rule in project appraisal: when a fixed budget must be shared among independent projects, rank them by ratio and fund down the list (corporate finance does this with a similar ratio, the profitability index); when only one of several alternatives of different size can be chosen, pick the one with the largest net benefit. Either ranking is a starting point, not the whole decision. At the margin, expand an activity while marginal benefit ≥ marginal cost; because cheap reductions come first, marginal cost typically rises as coverage grows."
           ]
         },

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l1",
-  "content_version": 2,
+  "content_version": 3,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -19,6 +19,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Wording fixes after an independent AI accuracy review. Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -121,7 +127,7 @@
           ],
           "paragraphs": [
             "Stakeholders are the people and groups linked to the problem: students, parents, teachers, the local government, a water company, farmers upstream, and even future generations. Each one makes choices based on its own gains and costs. Those gains and costs are incentives.",
-            "Write down each stakeholder and ask: what does this group gain or lose from the current situation, and what would make it act differently? Step \"4. Stakeholders\" in the Capstone project asks exactly this."
+            "Write down each stakeholder and ask: what does this group gain or lose from the current situation, and what would make it act differently? In the Capstone project, step \"4. Stakeholders\" asks you to list them and where each one stands, and step \"5. Incentives and trade-offs\" asks what drives them."
           ]
         },
         {
@@ -252,7 +258,7 @@
             "concept_toolkit"
           ],
           "paragraphs": [
-            "Match the concept to the structure of the problem: excludability and rivalry (public goods and common resources), the gap between private and social cost (externalities), the elasticity ε = %ΔQ ÷ %ΔP (how strongly people respond to a price change), real value = nominal value ÷ price index (purchasing power), the unemployment rate = unemployed ÷ labor force, inequality measures such as income shares or the Gini coefficient, compound growth A = P(1 + r)ᵗ, and comparative advantage and exchange rates for trade-exposed sectors.",
+            "Match the concept to the structure of the problem: excludability and rivalry (public goods and common resources), the gap between private and social cost (externalities), the elasticity ε = %ΔQ ÷ %ΔP (how strongly people respond to a price change), real value = nominal value ÷ (price index ÷ 100) (purchasing power), the unemployment rate = unemployed ÷ labor force, inequality measures such as income shares or the Gini coefficient, compound growth A = P(1 + r)ᵗ, and comparative advantage and exchange rates for trade-exposed sectors.",
             "Each concept implies data you will need. An elasticity argument needs prices and quantities; a real-income argument needs a price index; a distribution argument needs data broken down by income group. If the data do not exist, say so and treat the mechanism as a hypothesis."
           ]
         },

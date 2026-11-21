@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "lesson_id": "c09-l3",
-  "content_version": 3,
+  "content_version": 4,
   "review": {
     "status": "draft",
     "reviewer": null,
@@ -25,6 +25,12 @@
         "at": "2026-11-14",
         "by": "Claude Code (AI)",
         "note": "Source-evidence remediation: added direct sources for present value (OpenStax Appendix C), real prices and real discount rates (UK Green Book) and the inputs-activities-outputs-outcomes logic model (CDC). Not reviewed or approved by a human."
+      },
+      {
+        "status": "draft",
+        "at": "2026-11-21",
+        "by": "Claude Code (AI)",
+        "note": "Low-risk correction from the c01-pattern audit (missing assumption, formula, or wording; no question or answer changed). Not reviewed or approved by a human."
       }
     ]
   },
@@ -65,7 +71,7 @@
     {
       "id": "costs_over_time",
       "term": "Costs over time: real values and present value",
-      "definition": "Costs and benefits that occur in different years are made comparable in two ways: adjusting for inflation (real value = nominal value ÷ price index, expressed in base-year prices) and discounting future amounts to present value (PV = future amount ÷ (1 + r)ᵗ, the reverse of compound interest). State the price index and discount rate you use.",
+      "definition": "Costs and benefits that occur in different years are made comparable in two ways: adjusting for inflation (real value = nominal value ÷ (price index ÷ 100), expressed in base-year prices) and discounting future amounts to present value (PV = future amount ÷ (1 + r)ᵗ, the reverse of compound interest). State the price index and discount rate you use.",
       "source_ids": [
         "openstax-pe3-19-2",
         "openstax-pe3-17-3",

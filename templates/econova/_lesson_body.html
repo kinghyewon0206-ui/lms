@@ -78,7 +78,7 @@
   {% elif key == 'real_world' %}{{ mat.real_world(doc) }}
   {% elif key == 'sdg_case' %}{{ mat.sdg_case(doc) }}
   {% elif key == 'takeaways' %}{{ mat.takeaways(doc) }}
-  {% elif key == 'sources' %}{{ mat.source_list(doc, sources) }}
+  {% elif key == 'sources' %}{{ mat.source_list(doc, sources, human_sources or (), source_review_pending) }}
   {% endif %}
 </section>
 {% endfor %}

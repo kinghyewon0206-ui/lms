@@ -175,8 +175,9 @@ def test_lesson_access_rules(logged_in):
     assert "How to complete this lesson" in html and "Submit the required lesson quiz" in html and "Take quiz" in html
     assert "Development test material" in html and "AI Tutor" in html and "AI features are turned off right now." in html   # 기본값: AI 꺼짐
     for title in ("Learning objectives", "Key concepts", "Learning materials by level", "Worked examples", "Economic graphs",
-                  "SDG case", "Interactive simulation", "Lesson quiz", "Reflection and feedback"):
+                  "SDG case", "Interactive simulation", "Lesson quiz"):
         assert title in html
+    assert "Reflection and feedback" not in html and "Coming later" not in html   # inactive placeholders are hidden
 
 
 def test_lesson_requires_login(client):

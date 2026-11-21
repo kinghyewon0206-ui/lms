@@ -177,6 +177,24 @@ def global_targets():
     return out
 
 
+def human_approved_sources(source_ids, list_reviews):
+    """Source ids whose CURRENT content has a human approval in the review database.
+    sources.json 'verified' only means the link was checked (by AI or the author); it is never treated as human approval."""
+    wanted = set(source_ids or ())
+    if not wanted:
+        return frozenset()
+    out = set()
+    for s in (_read("sources.json").get("sources") or []):
+        sid = s.get("id")
+        if sid not in wanted:
+            continue
+        t = Target("source", sid, s.get("title") or sid, "", "sources.json", "1",
+                   (s.get("verification") or {}).get("status", "?"), digest=lesson_content.content_digest(s), data=s)
+        if review_state(t, list_reviews("source", sid))["state"] in ("approved", "published"):
+            out.add(sid)
+    return frozenset(out)
+
+
 def course_files(fixture=False):
     index = _read(f"{_base(fixture)}catalog.json")
     return list(index.get("courses") or [])
