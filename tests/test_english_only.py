@@ -91,14 +91,14 @@ def _without_html_and_script_comments(html):
 def test_javascript_shipped_to_browsers_is_english():
     """Static JS files are downloaded by every visitor, so even their comments must be English."""
     bad = {}
-    for path in _walk("static", (".js",)):
+    for path in _walk(os.path.join("public", "static"), (".js",)):
         if hits := _lines_with_hangul(open(path, encoding="utf-8").read()):
             bad[_rel(path)] = hits[:5]
     assert not bad, bad
 
 
 def test_css_generated_text_is_english():
-    for path in _walk("static", (".css",)):
+    for path in _walk(os.path.join("public", "static"), (".css",)):
         css = re.sub(r"/\*.*?\*/", "", open(path, encoding="utf-8").read(), flags=re.S)
         assert not HANGUL.search(css), _rel(path)
 

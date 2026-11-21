@@ -1,4 +1,4 @@
-# Vercel 에 올리지 않는 파일 (함수 크기 축소, 내부 문서·테스트·도구 제외). content/ 와 static/ 은 앱이 읽으므로 포함한다.
+# Vercel 에 올리지 않는 파일 (함수 크기 축소, 내부 문서·테스트·도구 제외). content/ 는 앱이 읽고 public/ 은 Vercel CDN 이 제공하므로 포함한다.
 .venv/
 __pycache__/
 *.db

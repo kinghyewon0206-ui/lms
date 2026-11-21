@@ -75,6 +75,16 @@ def content_preview_enabled():
     return True
 
 
+def design_prototypes_enabled():
+    """새 디자인 시안 화면(/prototype/glass/...)을 켤지. ECONOVA_DESIGN_PROTOTYPES=1 일 때만 켜지고,
+    운영 환경에서 켜려고 하면 실행을 멈춘다. (시안은 초안 레슨 본문을 보여 주므로 외부에 공개하면 안 된다)"""
+    if env("ECONOVA_DESIGN_PROTOTYPES").strip() != "1":
+        return False
+    if is_production():
+        raise ConfigError("ECONOVA_DESIGN_PROTOTYPES cannot be enabled in production.")
+    return True
+
+
 def private_content_dir():
     """정답 키·교사용 검토 문서처럼 공개 저장소에 두면 안 되는 자료의 폴더 (ECONOVA_PRIVATE_CONTENT_DIR).
 

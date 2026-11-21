@@ -1,0 +1,143 @@
+{% extends "prototype/glass/base.html" %}
+{% from "prototype/glass/_ui.html" import icon, mark %}
+{% block title %}Dashboard{% endblock %}
+{% set by_id = {} %}{% for c in courses %}{% set _ = by_id.update({c.id: c}) %}{% endfor %}
+{% block body %}
+<div class="shell">
+  <nav class="glass rail" aria-label="App">
+    <a class="gl-brand" href="{{ url_for('glass_proto.landing') }}">{{ mark(30) }}<span>ECONOVA</span></a>
+    <a class="item" href="#" aria-current="page">{{ icon('home') }}<span>Dashboard</span></a>
+    <a class="item" href="#">{{ icon('book') }}<span>Courses</span></a>
+    <a class="item" href="#">{{ icon('compass') }}<span>Diagnostic</span></a>
+    <a class="item" href="#">{{ icon('lab') }}<span>Economic Lab</span></a>
+    <a class="item" href="#">{{ icon('debate') }}<span>Debates</span></a>
+    <a class="item" href="#">{{ icon('chart') }}<span>My report</span></a>
+    <a class="item" href="#">{{ icon('globe') }}<span>SDG capstone</span></a>
+    <div class="who"><span class="avatar" aria-hidden="true">M</span><div><strong style="display:block;font-size:.92rem">Mina Park</strong><span class="muted" style="font-size:.8rem">Student</span></div></div>
+  </nav>
+
+  <main id="main" class="bento">
+    <section class="glass greet span-8" aria-labelledby="greet">
+      <div>
+        <h1 id="greet">Good afternoon, Mina</h1>
+        <p>You are one quiz away from finishing Lesson 1 of Markets &amp; Prices.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+          <span class="chip"><span class="dot" style="--c:#E39B21"></span>4-day learning streak</span>
+          <span class="chip"><span class="dot" style="--c:#0A9DA0"></span>Level: Intermediate</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass tile span-4" aria-labelledby="prog" style="display:flex;align-items:center;gap:18px">
+      <div class="ring">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A9DA0"/><stop offset="1" stop-color="#2F5BFF"/></linearGradient></defs>
+          <circle class="track" cx="60" cy="60" r="50" fill="none" stroke-width="11"/>
+          <circle class="val" cx="60" cy="60" r="50" fill="none" stroke-width="11" stroke-dasharray="314.2" stroke-dashoffset="194.8" style="--off:194.8"/>
+        </svg>
+        <div class="label"><b>38%</b><span>overall</span></div>
+      </div>
+      <div>
+        <h2 id="prog" style="font-size:1.15rem">Your progress</h2>
+        <p class="muted" style="margin-top:6px;font-size:.95rem">2 of 3 enrolled courses started. 7 lessons done, 4 quizzes passed.</p>
+      </div>
+    </section>
+
+    {% set c2 = by_id['c02'] %}
+    <section class="glass sheen continue span-7" style="--c: {{ c2.accent }}" aria-labelledby="cont">
+      <span class="core" aria-hidden="true"></span>
+      <div>
+        <div class="kicker"><span class="chip"><span class="dot" style="--c: {{ c2.accent }}"></span>Continue learning</span><span class="chip"><span class="lvl-ico" data-n="2"><i></i><i></i><i></i></span>Intermediate</span></div>
+        <h2 id="cont">Supply and Demand</h2>
+        <p class="where">Markets &amp; Prices · Lesson 1 of 3 · Material read, quiz not taken</p>
+        <div class="next"><span>Next up</span><b>Lesson 1 quiz, 5 questions</b></div>
+        <div class="lesson-steps" aria-label="Course steps: lesson 1 in progress, lessons 2 and 3 not started, final assessment locked"><span class="now"></span><span></span><span></span><span></span></div>
+      </div>
+      <div style="display:grid;gap:10px">
+        <a class="btn primary" href="{{ url_for('glass_proto.lesson') }}">Resume lesson</a>
+        <a class="btn secondary" href="#">Take the quiz</a>
+      </div>
+    </section>
+
+    <section class="glass tile radar span-5" aria-labelledby="diag">
+      <header><h2 id="diag">Diagnostic profile</h2><a href="#">Retake</a></header>
+      <svg viewBox="-34 0 368 262" role="img" aria-labelledby="diag-desc">
+        <desc id="diag-desc">Sample diagnostic: {% for l in radar.labels %}{{ l.text }} {{ l.pct }}%{{ ', ' if not loop.last }}{% endfor %}.</desc>
+        {% for ring in radar.rings %}<polygon class="web" points="{{ ring }}"/>{% endfor %}
+        {% for x, y in radar.axes %}<line class="web" x1="{{ radar.cx }}" y1="{{ radar.cy }}" x2="{{ x }}" y2="{{ y }}"/>{% endfor %}
+        <polygon class="shape" points="{{ radar.poly }}"/>
+        {% for x, y in radar.points %}<circle class="pt" cx="{{ x }}" cy="{{ y }}" r="3.5"/>{% endfor %}
+        {% for l in radar.labels %}<text x="{{ l.x }}" y="{{ l.y }}" text-anchor="{{ l.anchor }}">{{ l.text }}</text>{% endfor %}
+      </svg>
+      <p class="sample-note" style="text-align:center;margin-top:6px">Suggested level: Intermediate (provisional thresholds)</p>
+    </section>
+
+    <section class="glass tile span-4" aria-labelledby="recs">
+      <header><h2 id="recs">Recommended next</h2></header>
+      <ul class="recs">
+        {% for cid, why in (('c04', 'Fills a gap: whole economy'), ('c03', 'Builds on Markets'), ('c09', 'Uses your strengths')) %}{% set c = by_id[cid] %}
+        <li><a href="#" style="--c: {{ c.accent }}"><span class="badge" aria-hidden="true">{{ c.number }}</span><span><strong>{{ c.title }}</strong><small>{{ why }}</small></span>{{ icon('play', 16) }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="glass obsidian tile tutor-tile span-4" aria-labelledby="tut">
+      <header class="plain" style="display:flex;align-items:center;gap:10px;margin-bottom:0"><span class="chat"><span class="orb" aria-hidden="true" style="display:block"></span></span><h2 id="tut" style="font-size:1.15rem">AI Tutor</h2></header>
+      <p class="muted" style="font-size:.95rem">Open any lesson and ask about it. Answers come from that lesson's material.</p>
+      <div class="chat" style="gap:8px"><p class="msg ai" style="max-width:100%">Last time you asked why a price ceiling causes a shortage. Want to try the practice question on it?</p></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto"><span class="muted" style="font-size:.85rem">17 of 20 questions left today</span><a class="btn on-dark sm" href="#">Ask a question</a></div>
+    </section>
+
+    <section class="glass tile lab-mini span-4" aria-labelledby="lab">
+      <header><h2 id="lab">Economic Lab</h2><a href="#">Open lab</a></header>
+      <svg viewBox="0 0 280 150" role="img" aria-label="Preview of the supply and demand simulator">
+        <line x1="26" y1="12" x2="26" y2="132" stroke="#0C1626" stroke-width="1.3"/><line x1="26" y1="132" x2="268" y2="132" stroke="#0C1626" stroke-width="1.3"/>
+        <path d="M36 122 L 252 26" stroke="#0A9DA0" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M36 24 L 252 120" stroke="#E39B21" stroke-width="3.5" stroke-linecap="round" opacity=".35" stroke-dasharray="5 6"/>
+        <path d="M70 16 L 262 104" stroke="#E39B21" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="164" cy="61" r="6" fill="#fff" stroke="#0C1626" stroke-width="2.5"/>
+      </svg>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><span class="chip">Supply &amp; demand</span><span class="chip">Carbon tax</span></div>
+    </section>
+
+    <section class="glass tile span-6" aria-labelledby="rep">
+      <header><h2 id="rep">This week</h2><a href="#">Full report</a></header>
+      <div class="week" role="img" aria-label="Minutes studied: {% for d, m in week %}{{ d }} {{ m }}{{ ', ' if not loop.last }}{% endfor %}">
+        {% for d, m in week %}<div class="col{% if m == 0 %} low{% endif %}"><i style="--h: {{ [(m / week_max * 104)|round|int, 6]|max }}px"></i><span>{{ d }}</span></div>{% endfor %}
+      </div>
+      <div class="stats"><div><b>3h 55m</b><span>studied</span></div><div><b>86%</b><span>quiz average</span></div><div><b>12</b><span>tutor questions</span></div></div>
+    </section>
+
+    <section class="glass tile span-3" aria-labelledby="sdg">
+      <header><h2 id="sdg">SDGs you have studied</h2></header>
+      <ul class="sdg-list">
+        {% for n, name, color, v in ((12, 'Responsible consumption', '#BF8B2E', 80), (2, 'Zero hunger', '#DDA63A', 45), (8, 'Decent work and growth', '#A21942', 20)) %}
+        <li><span class="sq" style="--c: {{ color }}">{{ n }}</span><div><div class="t">{{ name }}</div><div class="bar" style="--c: {{ color }}"><i style="--v: {{ v }}%"></i></div></div></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="glass tile span-3" aria-labelledby="ach">
+      <header><h2 id="ach">Achievements</h2></header>
+      <div class="badges">
+        <div class="medal" style="--c:#2F5BFF"><span class="disc">{{ icon('compass', 22) }}</span>Diagnostic done</div>
+        <div class="medal" style="--c:#0A9DA0"><span class="disc">{{ icon('check', 22) }}</span>First quiz passed</div>
+        <div class="medal" style="--c:#E39B21"><span class="disc">{{ icon('spark', 22) }}</span>4-day streak</div>
+        <div class="medal locked"><span class="disc">{{ icon('target', 22) }}</span>Course complete</div>
+        <div class="medal locked"><span class="disc">{{ icon('lab', 22) }}</span>10 lab runs</div>
+        <div class="medal locked"><span class="disc">{{ icon('globe', 22) }}</span>Capstone sent</div>
+      </div>
+    </section>
+
+    <p class="sample-note span-12">Sample data for design review. The real dashboard shows each student's own records.</p>
+  </main>
+</div>
+
+<nav class="glass mob-tabbar" aria-label="App">
+  <a href="#" aria-current="page">{{ icon('home') }}Home</a>
+  <a href="#">{{ icon('book') }}Courses</a>
+  <a href="#">{{ icon('lab') }}Lab</a>
+  <a href="#">{{ icon('chart') }}Report</a>
+  <a href="#">{{ icon('user') }}Account</a>
+</nav>
+{% endblock %}

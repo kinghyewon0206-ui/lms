@@ -1,0 +1,75 @@
+{% extends "prototype/glass/base.html" %}
+{% from "prototype/glass/_ui.html" import icon, mark, google_button %}
+{% block title %}Components{% endblock %}
+{% block body %}
+<header class="gl-nav glass">
+  <a class="gl-brand" href="{{ url_for('glass_proto.landing') }}">{{ mark(30) }}<span>ECONOVA</span></a>
+  <nav class="links" aria-label="Prototype pages">
+    <a href="{{ url_for('glass_proto.landing') }}">Landing</a>
+    <a href="{{ url_for('glass_proto.dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('glass_proto.lesson') }}">Lesson</a>
+    <a href="#" aria-current="page">Components</a>
+  </nav>
+</header>
+<main id="main" class="wrap" style="padding:36px 0 60px">
+  <h1 style="font-size:clamp(2rem,4vw,3rem)">Components and states</h1>
+  <p class="muted" style="margin:12px 0 28px;max-width:60ch;font-size:1.1rem">Every control below is the reusable part the full redesign would use. States are shown side by side so they can be reviewed without interacting.</p>
+  <div class="spec">
+    <section class="glass tile" aria-labelledby="c-btn">
+      <h2 id="c-btn">Buttons</h2>
+      <div class="state-grid">
+        <figure><button class="btn primary">Start lesson</button><figcaption>Primary</figcaption></figure>
+        <figure><button class="btn primary force-hover">Start lesson</button><figcaption>Hover</figcaption></figure>
+        <figure><button class="btn primary force-active">Start lesson</button><figcaption>Pressed</figcaption></figure>
+        <figure><button class="btn primary force-focus">Start lesson</button><figcaption>Keyboard focus</figcaption></figure>
+        <figure><button class="btn primary" disabled>Start lesson</button><figcaption>Disabled</figcaption></figure>
+        <figure><button class="btn primary is-loading" aria-busy="true">Submitting</button><figcaption>Loading</figcaption></figure>
+        <figure><button class="btn is-success">{{ icon('check', 18) }}Submitted</button><figcaption>Success</figcaption></figure>
+        <figure><button class="btn secondary">Review lesson</button><figcaption>Secondary</figcaption></figure>
+        <figure><button class="btn secondary is-loading">Saving</button><figcaption>Secondary loading</figcaption></figure>
+        <figure><button class="btn ghost">Skip for now</button><figcaption>Quiet</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="glass tile" aria-labelledby="c-auth">
+      <h2 id="c-auth">Sign-in</h2>
+      <div style="display:grid;gap:14px;max-width:380px">
+        {{ google_button("Continue with Google", "#") }}
+        <div class="field"><label for="f-email">Email</label><input class="input" id="f-email" type="email" placeholder="you@school.org" autocomplete="email"></div>
+        <div class="field"><label for="f-pw">Password</label><input class="input" id="f-pw" type="password" aria-invalid="true" aria-describedby="f-pw-err" value="short"><span class="err" id="f-pw-err">Use at least 8 characters.</span></div>
+        <div class="field"><label for="f-dis">School code</label><input class="input" id="f-dis" disabled placeholder="Not needed"><span class="help">Disabled field</span></div>
+        <div class="status err" role="alert">{{ icon('alert', 18) }}<span>An ECONOVA account already uses this email. Log in with your password, then link Google from your Account page.</span></div>
+      </div>
+    </section>
+
+    <section class="glass tile" aria-labelledby="c-quiz">
+      <h2 id="c-quiz">Quiz answer options</h2>
+      <fieldset style="border:0;padding:0;margin:0;display:grid;gap:10px">
+        <legend class="sr-only">Example question</legend>
+        <label class="opt"><input type="radio" name="q"><span class="lamp">A</span><span>Unselected option</span></label>
+        <label class="opt"><input type="radio" name="q" checked><span class="lamp">B</span><span>Selected option</span></label>
+        <div class="opt correct"><span class="lamp">{{ icon('check', 14) }}</span><span>After grading: your correct answer</span></div>
+        <div class="opt wrong"><span class="lamp">×</span><span>After grading: your incorrect answer</span></div>
+        <div class="opt disabled"><span class="lamp">D</span><span>Locked after submission</span></div>
+      </fieldset>
+    </section>
+
+    <section class="glass tile" aria-labelledby="c-nav">
+      <h2 id="c-nav">Selectors, tabs, status</h2>
+      <div style="display:grid;gap:18px">
+        <nav class="seg" data-seg aria-label="Difficulty example"><span class="lens" aria-hidden="true"></span>
+          <a href="#" ><span class="lvl-ico" data-n="1"><i></i><i></i><i></i></span>Beginner</a>
+          <a href="#" aria-current="page"><span class="lvl-ico" data-n="2"><i></i><i></i><i></i></span>Intermediate</a>
+          <a href="#"><span class="lvl-ico" data-n="3"><i></i><i></i><i></i></span>Advanced</a></nav>
+        <div class="seg" data-seg role="tablist" aria-label="Tab example"><span class="lens" aria-hidden="true"></span>
+          <button role="tab" aria-selected="true">Overview</button><button role="tab" aria-selected="false">Lessons</button><button role="tab" aria-selected="false">Sources</button></div>
+        <div class="field" style="max-width:280px"><label for="f-sel">Sort courses</label><select class="input" id="f-sel"><option>Recommended</option><option>Course order</option></select></div>
+        <div class="row-wrap"><span class="chip"><span class="dot" style="--c:#138A5B"></span>Completed</span><span class="chip"><span class="dot" style="--c:#2F5BFF"></span>In progress</span><span class="chip"><span class="dot" style="--c:#9AA3B5"></span>Not started</span><span class="chip draft">Draft</span></div>
+        <div><div class="bar" style="--c:#0A9DA0"><i style="--v:64%"></i></div><p class="muted" style="font-size:.85rem;margin-top:6px">Progress bar, 64%</p></div>
+        <div class="status ok">{{ icon('check', 18) }}<span>Quiz submitted. You scored 4 of 5.</span></div>
+        <div class="status info">{{ icon('info', 18) }}<span>This course opens after a person reviews it.</span></div>
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}

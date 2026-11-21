@@ -1,103 +1,112 @@
-# ECONOVA Vercel 배포 계획 (대회용, 2026-11-21)
+# ECONOVA Vercel 배포 계획 (대회용, 2026-11-21 개정)
 
-> 내부 문서. **이 문서는 배포 실행 기록이 아니다.** 아직 Vercel 프로젝트는 만들지 않았고, 아무것도 배포하지 않았다.
-> 근거: Vercel·Google 공식 문서(2026-11-21 열람). 확인하지 못한 항목은 "미확인"으로 적었다.
-> Render 계획(`docs/deployment-econova.md`)은 대회용으로는 이 문서로 대체한다. Render 자동 배포를 건드리지 않는다.
+> 내부 문서. **배포 실행 기록이 아니다.** Vercel 프로젝트는 아직 없고 아무것도 배포하지 않았다.
+> 근거: Vercel·Google 공식 문서(2026-11-21 열람). 공식 문서로 확인하지 못한 항목은 **미확인**으로 표시했다 — 첫 미리보기 배포에서 확인한다.
+> Render 는 대회용으로 쓰지 않는다 (기존 Render 서비스는 건드리지 않음).
 
 ## 1. 결론
-- Flask/Jinja 를 그대로 Vercel Python 런타임에 올릴 수 있다. Vercel 은 `app.py` 의 Flask 인스턴스 `app` 을 설정 없이 찾는다.
-  앱 전체가 Function 하나가 된다 (Fluid compute 기본).
-- 런타임에 디스크에 쓰는 코드는 CLI 명령(`content-release-apply`, `review-package`)뿐이고, 웹 요청 경로에는 없다.
-  운영 데이터는 Firestore(`DB_BACKEND=firestore`)에만 저장한다. sqlite 는 로컬 개발 전용이고, 운영에서는 시작이 거부된다.
-- 정답 키 폴더(`~/econova-private`)는 Vercel 에 없다. 그래서 **정답 키 묶음**(gzip+base64 JSON 한 개)을
-  Secret Manager(권장) 또는 Sensitive 환경변수로 넣는 경로를 추가했다 (`econova/private_content.py`).
-- Hobby(무료) 플랜 약관은 "개인적 또는 비상업적 사용"만 허용한다. 비상업 학교 대회는 이 조건에 맞아 보이지만, 약관이 "commercial" 을 정의하지 않으므로 법적 판단은 아니다.
+- Flask/Jinja 를 그대로 Vercel Python 런타임(3.12)에 올린다. Vercel 이 `app.py` 의 `app` 을 설정 없이 찾고, 앱 전체가 Function 하나가 된다 (Fluid compute 기본).
+- **정적 파일은 `public/static/` 으로 옮겼다.** Vercel 문서: `app.static_folder` 는 Vercel 에서 정적 파일 제공에 쓰이지 않는다(무시된다), `public/**` 를 쓰라. 주소는 그대로 `/static/...` 이고, 로컬·테스트에서는 Flask 가 같은 폴더를 제공한다.
+  `public/static/x.css → /static/x.css` 로 매핑되는지는 문서에 명시가 없어 **첫 배포에서 확인**한다 (안 되면 Flask 가 함수에서 계속 제공하므로 화면은 깨지지 않는다).
+- 함수 지역을 **`icn1`(서울)** 로 지정했다 (`vercel.json`). Firestore(`econova-dev`)가 서울(asia-northeast3)에 있으므로, 기본값 `iad1`(미국 동부)에서는 Firestore 호출마다 태평양을 왕복한다. Hobby 도 지역 1개를 고를 수 있다. 지역 코드 목록 페이지는 열어 보지 못했으므로, 배포가 지역 오류로 실패하면 `hnd1`(도쿄)로 바꾼다.
+- 운영 데이터는 Firestore 에만 저장한다. sqlite·디자인 시안·개발용 강좌·초안 미리보기·모의 AI 는 운영(`VERCEL_ENV=production/preview`)에서 켜면 앱이 시작하지 않는다.
 
-## 2. 호환성 점검표
-| 항목 | 상태 | 조치 |
+## 2. 호환성 점검 (코드로 확인)
+| 항목 | 결과 |
+|---|---|
+| 진입점·버전 | `app.py`/`app`, `.python-version` 3.12 (로컬 3.12.4) |
+| 의존성 | `requirements.txt` 3개(Flask, gunicorn, firebase-admin). google-auth·requests 는 firebase-admin 이 설치. 로컬 site-packages 122 MB (한도 500 MB) |
+| 파일 쓰기 | 웹 요청 경로에 없음 (CLI 만). Vercel 은 읽기 전용 + `/tmp` |
+| 세션 | 서명 쿠키, HttpOnly·SameSite=Lax, 운영에서 Secure. Google 콜백(최상위 GET)은 Lax 쿠키를 받는다 |
+| Firestore | 첫 사용 때 한 번 초기화(지연 연결). 선택 설정 `ECONOVA_FIRESTORE_DATABASE`(이름 있는 데이터베이스) 추가 — 4장 |
+| OpenAI | urllib, 타임아웃 20초(설정 가능), 함수 제한 60초 |
+| 정답 키 | 묶음(Secret Manager 또는 환경변수) — 3장 |
+| Cron | `/internal/cron/daily-cleanup` 하루 1회, `CRON_SECRET` Bearer 필수(없으면 404). Hobby Cron 은 하루 1회·±59분·중복 가능 → 반복 실행해도 안전 |
+| 클라이언트 IP | Vercel 이 `X-Forwarded-For` 를 덮어쓴다(위조 값 전달 안 함) → `ECONOVA_TRUSTED_PROXY_HOPS=1` (테스트로 확인) |
+| 콜백 주소 | 운영에서는 `GOOGLE_OAUTH_REDIRECT_URI` 필수 (Vercel 뒤에서 `request.scheme` 이 http 일 수 있으므로 자동 생성 주소를 쓰지 않음) |
+
+로컬 측정 (2026-11-21, 이 컴퓨터): `import app` 0.27~0.56초, 강좌 카탈로그 첫 로드 0.05초, 정답 키 묶음 해제 0.001초.
+**Vercel 콜드 스타트는 측정 전이다** — 7장 절차로 첫 배포 뒤 잰다. 공식 문서에 Python 콜드 스타트 수치는 없고, Vercel 이 `.pyc` 를 미리 만들어 넣는다고만 되어 있다.
+
+## 3. 정답 키 (36개) 보관
+- 묶음 크기: **54,820 바이트** (ASCII base64, 정답 키 36개 gzip). `flask private-keys-bundle --output <저장소 밖 경로>` 로 만든다 (공개 문항과 하나라도 맞지 않으면 만들지 않음, 화면에는 개수·크기·지문만).
+- 한도: Secret Manager 비밀 버전당 **64 KiB(65,536 바이트)** → 여유 약 10.7 KB. Vercel 환경변수는 **배포당 전체 합계 64 KB** → 다른 변수(서비스 계정 JSON 약 2.3 KB 등)와 합치면 여유가 거의 없다.
+- **권장: Google Secret Manager + 그 비밀 하나에만 주는 최소 권한.**
+  - 요금(공식 가격표): 무료 등급 월 활성 버전 6개·접근 10,000회·회전 알림 3회 (결제 계정 단위 합산). 초과 시 버전당 월 약 $0.06, 접근 1만 회당 $0.03. 결제 계정 연결이 필요해 보이나 명시 문구는 미확인.
+  - 권한: `roles/secretmanager.secretAccessor` 를 **비밀 하나에만** 부여 (프로젝트 전체 아님).
+  - 앱 동작: 인스턴스마다 처음 한 번 읽고 메모리에 둔다 (월 접근 수 ≈ 콜드 스타트 수). 읽기 실패·형식 오류면 그 평가는 열리지 않는다(fail closed). 로그·응답에 키 내용은 나가지 않는다.
+  - 갱신: 새 버전 추가 → `ECONOVA_PRIVATE_KEYS_SECRET` 의 버전 번호 변경 → 재배포 (버전 고정으로 예기치 않은 변경 방지).
+- 대안: Sensitive 환경변수 `ECONOVA_PRIVATE_KEYS_BUNDLE` (추가 클라우드 설정 없음, 크기 여유 부족).
+- 대회용으로는 **공개(승인)할 강좌의 평가 키만** 묶어도 된다 → 크기·노출 범위 모두 줄어든다.
+- Vercel OIDC → Google Cloud(Workload Identity Federation): 모든 플랜 가능. 풀·공급자·서비스 계정·바인딩 4가지 자원과 Vercel 변수 5개가 필요하다. 공식 예제는 TypeScript 뿐(Python 예제 없음). → **대회 뒤 보안 강화 단계**로 둔다. 대회에는 최소 권한 서비스 계정 키(Sensitive)를 쓴다.
+
+## 4. 데이터 (Firestore)
+- Firestore 무료 할당량은 **프로젝트당 데이터베이스 1개**(처음 만든 것)에만 적용된다. 추가 데이터베이스는 사용량만큼 과금.
+- 권장: 기존 `econova-dev` 의 기본 데이터베이스를 대회용으로 쓴다. 로컬 검토 DB(`review.db`, sqlite)와는 처음부터 분리되어 있고, 실제 학생 기록은 없다. 연동 테스트가 남긴 표식 문서(`econova_it/marker`)만 있다.
+- 새 프로젝트를 만들지 않는다. 다른 데이터베이스가 꼭 필요하면 `ECONOVA_FIRESTORE_DATABASE=<id>` 로 지정할 수 있다(유료 가능성 — 소유자 승인 필요).
+- 저장되는 것: 계정, Google 연결(`econ_user_identities`), 수강, 진도, 평가 시도, 진단, AI 대화(30일 뒤 정리), 캡스톤. 대회 뒤 정리 정책은 소유자 결정.
+
+## 5. 브랜치 안전 (이전 LMS 가 배포되지 않게)
+`vercel.json` 은 빌드되는 커밋에서 읽히는 것으로 보이며(공식 명시 없음) main 에는 이 파일이 없다. 그래서 대시보드 설정이 진짜 방어선이다.
+
+**권장 구성: 대회 전용 브랜치 `competition` 을 Production Branch 로 쓴다.**
+- feature 브랜치에 푸시할 때마다 운영 사이트가 바뀌지 않고, 공개는 `competition` 으로 옮길 때만 일어난다 (소유자 승인 시점이 분명해짐).
+- `competition` 브랜치는 소유자가 공개를 승인할 때 feature 브랜치에서 만든다 (지금 만들지 않음).
+
+| 설정 | 위치 (Vercel 대시보드) | 값 |
 |---|---|---|
-| 진입점 | OK | `app.py` 의 `app` (zero-config). `.python-version` = 3.12 (Vercel 기본 3.12, 로컬 .venv 3.12.4) |
-| 의존성 | OK | `requirements.txt` (Flask, gunicorn, firebase-admin). google-auth·requests 는 firebase-admin 이 함께 설치하므로 새 패키지 없음 |
-| 파일 쓰기 | OK | 읽기 전용 파일시스템(쓰기는 `/tmp` 500 MB, 인스턴스마다 따로, 사라짐). 웹 경로에서 쓰지 않음 |
-| sqlite | 운영 금지 | `VERCEL_ENV=production/preview` 면 운영으로 판단 → `DB_BACKEND` 필수, sqlite 거부 |
-| 세션 | OK | 서명 쿠키(Flask). 인스턴스 간 공유 상태 없음. 운영에서 `SECRET_KEY` 32자 이상 필수, Secure 쿠키 |
-| 정적 파일 | 동작함, 최적화는 나중 | Vercel 문서는 `public/**` 사용을 권장한다(CDN). 지금은 Flask 가 `static/` 을 함수로 제공한다. 첫 미리보기 배포에서 응답 시간을 재 보고, 필요하면 빌드 때 `public/static` 으로 복사한다 |
-| 함수 시간 | OK | Hobby 기본·최대 300초. `vercel.json` 에서 60초로 제한 (OpenAI 호출 타임아웃보다 김) |
-| 요청 크기 | OK | 4.5 MB 제한. 업로드 기능 없음 |
-| 백그라운드 작업 | 바꿈 | 없음. `ai-purge` 는 하루 1회 Vercel Cron → `/internal/cron/daily-cleanup` (`CRON_SECRET` Bearer 필수, 없으면 404). Hobby Cron 은 하루 1회, ±59분 오차, 중복·누락 가능 → 여러 번 실행해도 안전하게 만듦 |
-| 클라이언트 IP | 설정값 1개 | Vercel 은 `X-Forwarded-For` 를 덮어써서 위조 값을 전달하지 않는다 → `ECONOVA_TRUSTED_PROXY_HOPS=1` |
-| Firestore | OK | 서비스 계정 JSON(`FIREBASE_CREDENTIALS_JSON`, Sensitive). OIDC 방식은 4장 |
-| OpenAI | OK | urllib, 타임아웃 있음. `OPENAI_API_KEY` Sensitive |
-| 개발 기능 | 차단됨 | 운영에서 `ECONOVA_DEV_FIXTURES=1`·`ECONOVA_CONTENT_PREVIEW=1` 은 시작 실패. `.vercelignore` 로 `content/dev_fixtures/` 를 올리지 않음 |
-| 콜드 스타트 | 측정 필요 | 6장 |
+| Production Branch | Project Settings → Environments → Production → Branch Tracking | `competition` (기본값 `main` 을 프로젝트 만들 때 바로 바꾼다) |
+| Ignored Build Step | Project Settings → Build and Deployment → Ignored Build Step → Custom | `if [ "$VERCEL_GIT_COMMIT_REF" = "competition" ] \|\| [ "$VERCEL_GIT_COMMIT_REF" = "feature/econova-lms-renewal" ]; then exit 1; else exit 0; fi` (1 = 빌드, 0 = 취소. main·다른 브랜치는 빌드 안 함. 취소도 배포 횟수에 포함) |
+| 시스템 변수 노출 | Project Settings → Environment Variables | "Automatically Expose System Environment Variables" 켜기 |
+| Function Region | `vercel.json` `regions: ["icn1"]` (대시보드 Settings → Functions 에서도 가능) | 서울 |
+| Deployment Protection | Project Settings → Deployment Protection | 처음: **All Deployments** (소유자만). 공개 승인 후: **Standard Protection** |
+| 이중 방어 | `vercel.json` `git.deploymentEnabled` | `main`·`master` false |
 
-## 3. 정답 키 보호
-정답 키 36개는 Git·공개 정적 파일에 절대 넣지 않는다 (`.gitignore`, `.vercelignore`, `check-public-files`, `tests/test_vercel_compat.py`).
+- 완전히 멈추려면: Settings → Git → Disconnect (연결 해제).
+- Hobby 는 GitHub 조직 소유 비공개 저장소를 배포할 수 없다. `kinghyewon0206-ui/lms` 는 개인 계정 공개 저장소라 해당 없음.
 
-| 방법 | 크기 한도 | 장점 | 단점 |
-|---|---|---|---|
-| **A. Google Secret Manager (권장)** | 버전당 64 KiB | 키가 Vercel 에 없음. 접근 기록(감사 로그). 회전 쉬움. 무료 등급: 활성 버전 6개, 접근 10,000회/월 (결제 계정 기준) | 결제 계정이 연결된 프로젝트 필요 (무료 등급 안이면 0원, 유료 요금은 공식 가격 페이지를 끝까지 읽지 못해 미확인). 서비스 계정에 이 비밀 하나에 대한 `roles/secretmanager.secretAccessor` 추가 |
-| B. Vercel Sensitive 환경변수 | 배포당 모든 변수 합계 64 KB | 추가 클라우드 설정 없음 | 지금 묶음 54,820자 → 다른 변수와 합쳐 64 KB 에 근접 (여유 약 9 KB). 평가가 늘면 넘침 |
-| C. Git 에 암호화해 넣기 | — | — | 공개 저장소이므로 **사용 안 함** |
+## 6. 공개 접근 (심사위원)
+- **Standard Protection**: 운영 도메인을 제외한 모든 주소를 보호한다 → 미리보기 배포와 배포별 생성 주소(`…-hash.vercel.app`)는 Vercel 로그인 필요, **운영 도메인은 누구나 접속**. 심사위원은 Vercel 계정이 필요 없다.
+- 프로젝트 기본 별칭 `<project>.vercel.app` 이 "운영 도메인"으로 취급되어 공개되는지는 문서에 명시가 없다(**미확인**) → 첫 배포 후 시크릿 창에서 확인. 공개되지 않으면 Domains 에 별칭을 운영 도메인으로 추가한다.
+- Hobby 에서는 비밀번호 보호를 쓸 수 없다 (Pro 유료). 그래서 공개 사이트의 학습 기능 보호는 **ECONOVA 로그인**이 맡는다: 랜딩·로그인·가입만 공개, 나머지는 로그인 필요, 관리 화면은 관리자 권한(서버 검사, 그 외 404).
+- 공개 전 확인: 공개된 강좌 범위(소유자 승인), 디자인 시안·초안 미리보기 꺼짐(운영에서 강제), 관리자 계정만 관리자.
 
-- 묶음 만들기 (저장소 밖에만 쓸 수 있음): `flask --app app private-keys-bundle --output ~/econova-private/vercel/keys-bundle.b64`
-  → 공개 문항과 맞지 않는 키가 하나라도 있으면 만들지 않는다. 화면에는 개수·크기·지문만 출력한다.
-- A: 비밀 값으로 업로드 → `ECONOVA_PRIVATE_KEYS_SECRET=projects/<PROJECT>/secrets/<NAME>/versions/<N>` (버전 번호 고정 권장).
-  인스턴스마다 처음 한 번만 읽고 메모리에 둔다.
-- B: `ECONOVA_PRIVATE_KEYS_BUNDLE` 에 파일 내용 전체 (Sensitive, Production 환경에만).
-- 대회에서는 **승인·공개된 평가의 키만** 넣어도 된다 (나머지 평가는 어차피 열리지 않는다). 그러면 크기도 줄어든다.
+## 7. 콜드 스타트 측정 (첫 미리보기 배포 뒤)
+1. 미리보기에 `ECONOVA_TIMING_HEADERS=1` 임시 설정 → 재배포.
+2. 15분 이상 아무도 접속하지 않은 뒤:
+   `curl -s -o /dev/null -D - -w 'total=%{time_total}s ttfb=%{time_starttransfer}s\n' https://<주소>/login` (보호된 주소면 브라우저 개발자 도구 Network 탭에서 같은 값 확인)
+3. 바로 이어서 5회 더 → 첫 번째(콜드)와 나머지(웜) 비교. 응답 헤더 `X-Econova-Instance`(cold/warm), `Server-Timing`(앱 처리 시간), `x-vercel-id`(실행 지역)를 기록.
+4. 로그인한 상태로 `/dashboard` 도 같은 방식으로 (Firestore 첫 연결 포함 시간).
+5. 측정이 끝나면 `ECONOVA_TIMING_HEADERS` 삭제.
+대회 당일: 시작 10분 전에 랜딩·로그인·대시보드·레슨을 한 번씩 열어 데운다. (Hobby 에는 미리 데워 두는 인스턴스 기능이 없다.)
 
-## 4. Vercel OIDC → Google Cloud (Workload Identity Federation)
-- 모든 플랜에서 쓸 수 있다. 함수 요청 헤더 `x-vercel-oidc-token`(유효 2시간)으로 토큰을 받는다. 발급자는 `https://oidc.vercel.com/<team>`, 주체는 `owner:<team>:project:<project>:environment:production`.
-- Python 은 `google.auth.identity_pool.Credentials` + 요청 헤더에서 토큰을 읽는 supplier 로 구현할 수 있다 (약 30줄).
-  그러면 서비스 계정 JSON 키가 필요 없다.
-- Google Cloud 쪽 자원 약 5개(풀, 공급자, 서비스 계정, 권한 2개)가 필요하다. Firestore 클라이언트는 시작할 때 한 번 만들어지고 토큰은 요청마다 오므로 구조를 바꿔야 한다.
-- **판단: 대회 출시를 막는 요소가 아니다. 출시 후 보안 강화 단계로 둔다.** 대회에서는 최소 권한 서비스 계정 키(`roles/datastore.user` + 이 비밀 하나에 대한 accessor)를 Sensitive 환경변수로 쓴다.
+## 8. 환경변수 (Production)
+| 변수 | Sensitive | 값 |
+|---|---|---|
+| `SECRET_KEY` | 예 | 64자 무작위 (Preview 와 다르게) |
+| `DB_BACKEND` | 아니오 | `firestore` |
+| `FIREBASE_CREDENTIALS_JSON` | 예 | 최소 권한 서비스 계정 (`roles/datastore.user` + 비밀 하나의 accessor). 지금 있는 시험용 관리자 키 사용 금지 |
+| `ECONOVA_PRIVATE_KEYS_SECRET` | 아니오(이름만) | `projects/<PROJECT>/secrets/<NAME>/versions/<N>` |
+| `ECONOVA_TRUSTED_PROXY_HOPS` | 아니오 | `1` |
+| `GOOGLE_OAUTH_CLIENT_ID` | 아니오 | Google 클라이언트 ID |
+| `GOOGLE_OAUTH_CLIENT_SECRET` | 예 | Google 클라이언트 비밀값 |
+| `GOOGLE_OAUTH_REDIRECT_URI` | 아니오 | `https://<운영 도메인>/auth/google/callback` |
+| `CRON_SECRET` | 예 | 32자 이상 무작위 |
+| `ECONOVA_AI_PROVIDER` | 아니오 | `openai` (AI 튜터를 켤 때만, 소유자 승인 후) 또는 `off` |
+| `OPENAI_API_KEY` | 예 | 기존 academy 키 (새 키 만들지 않음) |
+| `ECONOVA_AI_MODEL` | 아니오 | `gpt-4o-mini` (2026-11-13 실제 연동 시험한 모델) |
+| `ECONOVA_AI_DAILY_REQUESTS` / `ECONOVA_AI_GLOBAL_DAILY_REQUESTS` | 아니오 | 학생 1인 하루 20 / 전체 하루 300 (기본값) |
+| 측정 때만 | 아니오 | `ECONOVA_TIMING_HEADERS=1` |
+| **넣지 않음** | — | `ECONOVA_DEV_FIXTURES`, `ECONOVA_CONTENT_PREVIEW`, `ECONOVA_DESIGN_PROTOTYPES`, `ECONOVA_PRIVATE_CONTENT_DIR`, `SQLITE_PATH`, `ECONOVA_ALLOW_ADMIN_BOOTSTRAP`, `ECONOVA_PROXY_DIAGNOSTICS`, `ECONOVA_RELEASE_SIGNING_KEY`, `APP_ENV`, `OPENAI_MODEL` |
 
-## 5. 브랜치 안전장치 (이전 LMS 가 ECONOVA 로 배포되지 않게)
-`vercel.json` 은 **빌드되는 커밋의 파일**이 읽히는 것으로 보인다 (공식 문서로 확인하지 못함). main 에는 이 파일이 없으므로 `vercel.json` 만으로는 막을 수 없다. 대시보드에서 다음을 반드시 설정한다.
-1. **Project Settings → Environments → Production → Branch Tracking**: `feature/econova-lms-renewal` (또는 대회용 릴리스 브랜치). 기본값은 `main` 이므로 프로젝트를 만들 때 바로 바꾼다.
-2. **Project Settings → Git → Ignored Build Step** (대시보드 설정이라 모든 커밋에 적용됨):
-   `if [ "$VERCEL_GIT_COMMIT_REF" = "feature/econova-lms-renewal" ]; then exit 1; else exit 0; fi`
-   (exit 1 = 빌드, exit 0 = 건너뜀. "Automatically Expose System Environment Variables" 켜기)
-3. `vercel.json` 의 `git.deploymentEnabled: {"main": false, "master": false}` 는 이 브랜치 쪽의 이중 방어다.
-4. 첫 배포 전에 **Deployment Protection = Vercel Authentication, "All Deployments"** (Hobby 가능)로 두면 소유자만 볼 수 있다. 공개(심사위원 접근)는 소유자 승인 뒤에만 "Standard Protection" 으로 내린다. 비밀번호 보호는 Hobby 에서 쓸 수 없다 (Pro 유료 추가 기능).
-5. Hobby 는 GitHub **조직** 소유 비공개 저장소를 배포할 수 없다. `kinghyewon0206-ui/lms` 는 개인 계정의 공개 저장소이므로 해당 없음. Hobby 에서는 소유자 본인 커밋만 배포된다.
-6. Render 는 건드리지 않는다. main 병합 없음.
+Preview 환경: 다른 `SECRET_KEY`, `ECONOVA_AI_PROVIDER=off`, Google 변수 없음(콜백 주소가 배포마다 바뀌어 등록 불가).
 
-## 6. 콜드 스타트 측정
-- 공개된 Python 콜드 스타트 수치는 없다. 2주(운영)·3일(미리보기) 동안 호출이 없으면 함수가 보관되고, 다음 첫 호출에 최소 1초가 더 걸린다.
-- 측정용 헤더: `ECONOVA_TIMING_HEADERS=1` 이면 응답에 `Server-Timing: app;dur=<ms>` 와 `X-Econova-Instance: cold|warm; age=..; served=..` 가 붙는다 (측정이 끝나면 끈다).
-- 방법:
-  1. 미리보기 배포에서 `curl -s -o /dev/null -D - -w 'total=%{time_total}\n' https://<배포주소>/login` 을 10분 이상 쉬었다가 1회(콜드), 바로 이어서 5회(웜) 실행한다.
-  2. `X-Econova-Instance`, `Server-Timing`, `x-vercel-id`(실행 지역), 전체 시간을 기록한다.
-- 지역: 기본 `iad1`(미국 동부). Firestore 위치와 가까운 지역으로 함수 지역을 맞출지는 측정 뒤 결정한다.
-- 대회 당일에는 시작 10분 전에 주요 화면을 한 번씩 열어 데운다.
+## 9. Hobby 한도 (대회 규모)
+월 Active CPU 4시간, 메모리 360 GB-시간, 함수 호출 100만, Fast Data Transfer 100 GB. 넘으면 대부분 30일 대기 → 대회 직전에 Usage 화면 확인. 메모리 2 GB 고정, 런타임 로그 1시간 보관, 하루 배포 100회. 약관: Hobby 는 "개인적 또는 비상업적 사용" — 비상업 학교 대회는 맞아 보이나 법적 판단은 아니다.
 
-## 7. Hobby 한도 (대회 규모 판단)
-- 월간: Active CPU 4시간, 프로비전 메모리 360 GB-시간, 함수 호출 100만, Fast Data Transfer 100 GB. 넘으면 대부분 30일을 기다려야 한다 → 대회 기간 직전에 사용량 대시보드를 확인한다.
-- 메모리 2 GB 고정, 번들 500 MB(Python), 런타임 로그 보존 1시간, 하루 배포 100회.
-
-## 8. 환경변수 목록 (Vercel → Settings → Environment Variables)
-| 변수 | 환경 | Sensitive | 값 / 메모 |
-|---|---|---|---|
-| `SECRET_KEY` | Production, Preview(따로) | 예 | 64자 무작위. 환경마다 다르게 |
-| `DB_BACKEND` | Production, Preview | 아니오 | `firestore` |
-| `FIREBASE_CREDENTIALS_JSON` | Production (Preview 는 개발 프로젝트용 별도 계정) | 예 | 최소 권한 서비스 계정 JSON. 지금 있는 시험용 관리자 키는 쓰지 않는다 |
-| `ECONOVA_PRIVATE_KEYS_SECRET` 또는 `ECONOVA_PRIVATE_KEYS_BUNDLE` | Production | 예 | 3장 |
-| `ECONOVA_TRUSTED_PROXY_HOPS` | 모두 | 아니오 | `1` |
-| `OPENAI_API_KEY` | Production | 예 | 없으면 AI 기능이 꺼진 채로 동작. 사용 한도는 OpenAI 쪽에서 설정 |
-| `ECONOVA_AI_PROVIDER` | Production | 아니오 | `openai` (Preview 는 `mock` 권장) |
-| `ECONOVA_AI_MODEL` | Production | 아니오 | 사용할 모델 이름 (소유자 결정). `OPENAI_MODEL` 은 쓰지 않는다 |
-| `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET` | Production | 비밀만 예 | `docs/google-sign-in-setup.md` |
-| `GOOGLE_OAUTH_REDIRECT_URI` | Production | 아니오 | `https://<운영 도메인>/auth/google/callback` (Google 에 등록한 값과 완전히 같게) |
-| `CRON_SECRET` | Production | 예 | 32자 이상 무작위. Vercel 이 Cron 요청에 Bearer 로 붙인다 |
-| `ECONOVA_RELEASE_SIGNING_KEY` | (Vercel 에 넣지 않음) | — | 릴리스 계획 서명은 로컬에서만 |
-| `ECONOVA_TIMING_HEADERS` | 측정할 때만 | 아니오 | `1` |
-| 넣지 않는 변수 | — | — | `ECONOVA_DEV_FIXTURES`, `ECONOVA_CONTENT_PREVIEW`, `ECONOVA_PRIVATE_CONTENT_DIR`, `SQLITE_PATH`, `ECONOVA_ALLOW_ADMIN_BOOTSTRAP`, `ECONOVA_PROXY_DIAGNOSTICS`, `APP_ENV`(VERCEL_ENV 로 대체) |
-
-## 9. 첫 배포 순서 (소유자 승인 후에만)
-1. Vercel 계정(Hobby)에서 GitHub `kinghyewon0206-ui/lms` 가져오기 → **배포 전에** 5장 1·2·4 설정.
-2. 환경변수 입력(8장). Preview 는 개발용 Firestore 프로젝트·mock AI.
-3. 미리보기 배포 → `/login` 200, 정답 키 확인(관리자 화면의 평가 상태), Google 로그인(콜백 주소 등록 후), 6장 측정.
-4. 공개 범위 결정(`docs/competition-demo-plan.md`) → 소유자 승인 → 보호 단계 조정.
+## 10. 첫 배포 순서 (소유자 승인 후)
+1. Vercel(Hobby)에서 `kinghyewon0206-ui/lms` 가져오기 → **첫 빌드 전에** 5장 표의 설정 (Production Branch, Ignored Build Step, All Deployments 보호).
+2. Secret Manager 비밀 만들기 → 최소 권한 서비스 계정 → 8장 환경변수.
+3. feature 브랜치 미리보기 배포 → 보호된 상태에서 `/login`, 정적 파일(`/static/style.css`), 정답 키 상태, 7장 측정.
+4. Google 클라이언트에 운영 도메인 콜백 등록 (`docs/google-sign-in-setup.md`).
+5. 공개 승인 → `competition` 브랜치 생성·푸시 → 운영 배포 확인 → Standard Protection 으로 전환 → 시크릿 창에서 공개 접근·Google 로그인 확인.

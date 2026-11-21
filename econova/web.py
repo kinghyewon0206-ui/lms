@@ -394,7 +394,7 @@ def completion(course_id):
 
 
 # ---------------------------------------------------------------- 경제 시뮬레이션 실험실
-# 계산은 econova/simulations.py(서버)와 static/js/econova-sim.js(화면)가 같은 공식으로 한다.
+# 계산은 econova/simulations.py(서버)와 public/static/js/econova-sim.js(화면)가 같은 공식으로 한다.
 # 실험실은 로그인만 하면 쓸 수 있다(강좌 수강 불필요). 레슨 안에 들어간 시뮬레이션은 레슨 접근 규칙을 그대로 따른다.
 def _sim_or_404(sim_id):
     if sim_id not in simulations.SIMULATIONS:

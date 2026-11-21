@@ -1,5 +1,5 @@
 {
-  "note": "Hand-verified simulation test vectors. Both Python (econova/simulations.py) and JS (static/js/econova-sim.js) must match these values. Hypothetical numbers for teaching.",
+  "note": "Hand-verified simulation test vectors. Both Python (econova/simulations.py) and JS (public/static/js/econova-sim.js) must match these values. Hypothetical numbers for teaching.",
   "supply_demand": [
     {"name": "baseline", "inputs": {"a": 100, "b": 2, "c": 10, "d": 1},
      "expected": {"status": "interior", "price": 30, "quantity": 40, "consumer_surplus": 400, "producer_surplus": 750, "total_surplus": 1150, "demand_choke_price": 50, "supply_start_price": 0}},

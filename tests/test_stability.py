@@ -234,7 +234,7 @@ def test_every_private_get_route_requires_login(app, client):
     # (tests/test_google_auth.py, tests/test_vercel_compat.py).
     pre_login = {"google_login", "google_callback", "cron_daily_cleanup"}
     for rule in app.url_map.iter_rules():
-        if rule.endpoint in pre_login:
+        if rule.endpoint in pre_login or rule.endpoint.startswith("glass_proto."):   # 디자인 시안: 꺼져 있으면 404
             assert client.get(_sample_path(rule)).status_code == 404, rule.rule
             continue
         if "GET" in rule.methods and rule.endpoint not in public:

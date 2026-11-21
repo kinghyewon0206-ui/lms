@@ -19,7 +19,9 @@ from econova.auth import login_required
 from econova import web as econova_web
 from econova.storage import DuplicateEmailError, create_user, get_user_by_email, get_user_by_id, init_db, using_firestore
 
-app = Flask(__name__)
+# 정적 파일은 public/static 에 둔다: Vercel 은 public/** 를 CDN 으로 바로 제공하고 Flask 의 static_folder 는 쓰지 않는다.
+# 로컬·테스트에서는 Flask 가 같은 폴더를 /static/... 으로 제공하므로 주소(url_for('static', ...))는 그대로다.
+app = Flask(__name__, static_folder="public/static", static_url_path="/static")
 # 실서비스에서는 반드시 환경변수로 안전한 값을 설정하세요.
 app.config["SECRET_KEY"] = config.secret_key()   # 운영에서 없거나 약하면 시작하지 않는다
 # 세션 쿠키: 자바스크립트에서 읽지 못하게, 다른 사이트 요청에 실리지 않게, 운영(HTTPS)에서는 Secure
@@ -29,6 +31,8 @@ app.config.update(SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax",
 app.config["DATABASE"] = config.sqlite_path()
 storage.init_app(app)
 app.register_blueprint(econova_web.bp)
+from econova import prototype_web  # noqa: E402
+app.register_blueprint(prototype_web.bp)   # 디자인 시안: ECONOVA_DESIGN_PROTOTYPES=1 이고 운영이 아닐 때만 (그 외에는 404)
 # 위험한 설정이면 요청을 받기 전에 기동을 멈춘다: 운영 환경인데 DB_BACKEND 가 없거나,
 # 운영 환경에서 개발용 테스트 강좌(ECONOVA_DEV_FIXTURES=1)를 켜려는 경우.
 # (강좌 JSON 형식 오류는 여기서 멈추지 않는다. 로그인은 계속 쓸 수 있고 ECONOVA 화면만 안내 페이지를 보여준다.
@@ -36,6 +40,7 @@ app.register_blueprint(econova_web.bp)
 config.db_backend()
 config.dev_fixtures_enabled()
 config.content_preview_enabled()
+config.design_prototypes_enabled()   # 운영에서 디자인 시안을 켜면 멈춘다
 config.private_content_dir()      # 비공개 정답 키 폴더가 저장소 안을 가리키면 멈춘다
 login_guard.limits()              # 로그인 제한·신뢰 프록시 설정 값이 잘못되면 멈춘다
 quotas.validate_all()             # 저장 한도 설정 값이 잘못되면 멈춘다

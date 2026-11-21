@@ -389,3 +389,48 @@ def test_existing_password_login_unchanged(app, client):
     res = login(client)
     assert res.status_code in (302, 303) and _session_user(client) is not None
     assert app_module.app is app
+
+
+# ------------------------------------------------------------------ records and roles follow the account, not the provider
+def test_admin_who_links_google_stays_admin_and_keeps_progress(app, google, fixtures_on):
+    from tests.test_econova_routes import _enroll
+    c = _password_user(app, email="owner-admin@example.org")
+    uid = _session_user(c)
+    with app.app_context():
+        storage.grant_admin(uid, "Owner", "test")
+    assert _enroll(c, "dev-f1").status_code in (302, 303)
+    _sign_in(c, google, sub="admin-sub", email="admin.personal@gmail.example", path="/account/google/link", method="post")
+    set_csrf(c)
+    c.post("/logout", data={"csrf_token": CSRF})
+    assert _session_user(c) is None
+    g2 = app.test_client()
+    _sign_in(g2, google, sub="admin-sub", email="admin.personal@gmail.example")
+    assert _session_user(g2) == uid
+    with app.app_context():
+        user = storage.get_user_by_id(uid)
+        assert roles.is_admin(user), "linking Google neither grants nor removes admin"
+        assert storage.get_enrollment(uid, "dev-f1") is not None
+        assert storage.get_user_by_email("admin.personal@gmail.example") is None, "no duplicate account"
+
+
+def test_logout_then_google_login_returns_to_same_records(app, google, fixtures_on):
+    from tests.test_econova_routes import _enroll
+    c = app.test_client()
+    _sign_in(c, google, sub="returning", email="returning@example.org")
+    uid = _session_user(c)
+    set_csrf(c)
+    assert _enroll(c, "dev-f1").status_code in (302, 303)
+    c.post("/logout", data={"csrf_token": CSRF})
+    assert _session_user(c) is None and c.get("/dashboard").status_code in (302, 303)
+    _sign_in(c, google, sub="returning", email="returning@example.org")
+    assert _session_user(c) == uid
+    with app.app_context():
+        assert storage.get_enrollment(uid, "dev-f1") is not None
+
+
+def test_session_is_replaced_on_google_login(app, client, google):
+    with client.session_transaction() as s:
+        s["planted"] = "attacker-value"
+    _sign_in(client, google)
+    with client.session_transaction() as s:
+        assert "planted" not in s and google_auth.SESSION_KEY not in s

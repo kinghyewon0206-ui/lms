@@ -1,0 +1,117 @@
+{% extends "prototype/glass/base.html" %}
+{% from "prototype/glass/_ui.html" import icon, mark, google_button %}
+{% block title %}ECONOVA — Economics for a changing world{% endblock %}
+{% block body %}
+<header class="gl-nav glass" data-nav>
+  <a class="gl-brand" href="{{ url_for('glass_proto.landing') }}">{{ mark(30) }}<span>ECONOVA</span></a>
+  <nav class="links" id="site-links" aria-label="Main">
+    <a href="#how">How it works</a>
+    <a href="#courses">Courses</a>
+    <a href="#tutor">AI tutor</a>
+    <a href="{{ url_for('glass_proto.dashboard') }}">Dashboard preview</a>
+  </nav>
+  <div class="end">
+    <a class="btn ghost sm" href="#">Log in</a>
+    <a class="btn primary sm" href="#start">Get started</a>
+    <button class="btn secondary sm menu-btn" type="button" aria-expanded="false" aria-controls="site-links" data-menu>{{ icon('menu', 18) }}<span class="sr-only">Menu</span></button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <h1 id="hero-title">See how the world's choices add up.</h1>
+      <p class="lede">ECONOVA is an economics course for high-school students. Learn each idea at your level, move real models with your own hands, ask an AI tutor that knows the lesson, and use it all on a problem from the UN Sustainable Development Goals.</p>
+      <div class="cta" id="start">
+        {{ google_button("Continue with Google", "#", "lg") }}
+        <a class="btn secondary lg" href="#">Sign up with email</a>
+      </div>
+      <p class="fine">Google sign-in shares only your name and email address with ECONOVA.</p>
+    </div>
+
+    <figure class="glass sheen instrument" data-market aria-labelledby="mk-title" style="margin:0">
+      <div class="top"><strong id="mk-title">Try it: one market, live</strong><span class="chip"><span class="dot" style="--c:#E39B21"></span>Hypothetical numbers</span></div>
+      <div class="plot">
+        <svg viewBox="0 0 420 280" role="img" aria-labelledby="mk-desc">
+          <desc id="mk-desc">A supply curve and a demand curve. Moving the slider shifts demand; the crossing point shows the market price and quantity.</desc>
+          <g stroke="rgba(12,22,38,.07)">{% for y in (50, 100, 150, 200) %}<line x1="44" x2="404" y1="{{ y }}" y2="{{ y }}"/>{% endfor %}</g>
+          <line x1="44" y1="20" x2="44" y2="244" stroke="#0C1626" stroke-width="1.5"/>
+          <line x1="44" y1="244" x2="404" y2="244" stroke="#0C1626" stroke-width="1.5"/>
+          <text x="44" y="14" font-size="12" font-weight="650" fill="#0C1626" text-anchor="middle">Price</text>
+          <text x="404" y="270" font-size="12" font-weight="650" fill="#0C1626" text-anchor="end">Quantity</text>
+          <path class="glow s" data-s-glow d=""/><path class="curve s draw" data-s d=""/>
+          <path class="glow d" data-d-glow d=""/><path class="curve d draw late" data-d d=""/>
+          <line class="guide" data-gx x1="0" y1="0" x2="0" y2="0"/><line class="guide" data-gy x1="0" y1="0" x2="0" y2="0"/>
+          <circle class="eq-halo" data-halo r="16" cx="0" cy="0"/><circle class="eq" data-eq r="7" cx="0" cy="0"/>
+          <text data-dl font-size="13" font-weight="700" fill="#A86500">Demand</text>
+          <text data-sl font-size="13" font-weight="700" fill="#067A7C">Supply</text>
+        </svg>
+      </div>
+      <div class="readout" aria-live="polite">
+        <div class="read"><span>Price</span><b data-p>$4.00</b></div>
+        <div class="read"><span>Quantity</span><b data-q>60<small>cups</small></b></div>
+        <div class="read"><span>Spending</span><b data-r>$240</b></div>
+      </div>
+      <div class="ctrl">
+        <label for="mk-income"><span>Shoppers' income</span><span data-inc class="num">+0%</span></label>
+        <input class="range" id="mk-income" type="range" min="-30" max="30" step="5" value="0" data-income>
+      </div>
+      <figcaption class="note">A lemonade stand on a hot day. Raise income and demand shifts right: price and quantity both rise.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <header><h2 id="how-title">How you learn</h2><p>Four steps, in this order. You can stop and come back at any point; your progress is saved to your account.</p></header>
+    <ol class="steps" style="list-style:none;margin:0;padding:0">
+      <li class="glass step" style="--c:#2F5BFF"><div class="n">1</div><h3>Take the diagnostic</h3><p>Twelve questions on the ideas behind all nine courses. You see which areas you already know.</p></li>
+      <li class="glass step" style="--c:#0A9DA0"><div class="n">2</div><h3>Learn at your level</h3><p>Every lesson has a beginner, intermediate and advanced version. Switch any time.</p></li>
+      <li class="glass step" style="--c:#E39B21"><div class="n">3</div><h3>Practise and check</h3><p>Short quizzes graded on the server, worked examples and simulations you control.</p></li>
+      <li class="glass step" style="--c:#C04BD9"><div class="n">4</div><h3>Apply it to the SDGs</h3><p>The capstone asks you to analyse a real development problem and propose a policy.</p></li>
+    </ol>
+  </section>
+
+  <section class="section" id="courses" aria-labelledby="courses-title">
+    <header><h2 id="courses-title">Nine courses</h2><p>From everyday choices to global trade. Each course links its lessons to the Sustainable Development Goals it helps you understand.</p></header>
+    <div class="courses">
+      {% for c in courses %}
+      <a class="glass sheen course" href="{{ url_for('glass_proto.lesson') if c.id == 'c02' else '#' }}" style="--c: {{ c.accent }}">
+        <span class="core" aria-hidden="true"></span><span class="lens" aria-hidden="true"></span><span class="streak" aria-hidden="true"></span>
+        <span class="no" aria-hidden="true">{{ c.number }}</span>
+        <h3>{{ c.title }}</h3>
+        <p class="desc">{{ c.description }}</p>
+        <div class="facts"><span>{{ c.lessons }} lessons</span><span>About {{ c.hours }} hours</span></div>
+        <div class="meta">{% if not c.sdgs %}<span class="chip"><span class="dot" style="--c: conic-gradient(#E5243B, #DDA63A, #4C9F38, #26BDE2, #E5243B)"></span>An SDG you choose</span>{% endif %}{% for s in c.sdgs %}<span class="chip" title="{{ s.name }}"><span class="dot" style="--c: {{ s.color }}"></span>SDG {{ s.n }}</span>{% endfor %}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section" id="tutor" aria-labelledby="tutor-title">
+    <div class="glass tutor-band">
+      <div>
+        <h2 id="tutor-title">A tutor that has read the lesson</h2>
+        <p class="muted" style="margin-top:14px;font-size:1.1rem">Ask about the page you are on. The tutor answers from that lesson's material and tells you when the lesson only partly covers your question.</p>
+        <ul>
+          <li>{{ icon('book') }}<span>Grounded in the lesson you are reading, with the source it used.</span></li>
+          <li>{{ icon('lock') }}<span>It never changes scores, progress or grades.</span></li>
+          <li>{{ icon('clock') }}<span>A daily question limit keeps it focused and affordable for schools.</span></li>
+        </ul>
+      </div>
+      <div class="glass obsidian chat" role="group" aria-label="Example conversation">
+        <div class="head"><span class="orb" aria-hidden="true"></span>ECONOVA Tutor · Markets &amp; Prices, Lesson 1</div>
+        <p class="msg me">If ice cream gets cheaper, is that a change in demand?</p>
+        <p class="msg ai">Not by itself. A lower price moves you along the same demand curve, so it changes the quantity demanded. Demand changes when something other than the good's own price shifts, such as income or tastes.<cite>From this lesson: "Demand vs. quantity demanded"</cite></p>
+        <div class="input-row"><span class="fake">Ask about this lesson…</span><span class="btn on-dark sm" aria-hidden="true">Ask</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="glass final-cta" aria-labelledby="cta-title">
+    <h2 id="cta-title">Start with the diagnostic</h2>
+    <p>Sign in, answer the diagnostic, and ECONOVA suggests where to begin and at which level.</p>
+    <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">{{ google_button("Continue with Google", "#") }}<a class="btn secondary" href="#">Use email instead</a></div>
+  </section>
+
+  <footer class="foot"><span>ECONOVA · An economics learning platform built for the UN Sustainable Development Goals</span><span>Course material is in review and shown here as a design preview.</span></footer>
+</main>
+{% endblock %}

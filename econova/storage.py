@@ -58,7 +58,8 @@ def _fs():
     if _fb_app is None:
         cred = fb_credentials.Certificate(json.loads(config.env("FIREBASE_CREDENTIALS_JSON")))
         _fb_app = firebase_admin.initialize_app(cred)
-    return fb_firestore.client(_fb_app)
+    database = config.env("ECONOVA_FIRESTORE_DATABASE").strip()   # 비우면 (default) 데이터베이스
+    return fb_firestore.client(_fb_app, database_id=database) if database else fb_firestore.client(_fb_app)
 
 
 def create_user(email, name, password_hash):

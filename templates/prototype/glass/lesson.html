@@ -1,0 +1,157 @@
+{% extends "prototype/glass/base.html" %}
+{% from "prototype/glass/_ui.html" import icon, mark %}
+{% from "econova/_graph.html" import supply_demand with context %}
+{% block title %}{{ item.title }}{% endblock %}
+{% set level_names = {'beginner': 'Beginner', 'intermediate': 'Intermediate', 'advanced': 'Advanced'} %}
+{% set toc = [('objectives', 'What you will learn')] %}
+{% for s in body.sections %}{% set _ = toc.append(('s' ~ loop.index, s.heading)) %}{% endfor %}
+{% if examples %}{% set _ = toc.append(('examples', 'Worked examples')) %}{% endif %}
+{% if mat.graphs %}{% set _ = toc.append(('graphs', 'Graphs')) %}{% endif %}
+{% if mat.real_world_examples %}{% set _ = toc.append(('real-world', 'In the real world')) %}{% endif %}
+{% set _ = toc.append(('sdg', 'SDG connection')) %}
+{% set _ = toc.append(('takeaways', 'Key takeaways')) %}
+{% set _ = toc.append(('sources', 'Sources')) %}
+{% block body %}
+<header class="gl-nav glass" data-nav>
+  <a class="gl-brand" href="{{ url_for('glass_proto.landing') }}">{{ mark(30) }}<span>ECONOVA</span></a>
+  <nav class="links" id="site-links" aria-label="Main">
+    <a href="{{ url_for('glass_proto.dashboard') }}">Dashboard</a>
+    <a href="#" aria-current="page">Courses</a>
+    <a href="#">Economic Lab</a>
+    <a href="#">My report</a>
+  </nav>
+  <div class="end">
+    <a class="btn primary sm" href="#tutor" data-tutor-open>{{ icon('chat', 16) }}Ask the tutor</a>
+    <button class="btn secondary sm menu-btn" type="button" aria-expanded="false" aria-controls="site-links" data-menu>{{ icon('menu', 18) }}<span class="sr-only">Menu</span></button>
+  </div>
+</header>
+
+<div class="wrap" style="--accent: {{ accent }}">
+  <section class="glass lesson-head" aria-labelledby="lesson-title">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Courses</a><span aria-hidden="true">/</span><a href="#">{{ course.title }}</a><span aria-hidden="true">/</span><span aria-current="page">Lesson {{ lesson_index }}</span></nav>
+    <div class="row">
+      <div>
+        <h1 id="lesson-title">{{ item.title }}</h1>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+          <span class="chip"><span class="dot" style="--c: {{ accent }}"></span>Lesson {{ lesson_index }} of {{ course.lessons|length }}</span>
+          {% for s in sdgs %}<span class="chip"><span class="dot" style="--c: {{ s.color }}"></span>SDG {{ s.n }}: {{ s.name }}</span>{% endfor %}
+          <span class="chip draft">Draft: AI-reviewed, not yet approved by a person</span>
+        </div>
+      </div>
+      <nav class="seg" data-seg aria-label="Difficulty level">
+        <span class="lens" aria-hidden="true"></span>
+        {% for lv in levels %}<a href="?level={{ lv }}" {% if lv == level %}aria-current="page"{% endif %}><span class="lvl-ico" data-n="{{ loop.index }}" aria-hidden="true"><i></i><i></i><i></i></span>{{ level_names[lv] }}</a>{% endfor %}
+      </nav>
+    </div>
+  </section>
+
+  <nav class="mobile-toc" aria-label="Sections">{% for id, label in toc %}<a class="chip" href="#{{ id }}">{{ label }}</a>{% endfor %}</nav>
+
+  <div class="lesson-grid">
+    <nav class="glass soft toc" aria-label="On this page" data-toc>
+      <div class="label">On this page</div>
+      <ol>{% for id, label in toc %}<li><a href="#{{ id }}">{{ label }}</a></li>{% endfor %}</ol>
+    </nav>
+
+    <main id="main" class="paper">
+      <section id="objectives" aria-labelledby="h-obj">
+        <p class="summary">{{ body.summary }}</p>
+        <h2 id="h-obj" style="margin-top:30px">What you will learn</h2>
+        <ol class="objectives">{% for o in mat.objectives %}<li>{{ o }}</li>{% endfor %}</ol>
+      </section>
+
+      {% for s in body.sections %}
+      <section id="s{{ loop.index }}" aria-labelledby="h-s{{ loop.index }}">
+        <h2 id="h-s{{ loop.index }}">{{ s.heading }}</h2>
+        {% for p in s.paragraphs %}<p>{{ p }}</p>{% endfor %}
+        {% if s.concept_ids %}<dl class="term">{% for cid in s.concept_ids if cid in concepts %}{% set c = concepts[cid] %}<div{% if not loop.first %} style="margin-top:10px"{% endif %}><dt>{{ c.term }}</dt><dd>{{ c.definition }}</dd></div>{% endfor %}</dl>{% endif %}
+      </section>
+      {% endfor %}
+
+      {% if examples %}
+      <section id="examples" aria-labelledby="h-ex">
+        <h2 id="h-ex">Worked examples</h2>
+        {% for ex in examples %}
+        <article class="example">
+          <h3>{{ ex.title }}</h3>
+          <p>{{ ex.problem }}</p>
+          <ol>{% for st in ex.steps %}<li>{{ st }}</li>{% endfor %}</ol>
+          <p class="answer"><b>Answer.</b> {{ ex.answer }}</p>
+        </article>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if mat.graphs %}
+      <section id="graphs" aria-labelledby="h-gr">
+        <h2 id="h-gr">Graphs</h2>
+        {% for gspec in mat.graphs %}<div class="graph-card">{{ supply_demand(gspec) }}</div>{% endfor %}
+      </section>
+      {% endif %}
+
+      {% if mat.real_world_examples %}
+      <section id="real-world" aria-labelledby="h-rw">
+        <h2 id="h-rw">In the real world</h2>
+        {% for r in mat.real_world_examples %}<h3>{{ r.title }}</h3>{% for p in r.paragraphs %}<p>{{ p }}</p>{% endfor %}{% endfor %}
+      </section>
+      {% endif %}
+
+      <section id="sdg" aria-labelledby="h-sdg">
+        <h2 id="h-sdg">SDG connection</h2>
+        <div class="sdg-head">{% for s in sdgs %}<span class="chip"><span class="dot" style="--c: {{ s.color }}"></span>SDG {{ s.n }}: {{ s.name }}</span>{% endfor %}</div>
+        <h3 style="margin-top:0">{{ mat.sdg_case.title }}</h3>
+        {% for p in mat.sdg_case.paragraphs %}<p>{{ p }}</p>{% endfor %}
+        {% if mat.sdg_case.options %}
+        <div class="options">
+          {% for o in mat.sdg_case.options %}
+          <div class="option"><h4>{{ o.name }}</h4>
+            {% if o.benefits %}<p class="lbl">Benefits</p><ul>{% for b in o.benefits %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+            {% if o.costs %}<p class="lbl">Costs</p><ul>{% for b in o.costs %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% for d in mat.sdg_case.discussion %}<p style="margin-top:16px"><strong>Discuss:</strong> {{ d }}</p>{% endfor %}
+      </section>
+
+      <section id="takeaways" aria-labelledby="h-kt">
+        <h2 id="h-kt">Key takeaways</h2>
+        <ul>{% for k in mat.key_takeaways %}<li>{{ k }}</li>{% endfor %}</ul>
+      </section>
+
+      <section id="sources" aria-labelledby="h-src">
+        <h2 id="h-src">Sources</h2>
+        <ul class="sources">{% for s in sources %}<li><a href="{{ s.url }}" rel="noopener" target="_blank">{{ s.title }}</a><br><span class="muted">{{ s.container }}{% if s.author %}, {{ s.author }}{% endif %}</span><br><span class="ai">AI-checked (not human-approved)</span></li>{% endfor %}</ul>
+      </section>
+
+      <nav class="lesson-pager" aria-label="Lesson navigation">
+        <a class="btn secondary" href="#">Course overview</a>
+        <a class="btn primary" href="#quiz">Mark as read and go to the quiz</a>
+      </nav>
+    </main>
+
+    <aside class="side" aria-label="Lesson progress">
+      <section class="glass tile" aria-labelledby="h-prog">
+        <h2 id="h-prog" style="font-size:1.05rem">Your progress</h2>
+        <div class="bar" style="--c: {{ accent }}; margin-top:14px"><i data-read-bar style="--v: 0%"></i></div>
+        <p class="muted" style="font-size:.85rem;margin-top:8px"><span data-read-count>0</span> of {{ toc|length }} sections viewed</p>
+        <ul class="checklist">
+          <li data-check="material"><span class="box">{{ icon('check', 14) }}</span>Read the material</li>
+          <li><span class="box"></span>Pass the quiz</li>
+        </ul>
+      </section>
+      <section class="glass tile quiz-cta" id="quiz" aria-labelledby="h-quiz">
+        <h2 id="h-quiz" style="font-size:1.05rem">Lesson {{ lesson_index }} quiz</h2>
+        <p class="muted" style="font-size:.92rem">{{ item.quiz_assessment.questions|length if item.quiz_assessment else 'A few' }} questions. Graded on the server; you see explanations after you submit.</p>
+        <a class="btn secondary locked" href="#" aria-disabled="true" data-quiz-btn>{{ icon('lock', 16) }}Finish reading to unlock</a>
+      </section>
+      <section class="glass obsidian tile" id="tutor" aria-labelledby="h-tut">
+        <h2 id="h-tut" style="font-size:1.05rem;display:flex;align-items:center;gap:10px"><span class="chat" style="padding:0"><span class="orb" aria-hidden="true" style="display:block"></span></span>Stuck on something?</h2>
+        <p class="muted" style="font-size:.9rem;margin:8px 0 14px">The tutor answers from this lesson's material.</p>
+        <a class="btn on-dark sm" href="#">Ask the tutor</a>
+      </section>
+    </aside>
+  </div>
+  <p class="sample-note" style="margin:22px 0 40px">Prototype view of real draft lesson material ({{ item.id }}, {{ level_names[level] }}). Progress in this preview is not saved.</p>
+</div>
+{% endblock %}

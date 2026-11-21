@@ -2,7 +2,7 @@
 // 사용: node tests/sim_node_runner.js <cases.json>
 const fs = require("fs");
 const path = require("path");
-const S = require(path.join(__dirname, "..", "static", "js", "econova-sim.js"));
+const S = require(path.join(__dirname, "..", "public", "static", "js", "econova-sim.js"));
 const cases = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 const out = cases.map((c) => {
   if (c.kind === "parse") return S.parseInputs(c.sim, c.raw);

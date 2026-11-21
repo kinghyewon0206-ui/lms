@@ -165,7 +165,7 @@ def test_vercel_config_files():
         ignored = [line.strip() for line in f if line.strip() and not line.startswith("#")]
     for needed in ("tests/", "docs/", "tools/", "*.answers.json", "keys-bundle*", ".env", "content/dev_fixtures/"):
         assert needed in ignored
-    assert "content/" not in ignored and "static/" not in ignored, "the app reads content/ and serves static/"
+    assert "content/" not in ignored and "public/" not in ignored, "the app reads content/; Vercel serves public/ from its CDN"
     with open(os.path.join(ROOT, ".python-version"), encoding="utf-8") as f:
         assert f.read().strip() == "3.12"
     assert hasattr(app_module, "app"), "Vercel finds the Flask instance named app in app.py"

@@ -1,0 +1,46 @@
+{# Shared pieces for the glass prototypes: line icons, the ECONOVA mark, the Google button (Google light theme). #}
+{% macro icon(name, size=20) -%}
+<svg width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{%- if name == 'home' %}<path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/>
+{%- elif name == 'book' %}<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5"/>
+{%- elif name == 'compass' %}<circle cx="12" cy="12" r="8.5"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>
+{%- elif name == 'lab' %}<path d="M9 3h6"/><path d="M10 3v6.5L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9.5V3"/><path d="M7.5 15h9"/>
+{%- elif name == 'chat' %}<path d="M20 12a7.5 7.5 0 0 1-11 6.6L4 20l1.4-4.6A7.5 7.5 0 1 1 20 12z"/>
+{%- elif name == 'chart' %}<path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16v-4"/><path d="M12 16V8"/><path d="M16 16v-6"/>
+{%- elif name == 'globe' %}<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.5 2.6 3.5 5.5 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.5-3.5-8.5s1-5.9 3.5-8.5z"/>
+{%- elif name == 'debate' %}<path d="M14 9a5 5 0 0 0-9.4-2.4A4.5 4.5 0 0 0 4 12l-1 3 3-1"/><path d="M10 14a5 5 0 1 0 9.4 2.4L21 19l-1-3"/>
+{%- elif name == 'check' %}<path d="m5 12.5 4.5 4.5L19 7.5"/>
+{%- elif name == 'spark' %}<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/>
+{%- elif name == 'clock' %}<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>
+{%- elif name == 'layers' %}<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>
+{%- elif name == 'menu' %}<path d="M4 7h16M4 12h16M4 17h16"/>
+{%- elif name == 'info' %}<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5"/><path d="M12 8h.01"/>
+{%- elif name == 'alert' %}<path d="M12 4 2.8 19.5h18.4z"/><path d="M12 10v4.5"/><path d="M12 17h.01"/>
+{%- elif name == 'lock' %}<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>
+{%- elif name == 'user' %}<circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/>
+{%- elif name == 'play' %}<path d="M8 5.5v13l10.5-6.5z"/>
+{%- elif name == 'target' %}<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8"/>
+{%- endif %}
+</svg>
+{%- endmacro %}
+
+{% macro mark(size=30) -%}
+{# ECONOVA mark: two crossing light curves meeting at one point (an equilibrium), inside a glass lens #}
+<svg class="gl-mark" width="{{ size }}" height="{{ size }}" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="mk-lens" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCE6F3"/></linearGradient>
+    <linearGradient id="mk-s" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0A9DA0"/><stop offset="1" stop-color="#2F5BFF"/></linearGradient>
+  </defs>
+  <rect x="1" y="1" width="30" height="30" rx="10" fill="url(#mk-lens)" stroke="#FFFFFF"/>
+  <path d="M7 24 C 13 20, 19 12, 25 8" fill="none" stroke="url(#mk-s)" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M7 8 C 13 12, 19 20, 25 24" fill="none" stroke="#E39B21" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="16" cy="16" r="3" fill="#0C1626"/><circle cx="15.2" cy="15.2" r=".9" fill="#FFFFFF"/>
+</svg>
+{%- endmacro %}
+
+{% macro google_button(label="Continue with Google", href="#", size="") -%}
+<a class="gsi {{ size }}" href="{{ href }}">
+  <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+  <span>{{ label }}</span>
+</a>
+{%- endmacro %}

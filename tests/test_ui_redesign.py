@@ -19,7 +19,7 @@ pytestmark = pytest.mark.usefixtures("fixtures_on")
 
 
 def _css():
-    with open(os.path.join(ROOT, "static", "style.css"), encoding="utf-8") as f:
+    with open(os.path.join(ROOT, "public", "static", "style.css"), encoding="utf-8") as f:
         return f.read()
 
 
