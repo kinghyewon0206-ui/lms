@@ -87,7 +87,7 @@
         <button class="btn" type="submit">Start a new debate</button>
       </form>
     {% elif turns < topic.max_turns %}
-      <form method="post" action="{{ url_for('econova.discuss_respond', course_id=course.id, topic_id=topic.id) }}" class="tutor-form">
+      <form method="post" action="{{ url_for('econova.discuss_respond', course_id=course.id, topic_id=topic.id) }}" class="tutor-form debate-form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         {% if conv %}<input type="hidden" name="conversation_id" value="{{ conv.id }}">{% endif %}
         <label for="debate-input">Your response</label>

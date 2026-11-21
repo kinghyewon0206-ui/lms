@@ -821,11 +821,23 @@ details[open] > :not(summary) { animation: reveal-down var(--t-slow) var(--ease)
 .tutor-suggest { display: flex; flex-wrap: wrap; gap: 8px; }
 .tutor-panel .chip-btn { color: #E8EEF8; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); }
 .tutor-panel .chip-btn:hover, .tutor-panel .chip-btn:focus-visible { color: #fff; background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1px rgba(143, 211, 218, .6); }
-.tutor-form { display: grid; gap: 8px; padding: 12px; border-radius: var(--r-lg); background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
-.tutor-form textarea { min-height: 84px; color: #fff; background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
-.tutor-form textarea::placeholder { color: #8C9AB3; }
-.tutor-form textarea:focus { background: rgba(255, 255, 255, .1); box-shadow: inset 0 0 0 1.5px #8FD3DA, 0 0 0 4px rgba(143, 211, 218, .18); }
-.tutor-form label { color: #E8EEF8; }
+/* Response forms on light glass cards (debate, capstone AI coach, admin review): dark text on a white field */
+.tutor-form { display: grid; gap: 8px; padding: 14px; border-radius: var(--r-lg); background: rgba(255, 255, 255, .6); box-shadow: inset 0 0 0 1px rgba(12, 22, 38, .08); }
+.tutor-form label { color: var(--ink); font-weight: 650; }
+.tutor-form textarea { min-height: 84px; color: var(--ink); caret-color: var(--ultra-ink); background: #fff; box-shadow: inset 0 0 0 1px var(--line-2); }
+.tutor-form textarea::placeholder { color: var(--ink-3); opacity: 1; }
+.tutor-form textarea::selection { color: var(--ink); background: rgba(47, 91, 255, .22); }
+.tutor-form textarea:focus { color: var(--ink); background: #fff; box-shadow: inset 0 0 0 1.5px var(--ultra), 0 0 0 4px rgba(47, 91, 255, .14); }
+.tutor-form .hint { color: var(--ink-3); }
+.debate-form textarea { color: var(--ink); background: #fff; }   /* debate response: always the light field, even if the form is reused */
+/* The AI Tutor's form sits on the dark obsidian panel: light text on a translucent field */
+.tutor-panel .tutor-form { padding: 12px; background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+.tutor-panel .tutor-form label { color: #E8EEF8; }
+.tutor-panel .tutor-form textarea { color: #fff; caret-color: #8FD3DA; background: rgba(255, 255, 255, .06); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); }
+.tutor-panel .tutor-form textarea::placeholder { color: #8C9AB3; }
+.tutor-panel .tutor-form textarea::selection { color: #fff; background: rgba(143, 211, 218, .4); }
+.tutor-panel .tutor-form textarea:focus { color: #fff; background: rgba(255, 255, 255, .1); box-shadow: inset 0 0 0 1.5px #8FD3DA, 0 0 0 4px rgba(143, 211, 218, .18); }
+.tutor-panel .tutor-form .hint { color: #A9B6CC; }
 .tutor-panel .btn:not(.secondary) { color: var(--ink); background: linear-gradient(180deg, #fff, #E4ECF7); box-shadow: inset 0 1px 0 #fff, 0 8px 20px -10px rgba(0, 0, 0, .6); }
 .tutor-panel .btn.secondary { color: #E8EEF8; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
 .tutor-panel .btn:focus-visible, .tutor-panel :focus-visible { outline-color: #8FD3DA; }

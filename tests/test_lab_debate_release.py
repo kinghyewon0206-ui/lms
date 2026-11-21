@@ -298,3 +298,18 @@ def test_debate_works_without_ai_for_real_topics(logged_in):
     html = logged_in.get(page).get_data(as_text=True)
     assert "Tariffs protect jobs in the short run." in html and "Prepared guiding question" in html
     assert ai_debate is not None
+
+
+def test_response_forms_on_light_cards_use_dark_text():
+    """Regression: the dark AI-tutor input style (white text) must only apply inside the dark tutor panel."""
+    css = open(os.path.join(ROOT, "public", "static", "style.css"), encoding="utf-8").read()
+    rules = dict(re.findall(r"^([^{}\n/][^{}\n]*?)\s*\{([^}]*)\}", css, re.M))
+    assert not re.search(r"(?<![-\w])color:\s*#fff\b", rules[".tutor-form textarea"]) and "var(--ink)" in rules[".tutor-form textarea"]
+    assert "var(--ink)" in rules[".tutor-form label"]
+    assert "color: #fff" in rules[".tutor-panel .tutor-form textarea"]
+    white_text = re.compile(r"(?<![-\w])color:\s*#fff\b")
+    for sel, body in rules.items():
+        if white_text.search(body) and ("textarea" in sel or "input" in sel):
+            assert sel.startswith(".tutor-panel") or ".btn" in sel, sel
+    html = open(os.path.join(ROOT, "templates", "econova", "discuss", "topic.html"), encoding="utf-8").read()
+    assert 'class="tutor-form debate-form"' in html
