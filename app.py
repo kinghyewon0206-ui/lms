@@ -50,6 +50,8 @@ _ai_client.settings()             # 운영에서 모의 AI, 키 없는 openai �
 _ai_client.feedback_enabled()     # ECONOVA_AI_FEEDBACK 값이 on/off 가 아니면 멈춘다
 google_auth.settings()            # Google 로그인 설정이 반쪽이거나 운영에서 콜백 주소가 없으면 멈춘다
 app.jinja_env.globals["google_enabled"] = google_auth.enabled
+from econova import ui_charts  # noqa: E402
+app.jinja_env.globals["diagnostic_radar"] = ui_charts.diagnostic_radar
 
 app.jinja_env.globals["is_admin_user"] = lambda: roles.is_admin(g.user)   # 메뉴 표시용 (권한 검사는 서버에서 따로)
 
@@ -341,6 +343,22 @@ def forbidden(_exc):
 @app.errorhandler(404)
 def not_found(_exc):
     return render_template("errors/404.html"), 404
+
+
+@app.errorhandler(405)
+def method_not_allowed(_exc):
+    return render_template("errors/error.html", code=405, title="This action isn't available here",
+                           message="Use the buttons on the page instead of opening this address directly."), 405
+
+
+@app.errorhandler(500)
+def server_error(_exc):
+    # 어떤 경우에도 내부 정보(예외 내용)는 보여 주지 않는다
+    try:
+        return render_template("errors/error.html", code=500, title="Something went wrong",
+                               message="The problem was recorded. Please try again in a moment."), 500
+    except Exception:  # noqa: BLE001 — 템플릿까지 실패하면 가장 단순한 응답
+        return "Something went wrong. Please try again in a moment.", 500
 
 
 @app.cli.command("init-db")

@@ -1,5 +1,5 @@
 {% extends "prototype/glass/base.html" %}
-{% from "prototype/glass/_ui.html" import icon, mark %}
+{% from "_ui.html" import icon, mark %}
 {% block title %}Dashboard{% endblock %}
 {% set by_id = {} %}{% for c in courses %}{% set _ = by_id.update({c.id: c}) %}{% endfor %}
 {% block body %}

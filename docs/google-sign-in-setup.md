@@ -33,10 +33,11 @@ Google 공식 안내(Manage App Audience): Testing 상태는 보통 등록한 �
 5. **Audience**: Testing 그대로 둔다 (2장). 테스트 사용자를 추가할 필요 없음.
 6. **Clients → CREATE CLIENT → Application type: Web application**
    - Name: `ECONOVA web`
-   - Authorized JavaScript origins: 비워 둔다 (서버 흐름).
+   - Authorized JavaScript origins: 비워 둔다. ECONOVA 는 서버 흐름(브라우저 JavaScript 가 Google 에 직접 요청하지 않음)이라 필요 없다.
    - **Authorized redirect URIs** (스킴·대소문자·끝 슬래시까지 정확히 일치. 와일드카드 불가):
      - 운영: `https://<운영 도메인>/auth/google/callback` — 운영 도메인이 정해진 뒤 추가
-     - 로컬 시험: `http://localhost:5071/auth/google/callback` (localhost 는 http 허용)
+     - 로컬 시험: `http://localhost:5071/auth/google/callback` (localhost·루프백 IP 는 http 허용)
+     - **localhost 와 127.0.0.1 은 서로 다른 주소로 취급된다.** 로컬에서는 `GOOGLE_OAUTH_REDIRECT_URI` 를 위 localhost 주소로 고정하고, 브라우저도 반드시 `http://localhost:5071` 로 연다 (127.0.0.1 로 열면 세션 쿠키가 다른 사이트로 취급되어 state 확인이 실패한다).
    - 커밋마다 바뀌는 Vercel 미리보기 주소는 등록할 수 없다.
    - **CREATE** → Client ID 와 Client secret 확인. **비밀값은 이 화면에서 한 번만 보이므로** 바로 Vercel 환경변수(Sensitive)에 넣는다. 반영까지 5분~몇 시간 걸릴 수 있다.
 7. Vercel → Settings → Environment Variables (Production):

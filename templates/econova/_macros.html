@@ -2,11 +2,11 @@
 
 {# Each real course gets its own two-stop accent from the ECONOVA palette; development fixtures stay neutral. #}
 {% set ACCENTS = {
-  'c01': ('#7659f7', '#659cff'), 'c02': ('#ff7498', '#ffb45f'), 'c03': ('#56cdbe', '#659cff'),
-  'c04': ('#659cff', '#7659f7'), 'c05': ('#ffb45f', '#ff7498'), 'c06': ('#ff7498', '#7659f7'),
-  'c07': ('#56cdbe', '#ffb45f'), 'c08': ('#659cff', '#56cdbe'), 'c09': ('#7659f7', '#ff7498') } %}
+  'c01': ('#2F5BFF', '#8FA8FF'), 'c02': ('#0A9DA0', '#7FD3D4'), 'c03': ('#1FA968', '#8ED9B3'),
+  'c04': ('#E39B21', '#F5CD84'), 'c05': ('#E0517A', '#F3A6BC'), 'c06': ('#7C5CF0', '#BBA9F8'),
+  'c07': ('#0B8FD6', '#83C6EC'), 'c08': ('#E86F2E', '#F5B48F'), 'c09': ('#C04BD9', '#E2A3EE') } %}
 {% macro accent(course) -%}
-{%- set a = ACCENTS.get(course.id, ('#8a8ea8', '#b9bdd3')) -%}
+{%- set a = ACCENTS.get(course.id, ('#8A93A8', '#C3C9D6')) -%}
 --a1: {{ a[0] }}; --a2: {{ a[1] }};
 {%- endmacro %}
 
@@ -44,7 +44,8 @@
 {% endmacro %}
 
 {% macro catalog_card(course, enrolled=false) %}
-<article class="ec-card{{ ' is-soon' if not course.published }}" style="{{ accent(course) }}" data-reveal>
+<article class="ec-card sheen{{ ' is-soon' if not course.published }}" style="{{ accent(course) }}" data-reveal>
+  <span class="core" aria-hidden="true"></span><span class="lens" aria-hidden="true"></span>
   <div class="ec-card-top">
     <span class="ec-code">{{ course.id|upper }}</span>
     <span>{{ course_badge(course, enrolled) }}</span>

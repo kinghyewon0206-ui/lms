@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% import "econova/_macros.html" as m with context %}
+{% from "_ui.html" import icon %}
 {% block title %}Dashboard · ECONOVA{% endblock %}
 {% block content %}
 <div class="ec-page">
@@ -10,72 +11,106 @@
     {% for n in card.course.sdgs %}{% if n not in ns.sdgs %}{% set ns.sdgs = ns.sdgs + [n] %}{% endif %}{% endfor %}
   {% endif %}{% endfor %}
 
-  <section class="dash-hero">
-    <div>
-      <span class="eyebrow">ECONOVA Dashboard</span>
-      <h1>Hi, {{ g.user['name'] }}</h1>
-      <p>Check your progress in your courses and pick up where you left off.</p>
-      <div class="actions">
-        {% if ns.cont %}<a class="btn light" href="{{ url_for('econova.continue_learning', course_id=ns.cont.course.id) }}">Continue learning <span class="arrow" aria-hidden="true">→</span></a>
-        {% else %}<a class="btn light" href="{{ url_for('econova.catalog') }}">Browse courses <span class="arrow" aria-hidden="true">→</span></a>{% endif %}
+  {% set pct_all = ((completed_lessons / total_lessons * 100)|round|int) if total_lessons else 0 %}
+  <div class="dash-bento">
+    <section class="dash-hero span-8" aria-labelledby="dash-hi">
+      <div>
+        <h1 id="dash-hi">Hi, {{ g.user['name'] }}</h1>
+        {% if ns.cont %}{% set nl = ns.cont.progress.next_lesson %}
+        <p>Next up: Lesson {{ nl.order }} of {{ ns.cont.course.title_ko }}, “{{ nl.title_ko }}”.</p>
+        {% elif cards %}
+        <p>You are up to date in your open courses. Explore another course or revisit a lesson.</p>
+        {% else %}
+        <p>Start with the diagnostic or pick a course from the catalog.</p>
+        {% endif %}
+        <div class="chips">
+          {% if diagnostic %}<span class="pill pill-measure">Diagnostic level: {{ difficulty_names[diagnostic.recommended_level] }}</span>{% else %}<span class="pill pill-soon">Diagnostic not taken yet</span>{% endif %}
+          <span class="pill">{{ enrolled }} {{ 'course' if enrolled == 1 else 'courses' }} enrolled</span>
+        </div>
+        <div class="actions">
+          {% if ns.cont %}<a class="btn" href="{{ url_for('econova.continue_learning', course_id=ns.cont.course.id) }}">Continue learning</a>
+          {% else %}<a class="btn" href="{{ url_for('econova.catalog') }}">Browse courses</a>{% endif %}
+          {% if not diagnostic %}<a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">Take the diagnostic assessment</a>{% endif %}
+        </div>
       </div>
-    </div>
-    <dl class="ec-stats">
-      <div><dt>Courses enrolled</dt><dd><span data-count="{{ enrolled }}">{{ enrolled }}</span></dd></div>
-      <div><dt>Lessons completed</dt><dd><span data-count="{{ completed_lessons }}">{{ completed_lessons }}</span>{% if total_lessons %} <small>/ {{ total_lessons }}</small>{% endif %}</dd></div>
-    </dl>
-  </section>
+    </section>
 
-  <div class="dash-grid">
+    <section class="tile progress-tile span-4" aria-labelledby="dash-prog">
+      <span class="ring big-ring" data-p="{{ pct_all }}" role="img" aria-label="{{ pct_all }}% of lessons in your enrolled courses completed"><b>{{ pct_all }}%</b></span>
+      <div>
+        <h2 id="dash-prog">Your progress</h2>
+        <dl class="ec-stats compact">
+          <div><dt>Lessons completed</dt><dd>{{ completed_lessons }}{% if total_lessons %} <small>/ {{ total_lessons }}</small>{% endif %}</dd></div>
+          <div><dt>Courses enrolled</dt><dd>{{ enrolled }}</dd></div>
+        </dl>
+      </div>
+    </section>
+
     {% if ns.cont %}{% set c = ns.cont.course %}{% set nl = ns.cont.progress.next_lesson %}
-    <a class="tile continue-card" style="{{ m.accent(c) }}" href="{{ url_for('econova.continue_learning', course_id=c.id) }}" data-reveal>
+    <a class="tile continue-card sheen span-7" style="{{ m.accent(c) }}" href="{{ url_for('econova.continue_learning', course_id=c.id) }}" data-reveal>
       <span class="ring" data-p="{{ ns.cont.progress.percent }}" role="img" aria-label="{{ ns.cont.progress.percent }}% of {{ c.title_ko }} completed"><b>{{ ns.cont.progress.percent }}%</b></span>
       <div style="display:grid;gap:6px">
-        <span class="eyebrow" style="margin:0">Continue learning · {{ c.id|upper }}</span>
+        <span class="pill pill-on" style="justify-self:start">Continue learning</span>
         <h3>{{ c.title_ko }}</h3>
         <p>Next: Lesson {{ nl.order }} · {{ nl.title_ko }}</p>
+        <div class="lesson-steps" aria-hidden="true">{% for i in range(ns.cont.progress.total) %}<span class="{{ 'done' if i < ns.cont.progress.completed else ('now' if i == ns.cont.progress.completed else '') }}"></span>{% endfor %}</div>
         <div class="continue-meta"><span>{{ ns.cont.progress.completed }}/{{ ns.cont.progress.total }} lessons completed</span><span>Level: {{ difficulty_names[ns.cont.enrollment.selected_difficulty] }}</span></div>
-        <span class="go">Open lesson <span class="arrow" aria-hidden="true">→</span></span>
+        <span class="go">Open lesson</span>
       </div>
     </a>
     {% else %}
-    <div class="tile" data-reveal>
-      <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2"/></svg></span>
+    <div class="tile span-7" data-reveal>
+      <span class="tile-ico" aria-hidden="true">{{ icon('book') }}</span>
       <h3>{{ 'No lesson waiting right now' if cards else 'Start your first course' }}</h3>
       <p>{{ 'You are up to date in your open courses. Explore another course from the catalog.' if cards else 'Pick an economics course that interests you from the course catalog.' }}</p>
-      <a class="go" href="{{ url_for('econova.catalog') }}">Course catalog <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="go" href="{{ url_for('econova.catalog') }}">Course catalog</a>
     </div>
     {% endif %}
 
-    <aside class="ec-legacy-notice ec-diag-notice" role="note" data-reveal style="--i:1">
-      {% if diagnostic %}
-      <p>Level recommended by your latest diagnostic assessment: <strong>{{ difficulty_names[diagnostic.recommended_level] }}</strong> ({{ diagnostic.score }}/{{ diagnostic.max_score }}). This is only a suggestion; you can change the level for each course yourself.</p>
-      <a class="btn secondary" href="{{ url_for('econova.diagnostic_result', attempt_id=diagnostic.id) }}">View results</a>
+    <section class="tile diag-tile span-5" aria-labelledby="dash-diag" data-reveal>
+      <header class="tile-head"><h2 id="dash-diag">Diagnostic profile</h2>
+        {% if diagnostic %}<a href="{{ url_for('econova.diagnostic_result', attempt_id=diagnostic.id) }}">View results</a>{% endif %}</header>
+      {% set rd = diagnostic_radar(diagnostic, area_names) %}
+      {% if rd %}
+      <svg class="radar" viewBox="-40 -6 380 280" role="img" aria-labelledby="dash-diag-desc">
+        <desc id="dash-diag-desc">Your latest diagnostic, share correct by area: {% for l in rd.labels %}{{ l.text }} {{ l.pct }}%{{ ', ' if not loop.last }}{% endfor %}.</desc>
+        {% for ring in rd.rings %}<polygon class="web" points="{{ ring }}"/>{% endfor %}
+        {% for x, y in rd.axes %}<line class="web" x1="{{ rd.cx }}" y1="{{ rd.cy }}" x2="{{ x }}" y2="{{ y }}"/>{% endfor %}
+        <polygon class="shape" points="{{ rd.poly }}"/>
+        {% for x, y in rd.points %}<circle class="pt" cx="{{ x }}" cy="{{ y }}" r="3.5"/>{% endfor %}
+        {% for l in rd.labels %}<text x="{{ l.x }}" y="{{ l.y - (6 if l.lines|length > 1 else 0) }}" text-anchor="{{ l.anchor }}">{% for line in l.lines %}<tspan x="{{ l.x }}" dy="{{ 0 if loop.first else 13 }}">{{ line }}</tspan>{% endfor %}</text>{% endfor %}
+      </svg>
+      <p class="hint" style="text-align:center">Level recommended by your latest diagnostic assessment: <strong>{{ difficulty_names[diagnostic.recommended_level] }}</strong> ({{ diagnostic.score }}/{{ diagnostic.max_score }}). This is only a suggestion; you can change the level for each course yourself.</p>
       {% else %}
-      <p>Take the economics basics diagnostic assessment (12 questions) to get a recommended level.</p>
-      <a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">Take the diagnostic assessment</a>
+      <div class="ec-empty"><p>Take the economics basics diagnostic to see which areas you already know and get a suggested level.</p>
+        <a class="btn secondary" href="{{ url_for('econova.diagnostic_home') }}">Take the diagnostic assessment</a></div>
       {% endif %}
-    </aside>
-  </div>
+    </section>
 
-  <nav class="quick-grid" aria-label="Learning tools">
-    <a class="tile" style="--g: linear-gradient(135deg,#ff7498,#ffb45f)" href="{% if ns.cont %}{{ url_for('econova.continue_learning', course_id=ns.cont.course.id) }}{% else %}{{ url_for('econova.catalog') }}{% endif %}" data-reveal>
-      <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
-      <h3>AI Tutor</h3><p>Ask questions inside any lesson with approved materials.</p><span class="go">{{ 'Open a lesson' if ns.cont else 'Find a course' }} <span class="arrow" aria-hidden="true">→</span></span>
+    <a class="tile obsidian span-3" href="{% if ns.cont %}{{ url_for('econova.continue_learning', course_id=ns.cont.course.id) }}{% else %}{{ url_for('econova.catalog') }}{% endif %}" data-reveal>
+      <span class="orb" aria-hidden="true" style="width:38px;height:38px"></span>
+      <h3>AI Tutor</h3><p>Ask questions inside any lesson with approved material. Answers come from that lesson.</p>
+      <span class="go">{{ 'Open a lesson' if ns.cont else 'Find a course' }}</span>
     </a>
-    <a class="tile" style="--g: linear-gradient(135deg,#56cdbe,#659cff)" href="{{ url_for('econova.lab_home') }}" data-reveal>
-      <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
-      <h3>Economics Lab</h3><p>Experiment with market models.</p><span class="go">Open the Lab <span class="arrow" aria-hidden="true">→</span></span>
+    <a class="tile lab-tile span-3" href="{{ url_for('econova.lab_home') }}" data-reveal>
+      <svg class="mini-graph" viewBox="0 0 220 110" aria-hidden="true" focusable="false">
+        <line x1="18" y1="8" x2="18" y2="98" stroke="#0C1626" stroke-width="1.3"/><line x1="18" y1="98" x2="212" y2="98" stroke="#0C1626" stroke-width="1.3"/>
+        <path d="M28 90 L 200 18" stroke="#0A9DA0" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M28 18 L 200 90" stroke="#E39B21" stroke-width="3.5" stroke-linecap="round" opacity=".35" stroke-dasharray="5 6"/>
+        <path d="M56 12 L 208 76" stroke="#E39B21" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="131" cy="45" r="5.5" fill="#fff" stroke="#0C1626" stroke-width="2.5"/>
+      </svg>
+      <h3>Economics Lab</h3><p>Move supply, demand and a carbon tax.</p><span class="go">Open the Lab</span>
     </a>
-    <a class="tile" style="--g: linear-gradient(135deg,#7659f7,#ff7498)" href="{{ url_for('econova.discuss_home') }}" data-reveal>
-      <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8h10M7 12h6"/><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-4 3V6a2 2 0 0 1 2-2"/></svg></span>
-      <h3>Debate</h3><p>Weigh policies from several perspectives.</p><span class="go">See topics <span class="arrow" aria-hidden="true">→</span></span>
+    <a class="tile span-3" style="--g: linear-gradient(135deg,#7C5CF0,#2F5BFF); --gc:#7C5CF0" href="{{ url_for('econova.discuss_home') }}" data-reveal>
+      <span class="tile-ico" aria-hidden="true">{{ icon('debate') }}</span>
+      <h3>Debate</h3><p>Weigh policies from several perspectives.</p><span class="go">See topics</span>
     </a>
-    <a class="tile" style="--g: linear-gradient(135deg,#659cff,#7659f7)" href="{{ url_for('econova.report') }}" data-reveal>
-      <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
-      <h3>My report</h3><p>Look back on your progress.</p><span class="go">View report <span class="arrow" aria-hidden="true">→</span></span>
+    <a class="tile span-3" style="--g: linear-gradient(135deg,#0A9DA0,#2F5BFF); --gc:#0A9DA0" href="{{ url_for('econova.report') }}" data-reveal>
+      <span class="tile-ico" aria-hidden="true">{{ icon('chart') }}</span>
+      <h3>My report</h3><p>Course progress, assessment history and concept results.</p><span class="go">View report</span>
     </a>
-  </nav>
+  </div>
 
   {% if ns.sdgs or ns.any_sdg_choice %}
   <section class="block" aria-labelledby="h-sdg">
@@ -135,13 +170,14 @@
   {% endif %}
 
   <section class="block" aria-labelledby="h-mine">
-    <div class="browse-head"><h2 id="h-mine">My courses</h2><a class="hint" href="{{ url_for('econova.catalog') }}">Course catalog →</a></div>
+    <div class="browse-head"><h2 id="h-mine">My courses</h2><a class="hint" href="{{ url_for('econova.catalog') }}">Course catalog</a></div>
     {% if cards %}
     <div class="ec-grid">
       {% for card in cards %}
       {% set c = card.course %}
       {% if c %}
-      <article class="ec-card ec-mine" style="{{ m.accent(c) }}" data-reveal>
+      <article class="ec-card ec-mine sheen" style="{{ m.accent(c) }}" data-reveal>
+        <span class="core" aria-hidden="true"></span><span class="lens" aria-hidden="true"></span>
         <a class="ec-cover-link" href="{{ url_for('econova.course_detail', course_id=c.id) }}" aria-label="{{ c.title_ko }} course details"></a>
         <div class="ec-card-top">
           <span class="ec-code">{{ c.id|upper }}</span>

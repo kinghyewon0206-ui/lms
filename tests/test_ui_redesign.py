@@ -41,7 +41,7 @@ def test_mobile_menu_button_controls_the_menu(logged_in):
 def test_landing_lists_real_courses_but_never_fixtures(client):
     html = client.get("/").get_data(as_text=True)
     for n in range(1, 10):
-        assert f">C0{n}<" in html
+        assert f'data-course-id="c0{n}"' in html
     assert "Dev Test Course" not in html and "DEV-F" not in html
 
 

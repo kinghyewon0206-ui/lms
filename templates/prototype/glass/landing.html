@@ -1,5 +1,5 @@
 {% extends "prototype/glass/base.html" %}
-{% from "prototype/glass/_ui.html" import icon, mark, google_button %}
+{% from "_ui.html" import icon, mark, google_button %}
 {% block title %}ECONOVA — Economics for a changing world{% endblock %}
 {% block body %}
 <header class="gl-nav glass" data-nav>
@@ -23,7 +23,7 @@
       <h1 id="hero-title">See how the world's choices add up.</h1>
       <p class="lede">ECONOVA is an economics course for high-school students. Learn each idea at your level, move real models with your own hands, ask an AI tutor that knows the lesson, and use it all on a problem from the UN Sustainable Development Goals.</p>
       <div class="cta" id="start">
-        {{ google_button("Continue with Google", "#", "lg") }}
+        {{ google_button("Continue with Google", "#", "lg", cls="gsi") }}
         <a class="btn secondary lg" href="#">Sign up with email</a>
       </div>
       <p class="fine">Google sign-in shares only your name and email address with ECONOVA.</p>
@@ -109,7 +109,7 @@
   <section class="glass final-cta" aria-labelledby="cta-title">
     <h2 id="cta-title">Start with the diagnostic</h2>
     <p>Sign in, answer the diagnostic, and ECONOVA suggests where to begin and at which level.</p>
-    <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">{{ google_button("Continue with Google", "#") }}<a class="btn secondary" href="#">Use email instead</a></div>
+    <div class="cta" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">{{ google_button("Continue with Google", "#", cls="gsi") }}<a class="btn secondary" href="#">Use email instead</a></div>
   </section>
 
   <footer class="foot"><span>ECONOVA · An economics learning platform built for the UN Sustainable Development Goals</span><span>Course material is in review and shown here as a design preview.</span></footer>

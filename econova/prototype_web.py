@@ -51,27 +51,9 @@ SAMPLE_DIAGNOSTIC = (("scarcity", "Choices", 1.0), ("supply_demand", "Markets", 
                      ("macroeconomy", "Whole economy", 0.0), ("income_money", "Income & saving", 1.0), ("policy", "SDG policy", .5))
 
 
-def _radar(values, cx=150, cy=132, r=92):
-    import math
-    n = len(values)
-    pts, axes, labels, rings = [], [], [], []
-    for i, (_, label, v) in enumerate(values):
-        a = -math.pi / 2 + 2 * math.pi * i / n
-        ca, sa = math.cos(a), math.sin(a)
-        axes.append((round(cx + r * ca, 1), round(cy + r * sa, 1)))
-        rv = max(v, .06)
-        pts.append((round(cx + r * rv * ca, 1), round(cy + r * rv * sa, 1)))
-        lx, ly = cx + (r + 18) * ca, cy + (r + 18) * sa
-        labels.append({"x": round(lx, 1), "y": round(ly + 4, 1), "text": label, "pct": int(v * 100),
-                       "anchor": "middle" if abs(ca) < .3 else ("start" if ca > 0 else "end")})
-    for f in (.25, .5, .75, 1):
-        ring = []
-        for i in range(n):
-            a = -math.pi / 2 + 2 * math.pi * i / n
-            ring.append(f"{cx + r * f * math.cos(a):.1f},{cy + r * f * math.sin(a):.1f}")
-        rings.append(" ".join(ring))
-    return {"cx": cx, "cy": cy, "points": pts, "poly": " ".join(f"{x},{y}" for x, y in pts), "axes": axes,
-            "labels": labels, "rings": rings}
+def _radar(values):
+    from econova import ui_charts
+    return ui_charts.radar([(label, v) for _, label, v in values])
 
 
 @bp.route("/dashboard")

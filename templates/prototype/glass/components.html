@@ -1,5 +1,5 @@
 {% extends "prototype/glass/base.html" %}
-{% from "prototype/glass/_ui.html" import icon, mark, google_button %}
+{% from "_ui.html" import icon, mark, google_button %}
 {% block title %}Components{% endblock %}
 {% block body %}
 <header class="gl-nav glass">
@@ -34,7 +34,7 @@
     <section class="glass tile" aria-labelledby="c-auth">
       <h2 id="c-auth">Sign-in</h2>
       <div style="display:grid;gap:14px;max-width:380px">
-        {{ google_button("Continue with Google", "#") }}
+        {{ google_button("Continue with Google", "#", cls="gsi") }}
         <div class="field"><label for="f-email">Email</label><input class="input" id="f-email" type="email" placeholder="you@school.org" autocomplete="email"></div>
         <div class="field"><label for="f-pw">Password</label><input class="input" id="f-pw" type="password" aria-invalid="true" aria-describedby="f-pw-err" value="short"><span class="err" id="f-pw-err">Use at least 8 characters.</span></div>
         <div class="field"><label for="f-dis">School code</label><input class="input" id="f-dis" disabled placeholder="Not needed"><span class="help">Disabled field</span></div>

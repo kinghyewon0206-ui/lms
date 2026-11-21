@@ -19,6 +19,17 @@
     doc.addEventListener("click", function (e) { if (nav.classList.contains("is-open") && !nav.contains(e.target)) setOpen(false); });
   }
 
+  /* ---------- Glass sheen: a soft highlight that follows the pointer (mouse only, not with reduced motion) ---------- */
+  if (!reduce && window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+    Array.prototype.forEach.call(doc.querySelectorAll(".sheen"), function (el) {
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100).toFixed(1) + "%");
+        el.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%");
+      });
+    });
+  }
+
   /* ---------- Scroll reveal ---------- */
   var reveal = $$("[data-reveal]");
   if (reveal.length) {
@@ -81,6 +92,7 @@
       links.forEach(function (a, i) {
         var on = i === active;
         a.classList.toggle("is-active", on);
+        if (i <= active) a.classList.add("is-read");   // sections already passed are marked as viewed
         if (on) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
       });
       var act = links[active];

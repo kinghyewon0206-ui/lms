@@ -1,129 +1,91 @@
 {% extends "base.html" %}
+{% from "_ui.html" import icon, google_button %}
 {% block title %}ECONOVA · Economics for a sustainable world{% endblock %}
 {% block content %}
 {% import "econova/_macros.html" as m with context %}
-{% set n_courses = landing_courses|length %}
-{% set n_lessons = landing_courses|sum(attribute='lessons', start=())|length %}
 <div class="landing">
 
-  <section class="lp-hero ec-landing" aria-labelledby="lp-title">
+  <section class="lp-hero" aria-labelledby="lp-title">
     <div class="lp-inner">
       <div>
-        <p class="lp-kicker"><b>SDG</b> Economics for high school students</p>
-        <h1 id="lp-title">Learn economics through the UN Sustainable Development Goals (SDGs)</h1>
-        <p class="lp-lead">ECONOVA is an economics learning platform for high school students. You connect ideas like markets, growth,
-          inequality, finance and trade to real-world problems, and you study on your own, at your own pace.</p>
+        <h1 id="lp-title">See how the world's choices add up.</h1>
+        <p class="lp-lead">ECONOVA is an economics course for high-school students. Learn economics through the UN Sustainable Development Goals (SDGs):
+          study each idea at your level, move real models with your own hands, ask an AI tutor about the lesson, and apply it all to a development problem.</p>
         <div class="lp-cta">
-          <a class="btn lg" href="{{ url_for('signup') }}">Get started (Sign up) <span class="arrow" aria-hidden="true">→</span></a>
+          {% if google_enabled() %}
+          {{ google_button("Continue with Google", url_for('google_login'), "lg") }}
+          <a class="btn lg secondary" href="{{ url_for('signup') }}">Sign up with email</a>
+          {% else %}
+          <a class="btn lg" href="{{ url_for('signup') }}">Create an account</a>
+          {% endif %}
           <a class="btn lg ghost" href="{{ url_for('login') }}">Log in</a>
         </div>
-        <div class="lp-trust">
-          <span>Three reading levels</span><span>Rule-based grading, never AI</span><span>Cited sources in every lesson</span>
-        </div>
+        <p class="lp-fine">{% if google_enabled() %}Google sign-in shares only your name and email address with ECONOVA.{% else %}Your account keeps your progress, quiz results and reports in one place.{% endif %}</p>
       </div>
 
-      <div class="lp-visual" aria-hidden="true">
-        <div class="lp-stack">
-          <div class="lp-panel p-graph float-b">
-            <h4>Supply and demand</h4><small>Change a value, watch the market move</small>
-            <svg viewBox="0 0 220 130" width="100%" style="margin-top:8px">
-              <defs><linearGradient id="lpd" x1="0" x2="1"><stop offset="0" stop-color="#659cff"/><stop offset="1" stop-color="#7659f7"/></linearGradient>
-                <linearGradient id="lps" x1="0" x2="1"><stop offset="0" stop-color="#ffb45f"/><stop offset="1" stop-color="#ff7498"/></linearGradient></defs>
-              <line x1="20" y1="10" x2="20" y2="115" stroke="#c9ccdc" stroke-width="1.5"/><line x1="20" y1="115" x2="210" y2="115" stroke="#c9ccdc" stroke-width="1.5"/>
-              <line x1="30" y1="18" x2="200" y2="108" stroke="url(#lpd)" stroke-width="4" stroke-linecap="round"/>
-              <line x1="30" y1="106" x2="200" y2="20" stroke="url(#lps)" stroke-width="4" stroke-linecap="round"/>
-              <line x1="20" y1="62" x2="114" y2="62" stroke="#b46a00" stroke-width="1.2" stroke-dasharray="4 3"/>
-              <circle cx="114" cy="62" r="6" fill="#14163a" stroke="#fff" stroke-width="2.5"/>
-            </svg>
-          </div>
-          <div class="lp-panel p-lesson float-a">
-            <small>Lesson 2 of 3</small>
-            <h4>Opportunity cost and rational decisions</h4>
-            <div class="mini-bar"><i></i></div>
-            <div class="lp-lines"><i></i><i></i><i></i></div>
-            <div class="lp-levels"><span>Beginner</span><span class="on">Intermediate</span><span>Advanced</span></div>
-          </div>
-          <div class="lp-panel p-quiz float-c">
-            <small>Lesson quiz · Question 3</small>
-            <h4>Which choice best shows a trade-off?</h4>
-            <div class="lp-opt"><i></i>Option A</div>
-            <div class="lp-opt on"><i></i>Option B</div>
-            <div class="lp-opt"><i></i>Option C</div>
-          </div>
-          <div class="lp-panel p-tutor float-a">
-            <small>AI Tutor</small>
-            <div class="lp-bubble me">Why does the price go up?</div>
-            <div class="lp-bubble ai">Start with what happens to demand when…</div>
-          </div>
+      <figure class="glass sheen instrument" data-market aria-labelledby="mk-title" style="margin:0">
+        <div class="top"><strong id="mk-title">Try it: one market, live</strong><span class="pill pill-measure">Hypothetical numbers</span></div>
+        <div class="plot">
+          <svg viewBox="0 0 420 280" role="img" aria-labelledby="mk-desc">
+            <desc id="mk-desc">A supply curve and a demand curve. Moving the slider shifts demand; the crossing point shows the market price and quantity.</desc>
+            <g stroke="rgba(12,22,38,.07)">{% for y in (50, 100, 150, 200) %}<line x1="44" x2="404" y1="{{ y }}" y2="{{ y }}"/>{% endfor %}</g>
+            <line x1="44" y1="20" x2="44" y2="244" stroke="#0C1626" stroke-width="1.5"/>
+            <line x1="44" y1="244" x2="404" y2="244" stroke="#0C1626" stroke-width="1.5"/>
+            <text x="44" y="14" font-size="12" font-weight="650" fill="#0C1626" text-anchor="middle">Price</text>
+            <text x="404" y="270" font-size="12" font-weight="650" fill="#0C1626" text-anchor="end">Quantity</text>
+            <path class="glow s" data-s-glow d=""/><path class="curve s draw" data-s d=""/>
+            <path class="glow d" data-d-glow d=""/><path class="curve d draw late" data-d d=""/>
+            <line class="guide" data-gx x1="0" y1="0" x2="0" y2="0"/><line class="guide" data-gy x1="0" y1="0" x2="0" y2="0"/>
+            <circle class="eq-halo" data-halo r="16" cx="0" cy="0"/><circle class="eq" data-eq r="7" cx="0" cy="0"/>
+            <text data-dl font-size="13" font-weight="700" fill="#A86500">Demand</text>
+            <text data-sl font-size="13" font-weight="700" fill="#067A7C">Supply</text>
+          </svg>
         </div>
-      </div>
+        <div class="readout" aria-live="polite">
+          <div class="read"><span>Price</span><b data-p>$4.00</b></div>
+          <div class="read"><span>Quantity</span><b data-q>60<small>cups</small></b></div>
+          <div class="read"><span>Spending</span><b data-r>$240</b></div>
+        </div>
+        <div class="ctrl">
+          <label for="mk-income"><span>Shoppers' income</span><span data-inc class="num">+0%</span></label>
+          <input class="range warm" id="mk-income" type="range" min="-30" max="30" step="5" value="0" data-income>
+        </div>
+        <figcaption class="note">A lemonade stand on a hot day. Raise income and demand shifts right: price and quantity both rise.</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="lp-strip" aria-label="ECONOVA at a glance">
+  <section class="lp-section" id="how" aria-labelledby="h-how">
     <div class="lp-inner">
-      {% if n_courses %}<div class="lp-fact" data-reveal style="--i:0"><strong>{{ n_courses }}</strong><span>economics courses</span></div>
-      <div class="lp-fact" data-reveal style="--i:1"><strong>{{ n_lessons }}</strong><span>lessons, 3 per course</span></div>{% endif %}
-      <div class="lp-fact" data-reveal style="--i:2"><strong>3</strong><span>levels: beginner, intermediate, advanced</span></div>
-      <div class="lp-fact" data-reveal style="--i:3"><strong>0</strong><span>scores decided by AI</span></div>
-    </div>
-  </section>
-
-  <section class="lp-section" aria-labelledby="h-features">
-    <div class="lp-inner">
-      <div class="lp-section-head" data-reveal>
-        <span class="eyebrow">What you can do on ECONOVA</span>
-        <h2 id="h-features">Everything you need to learn economics <span class="soft">at your own pace.</span></h2>
-        <p>Read, experiment, ask questions and apply what you learn to real problems from the Sustainable Development Goals.</p>
+      <div class="lp-section-head">
+        <h2 id="h-how">How you learn</h2>
+        <p>Four steps, in this order. Stop and come back at any point; your progress is saved to your account.</p>
       </div>
-      <div class="bento">
-        <article class="bento-card span-4 g-prism" data-reveal style="--i:0">
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2"/><path d="M8 7h7M8 11h5"/></svg></span>
-          <h3>{{ n_courses ~ " economics courses" if n_courses else "Economics courses" }}</h3>
-          <p>Each course has 3 lessons. Pick a level (beginner, intermediate or advanced), read, then check your understanding with lesson quizzes and a final assessment.</p>
-          <div class="bento-demo lp-levels" aria-hidden="true"><span>Beginner</span><span class="on">Intermediate</span><span>Advanced</span></div>
-        </article>
-        <article class="bento-card span-2 g-blue" data-reveal style="--i:1">
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <h3>Diagnostic assessment</h3>
-          <p>Get a recommended starting level (just a suggestion; you can change it anytime).</p>
-        </article>
-        <article class="bento-card span-3 g-fresh" data-reveal style="--i:2">
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
-          <h3>Economics Lab</h3>
-          <p>Change the values in supply-and-demand and carbon tax models and calculate the results yourself.</p>
-        </article>
-        <article class="bento-card span-3 feature g-warm" data-reveal style="--i:3">
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
-          <h3>AI Tutor and Debate</h3>
-          <p>Ask questions based on approved learning materials and think about issues from several perspectives. AI never decides your score.</p>
-        </article>
-        <article class="bento-card span-6 g-violet" data-reveal style="--i:4">
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-          <h3>Learning report and SDG Capstone project</h3>
-          <p>Look back on your progress and write your own solution to an SDG problem.</p>
-        </article>
-      </div>
+      <ol class="steps-row">
+        <li class="step-card" style="--c:#2F5BFF"><div class="n">1</div><h3>Take the diagnostic</h3><p>Short questions on the ideas behind all nine courses show which areas you already know and suggest a level.</p></li>
+        <li class="step-card" style="--c:#0A9DA0"><div class="n">2</div><h3>Learn at your level</h3><p>Every lesson has a beginner, intermediate and advanced version. Switch at any time.</p></li>
+        <li class="step-card" style="--c:#E39B21"><div class="n">3</div><h3>Practise and check</h3><p>Quizzes are graded by fixed rules on the server. Worked examples and simulations show the reasoning.</p></li>
+        <li class="step-card" style="--c:#C04BD9"><div class="n">4</div><h3>Apply it to the SDGs</h3><p>The capstone asks you to analyse a development problem and propose a policy.</p></li>
+      </ol>
     </div>
   </section>
 
   {% if landing_courses %}
-  <section class="lp-section" aria-labelledby="h-courses" style="padding-top:0">
+  <section class="lp-section" id="courses" aria-labelledby="h-courses">
     <div class="lp-inner">
-      <div class="lp-section-head" data-reveal>
-        <span class="eyebrow">Courses</span>
-        <h2 id="h-courses">From scarcity to sustainable policy. <span class="soft">One connected path.</span></h2>
-        <p>Every course links core economic ideas to the Sustainable Development Goals.</p>
+      <div class="lp-section-head">
+        <h2 id="h-courses">{{ landing_courses|length }} courses</h2>
+        <p>From everyday choices to global trade. Each course links its lessons to the Sustainable Development Goals it helps you understand.</p>
       </div>
       <div class="course-rail">
         {% for c in landing_courses %}
-        <article class="rail-card" style="{{ m.accent(c) }} --i:{{ loop.index0 % 3 }};" data-reveal>
-          <span class="rail-num" aria-hidden="true">{{ c.id|upper }}</span>
-          <div>
-            <h3>{{ c.title_ko }}</h3>
-            {{ m.sdg_badges(c) }}
-            {% if not c.published %}<p class="hint" style="margin-top:8px"><span class="pill pill-soon">Coming soon</span></p>{% endif %}
-          </div>
+        <article class="rail-card sheen" style="{{ m.accent(c) }}" data-course-id="{{ c.id }}">
+          <span class="course-core" aria-hidden="true"></span><span class="course-lens" aria-hidden="true"></span>
+          <span class="course-no" aria-hidden="true">{{ c.id[1:] }}</span>
+          <h3><span class="sr-only">Course {{ c.id[1:] }}: </span>{{ c.title_ko }}</h3>
+          <p>{{ c.description }}</p>
+          <div class="rail-facts"><span>{{ c.lessons|length }} lessons</span><span>About {{ c.estimated_hours }} hours</span>{% if not c.published %}<span class="pill pill-soon">Coming soon</span>{% endif %}</div>
+          {{ m.sdg_badges(c) }}
         </article>
         {% endfor %}
       </div>
@@ -131,32 +93,39 @@
   </section>
   {% endif %}
 
-  <section class="lp-section lp-band" aria-labelledby="h-how">
+  <section class="lp-section" id="tutor" aria-labelledby="h-tutor">
     <div class="lp-inner">
-      <div class="lp-section-head" data-reveal>
-        <span class="eyebrow" style="color:#c9bdfd">How it works</span>
-        <h2 id="h-how">Study on your own. <span class="soft">See your progress clearly.</span></h2>
-      </div>
-      <div class="steps-row">
-        <article class="step-card" data-reveal style="--i:0"><h3>Find your level</h3><p>Take the diagnostic assessment for a suggested starting level, or choose one yourself.</p></article>
-        <article class="step-card" data-reveal style="--i:1"><h3>Read and experiment</h3><p>Work through concepts, worked examples, graphs and simulations at the depth that fits you.</p></article>
-        <article class="step-card" data-reveal style="--i:2"><h3>Check your understanding</h3><p>Lesson quizzes and a final assessment are graded only by fixed rules.</p></article>
-        <article class="step-card" data-reveal style="--i:3"><h3>Apply it to the SDGs</h3><p>Weigh real policy choices and build your own SDG Capstone project.</p></article>
+      <div class="glass tutor-band">
+        <div>
+          <h2 id="h-tutor">A tutor that has read the lesson</h2>
+          <p class="hint" style="margin-top:14px;font-size:17px;color:var(--ink-2)">Ask about the page you are on. The tutor answers from that lesson's material and says when the lesson only partly covers your question.</p>
+          <ul>
+            <li>{{ icon('book') }}<span>Grounded in the lesson you are reading, with the source it used.</span></li>
+            <li>{{ icon('lock') }}<span>It never changes scores, progress or grades.</span></li>
+            <li>{{ icon('clock') }}<span>A daily question limit keeps it focused.</span></li>
+          </ul>
+        </div>
+        <div class="obsidian chat-demo glass" role="group" aria-label="Example conversation">
+          <div class="head"><span class="orb" aria-hidden="true"></span>Example conversation</div>
+          <p class="msg me">If ice cream gets cheaper, is that a change in demand?</p>
+          <p class="msg ai">Not by itself. A lower price moves you along the same demand curve, so it changes the quantity demanded. Demand changes when something other than the good's own price shifts, such as income or tastes.<cite>From the lesson "Supply and Demand"</cite></p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="lp-section lp-final" aria-labelledby="h-final">
+  <section class="lp-final" aria-labelledby="h-final">
     <div class="lp-inner">
-      <div class="cta-card" data-reveal>
-        <h2 id="h-final">Start learning economics today</h2>
-        <p>Create an account and begin with the diagnostic assessment or any course that interests you.</p>
+      <div class="cta-card glass">
+        <h2 id="h-final">Start with the diagnostic</h2>
+        <p>Sign in, answer the diagnostic, and ECONOVA suggests where to begin and at which level.</p>
         <div class="lp-cta">
-          <a class="btn lg light" href="{{ url_for('signup') }}">Get started (Sign up) <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn lg ghost" href="{{ url_for('login') }}">Log in</a>
+          {% if google_enabled() %}{{ google_button("Continue with Google", url_for('google_login')) }}{% endif %}
+          <a class="btn{{ ' secondary' if google_enabled() }}" href="{{ url_for('signup') }}">{{ 'Use email instead' if google_enabled() else 'Create an account' }}</a>
         </div>
       </div>
     </div>
   </section>
 </div>
+<script src="{{ url_for('static', filename='js/econova-market.js') }}" defer></script>
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · ECONOVA{% endblock %}
+{% block content %}
+<section class="err-page" aria-labelledby="err-title">
+  <p class="err-code">{{ code }}</p>
+  <h1 id="err-title">{{ title }}</h1>
+  <p>{{ message }}</p>
+  <div class="actions">
+    {% if g.get('user') %}
+    <a class="btn" href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+    {% else %}
+    <a class="btn" href="{{ url_for('index') }}">Go to the home page</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
