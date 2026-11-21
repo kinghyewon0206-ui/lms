@@ -1194,3 +1194,21 @@ body:has(#topbar.on) { cursor: progress; }
 .debate-log .tutor-ai { color: var(--ink); background: rgba(227, 245, 245, .95); box-shadow: inset 0 0 0 1px #C6E8E8; }
 .debate-log .tutor-ai .tutor-label, .debate-log .tutor-ai .hint { color: var(--ink-3); }
 .debate-log .tutor-empty { color: var(--ink-2); }
+
+/* Dashboard · Recommended for you · Next lessons */
+.next-lessons-title { font-size: 17px; margin: var(--s4, 16px) 0 10px; }
+.next-lessons { list-style: none; margin: 0 0 var(--s4, 16px); padding: 0; display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 640px) { .next-lessons { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .next-lessons { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.next-card { position: relative; display: grid; gap: 2px; height: 100%; padding: 14px 16px 14px 20px; border-radius: var(--r-md); overflow: hidden; color: var(--ink); text-decoration: none;
+  background: var(--glass-strong); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), var(--sh-1, 0 1px 2px rgba(12, 22, 38, .06));
+  transition: transform var(--t-fast, .15s) var(--ease, ease), box-shadow var(--t-fast, .15s) var(--ease, ease); }
+.next-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--a1), var(--a2)); }
+.next-card:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px #fff, var(--sh-2); }
+.next-card:focus-visible { outline: 3px solid var(--ultra); outline-offset: 2px; }
+.next-card-course { font-size: 13px; font-weight: 650; color: color-mix(in srgb, var(--a1) 70%, #0C1626); }
+.next-card-lesson { font-size: 13px; color: var(--ink-3); }
+.next-card-title { font-size: 16px; font-weight: 650; line-height: 1.35; margin: 2px 0 8px; }
+.next-card-go { align-self: end; font-size: 14px; font-weight: 650; color: var(--ultra-ink); }
+.next-card:hover .next-card-go { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) { .next-card, .next-card:hover { transition: none; transform: none; } }

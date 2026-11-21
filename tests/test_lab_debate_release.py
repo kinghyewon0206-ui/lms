@@ -313,3 +313,13 @@ def test_response_forms_on_light_cards_use_dark_text():
             assert sel.startswith(".tutor-panel") or ".btn" in sel, sel
     html = open(os.path.join(ROOT, "templates", "econova", "discuss", "topic.html"), encoding="utf-8").read()
     assert 'class="tutor-form debate-form"' in html
+
+
+def test_dashboard_next_lessons_are_cards_linking_to_lessons(logged_in):
+    for cid in ("c01", "c07"):
+        _enroll(logged_in, cid)
+    html = logged_in.get("/dashboard").get_data(as_text=True)
+    assert 'class="next-lessons"' in html and "Next lessons:" not in html
+    cards = re.findall(r'<a class="next-card"[^>]*href="(/learn/[^"]+)"', html)
+    assert cards == ["/learn/c01/c01-l1", "/learn/c07/c07-l1"]   # recommendation order is unchanged (enrollment order)
+    assert html.count("Continue learning") >= 2 and "Economics &amp; Choices" in html and "Lesson 1" in html

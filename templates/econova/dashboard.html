@@ -152,8 +152,17 @@
     {% if recs.more %}<p class="hint">{{ recs.more }} more {{ 'concept' if recs.more == 1 else 'concepts' }} not shown.</p>{% endif %}
     {% endif %}
     {% if recs.next_lessons %}
-    <p><strong>Next lessons:</strong>
-      {% for n in recs.next_lessons %}<a href="{{ url_for('econova.lesson', course_id=n.course_id, lesson_id=n.lesson_id) }}">{{ n.course_title }} · Lesson {{ n.order }} {{ n.lesson_title }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    <h3 class="next-lessons-title" id="h-next-lessons">Next lessons</h3>
+    <ul class="next-lessons" role="list" aria-labelledby="h-next-lessons">
+      {% for n in recs.next_lessons %}
+      <li><a class="next-card" style="{{ m.accent({'id': n.course_id}) }}" href="{{ url_for('econova.lesson', course_id=n.course_id, lesson_id=n.lesson_id) }}">
+        <span class="next-card-course">{{ n.course_title }}</span>
+        <span class="next-card-lesson">Lesson {{ n.order }}</span>
+        <span class="next-card-title">{{ n.lesson_title }}</span>
+        <span class="next-card-go">Continue learning <span aria-hidden="true">→</span></span>
+      </a></li>
+      {% endfor %}
+    </ul>
     {% endif %}
     {% if recs.weak_areas %}
     <p><strong>Basic areas worth revisiting from your diagnostic assessment:</strong>
