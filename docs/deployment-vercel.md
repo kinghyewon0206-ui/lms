@@ -110,3 +110,17 @@ Preview 환경: 다른 `SECRET_KEY`, `ECONOVA_AI_PROVIDER=off`, Google 변수 �
 3. feature 브랜치 미리보기 배포 → 보호된 상태에서 `/login`, 정적 파일(`/static/style.css`), 정답 키 상태, 7장 측정.
 4. Google 클라이언트에 운영 도메인 콜백 등록 (`docs/google-sign-in-setup.md`).
 5. 공개 승인 → `competition` 브랜치 생성·푸시 → 운영 배포 확인 → Standard Protection 으로 전환 → 시크릿 창에서 공개 접근·Google 로그인 확인.
+
+## 11. 프로젝트 생성 방법 (2026-11-21 공식 문서 재확인 → 계획 변경)
+- 대시보드 "Import Git Repository" 는 **Deploy 를 누르는 즉시 첫 배포**를 만든다. **새 프로젝트의 첫 배포는 항상 Production** 이고, Production Branch 기본값은 `main` → **이전 LMS 가 운영으로 배포될 위험** → 대시보드 Import 를 쓰지 않는다.
+- Ignored Build Step 은 배포를 막는 것이 아니라 빌드를 시작한 뒤 취소(CANCELED)한다 (배포 횟수에는 포함).
+- **채택: Git 연결 없이 CLI 로만 배포한다.** 로컬 worktree(`feature/econova-lms-renewal`)에서 `vercel deploy` → `.vercelignore` 가 적용된 로컬 파일만 올라가고, main 은 Vercel 이 아예 보지 못한다. 자동 배포도 없다.
+  1. `vercel login` (소유자 본인 계정, 터미널에서 직접)
+  2. `vercel project create econova` (배포 없음)
+  3. 대시보드 Settings → Deployment Protection → Vercel Authentication → **All Deployments** (Hobby 가능). 새 프로젝트 기본값은 Standard(운영 도메인 공개)이므로 첫 배포 전에 바꾼다.
+  4. 환경변수(Secret 유형, Production) 입력 — 첫 배포는 Production 변수로 빌드된다.
+  5. worktree 에서 `vercel link --yes --project econova` → `vercel deploy` (첫 배포 = Production 이지만 All Deployments 보호로 비공개)
+  6. 공개 승인 후: Deployment Protection 을 Standard 로 내린다 (운영 도메인만 공개, 나머지 주소는 계속 보호).
+- `icn1` = 서울(ap-northeast-2) 확인됨. Hobby 는 지역 1개 선택 가능.
+- Vercel 의 "Sensitive" 환경변수는 현재 **Secret** 유형으로 이름이 바뀌었다 (저장 후 읽을 수 없음, 환경별 값 지정 가능).
+- Google: openid/email/profile 만 요청하면 Testing 상태에서도 경고 화면·테스트 사용자 제한·7일 만료가 없다 (support.google.com/cloud/answer/15549945).

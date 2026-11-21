@@ -1,3 +1,6 @@
 Flask==3.1.3
 gunicorn==23.0.0
 firebase-admin==7.7.0
+# Used directly by Google sign-in (ID token check) and Secret Manager access; also installed by firebase-admin.
+google-auth==2.62.0
+requests==2.34.2
